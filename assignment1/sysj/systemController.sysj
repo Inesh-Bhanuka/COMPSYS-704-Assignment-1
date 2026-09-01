@@ -1,0 +1,55 @@
+SystemController(
+		// To LidLoaderControllerCD
+		output Integer signal mode;
+		output signal lidLoaderLoad;
+
+		// To LidLoaderPlantCD
+		output signal enable;
+
+		// From LidLoaderControllerCD
+		input signal lidLoaderLoaded;
+		input signal reloaded;
+		)
+->
+{
+	{ // ---- Operating mode: hold the lid loader in AUTO (0) for the whole run ----
+		while(true){
+			emit mode(0);
+			pause;
+		}
+	}
+	||
+	{ // ---- Plant power: the plant models only move while enable is present ----
+		while(true){
+			emit enable;
+			pause;
+		}
+	}
+	||
+	{ // ---- Run several load cycles to exhaust the magazine ----
+
+		// Let the TCP links between the three subsystems settle.
+		pause; pause; pause; pause; pause;
+
+		int cycles = 7;
+		int i = 0;
+
+		while(i < cycles){
+			System.out.println("[SC] Requesting lid load " + (i + 1) + " of " + cycles + "...");
+
+			abort(lidLoaderLoaded){
+				sustain lidLoaderLoad;
+			}
+
+			i++;
+			System.out.println("[SC] Load " + i + " complete.");
+
+			// Drop the request for a few ticks so lidLoaderLoaded clears
+			// before the next abort arms.
+			pause; pause; pause;
+		}
+
+		System.out.println("[SC] All " + cycles + " cycles done.");
+		while(true){ pause; }
+	}
+}

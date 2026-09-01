@@ -1,0 +1,100 @@
+LidLoaderController(
+        // Plant signals
+		input signal pusherRetracted,pusherExtended,WPgripped,armAtSource,armAtDest,empty,refilled;
+		output signal pusherExtend,vacOn,armSource,armDest,refill;
+        
+		// Coordinator signals
+		input Integer signal mode;
+        input signal lidLoaderLoad;
+        output signal lidLoaderLoaded;
+        
+		// Manual signals
+		input signal pusherExtendM,vacOnM,armSourceM,armDestM;
+		)
+->{
+	signal auto, manual;
+
+    { // MODE SELECTION
+		pause;
+		emit auto;
+		while (true) {
+			present(mode){
+				{
+					if ((Integer)#mode == 0) {emit auto; }//System.out.println("LidLoader Auto mode!");}
+				}||{
+					if ((Integer)#mode == 1) {emit manual; }//System.out.println("LidLoader Manual mode!");}
+				}
+			}
+			pause;
+		}
+	}
+	||
+    {// Auto Mode
+        while(true){
+            await(immediate auto);
+            abort(immediate manual){
+                //System.out.println("auto mode");
+		        present(lidLoaderLoad)
+		        {
+		        	abort(armAtDest){
+		        		sustain armDest; 
+		        	}
+		        	pause;
+		        	present(pusherRetracted){
+		        		abort(pusherExtended){
+		        			sustain pusherExtend; 
+		        		}
+		        	}
+		        	pause;
+		        	abort(armAtSource){ 
+		        		sustain armSource; 
+		        	}
+		        	pause;
+		        	abort(WPgripped){
+		        		sustain vacOn;
+		        	}
+		        	pause;
+		        	abort(armAtDest) {
+		        		{sustain armDest;}||{sustain vacOn;}
+		        	}
+		        	pause;
+		        	await(!WPgripped);
+		        	pause;
+		        	emit vacOn;
+		        	abort(armAtDest){
+		        		sustain armDest; 
+		        	}
+		        	pause;
+                    emit lidLoaderLoaded;
+
+		        }
+            }
+            pause;
+        }   
+    }
+	||
+	{ // Refill
+		while(true) {
+			await(empty);
+			emit refill; 
+			await(refilled); 
+		}
+	}
+    ||
+    { // Manual Mode
+		while (true) {
+			await(immediate manual);
+			
+			abort(immediate auto){
+				{while (true){present(pusherExtendM){emit pusherExtend;} pause;}}
+				||
+				{while (true){present(vacOnM){emit vacOn;} pause;}}
+				||
+				{while (true){present(armSourceM){emit armSource;} pause;}}
+				||
+				{while (true){present(armDestM){emit armDest;} pause;}}	
+			}
+			pause;
+		}
+	}
+}

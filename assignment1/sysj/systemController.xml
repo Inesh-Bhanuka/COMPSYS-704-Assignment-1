@@ -1,0 +1,16 @@
+<System xmlns="http://systemjtechnology.com">
+	<SubSystem Name="SS3" Local="true">
+		<ClockDomain Name="SystemControllerCD" Class="SystemController">
+			<!-- SystemControllerCD listens on 10002 -->
+			<iSignal Name="lidLoaderLoaded" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10002" />
+			<iSignal Name="reloaded"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10002" />
+
+			<!-- to the lid loader controller (listens on 10000) -->
+			<oSignal Name="mode"          To="LidLoaderControllerCD.mode"          Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+			<oSignal Name="lidLoaderLoad" To="LidLoaderControllerCD.lidLoaderLoad" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+
+			<!-- to the lid loader plant (listens on 10001) -->
+			<oSignal Name="enable"        To="LidLoaderPlantCD.enable"             Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+		</ClockDomain>
+	</SubSystem>
+</System>

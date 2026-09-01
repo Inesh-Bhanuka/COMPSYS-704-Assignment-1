@@ -1,0 +1,105 @@
+LidLoaderPlant(
+		input signal pusherExtend,vacOn,armSource,armDest;
+		input signal enable,refill;
+		output signal pusherRetracted,pusherExtended,WPgripped,armAtSource,armAtDest,empty,refilled;
+		output signal pusherRetractedE,pusherExtendedE,WPgrippedE,armAtSourceE,armAtDestE,emptyE;
+		)
+->
+{
+
+	signal capDec;
+	int signal capPos;
+	emit capPos(0);
+	{// Arm
+		while(true){
+			abort(armSource && enable){
+				sustain armAtDest;
+			}
+			abort(armDest && enable){
+				sustain armAtSource;
+			}
+		}
+	}
+	||
+	{// Pusher
+		while(true){
+			abort(pusherExtend && enable){
+				sustain pusherRetracted;
+			}
+			abort(!pusherExtend && enable){
+				sustain pusherExtended;
+			}
+		}
+	}
+	||
+	{// Vacuum
+		while(true){
+			present(vacOn && armAtSource){
+				if((Integer)#capPos == 1){
+					emit capPos(0);
+					abort(!vacOn){
+						sustain WPgripped; 
+					}
+					present(armAtSource){
+						emit capPos(1);
+					}
+				}
+			}
+			pause;
+		}
+	}
+	||
+	{
+		/*
+		 * Cap positions
+		 * 0 = at Mag
+		 * 1 = at pick-up
+		 */
+		while(true){
+			// At mag
+			abort(empty){
+				while(true){
+						await(pusherRetracted);
+						await(pusherExtended);
+						// At pick-up
+						emit capPos(1);
+						await(pusherRetracted);
+						emit capDec;
+				}
+			}
+			await(refill);
+			emit refilled;
+		}
+	}
+	||
+	{
+		int capcount = 5;
+		while(true){
+			present(capDec){
+				if(capcount > 0)
+					capcount--;
+				System.out.println("[Plant] capcount = " + capcount);
+			}
+			present(refill){
+				capcount = 5;
+			}
+			if(capcount == 0)
+				emit empty;
+			pause;
+		}
+	}
+	||
+	{// Visualizing signals, unused right now
+		{while(true){present(pusherRetracted){emit pusherRetractedE;} pause;}}
+		||
+		{while(true){present(pusherExtended){emit pusherExtendedE;} pause;}}
+		||
+		{while(true){present(WPgripped){emit WPgrippedE;} pause;}}
+		||
+		{while(true){present(armAtSource){emit armAtSourceE;} pause;}}
+		||
+		{while(true){present(armAtDest){emit armAtDestE;} pause;}}
+		||
+		{while(true){present(empty){emit emptyE;} pause;}}
+	}
+}
