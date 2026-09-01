@@ -28,7 +28,7 @@ public class RotaryTablePlant extends ClockDomain{
   private boolean triggered_thread_1;//sysj\turntablePlant.sysj line: 41, column: 2
   private boolean last_thread_1;//sysj\turntablePlant.sysj line: 50, column: 6
   private int i_thread_1;//sysj\turntablePlant.sysj line: 51, column: 6
-  private int S57235 = 1;
+  private int S57272 = 1;
   
   private int[] ends = new int[2];
   private int[] tdone = new int[2];
@@ -40,14 +40,14 @@ public class RotaryTablePlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S57235){
+      switch(S57272){
         case 0 : 
-          S57235=0;
+          S57272=0;
           break RUN;
         
         case 1 : 
-          S57235=2;
-          S57235=2;
+          S57272=2;
+          S57272=2;
           ROT_thread_1 = 6;//sysj\turntablePlant.sysj line: 33, column: 2
           rotating_thread_1 = 0;//sysj\turntablePlant.sysj line: 34, column: 2
           occ_thread_1 = new boolean[6];//sysj\turntablePlant.sysj line: 35, column: 2

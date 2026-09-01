@@ -39,12 +39,12 @@ public class RotaryTableController extends ClockDomain{
   private boolean d2_thread_1;//sysj\turntableController.sysj line: 40, column: 2
   private boolean d3_thread_1;//sysj\turntableController.sysj line: 41, column: 2
   private boolean d4_thread_1;//sysj\turntableController.sysj line: 42, column: 2
-  private int S56398 = 1;
-  private int S4709 = 1;
-  private int S4703 = 1;
-  private int S4742 = 1;
-  private int S4717 = 1;
-  private int S4846 = 1;
+  private int S56435 = 1;
+  private int S4746 = 1;
+  private int S4740 = 1;
+  private int S4779 = 1;
+  private int S4754 = 1;
+  private int S4883 = 1;
   
   private int[] ends = new int[2];
   private int[] tdone = new int[2];
@@ -56,14 +56,14 @@ public class RotaryTableController extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S56398){
+      switch(S56435){
         case 0 : 
-          S56398=0;
+          S56435=0;
           break RUN;
         
         case 1 : 
-          S56398=2;
-          S56398=2;
+          S56435=2;
+          S56435=2;
           m_thread_1 = new TableModel();//sysj\turntableController.sysj line: 35, column: 2
           OFFERWIN_thread_1 = 6;//sysj\turntableController.sysj line: 36, column: 2
           w_thread_1 = 0;//sysj\turntableController.sysj line: 37, column: 2
@@ -72,26 +72,26 @@ public class RotaryTableController extends ClockDomain{
           d2_thread_1 = false;//sysj\turntableController.sysj line: 40, column: 2
           d3_thread_1 = false;//sysj\turntableController.sysj line: 41, column: 2
           d4_thread_1 = false;//sysj\turntableController.sysj line: 42, column: 2
-          S4709=0;
+          S4746=0;
           if(tableAligned.getprestatus()){//sysj\turntableController.sysj line: 46, column: 19
-            S4709=1;
+            S4746=1;
             if(m_thread_1.exitOccupied()){//sysj\turntableController.sysj line: 49, column: 3
               m_thread_1.sayUnloading();//sysj\turntableController.sysj line: 50, column: 4
               unloadExit.setPresent();//sysj\turntableController.sysj line: 51, column: 4
               currsigs.addElement(unloadExit);
               bottleFromTable.setPresent();//sysj\turntableController.sysj line: 51, column: 21
               currsigs.addElement(bottleFromTable);
-              S4703=0;
+              S4740=0;
               active[1]=1;
               ends[1]=1;
               break RUN;
             }
             else {
               got_thread_1 = false;//sysj\turntableController.sysj line: 57, column: 3
-              S4709=2;
+              S4746=2;
               if(m_thread_1.loadPointFree()){//sysj\turntableController.sysj line: 58, column: 3
                 if(!m_thread_1.anyOccupied()){//sysj\turntableController.sysj line: 59, column: 7
-                  S4742=0;
+                  S4779=0;
                   tableReady.setPresent();//sysj\turntableController.sysj line: 62, column: 6
                   currsigs.addElement(tableReady);
                   active[1]=1;
@@ -99,12 +99,12 @@ public class RotaryTableController extends ClockDomain{
                   break RUN;
                 }
                 else {
-                  S4742=1;
+                  S4779=1;
                   w_thread_1 = OFFERWIN_thread_1;//sysj\turntableController.sysj line: 69, column: 5
                   if(w_thread_1 > 0){//sysj\turntableController.sysj line: 70, column: 11
                     tableReady.setPresent();//sysj\turntableController.sysj line: 71, column: 6
                     currsigs.addElement(tableReady);
-                    S4717=0;
+                    S4754=0;
                     if(bottleToTable.getprestatus()){//sysj\turntableController.sysj line: 72, column: 14
                       got_thread_1 = true;//sysj\turntableController.sysj line: 72, column: 30
                       if(got_thread_1) {//sysj\turntableController.sysj line: 73, column: 13
@@ -113,7 +113,7 @@ public class RotaryTableController extends ClockDomain{
                       else {//sysj\turntableController.sysj line: 73, column: 29
                         w_thread_1 = w_thread_1 - 1;//sysj\turntableController.sysj line: 73, column: 31
                       }
-                      S4717=1;
+                      S4754=1;
                       active[1]=1;
                       ends[1]=1;
                       break RUN;
@@ -125,7 +125,7 @@ public class RotaryTableController extends ClockDomain{
                       else {//sysj\turntableController.sysj line: 73, column: 29
                         w_thread_1 = w_thread_1 - 1;//sysj\turntableController.sysj line: 73, column: 31
                       }
-                      S4717=1;
+                      S4754=1;
                       active[1]=1;
                       ends[1]=1;
                       break RUN;
@@ -134,13 +134,13 @@ public class RotaryTableController extends ClockDomain{
                   else {
                     ends[1]=2;
                     ;//sysj\turntableController.sysj line: 70, column: 5
-                    S4709=3;
+                    S4746=3;
                     if(got_thread_1){//sysj\turntableController.sysj line: 79, column: 3
                       loadPos1.setPresent();//sysj\turntableController.sysj line: 80, column: 4
                       currsigs.addElement(loadPos1);
                       bottleTaken.setPresent();//sysj\turntableController.sysj line: 80, column: 19
                       currsigs.addElement(bottleTaken);
-                      S4846=0;
+                      S4883=0;
                       active[1]=1;
                       ends[1]=1;
                       break RUN;
@@ -150,7 +150,7 @@ public class RotaryTableController extends ClockDomain{
                       d2_thread_1 = !m_thread_1.at(2);//sysj\turntableController.sysj line: 88, column: 3
                       d3_thread_1 = !m_thread_1.at(3);//sysj\turntableController.sysj line: 89, column: 3
                       d4_thread_1 = !m_thread_1.at(4);//sysj\turntableController.sysj line: 90, column: 3
-                      S4709=4;
+                      S4746=4;
                       if(!(d1_thread_1 && d2_thread_1 && d3_thread_1 && d4_thread_1)){//sysj\turntableController.sysj line: 92, column: 9
                         if(!d1_thread_1){//sysj\turntableController.sysj line: 93, column: 7
                           enableFiller1.setPresent();//sysj\turntableController.sysj line: 94, column: 5
@@ -841,7 +841,7 @@ public class RotaryTableController extends ClockDomain{
                         ;//sysj\turntableController.sysj line: 92, column: 3
                         rotaryTrigger.setPresent();//sysj\turntableController.sysj line: 113, column: 3
                         currsigs.addElement(rotaryTrigger);
-                        S4709=5;
+                        S4746=5;
                         active[1]=1;
                         ends[1]=1;
                         break RUN;
@@ -851,13 +851,13 @@ public class RotaryTableController extends ClockDomain{
                 }
               }
               else {
-                S4709=3;
+                S4746=3;
                 if(got_thread_1){//sysj\turntableController.sysj line: 79, column: 3
                   loadPos1.setPresent();//sysj\turntableController.sysj line: 80, column: 4
                   currsigs.addElement(loadPos1);
                   bottleTaken.setPresent();//sysj\turntableController.sysj line: 80, column: 19
                   currsigs.addElement(bottleTaken);
-                  S4846=0;
+                  S4883=0;
                   active[1]=1;
                   ends[1]=1;
                   break RUN;
@@ -867,7 +867,7 @@ public class RotaryTableController extends ClockDomain{
                   d2_thread_1 = !m_thread_1.at(2);//sysj\turntableController.sysj line: 88, column: 3
                   d3_thread_1 = !m_thread_1.at(3);//sysj\turntableController.sysj line: 89, column: 3
                   d4_thread_1 = !m_thread_1.at(4);//sysj\turntableController.sysj line: 90, column: 3
-                  S4709=4;
+                  S4746=4;
                   if(!(d1_thread_1 && d2_thread_1 && d3_thread_1 && d4_thread_1)){//sysj\turntableController.sysj line: 92, column: 9
                     if(!d1_thread_1){//sysj\turntableController.sysj line: 93, column: 7
                       enableFiller1.setPresent();//sysj\turntableController.sysj line: 94, column: 5
@@ -1558,7 +1558,7 @@ public class RotaryTableController extends ClockDomain{
                     ;//sysj\turntableController.sysj line: 92, column: 3
                     rotaryTrigger.setPresent();//sysj\turntableController.sysj line: 113, column: 3
                     currsigs.addElement(rotaryTrigger);
-                    S4709=5;
+                    S4746=5;
                     active[1]=1;
                     ends[1]=1;
                     break RUN;
@@ -1574,27 +1574,27 @@ public class RotaryTableController extends ClockDomain{
           }
         
         case 2 : 
-          switch(S4709){
+          switch(S4746){
             case 0 : 
               if(tableAligned.getprestatus()){//sysj\turntableController.sysj line: 46, column: 19
-                S4709=1;
+                S4746=1;
                 if(m_thread_1.exitOccupied()){//sysj\turntableController.sysj line: 49, column: 3
                   m_thread_1.sayUnloading();//sysj\turntableController.sysj line: 50, column: 4
                   unloadExit.setPresent();//sysj\turntableController.sysj line: 51, column: 4
                   currsigs.addElement(unloadExit);
                   bottleFromTable.setPresent();//sysj\turntableController.sysj line: 51, column: 21
                   currsigs.addElement(bottleFromTable);
-                  S4703=0;
+                  S4740=0;
                   active[1]=1;
                   ends[1]=1;
                   break RUN;
                 }
                 else {
                   got_thread_1 = false;//sysj\turntableController.sysj line: 57, column: 3
-                  S4709=2;
+                  S4746=2;
                   if(m_thread_1.loadPointFree()){//sysj\turntableController.sysj line: 58, column: 3
                     if(!m_thread_1.anyOccupied()){//sysj\turntableController.sysj line: 59, column: 7
-                      S4742=0;
+                      S4779=0;
                       tableReady.setPresent();//sysj\turntableController.sysj line: 62, column: 6
                       currsigs.addElement(tableReady);
                       active[1]=1;
@@ -1602,12 +1602,12 @@ public class RotaryTableController extends ClockDomain{
                       break RUN;
                     }
                     else {
-                      S4742=1;
+                      S4779=1;
                       w_thread_1 = OFFERWIN_thread_1;//sysj\turntableController.sysj line: 69, column: 5
                       if(w_thread_1 > 0){//sysj\turntableController.sysj line: 70, column: 11
                         tableReady.setPresent();//sysj\turntableController.sysj line: 71, column: 6
                         currsigs.addElement(tableReady);
-                        S4717=0;
+                        S4754=0;
                         if(bottleToTable.getprestatus()){//sysj\turntableController.sysj line: 72, column: 14
                           got_thread_1 = true;//sysj\turntableController.sysj line: 72, column: 30
                           if(got_thread_1) {//sysj\turntableController.sysj line: 73, column: 13
@@ -1616,7 +1616,7 @@ public class RotaryTableController extends ClockDomain{
                           else {//sysj\turntableController.sysj line: 73, column: 29
                             w_thread_1 = w_thread_1 - 1;//sysj\turntableController.sysj line: 73, column: 31
                           }
-                          S4717=1;
+                          S4754=1;
                           active[1]=1;
                           ends[1]=1;
                           break RUN;
@@ -1628,7 +1628,7 @@ public class RotaryTableController extends ClockDomain{
                           else {//sysj\turntableController.sysj line: 73, column: 29
                             w_thread_1 = w_thread_1 - 1;//sysj\turntableController.sysj line: 73, column: 31
                           }
-                          S4717=1;
+                          S4754=1;
                           active[1]=1;
                           ends[1]=1;
                           break RUN;
@@ -1637,13 +1637,13 @@ public class RotaryTableController extends ClockDomain{
                       else {
                         ends[1]=2;
                         ;//sysj\turntableController.sysj line: 70, column: 5
-                        S4709=3;
+                        S4746=3;
                         if(got_thread_1){//sysj\turntableController.sysj line: 79, column: 3
                           loadPos1.setPresent();//sysj\turntableController.sysj line: 80, column: 4
                           currsigs.addElement(loadPos1);
                           bottleTaken.setPresent();//sysj\turntableController.sysj line: 80, column: 19
                           currsigs.addElement(bottleTaken);
-                          S4846=0;
+                          S4883=0;
                           active[1]=1;
                           ends[1]=1;
                           break RUN;
@@ -1653,7 +1653,7 @@ public class RotaryTableController extends ClockDomain{
                           d2_thread_1 = !m_thread_1.at(2);//sysj\turntableController.sysj line: 88, column: 3
                           d3_thread_1 = !m_thread_1.at(3);//sysj\turntableController.sysj line: 89, column: 3
                           d4_thread_1 = !m_thread_1.at(4);//sysj\turntableController.sysj line: 90, column: 3
-                          S4709=4;
+                          S4746=4;
                           if(!(d1_thread_1 && d2_thread_1 && d3_thread_1 && d4_thread_1)){//sysj\turntableController.sysj line: 92, column: 9
                             if(!d1_thread_1){//sysj\turntableController.sysj line: 93, column: 7
                               enableFiller1.setPresent();//sysj\turntableController.sysj line: 94, column: 5
@@ -2344,7 +2344,7 @@ public class RotaryTableController extends ClockDomain{
                             ;//sysj\turntableController.sysj line: 92, column: 3
                             rotaryTrigger.setPresent();//sysj\turntableController.sysj line: 113, column: 3
                             currsigs.addElement(rotaryTrigger);
-                            S4709=5;
+                            S4746=5;
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -2354,13 +2354,13 @@ public class RotaryTableController extends ClockDomain{
                     }
                   }
                   else {
-                    S4709=3;
+                    S4746=3;
                     if(got_thread_1){//sysj\turntableController.sysj line: 79, column: 3
                       loadPos1.setPresent();//sysj\turntableController.sysj line: 80, column: 4
                       currsigs.addElement(loadPos1);
                       bottleTaken.setPresent();//sysj\turntableController.sysj line: 80, column: 19
                       currsigs.addElement(bottleTaken);
-                      S4846=0;
+                      S4883=0;
                       active[1]=1;
                       ends[1]=1;
                       break RUN;
@@ -2370,7 +2370,7 @@ public class RotaryTableController extends ClockDomain{
                       d2_thread_1 = !m_thread_1.at(2);//sysj\turntableController.sysj line: 88, column: 3
                       d3_thread_1 = !m_thread_1.at(3);//sysj\turntableController.sysj line: 89, column: 3
                       d4_thread_1 = !m_thread_1.at(4);//sysj\turntableController.sysj line: 90, column: 3
-                      S4709=4;
+                      S4746=4;
                       if(!(d1_thread_1 && d2_thread_1 && d3_thread_1 && d4_thread_1)){//sysj\turntableController.sysj line: 92, column: 9
                         if(!d1_thread_1){//sysj\turntableController.sysj line: 93, column: 7
                           enableFiller1.setPresent();//sysj\turntableController.sysj line: 94, column: 5
@@ -3061,7 +3061,7 @@ public class RotaryTableController extends ClockDomain{
                         ;//sysj\turntableController.sysj line: 92, column: 3
                         rotaryTrigger.setPresent();//sysj\turntableController.sysj line: 113, column: 3
                         currsigs.addElement(rotaryTrigger);
-                        S4709=5;
+                        S4746=5;
                         active[1]=1;
                         ends[1]=1;
                         break RUN;
@@ -3077,26 +3077,26 @@ public class RotaryTableController extends ClockDomain{
               }
             
             case 1 : 
-              switch(S4703){
+              switch(S4740){
                 case 0 : 
-                  S4703=0;
+                  S4740=0;
                   unloadExit.setPresent();//sysj\turntableController.sysj line: 52, column: 4
                   currsigs.addElement(unloadExit);
                   bottleFromTable.setPresent();//sysj\turntableController.sysj line: 52, column: 21
                   currsigs.addElement(bottleFromTable);
-                  S4703=1;
+                  S4740=1;
                   active[1]=1;
                   ends[1]=1;
                   break RUN;
                 
                 case 1 : 
-                  S4703=1;
+                  S4740=1;
                   m_thread_1.clearExit();//sysj\turntableController.sysj line: 53, column: 4
                   got_thread_1 = false;//sysj\turntableController.sysj line: 57, column: 3
-                  S4709=2;
+                  S4746=2;
                   if(m_thread_1.loadPointFree()){//sysj\turntableController.sysj line: 58, column: 3
                     if(!m_thread_1.anyOccupied()){//sysj\turntableController.sysj line: 59, column: 7
-                      S4742=0;
+                      S4779=0;
                       tableReady.setPresent();//sysj\turntableController.sysj line: 62, column: 6
                       currsigs.addElement(tableReady);
                       active[1]=1;
@@ -3104,12 +3104,12 @@ public class RotaryTableController extends ClockDomain{
                       break RUN;
                     }
                     else {
-                      S4742=1;
+                      S4779=1;
                       w_thread_1 = OFFERWIN_thread_1;//sysj\turntableController.sysj line: 69, column: 5
                       if(w_thread_1 > 0){//sysj\turntableController.sysj line: 70, column: 11
                         tableReady.setPresent();//sysj\turntableController.sysj line: 71, column: 6
                         currsigs.addElement(tableReady);
-                        S4717=0;
+                        S4754=0;
                         if(bottleToTable.getprestatus()){//sysj\turntableController.sysj line: 72, column: 14
                           got_thread_1 = true;//sysj\turntableController.sysj line: 72, column: 30
                           if(got_thread_1) {//sysj\turntableController.sysj line: 73, column: 13
@@ -3118,7 +3118,7 @@ public class RotaryTableController extends ClockDomain{
                           else {//sysj\turntableController.sysj line: 73, column: 29
                             w_thread_1 = w_thread_1 - 1;//sysj\turntableController.sysj line: 73, column: 31
                           }
-                          S4717=1;
+                          S4754=1;
                           active[1]=1;
                           ends[1]=1;
                           break RUN;
@@ -3130,7 +3130,7 @@ public class RotaryTableController extends ClockDomain{
                           else {//sysj\turntableController.sysj line: 73, column: 29
                             w_thread_1 = w_thread_1 - 1;//sysj\turntableController.sysj line: 73, column: 31
                           }
-                          S4717=1;
+                          S4754=1;
                           active[1]=1;
                           ends[1]=1;
                           break RUN;
@@ -3139,13 +3139,13 @@ public class RotaryTableController extends ClockDomain{
                       else {
                         ends[1]=2;
                         ;//sysj\turntableController.sysj line: 70, column: 5
-                        S4709=3;
+                        S4746=3;
                         if(got_thread_1){//sysj\turntableController.sysj line: 79, column: 3
                           loadPos1.setPresent();//sysj\turntableController.sysj line: 80, column: 4
                           currsigs.addElement(loadPos1);
                           bottleTaken.setPresent();//sysj\turntableController.sysj line: 80, column: 19
                           currsigs.addElement(bottleTaken);
-                          S4846=0;
+                          S4883=0;
                           active[1]=1;
                           ends[1]=1;
                           break RUN;
@@ -3155,7 +3155,7 @@ public class RotaryTableController extends ClockDomain{
                           d2_thread_1 = !m_thread_1.at(2);//sysj\turntableController.sysj line: 88, column: 3
                           d3_thread_1 = !m_thread_1.at(3);//sysj\turntableController.sysj line: 89, column: 3
                           d4_thread_1 = !m_thread_1.at(4);//sysj\turntableController.sysj line: 90, column: 3
-                          S4709=4;
+                          S4746=4;
                           if(!(d1_thread_1 && d2_thread_1 && d3_thread_1 && d4_thread_1)){//sysj\turntableController.sysj line: 92, column: 9
                             if(!d1_thread_1){//sysj\turntableController.sysj line: 93, column: 7
                               enableFiller1.setPresent();//sysj\turntableController.sysj line: 94, column: 5
@@ -3846,7 +3846,7 @@ public class RotaryTableController extends ClockDomain{
                             ;//sysj\turntableController.sysj line: 92, column: 3
                             rotaryTrigger.setPresent();//sysj\turntableController.sysj line: 113, column: 3
                             currsigs.addElement(rotaryTrigger);
-                            S4709=5;
+                            S4746=5;
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -3856,13 +3856,13 @@ public class RotaryTableController extends ClockDomain{
                     }
                   }
                   else {
-                    S4709=3;
+                    S4746=3;
                     if(got_thread_1){//sysj\turntableController.sysj line: 79, column: 3
                       loadPos1.setPresent();//sysj\turntableController.sysj line: 80, column: 4
                       currsigs.addElement(loadPos1);
                       bottleTaken.setPresent();//sysj\turntableController.sysj line: 80, column: 19
                       currsigs.addElement(bottleTaken);
-                      S4846=0;
+                      S4883=0;
                       active[1]=1;
                       ends[1]=1;
                       break RUN;
@@ -3872,7 +3872,7 @@ public class RotaryTableController extends ClockDomain{
                       d2_thread_1 = !m_thread_1.at(2);//sysj\turntableController.sysj line: 88, column: 3
                       d3_thread_1 = !m_thread_1.at(3);//sysj\turntableController.sysj line: 89, column: 3
                       d4_thread_1 = !m_thread_1.at(4);//sysj\turntableController.sysj line: 90, column: 3
-                      S4709=4;
+                      S4746=4;
                       if(!(d1_thread_1 && d2_thread_1 && d3_thread_1 && d4_thread_1)){//sysj\turntableController.sysj line: 92, column: 9
                         if(!d1_thread_1){//sysj\turntableController.sysj line: 93, column: 7
                           enableFiller1.setPresent();//sysj\turntableController.sysj line: 94, column: 5
@@ -4563,7 +4563,7 @@ public class RotaryTableController extends ClockDomain{
                         ;//sysj\turntableController.sysj line: 92, column: 3
                         rotaryTrigger.setPresent();//sysj\turntableController.sysj line: 113, column: 3
                         currsigs.addElement(rotaryTrigger);
-                        S4709=5;
+                        S4746=5;
                         active[1]=1;
                         ends[1]=1;
                         break RUN;
@@ -4575,17 +4575,17 @@ public class RotaryTableController extends ClockDomain{
               break;
             
             case 2 : 
-              switch(S4742){
+              switch(S4779){
                 case 0 : 
                   if(bottleToTable.getprestatus()){//sysj\turntableController.sysj line: 61, column: 11
                     got_thread_1 = true;//sysj\turntableController.sysj line: 64, column: 5
-                    S4709=3;
+                    S4746=3;
                     if(got_thread_1){//sysj\turntableController.sysj line: 79, column: 3
                       loadPos1.setPresent();//sysj\turntableController.sysj line: 80, column: 4
                       currsigs.addElement(loadPos1);
                       bottleTaken.setPresent();//sysj\turntableController.sysj line: 80, column: 19
                       currsigs.addElement(bottleTaken);
-                      S4846=0;
+                      S4883=0;
                       active[1]=1;
                       ends[1]=1;
                       break RUN;
@@ -4595,7 +4595,7 @@ public class RotaryTableController extends ClockDomain{
                       d2_thread_1 = !m_thread_1.at(2);//sysj\turntableController.sysj line: 88, column: 3
                       d3_thread_1 = !m_thread_1.at(3);//sysj\turntableController.sysj line: 89, column: 3
                       d4_thread_1 = !m_thread_1.at(4);//sysj\turntableController.sysj line: 90, column: 3
-                      S4709=4;
+                      S4746=4;
                       if(!(d1_thread_1 && d2_thread_1 && d3_thread_1 && d4_thread_1)){//sysj\turntableController.sysj line: 92, column: 9
                         if(!d1_thread_1){//sysj\turntableController.sysj line: 93, column: 7
                           enableFiller1.setPresent();//sysj\turntableController.sysj line: 94, column: 5
@@ -5286,7 +5286,7 @@ public class RotaryTableController extends ClockDomain{
                         ;//sysj\turntableController.sysj line: 92, column: 3
                         rotaryTrigger.setPresent();//sysj\turntableController.sysj line: 113, column: 3
                         currsigs.addElement(rotaryTrigger);
-                        S4709=5;
+                        S4746=5;
                         active[1]=1;
                         ends[1]=1;
                         break RUN;
@@ -5302,12 +5302,12 @@ public class RotaryTableController extends ClockDomain{
                   }
                 
                 case 1 : 
-                  switch(S4717){
+                  switch(S4754){
                     case 0 : 
                       if(w_thread_1 > 0){//sysj\turntableController.sysj line: 70, column: 11
                         tableReady.setPresent();//sysj\turntableController.sysj line: 71, column: 6
                         currsigs.addElement(tableReady);
-                        S4717=0;
+                        S4754=0;
                         if(bottleToTable.getprestatus()){//sysj\turntableController.sysj line: 72, column: 14
                           got_thread_1 = true;//sysj\turntableController.sysj line: 72, column: 30
                           if(got_thread_1) {//sysj\turntableController.sysj line: 73, column: 13
@@ -5316,7 +5316,7 @@ public class RotaryTableController extends ClockDomain{
                           else {//sysj\turntableController.sysj line: 73, column: 29
                             w_thread_1 = w_thread_1 - 1;//sysj\turntableController.sysj line: 73, column: 31
                           }
-                          S4717=1;
+                          S4754=1;
                           active[1]=1;
                           ends[1]=1;
                           break RUN;
@@ -5328,7 +5328,7 @@ public class RotaryTableController extends ClockDomain{
                           else {//sysj\turntableController.sysj line: 73, column: 29
                             w_thread_1 = w_thread_1 - 1;//sysj\turntableController.sysj line: 73, column: 31
                           }
-                          S4717=1;
+                          S4754=1;
                           active[1]=1;
                           ends[1]=1;
                           break RUN;
@@ -5337,13 +5337,13 @@ public class RotaryTableController extends ClockDomain{
                       else {
                         ends[1]=2;
                         ;//sysj\turntableController.sysj line: 70, column: 5
-                        S4709=3;
+                        S4746=3;
                         if(got_thread_1){//sysj\turntableController.sysj line: 79, column: 3
                           loadPos1.setPresent();//sysj\turntableController.sysj line: 80, column: 4
                           currsigs.addElement(loadPos1);
                           bottleTaken.setPresent();//sysj\turntableController.sysj line: 80, column: 19
                           currsigs.addElement(bottleTaken);
-                          S4846=0;
+                          S4883=0;
                           active[1]=1;
                           ends[1]=1;
                           break RUN;
@@ -5353,7 +5353,7 @@ public class RotaryTableController extends ClockDomain{
                           d2_thread_1 = !m_thread_1.at(2);//sysj\turntableController.sysj line: 88, column: 3
                           d3_thread_1 = !m_thread_1.at(3);//sysj\turntableController.sysj line: 89, column: 3
                           d4_thread_1 = !m_thread_1.at(4);//sysj\turntableController.sysj line: 90, column: 3
-                          S4709=4;
+                          S4746=4;
                           if(!(d1_thread_1 && d2_thread_1 && d3_thread_1 && d4_thread_1)){//sysj\turntableController.sysj line: 92, column: 9
                             if(!d1_thread_1){//sysj\turntableController.sysj line: 93, column: 7
                               enableFiller1.setPresent();//sysj\turntableController.sysj line: 94, column: 5
@@ -6044,7 +6044,7 @@ public class RotaryTableController extends ClockDomain{
                             ;//sysj\turntableController.sysj line: 92, column: 3
                             rotaryTrigger.setPresent();//sysj\turntableController.sysj line: 113, column: 3
                             currsigs.addElement(rotaryTrigger);
-                            S4709=5;
+                            S4746=5;
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -6053,11 +6053,11 @@ public class RotaryTableController extends ClockDomain{
                       }
                     
                     case 1 : 
-                      S4717=1;
+                      S4754=1;
                       if(w_thread_1 > 0){//sysj\turntableController.sysj line: 70, column: 11
                         tableReady.setPresent();//sysj\turntableController.sysj line: 71, column: 6
                         currsigs.addElement(tableReady);
-                        S4717=0;
+                        S4754=0;
                         if(bottleToTable.getprestatus()){//sysj\turntableController.sysj line: 72, column: 14
                           got_thread_1 = true;//sysj\turntableController.sysj line: 72, column: 30
                           if(got_thread_1) {//sysj\turntableController.sysj line: 73, column: 13
@@ -6066,7 +6066,7 @@ public class RotaryTableController extends ClockDomain{
                           else {//sysj\turntableController.sysj line: 73, column: 29
                             w_thread_1 = w_thread_1 - 1;//sysj\turntableController.sysj line: 73, column: 31
                           }
-                          S4717=1;
+                          S4754=1;
                           active[1]=1;
                           ends[1]=1;
                           break RUN;
@@ -6078,7 +6078,7 @@ public class RotaryTableController extends ClockDomain{
                           else {//sysj\turntableController.sysj line: 73, column: 29
                             w_thread_1 = w_thread_1 - 1;//sysj\turntableController.sysj line: 73, column: 31
                           }
-                          S4717=1;
+                          S4754=1;
                           active[1]=1;
                           ends[1]=1;
                           break RUN;
@@ -6087,13 +6087,13 @@ public class RotaryTableController extends ClockDomain{
                       else {
                         ends[1]=2;
                         ;//sysj\turntableController.sysj line: 70, column: 5
-                        S4709=3;
+                        S4746=3;
                         if(got_thread_1){//sysj\turntableController.sysj line: 79, column: 3
                           loadPos1.setPresent();//sysj\turntableController.sysj line: 80, column: 4
                           currsigs.addElement(loadPos1);
                           bottleTaken.setPresent();//sysj\turntableController.sysj line: 80, column: 19
                           currsigs.addElement(bottleTaken);
-                          S4846=0;
+                          S4883=0;
                           active[1]=1;
                           ends[1]=1;
                           break RUN;
@@ -6103,7 +6103,7 @@ public class RotaryTableController extends ClockDomain{
                           d2_thread_1 = !m_thread_1.at(2);//sysj\turntableController.sysj line: 88, column: 3
                           d3_thread_1 = !m_thread_1.at(3);//sysj\turntableController.sysj line: 89, column: 3
                           d4_thread_1 = !m_thread_1.at(4);//sysj\turntableController.sysj line: 90, column: 3
-                          S4709=4;
+                          S4746=4;
                           if(!(d1_thread_1 && d2_thread_1 && d3_thread_1 && d4_thread_1)){//sysj\turntableController.sysj line: 92, column: 9
                             if(!d1_thread_1){//sysj\turntableController.sysj line: 93, column: 7
                               enableFiller1.setPresent();//sysj\turntableController.sysj line: 94, column: 5
@@ -6794,7 +6794,7 @@ public class RotaryTableController extends ClockDomain{
                             ;//sysj\turntableController.sysj line: 92, column: 3
                             rotaryTrigger.setPresent();//sysj\turntableController.sysj line: 113, column: 3
                             currsigs.addElement(rotaryTrigger);
-                            S4709=5;
+                            S4746=5;
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -6809,28 +6809,28 @@ public class RotaryTableController extends ClockDomain{
               break;
             
             case 3 : 
-              switch(S4846){
+              switch(S4883){
                 case 0 : 
-                  S4846=0;
+                  S4883=0;
                   loadPos1.setPresent();//sysj\turntableController.sysj line: 81, column: 4
                   currsigs.addElement(loadPos1);
                   bottleTaken.setPresent();//sysj\turntableController.sysj line: 81, column: 19
                   currsigs.addElement(bottleTaken);
-                  S4846=1;
+                  S4883=1;
                   active[1]=1;
                   ends[1]=1;
                   break RUN;
                 
                 case 1 : 
-                  S4846=1;
+                  S4883=1;
                   m_thread_1.load();//sysj\turntableController.sysj line: 82, column: 4
-                  S4846=2;
+                  S4883=2;
                   if(!bottleToTable.getprestatus()){//sysj\turntableController.sysj line: 83, column: 20
                     d1_thread_1 = !m_thread_1.at(1);//sysj\turntableController.sysj line: 87, column: 3
                     d2_thread_1 = !m_thread_1.at(2);//sysj\turntableController.sysj line: 88, column: 3
                     d3_thread_1 = !m_thread_1.at(3);//sysj\turntableController.sysj line: 89, column: 3
                     d4_thread_1 = !m_thread_1.at(4);//sysj\turntableController.sysj line: 90, column: 3
-                    S4709=4;
+                    S4746=4;
                     if(!(d1_thread_1 && d2_thread_1 && d3_thread_1 && d4_thread_1)){//sysj\turntableController.sysj line: 92, column: 9
                       if(!d1_thread_1){//sysj\turntableController.sysj line: 93, column: 7
                         enableFiller1.setPresent();//sysj\turntableController.sysj line: 94, column: 5
@@ -7521,7 +7521,7 @@ public class RotaryTableController extends ClockDomain{
                       ;//sysj\turntableController.sysj line: 92, column: 3
                       rotaryTrigger.setPresent();//sysj\turntableController.sysj line: 113, column: 3
                       currsigs.addElement(rotaryTrigger);
-                      S4709=5;
+                      S4746=5;
                       active[1]=1;
                       ends[1]=1;
                       break RUN;
@@ -7539,7 +7539,7 @@ public class RotaryTableController extends ClockDomain{
                     d2_thread_1 = !m_thread_1.at(2);//sysj\turntableController.sysj line: 88, column: 3
                     d3_thread_1 = !m_thread_1.at(3);//sysj\turntableController.sysj line: 89, column: 3
                     d4_thread_1 = !m_thread_1.at(4);//sysj\turntableController.sysj line: 90, column: 3
-                    S4709=4;
+                    S4746=4;
                     if(!(d1_thread_1 && d2_thread_1 && d3_thread_1 && d4_thread_1)){//sysj\turntableController.sysj line: 92, column: 9
                       if(!d1_thread_1){//sysj\turntableController.sysj line: 93, column: 7
                         enableFiller1.setPresent();//sysj\turntableController.sysj line: 94, column: 5
@@ -8230,7 +8230,7 @@ public class RotaryTableController extends ClockDomain{
                       ;//sysj\turntableController.sysj line: 92, column: 3
                       rotaryTrigger.setPresent();//sysj\turntableController.sysj line: 113, column: 3
                       currsigs.addElement(rotaryTrigger);
-                      S4709=5;
+                      S4746=5;
                       active[1]=1;
                       ends[1]=1;
                       break RUN;
@@ -8936,47 +8936,47 @@ public class RotaryTableController extends ClockDomain{
                 ;//sysj\turntableController.sysj line: 92, column: 3
                 rotaryTrigger.setPresent();//sysj\turntableController.sysj line: 113, column: 3
                 currsigs.addElement(rotaryTrigger);
-                S4709=5;
+                S4746=5;
                 active[1]=1;
                 ends[1]=1;
                 break RUN;
               }
             
             case 5 : 
-              S4709=5;
+              S4746=5;
               rotaryTrigger.setPresent();//sysj\turntableController.sysj line: 114, column: 3
               currsigs.addElement(rotaryTrigger);
-              S4709=6;
+              S4746=6;
               active[1]=1;
               ends[1]=1;
               break RUN;
             
             case 6 : 
-              S4709=6;
-              S4709=7;
+              S4746=6;
+              S4746=7;
               if(tableAligned.getprestatus()){//sysj\turntableController.sysj line: 116, column: 19
                 m_thread_1.index();//sysj\turntableController.sysj line: 118, column: 3
                 m_thread_1.report();//sysj\turntableController.sysj line: 119, column: 3
-                S4709=0;
+                S4746=0;
                 if(tableAligned.getprestatus()){//sysj\turntableController.sysj line: 46, column: 19
-                  S4709=1;
+                  S4746=1;
                   if(m_thread_1.exitOccupied()){//sysj\turntableController.sysj line: 49, column: 3
                     m_thread_1.sayUnloading();//sysj\turntableController.sysj line: 50, column: 4
                     unloadExit.setPresent();//sysj\turntableController.sysj line: 51, column: 4
                     currsigs.addElement(unloadExit);
                     bottleFromTable.setPresent();//sysj\turntableController.sysj line: 51, column: 21
                     currsigs.addElement(bottleFromTable);
-                    S4703=0;
+                    S4740=0;
                     active[1]=1;
                     ends[1]=1;
                     break RUN;
                   }
                   else {
                     got_thread_1 = false;//sysj\turntableController.sysj line: 57, column: 3
-                    S4709=2;
+                    S4746=2;
                     if(m_thread_1.loadPointFree()){//sysj\turntableController.sysj line: 58, column: 3
                       if(!m_thread_1.anyOccupied()){//sysj\turntableController.sysj line: 59, column: 7
-                        S4742=0;
+                        S4779=0;
                         tableReady.setPresent();//sysj\turntableController.sysj line: 62, column: 6
                         currsigs.addElement(tableReady);
                         active[1]=1;
@@ -8984,12 +8984,12 @@ public class RotaryTableController extends ClockDomain{
                         break RUN;
                       }
                       else {
-                        S4742=1;
+                        S4779=1;
                         w_thread_1 = OFFERWIN_thread_1;//sysj\turntableController.sysj line: 69, column: 5
                         if(w_thread_1 > 0){//sysj\turntableController.sysj line: 70, column: 11
                           tableReady.setPresent();//sysj\turntableController.sysj line: 71, column: 6
                           currsigs.addElement(tableReady);
-                          S4717=0;
+                          S4754=0;
                           if(bottleToTable.getprestatus()){//sysj\turntableController.sysj line: 72, column: 14
                             got_thread_1 = true;//sysj\turntableController.sysj line: 72, column: 30
                             if(got_thread_1) {//sysj\turntableController.sysj line: 73, column: 13
@@ -8998,7 +8998,7 @@ public class RotaryTableController extends ClockDomain{
                             else {//sysj\turntableController.sysj line: 73, column: 29
                               w_thread_1 = w_thread_1 - 1;//sysj\turntableController.sysj line: 73, column: 31
                             }
-                            S4717=1;
+                            S4754=1;
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -9010,7 +9010,7 @@ public class RotaryTableController extends ClockDomain{
                             else {//sysj\turntableController.sysj line: 73, column: 29
                               w_thread_1 = w_thread_1 - 1;//sysj\turntableController.sysj line: 73, column: 31
                             }
-                            S4717=1;
+                            S4754=1;
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -9019,13 +9019,13 @@ public class RotaryTableController extends ClockDomain{
                         else {
                           ends[1]=2;
                           ;//sysj\turntableController.sysj line: 70, column: 5
-                          S4709=3;
+                          S4746=3;
                           if(got_thread_1){//sysj\turntableController.sysj line: 79, column: 3
                             loadPos1.setPresent();//sysj\turntableController.sysj line: 80, column: 4
                             currsigs.addElement(loadPos1);
                             bottleTaken.setPresent();//sysj\turntableController.sysj line: 80, column: 19
                             currsigs.addElement(bottleTaken);
-                            S4846=0;
+                            S4883=0;
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -9035,7 +9035,7 @@ public class RotaryTableController extends ClockDomain{
                             d2_thread_1 = !m_thread_1.at(2);//sysj\turntableController.sysj line: 88, column: 3
                             d3_thread_1 = !m_thread_1.at(3);//sysj\turntableController.sysj line: 89, column: 3
                             d4_thread_1 = !m_thread_1.at(4);//sysj\turntableController.sysj line: 90, column: 3
-                            S4709=4;
+                            S4746=4;
                             if(!(d1_thread_1 && d2_thread_1 && d3_thread_1 && d4_thread_1)){//sysj\turntableController.sysj line: 92, column: 9
                               if(!d1_thread_1){//sysj\turntableController.sysj line: 93, column: 7
                                 enableFiller1.setPresent();//sysj\turntableController.sysj line: 94, column: 5
@@ -9726,7 +9726,7 @@ public class RotaryTableController extends ClockDomain{
                               ;//sysj\turntableController.sysj line: 92, column: 3
                               rotaryTrigger.setPresent();//sysj\turntableController.sysj line: 113, column: 3
                               currsigs.addElement(rotaryTrigger);
-                              S4709=5;
+                              S4746=5;
                               active[1]=1;
                               ends[1]=1;
                               break RUN;
@@ -9736,13 +9736,13 @@ public class RotaryTableController extends ClockDomain{
                       }
                     }
                     else {
-                      S4709=3;
+                      S4746=3;
                       if(got_thread_1){//sysj\turntableController.sysj line: 79, column: 3
                         loadPos1.setPresent();//sysj\turntableController.sysj line: 80, column: 4
                         currsigs.addElement(loadPos1);
                         bottleTaken.setPresent();//sysj\turntableController.sysj line: 80, column: 19
                         currsigs.addElement(bottleTaken);
-                        S4846=0;
+                        S4883=0;
                         active[1]=1;
                         ends[1]=1;
                         break RUN;
@@ -9752,7 +9752,7 @@ public class RotaryTableController extends ClockDomain{
                         d2_thread_1 = !m_thread_1.at(2);//sysj\turntableController.sysj line: 88, column: 3
                         d3_thread_1 = !m_thread_1.at(3);//sysj\turntableController.sysj line: 89, column: 3
                         d4_thread_1 = !m_thread_1.at(4);//sysj\turntableController.sysj line: 90, column: 3
-                        S4709=4;
+                        S4746=4;
                         if(!(d1_thread_1 && d2_thread_1 && d3_thread_1 && d4_thread_1)){//sysj\turntableController.sysj line: 92, column: 9
                           if(!d1_thread_1){//sysj\turntableController.sysj line: 93, column: 7
                             enableFiller1.setPresent();//sysj\turntableController.sysj line: 94, column: 5
@@ -10443,7 +10443,7 @@ public class RotaryTableController extends ClockDomain{
                           ;//sysj\turntableController.sysj line: 92, column: 3
                           rotaryTrigger.setPresent();//sysj\turntableController.sysj line: 113, column: 3
                           currsigs.addElement(rotaryTrigger);
-                          S4709=5;
+                          S4746=5;
                           active[1]=1;
                           ends[1]=1;
                           break RUN;
@@ -10468,26 +10468,26 @@ public class RotaryTableController extends ClockDomain{
               if(tableAligned.getprestatus()){//sysj\turntableController.sysj line: 116, column: 19
                 m_thread_1.index();//sysj\turntableController.sysj line: 118, column: 3
                 m_thread_1.report();//sysj\turntableController.sysj line: 119, column: 3
-                S4709=0;
+                S4746=0;
                 if(tableAligned.getprestatus()){//sysj\turntableController.sysj line: 46, column: 19
-                  S4709=1;
+                  S4746=1;
                   if(m_thread_1.exitOccupied()){//sysj\turntableController.sysj line: 49, column: 3
                     m_thread_1.sayUnloading();//sysj\turntableController.sysj line: 50, column: 4
                     unloadExit.setPresent();//sysj\turntableController.sysj line: 51, column: 4
                     currsigs.addElement(unloadExit);
                     bottleFromTable.setPresent();//sysj\turntableController.sysj line: 51, column: 21
                     currsigs.addElement(bottleFromTable);
-                    S4703=0;
+                    S4740=0;
                     active[1]=1;
                     ends[1]=1;
                     break RUN;
                   }
                   else {
                     got_thread_1 = false;//sysj\turntableController.sysj line: 57, column: 3
-                    S4709=2;
+                    S4746=2;
                     if(m_thread_1.loadPointFree()){//sysj\turntableController.sysj line: 58, column: 3
                       if(!m_thread_1.anyOccupied()){//sysj\turntableController.sysj line: 59, column: 7
-                        S4742=0;
+                        S4779=0;
                         tableReady.setPresent();//sysj\turntableController.sysj line: 62, column: 6
                         currsigs.addElement(tableReady);
                         active[1]=1;
@@ -10495,12 +10495,12 @@ public class RotaryTableController extends ClockDomain{
                         break RUN;
                       }
                       else {
-                        S4742=1;
+                        S4779=1;
                         w_thread_1 = OFFERWIN_thread_1;//sysj\turntableController.sysj line: 69, column: 5
                         if(w_thread_1 > 0){//sysj\turntableController.sysj line: 70, column: 11
                           tableReady.setPresent();//sysj\turntableController.sysj line: 71, column: 6
                           currsigs.addElement(tableReady);
-                          S4717=0;
+                          S4754=0;
                           if(bottleToTable.getprestatus()){//sysj\turntableController.sysj line: 72, column: 14
                             got_thread_1 = true;//sysj\turntableController.sysj line: 72, column: 30
                             if(got_thread_1) {//sysj\turntableController.sysj line: 73, column: 13
@@ -10509,7 +10509,7 @@ public class RotaryTableController extends ClockDomain{
                             else {//sysj\turntableController.sysj line: 73, column: 29
                               w_thread_1 = w_thread_1 - 1;//sysj\turntableController.sysj line: 73, column: 31
                             }
-                            S4717=1;
+                            S4754=1;
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -10521,7 +10521,7 @@ public class RotaryTableController extends ClockDomain{
                             else {//sysj\turntableController.sysj line: 73, column: 29
                               w_thread_1 = w_thread_1 - 1;//sysj\turntableController.sysj line: 73, column: 31
                             }
-                            S4717=1;
+                            S4754=1;
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -10530,13 +10530,13 @@ public class RotaryTableController extends ClockDomain{
                         else {
                           ends[1]=2;
                           ;//sysj\turntableController.sysj line: 70, column: 5
-                          S4709=3;
+                          S4746=3;
                           if(got_thread_1){//sysj\turntableController.sysj line: 79, column: 3
                             loadPos1.setPresent();//sysj\turntableController.sysj line: 80, column: 4
                             currsigs.addElement(loadPos1);
                             bottleTaken.setPresent();//sysj\turntableController.sysj line: 80, column: 19
                             currsigs.addElement(bottleTaken);
-                            S4846=0;
+                            S4883=0;
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -10546,7 +10546,7 @@ public class RotaryTableController extends ClockDomain{
                             d2_thread_1 = !m_thread_1.at(2);//sysj\turntableController.sysj line: 88, column: 3
                             d3_thread_1 = !m_thread_1.at(3);//sysj\turntableController.sysj line: 89, column: 3
                             d4_thread_1 = !m_thread_1.at(4);//sysj\turntableController.sysj line: 90, column: 3
-                            S4709=4;
+                            S4746=4;
                             if(!(d1_thread_1 && d2_thread_1 && d3_thread_1 && d4_thread_1)){//sysj\turntableController.sysj line: 92, column: 9
                               if(!d1_thread_1){//sysj\turntableController.sysj line: 93, column: 7
                                 enableFiller1.setPresent();//sysj\turntableController.sysj line: 94, column: 5
@@ -11237,7 +11237,7 @@ public class RotaryTableController extends ClockDomain{
                               ;//sysj\turntableController.sysj line: 92, column: 3
                               rotaryTrigger.setPresent();//sysj\turntableController.sysj line: 113, column: 3
                               currsigs.addElement(rotaryTrigger);
-                              S4709=5;
+                              S4746=5;
                               active[1]=1;
                               ends[1]=1;
                               break RUN;
@@ -11247,13 +11247,13 @@ public class RotaryTableController extends ClockDomain{
                       }
                     }
                     else {
-                      S4709=3;
+                      S4746=3;
                       if(got_thread_1){//sysj\turntableController.sysj line: 79, column: 3
                         loadPos1.setPresent();//sysj\turntableController.sysj line: 80, column: 4
                         currsigs.addElement(loadPos1);
                         bottleTaken.setPresent();//sysj\turntableController.sysj line: 80, column: 19
                         currsigs.addElement(bottleTaken);
-                        S4846=0;
+                        S4883=0;
                         active[1]=1;
                         ends[1]=1;
                         break RUN;
@@ -11263,7 +11263,7 @@ public class RotaryTableController extends ClockDomain{
                         d2_thread_1 = !m_thread_1.at(2);//sysj\turntableController.sysj line: 88, column: 3
                         d3_thread_1 = !m_thread_1.at(3);//sysj\turntableController.sysj line: 89, column: 3
                         d4_thread_1 = !m_thread_1.at(4);//sysj\turntableController.sysj line: 90, column: 3
-                        S4709=4;
+                        S4746=4;
                         if(!(d1_thread_1 && d2_thread_1 && d3_thread_1 && d4_thread_1)){//sysj\turntableController.sysj line: 92, column: 9
                           if(!d1_thread_1){//sysj\turntableController.sysj line: 93, column: 7
                             enableFiller1.setPresent();//sysj\turntableController.sysj line: 94, column: 5
@@ -11954,7 +11954,7 @@ public class RotaryTableController extends ClockDomain{
                           ;//sysj\turntableController.sysj line: 92, column: 3
                           rotaryTrigger.setPresent();//sysj\turntableController.sysj line: 113, column: 3
                           currsigs.addElement(rotaryTrigger);
-                          S4709=5;
+                          S4746=5;
                           active[1]=1;
                           ends[1]=1;
                           break RUN;

@@ -94,11 +94,13 @@ ConveyorController(
 				sustain bottleToTable;
 			}
 
-			emit takeFromPos1; pause;
+			// Kept short: the table has already acknowledged with bottleTaken,
+			// so this only has to be long enough for the plant to sample it.
 			emit takeFromPos1; pause;
 			emit takeFromPos1; pause;
 			System.out.println("[CV] Handed off to table.");
 			await(immediate !bottleTaken);
+			await(immediate !bottleAtPos1);
 		}
 	}
 	||

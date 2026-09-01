@@ -23,19 +23,19 @@ public class SystemController extends ClockDomain{
   private boolean seen_thread_5;//sysj\systemController.sysj line: 60, column: 3
   private int cycles_thread_4;//sysj\systemController.sysj line: 38, column: 3
   private int i_thread_4;//sysj\systemController.sysj line: 39, column: 3
-  private int S4689 = 1;
-  private int S4604 = 1;
-  private int S4609 = 1;
-  private int S4673 = 1;
-  private int S4610 = 1;
-  private int S4619 = 1;
-  private int S4687 = 1;
+  private int S4726 = 1;
+  private int S4641 = 1;
+  private int S4646 = 1;
+  private int S4710 = 1;
+  private int S4647 = 1;
+  private int S4656 = 1;
+  private int S4724 = 1;
   
   private int[] ends = new int[6];
   private int[] tdone = new int[6];
   
-  public void thread4699(int [] tdone, int [] ends){
-        switch(S4687){
+  public void thread4736(int [] tdone, int [] ends){
+        switch(S4724){
       case 0 : 
         active[5]=0;
         ends[5]=0;
@@ -64,8 +64,8 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread4698(int [] tdone, int [] ends){
-        switch(S4673){
+  public void thread4735(int [] tdone, int [] ends){
+        switch(S4710){
       case 0 : 
         active[4]=0;
         ends[4]=0;
@@ -73,47 +73,47 @@ public class SystemController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S4610){
+        switch(S4647){
           case 0 : 
-            S4610=0;
-            S4610=1;
+            S4647=0;
+            S4647=1;
             active[4]=1;
             ends[4]=1;
             tdone[4]=1;
             break;
           
           case 1 : 
-            S4610=1;
-            S4610=2;
+            S4647=1;
+            S4647=2;
             active[4]=1;
             ends[4]=1;
             tdone[4]=1;
             break;
           
           case 2 : 
-            S4610=2;
-            S4610=3;
+            S4647=2;
+            S4647=3;
             active[4]=1;
             ends[4]=1;
             tdone[4]=1;
             break;
           
           case 3 : 
-            S4610=3;
-            S4610=4;
+            S4647=3;
+            S4647=4;
             active[4]=1;
             ends[4]=1;
             tdone[4]=1;
             break;
           
           case 4 : 
-            S4610=4;
+            S4647=4;
             cycles_thread_4 = 4;//sysj\systemController.sysj line: 38, column: 3
             i_thread_4 = 0;//sysj\systemController.sysj line: 39, column: 3
-            S4610=5;
+            S4647=5;
             if(i_thread_4 < cycles_thread_4){//sysj\systemController.sysj line: 41, column: 9
               System.out.println("[SC] Requesting bottle load " + (i_thread_4 + 1) + " of " + cycles_thread_4 + "...");//sysj\systemController.sysj line: 42, column: 4
-              S4619=0;
+              S4656=0;
               bottleLoad.setPresent();//sysj\systemController.sysj line: 45, column: 5
               currsigs.addElement(bottleLoad);
               active[4]=1;
@@ -124,7 +124,7 @@ public class SystemController extends ClockDomain{
               ends[4]=2;
               ;//sysj\systemController.sysj line: 41, column: 3
               System.out.println("[SC] All " + cycles_thread_4 + " load requests issued.");//sysj\systemController.sysj line: 54, column: 3
-              S4610=6;
+              S4647=6;
               active[4]=1;
               ends[4]=1;
               tdone[4]=1;
@@ -132,12 +132,12 @@ public class SystemController extends ClockDomain{
             break;
           
           case 5 : 
-            switch(S4619){
+            switch(S4656){
               case 0 : 
                 if(bottleLoaded.getprestatus()){//sysj\systemController.sysj line: 44, column: 10
                   i_thread_4 = i_thread_4 + 1;//sysj\systemController.sysj line: 48, column: 4
                   System.out.println("[SC] Bottle " + i_thread_4 + " loaded onto conveyor.");//sysj\systemController.sysj line: 49, column: 4
-                  S4619=1;
+                  S4656=1;
                   active[4]=1;
                   ends[4]=1;
                   tdone[4]=1;
@@ -152,26 +152,26 @@ public class SystemController extends ClockDomain{
                 break;
               
               case 1 : 
-                S4619=1;
-                S4619=2;
+                S4656=1;
+                S4656=2;
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
                 break;
               
               case 2 : 
-                S4619=2;
-                S4619=3;
+                S4656=2;
+                S4656=3;
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
                 break;
               
               case 3 : 
-                S4619=3;
+                S4656=3;
                 if(i_thread_4 < cycles_thread_4){//sysj\systemController.sysj line: 41, column: 9
                   System.out.println("[SC] Requesting bottle load " + (i_thread_4 + 1) + " of " + cycles_thread_4 + "...");//sysj\systemController.sysj line: 42, column: 4
-                  S4619=0;
+                  S4656=0;
                   bottleLoad.setPresent();//sysj\systemController.sysj line: 45, column: 5
                   currsigs.addElement(bottleLoad);
                   active[4]=1;
@@ -182,7 +182,7 @@ public class SystemController extends ClockDomain{
                   ends[4]=2;
                   ;//sysj\systemController.sysj line: 41, column: 3
                   System.out.println("[SC] All " + cycles_thread_4 + " load requests issued.");//sysj\systemController.sysj line: 54, column: 3
-                  S4610=6;
+                  S4647=6;
                   active[4]=1;
                   ends[4]=1;
                   tdone[4]=1;
@@ -204,8 +204,8 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread4697(int [] tdone, int [] ends){
-        switch(S4609){
+  public void thread4734(int [] tdone, int [] ends){
+        switch(S4646){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -229,8 +229,8 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread4696(int [] tdone, int [] ends){
-        switch(S4604){
+  public void thread4733(int [] tdone, int [] ends){
+        switch(S4641){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -249,8 +249,8 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread4694(int [] tdone, int [] ends){
-        S4687=1;
+  public void thread4731(int [] tdone, int [] ends){
+        S4724=1;
     delivered_thread_5 = 0;//sysj\systemController.sysj line: 59, column: 3
     seen_thread_5 = false;//sysj\systemController.sysj line: 60, column: 3
     if(bottleAtLabeller.getprestatus()){//sysj\systemController.sysj line: 63, column: 12
@@ -271,16 +271,16 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread4693(int [] tdone, int [] ends){
-        S4673=1;
-    S4610=0;
+  public void thread4730(int [] tdone, int [] ends){
+        S4710=1;
+    S4647=0;
     active[4]=1;
     ends[4]=1;
     tdone[4]=1;
   }
 
-  public void thread4692(int [] tdone, int [] ends){
-        S4609=1;
+  public void thread4729(int [] tdone, int [] ends){
+        S4646=1;
     enableBL.setPresent();//sysj\systemController.sysj line: 27, column: 4
     currsigs.addElement(enableBL);
     enableCV.setPresent();//sysj\systemController.sysj line: 28, column: 4
@@ -294,8 +294,8 @@ public class SystemController extends ClockDomain{
     tdone[3]=1;
   }
 
-  public void thread4691(int [] tdone, int [] ends){
-        S4604=1;
+  public void thread4728(int [] tdone, int [] ends){
+        S4641=1;
     mode.setPresent();//sysj\systemController.sysj line: 20, column: 4
     currsigs.addElement(mode);
     mode.setValue(0);//sysj\systemController.sysj line: 20, column: 4
@@ -311,66 +311,66 @@ public class SystemController extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S4689){
+      switch(S4726){
         case 0 : 
-          S4689=0;
+          S4726=0;
           break RUN;
         
         case 1 : 
-          S4689=2;
-          S4689=2;
-          thread4691(tdone,ends);
-          thread4692(tdone,ends);
-          thread4693(tdone,ends);
-          thread4694(tdone,ends);
-          int biggest4695 = 0;
-          if(ends[2]>=biggest4695){
-            biggest4695=ends[2];
+          S4726=2;
+          S4726=2;
+          thread4728(tdone,ends);
+          thread4729(tdone,ends);
+          thread4730(tdone,ends);
+          thread4731(tdone,ends);
+          int biggest4732 = 0;
+          if(ends[2]>=biggest4732){
+            biggest4732=ends[2];
           }
-          if(ends[3]>=biggest4695){
-            biggest4695=ends[3];
+          if(ends[3]>=biggest4732){
+            biggest4732=ends[3];
           }
-          if(ends[4]>=biggest4695){
-            biggest4695=ends[4];
+          if(ends[4]>=biggest4732){
+            biggest4732=ends[4];
           }
-          if(ends[5]>=biggest4695){
-            biggest4695=ends[5];
+          if(ends[5]>=biggest4732){
+            biggest4732=ends[5];
           }
-          if(biggest4695 == 1){
+          if(biggest4732 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
         
         case 2 : 
-          thread4696(tdone,ends);
-          thread4697(tdone,ends);
-          thread4698(tdone,ends);
-          thread4699(tdone,ends);
-          int biggest4700 = 0;
-          if(ends[2]>=biggest4700){
-            biggest4700=ends[2];
+          thread4733(tdone,ends);
+          thread4734(tdone,ends);
+          thread4735(tdone,ends);
+          thread4736(tdone,ends);
+          int biggest4737 = 0;
+          if(ends[2]>=biggest4737){
+            biggest4737=ends[2];
           }
-          if(ends[3]>=biggest4700){
-            biggest4700=ends[3];
+          if(ends[3]>=biggest4737){
+            biggest4737=ends[3];
           }
-          if(ends[4]>=biggest4700){
-            biggest4700=ends[4];
+          if(ends[4]>=biggest4737){
+            biggest4737=ends[4];
           }
-          if(ends[5]>=biggest4700){
-            biggest4700=ends[5];
+          if(ends[5]>=biggest4737){
+            biggest4737=ends[5];
           }
-          if(biggest4700 == 1){
+          if(biggest4737 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest4700 == 0){
-            S4689=0;
+          if(biggest4737 == 0){
+            S4726=0;
             active[1]=0;
             ends[1]=0;
-            S4689=0;
+            S4726=0;
             break RUN;
           }
         

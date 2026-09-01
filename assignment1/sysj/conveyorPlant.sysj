@@ -54,18 +54,24 @@ ConveyorPlant(
 					injecting = false;
 				}
 
+				// The belt is frozen while a removal is in progress. Without
+				// this the next queued bottle advances into position 1 while
+				// takeFromPos1 is still held, and is handed off a second time
+				// on the following cycle.
 				present(motInfeed){
-					// advance front-most first so a queue moves together
-					int i = LEN - 1;
-					while(i >= 0){
-						if(slot[i] && !slot[i+1]){
-							slot[i+1] = true;
-							slot[i] = false;
-							if(i + 1 == LEN){
-								System.out.println("[CVPlant] Bottle arrived at position 1.");
+					if(!taking){
+						// advance front-most first so a queue moves together
+						int i = LEN - 1;
+						while(i >= 0){
+							if(slot[i] && !slot[i+1]){
+								slot[i+1] = true;
+								slot[i] = false;
+								if(i + 1 == LEN){
+									System.out.println("[CVPlant] Bottle arrived at position 1.");
+								}
 							}
+							i--;
 						}
-						i--;
 					}
 				}
 
