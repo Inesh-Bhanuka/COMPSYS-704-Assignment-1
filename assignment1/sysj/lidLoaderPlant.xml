@@ -22,7 +22,7 @@
 			<oSignal Name="empty"           To="LidLoaderControllerCD.empty"           Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
 			<oSignal Name="refilled"        To="LidLoaderControllerCD.refilled"        Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
 
-			<!-- visualisation feed: uncomment once a UI CD is listening on 20000 -->
+			<!-- visualisation, listening on 20000 -->
 			<!--
 			<oSignal Name="pusherRetractedE" To="UI.pusherRetractedE" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
 			<oSignal Name="pusherExtendedE"  To="UI.pusherExtendedE"  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />

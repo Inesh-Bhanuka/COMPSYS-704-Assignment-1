@@ -1,0 +1,143 @@
+/*
+ * Controller for the Bottle Loader.
+ *
+ * The loader transports bottles from a bottle storage to the conveyor belt.
+ * It waits to make sure that the conveyor is ready for a new bottle both when
+ * picking up a bottle and before placing it. 
+ */
+BottleLoaderController(
+		// from the System Controller
+		input Integer signal mode;
+		input signal bottleLoad;
+
+		// to the System Controller
+		output signal bottleLoaded;
+
+		// from the plant
+		input signal bottleAtSource, WPgripped, armAtSource, armAtDest, supplyEmpty;
+
+		// to the plant
+		output signal vacOn, release, armSource, armDest;
+
+		// from / to the conveyor
+		input  signal conveyorReady;
+		output signal bottlePlaced;
+
+		// manual overrides
+		input signal vacOnM, armSourceM, armDestM;
+		)
+->
+{
+	signal auto, manual;
+
+	{ // Mode select
+		while(true){
+			present(mode){
+				if((Integer)#mode == 0){
+					emit auto;
+				}
+				else {
+					emit manual;
+				}
+			}
+			pause;
+		}
+	}
+	||
+	{ // Auto mode
+		while(true){
+			await(immediate auto);
+
+			abort(immediate manual){
+
+				await(immediate bottleLoad);
+				System.out.println("[BL] Load request received.");
+
+				present(bottleAtSource){
+					// a bottle is waiting
+				}
+				else {
+					System.out.println("[BL] Warning: no bottle at source.");
+				}
+
+				// Wait for conveyor to be ready
+				present(conveyorReady){
+					// clear to start
+				}
+				else {
+					System.out.println("[BL] Conveyor busy - holding request.");
+					await(immediate conveyorReady);
+					System.out.println("[BL] Conveyor clear - starting cycle.");
+				}
+
+				// Go to bottle storage
+				abort(armAtSource){
+					sustain armSource;
+				}
+
+				// Pick up bottle
+				abort(WPgripped){
+					sustain vacOn;
+				}
+				System.out.println("[BL] Bottle gripped.");
+
+				// Move bottle to conveyor
+				abort(armAtDest){
+					sustain armDest;
+				}
+
+				// Wait for conveyor to be ready
+				present(conveyorReady){
+					// clear to release
+				}
+				else {
+					System.out.println("[BL] At conveyor - waiting for ready.");
+					await(immediate conveyorReady);
+				}
+				System.out.println("[BL] Conveyor ready - releasing.");
+
+				// Release and tell conveyor bottle has been placed
+				emit release; emit bottlePlaced; pause;
+				emit release; emit bottlePlaced; pause;
+				emit release; emit bottlePlaced; pause;
+
+				emit bottleLoaded;
+				System.out.println("[BL] Cycle complete.");
+				await(immediate !bottleLoad); // Immediately start checking for new load cmd
+			}
+			pause;
+		}
+	}
+	||
+	{ // Manual mode
+		while(true){
+			await(immediate manual);
+			abort(immediate auto){
+				while(true){
+					present(vacOnM){ emit vacOn; }
+					present(armSourceM){ emit armSource; }
+					present(armDestM){ emit armDest; }
+					pause;
+				}
+			}
+			pause;
+		}
+	}
+	||
+	{ // Bottle supply monitoring
+		boolean reported = false;
+		while(true){
+			present(supplyEmpty){
+				if(!reported){
+					System.out.println("[BL] Bottle supply is empty.");
+					reported = true;
+				}
+			}
+			else {
+				reported = false;
+			}
+			pause;
+		}
+
+	}
+}

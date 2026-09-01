@@ -1,0 +1,41 @@
+/*
+ * Minimal stand-in for the Bottling Station conveyor.
+ *
+ * It models exactly one thing: whether the conveyor can accept a bottle at
+ * the load point right now. No belt motion, no photo-eyes, no positions.
+ * The real Conveyor CD will replace this without the Bottle Loader changing.
+ *
+ * It deliberately starts BUSY, so the loader is forced to wait at the place
+ * step on its very first cycle. If the loader releases anyway, the gating
+ * is wrong.
+ */
+ConveyorStub(
+		input  signal enable;        // from SC
+		input  signal bottlePlaced;  // from Bottle Loader Controller
+		output signal conveyorReady; // to Bottle Loader Controller
+		)
+->
+{
+	int busy = 12;   // ticks of "not ready" at startup
+	int dwell = 8;   // ticks of "not ready" after each bottle
+
+	while(true){
+		present(enable){
+			if(busy > 0){
+				busy--;
+				System.out.println("[CV] " + busy);
+				if(busy == 0){
+					System.out.println("[CV] Ready to accept.");
+				}
+			}
+			else {
+				emit conveyorReady;
+				present(bottlePlaced){
+					System.out.println("[CV] Bottle received - busy for " + dwell + " ticks.");
+					busy = dwell;
+				}
+			}
+		}
+		pause;
+	}
+}

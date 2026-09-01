@@ -1,55 +1,58 @@
 SystemController(
-		// To LidLoaderControllerCD
+		// To BottleLoaderControllerCD
 		output Integer signal mode;
-		output signal lidLoaderLoad;
+		output signal bottleLoad;
 
-		// To LidLoaderPlantCD
-		output signal enable;
+		// To the plant models
+		output signal enable;    // -> BottleLoaderPlantCD
+		output signal enableCV;  // -> ConveyorStubCD
 
-		// From LidLoaderControllerCD
-		input signal lidLoaderLoaded;
-		input signal reloaded;
+		// From BottleLoaderControllerCD
+		input signal bottleLoaded;
 		)
 ->
 {
-	{ // ---- Operating mode: hold the lid loader in AUTO (0) for the whole run ----
+	{ // ---- Operating mode: hold the loader in AUTO (0) ----
 		while(true){
 			emit mode(0);
 			pause;
 		}
 	}
 	||
-	{ // ---- Plant power: the plant models only move while enable is present ----
+	{ // ---- Plant power: one enable per machine, since an oSignal has a
+	  //      single destination and each plant listens on its own port ----
 		while(true){
 			emit enable;
+			emit enableCV;
 			pause;
 		}
 	}
 	||
-	{ // ---- Run several load cycles to exhaust the magazine ----
+	{ // ---- Drive a sequence of bottle load cycles ----
 
-		// Let the TCP links between the three subsystems settle.
+		// Let the TCP links between the subsystems settle.
 		pause; pause; pause; pause; pause;
 
-		int cycles = 7;
+		int cycles = 5;
 		int i = 0;
 
 		while(i < cycles){
-			System.out.println("[SC] Requesting lid load " + (i + 1) + " of " + cycles + "...");
+			System.out.println("[SC] Requesting bottle load " + (i + 1) + " of " + cycles + "...");
 
-			abort(lidLoaderLoaded){
-				sustain lidLoaderLoad;
+			abort(bottleLoaded){
+				sustain bottleLoad;
 			}
 
 			i++;
-			System.out.println("[SC] Load " + i + " complete.");
+			System.out.println("[SC] Bottle " + i + " loaded onto conveyor.");
 
-			// Drop the request for a few ticks so lidLoaderLoaded clears
-			// before the next abort arms.
+			// Drop the request long enough for bottleLoaded to clear before
+			// the next abort arms, otherwise the next cycle terminates
+			// instantly on a stale acknowledgement.
 			pause; pause; pause;
 		}
 
-		System.out.println("[SC] All " + cycles + " cycles done.");
+		System.out.println("[SC] All " + cycles + " bottles loaded.");
 		while(true){ pause; }
 	}
 }
