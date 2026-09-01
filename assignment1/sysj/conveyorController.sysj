@@ -1,10 +1,16 @@
 /*
  * Controller for the Bottling Station conveyor.
  *
- * Three concurrent reactions:
+ * Concurrent reactions:
  *   1. advertise infeed readiness to the bottle loader
- *   2. infeed transport: loader place point -> index position 1 -> turntable
- *   3. outfeed transport: index position 5 -> labeller collection point
+ *   2. accept bottles from the loader onto the belt
+ *   3. run the infeed belt
+ *   4. hand off from index position 1 to the table
+ *   5. outfeed transport: index position 5 -> labeller collection point
+ *
+ * Accepting and handing off are separate reactions so that several bottles
+ * can be on the infeed at once - one waiting at position 1 for the table
+ * while others are still travelling.
  *
  * Each transport boundary uses the same pattern: a readiness level in from
  * downstream, a delivery event out to downstream, and a local arrival sensor.
@@ -26,7 +32,7 @@ ConveyorController(
 		output signal motOutfeed, injectOutfeed, collectFromEnd;
 
 		// from / to the turntable
-		input  signal tableReady, bottleFromTable;
+		input  signal tableReady, bottleFromTable, bottleTaken;
 		output signal bottleToTable;
 
 		// to the System Controller / labeller
@@ -34,7 +40,7 @@ ConveyorController(
 		)
 ->
 {
-	{ // ---- 1. Infeed readiness, advertised as a level ----
+	{ // ---- 1. Infeed readiness: the load point is free ----
 		while(true){
 			present(infeedClear){
 				emit conveyorReady;
@@ -43,7 +49,7 @@ ConveyorController(
 		}
 	}
 	||
-	{ // ---- 2. Infeed transport ----
+	{ // ---- 2. Accept bottles from the loader onto the belt ----
 		while(true){
 			await(immediate bottlePlaced);
 			System.out.println("[CV] Bottle received from loader.");
@@ -52,30 +58,51 @@ ConveyorController(
 			emit injectInfeed; pause;
 			emit injectInfeed; pause;
 
-			abort(bottleAtPos1){
-				sustain motInfeed;
-			}
-
-			present(tableReady){
-				// turntable can take it straight away
-			}
-			else {
-				System.out.println("[CV] At position 1 - waiting for turntable.");
-				await(immediate tableReady);
-			}
-
-			emit bottleToTable; emit takeFromPos1; pause;
-			emit bottleToTable; emit takeFromPos1; pause;
-			emit bottleToTable; emit takeFromPos1; pause;
-			System.out.println("[CV] Handed off to turntable.");
-
 			// Wait for the loader's delivery event to clear, so a stale
-			// bottlePlaced cannot immediately start another transport.
+			// bottlePlaced cannot inject the same bottle twice.
 			await(immediate !bottlePlaced);
 		}
 	}
 	||
-	{ // ---- 3. Outfeed transport ----
+	{ // ---- 3. Infeed belt runs continuously ----
+		//
+		// Bottles queue against each other in the plant model, so the motor
+		// does not need to be sequenced per bottle. Accepting and handing off
+		// are now independent, which is what lets several bottles be in
+		// transit at once.
+		while(true){
+			emit motInfeed;
+			pause;
+		}
+	}
+	||
+	{ // ---- 4. Hand off from position 1 to the table ----
+		while(true){
+			await(immediate bottleAtPos1);
+
+			present(tableReady){
+				// table can take it straight away
+			}
+			else {
+				System.out.println("[CV] At position 1 - waiting for table.");
+				await(immediate tableReady);
+			}
+
+			// Hold the offer until the table acknowledges. A timed offer can
+			// expire before the table samples it, and the bottle is then lost.
+			abort(bottleTaken){
+				sustain bottleToTable;
+			}
+
+			emit takeFromPos1; pause;
+			emit takeFromPos1; pause;
+			emit takeFromPos1; pause;
+			System.out.println("[CV] Handed off to table.");
+			await(immediate !bottleTaken);
+		}
+	}
+	||
+	{ // ---- 5. Outfeed transport ----
 		while(true){
 			await(immediate bottleFromTable);
 			System.out.println("[CV] Bottle received from turntable.");

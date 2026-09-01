@@ -22,19 +22,24 @@ public class ConveyorPlant extends ClockDomain{
   public Signal infeedClear = new Signal("infeedClear", Signal.OUTPUT);
   public Signal bottleAtOutfeedEnd = new Signal("bottleAtOutfeedEnd", Signal.OUTPUT);
   public Signal outfeedClear = new Signal("outfeedClear", Signal.OUTPUT);
-  private int LEN_thread_2;//sysj\conveyorPlant.sysj line: 28, column: 3
-  private int pos_thread_2;//sysj\conveyorPlant.sysj line: 29, column: 3
-  private int LEN_thread_3;//sysj\conveyorPlant.sysj line: 71, column: 3
-  private int pos_thread_3;//sysj\conveyorPlant.sysj line: 72, column: 3
-  private int S2001 = 1;
-  private int S1745 = 1;
-  private int S1999 = 1;
+  private int LEN_thread_2;//sysj\conveyorPlant.sysj line: 32, column: 3
+  private boolean[] slot_thread_2;//sysj\conveyorPlant.sysj line: 33, column: 3
+  private boolean injecting_thread_2;//sysj\conveyorPlant.sysj line: 34, column: 3
+  private boolean taking_thread_2;//sysj\conveyorPlant.sysj line: 35, column: 3
+  private int LEN_thread_3;//sysj\conveyorPlant.sysj line: 99, column: 3
+  private int pos_thread_3;//sysj\conveyorPlant.sysj line: 100, column: 3
+  private boolean injecting_thread_3;//sysj\conveyorPlant.sysj line: 101, column: 3
+  private boolean collecting_thread_3;//sysj\conveyorPlant.sysj line: 102, column: 3
+  private int i_thread_2;//sysj\conveyorPlant.sysj line: 59, column: 6
+  private int S2102 = 1;
+  private int S1846 = 1;
+  private int S2100 = 1;
   
   private int[] ends = new int[4];
   private int[] tdone = new int[4];
   
-  public void thread2007(int [] tdone, int [] ends){
-        switch(S1999){
+  public void thread2108(int [] tdone, int [] ends){
+        switch(S2100){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -42,26 +47,32 @@ public class ConveyorPlant extends ClockDomain{
         break;
       
       case 1 : 
-        if(enable.getprestatus()){//sysj\conveyorPlant.sysj line: 75, column: 12
-          if(injectOutfeed.getprestatus()){//sysj\conveyorPlant.sysj line: 77, column: 13
-            if(pos_thread_3 < 0) {//sysj\conveyorPlant.sysj line: 78, column: 17
-              pos_thread_3 = 0;//sysj\conveyorPlant.sysj line: 79, column: 7
-              System.out.println("[CVPlant] Bottle entered outfeed.");//sysj\conveyorPlant.sysj line: 80, column: 7
+        if(enable.getprestatus()){//sysj\conveyorPlant.sysj line: 105, column: 12
+          if(injectOutfeed.getprestatus()){//sysj\conveyorPlant.sysj line: 107, column: 13
+            if(!injecting_thread_3) {//sysj\conveyorPlant.sysj line: 108, column: 20
+              injecting_thread_3 = true;//sysj\conveyorPlant.sysj line: 109, column: 7
+              if(pos_thread_3 < 0) {//sysj\conveyorPlant.sysj line: 110, column: 18
+                pos_thread_3 = 0;//sysj\conveyorPlant.sysj line: 111, column: 8
+                System.out.println("[CVPlant] Bottle entered outfeed.");//sysj\conveyorPlant.sysj line: 112, column: 8
+              }
             }
-            if(pos_thread_3 >= 0){//sysj\conveyorPlant.sysj line: 84, column: 8
-              if(pos_thread_3 < LEN_thread_3){//sysj\conveyorPlant.sysj line: 85, column: 9
-                if(motOutfeed.getprestatus()){//sysj\conveyorPlant.sysj line: 86, column: 15
-                  pos_thread_3 = pos_thread_3 + 1;//sysj\conveyorPlant.sysj line: 87, column: 8
-                  if(pos_thread_3 == LEN_thread_3) {//sysj\conveyorPlant.sysj line: 88, column: 22
-                    System.out.println("[CVPlant] Bottle arrived at labeller point.");//sysj\conveyorPlant.sysj line: 89, column: 9
+            if(pos_thread_3 >= 0){//sysj\conveyorPlant.sysj line: 120, column: 8
+              if(pos_thread_3 < LEN_thread_3){//sysj\conveyorPlant.sysj line: 121, column: 9
+                if(motOutfeed.getprestatus()){//sysj\conveyorPlant.sysj line: 122, column: 15
+                  pos_thread_3 = pos_thread_3 + 1;//sysj\conveyorPlant.sysj line: 123, column: 8
+                  if(pos_thread_3 == LEN_thread_3) {//sysj\conveyorPlant.sysj line: 124, column: 22
+                    System.out.println("[CVPlant] Bottle arrived at labeller point.");//sysj\conveyorPlant.sysj line: 125, column: 9
                   }
-                  if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 98, column: 13
-                    if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 99, column: 20
-                      pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 100, column: 7
-                      System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 101, column: 7
+                  if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 134, column: 13
+                    if(!collecting_thread_3) {//sysj\conveyorPlant.sysj line: 135, column: 21
+                      collecting_thread_3 = true;//sysj\conveyorPlant.sysj line: 136, column: 7
+                      if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 137, column: 21
+                        pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 138, column: 8
+                        System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 139, column: 8
+                      }
                     }
-                    if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-                      outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+                    if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+                      outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
                       currsigs.addElement(outfeedClear);
                       active[3]=1;
                       ends[3]=1;
@@ -74,8 +85,9 @@ public class ConveyorPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-                      outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+                    collecting_thread_3 = false;//sysj\conveyorPlant.sysj line: 144, column: 6
+                    if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+                      outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
                       currsigs.addElement(outfeedClear);
                       active[3]=1;
                       ends[3]=1;
@@ -89,13 +101,16 @@ public class ConveyorPlant extends ClockDomain{
                   }
                 }
                 else {
-                  if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 98, column: 13
-                    if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 99, column: 20
-                      pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 100, column: 7
-                      System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 101, column: 7
+                  if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 134, column: 13
+                    if(!collecting_thread_3) {//sysj\conveyorPlant.sysj line: 135, column: 21
+                      collecting_thread_3 = true;//sysj\conveyorPlant.sysj line: 136, column: 7
+                      if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 137, column: 21
+                        pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 138, column: 8
+                        System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 139, column: 8
+                      }
                     }
-                    if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-                      outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+                    if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+                      outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
                       currsigs.addElement(outfeedClear);
                       active[3]=1;
                       ends[3]=1;
@@ -108,8 +123,9 @@ public class ConveyorPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-                      outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+                    collecting_thread_3 = false;//sysj\conveyorPlant.sysj line: 144, column: 6
+                    if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+                      outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
                       currsigs.addElement(outfeedClear);
                       active[3]=1;
                       ends[3]=1;
@@ -124,15 +140,18 @@ public class ConveyorPlant extends ClockDomain{
                 }
               }
               else {
-                bottleAtOutfeedEnd.setPresent();//sysj\conveyorPlant.sysj line: 94, column: 7
+                bottleAtOutfeedEnd.setPresent();//sysj\conveyorPlant.sysj line: 130, column: 7
                 currsigs.addElement(bottleAtOutfeedEnd);
-                if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 98, column: 13
-                  if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 99, column: 20
-                    pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 100, column: 7
-                    System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 101, column: 7
+                if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 134, column: 13
+                  if(!collecting_thread_3) {//sysj\conveyorPlant.sysj line: 135, column: 21
+                    collecting_thread_3 = true;//sysj\conveyorPlant.sysj line: 136, column: 7
+                    if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 137, column: 21
+                      pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 138, column: 8
+                      System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 139, column: 8
+                    }
                   }
-                  if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-                    outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+                  if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+                    outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
                     currsigs.addElement(outfeedClear);
                     active[3]=1;
                     ends[3]=1;
@@ -145,8 +164,9 @@ public class ConveyorPlant extends ClockDomain{
                   }
                 }
                 else {
-                  if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-                    outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+                  collecting_thread_3 = false;//sysj\conveyorPlant.sysj line: 144, column: 6
+                  if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+                    outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
                     currsigs.addElement(outfeedClear);
                     active[3]=1;
                     ends[3]=1;
@@ -161,13 +181,16 @@ public class ConveyorPlant extends ClockDomain{
               }
             }
             else {
-              if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 98, column: 13
-                if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 99, column: 20
-                  pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 100, column: 7
-                  System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 101, column: 7
+              if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 134, column: 13
+                if(!collecting_thread_3) {//sysj\conveyorPlant.sysj line: 135, column: 21
+                  collecting_thread_3 = true;//sysj\conveyorPlant.sysj line: 136, column: 7
+                  if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 137, column: 21
+                    pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 138, column: 8
+                    System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 139, column: 8
+                  }
                 }
-                if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-                  outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+                if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+                  outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
                   currsigs.addElement(outfeedClear);
                   active[3]=1;
                   ends[3]=1;
@@ -180,8 +203,9 @@ public class ConveyorPlant extends ClockDomain{
                 }
               }
               else {
-                if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-                  outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+                collecting_thread_3 = false;//sysj\conveyorPlant.sysj line: 144, column: 6
+                if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+                  outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
                   currsigs.addElement(outfeedClear);
                   active[3]=1;
                   ends[3]=1;
@@ -196,20 +220,24 @@ public class ConveyorPlant extends ClockDomain{
             }
           }
           else {
-            if(pos_thread_3 >= 0){//sysj\conveyorPlant.sysj line: 84, column: 8
-              if(pos_thread_3 < LEN_thread_3){//sysj\conveyorPlant.sysj line: 85, column: 9
-                if(motOutfeed.getprestatus()){//sysj\conveyorPlant.sysj line: 86, column: 15
-                  pos_thread_3 = pos_thread_3 + 1;//sysj\conveyorPlant.sysj line: 87, column: 8
-                  if(pos_thread_3 == LEN_thread_3) {//sysj\conveyorPlant.sysj line: 88, column: 22
-                    System.out.println("[CVPlant] Bottle arrived at labeller point.");//sysj\conveyorPlant.sysj line: 89, column: 9
+            injecting_thread_3 = false;//sysj\conveyorPlant.sysj line: 117, column: 6
+            if(pos_thread_3 >= 0){//sysj\conveyorPlant.sysj line: 120, column: 8
+              if(pos_thread_3 < LEN_thread_3){//sysj\conveyorPlant.sysj line: 121, column: 9
+                if(motOutfeed.getprestatus()){//sysj\conveyorPlant.sysj line: 122, column: 15
+                  pos_thread_3 = pos_thread_3 + 1;//sysj\conveyorPlant.sysj line: 123, column: 8
+                  if(pos_thread_3 == LEN_thread_3) {//sysj\conveyorPlant.sysj line: 124, column: 22
+                    System.out.println("[CVPlant] Bottle arrived at labeller point.");//sysj\conveyorPlant.sysj line: 125, column: 9
                   }
-                  if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 98, column: 13
-                    if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 99, column: 20
-                      pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 100, column: 7
-                      System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 101, column: 7
+                  if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 134, column: 13
+                    if(!collecting_thread_3) {//sysj\conveyorPlant.sysj line: 135, column: 21
+                      collecting_thread_3 = true;//sysj\conveyorPlant.sysj line: 136, column: 7
+                      if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 137, column: 21
+                        pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 138, column: 8
+                        System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 139, column: 8
+                      }
                     }
-                    if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-                      outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+                    if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+                      outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
                       currsigs.addElement(outfeedClear);
                       active[3]=1;
                       ends[3]=1;
@@ -222,8 +250,9 @@ public class ConveyorPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-                      outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+                    collecting_thread_3 = false;//sysj\conveyorPlant.sysj line: 144, column: 6
+                    if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+                      outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
                       currsigs.addElement(outfeedClear);
                       active[3]=1;
                       ends[3]=1;
@@ -237,13 +266,16 @@ public class ConveyorPlant extends ClockDomain{
                   }
                 }
                 else {
-                  if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 98, column: 13
-                    if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 99, column: 20
-                      pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 100, column: 7
-                      System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 101, column: 7
+                  if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 134, column: 13
+                    if(!collecting_thread_3) {//sysj\conveyorPlant.sysj line: 135, column: 21
+                      collecting_thread_3 = true;//sysj\conveyorPlant.sysj line: 136, column: 7
+                      if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 137, column: 21
+                        pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 138, column: 8
+                        System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 139, column: 8
+                      }
                     }
-                    if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-                      outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+                    if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+                      outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
                       currsigs.addElement(outfeedClear);
                       active[3]=1;
                       ends[3]=1;
@@ -256,8 +288,9 @@ public class ConveyorPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-                      outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+                    collecting_thread_3 = false;//sysj\conveyorPlant.sysj line: 144, column: 6
+                    if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+                      outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
                       currsigs.addElement(outfeedClear);
                       active[3]=1;
                       ends[3]=1;
@@ -272,15 +305,18 @@ public class ConveyorPlant extends ClockDomain{
                 }
               }
               else {
-                bottleAtOutfeedEnd.setPresent();//sysj\conveyorPlant.sysj line: 94, column: 7
+                bottleAtOutfeedEnd.setPresent();//sysj\conveyorPlant.sysj line: 130, column: 7
                 currsigs.addElement(bottleAtOutfeedEnd);
-                if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 98, column: 13
-                  if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 99, column: 20
-                    pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 100, column: 7
-                    System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 101, column: 7
+                if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 134, column: 13
+                  if(!collecting_thread_3) {//sysj\conveyorPlant.sysj line: 135, column: 21
+                    collecting_thread_3 = true;//sysj\conveyorPlant.sysj line: 136, column: 7
+                    if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 137, column: 21
+                      pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 138, column: 8
+                      System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 139, column: 8
+                    }
                   }
-                  if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-                    outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+                  if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+                    outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
                     currsigs.addElement(outfeedClear);
                     active[3]=1;
                     ends[3]=1;
@@ -293,8 +329,9 @@ public class ConveyorPlant extends ClockDomain{
                   }
                 }
                 else {
-                  if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-                    outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+                  collecting_thread_3 = false;//sysj\conveyorPlant.sysj line: 144, column: 6
+                  if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+                    outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
                     currsigs.addElement(outfeedClear);
                     active[3]=1;
                     ends[3]=1;
@@ -309,13 +346,16 @@ public class ConveyorPlant extends ClockDomain{
               }
             }
             else {
-              if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 98, column: 13
-                if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 99, column: 20
-                  pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 100, column: 7
-                  System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 101, column: 7
+              if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 134, column: 13
+                if(!collecting_thread_3) {//sysj\conveyorPlant.sysj line: 135, column: 21
+                  collecting_thread_3 = true;//sysj\conveyorPlant.sysj line: 136, column: 7
+                  if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 137, column: 21
+                    pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 138, column: 8
+                    System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 139, column: 8
+                  }
                 }
-                if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-                  outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+                if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+                  outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
                   currsigs.addElement(outfeedClear);
                   active[3]=1;
                   ends[3]=1;
@@ -328,8 +368,9 @@ public class ConveyorPlant extends ClockDomain{
                 }
               }
               else {
-                if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-                  outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+                collecting_thread_3 = false;//sysj\conveyorPlant.sysj line: 144, column: 6
+                if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+                  outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
                   currsigs.addElement(outfeedClear);
                   active[3]=1;
                   ends[3]=1;
@@ -354,8 +395,8 @@ public class ConveyorPlant extends ClockDomain{
     }
   }
 
-  public void thread2006(int [] tdone, int [] ends){
-        switch(S1745){
+  public void thread2107(int [] tdone, int [] ends){
+        switch(S1846){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -363,97 +404,40 @@ public class ConveyorPlant extends ClockDomain{
         break;
       
       case 1 : 
-        if(enable.getprestatus()){//sysj\conveyorPlant.sysj line: 32, column: 12
-          if(injectInfeed.getprestatus()){//sysj\conveyorPlant.sysj line: 34, column: 13
-            if(pos_thread_2 < 0) {//sysj\conveyorPlant.sysj line: 35, column: 17
-              pos_thread_2 = 0;//sysj\conveyorPlant.sysj line: 36, column: 7
-              System.out.println("[CVPlant] Bottle entered infeed.");//sysj\conveyorPlant.sysj line: 37, column: 7
-            }
-            if(pos_thread_2 >= 0){//sysj\conveyorPlant.sysj line: 41, column: 8
-              if(pos_thread_2 < LEN_thread_2){//sysj\conveyorPlant.sysj line: 42, column: 9
-                if(motInfeed.getprestatus()){//sysj\conveyorPlant.sysj line: 43, column: 15
-                  pos_thread_2 = pos_thread_2 + 1;//sysj\conveyorPlant.sysj line: 44, column: 8
-                  if(pos_thread_2 == LEN_thread_2) {//sysj\conveyorPlant.sysj line: 45, column: 22
-                    System.out.println("[CVPlant] Bottle arrived at position 1.");//sysj\conveyorPlant.sysj line: 46, column: 9
-                  }
-                  if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 55, column: 13
-                    if(pos_thread_2 >= LEN_thread_2) {//sysj\conveyorPlant.sysj line: 56, column: 20
-                      pos_thread_2 = -1;//sysj\conveyorPlant.sysj line: 57, column: 7
-                      System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 58, column: 7
-                    }
-                    if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-                      infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
-                      currsigs.addElement(infeedClear);
-                      active[2]=1;
-                      ends[2]=1;
-                      tdone[2]=1;
-                    }
-                    else {
-                      active[2]=1;
-                      ends[2]=1;
-                      tdone[2]=1;
-                    }
-                  }
-                  else {
-                    if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-                      infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
-                      currsigs.addElement(infeedClear);
-                      active[2]=1;
-                      ends[2]=1;
-                      tdone[2]=1;
-                    }
-                    else {
-                      active[2]=1;
-                      ends[2]=1;
-                      tdone[2]=1;
-                    }
-                  }
-                }
-                else {
-                  if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 55, column: 13
-                    if(pos_thread_2 >= LEN_thread_2) {//sysj\conveyorPlant.sysj line: 56, column: 20
-                      pos_thread_2 = -1;//sysj\conveyorPlant.sysj line: 57, column: 7
-                      System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 58, column: 7
-                    }
-                    if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-                      infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
-                      currsigs.addElement(infeedClear);
-                      active[2]=1;
-                      ends[2]=1;
-                      tdone[2]=1;
-                    }
-                    else {
-                      active[2]=1;
-                      ends[2]=1;
-                      tdone[2]=1;
-                    }
-                  }
-                  else {
-                    if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-                      infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
-                      currsigs.addElement(infeedClear);
-                      active[2]=1;
-                      ends[2]=1;
-                      tdone[2]=1;
-                    }
-                    else {
-                      active[2]=1;
-                      ends[2]=1;
-                      tdone[2]=1;
-                    }
-                  }
-                }
+        if(enable.getprestatus()){//sysj\conveyorPlant.sysj line: 38, column: 12
+          if(injectInfeed.getprestatus()){//sysj\conveyorPlant.sysj line: 44, column: 13
+            if(!injecting_thread_2) {//sysj\conveyorPlant.sysj line: 45, column: 20
+              injecting_thread_2 = true;//sysj\conveyorPlant.sysj line: 46, column: 7
+              if(!slot_thread_2[0]) {//sysj\conveyorPlant.sysj line: 47, column: 19
+                slot_thread_2[0] = true;//sysj\conveyorPlant.sysj line: 48, column: 8
+                System.out.println("[CVPlant] Bottle entered infeed.");//sysj\conveyorPlant.sysj line: 49, column: 8
               }
-              else {
-                bottleAtPos1.setPresent();//sysj\conveyorPlant.sysj line: 51, column: 7
-                currsigs.addElement(bottleAtPos1);
-                if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 55, column: 13
-                  if(pos_thread_2 >= LEN_thread_2) {//sysj\conveyorPlant.sysj line: 56, column: 20
-                    pos_thread_2 = -1;//sysj\conveyorPlant.sysj line: 57, column: 7
-                    System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 58, column: 7
+            }
+            if(motInfeed.getprestatus()){//sysj\conveyorPlant.sysj line: 57, column: 13
+              i_thread_2 = LEN_thread_2 - 1;//sysj\conveyorPlant.sysj line: 59, column: 6
+              while(i_thread_2 >= 0) {//sysj\conveyorPlant.sysj line: 60, column: 19
+                if(slot_thread_2[i_thread_2] && !slot_thread_2[i_thread_2 + 1]) {//sysj\conveyorPlant.sysj line: 61, column: 32
+                  slot_thread_2[i_thread_2 + 1] = true;//sysj\conveyorPlant.sysj line: 62, column: 8
+                  slot_thread_2[i_thread_2] = false;//sysj\conveyorPlant.sysj line: 63, column: 8
+                  if(i_thread_2 + 1 == LEN_thread_2) {//sysj\conveyorPlant.sysj line: 64, column: 24
+                    System.out.println("[CVPlant] Bottle arrived at position 1.");//sysj\conveyorPlant.sysj line: 65, column: 9
                   }
-                  if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-                    infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
+                }
+                i_thread_2 = i_thread_2 - 1;//sysj\conveyorPlant.sysj line: 68, column: 7
+              }
+              if(slot_thread_2[LEN_thread_2]){//sysj\conveyorPlant.sysj line: 72, column: 5
+                bottleAtPos1.setPresent();//sysj\conveyorPlant.sysj line: 73, column: 6
+                currsigs.addElement(bottleAtPos1);
+                if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 76, column: 13
+                  if(!taking_thread_2) {//sysj\conveyorPlant.sysj line: 77, column: 17
+                    taking_thread_2 = true;//sysj\conveyorPlant.sysj line: 78, column: 7
+                    if(slot_thread_2[LEN_thread_2]) {//sysj\conveyorPlant.sysj line: 79, column: 20
+                      slot_thread_2[LEN_thread_2] = false;//sysj\conveyorPlant.sysj line: 80, column: 8
+                      System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 81, column: 8
+                    }
+                  }
+                  if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                    infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
                     currsigs.addElement(infeedClear);
                     active[2]=1;
                     ends[2]=1;
@@ -466,8 +450,47 @@ public class ConveyorPlant extends ClockDomain{
                   }
                 }
                 else {
-                  if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-                    infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
+                  taking_thread_2 = false;//sysj\conveyorPlant.sysj line: 86, column: 6
+                  if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                    infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
+                    currsigs.addElement(infeedClear);
+                    active[2]=1;
+                    ends[2]=1;
+                    tdone[2]=1;
+                  }
+                  else {
+                    active[2]=1;
+                    ends[2]=1;
+                    tdone[2]=1;
+                  }
+                }
+              }
+              else {
+                if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 76, column: 13
+                  if(!taking_thread_2) {//sysj\conveyorPlant.sysj line: 77, column: 17
+                    taking_thread_2 = true;//sysj\conveyorPlant.sysj line: 78, column: 7
+                    if(slot_thread_2[LEN_thread_2]) {//sysj\conveyorPlant.sysj line: 79, column: 20
+                      slot_thread_2[LEN_thread_2] = false;//sysj\conveyorPlant.sysj line: 80, column: 8
+                      System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 81, column: 8
+                    }
+                  }
+                  if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                    infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
+                    currsigs.addElement(infeedClear);
+                    active[2]=1;
+                    ends[2]=1;
+                    tdone[2]=1;
+                  }
+                  else {
+                    active[2]=1;
+                    ends[2]=1;
+                    tdone[2]=1;
+                  }
+                }
+                else {
+                  taking_thread_2 = false;//sysj\conveyorPlant.sysj line: 86, column: 6
+                  if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                    infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
                     currsigs.addElement(infeedClear);
                     active[2]=1;
                     ends[2]=1;
@@ -482,126 +505,113 @@ public class ConveyorPlant extends ClockDomain{
               }
             }
             else {
-              if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 55, column: 13
-                if(pos_thread_2 >= LEN_thread_2) {//sysj\conveyorPlant.sysj line: 56, column: 20
-                  pos_thread_2 = -1;//sysj\conveyorPlant.sysj line: 57, column: 7
-                  System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 58, column: 7
-                }
-                if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-                  infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
-                  currsigs.addElement(infeedClear);
-                  active[2]=1;
-                  ends[2]=1;
-                  tdone[2]=1;
+              if(slot_thread_2[LEN_thread_2]){//sysj\conveyorPlant.sysj line: 72, column: 5
+                bottleAtPos1.setPresent();//sysj\conveyorPlant.sysj line: 73, column: 6
+                currsigs.addElement(bottleAtPos1);
+                if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 76, column: 13
+                  if(!taking_thread_2) {//sysj\conveyorPlant.sysj line: 77, column: 17
+                    taking_thread_2 = true;//sysj\conveyorPlant.sysj line: 78, column: 7
+                    if(slot_thread_2[LEN_thread_2]) {//sysj\conveyorPlant.sysj line: 79, column: 20
+                      slot_thread_2[LEN_thread_2] = false;//sysj\conveyorPlant.sysj line: 80, column: 8
+                      System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 81, column: 8
+                    }
+                  }
+                  if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                    infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
+                    currsigs.addElement(infeedClear);
+                    active[2]=1;
+                    ends[2]=1;
+                    tdone[2]=1;
+                  }
+                  else {
+                    active[2]=1;
+                    ends[2]=1;
+                    tdone[2]=1;
+                  }
                 }
                 else {
-                  active[2]=1;
-                  ends[2]=1;
-                  tdone[2]=1;
+                  taking_thread_2 = false;//sysj\conveyorPlant.sysj line: 86, column: 6
+                  if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                    infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
+                    currsigs.addElement(infeedClear);
+                    active[2]=1;
+                    ends[2]=1;
+                    tdone[2]=1;
+                  }
+                  else {
+                    active[2]=1;
+                    ends[2]=1;
+                    tdone[2]=1;
+                  }
                 }
               }
               else {
-                if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-                  infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
-                  currsigs.addElement(infeedClear);
-                  active[2]=1;
-                  ends[2]=1;
-                  tdone[2]=1;
+                if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 76, column: 13
+                  if(!taking_thread_2) {//sysj\conveyorPlant.sysj line: 77, column: 17
+                    taking_thread_2 = true;//sysj\conveyorPlant.sysj line: 78, column: 7
+                    if(slot_thread_2[LEN_thread_2]) {//sysj\conveyorPlant.sysj line: 79, column: 20
+                      slot_thread_2[LEN_thread_2] = false;//sysj\conveyorPlant.sysj line: 80, column: 8
+                      System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 81, column: 8
+                    }
+                  }
+                  if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                    infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
+                    currsigs.addElement(infeedClear);
+                    active[2]=1;
+                    ends[2]=1;
+                    tdone[2]=1;
+                  }
+                  else {
+                    active[2]=1;
+                    ends[2]=1;
+                    tdone[2]=1;
+                  }
                 }
                 else {
-                  active[2]=1;
-                  ends[2]=1;
-                  tdone[2]=1;
+                  taking_thread_2 = false;//sysj\conveyorPlant.sysj line: 86, column: 6
+                  if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                    infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
+                    currsigs.addElement(infeedClear);
+                    active[2]=1;
+                    ends[2]=1;
+                    tdone[2]=1;
+                  }
+                  else {
+                    active[2]=1;
+                    ends[2]=1;
+                    tdone[2]=1;
+                  }
                 }
               }
             }
           }
           else {
-            if(pos_thread_2 >= 0){//sysj\conveyorPlant.sysj line: 41, column: 8
-              if(pos_thread_2 < LEN_thread_2){//sysj\conveyorPlant.sysj line: 42, column: 9
-                if(motInfeed.getprestatus()){//sysj\conveyorPlant.sysj line: 43, column: 15
-                  pos_thread_2 = pos_thread_2 + 1;//sysj\conveyorPlant.sysj line: 44, column: 8
-                  if(pos_thread_2 == LEN_thread_2) {//sysj\conveyorPlant.sysj line: 45, column: 22
-                    System.out.println("[CVPlant] Bottle arrived at position 1.");//sysj\conveyorPlant.sysj line: 46, column: 9
-                  }
-                  if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 55, column: 13
-                    if(pos_thread_2 >= LEN_thread_2) {//sysj\conveyorPlant.sysj line: 56, column: 20
-                      pos_thread_2 = -1;//sysj\conveyorPlant.sysj line: 57, column: 7
-                      System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 58, column: 7
-                    }
-                    if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-                      infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
-                      currsigs.addElement(infeedClear);
-                      active[2]=1;
-                      ends[2]=1;
-                      tdone[2]=1;
-                    }
-                    else {
-                      active[2]=1;
-                      ends[2]=1;
-                      tdone[2]=1;
-                    }
-                  }
-                  else {
-                    if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-                      infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
-                      currsigs.addElement(infeedClear);
-                      active[2]=1;
-                      ends[2]=1;
-                      tdone[2]=1;
-                    }
-                    else {
-                      active[2]=1;
-                      ends[2]=1;
-                      tdone[2]=1;
-                    }
+            injecting_thread_2 = false;//sysj\conveyorPlant.sysj line: 54, column: 6
+            if(motInfeed.getprestatus()){//sysj\conveyorPlant.sysj line: 57, column: 13
+              i_thread_2 = LEN_thread_2 - 1;//sysj\conveyorPlant.sysj line: 59, column: 6
+              while(i_thread_2 >= 0) {//sysj\conveyorPlant.sysj line: 60, column: 19
+                if(slot_thread_2[i_thread_2] && !slot_thread_2[i_thread_2 + 1]) {//sysj\conveyorPlant.sysj line: 61, column: 32
+                  slot_thread_2[i_thread_2 + 1] = true;//sysj\conveyorPlant.sysj line: 62, column: 8
+                  slot_thread_2[i_thread_2] = false;//sysj\conveyorPlant.sysj line: 63, column: 8
+                  if(i_thread_2 + 1 == LEN_thread_2) {//sysj\conveyorPlant.sysj line: 64, column: 24
+                    System.out.println("[CVPlant] Bottle arrived at position 1.");//sysj\conveyorPlant.sysj line: 65, column: 9
                   }
                 }
-                else {
-                  if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 55, column: 13
-                    if(pos_thread_2 >= LEN_thread_2) {//sysj\conveyorPlant.sysj line: 56, column: 20
-                      pos_thread_2 = -1;//sysj\conveyorPlant.sysj line: 57, column: 7
-                      System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 58, column: 7
-                    }
-                    if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-                      infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
-                      currsigs.addElement(infeedClear);
-                      active[2]=1;
-                      ends[2]=1;
-                      tdone[2]=1;
-                    }
-                    else {
-                      active[2]=1;
-                      ends[2]=1;
-                      tdone[2]=1;
-                    }
-                  }
-                  else {
-                    if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-                      infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
-                      currsigs.addElement(infeedClear);
-                      active[2]=1;
-                      ends[2]=1;
-                      tdone[2]=1;
-                    }
-                    else {
-                      active[2]=1;
-                      ends[2]=1;
-                      tdone[2]=1;
-                    }
-                  }
-                }
+                i_thread_2 = i_thread_2 - 1;//sysj\conveyorPlant.sysj line: 68, column: 7
               }
-              else {
-                bottleAtPos1.setPresent();//sysj\conveyorPlant.sysj line: 51, column: 7
+              if(slot_thread_2[LEN_thread_2]){//sysj\conveyorPlant.sysj line: 72, column: 5
+                bottleAtPos1.setPresent();//sysj\conveyorPlant.sysj line: 73, column: 6
                 currsigs.addElement(bottleAtPos1);
-                if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 55, column: 13
-                  if(pos_thread_2 >= LEN_thread_2) {//sysj\conveyorPlant.sysj line: 56, column: 20
-                    pos_thread_2 = -1;//sysj\conveyorPlant.sysj line: 57, column: 7
-                    System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 58, column: 7
+                if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 76, column: 13
+                  if(!taking_thread_2) {//sysj\conveyorPlant.sysj line: 77, column: 17
+                    taking_thread_2 = true;//sysj\conveyorPlant.sysj line: 78, column: 7
+                    if(slot_thread_2[LEN_thread_2]) {//sysj\conveyorPlant.sysj line: 79, column: 20
+                      slot_thread_2[LEN_thread_2] = false;//sysj\conveyorPlant.sysj line: 80, column: 8
+                      System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 81, column: 8
+                    }
                   }
-                  if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-                    infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
+                  if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                    infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
                     currsigs.addElement(infeedClear);
                     active[2]=1;
                     ends[2]=1;
@@ -614,8 +624,47 @@ public class ConveyorPlant extends ClockDomain{
                   }
                 }
                 else {
-                  if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-                    infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
+                  taking_thread_2 = false;//sysj\conveyorPlant.sysj line: 86, column: 6
+                  if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                    infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
+                    currsigs.addElement(infeedClear);
+                    active[2]=1;
+                    ends[2]=1;
+                    tdone[2]=1;
+                  }
+                  else {
+                    active[2]=1;
+                    ends[2]=1;
+                    tdone[2]=1;
+                  }
+                }
+              }
+              else {
+                if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 76, column: 13
+                  if(!taking_thread_2) {//sysj\conveyorPlant.sysj line: 77, column: 17
+                    taking_thread_2 = true;//sysj\conveyorPlant.sysj line: 78, column: 7
+                    if(slot_thread_2[LEN_thread_2]) {//sysj\conveyorPlant.sysj line: 79, column: 20
+                      slot_thread_2[LEN_thread_2] = false;//sysj\conveyorPlant.sysj line: 80, column: 8
+                      System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 81, column: 8
+                    }
+                  }
+                  if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                    infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
+                    currsigs.addElement(infeedClear);
+                    active[2]=1;
+                    ends[2]=1;
+                    tdone[2]=1;
+                  }
+                  else {
+                    active[2]=1;
+                    ends[2]=1;
+                    tdone[2]=1;
+                  }
+                }
+                else {
+                  taking_thread_2 = false;//sysj\conveyorPlant.sysj line: 86, column: 6
+                  if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                    infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
                     currsigs.addElement(infeedClear);
                     active[2]=1;
                     ends[2]=1;
@@ -630,36 +679,82 @@ public class ConveyorPlant extends ClockDomain{
               }
             }
             else {
-              if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 55, column: 13
-                if(pos_thread_2 >= LEN_thread_2) {//sysj\conveyorPlant.sysj line: 56, column: 20
-                  pos_thread_2 = -1;//sysj\conveyorPlant.sysj line: 57, column: 7
-                  System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 58, column: 7
-                }
-                if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-                  infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
-                  currsigs.addElement(infeedClear);
-                  active[2]=1;
-                  ends[2]=1;
-                  tdone[2]=1;
+              if(slot_thread_2[LEN_thread_2]){//sysj\conveyorPlant.sysj line: 72, column: 5
+                bottleAtPos1.setPresent();//sysj\conveyorPlant.sysj line: 73, column: 6
+                currsigs.addElement(bottleAtPos1);
+                if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 76, column: 13
+                  if(!taking_thread_2) {//sysj\conveyorPlant.sysj line: 77, column: 17
+                    taking_thread_2 = true;//sysj\conveyorPlant.sysj line: 78, column: 7
+                    if(slot_thread_2[LEN_thread_2]) {//sysj\conveyorPlant.sysj line: 79, column: 20
+                      slot_thread_2[LEN_thread_2] = false;//sysj\conveyorPlant.sysj line: 80, column: 8
+                      System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 81, column: 8
+                    }
+                  }
+                  if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                    infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
+                    currsigs.addElement(infeedClear);
+                    active[2]=1;
+                    ends[2]=1;
+                    tdone[2]=1;
+                  }
+                  else {
+                    active[2]=1;
+                    ends[2]=1;
+                    tdone[2]=1;
+                  }
                 }
                 else {
-                  active[2]=1;
-                  ends[2]=1;
-                  tdone[2]=1;
+                  taking_thread_2 = false;//sysj\conveyorPlant.sysj line: 86, column: 6
+                  if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                    infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
+                    currsigs.addElement(infeedClear);
+                    active[2]=1;
+                    ends[2]=1;
+                    tdone[2]=1;
+                  }
+                  else {
+                    active[2]=1;
+                    ends[2]=1;
+                    tdone[2]=1;
+                  }
                 }
               }
               else {
-                if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-                  infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
-                  currsigs.addElement(infeedClear);
-                  active[2]=1;
-                  ends[2]=1;
-                  tdone[2]=1;
+                if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 76, column: 13
+                  if(!taking_thread_2) {//sysj\conveyorPlant.sysj line: 77, column: 17
+                    taking_thread_2 = true;//sysj\conveyorPlant.sysj line: 78, column: 7
+                    if(slot_thread_2[LEN_thread_2]) {//sysj\conveyorPlant.sysj line: 79, column: 20
+                      slot_thread_2[LEN_thread_2] = false;//sysj\conveyorPlant.sysj line: 80, column: 8
+                      System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 81, column: 8
+                    }
+                  }
+                  if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                    infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
+                    currsigs.addElement(infeedClear);
+                    active[2]=1;
+                    ends[2]=1;
+                    tdone[2]=1;
+                  }
+                  else {
+                    active[2]=1;
+                    ends[2]=1;
+                    tdone[2]=1;
+                  }
                 }
                 else {
-                  active[2]=1;
-                  ends[2]=1;
-                  tdone[2]=1;
+                  taking_thread_2 = false;//sysj\conveyorPlant.sysj line: 86, column: 6
+                  if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                    infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
+                    currsigs.addElement(infeedClear);
+                    active[2]=1;
+                    ends[2]=1;
+                    tdone[2]=1;
+                  }
+                  else {
+                    active[2]=1;
+                    ends[2]=1;
+                    tdone[2]=1;
+                  }
                 }
               }
             }
@@ -675,30 +770,38 @@ public class ConveyorPlant extends ClockDomain{
     }
   }
 
-  public void thread2004(int [] tdone, int [] ends){
-        S1999=1;
-    LEN_thread_3 = 6;//sysj\conveyorPlant.sysj line: 71, column: 3
-    pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 72, column: 3
-    if(enable.getprestatus()){//sysj\conveyorPlant.sysj line: 75, column: 12
-      if(injectOutfeed.getprestatus()){//sysj\conveyorPlant.sysj line: 77, column: 13
-        if(pos_thread_3 < 0) {//sysj\conveyorPlant.sysj line: 78, column: 17
-          pos_thread_3 = 0;//sysj\conveyorPlant.sysj line: 79, column: 7
-          System.out.println("[CVPlant] Bottle entered outfeed.");//sysj\conveyorPlant.sysj line: 80, column: 7
+  public void thread2105(int [] tdone, int [] ends){
+        S2100=1;
+    LEN_thread_3 = 6;//sysj\conveyorPlant.sysj line: 99, column: 3
+    pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 100, column: 3
+    injecting_thread_3 = false;//sysj\conveyorPlant.sysj line: 101, column: 3
+    collecting_thread_3 = false;//sysj\conveyorPlant.sysj line: 102, column: 3
+    if(enable.getprestatus()){//sysj\conveyorPlant.sysj line: 105, column: 12
+      if(injectOutfeed.getprestatus()){//sysj\conveyorPlant.sysj line: 107, column: 13
+        if(!injecting_thread_3) {//sysj\conveyorPlant.sysj line: 108, column: 20
+          injecting_thread_3 = true;//sysj\conveyorPlant.sysj line: 109, column: 7
+          if(pos_thread_3 < 0) {//sysj\conveyorPlant.sysj line: 110, column: 18
+            pos_thread_3 = 0;//sysj\conveyorPlant.sysj line: 111, column: 8
+            System.out.println("[CVPlant] Bottle entered outfeed.");//sysj\conveyorPlant.sysj line: 112, column: 8
+          }
         }
-        if(pos_thread_3 >= 0){//sysj\conveyorPlant.sysj line: 84, column: 8
-          if(pos_thread_3 < LEN_thread_3){//sysj\conveyorPlant.sysj line: 85, column: 9
-            if(motOutfeed.getprestatus()){//sysj\conveyorPlant.sysj line: 86, column: 15
-              pos_thread_3 = pos_thread_3 + 1;//sysj\conveyorPlant.sysj line: 87, column: 8
-              if(pos_thread_3 == LEN_thread_3) {//sysj\conveyorPlant.sysj line: 88, column: 22
-                System.out.println("[CVPlant] Bottle arrived at labeller point.");//sysj\conveyorPlant.sysj line: 89, column: 9
+        if(pos_thread_3 >= 0){//sysj\conveyorPlant.sysj line: 120, column: 8
+          if(pos_thread_3 < LEN_thread_3){//sysj\conveyorPlant.sysj line: 121, column: 9
+            if(motOutfeed.getprestatus()){//sysj\conveyorPlant.sysj line: 122, column: 15
+              pos_thread_3 = pos_thread_3 + 1;//sysj\conveyorPlant.sysj line: 123, column: 8
+              if(pos_thread_3 == LEN_thread_3) {//sysj\conveyorPlant.sysj line: 124, column: 22
+                System.out.println("[CVPlant] Bottle arrived at labeller point.");//sysj\conveyorPlant.sysj line: 125, column: 9
               }
-              if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 98, column: 13
-                if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 99, column: 20
-                  pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 100, column: 7
-                  System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 101, column: 7
+              if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 134, column: 13
+                if(!collecting_thread_3) {//sysj\conveyorPlant.sysj line: 135, column: 21
+                  collecting_thread_3 = true;//sysj\conveyorPlant.sysj line: 136, column: 7
+                  if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 137, column: 21
+                    pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 138, column: 8
+                    System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 139, column: 8
+                  }
                 }
-                if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-                  outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+                if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+                  outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
                   currsigs.addElement(outfeedClear);
                   active[3]=1;
                   ends[3]=1;
@@ -711,8 +814,9 @@ public class ConveyorPlant extends ClockDomain{
                 }
               }
               else {
-                if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-                  outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+                collecting_thread_3 = false;//sysj\conveyorPlant.sysj line: 144, column: 6
+                if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+                  outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
                   currsigs.addElement(outfeedClear);
                   active[3]=1;
                   ends[3]=1;
@@ -726,13 +830,16 @@ public class ConveyorPlant extends ClockDomain{
               }
             }
             else {
-              if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 98, column: 13
-                if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 99, column: 20
-                  pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 100, column: 7
-                  System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 101, column: 7
+              if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 134, column: 13
+                if(!collecting_thread_3) {//sysj\conveyorPlant.sysj line: 135, column: 21
+                  collecting_thread_3 = true;//sysj\conveyorPlant.sysj line: 136, column: 7
+                  if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 137, column: 21
+                    pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 138, column: 8
+                    System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 139, column: 8
+                  }
                 }
-                if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-                  outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+                if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+                  outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
                   currsigs.addElement(outfeedClear);
                   active[3]=1;
                   ends[3]=1;
@@ -745,8 +852,9 @@ public class ConveyorPlant extends ClockDomain{
                 }
               }
               else {
-                if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-                  outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+                collecting_thread_3 = false;//sysj\conveyorPlant.sysj line: 144, column: 6
+                if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+                  outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
                   currsigs.addElement(outfeedClear);
                   active[3]=1;
                   ends[3]=1;
@@ -761,15 +869,18 @@ public class ConveyorPlant extends ClockDomain{
             }
           }
           else {
-            bottleAtOutfeedEnd.setPresent();//sysj\conveyorPlant.sysj line: 94, column: 7
+            bottleAtOutfeedEnd.setPresent();//sysj\conveyorPlant.sysj line: 130, column: 7
             currsigs.addElement(bottleAtOutfeedEnd);
-            if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 98, column: 13
-              if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 99, column: 20
-                pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 100, column: 7
-                System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 101, column: 7
+            if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 134, column: 13
+              if(!collecting_thread_3) {//sysj\conveyorPlant.sysj line: 135, column: 21
+                collecting_thread_3 = true;//sysj\conveyorPlant.sysj line: 136, column: 7
+                if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 137, column: 21
+                  pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 138, column: 8
+                  System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 139, column: 8
+                }
               }
-              if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-                outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+              if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+                outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
                 currsigs.addElement(outfeedClear);
                 active[3]=1;
                 ends[3]=1;
@@ -782,8 +893,9 @@ public class ConveyorPlant extends ClockDomain{
               }
             }
             else {
-              if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-                outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+              collecting_thread_3 = false;//sysj\conveyorPlant.sysj line: 144, column: 6
+              if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+                outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
                 currsigs.addElement(outfeedClear);
                 active[3]=1;
                 ends[3]=1;
@@ -798,13 +910,16 @@ public class ConveyorPlant extends ClockDomain{
           }
         }
         else {
-          if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 98, column: 13
-            if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 99, column: 20
-              pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 100, column: 7
-              System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 101, column: 7
+          if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 134, column: 13
+            if(!collecting_thread_3) {//sysj\conveyorPlant.sysj line: 135, column: 21
+              collecting_thread_3 = true;//sysj\conveyorPlant.sysj line: 136, column: 7
+              if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 137, column: 21
+                pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 138, column: 8
+                System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 139, column: 8
+              }
             }
-            if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-              outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+            if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+              outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
               currsigs.addElement(outfeedClear);
               active[3]=1;
               ends[3]=1;
@@ -817,8 +932,9 @@ public class ConveyorPlant extends ClockDomain{
             }
           }
           else {
-            if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-              outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+            collecting_thread_3 = false;//sysj\conveyorPlant.sysj line: 144, column: 6
+            if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+              outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
               currsigs.addElement(outfeedClear);
               active[3]=1;
               ends[3]=1;
@@ -833,20 +949,24 @@ public class ConveyorPlant extends ClockDomain{
         }
       }
       else {
-        if(pos_thread_3 >= 0){//sysj\conveyorPlant.sysj line: 84, column: 8
-          if(pos_thread_3 < LEN_thread_3){//sysj\conveyorPlant.sysj line: 85, column: 9
-            if(motOutfeed.getprestatus()){//sysj\conveyorPlant.sysj line: 86, column: 15
-              pos_thread_3 = pos_thread_3 + 1;//sysj\conveyorPlant.sysj line: 87, column: 8
-              if(pos_thread_3 == LEN_thread_3) {//sysj\conveyorPlant.sysj line: 88, column: 22
-                System.out.println("[CVPlant] Bottle arrived at labeller point.");//sysj\conveyorPlant.sysj line: 89, column: 9
+        injecting_thread_3 = false;//sysj\conveyorPlant.sysj line: 117, column: 6
+        if(pos_thread_3 >= 0){//sysj\conveyorPlant.sysj line: 120, column: 8
+          if(pos_thread_3 < LEN_thread_3){//sysj\conveyorPlant.sysj line: 121, column: 9
+            if(motOutfeed.getprestatus()){//sysj\conveyorPlant.sysj line: 122, column: 15
+              pos_thread_3 = pos_thread_3 + 1;//sysj\conveyorPlant.sysj line: 123, column: 8
+              if(pos_thread_3 == LEN_thread_3) {//sysj\conveyorPlant.sysj line: 124, column: 22
+                System.out.println("[CVPlant] Bottle arrived at labeller point.");//sysj\conveyorPlant.sysj line: 125, column: 9
               }
-              if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 98, column: 13
-                if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 99, column: 20
-                  pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 100, column: 7
-                  System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 101, column: 7
+              if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 134, column: 13
+                if(!collecting_thread_3) {//sysj\conveyorPlant.sysj line: 135, column: 21
+                  collecting_thread_3 = true;//sysj\conveyorPlant.sysj line: 136, column: 7
+                  if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 137, column: 21
+                    pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 138, column: 8
+                    System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 139, column: 8
+                  }
                 }
-                if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-                  outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+                if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+                  outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
                   currsigs.addElement(outfeedClear);
                   active[3]=1;
                   ends[3]=1;
@@ -859,8 +979,9 @@ public class ConveyorPlant extends ClockDomain{
                 }
               }
               else {
-                if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-                  outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+                collecting_thread_3 = false;//sysj\conveyorPlant.sysj line: 144, column: 6
+                if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+                  outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
                   currsigs.addElement(outfeedClear);
                   active[3]=1;
                   ends[3]=1;
@@ -874,13 +995,16 @@ public class ConveyorPlant extends ClockDomain{
               }
             }
             else {
-              if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 98, column: 13
-                if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 99, column: 20
-                  pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 100, column: 7
-                  System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 101, column: 7
+              if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 134, column: 13
+                if(!collecting_thread_3) {//sysj\conveyorPlant.sysj line: 135, column: 21
+                  collecting_thread_3 = true;//sysj\conveyorPlant.sysj line: 136, column: 7
+                  if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 137, column: 21
+                    pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 138, column: 8
+                    System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 139, column: 8
+                  }
                 }
-                if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-                  outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+                if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+                  outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
                   currsigs.addElement(outfeedClear);
                   active[3]=1;
                   ends[3]=1;
@@ -893,8 +1017,9 @@ public class ConveyorPlant extends ClockDomain{
                 }
               }
               else {
-                if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-                  outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+                collecting_thread_3 = false;//sysj\conveyorPlant.sysj line: 144, column: 6
+                if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+                  outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
                   currsigs.addElement(outfeedClear);
                   active[3]=1;
                   ends[3]=1;
@@ -909,15 +1034,18 @@ public class ConveyorPlant extends ClockDomain{
             }
           }
           else {
-            bottleAtOutfeedEnd.setPresent();//sysj\conveyorPlant.sysj line: 94, column: 7
+            bottleAtOutfeedEnd.setPresent();//sysj\conveyorPlant.sysj line: 130, column: 7
             currsigs.addElement(bottleAtOutfeedEnd);
-            if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 98, column: 13
-              if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 99, column: 20
-                pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 100, column: 7
-                System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 101, column: 7
+            if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 134, column: 13
+              if(!collecting_thread_3) {//sysj\conveyorPlant.sysj line: 135, column: 21
+                collecting_thread_3 = true;//sysj\conveyorPlant.sysj line: 136, column: 7
+                if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 137, column: 21
+                  pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 138, column: 8
+                  System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 139, column: 8
+                }
               }
-              if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-                outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+              if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+                outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
                 currsigs.addElement(outfeedClear);
                 active[3]=1;
                 ends[3]=1;
@@ -930,8 +1058,9 @@ public class ConveyorPlant extends ClockDomain{
               }
             }
             else {
-              if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-                outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+              collecting_thread_3 = false;//sysj\conveyorPlant.sysj line: 144, column: 6
+              if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+                outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
                 currsigs.addElement(outfeedClear);
                 active[3]=1;
                 ends[3]=1;
@@ -946,13 +1075,16 @@ public class ConveyorPlant extends ClockDomain{
           }
         }
         else {
-          if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 98, column: 13
-            if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 99, column: 20
-              pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 100, column: 7
-              System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 101, column: 7
+          if(collectFromEnd.getprestatus()){//sysj\conveyorPlant.sysj line: 134, column: 13
+            if(!collecting_thread_3) {//sysj\conveyorPlant.sysj line: 135, column: 21
+              collecting_thread_3 = true;//sysj\conveyorPlant.sysj line: 136, column: 7
+              if(pos_thread_3 >= LEN_thread_3) {//sysj\conveyorPlant.sysj line: 137, column: 21
+                pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 138, column: 8
+                System.out.println("[CVPlant] Bottle collected from outfeed.");//sysj\conveyorPlant.sysj line: 139, column: 8
+              }
             }
-            if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-              outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+            if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+              outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
               currsigs.addElement(outfeedClear);
               active[3]=1;
               ends[3]=1;
@@ -965,8 +1097,9 @@ public class ConveyorPlant extends ClockDomain{
             }
           }
           else {
-            if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 105, column: 8
-              outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 106, column: 6
+            collecting_thread_3 = false;//sysj\conveyorPlant.sysj line: 144, column: 6
+            if(pos_thread_3 < 0){//sysj\conveyorPlant.sysj line: 147, column: 8
+              outfeedClear.setPresent();//sysj\conveyorPlant.sysj line: 148, column: 6
               currsigs.addElement(outfeedClear);
               active[3]=1;
               ends[3]=1;
@@ -988,101 +1121,46 @@ public class ConveyorPlant extends ClockDomain{
     }
   }
 
-  public void thread2003(int [] tdone, int [] ends){
-        S1745=1;
-    LEN_thread_2 = 6;//sysj\conveyorPlant.sysj line: 28, column: 3
-    pos_thread_2 = -1;//sysj\conveyorPlant.sysj line: 29, column: 3
-    if(enable.getprestatus()){//sysj\conveyorPlant.sysj line: 32, column: 12
-      if(injectInfeed.getprestatus()){//sysj\conveyorPlant.sysj line: 34, column: 13
-        if(pos_thread_2 < 0) {//sysj\conveyorPlant.sysj line: 35, column: 17
-          pos_thread_2 = 0;//sysj\conveyorPlant.sysj line: 36, column: 7
-          System.out.println("[CVPlant] Bottle entered infeed.");//sysj\conveyorPlant.sysj line: 37, column: 7
-        }
-        if(pos_thread_2 >= 0){//sysj\conveyorPlant.sysj line: 41, column: 8
-          if(pos_thread_2 < LEN_thread_2){//sysj\conveyorPlant.sysj line: 42, column: 9
-            if(motInfeed.getprestatus()){//sysj\conveyorPlant.sysj line: 43, column: 15
-              pos_thread_2 = pos_thread_2 + 1;//sysj\conveyorPlant.sysj line: 44, column: 8
-              if(pos_thread_2 == LEN_thread_2) {//sysj\conveyorPlant.sysj line: 45, column: 22
-                System.out.println("[CVPlant] Bottle arrived at position 1.");//sysj\conveyorPlant.sysj line: 46, column: 9
-              }
-              if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 55, column: 13
-                if(pos_thread_2 >= LEN_thread_2) {//sysj\conveyorPlant.sysj line: 56, column: 20
-                  pos_thread_2 = -1;//sysj\conveyorPlant.sysj line: 57, column: 7
-                  System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 58, column: 7
-                }
-                if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-                  infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
-                  currsigs.addElement(infeedClear);
-                  active[2]=1;
-                  ends[2]=1;
-                  tdone[2]=1;
-                }
-                else {
-                  active[2]=1;
-                  ends[2]=1;
-                  tdone[2]=1;
-                }
-              }
-              else {
-                if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-                  infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
-                  currsigs.addElement(infeedClear);
-                  active[2]=1;
-                  ends[2]=1;
-                  tdone[2]=1;
-                }
-                else {
-                  active[2]=1;
-                  ends[2]=1;
-                  tdone[2]=1;
-                }
-              }
-            }
-            else {
-              if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 55, column: 13
-                if(pos_thread_2 >= LEN_thread_2) {//sysj\conveyorPlant.sysj line: 56, column: 20
-                  pos_thread_2 = -1;//sysj\conveyorPlant.sysj line: 57, column: 7
-                  System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 58, column: 7
-                }
-                if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-                  infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
-                  currsigs.addElement(infeedClear);
-                  active[2]=1;
-                  ends[2]=1;
-                  tdone[2]=1;
-                }
-                else {
-                  active[2]=1;
-                  ends[2]=1;
-                  tdone[2]=1;
-                }
-              }
-              else {
-                if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-                  infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
-                  currsigs.addElement(infeedClear);
-                  active[2]=1;
-                  ends[2]=1;
-                  tdone[2]=1;
-                }
-                else {
-                  active[2]=1;
-                  ends[2]=1;
-                  tdone[2]=1;
-                }
-              }
-            }
+  public void thread2104(int [] tdone, int [] ends){
+        S1846=1;
+    LEN_thread_2 = 6;//sysj\conveyorPlant.sysj line: 32, column: 3
+    slot_thread_2 = new boolean[LEN_thread_2 + 1];//sysj\conveyorPlant.sysj line: 33, column: 3
+    injecting_thread_2 = false;//sysj\conveyorPlant.sysj line: 34, column: 3
+    taking_thread_2 = false;//sysj\conveyorPlant.sysj line: 35, column: 3
+    if(enable.getprestatus()){//sysj\conveyorPlant.sysj line: 38, column: 12
+      if(injectInfeed.getprestatus()){//sysj\conveyorPlant.sysj line: 44, column: 13
+        if(!injecting_thread_2) {//sysj\conveyorPlant.sysj line: 45, column: 20
+          injecting_thread_2 = true;//sysj\conveyorPlant.sysj line: 46, column: 7
+          if(!slot_thread_2[0]) {//sysj\conveyorPlant.sysj line: 47, column: 19
+            slot_thread_2[0] = true;//sysj\conveyorPlant.sysj line: 48, column: 8
+            System.out.println("[CVPlant] Bottle entered infeed.");//sysj\conveyorPlant.sysj line: 49, column: 8
           }
-          else {
-            bottleAtPos1.setPresent();//sysj\conveyorPlant.sysj line: 51, column: 7
-            currsigs.addElement(bottleAtPos1);
-            if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 55, column: 13
-              if(pos_thread_2 >= LEN_thread_2) {//sysj\conveyorPlant.sysj line: 56, column: 20
-                pos_thread_2 = -1;//sysj\conveyorPlant.sysj line: 57, column: 7
-                System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 58, column: 7
+        }
+        if(motInfeed.getprestatus()){//sysj\conveyorPlant.sysj line: 57, column: 13
+          i_thread_2 = LEN_thread_2 - 1;//sysj\conveyorPlant.sysj line: 59, column: 6
+          while(i_thread_2 >= 0) {//sysj\conveyorPlant.sysj line: 60, column: 19
+            if(slot_thread_2[i_thread_2] && !slot_thread_2[i_thread_2 + 1]) {//sysj\conveyorPlant.sysj line: 61, column: 32
+              slot_thread_2[i_thread_2 + 1] = true;//sysj\conveyorPlant.sysj line: 62, column: 8
+              slot_thread_2[i_thread_2] = false;//sysj\conveyorPlant.sysj line: 63, column: 8
+              if(i_thread_2 + 1 == LEN_thread_2) {//sysj\conveyorPlant.sysj line: 64, column: 24
+                System.out.println("[CVPlant] Bottle arrived at position 1.");//sysj\conveyorPlant.sysj line: 65, column: 9
               }
-              if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-                infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
+            }
+            i_thread_2 = i_thread_2 - 1;//sysj\conveyorPlant.sysj line: 68, column: 7
+          }
+          if(slot_thread_2[LEN_thread_2]){//sysj\conveyorPlant.sysj line: 72, column: 5
+            bottleAtPos1.setPresent();//sysj\conveyorPlant.sysj line: 73, column: 6
+            currsigs.addElement(bottleAtPos1);
+            if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 76, column: 13
+              if(!taking_thread_2) {//sysj\conveyorPlant.sysj line: 77, column: 17
+                taking_thread_2 = true;//sysj\conveyorPlant.sysj line: 78, column: 7
+                if(slot_thread_2[LEN_thread_2]) {//sysj\conveyorPlant.sysj line: 79, column: 20
+                  slot_thread_2[LEN_thread_2] = false;//sysj\conveyorPlant.sysj line: 80, column: 8
+                  System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 81, column: 8
+                }
+              }
+              if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
                 currsigs.addElement(infeedClear);
                 active[2]=1;
                 ends[2]=1;
@@ -1095,8 +1173,47 @@ public class ConveyorPlant extends ClockDomain{
               }
             }
             else {
-              if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-                infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
+              taking_thread_2 = false;//sysj\conveyorPlant.sysj line: 86, column: 6
+              if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
+                currsigs.addElement(infeedClear);
+                active[2]=1;
+                ends[2]=1;
+                tdone[2]=1;
+              }
+              else {
+                active[2]=1;
+                ends[2]=1;
+                tdone[2]=1;
+              }
+            }
+          }
+          else {
+            if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 76, column: 13
+              if(!taking_thread_2) {//sysj\conveyorPlant.sysj line: 77, column: 17
+                taking_thread_2 = true;//sysj\conveyorPlant.sysj line: 78, column: 7
+                if(slot_thread_2[LEN_thread_2]) {//sysj\conveyorPlant.sysj line: 79, column: 20
+                  slot_thread_2[LEN_thread_2] = false;//sysj\conveyorPlant.sysj line: 80, column: 8
+                  System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 81, column: 8
+                }
+              }
+              if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
+                currsigs.addElement(infeedClear);
+                active[2]=1;
+                ends[2]=1;
+                tdone[2]=1;
+              }
+              else {
+                active[2]=1;
+                ends[2]=1;
+                tdone[2]=1;
+              }
+            }
+            else {
+              taking_thread_2 = false;//sysj\conveyorPlant.sysj line: 86, column: 6
+              if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
                 currsigs.addElement(infeedClear);
                 active[2]=1;
                 ends[2]=1;
@@ -1111,126 +1228,113 @@ public class ConveyorPlant extends ClockDomain{
           }
         }
         else {
-          if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 55, column: 13
-            if(pos_thread_2 >= LEN_thread_2) {//sysj\conveyorPlant.sysj line: 56, column: 20
-              pos_thread_2 = -1;//sysj\conveyorPlant.sysj line: 57, column: 7
-              System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 58, column: 7
-            }
-            if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-              infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
-              currsigs.addElement(infeedClear);
-              active[2]=1;
-              ends[2]=1;
-              tdone[2]=1;
+          if(slot_thread_2[LEN_thread_2]){//sysj\conveyorPlant.sysj line: 72, column: 5
+            bottleAtPos1.setPresent();//sysj\conveyorPlant.sysj line: 73, column: 6
+            currsigs.addElement(bottleAtPos1);
+            if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 76, column: 13
+              if(!taking_thread_2) {//sysj\conveyorPlant.sysj line: 77, column: 17
+                taking_thread_2 = true;//sysj\conveyorPlant.sysj line: 78, column: 7
+                if(slot_thread_2[LEN_thread_2]) {//sysj\conveyorPlant.sysj line: 79, column: 20
+                  slot_thread_2[LEN_thread_2] = false;//sysj\conveyorPlant.sysj line: 80, column: 8
+                  System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 81, column: 8
+                }
+              }
+              if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
+                currsigs.addElement(infeedClear);
+                active[2]=1;
+                ends[2]=1;
+                tdone[2]=1;
+              }
+              else {
+                active[2]=1;
+                ends[2]=1;
+                tdone[2]=1;
+              }
             }
             else {
-              active[2]=1;
-              ends[2]=1;
-              tdone[2]=1;
+              taking_thread_2 = false;//sysj\conveyorPlant.sysj line: 86, column: 6
+              if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
+                currsigs.addElement(infeedClear);
+                active[2]=1;
+                ends[2]=1;
+                tdone[2]=1;
+              }
+              else {
+                active[2]=1;
+                ends[2]=1;
+                tdone[2]=1;
+              }
             }
           }
           else {
-            if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-              infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
-              currsigs.addElement(infeedClear);
-              active[2]=1;
-              ends[2]=1;
-              tdone[2]=1;
+            if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 76, column: 13
+              if(!taking_thread_2) {//sysj\conveyorPlant.sysj line: 77, column: 17
+                taking_thread_2 = true;//sysj\conveyorPlant.sysj line: 78, column: 7
+                if(slot_thread_2[LEN_thread_2]) {//sysj\conveyorPlant.sysj line: 79, column: 20
+                  slot_thread_2[LEN_thread_2] = false;//sysj\conveyorPlant.sysj line: 80, column: 8
+                  System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 81, column: 8
+                }
+              }
+              if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
+                currsigs.addElement(infeedClear);
+                active[2]=1;
+                ends[2]=1;
+                tdone[2]=1;
+              }
+              else {
+                active[2]=1;
+                ends[2]=1;
+                tdone[2]=1;
+              }
             }
             else {
-              active[2]=1;
-              ends[2]=1;
-              tdone[2]=1;
+              taking_thread_2 = false;//sysj\conveyorPlant.sysj line: 86, column: 6
+              if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
+                currsigs.addElement(infeedClear);
+                active[2]=1;
+                ends[2]=1;
+                tdone[2]=1;
+              }
+              else {
+                active[2]=1;
+                ends[2]=1;
+                tdone[2]=1;
+              }
             }
           }
         }
       }
       else {
-        if(pos_thread_2 >= 0){//sysj\conveyorPlant.sysj line: 41, column: 8
-          if(pos_thread_2 < LEN_thread_2){//sysj\conveyorPlant.sysj line: 42, column: 9
-            if(motInfeed.getprestatus()){//sysj\conveyorPlant.sysj line: 43, column: 15
-              pos_thread_2 = pos_thread_2 + 1;//sysj\conveyorPlant.sysj line: 44, column: 8
-              if(pos_thread_2 == LEN_thread_2) {//sysj\conveyorPlant.sysj line: 45, column: 22
-                System.out.println("[CVPlant] Bottle arrived at position 1.");//sysj\conveyorPlant.sysj line: 46, column: 9
-              }
-              if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 55, column: 13
-                if(pos_thread_2 >= LEN_thread_2) {//sysj\conveyorPlant.sysj line: 56, column: 20
-                  pos_thread_2 = -1;//sysj\conveyorPlant.sysj line: 57, column: 7
-                  System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 58, column: 7
-                }
-                if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-                  infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
-                  currsigs.addElement(infeedClear);
-                  active[2]=1;
-                  ends[2]=1;
-                  tdone[2]=1;
-                }
-                else {
-                  active[2]=1;
-                  ends[2]=1;
-                  tdone[2]=1;
-                }
-              }
-              else {
-                if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-                  infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
-                  currsigs.addElement(infeedClear);
-                  active[2]=1;
-                  ends[2]=1;
-                  tdone[2]=1;
-                }
-                else {
-                  active[2]=1;
-                  ends[2]=1;
-                  tdone[2]=1;
-                }
+        injecting_thread_2 = false;//sysj\conveyorPlant.sysj line: 54, column: 6
+        if(motInfeed.getprestatus()){//sysj\conveyorPlant.sysj line: 57, column: 13
+          i_thread_2 = LEN_thread_2 - 1;//sysj\conveyorPlant.sysj line: 59, column: 6
+          while(i_thread_2 >= 0) {//sysj\conveyorPlant.sysj line: 60, column: 19
+            if(slot_thread_2[i_thread_2] && !slot_thread_2[i_thread_2 + 1]) {//sysj\conveyorPlant.sysj line: 61, column: 32
+              slot_thread_2[i_thread_2 + 1] = true;//sysj\conveyorPlant.sysj line: 62, column: 8
+              slot_thread_2[i_thread_2] = false;//sysj\conveyorPlant.sysj line: 63, column: 8
+              if(i_thread_2 + 1 == LEN_thread_2) {//sysj\conveyorPlant.sysj line: 64, column: 24
+                System.out.println("[CVPlant] Bottle arrived at position 1.");//sysj\conveyorPlant.sysj line: 65, column: 9
               }
             }
-            else {
-              if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 55, column: 13
-                if(pos_thread_2 >= LEN_thread_2) {//sysj\conveyorPlant.sysj line: 56, column: 20
-                  pos_thread_2 = -1;//sysj\conveyorPlant.sysj line: 57, column: 7
-                  System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 58, column: 7
-                }
-                if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-                  infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
-                  currsigs.addElement(infeedClear);
-                  active[2]=1;
-                  ends[2]=1;
-                  tdone[2]=1;
-                }
-                else {
-                  active[2]=1;
-                  ends[2]=1;
-                  tdone[2]=1;
-                }
-              }
-              else {
-                if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-                  infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
-                  currsigs.addElement(infeedClear);
-                  active[2]=1;
-                  ends[2]=1;
-                  tdone[2]=1;
-                }
-                else {
-                  active[2]=1;
-                  ends[2]=1;
-                  tdone[2]=1;
-                }
-              }
-            }
+            i_thread_2 = i_thread_2 - 1;//sysj\conveyorPlant.sysj line: 68, column: 7
           }
-          else {
-            bottleAtPos1.setPresent();//sysj\conveyorPlant.sysj line: 51, column: 7
+          if(slot_thread_2[LEN_thread_2]){//sysj\conveyorPlant.sysj line: 72, column: 5
+            bottleAtPos1.setPresent();//sysj\conveyorPlant.sysj line: 73, column: 6
             currsigs.addElement(bottleAtPos1);
-            if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 55, column: 13
-              if(pos_thread_2 >= LEN_thread_2) {//sysj\conveyorPlant.sysj line: 56, column: 20
-                pos_thread_2 = -1;//sysj\conveyorPlant.sysj line: 57, column: 7
-                System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 58, column: 7
+            if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 76, column: 13
+              if(!taking_thread_2) {//sysj\conveyorPlant.sysj line: 77, column: 17
+                taking_thread_2 = true;//sysj\conveyorPlant.sysj line: 78, column: 7
+                if(slot_thread_2[LEN_thread_2]) {//sysj\conveyorPlant.sysj line: 79, column: 20
+                  slot_thread_2[LEN_thread_2] = false;//sysj\conveyorPlant.sysj line: 80, column: 8
+                  System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 81, column: 8
+                }
               }
-              if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-                infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
+              if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
                 currsigs.addElement(infeedClear);
                 active[2]=1;
                 ends[2]=1;
@@ -1243,8 +1347,47 @@ public class ConveyorPlant extends ClockDomain{
               }
             }
             else {
-              if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-                infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
+              taking_thread_2 = false;//sysj\conveyorPlant.sysj line: 86, column: 6
+              if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
+                currsigs.addElement(infeedClear);
+                active[2]=1;
+                ends[2]=1;
+                tdone[2]=1;
+              }
+              else {
+                active[2]=1;
+                ends[2]=1;
+                tdone[2]=1;
+              }
+            }
+          }
+          else {
+            if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 76, column: 13
+              if(!taking_thread_2) {//sysj\conveyorPlant.sysj line: 77, column: 17
+                taking_thread_2 = true;//sysj\conveyorPlant.sysj line: 78, column: 7
+                if(slot_thread_2[LEN_thread_2]) {//sysj\conveyorPlant.sysj line: 79, column: 20
+                  slot_thread_2[LEN_thread_2] = false;//sysj\conveyorPlant.sysj line: 80, column: 8
+                  System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 81, column: 8
+                }
+              }
+              if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
+                currsigs.addElement(infeedClear);
+                active[2]=1;
+                ends[2]=1;
+                tdone[2]=1;
+              }
+              else {
+                active[2]=1;
+                ends[2]=1;
+                tdone[2]=1;
+              }
+            }
+            else {
+              taking_thread_2 = false;//sysj\conveyorPlant.sysj line: 86, column: 6
+              if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
                 currsigs.addElement(infeedClear);
                 active[2]=1;
                 ends[2]=1;
@@ -1259,36 +1402,82 @@ public class ConveyorPlant extends ClockDomain{
           }
         }
         else {
-          if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 55, column: 13
-            if(pos_thread_2 >= LEN_thread_2) {//sysj\conveyorPlant.sysj line: 56, column: 20
-              pos_thread_2 = -1;//sysj\conveyorPlant.sysj line: 57, column: 7
-              System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 58, column: 7
-            }
-            if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-              infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
-              currsigs.addElement(infeedClear);
-              active[2]=1;
-              ends[2]=1;
-              tdone[2]=1;
+          if(slot_thread_2[LEN_thread_2]){//sysj\conveyorPlant.sysj line: 72, column: 5
+            bottleAtPos1.setPresent();//sysj\conveyorPlant.sysj line: 73, column: 6
+            currsigs.addElement(bottleAtPos1);
+            if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 76, column: 13
+              if(!taking_thread_2) {//sysj\conveyorPlant.sysj line: 77, column: 17
+                taking_thread_2 = true;//sysj\conveyorPlant.sysj line: 78, column: 7
+                if(slot_thread_2[LEN_thread_2]) {//sysj\conveyorPlant.sysj line: 79, column: 20
+                  slot_thread_2[LEN_thread_2] = false;//sysj\conveyorPlant.sysj line: 80, column: 8
+                  System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 81, column: 8
+                }
+              }
+              if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
+                currsigs.addElement(infeedClear);
+                active[2]=1;
+                ends[2]=1;
+                tdone[2]=1;
+              }
+              else {
+                active[2]=1;
+                ends[2]=1;
+                tdone[2]=1;
+              }
             }
             else {
-              active[2]=1;
-              ends[2]=1;
-              tdone[2]=1;
+              taking_thread_2 = false;//sysj\conveyorPlant.sysj line: 86, column: 6
+              if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
+                currsigs.addElement(infeedClear);
+                active[2]=1;
+                ends[2]=1;
+                tdone[2]=1;
+              }
+              else {
+                active[2]=1;
+                ends[2]=1;
+                tdone[2]=1;
+              }
             }
           }
           else {
-            if(pos_thread_2 < 0){//sysj\conveyorPlant.sysj line: 62, column: 8
-              infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 63, column: 6
-              currsigs.addElement(infeedClear);
-              active[2]=1;
-              ends[2]=1;
-              tdone[2]=1;
+            if(takeFromPos1.getprestatus()){//sysj\conveyorPlant.sysj line: 76, column: 13
+              if(!taking_thread_2) {//sysj\conveyorPlant.sysj line: 77, column: 17
+                taking_thread_2 = true;//sysj\conveyorPlant.sysj line: 78, column: 7
+                if(slot_thread_2[LEN_thread_2]) {//sysj\conveyorPlant.sysj line: 79, column: 20
+                  slot_thread_2[LEN_thread_2] = false;//sysj\conveyorPlant.sysj line: 80, column: 8
+                  System.out.println("[CVPlant] Bottle left infeed.");//sysj\conveyorPlant.sysj line: 81, column: 8
+                }
+              }
+              if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
+                currsigs.addElement(infeedClear);
+                active[2]=1;
+                ends[2]=1;
+                tdone[2]=1;
+              }
+              else {
+                active[2]=1;
+                ends[2]=1;
+                tdone[2]=1;
+              }
             }
             else {
-              active[2]=1;
-              ends[2]=1;
-              tdone[2]=1;
+              taking_thread_2 = false;//sysj\conveyorPlant.sysj line: 86, column: 6
+              if(!slot_thread_2[0]){//sysj\conveyorPlant.sysj line: 90, column: 8
+                infeedClear.setPresent();//sysj\conveyorPlant.sysj line: 91, column: 6
+                currsigs.addElement(infeedClear);
+                active[2]=1;
+                ends[2]=1;
+                tdone[2]=1;
+              }
+              else {
+                active[2]=1;
+                ends[2]=1;
+                tdone[2]=1;
+              }
             }
           }
         }
@@ -1308,50 +1497,50 @@ public class ConveyorPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S2001){
+      switch(S2102){
         case 0 : 
-          S2001=0;
+          S2102=0;
           break RUN;
         
         case 1 : 
-          S2001=2;
-          S2001=2;
-          thread2003(tdone,ends);
-          thread2004(tdone,ends);
-          int biggest2005 = 0;
-          if(ends[2]>=biggest2005){
-            biggest2005=ends[2];
+          S2102=2;
+          S2102=2;
+          thread2104(tdone,ends);
+          thread2105(tdone,ends);
+          int biggest2106 = 0;
+          if(ends[2]>=biggest2106){
+            biggest2106=ends[2];
           }
-          if(ends[3]>=biggest2005){
-            biggest2005=ends[3];
+          if(ends[3]>=biggest2106){
+            biggest2106=ends[3];
           }
-          if(biggest2005 == 1){
+          if(biggest2106 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
         
         case 2 : 
-          thread2006(tdone,ends);
-          thread2007(tdone,ends);
-          int biggest2008 = 0;
-          if(ends[2]>=biggest2008){
-            biggest2008=ends[2];
+          thread2107(tdone,ends);
+          thread2108(tdone,ends);
+          int biggest2109 = 0;
+          if(ends[2]>=biggest2109){
+            biggest2109=ends[2];
           }
-          if(ends[3]>=biggest2008){
-            biggest2008=ends[3];
+          if(ends[3]>=biggest2109){
+            biggest2109=ends[3];
           }
-          if(biggest2008 == 1){
+          if(biggest2109 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest2008 == 0){
-            S2001=0;
+          if(biggest2109 == 0){
+            S2102=0;
             active[1]=0;
             ends[1]=0;
-            S2001=0;
+            S2102=0;
             break RUN;
           }
         

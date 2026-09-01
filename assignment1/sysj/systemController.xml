@@ -12,7 +12,8 @@
 			<!-- one enable per plant -->
 			<oSignal Name="enableBL"   To="BottleLoaderPlantCD.enable" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11001" />
 			<oSignal Name="enableCV"   To="ConveyorPlantCD.enable"     Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12001" />
-			<oSignal Name="enableTT"   To="TurntableStubCD.enable"     Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12003" />
+			<oSignal Name="enableRT"   To="RotaryTablePlantCD.enable"  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
+			<oSignal Name="enableST"   To="StationStubsCD.enable"      Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13003" />
 		</ClockDomain>
 	</SubSystem>
 </System>

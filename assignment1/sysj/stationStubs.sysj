@@ -1,0 +1,81 @@
+/*
+ * Placeholder workstations for positions 2 to 5 of the rotary table.
+ *
+ * Each models only the shape of the interface: the table sustains an enable,
+ * the station takes a fixed number of ticks, then reports done and waits for
+ * the enable to drop before it can be triggered again.
+ *
+ * The durations are deliberately different so the table's barrier is visible:
+ * the capper is the slowest, so a finished filler waits for it every cycle.
+ *
+ * All three live in one clock domain purely to keep the number of processes
+ * down during testing. The real Filler, Lid Loader and Capper are separate
+ * machines with their own controllers and plants.
+ */
+StationStubs(
+		input  signal enable;
+		input  signal enableFiller1, enableFiller2, enableLid, enableCapper;
+		output signal fillerDone1, fillerDone2, lidDone, capperDone;
+		)
+->
+{
+	{ // ---- Position 2: liquid filler 1 ----
+		int FILL = 6;
+		while(true){
+			await(immediate enableFiller1);
+			System.out.println("[ST] Filler 1: dispensing.");
+			int t = FILL;
+			while(t > 0){ t--; pause; }
+			System.out.println("[ST] Filler 1: complete.");
+			emit fillerDone1; pause;
+			emit fillerDone1; pause;
+			emit fillerDone1; pause;
+			await(immediate !enableFiller1);
+		}
+	}
+	||
+	{ // ---- Position 3: liquid filler 2 ----
+		int FILL = 8;
+		while(true){
+			await(immediate enableFiller2);
+			System.out.println("[ST] Filler 2: dispensing.");
+			int t = FILL;
+			while(t > 0){ t--; pause; }
+			System.out.println("[ST] Filler 2: complete.");
+			emit fillerDone2; pause;
+			emit fillerDone2; pause;
+			emit fillerDone2; pause;
+			await(immediate !enableFiller2);
+		}
+	}
+	||
+	{ // ---- Position 4: lid placement ----
+		int LID = 4;
+		while(true){
+			await(immediate enableLid);
+			System.out.println("[ST] Lid loader: placing lid.");
+			int t = LID;
+			while(t > 0){ t--; pause; }
+			System.out.println("[ST] Lid loader: complete.");
+			emit lidDone; pause;
+			emit lidDone; pause;
+			emit lidDone; pause;
+			await(immediate !enableLid);
+		}
+	}
+	||
+	{ // ---- Position 5: capper ----
+		int CAP = 12;
+		while(true){
+			await(immediate enableCapper);
+			System.out.println("[ST] Capper: screwing cap.");
+			int t = CAP;
+			while(t > 0){ t--; pause; }
+			System.out.println("[ST] Capper: complete.");
+			emit capperDone; pause;
+			emit capperDone; pause;
+			emit capperDone; pause;
+			await(immediate !enableCapper);
+		}
+	}
+}

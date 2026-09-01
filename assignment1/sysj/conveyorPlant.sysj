@@ -25,41 +25,69 @@ ConveyorPlant(
 ->
 {
 	{ // ---- Infeed belt ----
+		//
+		// Modelled as a queue of slots rather than a single bottle, so a
+		// bottle can wait at position 1 while others are still travelling.
+		// Without this the table can only ever hold one bottle at a time.
 		int LEN = 6;
-		int pos = -1;   // -1 = no bottle on the belt
+		boolean[] slot = new boolean[LEN + 1];   // slot[LEN] is position 1
+		boolean injecting = false;
+		boolean taking = false;
 
 		while(true){
 			present(enable){
 
+				// Edge triggered: the controller holds injectInfeed for
+				// several ticks so it cannot be missed, but it must inject
+				// exactly one bottle. A level test would inject again as
+				// soon as the belt advanced and freed slot 0.
 				present(injectInfeed){
-					if(pos < 0){
-						pos = 0;
-						System.out.println("[CVPlant] Bottle entered infeed.");
+					if(!injecting){
+						injecting = true;
+						if(!slot[0]){
+							slot[0] = true;
+							System.out.println("[CVPlant] Bottle entered infeed.");
+						}
 					}
 				}
+				else {
+					injecting = false;
+				}
 
-				if(pos >= 0){
-					if(pos < LEN){
-						present(motInfeed){
-							pos++;
-							if(pos == LEN){
+				present(motInfeed){
+					// advance front-most first so a queue moves together
+					int i = LEN - 1;
+					while(i >= 0){
+						if(slot[i] && !slot[i+1]){
+							slot[i+1] = true;
+							slot[i] = false;
+							if(i + 1 == LEN){
 								System.out.println("[CVPlant] Bottle arrived at position 1.");
 							}
 						}
+						i--;
 					}
-					else {
-						emit bottleAtPos1;
-					}
+				}
+
+				if(slot[LEN]){
+					emit bottleAtPos1;
 				}
 
 				present(takeFromPos1){
-					if(pos >= LEN){
-						pos = -1;
-						System.out.println("[CVPlant] Bottle left infeed.");
+					if(!taking){
+						taking = true;
+						if(slot[LEN]){
+							slot[LEN] = false;
+							System.out.println("[CVPlant] Bottle left infeed.");
+						}
 					}
 				}
+				else {
+					taking = false;
+				}
 
-				if(pos < 0){
+				// "clear" now means the load point is free, not the whole belt
+				if(!slot[0]){
 					emit infeedClear;
 				}
 			}
@@ -70,15 +98,23 @@ ConveyorPlant(
 	{ // ---- Outfeed belt ----
 		int LEN = 6;
 		int pos = -1;
+		boolean injecting = false;
+		boolean collecting = false;
 
 		while(true){
 			present(enable){
 
 				present(injectOutfeed){
-					if(pos < 0){
-						pos = 0;
-						System.out.println("[CVPlant] Bottle entered outfeed.");
+					if(!injecting){
+						injecting = true;
+						if(pos < 0){
+							pos = 0;
+							System.out.println("[CVPlant] Bottle entered outfeed.");
+						}
 					}
+				}
+				else {
+					injecting = false;
 				}
 
 				if(pos >= 0){
@@ -96,10 +132,16 @@ ConveyorPlant(
 				}
 
 				present(collectFromEnd){
-					if(pos >= LEN){
-						pos = -1;
-						System.out.println("[CVPlant] Bottle collected from outfeed.");
+					if(!collecting){
+						collecting = true;
+						if(pos >= LEN){
+							pos = -1;
+							System.out.println("[CVPlant] Bottle collected from outfeed.");
+						}
 					}
+				}
+				else {
+					collecting = false;
 				}
 
 				if(pos < 0){

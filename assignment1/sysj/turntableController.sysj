@@ -1,46 +1,121 @@
 /*
- * Placeholder for the rotary index table.
+ * Controller for the rotary index table.
  *
- * Models one thing: a bottle handed to the table is unavailable for a while
- * (four 60 degree rotations plus fill, lid and cap operations) and then
- * appears at position 5 on the outfeed. No positions, no per-station work.
+ * One index cycle is:
+ *   A. unload position 6 to the outfeed conveyor, if occupied
+ *   B. offer position 1 to the infeed conveyor, if free
+ *   C. enable every occupied station and wait for ALL of them to finish
+ *   D. rotate 60 degrees
  *
- * The real Rotary Table CD replaces this without the Conveyor changing.
+ * Phase C is the barrier: the table cannot index until the slowest occupied
+ * station reports done, so a slow capper holds up a finished filler.
+ *
+ * Occupancy lives in the TableModel Java object rather than in this reaction.
+ * The compiler inlines Java into the generated state machine, so keeping the
+ * array handling out here is what keeps runClockDomain() within the JVM's
+ * 64 KB method limit.
  */
-TurntableStub(
-		input  signal enable, bottleToTable;
-		output signal tableReady, bottleFromTable;
+RotaryTableController(
+		// from / to the infeed and outfeed conveyor
+		input  signal bottleToTable;
+		output signal tableReady, bottleFromTable, bottleTaken;
+
+		// from the plant
+		input signal tableAligned, bottleAtPos1, bottleAtPos2, bottleAtPos4, bottleAtPos6;
+
+		// to the plant
+		output signal rotaryTrigger, loadPos1, unloadExit;
+
+		// to / from the stations
+		output signal enableFiller1, enableFiller2, enableLid, enableCapper;
+		input  signal fillerDone1, fillerDone2, lidDone, capperDone;
 		)
 ->
 {
-	int STEPS = 12;   // ticks a bottle spends on the table
-	int HOLD  = 3;    // ticks the position 5 handoff is held for
-
-	int busy = 0;
-	int announce = 0;
+	TableModel m = new TableModel();
+	int OFFERWIN = 6;
+	int w = 0;
+	boolean got = false;
+	boolean d1 = false;
+	boolean d2 = false;
+	boolean d3 = false;
+	boolean d4 = false;
 
 	while(true){
-		present(enable){
 
-			if(busy > 0){
-				busy--;
-				if(busy == 0){
-					System.out.println("[TT] Processing complete - bottle at position 5.");
-					announce = HOLD;
+		await(immediate tableAligned);
+
+		// ---- A. Unload the exit position ----
+		if(m.exitOccupied()){
+			m.sayUnloading();
+			emit unloadExit; emit bottleFromTable; pause;
+			emit unloadExit; emit bottleFromTable; pause;
+			m.clearExit();
+		}
+
+		// ---- B. Offer position 1 ----
+		got = false;
+		if(m.loadPointFree()){
+			if(!m.anyOccupied()){
+				// nothing to index: block rather than spin
+				abort(bottleToTable){
+					sustain tableReady;
 				}
-			}
-			else if(announce > 0){
-				emit bottleFromTable;
-				announce--;
+				got = true;
 			}
 			else {
-				emit tableReady;
-				present(bottleToTable){
-					System.out.println("[TT] Bottle accepted - processing for " + STEPS + " ticks.");
-					busy = STEPS;
+				// bounded offer; the conveyor holds its offer until
+				// bottleTaken, so an expired window loses nothing
+				w = OFFERWIN;
+				while(w > 0){
+					emit tableReady;
+					present(bottleToTable){ got = true; }
+					if(got){ w = 0; } else { w--; }
+					pause;
 				}
 			}
 		}
-		pause;
+
+		if(got){
+			emit loadPos1; emit bottleTaken; pause;
+			emit loadPos1; emit bottleTaken; pause;
+			m.load();
+			await(immediate !bottleToTable);
+		}
+
+		// ---- C. Barrier across every occupied station ----
+		d1 = !m.at(1);
+		d2 = !m.at(2);
+		d3 = !m.at(3);
+		d4 = !m.at(4);
+
+		while(!(d1 && d2 && d3 && d4)){
+			if(!d1){
+				emit enableFiller1;
+				present(fillerDone1){ d1 = true; }
+			}
+			if(!d2){
+				emit enableFiller2;
+				present(fillerDone2){ d2 = true; }
+			}
+			if(!d3){
+				emit enableLid;
+				present(lidDone){ d3 = true; }
+			}
+			if(!d4){
+				emit enableCapper;
+				present(capperDone){ d4 = true; }
+			}
+			pause;
+		}
+
+		// ---- D. Index one position ----
+		emit rotaryTrigger; pause;
+		emit rotaryTrigger; pause;
+
+		await(immediate tableAligned);
+
+		m.index();
+		m.report();
 	}
 }

@@ -6,7 +6,8 @@ SystemController(
 		// One enable per plant: an oSignal has a single destination
 		output signal enableBL;   // -> BottleLoaderPlantCD
 		output signal enableCV;   // -> ConveyorPlantCD
-		output signal enableTT;   // -> TurntableStubCD
+		output signal enableRT;   // -> RotaryTablePlantCD
+		output signal enableST;   // -> StationStubsCD
 
 		// From the machines
 		input signal bottleLoaded;
@@ -25,7 +26,8 @@ SystemController(
 		while(true){
 			emit enableBL;
 			emit enableCV;
-			emit enableTT;
+			emit enableRT;
+			emit enableST;
 			pause;
 		}
 	}
