@@ -3,37 +3,37 @@ SystemController(
 		output Integer signal mode;
 		output signal bottleLoad;
 
-		// To the plant models
-		output signal enable;    // -> BottleLoaderPlantCD
-		output signal enableCV;  // -> ConveyorStubCD
+		// One enable per plant: an oSignal has a single destination
+		output signal enableBL;   // -> BottleLoaderPlantCD
+		output signal enableCV;   // -> ConveyorPlantCD
+		output signal enableTT;   // -> TurntableStubCD
 
-		// From BottleLoaderControllerCD
+		// From the machines
 		input signal bottleLoaded;
+		input signal bottleAtLabeller;
 		)
 ->
 {
-	{ // ---- Operating mode: hold the loader in AUTO (0) ----
+	{ // ---- Operating mode ----
 		while(true){
 			emit mode(0);
 			pause;
 		}
 	}
 	||
-	{ // ---- Plant power: one enable per machine, since an oSignal has a
-	  //      single destination and each plant listens on its own port ----
+	{ // ---- Plant power ----
 		while(true){
-			emit enable;
+			emit enableBL;
 			emit enableCV;
+			emit enableTT;
 			pause;
 		}
 	}
 	||
-	{ // ---- Drive a sequence of bottle load cycles ----
-
-		// Let the TCP links between the subsystems settle.
+	{ // ---- Drive bottle load cycles ----
 		pause; pause; pause; pause; pause;
 
-		int cycles = 5;
+		int cycles = 4;
 		int i = 0;
 
 		while(i < cycles){
@@ -46,13 +46,29 @@ SystemController(
 			i++;
 			System.out.println("[SC] Bottle " + i + " loaded onto conveyor.");
 
-			// Drop the request long enough for bottleLoaded to clear before
-			// the next abort arms, otherwise the next cycle terminates
-			// instantly on a stale acknowledgement.
 			pause; pause; pause;
 		}
 
-		System.out.println("[SC] All " + cycles + " bottles loaded.");
+		System.out.println("[SC] All " + cycles + " load requests issued.");
 		while(true){ pause; }
+	}
+	||
+	{ // ---- End of line reporting ----
+		int delivered = 0;
+		boolean seen = false;
+
+		while(true){
+			present(bottleAtLabeller){
+				if(!seen){
+					delivered++;
+					seen = true;
+					System.out.println("[SC] Bottle " + delivered + " reached the labeller.");
+				}
+			}
+			else {
+				seen = false;
+			}
+			pause;
+		}
 	}
 }

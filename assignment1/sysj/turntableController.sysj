@@ -1,0 +1,46 @@
+/*
+ * Placeholder for the rotary index table.
+ *
+ * Models one thing: a bottle handed to the table is unavailable for a while
+ * (four 60 degree rotations plus fill, lid and cap operations) and then
+ * appears at position 5 on the outfeed. No positions, no per-station work.
+ *
+ * The real Rotary Table CD replaces this without the Conveyor changing.
+ */
+TurntableStub(
+		input  signal enable, bottleToTable;
+		output signal tableReady, bottleFromTable;
+		)
+->
+{
+	int STEPS = 12;   // ticks a bottle spends on the table
+	int HOLD  = 3;    // ticks the position 5 handoff is held for
+
+	int busy = 0;
+	int announce = 0;
+
+	while(true){
+		present(enable){
+
+			if(busy > 0){
+				busy--;
+				if(busy == 0){
+					System.out.println("[TT] Processing complete - bottle at position 5.");
+					announce = HOLD;
+				}
+			}
+			else if(announce > 0){
+				emit bottleFromTable;
+				announce--;
+			}
+			else {
+				emit tableReady;
+				present(bottleToTable){
+					System.out.println("[TT] Bottle accepted - processing for " + STEPS + " ticks.");
+					busy = STEPS;
+				}
+			}
+		}
+		pause;
+	}
+}

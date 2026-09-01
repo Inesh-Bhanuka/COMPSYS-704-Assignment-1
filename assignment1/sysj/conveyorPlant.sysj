@@ -1,0 +1,112 @@
+/*
+ * Plant model for the Bottling Station conveyor.
+ *
+ * Models two belts as travel-time queues holding at most one bottle each:
+ *
+ *   infeed  - from the bottle loader's place point to index position 1
+ *   outfeed - from index position 5 to the labeller collection point
+ *
+ * A bottle enters a belt when the controller injects it, advances one step
+ * per tick while that belt's motor runs, and is removed when the controller
+ * says it has been taken.
+ */
+ConveyorPlant(
+		// from the System Controller
+		input signal enable;
+
+		// from the Conveyor Controller
+		input signal motInfeed, injectInfeed, takeFromPos1;
+		input signal motOutfeed, injectOutfeed, collectFromEnd;
+
+		// to the Conveyor Controller
+		output signal bottleAtPos1, infeedClear;
+		output signal bottleAtOutfeedEnd, outfeedClear;
+		)
+->
+{
+	{ // ---- Infeed belt ----
+		int LEN = 6;
+		int pos = -1;   // -1 = no bottle on the belt
+
+		while(true){
+			present(enable){
+
+				present(injectInfeed){
+					if(pos < 0){
+						pos = 0;
+						System.out.println("[CVPlant] Bottle entered infeed.");
+					}
+				}
+
+				if(pos >= 0){
+					if(pos < LEN){
+						present(motInfeed){
+							pos++;
+							if(pos == LEN){
+								System.out.println("[CVPlant] Bottle arrived at position 1.");
+							}
+						}
+					}
+					else {
+						emit bottleAtPos1;
+					}
+				}
+
+				present(takeFromPos1){
+					if(pos >= LEN){
+						pos = -1;
+						System.out.println("[CVPlant] Bottle left infeed.");
+					}
+				}
+
+				if(pos < 0){
+					emit infeedClear;
+				}
+			}
+			pause;
+		}
+	}
+	||
+	{ // ---- Outfeed belt ----
+		int LEN = 6;
+		int pos = -1;
+
+		while(true){
+			present(enable){
+
+				present(injectOutfeed){
+					if(pos < 0){
+						pos = 0;
+						System.out.println("[CVPlant] Bottle entered outfeed.");
+					}
+				}
+
+				if(pos >= 0){
+					if(pos < LEN){
+						present(motOutfeed){
+							pos++;
+							if(pos == LEN){
+								System.out.println("[CVPlant] Bottle arrived at labeller point.");
+							}
+						}
+					}
+					else {
+						emit bottleAtOutfeedEnd;
+					}
+				}
+
+				present(collectFromEnd){
+					if(pos >= LEN){
+						pos = -1;
+						System.out.println("[CVPlant] Bottle collected from outfeed.");
+					}
+				}
+
+				if(pos < 0){
+					emit outfeedClear;
+				}
+			}
+			pause;
+		}
+	}
+}

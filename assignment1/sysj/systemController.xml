@@ -1,16 +1,18 @@
 <System xmlns="http://systemjtechnology.com">
-	<SubSystem Name="SS3" Local="true">
+	<SubSystem Name="SS10" Local="true">
 		<ClockDomain Name="SystemControllerCD" Class="SystemController">
-			<!-- SystemControllerCD listens on 11002 -->
-			<iSignal Name="bottleLoaded" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11002" />
+			<!-- SystemControllerCD listens on 12002 -->
+			<iSignal Name="bottleLoaded"     Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12002" />
+			<iSignal Name="bottleAtLabeller" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12002" />
 
 			<!-- to the bottle loader controller (11000) -->
 			<oSignal Name="mode"       To="BottleLoaderControllerCD.mode"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11000" />
 			<oSignal Name="bottleLoad" To="BottleLoaderControllerCD.bottleLoad" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11000" />
 
-			<!-- one enable per machine: an oSignal has a single destination -->
-			<oSignal Name="enable"     To="BottleLoaderPlantCD.enable"          Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11001" />
-			<oSignal Name="enableCV"   To="ConveyorStubCD.enable"               Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11003" />
+			<!-- one enable per plant -->
+			<oSignal Name="enableBL"   To="BottleLoaderPlantCD.enable" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11001" />
+			<oSignal Name="enableCV"   To="ConveyorPlantCD.enable"     Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12001" />
+			<oSignal Name="enableTT"   To="TurntableStubCD.enable"     Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12003" />
 		</ClockDomain>
 	</SubSystem>
 </System>

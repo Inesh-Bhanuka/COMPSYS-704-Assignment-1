@@ -32,29 +32,29 @@ public class LidLoaderController extends ClockDomain{
   public Signal lidLoaderLoaded = new Signal("lidLoaderLoaded", Signal.OUTPUT);
   private Signal auto_1;
   private Signal manual_1;
-  private int S2363 = 1;
-  private int S1449 = 1;
-  private int S1400 = 1;
-  private int S1408 = 1;
-  private int S2042 = 1;
-  private int S1646 = 1;
-  private int S1455 = 1;
-  private int S1486 = 1;
-  private int S1491 = 1;
-  private int S2056 = 1;
-  private int S2044 = 1;
-  private int S2361 = 1;
-  private int S2157 = 1;
-  private int S2065 = 1;
-  private int S2073 = 1;
-  private int S2081 = 1;
-  private int S2089 = 1;
+  private int S2974 = 1;
+  private int S2060 = 1;
+  private int S2011 = 1;
+  private int S2019 = 1;
+  private int S2653 = 1;
+  private int S2257 = 1;
+  private int S2066 = 1;
+  private int S2097 = 1;
+  private int S2102 = 1;
+  private int S2667 = 1;
+  private int S2655 = 1;
+  private int S2972 = 1;
+  private int S2768 = 1;
+  private int S2676 = 1;
+  private int S2684 = 1;
+  private int S2692 = 1;
+  private int S2700 = 1;
   
   private int[] ends = new int[14];
   private int[] tdone = new int[14];
   
-  public void thread2407(int [] tdone, int [] ends){
-        S2089=1;
+  public void thread3018(int [] tdone, int [] ends){
+        S2700=1;
     if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 95, column: 27
       armDest.setPresent();//sysj\lidLoaderController.sysj line: 95, column: 37
       currsigs.addElement(armDest);
@@ -69,8 +69,8 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread2406(int [] tdone, int [] ends){
-        S2081=1;
+  public void thread3017(int [] tdone, int [] ends){
+        S2692=1;
     if(armSourceM.getprestatus()){//sysj\lidLoaderController.sysj line: 93, column: 27
       armSource.setPresent();//sysj\lidLoaderController.sysj line: 93, column: 39
       currsigs.addElement(armSource);
@@ -85,8 +85,8 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread2405(int [] tdone, int [] ends){
-        S2073=1;
+  public void thread3016(int [] tdone, int [] ends){
+        S2684=1;
     if(vacOnM.getprestatus()){//sysj\lidLoaderController.sysj line: 91, column: 27
       vacOn.setPresent();//sysj\lidLoaderController.sysj line: 91, column: 35
       currsigs.addElement(vacOn);
@@ -101,8 +101,8 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread2404(int [] tdone, int [] ends){
-        S2065=1;
+  public void thread3015(int [] tdone, int [] ends){
+        S2676=1;
     if(pusherExtendM.getprestatus()){//sysj\lidLoaderController.sysj line: 89, column: 27
       pusherExtend.setPresent();//sysj\lidLoaderController.sysj line: 89, column: 42
       currsigs.addElement(pusherExtend);
@@ -117,8 +117,8 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread2402(int [] tdone, int [] ends){
-        switch(S2089){
+  public void thread3013(int [] tdone, int [] ends){
+        switch(S2700){
       case 0 : 
         active[13]=0;
         ends[13]=0;
@@ -143,8 +143,8 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread2401(int [] tdone, int [] ends){
-        switch(S2081){
+  public void thread3012(int [] tdone, int [] ends){
+        switch(S2692){
       case 0 : 
         active[12]=0;
         ends[12]=0;
@@ -169,8 +169,8 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread2400(int [] tdone, int [] ends){
-        switch(S2073){
+  public void thread3011(int [] tdone, int [] ends){
+        switch(S2684){
       case 0 : 
         active[11]=0;
         ends[11]=0;
@@ -195,8 +195,8 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread2399(int [] tdone, int [] ends){
-        switch(S2065){
+  public void thread3010(int [] tdone, int [] ends){
+        switch(S2676){
       case 0 : 
         active[10]=0;
         ends[10]=0;
@@ -221,8 +221,8 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread2397(int [] tdone, int [] ends){
-        S2089=1;
+  public void thread3008(int [] tdone, int [] ends){
+        S2700=1;
     if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 95, column: 27
       armDest.setPresent();//sysj\lidLoaderController.sysj line: 95, column: 37
       currsigs.addElement(armDest);
@@ -237,8 +237,8 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread2396(int [] tdone, int [] ends){
-        S2081=1;
+  public void thread3007(int [] tdone, int [] ends){
+        S2692=1;
     if(armSourceM.getprestatus()){//sysj\lidLoaderController.sysj line: 93, column: 27
       armSource.setPresent();//sysj\lidLoaderController.sysj line: 93, column: 39
       currsigs.addElement(armSource);
@@ -253,8 +253,8 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread2395(int [] tdone, int [] ends){
-        S2073=1;
+  public void thread3006(int [] tdone, int [] ends){
+        S2684=1;
     if(vacOnM.getprestatus()){//sysj\lidLoaderController.sysj line: 91, column: 27
       vacOn.setPresent();//sysj\lidLoaderController.sysj line: 91, column: 35
       currsigs.addElement(vacOn);
@@ -269,8 +269,8 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread2394(int [] tdone, int [] ends){
-        S2065=1;
+  public void thread3005(int [] tdone, int [] ends){
+        S2676=1;
     if(pusherExtendM.getprestatus()){//sysj\lidLoaderController.sysj line: 89, column: 27
       pusherExtend.setPresent();//sysj\lidLoaderController.sysj line: 89, column: 42
       currsigs.addElement(pusherExtend);
@@ -285,8 +285,8 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread2393(int [] tdone, int [] ends){
-        switch(S2361){
+  public void thread3004(int [] tdone, int [] ends){
+        switch(S2972){
       case 0 : 
         active[9]=0;
         ends[9]=0;
@@ -294,35 +294,35 @@ public class LidLoaderController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S2157){
+        switch(S2768){
           case 0 : 
             if(manual_1.getprestatus()){//sysj\lidLoaderController.sysj line: 86, column: 20
-              S2157=1;
+              S2768=1;
               if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 88, column: 20
-                S2157=2;
+                S2768=2;
                 active[9]=1;
                 ends[9]=1;
                 tdone[9]=1;
               }
               else {
-                thread2394(tdone,ends);
-                thread2395(tdone,ends);
-                thread2396(tdone,ends);
-                thread2397(tdone,ends);
-                int biggest2398 = 0;
-                if(ends[10]>=biggest2398){
-                  biggest2398=ends[10];
+                thread3005(tdone,ends);
+                thread3006(tdone,ends);
+                thread3007(tdone,ends);
+                thread3008(tdone,ends);
+                int biggest3009 = 0;
+                if(ends[10]>=biggest3009){
+                  biggest3009=ends[10];
                 }
-                if(ends[11]>=biggest2398){
-                  biggest2398=ends[11];
+                if(ends[11]>=biggest3009){
+                  biggest3009=ends[11];
                 }
-                if(ends[12]>=biggest2398){
-                  biggest2398=ends[12];
+                if(ends[12]>=biggest3009){
+                  biggest3009=ends[12];
                 }
-                if(ends[13]>=biggest2398){
-                  biggest2398=ends[13];
+                if(ends[13]>=biggest3009){
+                  biggest3009=ends[13];
                 }
-                if(biggest2398 == 1){
+                if(biggest3009 == 1){
                   active[9]=1;
                   ends[9]=1;
                   tdone[9]=1;
@@ -338,37 +338,37 @@ public class LidLoaderController extends ClockDomain{
           
           case 1 : 
             if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 88, column: 20
-              S2157=2;
+              S2768=2;
               active[9]=1;
               ends[9]=1;
               tdone[9]=1;
             }
             else {
-              thread2399(tdone,ends);
-              thread2400(tdone,ends);
-              thread2401(tdone,ends);
-              thread2402(tdone,ends);
-              int biggest2403 = 0;
-              if(ends[10]>=biggest2403){
-                biggest2403=ends[10];
+              thread3010(tdone,ends);
+              thread3011(tdone,ends);
+              thread3012(tdone,ends);
+              thread3013(tdone,ends);
+              int biggest3014 = 0;
+              if(ends[10]>=biggest3014){
+                biggest3014=ends[10];
               }
-              if(ends[11]>=biggest2403){
-                biggest2403=ends[11];
+              if(ends[11]>=biggest3014){
+                biggest3014=ends[11];
               }
-              if(ends[12]>=biggest2403){
-                biggest2403=ends[12];
+              if(ends[12]>=biggest3014){
+                biggest3014=ends[12];
               }
-              if(ends[13]>=biggest2403){
-                biggest2403=ends[13];
+              if(ends[13]>=biggest3014){
+                biggest3014=ends[13];
               }
-              if(biggest2403 == 1){
+              if(biggest3014 == 1){
                 active[9]=1;
                 ends[9]=1;
                 tdone[9]=1;
               }
               //FINXME code
-              if(biggest2403 == 0){
-                S2157=2;
+              if(biggest3014 == 0){
+                S2768=2;
                 active[9]=1;
                 ends[9]=1;
                 tdone[9]=1;
@@ -377,35 +377,35 @@ public class LidLoaderController extends ClockDomain{
             break;
           
           case 2 : 
-            S2157=2;
-            S2157=0;
+            S2768=2;
+            S2768=0;
             if(manual_1.getprestatus()){//sysj\lidLoaderController.sysj line: 86, column: 20
-              S2157=1;
+              S2768=1;
               if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 88, column: 20
-                S2157=2;
+                S2768=2;
                 active[9]=1;
                 ends[9]=1;
                 tdone[9]=1;
               }
               else {
-                thread2404(tdone,ends);
-                thread2405(tdone,ends);
-                thread2406(tdone,ends);
-                thread2407(tdone,ends);
-                int biggest2408 = 0;
-                if(ends[10]>=biggest2408){
-                  biggest2408=ends[10];
+                thread3015(tdone,ends);
+                thread3016(tdone,ends);
+                thread3017(tdone,ends);
+                thread3018(tdone,ends);
+                int biggest3019 = 0;
+                if(ends[10]>=biggest3019){
+                  biggest3019=ends[10];
                 }
-                if(ends[11]>=biggest2408){
-                  biggest2408=ends[11];
+                if(ends[11]>=biggest3019){
+                  biggest3019=ends[11];
                 }
-                if(ends[12]>=biggest2408){
-                  biggest2408=ends[12];
+                if(ends[12]>=biggest3019){
+                  biggest3019=ends[12];
                 }
-                if(ends[13]>=biggest2408){
-                  biggest2408=ends[13];
+                if(ends[13]>=biggest3019){
+                  biggest3019=ends[13];
                 }
-                if(biggest2408 == 1){
+                if(biggest3019 == 1){
                   active[9]=1;
                   ends[9]=1;
                   tdone[9]=1;
@@ -425,8 +425,8 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread2392(int [] tdone, int [] ends){
-        switch(S2056){
+  public void thread3003(int [] tdone, int [] ends){
+        switch(S2667){
       case 0 : 
         active[8]=0;
         ends[8]=0;
@@ -434,12 +434,12 @@ public class LidLoaderController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S2044){
+        switch(S2655){
           case 0 : 
             if(empty.getprestatus()){//sysj\lidLoaderController.sysj line: 78, column: 10
               refill.setPresent();//sysj\lidLoaderController.sysj line: 79, column: 4
               currsigs.addElement(refill);
-              S2044=1;
+              S2655=1;
               active[8]=1;
               ends[8]=1;
               tdone[8]=1;
@@ -453,7 +453,7 @@ public class LidLoaderController extends ClockDomain{
           
           case 1 : 
             if(refilled.getprestatus()){//sysj\lidLoaderController.sysj line: 80, column: 10
-              S2044=0;
+              S2655=0;
               active[8]=1;
               ends[8]=1;
               tdone[8]=1;
@@ -471,8 +471,8 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread2390(int [] tdone, int [] ends){
-        switch(S1491){
+  public void thread3001(int [] tdone, int [] ends){
+        switch(S2102){
       case 0 : 
         active[7]=0;
         ends[7]=0;
@@ -490,8 +490,8 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread2389(int [] tdone, int [] ends){
-        switch(S1486){
+  public void thread3000(int [] tdone, int [] ends){
+        switch(S2097){
       case 0 : 
         active[6]=0;
         ends[6]=0;
@@ -509,8 +509,8 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread2387(int [] tdone, int [] ends){
-        S1491=1;
+  public void thread2998(int [] tdone, int [] ends){
+        S2102=1;
     vacOn.setPresent();//sysj\lidLoaderController.sysj line: 58, column: 34
     currsigs.addElement(vacOn);
     active[7]=1;
@@ -518,8 +518,8 @@ public class LidLoaderController extends ClockDomain{
     tdone[7]=1;
   }
 
-  public void thread2386(int [] tdone, int [] ends){
-        S1486=1;
+  public void thread2997(int [] tdone, int [] ends){
+        S2097=1;
     armDest.setPresent();//sysj\lidLoaderController.sysj line: 58, column: 14
     currsigs.addElement(armDest);
     active[6]=1;
@@ -527,8 +527,8 @@ public class LidLoaderController extends ClockDomain{
     tdone[6]=1;
   }
 
-  public void thread2385(int [] tdone, int [] ends){
-        switch(S2042){
+  public void thread2996(int [] tdone, int [] ends){
+        switch(S2653){
       case 0 : 
         active[5]=0;
         ends[5]=0;
@@ -536,19 +536,19 @@ public class LidLoaderController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S1646){
+        switch(S2257){
           case 0 : 
             if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 34, column: 29
-              S1646=1;
+              S2257=1;
               if(manual_1.getprestatus()){//sysj\lidLoaderController.sysj line: 35, column: 29
-                S1646=2;
+                S2257=2;
                 active[5]=1;
                 ends[5]=1;
                 tdone[5]=1;
               }
               else {
                 if(lidLoaderLoad.getprestatus()){//sysj\lidLoaderController.sysj line: 37, column: 19
-                  S1455=0;
+                  S2066=0;
                   armDest.setPresent();//sysj\lidLoaderController.sysj line: 40, column: 13
                   currsigs.addElement(armDest);
                   active[5]=1;
@@ -556,7 +556,7 @@ public class LidLoaderController extends ClockDomain{
                   tdone[5]=1;
                 }
                 else {
-                  S1646=2;
+                  S2257=2;
                   active[5]=1;
                   ends[5]=1;
                   tdone[5]=1;
@@ -572,16 +572,16 @@ public class LidLoaderController extends ClockDomain{
           
           case 1 : 
             if(manual_1.getprestatus()){//sysj\lidLoaderController.sysj line: 35, column: 29
-              S1646=2;
+              S2257=2;
               active[5]=1;
               ends[5]=1;
               tdone[5]=1;
             }
             else {
-              switch(S1455){
+              switch(S2066){
                 case 0 : 
                   if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 39, column: 18
-                    S1455=1;
+                    S2066=1;
                     active[5]=1;
                     ends[5]=1;
                     tdone[5]=1;
@@ -596,8 +596,8 @@ public class LidLoaderController extends ClockDomain{
                   break;
                 
                 case 1 : 
-                  S1455=1;
-                  S1455=2;
+                  S2066=1;
+                  S2066=2;
                   if(pusherRetracted.getprestatus()){//sysj\lidLoaderController.sysj line: 43, column: 20
                     pusherExtend.setPresent();//sysj\lidLoaderController.sysj line: 45, column: 14
                     currsigs.addElement(pusherExtend);
@@ -606,7 +606,7 @@ public class LidLoaderController extends ClockDomain{
                     tdone[5]=1;
                   }
                   else {
-                    S1455=3;
+                    S2066=3;
                     active[5]=1;
                     ends[5]=1;
                     tdone[5]=1;
@@ -615,7 +615,7 @@ public class LidLoaderController extends ClockDomain{
                 
                 case 2 : 
                   if(pusherExtended.getprestatus()){//sysj\lidLoaderController.sysj line: 44, column: 19
-                    S1455=3;
+                    S2066=3;
                     active[5]=1;
                     ends[5]=1;
                     tdone[5]=1;
@@ -630,8 +630,8 @@ public class LidLoaderController extends ClockDomain{
                   break;
                 
                 case 3 : 
-                  S1455=3;
-                  S1455=4;
+                  S2066=3;
+                  S2066=4;
                   armSource.setPresent();//sysj\lidLoaderController.sysj line: 50, column: 13
                   currsigs.addElement(armSource);
                   active[5]=1;
@@ -641,7 +641,7 @@ public class LidLoaderController extends ClockDomain{
                 
                 case 4 : 
                   if(armAtSource.getprestatus()){//sysj\lidLoaderController.sysj line: 49, column: 18
-                    S1455=5;
+                    S2066=5;
                     active[5]=1;
                     ends[5]=1;
                     tdone[5]=1;
@@ -656,8 +656,8 @@ public class LidLoaderController extends ClockDomain{
                   break;
                 
                 case 5 : 
-                  S1455=5;
-                  S1455=6;
+                  S2066=5;
+                  S2066=6;
                   vacOn.setPresent();//sysj\lidLoaderController.sysj line: 54, column: 13
                   currsigs.addElement(vacOn);
                   active[5]=1;
@@ -667,7 +667,7 @@ public class LidLoaderController extends ClockDomain{
                 
                 case 6 : 
                   if(WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 53, column: 18
-                    S1455=7;
+                    S2066=7;
                     active[5]=1;
                     ends[5]=1;
                     tdone[5]=1;
@@ -682,18 +682,18 @@ public class LidLoaderController extends ClockDomain{
                   break;
                 
                 case 7 : 
-                  S1455=7;
-                  S1455=8;
-                  thread2386(tdone,ends);
-                  thread2387(tdone,ends);
-                  int biggest2388 = 0;
-                  if(ends[6]>=biggest2388){
-                    biggest2388=ends[6];
+                  S2066=7;
+                  S2066=8;
+                  thread2997(tdone,ends);
+                  thread2998(tdone,ends);
+                  int biggest2999 = 0;
+                  if(ends[6]>=biggest2999){
+                    biggest2999=ends[6];
                   }
-                  if(ends[7]>=biggest2388){
-                    biggest2388=ends[7];
+                  if(ends[7]>=biggest2999){
+                    biggest2999=ends[7];
                   }
-                  if(biggest2388 == 1){
+                  if(biggest2999 == 1){
                     active[5]=1;
                     ends[5]=1;
                     tdone[5]=1;
@@ -702,29 +702,29 @@ public class LidLoaderController extends ClockDomain{
                 
                 case 8 : 
                   if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 57, column: 18
-                    S1455=9;
+                    S2066=9;
                     active[5]=1;
                     ends[5]=1;
                     tdone[5]=1;
                   }
                   else {
-                    thread2389(tdone,ends);
-                    thread2390(tdone,ends);
-                    int biggest2391 = 0;
-                    if(ends[6]>=biggest2391){
-                      biggest2391=ends[6];
+                    thread3000(tdone,ends);
+                    thread3001(tdone,ends);
+                    int biggest3002 = 0;
+                    if(ends[6]>=biggest3002){
+                      biggest3002=ends[6];
                     }
-                    if(ends[7]>=biggest2391){
-                      biggest2391=ends[7];
+                    if(ends[7]>=biggest3002){
+                      biggest3002=ends[7];
                     }
-                    if(biggest2391 == 1){
+                    if(biggest3002 == 1){
                       active[5]=1;
                       ends[5]=1;
                       tdone[5]=1;
                     }
                     //FINXME code
-                    if(biggest2391 == 0){
-                      S1455=9;
+                    if(biggest3002 == 0){
+                      S2066=9;
                       active[5]=1;
                       ends[5]=1;
                       tdone[5]=1;
@@ -733,8 +733,8 @@ public class LidLoaderController extends ClockDomain{
                   break;
                 
                 case 9 : 
-                  S1455=9;
-                  S1455=10;
+                  S2066=9;
+                  S2066=10;
                   active[5]=1;
                   ends[5]=1;
                   tdone[5]=1;
@@ -742,7 +742,7 @@ public class LidLoaderController extends ClockDomain{
                 
                 case 10 : 
                   if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 61, column: 18
-                    S1455=11;
+                    S2066=11;
                     active[5]=1;
                     ends[5]=1;
                     tdone[5]=1;
@@ -755,10 +755,10 @@ public class LidLoaderController extends ClockDomain{
                   break;
                 
                 case 11 : 
-                  S1455=11;
+                  S2066=11;
                   vacOn.setPresent();//sysj\lidLoaderController.sysj line: 63, column: 12
                   currsigs.addElement(vacOn);
-                  S1455=12;
+                  S2066=12;
                   armDest.setPresent();//sysj\lidLoaderController.sysj line: 65, column: 13
                   currsigs.addElement(armDest);
                   active[5]=1;
@@ -768,7 +768,7 @@ public class LidLoaderController extends ClockDomain{
                 
                 case 12 : 
                   if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 64, column: 18
-                    S1455=13;
+                    S2066=13;
                     active[5]=1;
                     ends[5]=1;
                     tdone[5]=1;
@@ -783,10 +783,10 @@ public class LidLoaderController extends ClockDomain{
                   break;
                 
                 case 13 : 
-                  S1455=13;
+                  S2066=13;
                   lidLoaderLoaded.setPresent();//sysj\lidLoaderController.sysj line: 68, column: 21
                   currsigs.addElement(lidLoaderLoaded);
-                  S1646=2;
+                  S2257=2;
                   active[5]=1;
                   ends[5]=1;
                   tdone[5]=1;
@@ -797,19 +797,19 @@ public class LidLoaderController extends ClockDomain{
             break;
           
           case 2 : 
-            S1646=2;
-            S1646=0;
+            S2257=2;
+            S2257=0;
             if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 34, column: 29
-              S1646=1;
+              S2257=1;
               if(manual_1.getprestatus()){//sysj\lidLoaderController.sysj line: 35, column: 29
-                S1646=2;
+                S2257=2;
                 active[5]=1;
                 ends[5]=1;
                 tdone[5]=1;
               }
               else {
                 if(lidLoaderLoad.getprestatus()){//sysj\lidLoaderController.sysj line: 37, column: 19
-                  S1455=0;
+                  S2066=0;
                   armDest.setPresent();//sysj\lidLoaderController.sysj line: 40, column: 13
                   currsigs.addElement(armDest);
                   active[5]=1;
@@ -817,7 +817,7 @@ public class LidLoaderController extends ClockDomain{
                   tdone[5]=1;
                 }
                 else {
-                  S1646=2;
+                  S2257=2;
                   active[5]=1;
                   ends[5]=1;
                   tdone[5]=1;
@@ -837,7 +837,7 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread2383(int [] tdone, int [] ends){
+  public void thread2994(int [] tdone, int [] ends){
         if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 1){//sysj\lidLoaderController.sysj line: 25, column: 10
       manual_1.setPresent();//sysj\lidLoaderController.sysj line: 25, column: 32
       currsigs.addElement(manual_1);
@@ -852,7 +852,7 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread2382(int [] tdone, int [] ends){
+  public void thread2993(int [] tdone, int [] ends){
         if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\lidLoaderController.sysj line: 23, column: 10
       auto_1.setPresent();//sysj\lidLoaderController.sysj line: 23, column: 32
       currsigs.addElement(auto_1);
@@ -867,19 +867,19 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread2380(int [] tdone, int [] ends){
+  public void thread2991(int [] tdone, int [] ends){
         active[4]=0;
     ends[4]=0;
     tdone[4]=1;
   }
 
-  public void thread2379(int [] tdone, int [] ends){
+  public void thread2990(int [] tdone, int [] ends){
         active[3]=0;
     ends[3]=0;
     tdone[3]=1;
   }
 
-  public void thread2377(int [] tdone, int [] ends){
+  public void thread2988(int [] tdone, int [] ends){
         if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 1){//sysj\lidLoaderController.sysj line: 25, column: 10
       manual_1.setPresent();//sysj\lidLoaderController.sysj line: 25, column: 32
       currsigs.addElement(manual_1);
@@ -894,7 +894,7 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread2376(int [] tdone, int [] ends){
+  public void thread2987(int [] tdone, int [] ends){
         if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\lidLoaderController.sysj line: 23, column: 10
       auto_1.setPresent();//sysj\lidLoaderController.sysj line: 23, column: 32
       currsigs.addElement(auto_1);
@@ -909,8 +909,8 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread2375(int [] tdone, int [] ends){
-        switch(S1449){
+  public void thread2986(int [] tdone, int [] ends){
+        switch(S2060){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -918,33 +918,33 @@ public class LidLoaderController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S1400){
+        switch(S2011){
           case 0 : 
-            S1400=0;
+            S2011=0;
             auto_1.setPresent();//sysj\lidLoaderController.sysj line: 19, column: 3
             currsigs.addElement(auto_1);
-            S1400=1;
-            S1408=0;
+            S2011=1;
+            S2019=0;
             if(mode.getprestatus()){//sysj\lidLoaderController.sysj line: 21, column: 12
-              thread2376(tdone,ends);
-              thread2377(tdone,ends);
-              int biggest2378 = 0;
-              if(ends[3]>=biggest2378){
-                biggest2378=ends[3];
+              thread2987(tdone,ends);
+              thread2988(tdone,ends);
+              int biggest2989 = 0;
+              if(ends[3]>=biggest2989){
+                biggest2989=ends[3];
               }
-              if(ends[4]>=biggest2378){
-                biggest2378=ends[4];
+              if(ends[4]>=biggest2989){
+                biggest2989=ends[4];
               }
               //FINXME code
-              if(biggest2378 == 0){
-                S1408=1;
+              if(biggest2989 == 0){
+                S2019=1;
                 active[2]=1;
                 ends[2]=1;
                 tdone[2]=1;
               }
             }
             else {
-              S1408=1;
+              S2019=1;
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
@@ -952,20 +952,20 @@ public class LidLoaderController extends ClockDomain{
             break;
           
           case 1 : 
-            switch(S1408){
+            switch(S2019){
               case 0 : 
-                thread2379(tdone,ends);
-                thread2380(tdone,ends);
-                int biggest2381 = 0;
-                if(ends[3]>=biggest2381){
-                  biggest2381=ends[3];
+                thread2990(tdone,ends);
+                thread2991(tdone,ends);
+                int biggest2992 = 0;
+                if(ends[3]>=biggest2992){
+                  biggest2992=ends[3];
                 }
-                if(ends[4]>=biggest2381){
-                  biggest2381=ends[4];
+                if(ends[4]>=biggest2992){
+                  biggest2992=ends[4];
                 }
                 //FINXME code
-                if(biggest2381 == 0){
-                  S1408=1;
+                if(biggest2992 == 0){
+                  S2019=1;
                   active[2]=1;
                   ends[2]=1;
                   tdone[2]=1;
@@ -973,28 +973,28 @@ public class LidLoaderController extends ClockDomain{
                 break;
               
               case 1 : 
-                S1408=1;
-                S1408=0;
+                S2019=1;
+                S2019=0;
                 if(mode.getprestatus()){//sysj\lidLoaderController.sysj line: 21, column: 12
-                  thread2382(tdone,ends);
-                  thread2383(tdone,ends);
-                  int biggest2384 = 0;
-                  if(ends[3]>=biggest2384){
-                    biggest2384=ends[3];
+                  thread2993(tdone,ends);
+                  thread2994(tdone,ends);
+                  int biggest2995 = 0;
+                  if(ends[3]>=biggest2995){
+                    biggest2995=ends[3];
                   }
-                  if(ends[4]>=biggest2384){
-                    biggest2384=ends[4];
+                  if(ends[4]>=biggest2995){
+                    biggest2995=ends[4];
                   }
                   //FINXME code
-                  if(biggest2384 == 0){
-                    S1408=1;
+                  if(biggest2995 == 0){
+                    S2019=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
                   }
                 }
                 else {
-                  S1408=1;
+                  S2019=1;
                   active[2]=1;
                   ends[2]=1;
                   tdone[2]=1;
@@ -1010,8 +1010,8 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread2372(int [] tdone, int [] ends){
-        S2089=1;
+  public void thread2983(int [] tdone, int [] ends){
+        S2700=1;
     if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 95, column: 27
       armDest.setPresent();//sysj\lidLoaderController.sysj line: 95, column: 37
       currsigs.addElement(armDest);
@@ -1026,8 +1026,8 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread2371(int [] tdone, int [] ends){
-        S2081=1;
+  public void thread2982(int [] tdone, int [] ends){
+        S2692=1;
     if(armSourceM.getprestatus()){//sysj\lidLoaderController.sysj line: 93, column: 27
       armSource.setPresent();//sysj\lidLoaderController.sysj line: 93, column: 39
       currsigs.addElement(armSource);
@@ -1042,8 +1042,8 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread2370(int [] tdone, int [] ends){
-        S2073=1;
+  public void thread2981(int [] tdone, int [] ends){
+        S2684=1;
     if(vacOnM.getprestatus()){//sysj\lidLoaderController.sysj line: 91, column: 27
       vacOn.setPresent();//sysj\lidLoaderController.sysj line: 91, column: 35
       currsigs.addElement(vacOn);
@@ -1058,8 +1058,8 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread2369(int [] tdone, int [] ends){
-        S2065=1;
+  public void thread2980(int [] tdone, int [] ends){
+        S2676=1;
     if(pusherExtendM.getprestatus()){//sysj\lidLoaderController.sysj line: 89, column: 27
       pusherExtend.setPresent();//sysj\lidLoaderController.sysj line: 89, column: 42
       currsigs.addElement(pusherExtend);
@@ -1074,36 +1074,36 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread2368(int [] tdone, int [] ends){
-        S2361=1;
-    S2157=0;
+  public void thread2979(int [] tdone, int [] ends){
+        S2972=1;
+    S2768=0;
     if(manual_1.getprestatus()){//sysj\lidLoaderController.sysj line: 86, column: 20
-      S2157=1;
+      S2768=1;
       if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 88, column: 20
-        S2157=2;
+        S2768=2;
         active[9]=1;
         ends[9]=1;
         tdone[9]=1;
       }
       else {
-        thread2369(tdone,ends);
-        thread2370(tdone,ends);
-        thread2371(tdone,ends);
-        thread2372(tdone,ends);
-        int biggest2373 = 0;
-        if(ends[10]>=biggest2373){
-          biggest2373=ends[10];
+        thread2980(tdone,ends);
+        thread2981(tdone,ends);
+        thread2982(tdone,ends);
+        thread2983(tdone,ends);
+        int biggest2984 = 0;
+        if(ends[10]>=biggest2984){
+          biggest2984=ends[10];
         }
-        if(ends[11]>=biggest2373){
-          biggest2373=ends[11];
+        if(ends[11]>=biggest2984){
+          biggest2984=ends[11];
         }
-        if(ends[12]>=biggest2373){
-          biggest2373=ends[12];
+        if(ends[12]>=biggest2984){
+          biggest2984=ends[12];
         }
-        if(ends[13]>=biggest2373){
-          biggest2373=ends[13];
+        if(ends[13]>=biggest2984){
+          biggest2984=ends[13];
         }
-        if(biggest2373 == 1){
+        if(biggest2984 == 1){
           active[9]=1;
           ends[9]=1;
           tdone[9]=1;
@@ -1117,28 +1117,28 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread2367(int [] tdone, int [] ends){
-        S2056=1;
-    S2044=0;
+  public void thread2978(int [] tdone, int [] ends){
+        S2667=1;
+    S2655=0;
     active[8]=1;
     ends[8]=1;
     tdone[8]=1;
   }
 
-  public void thread2366(int [] tdone, int [] ends){
-        S2042=1;
-    S1646=0;
+  public void thread2977(int [] tdone, int [] ends){
+        S2653=1;
+    S2257=0;
     if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 34, column: 29
-      S1646=1;
+      S2257=1;
       if(manual_1.getprestatus()){//sysj\lidLoaderController.sysj line: 35, column: 29
-        S1646=2;
+        S2257=2;
         active[5]=1;
         ends[5]=1;
         tdone[5]=1;
       }
       else {
         if(lidLoaderLoad.getprestatus()){//sysj\lidLoaderController.sysj line: 37, column: 19
-          S1455=0;
+          S2066=0;
           armDest.setPresent();//sysj\lidLoaderController.sysj line: 40, column: 13
           currsigs.addElement(armDest);
           active[5]=1;
@@ -1146,7 +1146,7 @@ public class LidLoaderController extends ClockDomain{
           tdone[5]=1;
         }
         else {
-          S1646=2;
+          S2257=2;
           active[5]=1;
           ends[5]=1;
           tdone[5]=1;
@@ -1160,9 +1160,9 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread2365(int [] tdone, int [] ends){
-        S1449=1;
-    S1400=0;
+  public void thread2976(int [] tdone, int [] ends){
+        S2060=1;
+    S2011=0;
     active[2]=1;
     ends[2]=1;
     tdone[2]=1;
@@ -1175,34 +1175,34 @@ public class LidLoaderController extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S2363){
+      switch(S2974){
         case 0 : 
-          S2363=0;
+          S2974=0;
           break RUN;
         
         case 1 : 
-          S2363=2;
-          S2363=2;
+          S2974=2;
+          S2974=2;
           auto_1.setClear();//sysj\lidLoaderController.sysj line: 15, column: 2
           manual_1.setClear();//sysj\lidLoaderController.sysj line: 15, column: 2
-          thread2365(tdone,ends);
-          thread2366(tdone,ends);
-          thread2367(tdone,ends);
-          thread2368(tdone,ends);
-          int biggest2374 = 0;
-          if(ends[2]>=biggest2374){
-            biggest2374=ends[2];
+          thread2976(tdone,ends);
+          thread2977(tdone,ends);
+          thread2978(tdone,ends);
+          thread2979(tdone,ends);
+          int biggest2985 = 0;
+          if(ends[2]>=biggest2985){
+            biggest2985=ends[2];
           }
-          if(ends[5]>=biggest2374){
-            biggest2374=ends[5];
+          if(ends[5]>=biggest2985){
+            biggest2985=ends[5];
           }
-          if(ends[8]>=biggest2374){
-            biggest2374=ends[8];
+          if(ends[8]>=biggest2985){
+            biggest2985=ends[8];
           }
-          if(ends[9]>=biggest2374){
-            biggest2374=ends[9];
+          if(ends[9]>=biggest2985){
+            biggest2985=ends[9];
           }
-          if(biggest2374 == 1){
+          if(biggest2985 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
@@ -1211,34 +1211,34 @@ public class LidLoaderController extends ClockDomain{
         case 2 : 
           auto_1.setClear();//sysj\lidLoaderController.sysj line: 15, column: 2
           manual_1.setClear();//sysj\lidLoaderController.sysj line: 15, column: 2
-          thread2375(tdone,ends);
-          thread2385(tdone,ends);
-          thread2392(tdone,ends);
-          thread2393(tdone,ends);
-          int biggest2409 = 0;
-          if(ends[2]>=biggest2409){
-            biggest2409=ends[2];
+          thread2986(tdone,ends);
+          thread2996(tdone,ends);
+          thread3003(tdone,ends);
+          thread3004(tdone,ends);
+          int biggest3020 = 0;
+          if(ends[2]>=biggest3020){
+            biggest3020=ends[2];
           }
-          if(ends[5]>=biggest2409){
-            biggest2409=ends[5];
+          if(ends[5]>=biggest3020){
+            biggest3020=ends[5];
           }
-          if(ends[8]>=biggest2409){
-            biggest2409=ends[8];
+          if(ends[8]>=biggest3020){
+            biggest3020=ends[8];
           }
-          if(ends[9]>=biggest2409){
-            biggest2409=ends[9];
+          if(ends[9]>=biggest3020){
+            biggest3020=ends[9];
           }
-          if(biggest2409 == 1){
+          if(biggest3020 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest2409 == 0){
-            S2363=0;
+          if(biggest3020 == 0){
+            S2974=0;
             active[1]=0;
             ends[1]=0;
-            S2363=0;
+            S2974=0;
             break RUN;
           }
         

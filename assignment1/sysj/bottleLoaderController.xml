@@ -28,11 +28,11 @@
 			<oSignal Name="armSource"    To="BottleLoaderPlantCD.armSource"   Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11001" />
 			<oSignal Name="armDest"      To="BottleLoaderPlantCD.armDest"     Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11001" />
 
-			<!-- to the conveyor (11003) -->
-			<oSignal Name="bottlePlaced" To="ConveyorStubCD.bottlePlaced"     Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11003" />
-
-			<!-- to the system controller (11002) -->
-			<oSignal Name="bottleLoaded" To="SystemControllerCD.bottleLoaded" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11002" />
+			<!-- to the conveyor (12000) -->
+			<oSignal Name="bottlePlaced" To="ConveyorControllerCD.bottlePlaced" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
+			
+			<!-- to the system controller (12002) -->
+			<oSignal Name="bottleLoaded" To="SystemControllerCD.bottleLoaded" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12002" />
 		</ClockDomain>
 	</SubSystem>
 </System>
