@@ -26,7 +26,12 @@ RotaryTablePlant(
 
 		// to the Rotary Table Controller
 		output signal tableAligned;
-		output signal bottleAtPos1, bottleAtPos2, bottleAtPos4, bottleAtPos6;
+		// Presence sensors. Per Appendix 4 there are sensors at positions 1,
+		// 2, 4 and 5 only - there is none at position 6, so the unload is
+		// acknowledged by exitCleared, an actuator-complete output, rather
+		// than by a workpiece disappearing.
+		output signal bottleAtPos1, bottleAtPos2, bottleAtPos4, bottleAtPos5;
+		output signal exitCleared;
 		)
 ->
 {
@@ -38,6 +43,7 @@ RotaryTablePlant(
 	// they are present for.
 	boolean loading = false;
 	boolean unloading = false;
+	boolean exited = false;
 	boolean triggered = false;
 
 	while(true){
@@ -89,19 +95,25 @@ RotaryTablePlant(
 						unloading = true;
 						if(occ[5]){
 							occ[5] = false;
+							exited = true;
 							System.out.println("[RTPlant] Bottle unloaded from position 6.");
 						}
 					}
 				}
 				else {
 					unloading = false;
+					exited = false;
 				}
 
 				// presence sensors
 				if(occ[0]){ emit bottleAtPos1; }
 				if(occ[1]){ emit bottleAtPos2; }
 				if(occ[3]){ emit bottleAtPos4; }
-				if(occ[4]){ emit bottleAtPos6; }
+				if(occ[4]){ emit bottleAtPos5; }
+
+				// Held for as long as the controller holds unloadExit, so the
+				// controller has something to acknowledge against.
+				if(exited){ emit exitCleared; }
 			}
 		}
 		pause;

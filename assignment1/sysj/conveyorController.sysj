@@ -1,130 +1,123 @@
 /*
  * Controller for the Bottling Station conveyor.
  *
- * Concurrent reactions:
- *   1. advertise infeed readiness to the bottle loader
- *   2. accept bottles from the loader onto the belt
- *   3. run the infeed belt
- *   4. hand off from index position 1 to the table
- *   5. outfeed transport: index position 5 -> labeller collection point
+ * Reactions:
+ *   1. accept bottles from the loader onto the infeed belt
+ *   2. run the infeed belt
+ *   3. hand off from index position 1 to the rotary table
+ *   4. outfeed: take from the table, deliver to the labeller point, report
  *
- * Accepting and handing off are separate reactions so that several bottles
- * can be on the infeed at once - one waiting at position 1 for the table
- * while others are still travelling.
+ * Every machine-to-machine link is a channel. Readiness is no longer
+ * advertised as a level: a reaction only reaches its receive when its belt
+ * can actually take a bottle, so being at the receive IS the readiness.
+ * That deleted conveyorReady, tableReady and bottleTaken outright.
  *
- * Each transport boundary uses the same pattern: a readiness level in from
- * downstream, a delivery event out to downstream, and a local arrival sensor.
- * The outfeed currently has no readiness input because the brief allows a
- * collector that is always available; when the labeller can refuse a bottle,
- * add labellerReady and gate the release on it exactly as the infeed gates
- * on tableReady.
+ * Actuator pulses to the plant are sustained until the plant's own sensor
+ * confirms the effect, rather than emitted for a fixed number of ticks.
+ *
+ * BeltQueue carries the identities of the bottles on the infeed. The belt is
+ * physically FIFO, so order is all the controller needs to know.
  */
 ConveyorController(
-		// from / to the Bottle Loader
-		input  signal bottlePlaced;
-		output signal conveyorReady;
+		// from the Bottle Loader
+		input  Integer channel bottleHandoff;
+
+		// to / from the Rotary Table
+		output Integer channel tableInfeed;
+		input  Integer channel tableOutfeed;
+
+		// to the System Controller
+		output Integer channel bottleDone;
 
 		// from the plant
-		input signal bottleAtPos1, infeedClear, bottleAtOutfeedEnd, outfeedClear;
+		input signal bottleAtPos1, infeedClear, infeedAdmitted;
+		input signal bottleAtOutfeedEnd, outfeedClear;
 
 		// to the plant
 		output signal motInfeed, injectInfeed, takeFromPos1;
 		output signal motOutfeed, injectOutfeed, collectFromEnd;
-
-		// from / to the turntable
-		input  signal tableReady, bottleFromTable, bottleTaken;
-		output signal bottleToTable;
-
-		// to the System Controller / labeller
-		output signal bottleAtLabeller;
 		)
 ->
 {
-	{ // ---- 1. Infeed readiness: the load point is free ----
+	{ // ---- 1. Accept from the loader ----
+		BeltQueue q = BeltQueue.shared();
+		int id = 0;
 		while(true){
-			present(infeedClear){
-				emit conveyorReady;
+			// Only offer to take one when the load point is free. The loader
+			// blocks at its send until this reaction reaches the receive.
+			await(immediate infeedClear);
+
+			receive bottleHandoff;
+			id = ((Integer)#bottleHandoff).intValue();
+			q.push(id);
+			System.out.println("[CV] Accepted bottle " + id + " from the loader.");
+
+			// Hold the injection until the plant confirms the bottle is on
+			// the belt. Note this acknowledges against infeedAdmitted, not
+			// against infeedClear going away: the belt runs continuously, so
+			// the bottle is already moving by the time the load point would
+			// have read occupied.
+			abort(immediate infeedAdmitted){
+				sustain injectInfeed;
 			}
 			pause;
 		}
 	}
 	||
-	{ // ---- 2. Accept bottles from the loader onto the belt ----
-		while(true){
-			await(immediate bottlePlaced);
-			System.out.println("[CV] Bottle received from loader.");
-
-			emit injectInfeed; pause;
-			emit injectInfeed; pause;
-			emit injectInfeed; pause;
-
-			// Wait for the loader's delivery event to clear, so a stale
-			// bottlePlaced cannot inject the same bottle twice.
-			await(immediate !bottlePlaced);
-		}
-	}
-	||
-	{ // ---- 3. Infeed belt runs continuously ----
-		//
-		// Bottles queue against each other in the plant model, so the motor
-		// does not need to be sequenced per bottle. Accepting and handing off
-		// are now independent, which is what lets several bottles be in
-		// transit at once.
+	{ // ---- 2. Infeed belt runs continuously ----
 		while(true){
 			emit motInfeed;
 			pause;
 		}
 	}
 	||
-	{ // ---- 4. Hand off from position 1 to the table ----
+	{ // ---- 3. Hand off position 1 to the table ----
+		BeltQueue q = BeltQueue.shared();
+		int id = 0;
 		while(true){
 			await(immediate bottleAtPos1);
 
-			present(tableReady){
-				// table can take it straight away
-			}
-			else {
-				System.out.println("[CV] At position 1 - waiting for table.");
-				await(immediate tableReady);
-			}
+			id = q.peek();
+			System.out.println("[CV] Bottle " + id + " at position 1, offering to the table.");
 
-			// Hold the offer until the table acknowledges. A timed offer can
-			// expire before the table samples it, and the bottle is then lost.
-			abort(bottleTaken){
-				sustain bottleToTable;
-			}
+			// Blocks until the table's intake reaction takes it
+			send tableInfeed(id);
+			q.pop();
 
-			// Kept short: the table has already acknowledged with bottleTaken,
-			// so this only has to be long enough for the plant to sample it.
-			emit takeFromPos1; pause;
-			emit takeFromPos1; pause;
-			System.out.println("[CV] Handed off to table.");
-			await(immediate !bottleTaken);
-			await(immediate !bottleAtPos1);
+			// Remove it from the belt, holding the command until the plant
+			// confirms position 1 is empty
+			abort(immediate !bottleAtPos1){
+				sustain takeFromPos1;
+			}
+			System.out.println("[CV] Bottle " + id + " handed to the table.");
+			pause;
 		}
 	}
 	||
-	{ // ---- 5. Outfeed transport ----
+	{ // ---- 4. Outfeed ----
+		int id = 0;
 		while(true){
-			await(immediate bottleFromTable);
-			System.out.println("[CV] Bottle received from turntable.");
+			await(immediate outfeedClear);
 
-			emit injectOutfeed; pause;
-			emit injectOutfeed; pause;
-			emit injectOutfeed; pause;
+			receive tableOutfeed;
+			id = ((Integer)#tableOutfeed).intValue();
+			System.out.println("[CV] Bottle " + id + " received from the table.");
+
+			abort(immediate !outfeedClear){
+				sustain injectOutfeed;
+			}
 
 			abort(bottleAtOutfeedEnd){
 				sustain motOutfeed;
 			}
 
-			System.out.println("[CV] Bottle delivered to labeller point.");
+			abort(immediate !bottleAtOutfeedEnd){
+				sustain collectFromEnd;
+			}
+			System.out.println("[CV] Bottle " + id + " delivered to the labeller point.");
 
-			// Notify downstream, and assume the collector takes it.
-			emit bottleAtLabeller; emit collectFromEnd; pause;
-			emit bottleAtLabeller; emit collectFromEnd; pause;
-			emit bottleAtLabeller; emit collectFromEnd; pause;
-
-			await(immediate !bottleFromTable);
+			send bottleDone(id);
+			pause;
 		}
 	}
 }

@@ -1,17 +1,30 @@
+/*
+ * Plant coordinator.
+ *
+ * Commands and acknowledgements are channels: they are transactions that
+ * carry a workpiece identity and must not be lost. Operating mode and plant
+ * power stay signals, because they are levels that every reaction tests each
+ * tick rather than transfers between two parties.
+ *
+ * Each channel gets its own reaction. A rendezvous blocks the reaction that
+ * performs it, so putting the load orders, the loader's acknowledgements and
+ * the end-of-line reports in one sequential reaction would let any one of
+ * them stall the others.
+ */
 SystemController(
-		// To BottleLoaderControllerCD
-		output Integer signal mode;
-		output signal bottleLoad;
+		// to / from the Bottle Loader
+		output Integer channel loadOrder;
+		input  Integer channel loadAck;
 
-		// One enable per plant: an oSignal has a single destination
+		// from the end of the line
+		input  Integer channel bottleDone;
+
+		// levels, not transfers
+		output Integer signal mode;
 		output signal enableBL;   // -> BottleLoaderPlantCD
 		output signal enableCV;   // -> ConveyorPlantCD
 		output signal enableRT;   // -> RotaryTablePlantCD
 		output signal enableST;   // -> StationStubsCD
-
-		// From the machines
-		input signal bottleLoaded;
-		input signal bottleAtLabeller;
 		)
 ->
 {
@@ -32,44 +45,45 @@ SystemController(
 		}
 	}
 	||
-	{ // ---- Drive bottle load cycles ----
+	{ // ---- Issue load orders ----
+		//
+		// The send blocks until the loader is actually free to take the next
+		// order, so the coordinator needs no artificial spacing between
+		// cycles. The bottle number is the workpiece identity from here on.
 		pause; pause; pause; pause; pause;
 
 		int cycles = 4;
-		int i = 0;
+		int i = 1;
 
-		while(i < cycles){
-			System.out.println("[SC] Requesting bottle load " + (i + 1) + " of " + cycles + "...");
-
-			abort(bottleLoaded){
-				sustain bottleLoad;
-			}
-
+		while(i <= cycles){
+			System.out.println("[SC] Order: load bottle " + i + " of " + cycles + ".");
+			send loadOrder(i);
 			i++;
-			System.out.println("[SC] Bottle " + i + " loaded onto conveyor.");
-
-			pause; pause; pause;
+			pause;
 		}
 
-		System.out.println("[SC] All " + cycles + " load requests issued.");
+		System.out.println("[SC] All " + cycles + " load orders issued.");
 		while(true){ pause; }
 	}
 	||
-	{ // ---- End of line reporting ----
-		int delivered = 0;
-		boolean seen = false;
-
+	{ // ---- Acknowledgements from the loader ----
+		int b = 0;
 		while(true){
-			present(bottleAtLabeller){
-				if(!seen){
-					delivered++;
-					seen = true;
-					System.out.println("[SC] Bottle " + delivered + " reached the labeller.");
-				}
-			}
-			else {
-				seen = false;
-			}
+			receive loadAck;
+			b = ((Integer)#loadAck).intValue();
+			System.out.println("[SC] Bottle " + b + " is on the conveyor.");
+			pause;
+		}
+	}
+	||
+	{ // ---- End of line ----
+		int delivered = 0;
+		int b = 0;
+		while(true){
+			receive bottleDone;
+			b = ((Integer)#bottleDone).intValue();
+			delivered++;
+			System.out.println("[SC] Bottle " + b + " finished. " + delivered + " complete.");
 			pause;
 		}
 	}

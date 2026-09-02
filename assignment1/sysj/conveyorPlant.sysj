@@ -19,7 +19,7 @@ ConveyorPlant(
 		input signal motOutfeed, injectOutfeed, collectFromEnd;
 
 		// to the Conveyor Controller
-		output signal bottleAtPos1, infeedClear;
+		output signal bottleAtPos1, infeedClear, infeedAdmitted;
 		output signal bottleAtOutfeedEnd, outfeedClear;
 		)
 ->
@@ -32,6 +32,7 @@ ConveyorPlant(
 		int LEN = 6;
 		boolean[] slot = new boolean[LEN + 1];   // slot[LEN] is position 1
 		boolean injecting = false;
+		boolean admitted = false;
 		boolean taking = false;
 
 		while(true){
@@ -46,12 +47,24 @@ ConveyorPlant(
 						injecting = true;
 						if(!slot[0]){
 							slot[0] = true;
+							admitted = true;
 							System.out.println("[CVPlant] Bottle entered infeed.");
 						}
 					}
 				}
 				else {
 					injecting = false;
+					admitted = false;
+				}
+
+				// "Workpiece admitted" - held for as long as the controller
+				// holds the command, so the controller has something to
+				// acknowledge against. infeedClear cannot serve: the belt
+				// runs every tick, so the bottle leaves the load point in the
+				// same instant it arrives and the load point never reads
+				// occupied.
+				if(admitted){
+					emit infeedAdmitted;
 				}
 
 				// The belt is frozen while a removal is in progress. Without

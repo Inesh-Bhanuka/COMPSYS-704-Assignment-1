@@ -12,37 +12,57 @@ public class StationStubs extends ClockDomain{
   private char [] paused;
   private char [] suspended;
   public Signal enable = new Signal("enable", Signal.INPUT);
-  public Signal enableFiller1 = new Signal("enableFiller1", Signal.INPUT);
-  public Signal enableFiller2 = new Signal("enableFiller2", Signal.INPUT);
-  public Signal enableLid = new Signal("enableLid", Signal.INPUT);
-  public Signal enableCapper = new Signal("enableCapper", Signal.INPUT);
-  public Signal fillerDone1 = new Signal("fillerDone1", Signal.OUTPUT);
-  public Signal fillerDone2 = new Signal("fillerDone2", Signal.OUTPUT);
-  public Signal lidDone = new Signal("lidDone", Signal.OUTPUT);
-  public Signal capperDone = new Signal("capperDone", Signal.OUTPUT);
-  private int FILL_thread_2;//sysj\stationStubs.sysj line: 23, column: 3
-  private int FILL_thread_3;//sysj\stationStubs.sysj line: 38, column: 3
-  private int LID_thread_4;//sysj\stationStubs.sysj line: 53, column: 3
-  private int CAP_thread_5;//sysj\stationStubs.sysj line: 68, column: 3
-  private int t_thread_2;//sysj\stationStubs.sysj line: 27, column: 4
-  private int t_thread_3;//sysj\stationStubs.sysj line: 42, column: 4
-  private int t_thread_4;//sysj\stationStubs.sysj line: 57, column: 4
-  private int t_thread_5;//sysj\stationStubs.sysj line: 72, column: 4
-  private int S4625 = 1;
-  private int S4017 = 1;
-  private int S3817 = 1;
-  private int S4219 = 1;
-  private int S4019 = 1;
-  private int S4421 = 1;
-  private int S4221 = 1;
-  private int S4623 = 1;
-  private int S4423 = 1;
+  public input_Channel startFiller1_in = new input_Channel();
+  public input_Channel startFiller2_in = new input_Channel();
+  public input_Channel startLid_in = new input_Channel();
+  public input_Channel startCapper_in = new input_Channel();
+  public output_Channel doneFiller1_o = new output_Channel();
+  public output_Channel doneFiller2_o = new output_Channel();
+  public output_Channel doneLid_o = new output_Channel();
+  public output_Channel doneCapper_o = new output_Channel();
+  private int FILL_thread_2;//sysj/stationStubs.sysj line: 27, column: 3
+  private int b_thread_2;//sysj/stationStubs.sysj line: 28, column: 3
+  private int t_thread_2;//sysj/stationStubs.sysj line: 29, column: 3
+  private int FILL_thread_3;//sysj/stationStubs.sysj line: 45, column: 3
+  private int b_thread_3;//sysj/stationStubs.sysj line: 46, column: 3
+  private int t_thread_3;//sysj/stationStubs.sysj line: 47, column: 3
+  private int LID_thread_4;//sysj/stationStubs.sysj line: 63, column: 3
+  private int b_thread_4;//sysj/stationStubs.sysj line: 64, column: 3
+  private int t_thread_4;//sysj/stationStubs.sysj line: 65, column: 3
+  private int CAP_thread_5;//sysj/stationStubs.sysj line: 79, column: 3
+  private int b_thread_5;//sysj/stationStubs.sysj line: 80, column: 3
+  private int t_thread_5;//sysj/stationStubs.sysj line: 81, column: 3
+  private int S13310 = 1;
+  private int S10404 = 1;
+  private int S9460 = 1;
+  private int S9444 = 1;
+  private int S9439 = 1;
+  private int S9495 = 1;
+  private int S9490 = 1;
+  private int S11372 = 1;
+  private int S10428 = 1;
+  private int S10412 = 1;
+  private int S10407 = 1;
+  private int S10463 = 1;
+  private int S10458 = 1;
+  private int S12340 = 1;
+  private int S11396 = 1;
+  private int S11380 = 1;
+  private int S11375 = 1;
+  private int S11431 = 1;
+  private int S11426 = 1;
+  private int S13308 = 1;
+  private int S12364 = 1;
+  private int S12348 = 1;
+  private int S12343 = 1;
+  private int S12399 = 1;
+  private int S12394 = 1;
   
   private int[] ends = new int[6];
   private int[] tdone = new int[6];
   
-  public void thread4635(int [] tdone, int [] ends){
-        switch(S4623){
+  public void thread13320(int [] tdone, int [] ends){
+        switch(S13308){
       case 0 : 
         active[5]=0;
         ends[5]=0;
@@ -50,99 +70,484 @@ public class StationStubs extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S4423){
+        switch(S12364){
           case 0 : 
-            if(enableCapper.getprestatus()){//sysj\stationStubs.sysj line: 70, column: 20
-              System.out.println("[ST] Capper: screwing cap.");//sysj\stationStubs.sysj line: 71, column: 4
-              t_thread_5 = CAP_thread_5;//sysj\stationStubs.sysj line: 72, column: 4
-              S4423=1;
-              if(t_thread_5 > 0){//sysj\stationStubs.sysj line: 73, column: 10
-                t_thread_5 = t_thread_5 - 1;//sysj\stationStubs.sysj line: 73, column: 18
-                active[5]=1;
-                ends[5]=1;
-                tdone[5]=1;
-              }
-              else {
-                ends[5]=2;
-                ;//sysj\stationStubs.sysj line: 73, column: 4
-                System.out.println("[ST] Capper: complete.");//sysj\stationStubs.sysj line: 74, column: 4
-                capperDone.setPresent();//sysj\stationStubs.sysj line: 75, column: 4
-                currsigs.addElement(capperDone);
-                S4423=2;
-                active[5]=1;
-                ends[5]=1;
-                tdone[5]=1;
-              }
-            }
-            else {
-              active[5]=1;
-              ends[5]=1;
-              tdone[5]=1;
+            switch(S12348){
+              case 0 : 
+                if(!startCapper_in.isPartnerPresent() || startCapper_in.isPartnerPreempted()){//sysj/stationStubs.sysj line: 83, column: 4
+                  startCapper_in.setACK(false);//sysj/stationStubs.sysj line: 83, column: 4
+                  S12348=1;
+                  active[5]=1;
+                  ends[5]=1;
+                  tdone[5]=1;
+                }
+                else {
+                  switch(S12343){
+                    case 0 : 
+                      if(!startCapper_in.isREQ()){//sysj/stationStubs.sysj line: 83, column: 4
+                        startCapper_in.setACK(true);//sysj/stationStubs.sysj line: 83, column: 4
+                        S12343=1;
+                        if(startCapper_in.isREQ()){//sysj/stationStubs.sysj line: 83, column: 4
+                          startCapper_in.setACK(false);//sysj/stationStubs.sysj line: 83, column: 4
+                          ends[5]=2;
+                          ;//sysj/stationStubs.sysj line: 83, column: 4
+                          b_thread_5 = ((Integer)(startCapper_in.getVal() == null ? null : ((Integer)startCapper_in.getVal()))).intValue();//sysj/stationStubs.sysj line: 84, column: 4
+                          if(b_thread_5 != 0) {//sysj/stationStubs.sysj line: 85, column: 14
+                            System.out.println("[ST] Capper: screwing cap on bottle " + b_thread_5 + ".");//sysj/stationStubs.sysj line: 85, column: 16
+                          }
+                          t_thread_5 = (b_thread_5 == 0) ? 0 : CAP_thread_5;//sysj/stationStubs.sysj line: 86, column: 4
+                          S12364=1;
+                          if(t_thread_5 > 0){//sysj/stationStubs.sysj line: 87, column: 10
+                            t_thread_5 = t_thread_5 - 1;//sysj/stationStubs.sysj line: 87, column: 18
+                            active[5]=1;
+                            ends[5]=1;
+                            tdone[5]=1;
+                          }
+                          else {
+                            ends[5]=2;
+                            ;//sysj/stationStubs.sysj line: 87, column: 4
+                            if(b_thread_5 != 0) {//sysj/stationStubs.sysj line: 88, column: 14
+                              System.out.println("[ST] Capper: bottle " + b_thread_5 + " complete.");//sysj/stationStubs.sysj line: 88, column: 16
+                            }
+                            S12364=2;
+                            S12399=0;
+                            if(!doneCapper_o.isPartnerPresent() || doneCapper_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 89, column: 4
+                              doneCapper_o.setREQ(false);//sysj/stationStubs.sysj line: 89, column: 4
+                              S12399=1;
+                              active[5]=1;
+                              ends[5]=1;
+                              tdone[5]=1;
+                            }
+                            else {
+                              S12394=0;
+                              if(doneCapper_o.isACK()){//sysj/stationStubs.sysj line: 89, column: 4
+                                doneCapper_o.setVal(b_thread_5);//sysj/stationStubs.sysj line: 89, column: 4
+                                S12394=1;
+                                if(!doneCapper_o.isACK()){//sysj/stationStubs.sysj line: 89, column: 4
+                                  doneCapper_o.setREQ(false);//sysj/stationStubs.sysj line: 89, column: 4
+                                  ends[5]=2;
+                                  ;//sysj/stationStubs.sysj line: 89, column: 4
+                                  S12364=3;
+                                  active[5]=1;
+                                  ends[5]=1;
+                                  tdone[5]=1;
+                                }
+                                else {
+                                  active[5]=1;
+                                  ends[5]=1;
+                                  tdone[5]=1;
+                                }
+                              }
+                              else {
+                                active[5]=1;
+                                ends[5]=1;
+                                tdone[5]=1;
+                              }
+                            }
+                          }
+                        }
+                        else {
+                          active[5]=1;
+                          ends[5]=1;
+                          tdone[5]=1;
+                        }
+                      }
+                      else {
+                        active[5]=1;
+                        ends[5]=1;
+                        tdone[5]=1;
+                      }
+                      break;
+                    
+                    case 1 : 
+                      if(startCapper_in.isREQ()){//sysj/stationStubs.sysj line: 83, column: 4
+                        startCapper_in.setACK(false);//sysj/stationStubs.sysj line: 83, column: 4
+                        ends[5]=2;
+                        ;//sysj/stationStubs.sysj line: 83, column: 4
+                        b_thread_5 = ((Integer)(startCapper_in.getVal() == null ? null : ((Integer)startCapper_in.getVal()))).intValue();//sysj/stationStubs.sysj line: 84, column: 4
+                        if(b_thread_5 != 0) {//sysj/stationStubs.sysj line: 85, column: 14
+                          System.out.println("[ST] Capper: screwing cap on bottle " + b_thread_5 + ".");//sysj/stationStubs.sysj line: 85, column: 16
+                        }
+                        t_thread_5 = (b_thread_5 == 0) ? 0 : CAP_thread_5;//sysj/stationStubs.sysj line: 86, column: 4
+                        S12364=1;
+                        if(t_thread_5 > 0){//sysj/stationStubs.sysj line: 87, column: 10
+                          t_thread_5 = t_thread_5 - 1;//sysj/stationStubs.sysj line: 87, column: 18
+                          active[5]=1;
+                          ends[5]=1;
+                          tdone[5]=1;
+                        }
+                        else {
+                          ends[5]=2;
+                          ;//sysj/stationStubs.sysj line: 87, column: 4
+                          if(b_thread_5 != 0) {//sysj/stationStubs.sysj line: 88, column: 14
+                            System.out.println("[ST] Capper: bottle " + b_thread_5 + " complete.");//sysj/stationStubs.sysj line: 88, column: 16
+                          }
+                          S12364=2;
+                          S12399=0;
+                          if(!doneCapper_o.isPartnerPresent() || doneCapper_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 89, column: 4
+                            doneCapper_o.setREQ(false);//sysj/stationStubs.sysj line: 89, column: 4
+                            S12399=1;
+                            active[5]=1;
+                            ends[5]=1;
+                            tdone[5]=1;
+                          }
+                          else {
+                            S12394=0;
+                            if(doneCapper_o.isACK()){//sysj/stationStubs.sysj line: 89, column: 4
+                              doneCapper_o.setVal(b_thread_5);//sysj/stationStubs.sysj line: 89, column: 4
+                              S12394=1;
+                              if(!doneCapper_o.isACK()){//sysj/stationStubs.sysj line: 89, column: 4
+                                doneCapper_o.setREQ(false);//sysj/stationStubs.sysj line: 89, column: 4
+                                ends[5]=2;
+                                ;//sysj/stationStubs.sysj line: 89, column: 4
+                                S12364=3;
+                                active[5]=1;
+                                ends[5]=1;
+                                tdone[5]=1;
+                              }
+                              else {
+                                active[5]=1;
+                                ends[5]=1;
+                                tdone[5]=1;
+                              }
+                            }
+                            else {
+                              active[5]=1;
+                              ends[5]=1;
+                              tdone[5]=1;
+                            }
+                          }
+                        }
+                      }
+                      else {
+                        active[5]=1;
+                        ends[5]=1;
+                        tdone[5]=1;
+                      }
+                      break;
+                    
+                  }
+                }
+                break;
+              
+              case 1 : 
+                S12348=1;
+                S12348=0;
+                if(!startCapper_in.isPartnerPresent() || startCapper_in.isPartnerPreempted()){//sysj/stationStubs.sysj line: 83, column: 4
+                  startCapper_in.setACK(false);//sysj/stationStubs.sysj line: 83, column: 4
+                  S12348=1;
+                  active[5]=1;
+                  ends[5]=1;
+                  tdone[5]=1;
+                }
+                else {
+                  S12343=0;
+                  if(!startCapper_in.isREQ()){//sysj/stationStubs.sysj line: 83, column: 4
+                    startCapper_in.setACK(true);//sysj/stationStubs.sysj line: 83, column: 4
+                    S12343=1;
+                    if(startCapper_in.isREQ()){//sysj/stationStubs.sysj line: 83, column: 4
+                      startCapper_in.setACK(false);//sysj/stationStubs.sysj line: 83, column: 4
+                      ends[5]=2;
+                      ;//sysj/stationStubs.sysj line: 83, column: 4
+                      b_thread_5 = ((Integer)(startCapper_in.getVal() == null ? null : ((Integer)startCapper_in.getVal()))).intValue();//sysj/stationStubs.sysj line: 84, column: 4
+                      if(b_thread_5 != 0) {//sysj/stationStubs.sysj line: 85, column: 14
+                        System.out.println("[ST] Capper: screwing cap on bottle " + b_thread_5 + ".");//sysj/stationStubs.sysj line: 85, column: 16
+                      }
+                      t_thread_5 = (b_thread_5 == 0) ? 0 : CAP_thread_5;//sysj/stationStubs.sysj line: 86, column: 4
+                      S12364=1;
+                      if(t_thread_5 > 0){//sysj/stationStubs.sysj line: 87, column: 10
+                        t_thread_5 = t_thread_5 - 1;//sysj/stationStubs.sysj line: 87, column: 18
+                        active[5]=1;
+                        ends[5]=1;
+                        tdone[5]=1;
+                      }
+                      else {
+                        ends[5]=2;
+                        ;//sysj/stationStubs.sysj line: 87, column: 4
+                        if(b_thread_5 != 0) {//sysj/stationStubs.sysj line: 88, column: 14
+                          System.out.println("[ST] Capper: bottle " + b_thread_5 + " complete.");//sysj/stationStubs.sysj line: 88, column: 16
+                        }
+                        S12364=2;
+                        S12399=0;
+                        if(!doneCapper_o.isPartnerPresent() || doneCapper_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 89, column: 4
+                          doneCapper_o.setREQ(false);//sysj/stationStubs.sysj line: 89, column: 4
+                          S12399=1;
+                          active[5]=1;
+                          ends[5]=1;
+                          tdone[5]=1;
+                        }
+                        else {
+                          S12394=0;
+                          if(doneCapper_o.isACK()){//sysj/stationStubs.sysj line: 89, column: 4
+                            doneCapper_o.setVal(b_thread_5);//sysj/stationStubs.sysj line: 89, column: 4
+                            S12394=1;
+                            if(!doneCapper_o.isACK()){//sysj/stationStubs.sysj line: 89, column: 4
+                              doneCapper_o.setREQ(false);//sysj/stationStubs.sysj line: 89, column: 4
+                              ends[5]=2;
+                              ;//sysj/stationStubs.sysj line: 89, column: 4
+                              S12364=3;
+                              active[5]=1;
+                              ends[5]=1;
+                              tdone[5]=1;
+                            }
+                            else {
+                              active[5]=1;
+                              ends[5]=1;
+                              tdone[5]=1;
+                            }
+                          }
+                          else {
+                            active[5]=1;
+                            ends[5]=1;
+                            tdone[5]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      active[5]=1;
+                      ends[5]=1;
+                      tdone[5]=1;
+                    }
+                  }
+                  else {
+                    active[5]=1;
+                    ends[5]=1;
+                    tdone[5]=1;
+                  }
+                }
+                break;
+              
             }
             break;
           
           case 1 : 
-            if(t_thread_5 > 0){//sysj\stationStubs.sysj line: 73, column: 10
-              t_thread_5 = t_thread_5 - 1;//sysj\stationStubs.sysj line: 73, column: 18
+            if(t_thread_5 > 0){//sysj/stationStubs.sysj line: 87, column: 10
+              t_thread_5 = t_thread_5 - 1;//sysj/stationStubs.sysj line: 87, column: 18
               active[5]=1;
               ends[5]=1;
               tdone[5]=1;
             }
             else {
               ends[5]=2;
-              ;//sysj\stationStubs.sysj line: 73, column: 4
-              System.out.println("[ST] Capper: complete.");//sysj\stationStubs.sysj line: 74, column: 4
-              capperDone.setPresent();//sysj\stationStubs.sysj line: 75, column: 4
-              currsigs.addElement(capperDone);
-              S4423=2;
-              active[5]=1;
-              ends[5]=1;
-              tdone[5]=1;
+              ;//sysj/stationStubs.sysj line: 87, column: 4
+              if(b_thread_5 != 0) {//sysj/stationStubs.sysj line: 88, column: 14
+                System.out.println("[ST] Capper: bottle " + b_thread_5 + " complete.");//sysj/stationStubs.sysj line: 88, column: 16
+              }
+              S12364=2;
+              S12399=0;
+              if(!doneCapper_o.isPartnerPresent() || doneCapper_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 89, column: 4
+                doneCapper_o.setREQ(false);//sysj/stationStubs.sysj line: 89, column: 4
+                S12399=1;
+                active[5]=1;
+                ends[5]=1;
+                tdone[5]=1;
+              }
+              else {
+                S12394=0;
+                if(doneCapper_o.isACK()){//sysj/stationStubs.sysj line: 89, column: 4
+                  doneCapper_o.setVal(b_thread_5);//sysj/stationStubs.sysj line: 89, column: 4
+                  S12394=1;
+                  if(!doneCapper_o.isACK()){//sysj/stationStubs.sysj line: 89, column: 4
+                    doneCapper_o.setREQ(false);//sysj/stationStubs.sysj line: 89, column: 4
+                    ends[5]=2;
+                    ;//sysj/stationStubs.sysj line: 89, column: 4
+                    S12364=3;
+                    active[5]=1;
+                    ends[5]=1;
+                    tdone[5]=1;
+                  }
+                  else {
+                    active[5]=1;
+                    ends[5]=1;
+                    tdone[5]=1;
+                  }
+                }
+                else {
+                  active[5]=1;
+                  ends[5]=1;
+                  tdone[5]=1;
+                }
+              }
             }
             break;
           
           case 2 : 
-            S4423=2;
-            capperDone.setPresent();//sysj\stationStubs.sysj line: 76, column: 4
-            currsigs.addElement(capperDone);
-            S4423=3;
-            active[5]=1;
-            ends[5]=1;
-            tdone[5]=1;
+            switch(S12399){
+              case 0 : 
+                if(!doneCapper_o.isPartnerPresent() || doneCapper_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 89, column: 4
+                  doneCapper_o.setREQ(false);//sysj/stationStubs.sysj line: 89, column: 4
+                  S12399=1;
+                  active[5]=1;
+                  ends[5]=1;
+                  tdone[5]=1;
+                }
+                else {
+                  switch(S12394){
+                    case 0 : 
+                      if(doneCapper_o.isACK()){//sysj/stationStubs.sysj line: 89, column: 4
+                        doneCapper_o.setVal(b_thread_5);//sysj/stationStubs.sysj line: 89, column: 4
+                        S12394=1;
+                        if(!doneCapper_o.isACK()){//sysj/stationStubs.sysj line: 89, column: 4
+                          doneCapper_o.setREQ(false);//sysj/stationStubs.sysj line: 89, column: 4
+                          ends[5]=2;
+                          ;//sysj/stationStubs.sysj line: 89, column: 4
+                          S12364=3;
+                          active[5]=1;
+                          ends[5]=1;
+                          tdone[5]=1;
+                        }
+                        else {
+                          active[5]=1;
+                          ends[5]=1;
+                          tdone[5]=1;
+                        }
+                      }
+                      else {
+                        active[5]=1;
+                        ends[5]=1;
+                        tdone[5]=1;
+                      }
+                      break;
+                    
+                    case 1 : 
+                      if(!doneCapper_o.isACK()){//sysj/stationStubs.sysj line: 89, column: 4
+                        doneCapper_o.setREQ(false);//sysj/stationStubs.sysj line: 89, column: 4
+                        ends[5]=2;
+                        ;//sysj/stationStubs.sysj line: 89, column: 4
+                        S12364=3;
+                        active[5]=1;
+                        ends[5]=1;
+                        tdone[5]=1;
+                      }
+                      else {
+                        active[5]=1;
+                        ends[5]=1;
+                        tdone[5]=1;
+                      }
+                      break;
+                    
+                  }
+                }
+                break;
+              
+              case 1 : 
+                S12399=1;
+                S12399=0;
+                if(!doneCapper_o.isPartnerPresent() || doneCapper_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 89, column: 4
+                  doneCapper_o.setREQ(false);//sysj/stationStubs.sysj line: 89, column: 4
+                  S12399=1;
+                  active[5]=1;
+                  ends[5]=1;
+                  tdone[5]=1;
+                }
+                else {
+                  S12394=0;
+                  if(doneCapper_o.isACK()){//sysj/stationStubs.sysj line: 89, column: 4
+                    doneCapper_o.setVal(b_thread_5);//sysj/stationStubs.sysj line: 89, column: 4
+                    S12394=1;
+                    if(!doneCapper_o.isACK()){//sysj/stationStubs.sysj line: 89, column: 4
+                      doneCapper_o.setREQ(false);//sysj/stationStubs.sysj line: 89, column: 4
+                      ends[5]=2;
+                      ;//sysj/stationStubs.sysj line: 89, column: 4
+                      S12364=3;
+                      active[5]=1;
+                      ends[5]=1;
+                      tdone[5]=1;
+                    }
+                    else {
+                      active[5]=1;
+                      ends[5]=1;
+                      tdone[5]=1;
+                    }
+                  }
+                  else {
+                    active[5]=1;
+                    ends[5]=1;
+                    tdone[5]=1;
+                  }
+                }
+                break;
+              
+            }
             break;
           
           case 3 : 
-            S4423=3;
-            capperDone.setPresent();//sysj\stationStubs.sysj line: 77, column: 4
-            currsigs.addElement(capperDone);
-            S4423=4;
-            active[5]=1;
-            ends[5]=1;
-            tdone[5]=1;
-            break;
-          
-          case 4 : 
-            S4423=4;
-            S4423=5;
-            if(!enableCapper.getprestatus()){//sysj\stationStubs.sysj line: 78, column: 20
-              S4423=0;
-              if(enableCapper.getprestatus()){//sysj\stationStubs.sysj line: 70, column: 20
-                System.out.println("[ST] Capper: screwing cap.");//sysj\stationStubs.sysj line: 71, column: 4
-                t_thread_5 = CAP_thread_5;//sysj\stationStubs.sysj line: 72, column: 4
-                S4423=1;
-                if(t_thread_5 > 0){//sysj\stationStubs.sysj line: 73, column: 10
-                  t_thread_5 = t_thread_5 - 1;//sysj\stationStubs.sysj line: 73, column: 18
-                  active[5]=1;
-                  ends[5]=1;
-                  tdone[5]=1;
+            S12364=3;
+            S12364=0;
+            S12348=0;
+            if(!startCapper_in.isPartnerPresent() || startCapper_in.isPartnerPreempted()){//sysj/stationStubs.sysj line: 83, column: 4
+              startCapper_in.setACK(false);//sysj/stationStubs.sysj line: 83, column: 4
+              S12348=1;
+              active[5]=1;
+              ends[5]=1;
+              tdone[5]=1;
+            }
+            else {
+              S12343=0;
+              if(!startCapper_in.isREQ()){//sysj/stationStubs.sysj line: 83, column: 4
+                startCapper_in.setACK(true);//sysj/stationStubs.sysj line: 83, column: 4
+                S12343=1;
+                if(startCapper_in.isREQ()){//sysj/stationStubs.sysj line: 83, column: 4
+                  startCapper_in.setACK(false);//sysj/stationStubs.sysj line: 83, column: 4
+                  ends[5]=2;
+                  ;//sysj/stationStubs.sysj line: 83, column: 4
+                  b_thread_5 = ((Integer)(startCapper_in.getVal() == null ? null : ((Integer)startCapper_in.getVal()))).intValue();//sysj/stationStubs.sysj line: 84, column: 4
+                  if(b_thread_5 != 0) {//sysj/stationStubs.sysj line: 85, column: 14
+                    System.out.println("[ST] Capper: screwing cap on bottle " + b_thread_5 + ".");//sysj/stationStubs.sysj line: 85, column: 16
+                  }
+                  t_thread_5 = (b_thread_5 == 0) ? 0 : CAP_thread_5;//sysj/stationStubs.sysj line: 86, column: 4
+                  S12364=1;
+                  if(t_thread_5 > 0){//sysj/stationStubs.sysj line: 87, column: 10
+                    t_thread_5 = t_thread_5 - 1;//sysj/stationStubs.sysj line: 87, column: 18
+                    active[5]=1;
+                    ends[5]=1;
+                    tdone[5]=1;
+                  }
+                  else {
+                    ends[5]=2;
+                    ;//sysj/stationStubs.sysj line: 87, column: 4
+                    if(b_thread_5 != 0) {//sysj/stationStubs.sysj line: 88, column: 14
+                      System.out.println("[ST] Capper: bottle " + b_thread_5 + " complete.");//sysj/stationStubs.sysj line: 88, column: 16
+                    }
+                    S12364=2;
+                    S12399=0;
+                    if(!doneCapper_o.isPartnerPresent() || doneCapper_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 89, column: 4
+                      doneCapper_o.setREQ(false);//sysj/stationStubs.sysj line: 89, column: 4
+                      S12399=1;
+                      active[5]=1;
+                      ends[5]=1;
+                      tdone[5]=1;
+                    }
+                    else {
+                      S12394=0;
+                      if(doneCapper_o.isACK()){//sysj/stationStubs.sysj line: 89, column: 4
+                        doneCapper_o.setVal(b_thread_5);//sysj/stationStubs.sysj line: 89, column: 4
+                        S12394=1;
+                        if(!doneCapper_o.isACK()){//sysj/stationStubs.sysj line: 89, column: 4
+                          doneCapper_o.setREQ(false);//sysj/stationStubs.sysj line: 89, column: 4
+                          ends[5]=2;
+                          ;//sysj/stationStubs.sysj line: 89, column: 4
+                          S12364=3;
+                          active[5]=1;
+                          ends[5]=1;
+                          tdone[5]=1;
+                        }
+                        else {
+                          active[5]=1;
+                          ends[5]=1;
+                          tdone[5]=1;
+                        }
+                      }
+                      else {
+                        active[5]=1;
+                        ends[5]=1;
+                        tdone[5]=1;
+                      }
+                    }
+                  }
                 }
                 else {
-                  ends[5]=2;
-                  ;//sysj\stationStubs.sysj line: 73, column: 4
-                  System.out.println("[ST] Capper: complete.");//sysj\stationStubs.sysj line: 74, column: 4
-                  capperDone.setPresent();//sysj\stationStubs.sysj line: 75, column: 4
-                  currsigs.addElement(capperDone);
-                  S4423=2;
                   active[5]=1;
                   ends[5]=1;
                   tdone[5]=1;
@@ -153,49 +558,6 @@ public class StationStubs extends ClockDomain{
                 ends[5]=1;
                 tdone[5]=1;
               }
-            }
-            else {
-              active[5]=1;
-              ends[5]=1;
-              tdone[5]=1;
-            }
-            break;
-          
-          case 5 : 
-            if(!enableCapper.getprestatus()){//sysj\stationStubs.sysj line: 78, column: 20
-              S4423=0;
-              if(enableCapper.getprestatus()){//sysj\stationStubs.sysj line: 70, column: 20
-                System.out.println("[ST] Capper: screwing cap.");//sysj\stationStubs.sysj line: 71, column: 4
-                t_thread_5 = CAP_thread_5;//sysj\stationStubs.sysj line: 72, column: 4
-                S4423=1;
-                if(t_thread_5 > 0){//sysj\stationStubs.sysj line: 73, column: 10
-                  t_thread_5 = t_thread_5 - 1;//sysj\stationStubs.sysj line: 73, column: 18
-                  active[5]=1;
-                  ends[5]=1;
-                  tdone[5]=1;
-                }
-                else {
-                  ends[5]=2;
-                  ;//sysj\stationStubs.sysj line: 73, column: 4
-                  System.out.println("[ST] Capper: complete.");//sysj\stationStubs.sysj line: 74, column: 4
-                  capperDone.setPresent();//sysj\stationStubs.sysj line: 75, column: 4
-                  currsigs.addElement(capperDone);
-                  S4423=2;
-                  active[5]=1;
-                  ends[5]=1;
-                  tdone[5]=1;
-                }
-              }
-              else {
-                active[5]=1;
-                ends[5]=1;
-                tdone[5]=1;
-              }
-            }
-            else {
-              active[5]=1;
-              ends[5]=1;
-              tdone[5]=1;
             }
             break;
           
@@ -205,8 +567,8 @@ public class StationStubs extends ClockDomain{
     }
   }
 
-  public void thread4634(int [] tdone, int [] ends){
-        switch(S4421){
+  public void thread13319(int [] tdone, int [] ends){
+        switch(S12340){
       case 0 : 
         active[4]=0;
         ends[4]=0;
@@ -214,99 +576,484 @@ public class StationStubs extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S4221){
+        switch(S11396){
           case 0 : 
-            if(enableLid.getprestatus()){//sysj\stationStubs.sysj line: 55, column: 20
-              System.out.println("[ST] Lid loader: placing lid.");//sysj\stationStubs.sysj line: 56, column: 4
-              t_thread_4 = LID_thread_4;//sysj\stationStubs.sysj line: 57, column: 4
-              S4221=1;
-              if(t_thread_4 > 0){//sysj\stationStubs.sysj line: 58, column: 10
-                t_thread_4 = t_thread_4 - 1;//sysj\stationStubs.sysj line: 58, column: 18
-                active[4]=1;
-                ends[4]=1;
-                tdone[4]=1;
-              }
-              else {
-                ends[4]=2;
-                ;//sysj\stationStubs.sysj line: 58, column: 4
-                System.out.println("[ST] Lid loader: complete.");//sysj\stationStubs.sysj line: 59, column: 4
-                lidDone.setPresent();//sysj\stationStubs.sysj line: 60, column: 4
-                currsigs.addElement(lidDone);
-                S4221=2;
-                active[4]=1;
-                ends[4]=1;
-                tdone[4]=1;
-              }
-            }
-            else {
-              active[4]=1;
-              ends[4]=1;
-              tdone[4]=1;
+            switch(S11380){
+              case 0 : 
+                if(!startLid_in.isPartnerPresent() || startLid_in.isPartnerPreempted()){//sysj/stationStubs.sysj line: 67, column: 4
+                  startLid_in.setACK(false);//sysj/stationStubs.sysj line: 67, column: 4
+                  S11380=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
+                }
+                else {
+                  switch(S11375){
+                    case 0 : 
+                      if(!startLid_in.isREQ()){//sysj/stationStubs.sysj line: 67, column: 4
+                        startLid_in.setACK(true);//sysj/stationStubs.sysj line: 67, column: 4
+                        S11375=1;
+                        if(startLid_in.isREQ()){//sysj/stationStubs.sysj line: 67, column: 4
+                          startLid_in.setACK(false);//sysj/stationStubs.sysj line: 67, column: 4
+                          ends[4]=2;
+                          ;//sysj/stationStubs.sysj line: 67, column: 4
+                          b_thread_4 = ((Integer)(startLid_in.getVal() == null ? null : ((Integer)startLid_in.getVal()))).intValue();//sysj/stationStubs.sysj line: 68, column: 4
+                          if(b_thread_4 != 0) {//sysj/stationStubs.sysj line: 69, column: 14
+                            System.out.println("[ST] Lid loader: placing lid on bottle " + b_thread_4 + ".");//sysj/stationStubs.sysj line: 69, column: 16
+                          }
+                          t_thread_4 = (b_thread_4 == 0) ? 0 : LID_thread_4;//sysj/stationStubs.sysj line: 70, column: 4
+                          S11396=1;
+                          if(t_thread_4 > 0){//sysj/stationStubs.sysj line: 71, column: 10
+                            t_thread_4 = t_thread_4 - 1;//sysj/stationStubs.sysj line: 71, column: 18
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
+                          }
+                          else {
+                            ends[4]=2;
+                            ;//sysj/stationStubs.sysj line: 71, column: 4
+                            if(b_thread_4 != 0) {//sysj/stationStubs.sysj line: 72, column: 14
+                              System.out.println("[ST] Lid loader: bottle " + b_thread_4 + " complete.");//sysj/stationStubs.sysj line: 72, column: 16
+                            }
+                            S11396=2;
+                            S11431=0;
+                            if(!doneLid_o.isPartnerPresent() || doneLid_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 73, column: 4
+                              doneLid_o.setREQ(false);//sysj/stationStubs.sysj line: 73, column: 4
+                              S11431=1;
+                              active[4]=1;
+                              ends[4]=1;
+                              tdone[4]=1;
+                            }
+                            else {
+                              S11426=0;
+                              if(doneLid_o.isACK()){//sysj/stationStubs.sysj line: 73, column: 4
+                                doneLid_o.setVal(b_thread_4);//sysj/stationStubs.sysj line: 73, column: 4
+                                S11426=1;
+                                if(!doneLid_o.isACK()){//sysj/stationStubs.sysj line: 73, column: 4
+                                  doneLid_o.setREQ(false);//sysj/stationStubs.sysj line: 73, column: 4
+                                  ends[4]=2;
+                                  ;//sysj/stationStubs.sysj line: 73, column: 4
+                                  S11396=3;
+                                  active[4]=1;
+                                  ends[4]=1;
+                                  tdone[4]=1;
+                                }
+                                else {
+                                  active[4]=1;
+                                  ends[4]=1;
+                                  tdone[4]=1;
+                                }
+                              }
+                              else {
+                                active[4]=1;
+                                ends[4]=1;
+                                tdone[4]=1;
+                              }
+                            }
+                          }
+                        }
+                        else {
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
+                        }
+                      }
+                      else {
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      break;
+                    
+                    case 1 : 
+                      if(startLid_in.isREQ()){//sysj/stationStubs.sysj line: 67, column: 4
+                        startLid_in.setACK(false);//sysj/stationStubs.sysj line: 67, column: 4
+                        ends[4]=2;
+                        ;//sysj/stationStubs.sysj line: 67, column: 4
+                        b_thread_4 = ((Integer)(startLid_in.getVal() == null ? null : ((Integer)startLid_in.getVal()))).intValue();//sysj/stationStubs.sysj line: 68, column: 4
+                        if(b_thread_4 != 0) {//sysj/stationStubs.sysj line: 69, column: 14
+                          System.out.println("[ST] Lid loader: placing lid on bottle " + b_thread_4 + ".");//sysj/stationStubs.sysj line: 69, column: 16
+                        }
+                        t_thread_4 = (b_thread_4 == 0) ? 0 : LID_thread_4;//sysj/stationStubs.sysj line: 70, column: 4
+                        S11396=1;
+                        if(t_thread_4 > 0){//sysj/stationStubs.sysj line: 71, column: 10
+                          t_thread_4 = t_thread_4 - 1;//sysj/stationStubs.sysj line: 71, column: 18
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
+                        }
+                        else {
+                          ends[4]=2;
+                          ;//sysj/stationStubs.sysj line: 71, column: 4
+                          if(b_thread_4 != 0) {//sysj/stationStubs.sysj line: 72, column: 14
+                            System.out.println("[ST] Lid loader: bottle " + b_thread_4 + " complete.");//sysj/stationStubs.sysj line: 72, column: 16
+                          }
+                          S11396=2;
+                          S11431=0;
+                          if(!doneLid_o.isPartnerPresent() || doneLid_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 73, column: 4
+                            doneLid_o.setREQ(false);//sysj/stationStubs.sysj line: 73, column: 4
+                            S11431=1;
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
+                          }
+                          else {
+                            S11426=0;
+                            if(doneLid_o.isACK()){//sysj/stationStubs.sysj line: 73, column: 4
+                              doneLid_o.setVal(b_thread_4);//sysj/stationStubs.sysj line: 73, column: 4
+                              S11426=1;
+                              if(!doneLid_o.isACK()){//sysj/stationStubs.sysj line: 73, column: 4
+                                doneLid_o.setREQ(false);//sysj/stationStubs.sysj line: 73, column: 4
+                                ends[4]=2;
+                                ;//sysj/stationStubs.sysj line: 73, column: 4
+                                S11396=3;
+                                active[4]=1;
+                                ends[4]=1;
+                                tdone[4]=1;
+                              }
+                              else {
+                                active[4]=1;
+                                ends[4]=1;
+                                tdone[4]=1;
+                              }
+                            }
+                            else {
+                              active[4]=1;
+                              ends[4]=1;
+                              tdone[4]=1;
+                            }
+                          }
+                        }
+                      }
+                      else {
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      break;
+                    
+                  }
+                }
+                break;
+              
+              case 1 : 
+                S11380=1;
+                S11380=0;
+                if(!startLid_in.isPartnerPresent() || startLid_in.isPartnerPreempted()){//sysj/stationStubs.sysj line: 67, column: 4
+                  startLid_in.setACK(false);//sysj/stationStubs.sysj line: 67, column: 4
+                  S11380=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
+                }
+                else {
+                  S11375=0;
+                  if(!startLid_in.isREQ()){//sysj/stationStubs.sysj line: 67, column: 4
+                    startLid_in.setACK(true);//sysj/stationStubs.sysj line: 67, column: 4
+                    S11375=1;
+                    if(startLid_in.isREQ()){//sysj/stationStubs.sysj line: 67, column: 4
+                      startLid_in.setACK(false);//sysj/stationStubs.sysj line: 67, column: 4
+                      ends[4]=2;
+                      ;//sysj/stationStubs.sysj line: 67, column: 4
+                      b_thread_4 = ((Integer)(startLid_in.getVal() == null ? null : ((Integer)startLid_in.getVal()))).intValue();//sysj/stationStubs.sysj line: 68, column: 4
+                      if(b_thread_4 != 0) {//sysj/stationStubs.sysj line: 69, column: 14
+                        System.out.println("[ST] Lid loader: placing lid on bottle " + b_thread_4 + ".");//sysj/stationStubs.sysj line: 69, column: 16
+                      }
+                      t_thread_4 = (b_thread_4 == 0) ? 0 : LID_thread_4;//sysj/stationStubs.sysj line: 70, column: 4
+                      S11396=1;
+                      if(t_thread_4 > 0){//sysj/stationStubs.sysj line: 71, column: 10
+                        t_thread_4 = t_thread_4 - 1;//sysj/stationStubs.sysj line: 71, column: 18
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      else {
+                        ends[4]=2;
+                        ;//sysj/stationStubs.sysj line: 71, column: 4
+                        if(b_thread_4 != 0) {//sysj/stationStubs.sysj line: 72, column: 14
+                          System.out.println("[ST] Lid loader: bottle " + b_thread_4 + " complete.");//sysj/stationStubs.sysj line: 72, column: 16
+                        }
+                        S11396=2;
+                        S11431=0;
+                        if(!doneLid_o.isPartnerPresent() || doneLid_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 73, column: 4
+                          doneLid_o.setREQ(false);//sysj/stationStubs.sysj line: 73, column: 4
+                          S11431=1;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
+                        }
+                        else {
+                          S11426=0;
+                          if(doneLid_o.isACK()){//sysj/stationStubs.sysj line: 73, column: 4
+                            doneLid_o.setVal(b_thread_4);//sysj/stationStubs.sysj line: 73, column: 4
+                            S11426=1;
+                            if(!doneLid_o.isACK()){//sysj/stationStubs.sysj line: 73, column: 4
+                              doneLid_o.setREQ(false);//sysj/stationStubs.sysj line: 73, column: 4
+                              ends[4]=2;
+                              ;//sysj/stationStubs.sysj line: 73, column: 4
+                              S11396=3;
+                              active[4]=1;
+                              ends[4]=1;
+                              tdone[4]=1;
+                            }
+                            else {
+                              active[4]=1;
+                              ends[4]=1;
+                              tdone[4]=1;
+                            }
+                          }
+                          else {
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
+                    }
+                  }
+                  else {
+                    active[4]=1;
+                    ends[4]=1;
+                    tdone[4]=1;
+                  }
+                }
+                break;
+              
             }
             break;
           
           case 1 : 
-            if(t_thread_4 > 0){//sysj\stationStubs.sysj line: 58, column: 10
-              t_thread_4 = t_thread_4 - 1;//sysj\stationStubs.sysj line: 58, column: 18
+            if(t_thread_4 > 0){//sysj/stationStubs.sysj line: 71, column: 10
+              t_thread_4 = t_thread_4 - 1;//sysj/stationStubs.sysj line: 71, column: 18
               active[4]=1;
               ends[4]=1;
               tdone[4]=1;
             }
             else {
               ends[4]=2;
-              ;//sysj\stationStubs.sysj line: 58, column: 4
-              System.out.println("[ST] Lid loader: complete.");//sysj\stationStubs.sysj line: 59, column: 4
-              lidDone.setPresent();//sysj\stationStubs.sysj line: 60, column: 4
-              currsigs.addElement(lidDone);
-              S4221=2;
-              active[4]=1;
-              ends[4]=1;
-              tdone[4]=1;
+              ;//sysj/stationStubs.sysj line: 71, column: 4
+              if(b_thread_4 != 0) {//sysj/stationStubs.sysj line: 72, column: 14
+                System.out.println("[ST] Lid loader: bottle " + b_thread_4 + " complete.");//sysj/stationStubs.sysj line: 72, column: 16
+              }
+              S11396=2;
+              S11431=0;
+              if(!doneLid_o.isPartnerPresent() || doneLid_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 73, column: 4
+                doneLid_o.setREQ(false);//sysj/stationStubs.sysj line: 73, column: 4
+                S11431=1;
+                active[4]=1;
+                ends[4]=1;
+                tdone[4]=1;
+              }
+              else {
+                S11426=0;
+                if(doneLid_o.isACK()){//sysj/stationStubs.sysj line: 73, column: 4
+                  doneLid_o.setVal(b_thread_4);//sysj/stationStubs.sysj line: 73, column: 4
+                  S11426=1;
+                  if(!doneLid_o.isACK()){//sysj/stationStubs.sysj line: 73, column: 4
+                    doneLid_o.setREQ(false);//sysj/stationStubs.sysj line: 73, column: 4
+                    ends[4]=2;
+                    ;//sysj/stationStubs.sysj line: 73, column: 4
+                    S11396=3;
+                    active[4]=1;
+                    ends[4]=1;
+                    tdone[4]=1;
+                  }
+                  else {
+                    active[4]=1;
+                    ends[4]=1;
+                    tdone[4]=1;
+                  }
+                }
+                else {
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
+                }
+              }
             }
             break;
           
           case 2 : 
-            S4221=2;
-            lidDone.setPresent();//sysj\stationStubs.sysj line: 61, column: 4
-            currsigs.addElement(lidDone);
-            S4221=3;
-            active[4]=1;
-            ends[4]=1;
-            tdone[4]=1;
+            switch(S11431){
+              case 0 : 
+                if(!doneLid_o.isPartnerPresent() || doneLid_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 73, column: 4
+                  doneLid_o.setREQ(false);//sysj/stationStubs.sysj line: 73, column: 4
+                  S11431=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
+                }
+                else {
+                  switch(S11426){
+                    case 0 : 
+                      if(doneLid_o.isACK()){//sysj/stationStubs.sysj line: 73, column: 4
+                        doneLid_o.setVal(b_thread_4);//sysj/stationStubs.sysj line: 73, column: 4
+                        S11426=1;
+                        if(!doneLid_o.isACK()){//sysj/stationStubs.sysj line: 73, column: 4
+                          doneLid_o.setREQ(false);//sysj/stationStubs.sysj line: 73, column: 4
+                          ends[4]=2;
+                          ;//sysj/stationStubs.sysj line: 73, column: 4
+                          S11396=3;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
+                        }
+                        else {
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
+                        }
+                      }
+                      else {
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      break;
+                    
+                    case 1 : 
+                      if(!doneLid_o.isACK()){//sysj/stationStubs.sysj line: 73, column: 4
+                        doneLid_o.setREQ(false);//sysj/stationStubs.sysj line: 73, column: 4
+                        ends[4]=2;
+                        ;//sysj/stationStubs.sysj line: 73, column: 4
+                        S11396=3;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      else {
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      break;
+                    
+                  }
+                }
+                break;
+              
+              case 1 : 
+                S11431=1;
+                S11431=0;
+                if(!doneLid_o.isPartnerPresent() || doneLid_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 73, column: 4
+                  doneLid_o.setREQ(false);//sysj/stationStubs.sysj line: 73, column: 4
+                  S11431=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
+                }
+                else {
+                  S11426=0;
+                  if(doneLid_o.isACK()){//sysj/stationStubs.sysj line: 73, column: 4
+                    doneLid_o.setVal(b_thread_4);//sysj/stationStubs.sysj line: 73, column: 4
+                    S11426=1;
+                    if(!doneLid_o.isACK()){//sysj/stationStubs.sysj line: 73, column: 4
+                      doneLid_o.setREQ(false);//sysj/stationStubs.sysj line: 73, column: 4
+                      ends[4]=2;
+                      ;//sysj/stationStubs.sysj line: 73, column: 4
+                      S11396=3;
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
+                    }
+                    else {
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
+                    }
+                  }
+                  else {
+                    active[4]=1;
+                    ends[4]=1;
+                    tdone[4]=1;
+                  }
+                }
+                break;
+              
+            }
             break;
           
           case 3 : 
-            S4221=3;
-            lidDone.setPresent();//sysj\stationStubs.sysj line: 62, column: 4
-            currsigs.addElement(lidDone);
-            S4221=4;
-            active[4]=1;
-            ends[4]=1;
-            tdone[4]=1;
-            break;
-          
-          case 4 : 
-            S4221=4;
-            S4221=5;
-            if(!enableLid.getprestatus()){//sysj\stationStubs.sysj line: 63, column: 20
-              S4221=0;
-              if(enableLid.getprestatus()){//sysj\stationStubs.sysj line: 55, column: 20
-                System.out.println("[ST] Lid loader: placing lid.");//sysj\stationStubs.sysj line: 56, column: 4
-                t_thread_4 = LID_thread_4;//sysj\stationStubs.sysj line: 57, column: 4
-                S4221=1;
-                if(t_thread_4 > 0){//sysj\stationStubs.sysj line: 58, column: 10
-                  t_thread_4 = t_thread_4 - 1;//sysj\stationStubs.sysj line: 58, column: 18
-                  active[4]=1;
-                  ends[4]=1;
-                  tdone[4]=1;
+            S11396=3;
+            S11396=0;
+            S11380=0;
+            if(!startLid_in.isPartnerPresent() || startLid_in.isPartnerPreempted()){//sysj/stationStubs.sysj line: 67, column: 4
+              startLid_in.setACK(false);//sysj/stationStubs.sysj line: 67, column: 4
+              S11380=1;
+              active[4]=1;
+              ends[4]=1;
+              tdone[4]=1;
+            }
+            else {
+              S11375=0;
+              if(!startLid_in.isREQ()){//sysj/stationStubs.sysj line: 67, column: 4
+                startLid_in.setACK(true);//sysj/stationStubs.sysj line: 67, column: 4
+                S11375=1;
+                if(startLid_in.isREQ()){//sysj/stationStubs.sysj line: 67, column: 4
+                  startLid_in.setACK(false);//sysj/stationStubs.sysj line: 67, column: 4
+                  ends[4]=2;
+                  ;//sysj/stationStubs.sysj line: 67, column: 4
+                  b_thread_4 = ((Integer)(startLid_in.getVal() == null ? null : ((Integer)startLid_in.getVal()))).intValue();//sysj/stationStubs.sysj line: 68, column: 4
+                  if(b_thread_4 != 0) {//sysj/stationStubs.sysj line: 69, column: 14
+                    System.out.println("[ST] Lid loader: placing lid on bottle " + b_thread_4 + ".");//sysj/stationStubs.sysj line: 69, column: 16
+                  }
+                  t_thread_4 = (b_thread_4 == 0) ? 0 : LID_thread_4;//sysj/stationStubs.sysj line: 70, column: 4
+                  S11396=1;
+                  if(t_thread_4 > 0){//sysj/stationStubs.sysj line: 71, column: 10
+                    t_thread_4 = t_thread_4 - 1;//sysj/stationStubs.sysj line: 71, column: 18
+                    active[4]=1;
+                    ends[4]=1;
+                    tdone[4]=1;
+                  }
+                  else {
+                    ends[4]=2;
+                    ;//sysj/stationStubs.sysj line: 71, column: 4
+                    if(b_thread_4 != 0) {//sysj/stationStubs.sysj line: 72, column: 14
+                      System.out.println("[ST] Lid loader: bottle " + b_thread_4 + " complete.");//sysj/stationStubs.sysj line: 72, column: 16
+                    }
+                    S11396=2;
+                    S11431=0;
+                    if(!doneLid_o.isPartnerPresent() || doneLid_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 73, column: 4
+                      doneLid_o.setREQ(false);//sysj/stationStubs.sysj line: 73, column: 4
+                      S11431=1;
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
+                    }
+                    else {
+                      S11426=0;
+                      if(doneLid_o.isACK()){//sysj/stationStubs.sysj line: 73, column: 4
+                        doneLid_o.setVal(b_thread_4);//sysj/stationStubs.sysj line: 73, column: 4
+                        S11426=1;
+                        if(!doneLid_o.isACK()){//sysj/stationStubs.sysj line: 73, column: 4
+                          doneLid_o.setREQ(false);//sysj/stationStubs.sysj line: 73, column: 4
+                          ends[4]=2;
+                          ;//sysj/stationStubs.sysj line: 73, column: 4
+                          S11396=3;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
+                        }
+                        else {
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
+                        }
+                      }
+                      else {
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                    }
+                  }
                 }
                 else {
-                  ends[4]=2;
-                  ;//sysj\stationStubs.sysj line: 58, column: 4
-                  System.out.println("[ST] Lid loader: complete.");//sysj\stationStubs.sysj line: 59, column: 4
-                  lidDone.setPresent();//sysj\stationStubs.sysj line: 60, column: 4
-                  currsigs.addElement(lidDone);
-                  S4221=2;
                   active[4]=1;
                   ends[4]=1;
                   tdone[4]=1;
@@ -317,49 +1064,6 @@ public class StationStubs extends ClockDomain{
                 ends[4]=1;
                 tdone[4]=1;
               }
-            }
-            else {
-              active[4]=1;
-              ends[4]=1;
-              tdone[4]=1;
-            }
-            break;
-          
-          case 5 : 
-            if(!enableLid.getprestatus()){//sysj\stationStubs.sysj line: 63, column: 20
-              S4221=0;
-              if(enableLid.getprestatus()){//sysj\stationStubs.sysj line: 55, column: 20
-                System.out.println("[ST] Lid loader: placing lid.");//sysj\stationStubs.sysj line: 56, column: 4
-                t_thread_4 = LID_thread_4;//sysj\stationStubs.sysj line: 57, column: 4
-                S4221=1;
-                if(t_thread_4 > 0){//sysj\stationStubs.sysj line: 58, column: 10
-                  t_thread_4 = t_thread_4 - 1;//sysj\stationStubs.sysj line: 58, column: 18
-                  active[4]=1;
-                  ends[4]=1;
-                  tdone[4]=1;
-                }
-                else {
-                  ends[4]=2;
-                  ;//sysj\stationStubs.sysj line: 58, column: 4
-                  System.out.println("[ST] Lid loader: complete.");//sysj\stationStubs.sysj line: 59, column: 4
-                  lidDone.setPresent();//sysj\stationStubs.sysj line: 60, column: 4
-                  currsigs.addElement(lidDone);
-                  S4221=2;
-                  active[4]=1;
-                  ends[4]=1;
-                  tdone[4]=1;
-                }
-              }
-              else {
-                active[4]=1;
-                ends[4]=1;
-                tdone[4]=1;
-              }
-            }
-            else {
-              active[4]=1;
-              ends[4]=1;
-              tdone[4]=1;
             }
             break;
           
@@ -369,8 +1073,8 @@ public class StationStubs extends ClockDomain{
     }
   }
 
-  public void thread4633(int [] tdone, int [] ends){
-        switch(S4219){
+  public void thread13318(int [] tdone, int [] ends){
+        switch(S11372){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -378,99 +1082,484 @@ public class StationStubs extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S4019){
+        switch(S10428){
           case 0 : 
-            if(enableFiller2.getprestatus()){//sysj\stationStubs.sysj line: 40, column: 20
-              System.out.println("[ST] Filler 2: dispensing.");//sysj\stationStubs.sysj line: 41, column: 4
-              t_thread_3 = FILL_thread_3;//sysj\stationStubs.sysj line: 42, column: 4
-              S4019=1;
-              if(t_thread_3 > 0){//sysj\stationStubs.sysj line: 43, column: 10
-                t_thread_3 = t_thread_3 - 1;//sysj\stationStubs.sysj line: 43, column: 18
-                active[3]=1;
-                ends[3]=1;
-                tdone[3]=1;
-              }
-              else {
-                ends[3]=2;
-                ;//sysj\stationStubs.sysj line: 43, column: 4
-                System.out.println("[ST] Filler 2: complete.");//sysj\stationStubs.sysj line: 44, column: 4
-                fillerDone2.setPresent();//sysj\stationStubs.sysj line: 45, column: 4
-                currsigs.addElement(fillerDone2);
-                S4019=2;
-                active[3]=1;
-                ends[3]=1;
-                tdone[3]=1;
-              }
-            }
-            else {
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
+            switch(S10412){
+              case 0 : 
+                if(!startFiller2_in.isPartnerPresent() || startFiller2_in.isPartnerPreempted()){//sysj/stationStubs.sysj line: 49, column: 4
+                  startFiller2_in.setACK(false);//sysj/stationStubs.sysj line: 49, column: 4
+                  S10412=1;
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  switch(S10407){
+                    case 0 : 
+                      if(!startFiller2_in.isREQ()){//sysj/stationStubs.sysj line: 49, column: 4
+                        startFiller2_in.setACK(true);//sysj/stationStubs.sysj line: 49, column: 4
+                        S10407=1;
+                        if(startFiller2_in.isREQ()){//sysj/stationStubs.sysj line: 49, column: 4
+                          startFiller2_in.setACK(false);//sysj/stationStubs.sysj line: 49, column: 4
+                          ends[3]=2;
+                          ;//sysj/stationStubs.sysj line: 49, column: 4
+                          b_thread_3 = ((Integer)(startFiller2_in.getVal() == null ? null : ((Integer)startFiller2_in.getVal()))).intValue();//sysj/stationStubs.sysj line: 50, column: 4
+                          if(b_thread_3 != 0) {//sysj/stationStubs.sysj line: 51, column: 14
+                            System.out.println("[ST] Filler 2: dispensing into bottle " + b_thread_3 + ".");//sysj/stationStubs.sysj line: 51, column: 16
+                          }
+                          t_thread_3 = (b_thread_3 == 0) ? 0 : FILL_thread_3;//sysj/stationStubs.sysj line: 54, column: 4
+                          S10428=1;
+                          if(t_thread_3 > 0){//sysj/stationStubs.sysj line: 55, column: 10
+                            t_thread_3 = t_thread_3 - 1;//sysj/stationStubs.sysj line: 55, column: 18
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                          else {
+                            ends[3]=2;
+                            ;//sysj/stationStubs.sysj line: 55, column: 4
+                            if(b_thread_3 != 0) {//sysj/stationStubs.sysj line: 56, column: 14
+                              System.out.println("[ST] Filler 2: bottle " + b_thread_3 + " complete.");//sysj/stationStubs.sysj line: 56, column: 16
+                            }
+                            S10428=2;
+                            S10463=0;
+                            if(!doneFiller2_o.isPartnerPresent() || doneFiller2_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 57, column: 4
+                              doneFiller2_o.setREQ(false);//sysj/stationStubs.sysj line: 57, column: 4
+                              S10463=1;
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                            else {
+                              S10458=0;
+                              if(doneFiller2_o.isACK()){//sysj/stationStubs.sysj line: 57, column: 4
+                                doneFiller2_o.setVal(b_thread_3);//sysj/stationStubs.sysj line: 57, column: 4
+                                S10458=1;
+                                if(!doneFiller2_o.isACK()){//sysj/stationStubs.sysj line: 57, column: 4
+                                  doneFiller2_o.setREQ(false);//sysj/stationStubs.sysj line: 57, column: 4
+                                  ends[3]=2;
+                                  ;//sysj/stationStubs.sysj line: 57, column: 4
+                                  S10428=3;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                                else {
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                              else {
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                          }
+                        }
+                        else {
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      break;
+                    
+                    case 1 : 
+                      if(startFiller2_in.isREQ()){//sysj/stationStubs.sysj line: 49, column: 4
+                        startFiller2_in.setACK(false);//sysj/stationStubs.sysj line: 49, column: 4
+                        ends[3]=2;
+                        ;//sysj/stationStubs.sysj line: 49, column: 4
+                        b_thread_3 = ((Integer)(startFiller2_in.getVal() == null ? null : ((Integer)startFiller2_in.getVal()))).intValue();//sysj/stationStubs.sysj line: 50, column: 4
+                        if(b_thread_3 != 0) {//sysj/stationStubs.sysj line: 51, column: 14
+                          System.out.println("[ST] Filler 2: dispensing into bottle " + b_thread_3 + ".");//sysj/stationStubs.sysj line: 51, column: 16
+                        }
+                        t_thread_3 = (b_thread_3 == 0) ? 0 : FILL_thread_3;//sysj/stationStubs.sysj line: 54, column: 4
+                        S10428=1;
+                        if(t_thread_3 > 0){//sysj/stationStubs.sysj line: 55, column: 10
+                          t_thread_3 = t_thread_3 - 1;//sysj/stationStubs.sysj line: 55, column: 18
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                        else {
+                          ends[3]=2;
+                          ;//sysj/stationStubs.sysj line: 55, column: 4
+                          if(b_thread_3 != 0) {//sysj/stationStubs.sysj line: 56, column: 14
+                            System.out.println("[ST] Filler 2: bottle " + b_thread_3 + " complete.");//sysj/stationStubs.sysj line: 56, column: 16
+                          }
+                          S10428=2;
+                          S10463=0;
+                          if(!doneFiller2_o.isPartnerPresent() || doneFiller2_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 57, column: 4
+                            doneFiller2_o.setREQ(false);//sysj/stationStubs.sysj line: 57, column: 4
+                            S10463=1;
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                          else {
+                            S10458=0;
+                            if(doneFiller2_o.isACK()){//sysj/stationStubs.sysj line: 57, column: 4
+                              doneFiller2_o.setVal(b_thread_3);//sysj/stationStubs.sysj line: 57, column: 4
+                              S10458=1;
+                              if(!doneFiller2_o.isACK()){//sysj/stationStubs.sysj line: 57, column: 4
+                                doneFiller2_o.setREQ(false);//sysj/stationStubs.sysj line: 57, column: 4
+                                ends[3]=2;
+                                ;//sysj/stationStubs.sysj line: 57, column: 4
+                                S10428=3;
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                              else {
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                            else {
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                        }
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      break;
+                    
+                  }
+                }
+                break;
+              
+              case 1 : 
+                S10412=1;
+                S10412=0;
+                if(!startFiller2_in.isPartnerPresent() || startFiller2_in.isPartnerPreempted()){//sysj/stationStubs.sysj line: 49, column: 4
+                  startFiller2_in.setACK(false);//sysj/stationStubs.sysj line: 49, column: 4
+                  S10412=1;
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  S10407=0;
+                  if(!startFiller2_in.isREQ()){//sysj/stationStubs.sysj line: 49, column: 4
+                    startFiller2_in.setACK(true);//sysj/stationStubs.sysj line: 49, column: 4
+                    S10407=1;
+                    if(startFiller2_in.isREQ()){//sysj/stationStubs.sysj line: 49, column: 4
+                      startFiller2_in.setACK(false);//sysj/stationStubs.sysj line: 49, column: 4
+                      ends[3]=2;
+                      ;//sysj/stationStubs.sysj line: 49, column: 4
+                      b_thread_3 = ((Integer)(startFiller2_in.getVal() == null ? null : ((Integer)startFiller2_in.getVal()))).intValue();//sysj/stationStubs.sysj line: 50, column: 4
+                      if(b_thread_3 != 0) {//sysj/stationStubs.sysj line: 51, column: 14
+                        System.out.println("[ST] Filler 2: dispensing into bottle " + b_thread_3 + ".");//sysj/stationStubs.sysj line: 51, column: 16
+                      }
+                      t_thread_3 = (b_thread_3 == 0) ? 0 : FILL_thread_3;//sysj/stationStubs.sysj line: 54, column: 4
+                      S10428=1;
+                      if(t_thread_3 > 0){//sysj/stationStubs.sysj line: 55, column: 10
+                        t_thread_3 = t_thread_3 - 1;//sysj/stationStubs.sysj line: 55, column: 18
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        ends[3]=2;
+                        ;//sysj/stationStubs.sysj line: 55, column: 4
+                        if(b_thread_3 != 0) {//sysj/stationStubs.sysj line: 56, column: 14
+                          System.out.println("[ST] Filler 2: bottle " + b_thread_3 + " complete.");//sysj/stationStubs.sysj line: 56, column: 16
+                        }
+                        S10428=2;
+                        S10463=0;
+                        if(!doneFiller2_o.isPartnerPresent() || doneFiller2_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 57, column: 4
+                          doneFiller2_o.setREQ(false);//sysj/stationStubs.sysj line: 57, column: 4
+                          S10463=1;
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                        else {
+                          S10458=0;
+                          if(doneFiller2_o.isACK()){//sysj/stationStubs.sysj line: 57, column: 4
+                            doneFiller2_o.setVal(b_thread_3);//sysj/stationStubs.sysj line: 57, column: 4
+                            S10458=1;
+                            if(!doneFiller2_o.isACK()){//sysj/stationStubs.sysj line: 57, column: 4
+                              doneFiller2_o.setREQ(false);//sysj/stationStubs.sysj line: 57, column: 4
+                              ends[3]=2;
+                              ;//sysj/stationStubs.sysj line: 57, column: 4
+                              S10428=3;
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                            else {
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                          else {
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+                break;
+              
             }
             break;
           
           case 1 : 
-            if(t_thread_3 > 0){//sysj\stationStubs.sysj line: 43, column: 10
-              t_thread_3 = t_thread_3 - 1;//sysj\stationStubs.sysj line: 43, column: 18
+            if(t_thread_3 > 0){//sysj/stationStubs.sysj line: 55, column: 10
+              t_thread_3 = t_thread_3 - 1;//sysj/stationStubs.sysj line: 55, column: 18
               active[3]=1;
               ends[3]=1;
               tdone[3]=1;
             }
             else {
               ends[3]=2;
-              ;//sysj\stationStubs.sysj line: 43, column: 4
-              System.out.println("[ST] Filler 2: complete.");//sysj\stationStubs.sysj line: 44, column: 4
-              fillerDone2.setPresent();//sysj\stationStubs.sysj line: 45, column: 4
-              currsigs.addElement(fillerDone2);
-              S4019=2;
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
+              ;//sysj/stationStubs.sysj line: 55, column: 4
+              if(b_thread_3 != 0) {//sysj/stationStubs.sysj line: 56, column: 14
+                System.out.println("[ST] Filler 2: bottle " + b_thread_3 + " complete.");//sysj/stationStubs.sysj line: 56, column: 16
+              }
+              S10428=2;
+              S10463=0;
+              if(!doneFiller2_o.isPartnerPresent() || doneFiller2_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 57, column: 4
+                doneFiller2_o.setREQ(false);//sysj/stationStubs.sysj line: 57, column: 4
+                S10463=1;
+                active[3]=1;
+                ends[3]=1;
+                tdone[3]=1;
+              }
+              else {
+                S10458=0;
+                if(doneFiller2_o.isACK()){//sysj/stationStubs.sysj line: 57, column: 4
+                  doneFiller2_o.setVal(b_thread_3);//sysj/stationStubs.sysj line: 57, column: 4
+                  S10458=1;
+                  if(!doneFiller2_o.isACK()){//sysj/stationStubs.sysj line: 57, column: 4
+                    doneFiller2_o.setREQ(false);//sysj/stationStubs.sysj line: 57, column: 4
+                    ends[3]=2;
+                    ;//sysj/stationStubs.sysj line: 57, column: 4
+                    S10428=3;
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+                else {
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+              }
             }
             break;
           
           case 2 : 
-            S4019=2;
-            fillerDone2.setPresent();//sysj\stationStubs.sysj line: 46, column: 4
-            currsigs.addElement(fillerDone2);
-            S4019=3;
-            active[3]=1;
-            ends[3]=1;
-            tdone[3]=1;
+            switch(S10463){
+              case 0 : 
+                if(!doneFiller2_o.isPartnerPresent() || doneFiller2_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 57, column: 4
+                  doneFiller2_o.setREQ(false);//sysj/stationStubs.sysj line: 57, column: 4
+                  S10463=1;
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  switch(S10458){
+                    case 0 : 
+                      if(doneFiller2_o.isACK()){//sysj/stationStubs.sysj line: 57, column: 4
+                        doneFiller2_o.setVal(b_thread_3);//sysj/stationStubs.sysj line: 57, column: 4
+                        S10458=1;
+                        if(!doneFiller2_o.isACK()){//sysj/stationStubs.sysj line: 57, column: 4
+                          doneFiller2_o.setREQ(false);//sysj/stationStubs.sysj line: 57, column: 4
+                          ends[3]=2;
+                          ;//sysj/stationStubs.sysj line: 57, column: 4
+                          S10428=3;
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                        else {
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      break;
+                    
+                    case 1 : 
+                      if(!doneFiller2_o.isACK()){//sysj/stationStubs.sysj line: 57, column: 4
+                        doneFiller2_o.setREQ(false);//sysj/stationStubs.sysj line: 57, column: 4
+                        ends[3]=2;
+                        ;//sysj/stationStubs.sysj line: 57, column: 4
+                        S10428=3;
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      break;
+                    
+                  }
+                }
+                break;
+              
+              case 1 : 
+                S10463=1;
+                S10463=0;
+                if(!doneFiller2_o.isPartnerPresent() || doneFiller2_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 57, column: 4
+                  doneFiller2_o.setREQ(false);//sysj/stationStubs.sysj line: 57, column: 4
+                  S10463=1;
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  S10458=0;
+                  if(doneFiller2_o.isACK()){//sysj/stationStubs.sysj line: 57, column: 4
+                    doneFiller2_o.setVal(b_thread_3);//sysj/stationStubs.sysj line: 57, column: 4
+                    S10458=1;
+                    if(!doneFiller2_o.isACK()){//sysj/stationStubs.sysj line: 57, column: 4
+                      doneFiller2_o.setREQ(false);//sysj/stationStubs.sysj line: 57, column: 4
+                      ends[3]=2;
+                      ;//sysj/stationStubs.sysj line: 57, column: 4
+                      S10428=3;
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+                break;
+              
+            }
             break;
           
           case 3 : 
-            S4019=3;
-            fillerDone2.setPresent();//sysj\stationStubs.sysj line: 47, column: 4
-            currsigs.addElement(fillerDone2);
-            S4019=4;
-            active[3]=1;
-            ends[3]=1;
-            tdone[3]=1;
-            break;
-          
-          case 4 : 
-            S4019=4;
-            S4019=5;
-            if(!enableFiller2.getprestatus()){//sysj\stationStubs.sysj line: 48, column: 20
-              S4019=0;
-              if(enableFiller2.getprestatus()){//sysj\stationStubs.sysj line: 40, column: 20
-                System.out.println("[ST] Filler 2: dispensing.");//sysj\stationStubs.sysj line: 41, column: 4
-                t_thread_3 = FILL_thread_3;//sysj\stationStubs.sysj line: 42, column: 4
-                S4019=1;
-                if(t_thread_3 > 0){//sysj\stationStubs.sysj line: 43, column: 10
-                  t_thread_3 = t_thread_3 - 1;//sysj\stationStubs.sysj line: 43, column: 18
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
+            S10428=3;
+            S10428=0;
+            S10412=0;
+            if(!startFiller2_in.isPartnerPresent() || startFiller2_in.isPartnerPreempted()){//sysj/stationStubs.sysj line: 49, column: 4
+              startFiller2_in.setACK(false);//sysj/stationStubs.sysj line: 49, column: 4
+              S10412=1;
+              active[3]=1;
+              ends[3]=1;
+              tdone[3]=1;
+            }
+            else {
+              S10407=0;
+              if(!startFiller2_in.isREQ()){//sysj/stationStubs.sysj line: 49, column: 4
+                startFiller2_in.setACK(true);//sysj/stationStubs.sysj line: 49, column: 4
+                S10407=1;
+                if(startFiller2_in.isREQ()){//sysj/stationStubs.sysj line: 49, column: 4
+                  startFiller2_in.setACK(false);//sysj/stationStubs.sysj line: 49, column: 4
+                  ends[3]=2;
+                  ;//sysj/stationStubs.sysj line: 49, column: 4
+                  b_thread_3 = ((Integer)(startFiller2_in.getVal() == null ? null : ((Integer)startFiller2_in.getVal()))).intValue();//sysj/stationStubs.sysj line: 50, column: 4
+                  if(b_thread_3 != 0) {//sysj/stationStubs.sysj line: 51, column: 14
+                    System.out.println("[ST] Filler 2: dispensing into bottle " + b_thread_3 + ".");//sysj/stationStubs.sysj line: 51, column: 16
+                  }
+                  t_thread_3 = (b_thread_3 == 0) ? 0 : FILL_thread_3;//sysj/stationStubs.sysj line: 54, column: 4
+                  S10428=1;
+                  if(t_thread_3 > 0){//sysj/stationStubs.sysj line: 55, column: 10
+                    t_thread_3 = t_thread_3 - 1;//sysj/stationStubs.sysj line: 55, column: 18
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    ends[3]=2;
+                    ;//sysj/stationStubs.sysj line: 55, column: 4
+                    if(b_thread_3 != 0) {//sysj/stationStubs.sysj line: 56, column: 14
+                      System.out.println("[ST] Filler 2: bottle " + b_thread_3 + " complete.");//sysj/stationStubs.sysj line: 56, column: 16
+                    }
+                    S10428=2;
+                    S10463=0;
+                    if(!doneFiller2_o.isPartnerPresent() || doneFiller2_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 57, column: 4
+                      doneFiller2_o.setREQ(false);//sysj/stationStubs.sysj line: 57, column: 4
+                      S10463=1;
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      S10458=0;
+                      if(doneFiller2_o.isACK()){//sysj/stationStubs.sysj line: 57, column: 4
+                        doneFiller2_o.setVal(b_thread_3);//sysj/stationStubs.sysj line: 57, column: 4
+                        S10458=1;
+                        if(!doneFiller2_o.isACK()){//sysj/stationStubs.sysj line: 57, column: 4
+                          doneFiller2_o.setREQ(false);//sysj/stationStubs.sysj line: 57, column: 4
+                          ends[3]=2;
+                          ;//sysj/stationStubs.sysj line: 57, column: 4
+                          S10428=3;
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                        else {
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
                 }
                 else {
-                  ends[3]=2;
-                  ;//sysj\stationStubs.sysj line: 43, column: 4
-                  System.out.println("[ST] Filler 2: complete.");//sysj\stationStubs.sysj line: 44, column: 4
-                  fillerDone2.setPresent();//sysj\stationStubs.sysj line: 45, column: 4
-                  currsigs.addElement(fillerDone2);
-                  S4019=2;
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
@@ -481,49 +1570,6 @@ public class StationStubs extends ClockDomain{
                 ends[3]=1;
                 tdone[3]=1;
               }
-            }
-            else {
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
-            }
-            break;
-          
-          case 5 : 
-            if(!enableFiller2.getprestatus()){//sysj\stationStubs.sysj line: 48, column: 20
-              S4019=0;
-              if(enableFiller2.getprestatus()){//sysj\stationStubs.sysj line: 40, column: 20
-                System.out.println("[ST] Filler 2: dispensing.");//sysj\stationStubs.sysj line: 41, column: 4
-                t_thread_3 = FILL_thread_3;//sysj\stationStubs.sysj line: 42, column: 4
-                S4019=1;
-                if(t_thread_3 > 0){//sysj\stationStubs.sysj line: 43, column: 10
-                  t_thread_3 = t_thread_3 - 1;//sysj\stationStubs.sysj line: 43, column: 18
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-                else {
-                  ends[3]=2;
-                  ;//sysj\stationStubs.sysj line: 43, column: 4
-                  System.out.println("[ST] Filler 2: complete.");//sysj\stationStubs.sysj line: 44, column: 4
-                  fillerDone2.setPresent();//sysj\stationStubs.sysj line: 45, column: 4
-                  currsigs.addElement(fillerDone2);
-                  S4019=2;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-              }
-              else {
-                active[3]=1;
-                ends[3]=1;
-                tdone[3]=1;
-              }
-            }
-            else {
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
             }
             break;
           
@@ -533,8 +1579,8 @@ public class StationStubs extends ClockDomain{
     }
   }
 
-  public void thread4632(int [] tdone, int [] ends){
-        switch(S4017){
+  public void thread13317(int [] tdone, int [] ends){
+        switch(S10404){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -542,99 +1588,484 @@ public class StationStubs extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S3817){
+        switch(S9460){
           case 0 : 
-            if(enableFiller1.getprestatus()){//sysj\stationStubs.sysj line: 25, column: 20
-              System.out.println("[ST] Filler 1: dispensing.");//sysj\stationStubs.sysj line: 26, column: 4
-              t_thread_2 = FILL_thread_2;//sysj\stationStubs.sysj line: 27, column: 4
-              S3817=1;
-              if(t_thread_2 > 0){//sysj\stationStubs.sysj line: 28, column: 10
-                t_thread_2 = t_thread_2 - 1;//sysj\stationStubs.sysj line: 28, column: 18
-                active[2]=1;
-                ends[2]=1;
-                tdone[2]=1;
-              }
-              else {
-                ends[2]=2;
-                ;//sysj\stationStubs.sysj line: 28, column: 4
-                System.out.println("[ST] Filler 1: complete.");//sysj\stationStubs.sysj line: 29, column: 4
-                fillerDone1.setPresent();//sysj\stationStubs.sysj line: 30, column: 4
-                currsigs.addElement(fillerDone1);
-                S3817=2;
-                active[2]=1;
-                ends[2]=1;
-                tdone[2]=1;
-              }
-            }
-            else {
-              active[2]=1;
-              ends[2]=1;
-              tdone[2]=1;
+            switch(S9444){
+              case 0 : 
+                if(!startFiller1_in.isPartnerPresent() || startFiller1_in.isPartnerPreempted()){//sysj/stationStubs.sysj line: 31, column: 4
+                  startFiller1_in.setACK(false);//sysj/stationStubs.sysj line: 31, column: 4
+                  S9444=1;
+                  active[2]=1;
+                  ends[2]=1;
+                  tdone[2]=1;
+                }
+                else {
+                  switch(S9439){
+                    case 0 : 
+                      if(!startFiller1_in.isREQ()){//sysj/stationStubs.sysj line: 31, column: 4
+                        startFiller1_in.setACK(true);//sysj/stationStubs.sysj line: 31, column: 4
+                        S9439=1;
+                        if(startFiller1_in.isREQ()){//sysj/stationStubs.sysj line: 31, column: 4
+                          startFiller1_in.setACK(false);//sysj/stationStubs.sysj line: 31, column: 4
+                          ends[2]=2;
+                          ;//sysj/stationStubs.sysj line: 31, column: 4
+                          b_thread_2 = ((Integer)(startFiller1_in.getVal() == null ? null : ((Integer)startFiller1_in.getVal()))).intValue();//sysj/stationStubs.sysj line: 32, column: 4
+                          if(b_thread_2 != 0) {//sysj/stationStubs.sysj line: 33, column: 14
+                            System.out.println("[ST] Filler 1: dispensing into bottle " + b_thread_2 + ".");//sysj/stationStubs.sysj line: 33, column: 16
+                          }
+                          t_thread_2 = (b_thread_2 == 0) ? 0 : FILL_thread_2;//sysj/stationStubs.sysj line: 36, column: 4
+                          S9460=1;
+                          if(t_thread_2 > 0){//sysj/stationStubs.sysj line: 37, column: 10
+                            t_thread_2 = t_thread_2 - 1;//sysj/stationStubs.sysj line: 37, column: 18
+                            active[2]=1;
+                            ends[2]=1;
+                            tdone[2]=1;
+                          }
+                          else {
+                            ends[2]=2;
+                            ;//sysj/stationStubs.sysj line: 37, column: 4
+                            if(b_thread_2 != 0) {//sysj/stationStubs.sysj line: 38, column: 14
+                              System.out.println("[ST] Filler 1: bottle " + b_thread_2 + " complete.");//sysj/stationStubs.sysj line: 38, column: 16
+                            }
+                            S9460=2;
+                            S9495=0;
+                            if(!doneFiller1_o.isPartnerPresent() || doneFiller1_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 39, column: 4
+                              doneFiller1_o.setREQ(false);//sysj/stationStubs.sysj line: 39, column: 4
+                              S9495=1;
+                              active[2]=1;
+                              ends[2]=1;
+                              tdone[2]=1;
+                            }
+                            else {
+                              S9490=0;
+                              if(doneFiller1_o.isACK()){//sysj/stationStubs.sysj line: 39, column: 4
+                                doneFiller1_o.setVal(b_thread_2);//sysj/stationStubs.sysj line: 39, column: 4
+                                S9490=1;
+                                if(!doneFiller1_o.isACK()){//sysj/stationStubs.sysj line: 39, column: 4
+                                  doneFiller1_o.setREQ(false);//sysj/stationStubs.sysj line: 39, column: 4
+                                  ends[2]=2;
+                                  ;//sysj/stationStubs.sysj line: 39, column: 4
+                                  S9460=3;
+                                  active[2]=1;
+                                  ends[2]=1;
+                                  tdone[2]=1;
+                                }
+                                else {
+                                  active[2]=1;
+                                  ends[2]=1;
+                                  tdone[2]=1;
+                                }
+                              }
+                              else {
+                                active[2]=1;
+                                ends[2]=1;
+                                tdone[2]=1;
+                              }
+                            }
+                          }
+                        }
+                        else {
+                          active[2]=1;
+                          ends[2]=1;
+                          tdone[2]=1;
+                        }
+                      }
+                      else {
+                        active[2]=1;
+                        ends[2]=1;
+                        tdone[2]=1;
+                      }
+                      break;
+                    
+                    case 1 : 
+                      if(startFiller1_in.isREQ()){//sysj/stationStubs.sysj line: 31, column: 4
+                        startFiller1_in.setACK(false);//sysj/stationStubs.sysj line: 31, column: 4
+                        ends[2]=2;
+                        ;//sysj/stationStubs.sysj line: 31, column: 4
+                        b_thread_2 = ((Integer)(startFiller1_in.getVal() == null ? null : ((Integer)startFiller1_in.getVal()))).intValue();//sysj/stationStubs.sysj line: 32, column: 4
+                        if(b_thread_2 != 0) {//sysj/stationStubs.sysj line: 33, column: 14
+                          System.out.println("[ST] Filler 1: dispensing into bottle " + b_thread_2 + ".");//sysj/stationStubs.sysj line: 33, column: 16
+                        }
+                        t_thread_2 = (b_thread_2 == 0) ? 0 : FILL_thread_2;//sysj/stationStubs.sysj line: 36, column: 4
+                        S9460=1;
+                        if(t_thread_2 > 0){//sysj/stationStubs.sysj line: 37, column: 10
+                          t_thread_2 = t_thread_2 - 1;//sysj/stationStubs.sysj line: 37, column: 18
+                          active[2]=1;
+                          ends[2]=1;
+                          tdone[2]=1;
+                        }
+                        else {
+                          ends[2]=2;
+                          ;//sysj/stationStubs.sysj line: 37, column: 4
+                          if(b_thread_2 != 0) {//sysj/stationStubs.sysj line: 38, column: 14
+                            System.out.println("[ST] Filler 1: bottle " + b_thread_2 + " complete.");//sysj/stationStubs.sysj line: 38, column: 16
+                          }
+                          S9460=2;
+                          S9495=0;
+                          if(!doneFiller1_o.isPartnerPresent() || doneFiller1_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 39, column: 4
+                            doneFiller1_o.setREQ(false);//sysj/stationStubs.sysj line: 39, column: 4
+                            S9495=1;
+                            active[2]=1;
+                            ends[2]=1;
+                            tdone[2]=1;
+                          }
+                          else {
+                            S9490=0;
+                            if(doneFiller1_o.isACK()){//sysj/stationStubs.sysj line: 39, column: 4
+                              doneFiller1_o.setVal(b_thread_2);//sysj/stationStubs.sysj line: 39, column: 4
+                              S9490=1;
+                              if(!doneFiller1_o.isACK()){//sysj/stationStubs.sysj line: 39, column: 4
+                                doneFiller1_o.setREQ(false);//sysj/stationStubs.sysj line: 39, column: 4
+                                ends[2]=2;
+                                ;//sysj/stationStubs.sysj line: 39, column: 4
+                                S9460=3;
+                                active[2]=1;
+                                ends[2]=1;
+                                tdone[2]=1;
+                              }
+                              else {
+                                active[2]=1;
+                                ends[2]=1;
+                                tdone[2]=1;
+                              }
+                            }
+                            else {
+                              active[2]=1;
+                              ends[2]=1;
+                              tdone[2]=1;
+                            }
+                          }
+                        }
+                      }
+                      else {
+                        active[2]=1;
+                        ends[2]=1;
+                        tdone[2]=1;
+                      }
+                      break;
+                    
+                  }
+                }
+                break;
+              
+              case 1 : 
+                S9444=1;
+                S9444=0;
+                if(!startFiller1_in.isPartnerPresent() || startFiller1_in.isPartnerPreempted()){//sysj/stationStubs.sysj line: 31, column: 4
+                  startFiller1_in.setACK(false);//sysj/stationStubs.sysj line: 31, column: 4
+                  S9444=1;
+                  active[2]=1;
+                  ends[2]=1;
+                  tdone[2]=1;
+                }
+                else {
+                  S9439=0;
+                  if(!startFiller1_in.isREQ()){//sysj/stationStubs.sysj line: 31, column: 4
+                    startFiller1_in.setACK(true);//sysj/stationStubs.sysj line: 31, column: 4
+                    S9439=1;
+                    if(startFiller1_in.isREQ()){//sysj/stationStubs.sysj line: 31, column: 4
+                      startFiller1_in.setACK(false);//sysj/stationStubs.sysj line: 31, column: 4
+                      ends[2]=2;
+                      ;//sysj/stationStubs.sysj line: 31, column: 4
+                      b_thread_2 = ((Integer)(startFiller1_in.getVal() == null ? null : ((Integer)startFiller1_in.getVal()))).intValue();//sysj/stationStubs.sysj line: 32, column: 4
+                      if(b_thread_2 != 0) {//sysj/stationStubs.sysj line: 33, column: 14
+                        System.out.println("[ST] Filler 1: dispensing into bottle " + b_thread_2 + ".");//sysj/stationStubs.sysj line: 33, column: 16
+                      }
+                      t_thread_2 = (b_thread_2 == 0) ? 0 : FILL_thread_2;//sysj/stationStubs.sysj line: 36, column: 4
+                      S9460=1;
+                      if(t_thread_2 > 0){//sysj/stationStubs.sysj line: 37, column: 10
+                        t_thread_2 = t_thread_2 - 1;//sysj/stationStubs.sysj line: 37, column: 18
+                        active[2]=1;
+                        ends[2]=1;
+                        tdone[2]=1;
+                      }
+                      else {
+                        ends[2]=2;
+                        ;//sysj/stationStubs.sysj line: 37, column: 4
+                        if(b_thread_2 != 0) {//sysj/stationStubs.sysj line: 38, column: 14
+                          System.out.println("[ST] Filler 1: bottle " + b_thread_2 + " complete.");//sysj/stationStubs.sysj line: 38, column: 16
+                        }
+                        S9460=2;
+                        S9495=0;
+                        if(!doneFiller1_o.isPartnerPresent() || doneFiller1_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 39, column: 4
+                          doneFiller1_o.setREQ(false);//sysj/stationStubs.sysj line: 39, column: 4
+                          S9495=1;
+                          active[2]=1;
+                          ends[2]=1;
+                          tdone[2]=1;
+                        }
+                        else {
+                          S9490=0;
+                          if(doneFiller1_o.isACK()){//sysj/stationStubs.sysj line: 39, column: 4
+                            doneFiller1_o.setVal(b_thread_2);//sysj/stationStubs.sysj line: 39, column: 4
+                            S9490=1;
+                            if(!doneFiller1_o.isACK()){//sysj/stationStubs.sysj line: 39, column: 4
+                              doneFiller1_o.setREQ(false);//sysj/stationStubs.sysj line: 39, column: 4
+                              ends[2]=2;
+                              ;//sysj/stationStubs.sysj line: 39, column: 4
+                              S9460=3;
+                              active[2]=1;
+                              ends[2]=1;
+                              tdone[2]=1;
+                            }
+                            else {
+                              active[2]=1;
+                              ends[2]=1;
+                              tdone[2]=1;
+                            }
+                          }
+                          else {
+                            active[2]=1;
+                            ends[2]=1;
+                            tdone[2]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      active[2]=1;
+                      ends[2]=1;
+                      tdone[2]=1;
+                    }
+                  }
+                  else {
+                    active[2]=1;
+                    ends[2]=1;
+                    tdone[2]=1;
+                  }
+                }
+                break;
+              
             }
             break;
           
           case 1 : 
-            if(t_thread_2 > 0){//sysj\stationStubs.sysj line: 28, column: 10
-              t_thread_2 = t_thread_2 - 1;//sysj\stationStubs.sysj line: 28, column: 18
+            if(t_thread_2 > 0){//sysj/stationStubs.sysj line: 37, column: 10
+              t_thread_2 = t_thread_2 - 1;//sysj/stationStubs.sysj line: 37, column: 18
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
             }
             else {
               ends[2]=2;
-              ;//sysj\stationStubs.sysj line: 28, column: 4
-              System.out.println("[ST] Filler 1: complete.");//sysj\stationStubs.sysj line: 29, column: 4
-              fillerDone1.setPresent();//sysj\stationStubs.sysj line: 30, column: 4
-              currsigs.addElement(fillerDone1);
-              S3817=2;
-              active[2]=1;
-              ends[2]=1;
-              tdone[2]=1;
+              ;//sysj/stationStubs.sysj line: 37, column: 4
+              if(b_thread_2 != 0) {//sysj/stationStubs.sysj line: 38, column: 14
+                System.out.println("[ST] Filler 1: bottle " + b_thread_2 + " complete.");//sysj/stationStubs.sysj line: 38, column: 16
+              }
+              S9460=2;
+              S9495=0;
+              if(!doneFiller1_o.isPartnerPresent() || doneFiller1_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 39, column: 4
+                doneFiller1_o.setREQ(false);//sysj/stationStubs.sysj line: 39, column: 4
+                S9495=1;
+                active[2]=1;
+                ends[2]=1;
+                tdone[2]=1;
+              }
+              else {
+                S9490=0;
+                if(doneFiller1_o.isACK()){//sysj/stationStubs.sysj line: 39, column: 4
+                  doneFiller1_o.setVal(b_thread_2);//sysj/stationStubs.sysj line: 39, column: 4
+                  S9490=1;
+                  if(!doneFiller1_o.isACK()){//sysj/stationStubs.sysj line: 39, column: 4
+                    doneFiller1_o.setREQ(false);//sysj/stationStubs.sysj line: 39, column: 4
+                    ends[2]=2;
+                    ;//sysj/stationStubs.sysj line: 39, column: 4
+                    S9460=3;
+                    active[2]=1;
+                    ends[2]=1;
+                    tdone[2]=1;
+                  }
+                  else {
+                    active[2]=1;
+                    ends[2]=1;
+                    tdone[2]=1;
+                  }
+                }
+                else {
+                  active[2]=1;
+                  ends[2]=1;
+                  tdone[2]=1;
+                }
+              }
             }
             break;
           
           case 2 : 
-            S3817=2;
-            fillerDone1.setPresent();//sysj\stationStubs.sysj line: 31, column: 4
-            currsigs.addElement(fillerDone1);
-            S3817=3;
-            active[2]=1;
-            ends[2]=1;
-            tdone[2]=1;
+            switch(S9495){
+              case 0 : 
+                if(!doneFiller1_o.isPartnerPresent() || doneFiller1_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 39, column: 4
+                  doneFiller1_o.setREQ(false);//sysj/stationStubs.sysj line: 39, column: 4
+                  S9495=1;
+                  active[2]=1;
+                  ends[2]=1;
+                  tdone[2]=1;
+                }
+                else {
+                  switch(S9490){
+                    case 0 : 
+                      if(doneFiller1_o.isACK()){//sysj/stationStubs.sysj line: 39, column: 4
+                        doneFiller1_o.setVal(b_thread_2);//sysj/stationStubs.sysj line: 39, column: 4
+                        S9490=1;
+                        if(!doneFiller1_o.isACK()){//sysj/stationStubs.sysj line: 39, column: 4
+                          doneFiller1_o.setREQ(false);//sysj/stationStubs.sysj line: 39, column: 4
+                          ends[2]=2;
+                          ;//sysj/stationStubs.sysj line: 39, column: 4
+                          S9460=3;
+                          active[2]=1;
+                          ends[2]=1;
+                          tdone[2]=1;
+                        }
+                        else {
+                          active[2]=1;
+                          ends[2]=1;
+                          tdone[2]=1;
+                        }
+                      }
+                      else {
+                        active[2]=1;
+                        ends[2]=1;
+                        tdone[2]=1;
+                      }
+                      break;
+                    
+                    case 1 : 
+                      if(!doneFiller1_o.isACK()){//sysj/stationStubs.sysj line: 39, column: 4
+                        doneFiller1_o.setREQ(false);//sysj/stationStubs.sysj line: 39, column: 4
+                        ends[2]=2;
+                        ;//sysj/stationStubs.sysj line: 39, column: 4
+                        S9460=3;
+                        active[2]=1;
+                        ends[2]=1;
+                        tdone[2]=1;
+                      }
+                      else {
+                        active[2]=1;
+                        ends[2]=1;
+                        tdone[2]=1;
+                      }
+                      break;
+                    
+                  }
+                }
+                break;
+              
+              case 1 : 
+                S9495=1;
+                S9495=0;
+                if(!doneFiller1_o.isPartnerPresent() || doneFiller1_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 39, column: 4
+                  doneFiller1_o.setREQ(false);//sysj/stationStubs.sysj line: 39, column: 4
+                  S9495=1;
+                  active[2]=1;
+                  ends[2]=1;
+                  tdone[2]=1;
+                }
+                else {
+                  S9490=0;
+                  if(doneFiller1_o.isACK()){//sysj/stationStubs.sysj line: 39, column: 4
+                    doneFiller1_o.setVal(b_thread_2);//sysj/stationStubs.sysj line: 39, column: 4
+                    S9490=1;
+                    if(!doneFiller1_o.isACK()){//sysj/stationStubs.sysj line: 39, column: 4
+                      doneFiller1_o.setREQ(false);//sysj/stationStubs.sysj line: 39, column: 4
+                      ends[2]=2;
+                      ;//sysj/stationStubs.sysj line: 39, column: 4
+                      S9460=3;
+                      active[2]=1;
+                      ends[2]=1;
+                      tdone[2]=1;
+                    }
+                    else {
+                      active[2]=1;
+                      ends[2]=1;
+                      tdone[2]=1;
+                    }
+                  }
+                  else {
+                    active[2]=1;
+                    ends[2]=1;
+                    tdone[2]=1;
+                  }
+                }
+                break;
+              
+            }
             break;
           
           case 3 : 
-            S3817=3;
-            fillerDone1.setPresent();//sysj\stationStubs.sysj line: 32, column: 4
-            currsigs.addElement(fillerDone1);
-            S3817=4;
-            active[2]=1;
-            ends[2]=1;
-            tdone[2]=1;
-            break;
-          
-          case 4 : 
-            S3817=4;
-            S3817=5;
-            if(!enableFiller1.getprestatus()){//sysj\stationStubs.sysj line: 33, column: 20
-              S3817=0;
-              if(enableFiller1.getprestatus()){//sysj\stationStubs.sysj line: 25, column: 20
-                System.out.println("[ST] Filler 1: dispensing.");//sysj\stationStubs.sysj line: 26, column: 4
-                t_thread_2 = FILL_thread_2;//sysj\stationStubs.sysj line: 27, column: 4
-                S3817=1;
-                if(t_thread_2 > 0){//sysj\stationStubs.sysj line: 28, column: 10
-                  t_thread_2 = t_thread_2 - 1;//sysj\stationStubs.sysj line: 28, column: 18
-                  active[2]=1;
-                  ends[2]=1;
-                  tdone[2]=1;
+            S9460=3;
+            S9460=0;
+            S9444=0;
+            if(!startFiller1_in.isPartnerPresent() || startFiller1_in.isPartnerPreempted()){//sysj/stationStubs.sysj line: 31, column: 4
+              startFiller1_in.setACK(false);//sysj/stationStubs.sysj line: 31, column: 4
+              S9444=1;
+              active[2]=1;
+              ends[2]=1;
+              tdone[2]=1;
+            }
+            else {
+              S9439=0;
+              if(!startFiller1_in.isREQ()){//sysj/stationStubs.sysj line: 31, column: 4
+                startFiller1_in.setACK(true);//sysj/stationStubs.sysj line: 31, column: 4
+                S9439=1;
+                if(startFiller1_in.isREQ()){//sysj/stationStubs.sysj line: 31, column: 4
+                  startFiller1_in.setACK(false);//sysj/stationStubs.sysj line: 31, column: 4
+                  ends[2]=2;
+                  ;//sysj/stationStubs.sysj line: 31, column: 4
+                  b_thread_2 = ((Integer)(startFiller1_in.getVal() == null ? null : ((Integer)startFiller1_in.getVal()))).intValue();//sysj/stationStubs.sysj line: 32, column: 4
+                  if(b_thread_2 != 0) {//sysj/stationStubs.sysj line: 33, column: 14
+                    System.out.println("[ST] Filler 1: dispensing into bottle " + b_thread_2 + ".");//sysj/stationStubs.sysj line: 33, column: 16
+                  }
+                  t_thread_2 = (b_thread_2 == 0) ? 0 : FILL_thread_2;//sysj/stationStubs.sysj line: 36, column: 4
+                  S9460=1;
+                  if(t_thread_2 > 0){//sysj/stationStubs.sysj line: 37, column: 10
+                    t_thread_2 = t_thread_2 - 1;//sysj/stationStubs.sysj line: 37, column: 18
+                    active[2]=1;
+                    ends[2]=1;
+                    tdone[2]=1;
+                  }
+                  else {
+                    ends[2]=2;
+                    ;//sysj/stationStubs.sysj line: 37, column: 4
+                    if(b_thread_2 != 0) {//sysj/stationStubs.sysj line: 38, column: 14
+                      System.out.println("[ST] Filler 1: bottle " + b_thread_2 + " complete.");//sysj/stationStubs.sysj line: 38, column: 16
+                    }
+                    S9460=2;
+                    S9495=0;
+                    if(!doneFiller1_o.isPartnerPresent() || doneFiller1_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 39, column: 4
+                      doneFiller1_o.setREQ(false);//sysj/stationStubs.sysj line: 39, column: 4
+                      S9495=1;
+                      active[2]=1;
+                      ends[2]=1;
+                      tdone[2]=1;
+                    }
+                    else {
+                      S9490=0;
+                      if(doneFiller1_o.isACK()){//sysj/stationStubs.sysj line: 39, column: 4
+                        doneFiller1_o.setVal(b_thread_2);//sysj/stationStubs.sysj line: 39, column: 4
+                        S9490=1;
+                        if(!doneFiller1_o.isACK()){//sysj/stationStubs.sysj line: 39, column: 4
+                          doneFiller1_o.setREQ(false);//sysj/stationStubs.sysj line: 39, column: 4
+                          ends[2]=2;
+                          ;//sysj/stationStubs.sysj line: 39, column: 4
+                          S9460=3;
+                          active[2]=1;
+                          ends[2]=1;
+                          tdone[2]=1;
+                        }
+                        else {
+                          active[2]=1;
+                          ends[2]=1;
+                          tdone[2]=1;
+                        }
+                      }
+                      else {
+                        active[2]=1;
+                        ends[2]=1;
+                        tdone[2]=1;
+                      }
+                    }
+                  }
                 }
                 else {
-                  ends[2]=2;
-                  ;//sysj\stationStubs.sysj line: 28, column: 4
-                  System.out.println("[ST] Filler 1: complete.");//sysj\stationStubs.sysj line: 29, column: 4
-                  fillerDone1.setPresent();//sysj\stationStubs.sysj line: 30, column: 4
-                  currsigs.addElement(fillerDone1);
-                  S3817=2;
                   active[2]=1;
                   ends[2]=1;
                   tdone[2]=1;
@@ -645,49 +2076,6 @@ public class StationStubs extends ClockDomain{
                 ends[2]=1;
                 tdone[2]=1;
               }
-            }
-            else {
-              active[2]=1;
-              ends[2]=1;
-              tdone[2]=1;
-            }
-            break;
-          
-          case 5 : 
-            if(!enableFiller1.getprestatus()){//sysj\stationStubs.sysj line: 33, column: 20
-              S3817=0;
-              if(enableFiller1.getprestatus()){//sysj\stationStubs.sysj line: 25, column: 20
-                System.out.println("[ST] Filler 1: dispensing.");//sysj\stationStubs.sysj line: 26, column: 4
-                t_thread_2 = FILL_thread_2;//sysj\stationStubs.sysj line: 27, column: 4
-                S3817=1;
-                if(t_thread_2 > 0){//sysj\stationStubs.sysj line: 28, column: 10
-                  t_thread_2 = t_thread_2 - 1;//sysj\stationStubs.sysj line: 28, column: 18
-                  active[2]=1;
-                  ends[2]=1;
-                  tdone[2]=1;
-                }
-                else {
-                  ends[2]=2;
-                  ;//sysj\stationStubs.sysj line: 28, column: 4
-                  System.out.println("[ST] Filler 1: complete.");//sysj\stationStubs.sysj line: 29, column: 4
-                  fillerDone1.setPresent();//sysj\stationStubs.sysj line: 30, column: 4
-                  currsigs.addElement(fillerDone1);
-                  S3817=2;
-                  active[2]=1;
-                  ends[2]=1;
-                  tdone[2]=1;
-                }
-              }
-              else {
-                active[2]=1;
-                ends[2]=1;
-                tdone[2]=1;
-              }
-            }
-            else {
-              active[2]=1;
-              ends[2]=1;
-              tdone[2]=1;
             }
             break;
           
@@ -697,135 +2085,371 @@ public class StationStubs extends ClockDomain{
     }
   }
 
-  public void thread4630(int [] tdone, int [] ends){
-        S4623=1;
-    CAP_thread_5 = 12;//sysj\stationStubs.sysj line: 68, column: 3
-    S4423=0;
-    if(enableCapper.getprestatus()){//sysj\stationStubs.sysj line: 70, column: 20
-      System.out.println("[ST] Capper: screwing cap.");//sysj\stationStubs.sysj line: 71, column: 4
-      t_thread_5 = CAP_thread_5;//sysj\stationStubs.sysj line: 72, column: 4
-      S4423=1;
-      if(t_thread_5 > 0){//sysj\stationStubs.sysj line: 73, column: 10
-        t_thread_5 = t_thread_5 - 1;//sysj\stationStubs.sysj line: 73, column: 18
-        active[5]=1;
-        ends[5]=1;
-        tdone[5]=1;
-      }
-      else {
-        ends[5]=2;
-        ;//sysj\stationStubs.sysj line: 73, column: 4
-        System.out.println("[ST] Capper: complete.");//sysj\stationStubs.sysj line: 74, column: 4
-        capperDone.setPresent();//sysj\stationStubs.sysj line: 75, column: 4
-        currsigs.addElement(capperDone);
-        S4423=2;
-        active[5]=1;
-        ends[5]=1;
-        tdone[5]=1;
-      }
-    }
-    else {
+  public void thread13315(int [] tdone, int [] ends){
+        S13308=1;
+    CAP_thread_5 = 12;//sysj/stationStubs.sysj line: 79, column: 3
+    b_thread_5 = 0;//sysj/stationStubs.sysj line: 80, column: 3
+    t_thread_5 = 0;//sysj/stationStubs.sysj line: 81, column: 3
+    S12364=0;
+    S12348=0;
+    if(!startCapper_in.isPartnerPresent() || startCapper_in.isPartnerPreempted()){//sysj/stationStubs.sysj line: 83, column: 4
+      startCapper_in.setACK(false);//sysj/stationStubs.sysj line: 83, column: 4
+      S12348=1;
       active[5]=1;
       ends[5]=1;
       tdone[5]=1;
     }
-  }
-
-  public void thread4629(int [] tdone, int [] ends){
-        S4421=1;
-    LID_thread_4 = 4;//sysj\stationStubs.sysj line: 53, column: 3
-    S4221=0;
-    if(enableLid.getprestatus()){//sysj\stationStubs.sysj line: 55, column: 20
-      System.out.println("[ST] Lid loader: placing lid.");//sysj\stationStubs.sysj line: 56, column: 4
-      t_thread_4 = LID_thread_4;//sysj\stationStubs.sysj line: 57, column: 4
-      S4221=1;
-      if(t_thread_4 > 0){//sysj\stationStubs.sysj line: 58, column: 10
-        t_thread_4 = t_thread_4 - 1;//sysj\stationStubs.sysj line: 58, column: 18
-        active[4]=1;
-        ends[4]=1;
-        tdone[4]=1;
+    else {
+      S12343=0;
+      if(!startCapper_in.isREQ()){//sysj/stationStubs.sysj line: 83, column: 4
+        startCapper_in.setACK(true);//sysj/stationStubs.sysj line: 83, column: 4
+        S12343=1;
+        if(startCapper_in.isREQ()){//sysj/stationStubs.sysj line: 83, column: 4
+          startCapper_in.setACK(false);//sysj/stationStubs.sysj line: 83, column: 4
+          ends[5]=2;
+          ;//sysj/stationStubs.sysj line: 83, column: 4
+          b_thread_5 = ((Integer)(startCapper_in.getVal() == null ? null : ((Integer)startCapper_in.getVal()))).intValue();//sysj/stationStubs.sysj line: 84, column: 4
+          if(b_thread_5 != 0) {//sysj/stationStubs.sysj line: 85, column: 14
+            System.out.println("[ST] Capper: screwing cap on bottle " + b_thread_5 + ".");//sysj/stationStubs.sysj line: 85, column: 16
+          }
+          t_thread_5 = (b_thread_5 == 0) ? 0 : CAP_thread_5;//sysj/stationStubs.sysj line: 86, column: 4
+          S12364=1;
+          if(t_thread_5 > 0){//sysj/stationStubs.sysj line: 87, column: 10
+            t_thread_5 = t_thread_5 - 1;//sysj/stationStubs.sysj line: 87, column: 18
+            active[5]=1;
+            ends[5]=1;
+            tdone[5]=1;
+          }
+          else {
+            ends[5]=2;
+            ;//sysj/stationStubs.sysj line: 87, column: 4
+            if(b_thread_5 != 0) {//sysj/stationStubs.sysj line: 88, column: 14
+              System.out.println("[ST] Capper: bottle " + b_thread_5 + " complete.");//sysj/stationStubs.sysj line: 88, column: 16
+            }
+            S12364=2;
+            S12399=0;
+            if(!doneCapper_o.isPartnerPresent() || doneCapper_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 89, column: 4
+              doneCapper_o.setREQ(false);//sysj/stationStubs.sysj line: 89, column: 4
+              S12399=1;
+              active[5]=1;
+              ends[5]=1;
+              tdone[5]=1;
+            }
+            else {
+              S12394=0;
+              if(doneCapper_o.isACK()){//sysj/stationStubs.sysj line: 89, column: 4
+                doneCapper_o.setVal(b_thread_5);//sysj/stationStubs.sysj line: 89, column: 4
+                S12394=1;
+                if(!doneCapper_o.isACK()){//sysj/stationStubs.sysj line: 89, column: 4
+                  doneCapper_o.setREQ(false);//sysj/stationStubs.sysj line: 89, column: 4
+                  ends[5]=2;
+                  ;//sysj/stationStubs.sysj line: 89, column: 4
+                  S12364=3;
+                  active[5]=1;
+                  ends[5]=1;
+                  tdone[5]=1;
+                }
+                else {
+                  active[5]=1;
+                  ends[5]=1;
+                  tdone[5]=1;
+                }
+              }
+              else {
+                active[5]=1;
+                ends[5]=1;
+                tdone[5]=1;
+              }
+            }
+          }
+        }
+        else {
+          active[5]=1;
+          ends[5]=1;
+          tdone[5]=1;
+        }
       }
       else {
-        ends[4]=2;
-        ;//sysj\stationStubs.sysj line: 58, column: 4
-        System.out.println("[ST] Lid loader: complete.");//sysj\stationStubs.sysj line: 59, column: 4
-        lidDone.setPresent();//sysj\stationStubs.sysj line: 60, column: 4
-        currsigs.addElement(lidDone);
-        S4221=2;
-        active[4]=1;
-        ends[4]=1;
-        tdone[4]=1;
+        active[5]=1;
+        ends[5]=1;
+        tdone[5]=1;
       }
     }
-    else {
+  }
+
+  public void thread13314(int [] tdone, int [] ends){
+        S12340=1;
+    LID_thread_4 = 4;//sysj/stationStubs.sysj line: 63, column: 3
+    b_thread_4 = 0;//sysj/stationStubs.sysj line: 64, column: 3
+    t_thread_4 = 0;//sysj/stationStubs.sysj line: 65, column: 3
+    S11396=0;
+    S11380=0;
+    if(!startLid_in.isPartnerPresent() || startLid_in.isPartnerPreempted()){//sysj/stationStubs.sysj line: 67, column: 4
+      startLid_in.setACK(false);//sysj/stationStubs.sysj line: 67, column: 4
+      S11380=1;
       active[4]=1;
       ends[4]=1;
       tdone[4]=1;
     }
-  }
-
-  public void thread4628(int [] tdone, int [] ends){
-        S4219=1;
-    FILL_thread_3 = 8;//sysj\stationStubs.sysj line: 38, column: 3
-    S4019=0;
-    if(enableFiller2.getprestatus()){//sysj\stationStubs.sysj line: 40, column: 20
-      System.out.println("[ST] Filler 2: dispensing.");//sysj\stationStubs.sysj line: 41, column: 4
-      t_thread_3 = FILL_thread_3;//sysj\stationStubs.sysj line: 42, column: 4
-      S4019=1;
-      if(t_thread_3 > 0){//sysj\stationStubs.sysj line: 43, column: 10
-        t_thread_3 = t_thread_3 - 1;//sysj\stationStubs.sysj line: 43, column: 18
-        active[3]=1;
-        ends[3]=1;
-        tdone[3]=1;
+    else {
+      S11375=0;
+      if(!startLid_in.isREQ()){//sysj/stationStubs.sysj line: 67, column: 4
+        startLid_in.setACK(true);//sysj/stationStubs.sysj line: 67, column: 4
+        S11375=1;
+        if(startLid_in.isREQ()){//sysj/stationStubs.sysj line: 67, column: 4
+          startLid_in.setACK(false);//sysj/stationStubs.sysj line: 67, column: 4
+          ends[4]=2;
+          ;//sysj/stationStubs.sysj line: 67, column: 4
+          b_thread_4 = ((Integer)(startLid_in.getVal() == null ? null : ((Integer)startLid_in.getVal()))).intValue();//sysj/stationStubs.sysj line: 68, column: 4
+          if(b_thread_4 != 0) {//sysj/stationStubs.sysj line: 69, column: 14
+            System.out.println("[ST] Lid loader: placing lid on bottle " + b_thread_4 + ".");//sysj/stationStubs.sysj line: 69, column: 16
+          }
+          t_thread_4 = (b_thread_4 == 0) ? 0 : LID_thread_4;//sysj/stationStubs.sysj line: 70, column: 4
+          S11396=1;
+          if(t_thread_4 > 0){//sysj/stationStubs.sysj line: 71, column: 10
+            t_thread_4 = t_thread_4 - 1;//sysj/stationStubs.sysj line: 71, column: 18
+            active[4]=1;
+            ends[4]=1;
+            tdone[4]=1;
+          }
+          else {
+            ends[4]=2;
+            ;//sysj/stationStubs.sysj line: 71, column: 4
+            if(b_thread_4 != 0) {//sysj/stationStubs.sysj line: 72, column: 14
+              System.out.println("[ST] Lid loader: bottle " + b_thread_4 + " complete.");//sysj/stationStubs.sysj line: 72, column: 16
+            }
+            S11396=2;
+            S11431=0;
+            if(!doneLid_o.isPartnerPresent() || doneLid_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 73, column: 4
+              doneLid_o.setREQ(false);//sysj/stationStubs.sysj line: 73, column: 4
+              S11431=1;
+              active[4]=1;
+              ends[4]=1;
+              tdone[4]=1;
+            }
+            else {
+              S11426=0;
+              if(doneLid_o.isACK()){//sysj/stationStubs.sysj line: 73, column: 4
+                doneLid_o.setVal(b_thread_4);//sysj/stationStubs.sysj line: 73, column: 4
+                S11426=1;
+                if(!doneLid_o.isACK()){//sysj/stationStubs.sysj line: 73, column: 4
+                  doneLid_o.setREQ(false);//sysj/stationStubs.sysj line: 73, column: 4
+                  ends[4]=2;
+                  ;//sysj/stationStubs.sysj line: 73, column: 4
+                  S11396=3;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
+                }
+                else {
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
+                }
+              }
+              else {
+                active[4]=1;
+                ends[4]=1;
+                tdone[4]=1;
+              }
+            }
+          }
+        }
+        else {
+          active[4]=1;
+          ends[4]=1;
+          tdone[4]=1;
+        }
       }
       else {
-        ends[3]=2;
-        ;//sysj\stationStubs.sysj line: 43, column: 4
-        System.out.println("[ST] Filler 2: complete.");//sysj\stationStubs.sysj line: 44, column: 4
-        fillerDone2.setPresent();//sysj\stationStubs.sysj line: 45, column: 4
-        currsigs.addElement(fillerDone2);
-        S4019=2;
-        active[3]=1;
-        ends[3]=1;
-        tdone[3]=1;
+        active[4]=1;
+        ends[4]=1;
+        tdone[4]=1;
       }
     }
-    else {
+  }
+
+  public void thread13313(int [] tdone, int [] ends){
+        S11372=1;
+    FILL_thread_3 = 8;//sysj/stationStubs.sysj line: 45, column: 3
+    b_thread_3 = 0;//sysj/stationStubs.sysj line: 46, column: 3
+    t_thread_3 = 0;//sysj/stationStubs.sysj line: 47, column: 3
+    S10428=0;
+    S10412=0;
+    if(!startFiller2_in.isPartnerPresent() || startFiller2_in.isPartnerPreempted()){//sysj/stationStubs.sysj line: 49, column: 4
+      startFiller2_in.setACK(false);//sysj/stationStubs.sysj line: 49, column: 4
+      S10412=1;
       active[3]=1;
       ends[3]=1;
       tdone[3]=1;
     }
-  }
-
-  public void thread4627(int [] tdone, int [] ends){
-        S4017=1;
-    FILL_thread_2 = 6;//sysj\stationStubs.sysj line: 23, column: 3
-    S3817=0;
-    if(enableFiller1.getprestatus()){//sysj\stationStubs.sysj line: 25, column: 20
-      System.out.println("[ST] Filler 1: dispensing.");//sysj\stationStubs.sysj line: 26, column: 4
-      t_thread_2 = FILL_thread_2;//sysj\stationStubs.sysj line: 27, column: 4
-      S3817=1;
-      if(t_thread_2 > 0){//sysj\stationStubs.sysj line: 28, column: 10
-        t_thread_2 = t_thread_2 - 1;//sysj\stationStubs.sysj line: 28, column: 18
-        active[2]=1;
-        ends[2]=1;
-        tdone[2]=1;
+    else {
+      S10407=0;
+      if(!startFiller2_in.isREQ()){//sysj/stationStubs.sysj line: 49, column: 4
+        startFiller2_in.setACK(true);//sysj/stationStubs.sysj line: 49, column: 4
+        S10407=1;
+        if(startFiller2_in.isREQ()){//sysj/stationStubs.sysj line: 49, column: 4
+          startFiller2_in.setACK(false);//sysj/stationStubs.sysj line: 49, column: 4
+          ends[3]=2;
+          ;//sysj/stationStubs.sysj line: 49, column: 4
+          b_thread_3 = ((Integer)(startFiller2_in.getVal() == null ? null : ((Integer)startFiller2_in.getVal()))).intValue();//sysj/stationStubs.sysj line: 50, column: 4
+          if(b_thread_3 != 0) {//sysj/stationStubs.sysj line: 51, column: 14
+            System.out.println("[ST] Filler 2: dispensing into bottle " + b_thread_3 + ".");//sysj/stationStubs.sysj line: 51, column: 16
+          }
+          t_thread_3 = (b_thread_3 == 0) ? 0 : FILL_thread_3;//sysj/stationStubs.sysj line: 54, column: 4
+          S10428=1;
+          if(t_thread_3 > 0){//sysj/stationStubs.sysj line: 55, column: 10
+            t_thread_3 = t_thread_3 - 1;//sysj/stationStubs.sysj line: 55, column: 18
+            active[3]=1;
+            ends[3]=1;
+            tdone[3]=1;
+          }
+          else {
+            ends[3]=2;
+            ;//sysj/stationStubs.sysj line: 55, column: 4
+            if(b_thread_3 != 0) {//sysj/stationStubs.sysj line: 56, column: 14
+              System.out.println("[ST] Filler 2: bottle " + b_thread_3 + " complete.");//sysj/stationStubs.sysj line: 56, column: 16
+            }
+            S10428=2;
+            S10463=0;
+            if(!doneFiller2_o.isPartnerPresent() || doneFiller2_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 57, column: 4
+              doneFiller2_o.setREQ(false);//sysj/stationStubs.sysj line: 57, column: 4
+              S10463=1;
+              active[3]=1;
+              ends[3]=1;
+              tdone[3]=1;
+            }
+            else {
+              S10458=0;
+              if(doneFiller2_o.isACK()){//sysj/stationStubs.sysj line: 57, column: 4
+                doneFiller2_o.setVal(b_thread_3);//sysj/stationStubs.sysj line: 57, column: 4
+                S10458=1;
+                if(!doneFiller2_o.isACK()){//sysj/stationStubs.sysj line: 57, column: 4
+                  doneFiller2_o.setREQ(false);//sysj/stationStubs.sysj line: 57, column: 4
+                  ends[3]=2;
+                  ;//sysj/stationStubs.sysj line: 57, column: 4
+                  S10428=3;
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+              }
+              else {
+                active[3]=1;
+                ends[3]=1;
+                tdone[3]=1;
+              }
+            }
+          }
+        }
+        else {
+          active[3]=1;
+          ends[3]=1;
+          tdone[3]=1;
+        }
       }
       else {
-        ends[2]=2;
-        ;//sysj\stationStubs.sysj line: 28, column: 4
-        System.out.println("[ST] Filler 1: complete.");//sysj\stationStubs.sysj line: 29, column: 4
-        fillerDone1.setPresent();//sysj\stationStubs.sysj line: 30, column: 4
-        currsigs.addElement(fillerDone1);
-        S3817=2;
-        active[2]=1;
-        ends[2]=1;
-        tdone[2]=1;
+        active[3]=1;
+        ends[3]=1;
+        tdone[3]=1;
       }
     }
-    else {
+  }
+
+  public void thread13312(int [] tdone, int [] ends){
+        S10404=1;
+    FILL_thread_2 = 6;//sysj/stationStubs.sysj line: 27, column: 3
+    b_thread_2 = 0;//sysj/stationStubs.sysj line: 28, column: 3
+    t_thread_2 = 0;//sysj/stationStubs.sysj line: 29, column: 3
+    S9460=0;
+    S9444=0;
+    if(!startFiller1_in.isPartnerPresent() || startFiller1_in.isPartnerPreempted()){//sysj/stationStubs.sysj line: 31, column: 4
+      startFiller1_in.setACK(false);//sysj/stationStubs.sysj line: 31, column: 4
+      S9444=1;
       active[2]=1;
       ends[2]=1;
       tdone[2]=1;
+    }
+    else {
+      S9439=0;
+      if(!startFiller1_in.isREQ()){//sysj/stationStubs.sysj line: 31, column: 4
+        startFiller1_in.setACK(true);//sysj/stationStubs.sysj line: 31, column: 4
+        S9439=1;
+        if(startFiller1_in.isREQ()){//sysj/stationStubs.sysj line: 31, column: 4
+          startFiller1_in.setACK(false);//sysj/stationStubs.sysj line: 31, column: 4
+          ends[2]=2;
+          ;//sysj/stationStubs.sysj line: 31, column: 4
+          b_thread_2 = ((Integer)(startFiller1_in.getVal() == null ? null : ((Integer)startFiller1_in.getVal()))).intValue();//sysj/stationStubs.sysj line: 32, column: 4
+          if(b_thread_2 != 0) {//sysj/stationStubs.sysj line: 33, column: 14
+            System.out.println("[ST] Filler 1: dispensing into bottle " + b_thread_2 + ".");//sysj/stationStubs.sysj line: 33, column: 16
+          }
+          t_thread_2 = (b_thread_2 == 0) ? 0 : FILL_thread_2;//sysj/stationStubs.sysj line: 36, column: 4
+          S9460=1;
+          if(t_thread_2 > 0){//sysj/stationStubs.sysj line: 37, column: 10
+            t_thread_2 = t_thread_2 - 1;//sysj/stationStubs.sysj line: 37, column: 18
+            active[2]=1;
+            ends[2]=1;
+            tdone[2]=1;
+          }
+          else {
+            ends[2]=2;
+            ;//sysj/stationStubs.sysj line: 37, column: 4
+            if(b_thread_2 != 0) {//sysj/stationStubs.sysj line: 38, column: 14
+              System.out.println("[ST] Filler 1: bottle " + b_thread_2 + " complete.");//sysj/stationStubs.sysj line: 38, column: 16
+            }
+            S9460=2;
+            S9495=0;
+            if(!doneFiller1_o.isPartnerPresent() || doneFiller1_o.isPartnerPreempted()){//sysj/stationStubs.sysj line: 39, column: 4
+              doneFiller1_o.setREQ(false);//sysj/stationStubs.sysj line: 39, column: 4
+              S9495=1;
+              active[2]=1;
+              ends[2]=1;
+              tdone[2]=1;
+            }
+            else {
+              S9490=0;
+              if(doneFiller1_o.isACK()){//sysj/stationStubs.sysj line: 39, column: 4
+                doneFiller1_o.setVal(b_thread_2);//sysj/stationStubs.sysj line: 39, column: 4
+                S9490=1;
+                if(!doneFiller1_o.isACK()){//sysj/stationStubs.sysj line: 39, column: 4
+                  doneFiller1_o.setREQ(false);//sysj/stationStubs.sysj line: 39, column: 4
+                  ends[2]=2;
+                  ;//sysj/stationStubs.sysj line: 39, column: 4
+                  S9460=3;
+                  active[2]=1;
+                  ends[2]=1;
+                  tdone[2]=1;
+                }
+                else {
+                  active[2]=1;
+                  ends[2]=1;
+                  tdone[2]=1;
+                }
+              }
+              else {
+                active[2]=1;
+                ends[2]=1;
+                tdone[2]=1;
+              }
+            }
+          }
+        }
+        else {
+          active[2]=1;
+          ends[2]=1;
+          tdone[2]=1;
+        }
+      }
+      else {
+        active[2]=1;
+        ends[2]=1;
+        tdone[2]=1;
+      }
     }
   }
 
@@ -836,66 +2460,66 @@ public class StationStubs extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S4625){
+      switch(S13310){
         case 0 : 
-          S4625=0;
+          S13310=0;
           break RUN;
         
         case 1 : 
-          S4625=2;
-          S4625=2;
-          thread4627(tdone,ends);
-          thread4628(tdone,ends);
-          thread4629(tdone,ends);
-          thread4630(tdone,ends);
-          int biggest4631 = 0;
-          if(ends[2]>=biggest4631){
-            biggest4631=ends[2];
+          S13310=2;
+          S13310=2;
+          thread13312(tdone,ends);
+          thread13313(tdone,ends);
+          thread13314(tdone,ends);
+          thread13315(tdone,ends);
+          int biggest13316 = 0;
+          if(ends[2]>=biggest13316){
+            biggest13316=ends[2];
           }
-          if(ends[3]>=biggest4631){
-            biggest4631=ends[3];
+          if(ends[3]>=biggest13316){
+            biggest13316=ends[3];
           }
-          if(ends[4]>=biggest4631){
-            biggest4631=ends[4];
+          if(ends[4]>=biggest13316){
+            biggest13316=ends[4];
           }
-          if(ends[5]>=biggest4631){
-            biggest4631=ends[5];
+          if(ends[5]>=biggest13316){
+            biggest13316=ends[5];
           }
-          if(biggest4631 == 1){
+          if(biggest13316 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
         
         case 2 : 
-          thread4632(tdone,ends);
-          thread4633(tdone,ends);
-          thread4634(tdone,ends);
-          thread4635(tdone,ends);
-          int biggest4636 = 0;
-          if(ends[2]>=biggest4636){
-            biggest4636=ends[2];
+          thread13317(tdone,ends);
+          thread13318(tdone,ends);
+          thread13319(tdone,ends);
+          thread13320(tdone,ends);
+          int biggest13321 = 0;
+          if(ends[2]>=biggest13321){
+            biggest13321=ends[2];
           }
-          if(ends[3]>=biggest4636){
-            biggest4636=ends[3];
+          if(ends[3]>=biggest13321){
+            biggest13321=ends[3];
           }
-          if(ends[4]>=biggest4636){
-            biggest4636=ends[4];
+          if(ends[4]>=biggest13321){
+            biggest13321=ends[4];
           }
-          if(ends[5]>=biggest4636){
-            biggest4636=ends[5];
+          if(ends[5]>=biggest13321){
+            biggest13321=ends[5];
           }
-          if(biggest4636 == 1){
+          if(biggest13321 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest4636 == 0){
-            S4625=0;
+          if(biggest13321 == 0){
+            S13310=0;
             active[1]=0;
             ends[1]=0;
-            S4625=0;
+            S13310=0;
             break RUN;
           }
         
@@ -925,24 +2549,20 @@ public class StationStubs extends ClockDomain{
       if(paused[1]!=0 || suspended[1]!=0 || active[1]!=1);
       else{
         if(!df){
+          startFiller1_in.gethook();
+          startFiller2_in.gethook();
+          startLid_in.gethook();
+          startCapper_in.gethook();
+          doneFiller1_o.gethook();
+          doneFiller2_o.gethook();
+          doneLid_o.gethook();
+          doneCapper_o.gethook();
           enable.gethook();
-          enableFiller1.gethook();
-          enableFiller2.gethook();
-          enableLid.gethook();
-          enableCapper.gethook();
           df = true;
         }
         runClockDomain();
       }
       enable.setpreclear();
-      enableFiller1.setpreclear();
-      enableFiller2.setpreclear();
-      enableLid.setpreclear();
-      enableCapper.setpreclear();
-      fillerDone1.setpreclear();
-      fillerDone2.setpreclear();
-      lidDone.setpreclear();
-      capperDone.setpreclear();
       int dummyint = 0;
       for(int qw=0;qw<currsigs.size();++qw){
         dummyint = ((Signal)currsigs.elementAt(qw)).getStatus() ? ((Signal)currsigs.elementAt(qw)).setprepresent() : ((Signal)currsigs.elementAt(qw)).setpreclear();
@@ -952,33 +2572,25 @@ public class StationStubs extends ClockDomain{
       dummyint = enable.getStatus() ? enable.setprepresent() : enable.setpreclear();
       enable.setpreval(enable.getValue());
       enable.setClear();
-      dummyint = enableFiller1.getStatus() ? enableFiller1.setprepresent() : enableFiller1.setpreclear();
-      enableFiller1.setpreval(enableFiller1.getValue());
-      enableFiller1.setClear();
-      dummyint = enableFiller2.getStatus() ? enableFiller2.setprepresent() : enableFiller2.setpreclear();
-      enableFiller2.setpreval(enableFiller2.getValue());
-      enableFiller2.setClear();
-      dummyint = enableLid.getStatus() ? enableLid.setprepresent() : enableLid.setpreclear();
-      enableLid.setpreval(enableLid.getValue());
-      enableLid.setClear();
-      dummyint = enableCapper.getStatus() ? enableCapper.setprepresent() : enableCapper.setpreclear();
-      enableCapper.setpreval(enableCapper.getValue());
-      enableCapper.setClear();
-      fillerDone1.sethook();
-      fillerDone1.setClear();
-      fillerDone2.sethook();
-      fillerDone2.setClear();
-      lidDone.sethook();
-      lidDone.setClear();
-      capperDone.sethook();
-      capperDone.setClear();
+      startFiller1_in.sethook();
+      startFiller2_in.sethook();
+      startLid_in.sethook();
+      startCapper_in.sethook();
+      doneFiller1_o.sethook();
+      doneFiller2_o.sethook();
+      doneLid_o.sethook();
+      doneCapper_o.sethook();
       if(paused[1]!=0 || suspended[1]!=0 || active[1]!=1);
       else{
+        startFiller1_in.gethook();
+        startFiller2_in.gethook();
+        startLid_in.gethook();
+        startCapper_in.gethook();
+        doneFiller1_o.gethook();
+        doneFiller2_o.gethook();
+        doneLid_o.gethook();
+        doneCapper_o.gethook();
         enable.gethook();
-        enableFiller1.gethook();
-        enableFiller2.gethook();
-        enableLid.gethook();
-        enableCapper.gethook();
       }
       runFinisher();
       if(active[1] == 0){
