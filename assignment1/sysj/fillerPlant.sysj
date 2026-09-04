@@ -19,23 +19,24 @@ FillerPlant(
 
 	while(true){
 		present(enable){
-
-			present(fillTarget){
-				if(target != (Integer)#fillTarget){
-					target = (Integer)#fillTarget;
-					poured = 0;
-				}
-			}
-
 			present(valveOpen){
+				present(fillTarget){
+					target = (Integer)#fillTarget;
+				}
 				if(poured < target){
 					poured += RATE;
 					if(poured > target){ poured = target; }
 				}
+				if(target > 0 && poured >= target){
+					emit filled;
+				}
 			}
-
-			if(target > 0 && poured >= target){
-				emit filled;
+			else {
+				// Valve shut: this fill is over. Resetting here rather than on
+				// a change of target is what lets two bottles in a row ask for
+				// the same volume.
+				target = 0;
+				poured = 0;
 			}
 		}
 		pause;

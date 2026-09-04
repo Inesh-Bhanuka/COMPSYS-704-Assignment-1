@@ -57,10 +57,15 @@ FillerController(
 				}
 				else {
 					System.out.println("[FILL] Liquid " + w.nextLiquidName() + ", " + ml + "ml into " + w + ".");
-					emit fillTarget(ml);
-
+					// Both are held for the whole fill. fillTarget used to be a
+					// single emit, which the plant can miss entirely - it is
+					// on the far side of a link, same as any other signal.
 					abort(immediate filled){
-						sustain valveOpen;
+						while(true){
+							emit valveOpen;
+							emit fillTarget(ml);
+							pause;
+						}
 					}
 
 					w.dispensed(ml);
