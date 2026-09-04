@@ -7,11 +7,27 @@
  * every machine tests each tick.
  *
  * One reaction per channel, so a slow machine cannot stall the others.
+ *
+ * ---- Recycling Station ----
+ *
+ * The coordinator keeps overall responsibility for the production plan and
+ * for the identity of every workpiece, but it does not sequence the internal
+ * operations of the recycling process. It delegates the whole recovery of a
+ * rejected bottle to the Recycling Station Controller and waits for a single
+ * completion notification. Its view of a rejected bottle is only three
+ * states: in production, in recycling, and recovered.
+ *
+ * The quality decision is made here, at the end of the outfeed, because this
+ * is where the workpiece and its quality record arrive together. The
+ * conveyor's bottleDone link is untouched, so the labeller can still be
+ * inserted between the outfeed end and this reaction without disturbing the
+ * recycling path.
  */
 SystemController(
 		// from / to the POS
 		input  Workpiece channel purchaseOrder;
 		output Integer  channel orderProgress;
+		output Integer  channel orderRejected;
 
 		// to / from the Bottle Loader
 		output Workpiece channel loadOrder;
@@ -20,12 +36,19 @@ SystemController(
 		// from the end of the line
 		input Workpiece channel bottleDone;
 
+		// to / from the Recycling Station Controller
+		output Workpiece channel bottleRejected;
+		input  Workpiece channel bottleRecycled;
+		input  Integer signal recyclingStatus;
+
 		// operating mode, one output per machine controller
 		output Integer signal modeBL, modeF1, modeF2, modeLL, modeCP;
+		output Integer signal modeSP, modeRC, modeLR, modeLD, modeBR;
 
 		// plant power, one output per plant
 		output signal enableBL, enableCV, enableRT;
 		output signal enableF1, enableF2, enableLL, enableCP;
+		output signal enableSP, enableRC, enableLR, enableLD, enableBR;
 		)
 ->
 {
@@ -33,6 +56,8 @@ SystemController(
 		while(true){
 			emit modeBL(0); emit modeF1(0); emit modeF2(0);
 			emit modeLL(0); emit modeCP(0);
+			emit modeSP(0); emit modeRC(0); emit modeLR(0);
+			emit modeLD(0); emit modeBR(0);
 			pause;
 		}
 	}
@@ -41,6 +66,8 @@ SystemController(
 		while(true){
 			emit enableBL; emit enableCV; emit enableRT;
 			emit enableF1; emit enableF2; emit enableLL; emit enableCP;
+			emit enableSP; emit enableRC; emit enableLR;
+			emit enableLD; emit enableBR;
 			pause;
 		}
 	}
@@ -64,15 +91,72 @@ SystemController(
 		}
 	}
 	||
-	{ // End of line
+	{ // End of line: the quality splitter decides where the bottle goes
+		//
+		// A bottle whose quality record is clean goes on to the labeller and
+		// is reported to the POS as delivered. A flagged one is handed to the
+		// Recycling Station instead, and no progress is reported: it is not a
+		// saleable product, and the order line it belongs to is not filled.
+		// The send blocks until the station has taken it, which is the whole
+		// of the backpressure the coordinator needs - it never has to know
+		// how full the recycling conveyor is.
 		Workpiece w = null;
 		int done = 0;
 		while(true){
 			receive bottleDone;
 			w = (Workpiece)#bottleDone;
-			done++;
-			System.out.println("[SC] " + w + " finished at " + w.filledMl() + "ml, sealed=" + w.isSealed() + ". " + done + " complete.");
-			send orderProgress(new Integer(w.id));
+
+			if(w.isRejected()){
+				System.out.println("[SC] " + w + " failed its quality check (" + w.defect()
+						+ "); handing it to the Recycling Station.");
+				send bottleRejected(w);
+			}
+
+			if(!w.isRejected()){
+				done++;
+				System.out.println("[SC] " + w + " finished at " + w.filledMl() + "ml, sealed="
+						+ w.isSealed() + ". " + done + " complete.");
+				send orderProgress(new Integer(w.id));
+			}
+			pause;
+		}
+	}
+	||
+	{ // Recovered bottles
+		//
+		// The transaction bottleRejected opened closes here. The POS is told
+		// the order line failed and the container was reclaimed, so its
+		// accounting stays honest - one order in, no bottle out, one
+		// container back in circulation.
+		Workpiece w = null;
+		int recovered = 0;
+		while(true){
+			receive bottleRecycled;
+			w = (Workpiece)#bottleRecycled;
+			recovered++;
+			System.out.println("[SC] " + w + " recovered by the Recycling Station at "
+					+ w.filledMl() + "ml, sealed=" + w.isSealed() + ". " + recovered + " recycled.");
+			send orderRejected(new Integer(w.id));
+			pause;
+		}
+	}
+	||
+	{ // Recycling Station status
+		//
+		// A level, sampled every tick and reported only when it changes.
+		int last = -1;
+		int v = 0;
+		while(true){
+			present(recyclingStatus){
+				v = ((Integer)#recyclingStatus).intValue();
+				if(v != last){
+					if(v == 0){ System.out.println("[SC] Recycling Station: idle."); }
+					if(v == 1){ System.out.println("[SC] Recycling Station: busy."); }
+					if(v == 2){ System.out.println("[SC] Recycling Station: FAULT - no further rejects accepted."); }
+					if(v == 3){ System.out.println("[SC] Recycling Station: running, bin or tank near capacity."); }
+					last = v;
+				}
+			}
 			pause;
 		}
 	}

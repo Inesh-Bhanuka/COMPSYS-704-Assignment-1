@@ -1,0 +1,125 @@
+/*
+ * Recycling Conveyor Controller - transport between the three processing
+ * stations.
+ *
+ * Position sensing for the whole station is centralised here rather than
+ * distributed to the individual workstations: one photo-eye per station,
+ * following the same convention as the ABS index table. Because the conveyor
+ * owns the sensors, each processing controller only has to act when it is
+ * told to, which is exactly what its enable asks, and the RSC decides which
+ * station to index to next.
+ *
+ * This is the one subsystem whose enable carries a destination rather than a
+ * workpiece - the conveyor does not care which bottle it is moving, only
+ * where the bottle has to end up:
+ *
+ *   1  admit the diverted bottle and index it to lid removal
+ *   2  index to the liquid dumper
+ *   3  index to the bottle return
+ *   4  discharge - hand the bottle to the Bottle Return subsystem
+ *
+ * Each command completes with a status rendezvous, so the RSC always knows
+ * the bottle has arrived before it enables the station waiting for it.
+ */
+RecyclingConveyorController(
+		// from / to the Recycling Station Controller
+		input  Integer channel enable;
+		output Integer channel status;
+
+		// operating mode
+		input Integer signal mode;
+
+		// from the plant - one photo-eye per station
+		input signal bottleAtSplitterExit, bottleAtLidRemoval, bottleAtDumper;
+		input signal bottleAtReturn, bottleLeftReturn;
+
+		// to the plant
+		output signal recyclingConveyorMotor, injectAtEntry, collectAtReturn;
+
+		// manual override - the operator panel attaches here
+		input signal recyclingConveyorMotorM;
+		)
+->
+{
+	signal auto, manual;
+
+	{ // Mode select
+		while(true){
+			present(mode){
+				if((Integer)#mode == 0){ emit auto; }
+				else { emit manual; }
+			}
+			pause;
+		}
+	}
+	||
+	{ // Auto
+		int OK = 0;
+
+		int TO_LID = 1;
+		int TO_DUMP = 2;
+		int TO_RETURN = 3;
+		int DISCHARGE = 4;
+
+		int cmd = 0;
+
+		while(true){
+			await(immediate auto);
+
+			abort(immediate manual){
+				receive enable;
+				cmd = ((Integer)#enable).intValue();
+
+				if(cmd == TO_LID){
+					// Take the diverted bottle onto the belt. Held until the
+					// entry photo-eye confirms it is actually on.
+					abort(immediate bottleAtSplitterExit){
+						sustain injectAtEntry;
+					}
+					System.out.println("[RC] Bottle on the recycling conveyor, indexing to lid removal.");
+					abort(immediate bottleAtLidRemoval){
+						sustain recyclingConveyorMotor;
+					}
+					System.out.println("[RC] Bottle at lid removal.");
+				}
+
+				if(cmd == TO_DUMP){
+					abort(immediate bottleAtDumper){
+						sustain recyclingConveyorMotor;
+					}
+					System.out.println("[RC] Bottle at the liquid dumper.");
+				}
+
+				if(cmd == TO_RETURN){
+					abort(immediate bottleAtReturn){
+						sustain recyclingConveyorMotor;
+					}
+					System.out.println("[RC] Bottle at the bottle return.");
+				}
+
+				if(cmd == DISCHARGE){
+					abort(immediate bottleLeftReturn){
+						sustain collectAtReturn;
+					}
+					System.out.println("[RC] Bottle handed over, recycling conveyor clear.");
+				}
+
+				send status(new Integer(OK));
+			}
+			pause;
+		}
+	}
+	||
+	{ // Manual
+		while(true){
+			await(immediate manual);
+			abort(immediate auto){
+				while(true){
+					present(recyclingConveyorMotorM){ emit recyclingConveyorMotor; }
+					pause;
+				}
+			}
+			pause;
+		}
+	}
+}

@@ -21,6 +21,24 @@ public class Workpiece {
 	private boolean lidded = false;
 	private boolean capped = false;
 
+	// ---- Quality record ----
+	//
+	// The record travels with the workpiece rather than living in the
+	// coordinator, so detection can sit wherever the fault originates and
+	// every machine downstream sees the same verdict. Nothing on the line
+	// makes this decision yet - see OrderBook for where the defect is armed.
+	private String defect = null;
+
+	// ---- Recycling ----
+	//
+	// The Recycling Station strips the bottle back to an empty container, so
+	// it undoes the manufacturing state rather than just setting a flag. That
+	// keeps the digital twin honest: a recovered bottle really is unsealed and
+	// empty, and would be truthful if it were loaded again.
+	private boolean lidRemoved = false;
+	private boolean drained = false;
+	private boolean returned = false;
+
 	public Workpiece(int id, int sizeMl, int pctA, int pctB) {
 		this.id = id;
 		this.sizeMl = sizeMl;
@@ -65,6 +83,43 @@ public class Workpiece {
 
 	public boolean isSealed() {
 		return lidded && capped;
+	}
+
+	/** Flag this bottle as having failed its quality check. */
+	public void reject(String reason) {
+		defect = reason;
+	}
+
+	public boolean isRejected() {
+		return defect != null;
+	}
+
+	/** Why it was rejected, for the log and the operator. */
+	public String defect() {
+		return defect == null ? "none" : defect;
+	}
+
+	/** Lid removal: the cap and lid come off and go to the waste bin. */
+	public void removeLid() {
+		lidRemoved = true;
+		lidded = false;
+		capped = false;
+	}
+
+	/** Liquid dumping: the contents go to the waste sink. */
+	public void drain() {
+		drained = true;
+		filledMl = 0;
+	}
+
+	/** Bottle return: the empty container reaches the collector bin. */
+	public void returnToCollector() {
+		returned = true;
+	}
+
+	/** All three recycling stages done, so the container may be reused. */
+	public boolean isRecovered() {
+		return lidRemoved && drained && returned;
 	}
 
 	public String toString() {

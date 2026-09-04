@@ -4,10 +4,20 @@
  * Issues a fixed list of orders and prints completions coming back. When the
  * real POS arrives, delete this and point SystemControllerCD.purchaseOrder at
  * it instead - nothing downstream changes.
+ *
+ * Two return paths, because an order line can end two ways: the bottle is
+ * delivered, or it was defective and the Recycling Station reclaimed the
+ * container. The second is not a delivery and is deliberately not counted as
+ * one - the line still needs remaking.
+ *
+ * OrderBook is also where a defect is armed for the run. That is on purpose:
+ * fault injection belongs on the POS path, so the operator panel can drive it
+ * from the screen once the GUI exists without anything below here changing.
  */
 PosStub(
 		output Workpiece channel order;
 		input  Integer channel completed;
+		input  Integer channel recycled;
 		)
 ->
 {
@@ -19,7 +29,8 @@ PosStub(
 
 		while(i < OrderBook.count()){
 			w = OrderBook.order(i);
-			System.out.println("[POS] Order " + (i + 1) + ": " + w + ".");
+			System.out.println("[POS] Order " + (i + 1) + ": " + w
+					+ (w.isRejected() ? " [fault armed: " + w.defect() + "]" : "") + ".");
 			send order(w);
 			i++;
 			pause;
@@ -35,6 +46,17 @@ PosStub(
 			receive completed;
 			n++;
 			System.out.println("[POS] Bottle " + (Integer)#completed + " delivered (" + n + " done).");
+			pause;
+		}
+	}
+	||
+	{ // Order lines the plant could not fill
+		int n = 0;
+		while(true){
+			receive recycled;
+			n++;
+			System.out.println("[POS] Bottle " + (Integer)#recycled
+					+ " was defective; container reclaimed, order line unfilled (" + n + " recycled).");
 			pause;
 		}
 	}

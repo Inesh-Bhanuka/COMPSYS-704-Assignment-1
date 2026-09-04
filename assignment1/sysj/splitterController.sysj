@@ -1,0 +1,144 @@
+/*
+ * Splitter Controller - the quality diverter at the end of the outfeed.
+ *
+ * The Splitter is the only Recycling Station subsystem that sits in the main
+ * production flow, so it is the point at which the extension attaches to the
+ * core ABS. The Recycling Station Controller arms it on the enable channel,
+ * which carries the workpiece itself: the interim report's Enable and
+ * ActivateSplitter in one transfer, and a channel carries the bottle's
+ * identity and quality record without a second signal and without the risk of
+ * the arming being missed.
+ *
+ * The key design feature is that the diverter position is sensed, not
+ * assumed. The controller drives diverterExtend and waits for the reject
+ * end-of-travel sensor. If divertAtReject does not assert inside the stroke
+ * time the mechanism has jammed, and the controller reports a fault on status
+ * instead of silently releasing a rejected bottle down the labeller path.
+ *
+ * admitBottle is the simulation stand-in for the outfeed releasing the
+ * claimed workpiece towards the decision point. When the station is wired to
+ * the real outfeed belt it is replaced by the conveyor's own delivery, and
+ * nothing else in this file changes.
+ */
+SplitterController(
+		// from / to the Recycling Station Controller
+		input  Workpiece channel enable;
+		output Integer channel status;
+
+		// operating mode
+		input Integer signal mode;
+
+		// from the Diverter Plant
+		input signal bottleAtSplitter, divertAtNormal, divertAtReject, bottleLeftSplitter;
+
+		// to the Diverter Plant
+		output signal admitBottle, diverterExtend, diverterRetract;
+
+		// manual overrides - the operator panel attaches here
+		input signal diverterExtendM, diverterRetractM;
+		)
+->
+{
+	signal auto, manual;
+
+	{ // Mode select
+		while(true){
+			present(mode){
+				if((Integer)#mode == 0){ emit auto; }
+				else { emit manual; }
+			}
+			pause;
+		}
+	}
+	||
+	{ // Auto
+		// Status codes reported to the RSC
+		int OK = 0;
+		int JAMMED = 1;
+
+		// The diverter is a pneumatic stroke. If the reject end stop has not
+		// answered within this many ticks it has not moved.
+		int STROKE_TIMEOUT = 12;
+
+		Workpiece w = null;
+		int t = 0;
+		int code = 0;
+		boolean confirmed = false;
+
+		while(true){
+			await(immediate auto);
+
+			abort(immediate manual){
+				receive enable;
+				w = (Workpiece)#enable;
+				System.out.println("[SP] Armed for " + w + ".");
+
+				// Claim the workpiece and wait for it to reach the decision
+				// point. The command is held until the plant's arrival sensor
+				// answers, rather than pulsed for a guessed number of ticks.
+				abort(immediate bottleAtSplitter){
+					sustain admitBottle;
+				}
+				System.out.println("[SP] " + w + " at the decision point.");
+
+				// Select the reject path and verify it. A plain
+				//   abort(immediate divertAtReject){ sustain diverterExtend; }
+				// would wait forever on a jam, so the wait is bounded and the
+				// outcome is latched.
+				t = STROKE_TIMEOUT;
+				confirmed = false;
+				while(t > 0 && !confirmed){
+					emit diverterExtend;
+					present(divertAtReject){
+						confirmed = true;
+					}
+					t--;
+					pause;
+				}
+
+				code = JAMMED;
+
+				if(confirmed){
+					System.out.println("[SP] Diverter at reject, routing " + w + " to the recycling conveyor.");
+
+					// Hold the diverter over until the bottle has physically
+					// cleared it, then reset so the next accepted bottle runs
+					// straight through to the labeller.
+					abort(immediate bottleLeftSplitter){
+						sustain diverterExtend;
+					}
+					abort(immediate divertAtNormal){
+						sustain diverterRetract;
+					}
+					System.out.println("[SP] " + w + " released, diverter reset to the normal path.");
+					code = OK;
+				}
+
+				if(!confirmed){
+					System.out.println("[SP] FAULT: diverter did not reach the reject position for " + w + ".");
+				}
+
+				// One status transfer per cycle, whatever the outcome. A
+				// rendezvous inside a branch multiplies the control paths
+				// through the reaction and the generated state machine grows
+				// with every one of them.
+				send status(new Integer(code));
+			}
+			pause;
+		}
+	}
+	||
+	{ // Manual
+		while(true){
+			await(immediate manual);
+			abort(immediate auto){
+				while(true){
+					present(diverterExtendM){ emit diverterExtend; }
+					present(diverterRetractM){ emit diverterRetract; }
+					pause;
+				}
+			}
+			pause;
+		}
+	}
+}

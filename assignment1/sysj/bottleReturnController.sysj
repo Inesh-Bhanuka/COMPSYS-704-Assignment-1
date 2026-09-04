@@ -1,0 +1,106 @@
+/*
+ * Bottle Return Controller.
+ *
+ * The last stage of the recycling process, and the one that closes the
+ * material loop: a bottle rejected for a lid or fill fault has by now been
+ * stripped and drained, and this subsystem places the empty container in the
+ * collector bin to be washed and returned to the bottle loader.
+ *
+ *   1. run the return conveyor     motorOnOff         -> bottleAtCollector
+ *   2. swing the arm to the loader transferArmExtend  -> armAtLoader
+ *   3. bring the arm home          transferArmRetract -> armAtHome
+ *
+ * collectorBinFull supplies back-pressure to the RSC in the same way the lid
+ * waste bin and the waste tank do, and on the same terms: it is read once the
+ * container is in the bin, so the bottle in progress always completes and it
+ * is the next bottle that is refused.
+ */
+BottleReturnController(
+		// from / to the Recycling Station Controller
+		input  Workpiece channel enable;
+		output Integer channel status;
+
+		// operating mode
+		input Integer signal mode;
+
+		// from the Return Conveyor Plant
+		input signal bottleAtCollector, armAtHome, armAtLoader, collectorBinFull;
+
+		// to the Return Conveyor Plant
+		output signal motorOnOff, transferArmExtend, transferArmRetract;
+
+		// manual overrides - the operator panel attaches here
+		input signal motorOnOffM, transferArmExtendM, transferArmRetractM;
+		)
+->
+{
+	signal auto, manual;
+
+	{ // Mode select
+		while(true){
+			present(mode){
+				if((Integer)#mode == 0){ emit auto; }
+				else { emit manual; }
+			}
+			pause;
+		}
+	}
+	||
+	{ // Auto
+		int OK = 0;
+		int BLOCKED = 2;
+
+		Workpiece w = null;
+		int code = 0;
+
+		while(true){
+			await(immediate auto);
+
+			abort(immediate manual){
+				receive enable;
+				w = (Workpiece)#enable;
+				System.out.println("[BR] Returning " + w + " for reuse.");
+
+				abort(immediate bottleAtCollector){
+					sustain motorOnOff;
+				}
+				System.out.println("[BR] " + w + " at the transfer point.");
+
+				abort(immediate armAtLoader){
+					sustain transferArmExtend;
+				}
+
+				abort(immediate armAtHome){
+					sustain transferArmRetract;
+				}
+
+				w.returnToCollector();
+				System.out.println("[BR] " + w + " placed in the collector bin.");
+
+				code = OK;
+				present(collectorBinFull){
+					System.out.println("[BR] Collector bin is full; no further bottles until it is emptied.");
+					code = BLOCKED;
+				}
+
+				send status(new Integer(code));
+			}
+			pause;
+		}
+	}
+	||
+	{ // Manual
+		while(true){
+			await(immediate manual);
+			abort(immediate auto){
+				while(true){
+					present(motorOnOffM){ emit motorOnOff; }
+					present(transferArmExtendM){ emit transferArmExtend; }
+					present(transferArmRetractM){ emit transferArmRetract; }
+					pause;
+				}
+			}
+			pause;
+		}
+	}
+}

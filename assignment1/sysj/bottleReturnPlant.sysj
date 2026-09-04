@@ -1,0 +1,87 @@
+/*
+ * Return Conveyor Plant.
+ *
+ * The empty container is taken off the recycling conveyor's return station
+ * when this belt starts, travels to the transfer point, and is carried into
+ * the collector bin by the arm. The transfer onto this belt is modelled on
+ * the rising edge of motorOnOff rather than through an extra handshake
+ * signal, because the recycling conveyor has already reported the bottle
+ * standing at the return station before the RSC enables this subsystem.
+ */
+BottleReturnPlant(
+		// from the System Controller
+		input signal enable;
+
+		// from the Bottle Return Controller
+		input signal motorOnOff, transferArmExtend, transferArmRetract;
+
+		// to the Bottle Return Controller
+		output signal bottleAtCollector, armAtHome, armAtLoader, collectorBinFull;
+		)
+->
+{
+	int BELT = 6;
+	int ARM = 4;
+	int BIN_CAPACITY = 3;
+
+	int pos = -1;            // -1 = no bottle on the return belt
+	int arm = 0;             // 0 = home, ARM = at the loader
+	boolean running = false;
+	boolean carrying = false;
+	int bottles = 0;
+
+	while(true){
+		present(enable){
+
+			present(motorOnOff){
+				if(!running){
+					running = true;
+					if(pos < 0){
+						pos = 0;
+						System.out.println("[BRPlant] Bottle transferred onto the return conveyor.");
+					}
+				}
+				if(pos >= 0 && pos < BELT){
+					pos++;
+					if(pos == BELT){
+						System.out.println("[BRPlant] Bottle at the transfer point.");
+					}
+				}
+			}
+			else {
+				running = false;
+			}
+
+			if(pos == BELT){ emit bottleAtCollector; }
+
+			// ---- transfer arm ----
+			present(transferArmExtend){
+				if(arm < ARM){
+					if(arm == 0 && pos == BELT){
+						carrying = true;
+						pos = -1;
+					}
+					arm++;
+				}
+			}
+			present(transferArmRetract){
+				if(arm > 0){ arm--; }
+			}
+
+			if(arm == ARM){
+				emit armAtLoader;
+				if(carrying){
+					carrying = false;
+					bottles++;
+					System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles + " of " + BIN_CAPACITY + ").");
+				}
+			}
+			if(arm == 0){ emit armAtHome; }
+
+			if(bottles >= BIN_CAPACITY){
+				emit collectorBinFull;
+			}
+		}
+		pause;
+	}
+}

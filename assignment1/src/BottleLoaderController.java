@@ -29,8 +29,8 @@ public class BottleLoaderController extends ClockDomain{
   public output_Channel bottleHandoff_o = new output_Channel();
   private Signal auto_1;
   private Signal manual_1;
-  private Workpiece w_thread_3;//sysj/bottleLoaderController.sysj line: 55, column: 3
-  private boolean reported_thread_5;//sysj/bottleLoaderController.sysj line: 121, column: 3
+  private Workpiece w_thread_3;//sysj\bottleLoaderController.sysj line: 55, column: 3
+  private boolean reported_thread_5;//sysj\bottleLoaderController.sysj line: 121, column: 3
   private int S4685 = 1;
   private int S12 = 1;
   private int S4382 = 1;
@@ -58,17 +58,17 @@ public class BottleLoaderController extends ClockDomain{
         break;
       
       case 1 : 
-        if(supplyEmpty.getprestatus()){//sysj/bottleLoaderController.sysj line: 123, column: 12
-          if(!reported_thread_5) {//sysj/bottleLoaderController.sysj line: 124, column: 18
-            System.out.println("[BL] Bottle supply is empty.");//sysj/bottleLoaderController.sysj line: 125, column: 6
-            reported_thread_5 = true;//sysj/bottleLoaderController.sysj line: 126, column: 6
+        if(supplyEmpty.getprestatus()){//sysj\bottleLoaderController.sysj line: 123, column: 12
+          if(!reported_thread_5) {//sysj\bottleLoaderController.sysj line: 124, column: 18
+            System.out.println("[BL] Bottle supply is empty.");//sysj\bottleLoaderController.sysj line: 125, column: 6
+            reported_thread_5 = true;//sysj\bottleLoaderController.sysj line: 126, column: 6
           }
           active[5]=1;
           ends[5]=1;
           tdone[5]=1;
         }
         else {
-          reported_thread_5 = false;//sysj/bottleLoaderController.sysj line: 130, column: 5
+          reported_thread_5 = false;//sysj\bottleLoaderController.sysj line: 130, column: 5
           active[5]=1;
           ends[5]=1;
           tdone[5]=1;
@@ -89,23 +89,23 @@ public class BottleLoaderController extends ClockDomain{
       case 1 : 
         switch(S4477){
           case 0 : 
-            if(manual_1.getprestatus()){//sysj/bottleLoaderController.sysj line: 107, column: 20
+            if(manual_1.getprestatus()){//sysj\bottleLoaderController.sysj line: 107, column: 20
               S4477=1;
-              if(auto_1.getprestatus()){//sysj/bottleLoaderController.sysj line: 108, column: 20
+              if(auto_1.getprestatus()){//sysj\bottleLoaderController.sysj line: 108, column: 20
                 S4477=2;
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
               }
               else {
-                if(vacOnM.getprestatus()){//sysj/bottleLoaderController.sysj line: 110, column: 14
-                  vacOn.setPresent();//sysj/bottleLoaderController.sysj line: 110, column: 23
+                if(vacOnM.getprestatus()){//sysj\bottleLoaderController.sysj line: 110, column: 14
+                  vacOn.setPresent();//sysj\bottleLoaderController.sysj line: 110, column: 23
                   currsigs.addElement(vacOn);
-                  if(armSourceM.getprestatus()){//sysj/bottleLoaderController.sysj line: 111, column: 14
-                    armSource.setPresent();//sysj/bottleLoaderController.sysj line: 111, column: 27
+                  if(armSourceM.getprestatus()){//sysj\bottleLoaderController.sysj line: 111, column: 14
+                    armSource.setPresent();//sysj\bottleLoaderController.sysj line: 111, column: 27
                     currsigs.addElement(armSource);
-                    if(armDestM.getprestatus()){//sysj/bottleLoaderController.sysj line: 112, column: 14
-                      armDest.setPresent();//sysj/bottleLoaderController.sysj line: 112, column: 25
+                    if(armDestM.getprestatus()){//sysj\bottleLoaderController.sysj line: 112, column: 14
+                      armDest.setPresent();//sysj\bottleLoaderController.sysj line: 112, column: 25
                       currsigs.addElement(armDest);
                       active[4]=1;
                       ends[4]=1;
@@ -118,8 +118,8 @@ public class BottleLoaderController extends ClockDomain{
                     }
                   }
                   else {
-                    if(armDestM.getprestatus()){//sysj/bottleLoaderController.sysj line: 112, column: 14
-                      armDest.setPresent();//sysj/bottleLoaderController.sysj line: 112, column: 25
+                    if(armDestM.getprestatus()){//sysj\bottleLoaderController.sysj line: 112, column: 14
+                      armDest.setPresent();//sysj\bottleLoaderController.sysj line: 112, column: 25
                       currsigs.addElement(armDest);
                       active[4]=1;
                       ends[4]=1;
@@ -133,11 +133,11 @@ public class BottleLoaderController extends ClockDomain{
                   }
                 }
                 else {
-                  if(armSourceM.getprestatus()){//sysj/bottleLoaderController.sysj line: 111, column: 14
-                    armSource.setPresent();//sysj/bottleLoaderController.sysj line: 111, column: 27
+                  if(armSourceM.getprestatus()){//sysj\bottleLoaderController.sysj line: 111, column: 14
+                    armSource.setPresent();//sysj\bottleLoaderController.sysj line: 111, column: 27
                     currsigs.addElement(armSource);
-                    if(armDestM.getprestatus()){//sysj/bottleLoaderController.sysj line: 112, column: 14
-                      armDest.setPresent();//sysj/bottleLoaderController.sysj line: 112, column: 25
+                    if(armDestM.getprestatus()){//sysj\bottleLoaderController.sysj line: 112, column: 14
+                      armDest.setPresent();//sysj\bottleLoaderController.sysj line: 112, column: 25
                       currsigs.addElement(armDest);
                       active[4]=1;
                       ends[4]=1;
@@ -150,8 +150,8 @@ public class BottleLoaderController extends ClockDomain{
                     }
                   }
                   else {
-                    if(armDestM.getprestatus()){//sysj/bottleLoaderController.sysj line: 112, column: 14
-                      armDest.setPresent();//sysj/bottleLoaderController.sysj line: 112, column: 25
+                    if(armDestM.getprestatus()){//sysj\bottleLoaderController.sysj line: 112, column: 14
+                      armDest.setPresent();//sysj\bottleLoaderController.sysj line: 112, column: 25
                       currsigs.addElement(armDest);
                       active[4]=1;
                       ends[4]=1;
@@ -174,21 +174,21 @@ public class BottleLoaderController extends ClockDomain{
             break;
           
           case 1 : 
-            if(auto_1.getprestatus()){//sysj/bottleLoaderController.sysj line: 108, column: 20
+            if(auto_1.getprestatus()){//sysj\bottleLoaderController.sysj line: 108, column: 20
               S4477=2;
               active[4]=1;
               ends[4]=1;
               tdone[4]=1;
             }
             else {
-              if(vacOnM.getprestatus()){//sysj/bottleLoaderController.sysj line: 110, column: 14
-                vacOn.setPresent();//sysj/bottleLoaderController.sysj line: 110, column: 23
+              if(vacOnM.getprestatus()){//sysj\bottleLoaderController.sysj line: 110, column: 14
+                vacOn.setPresent();//sysj\bottleLoaderController.sysj line: 110, column: 23
                 currsigs.addElement(vacOn);
-                if(armSourceM.getprestatus()){//sysj/bottleLoaderController.sysj line: 111, column: 14
-                  armSource.setPresent();//sysj/bottleLoaderController.sysj line: 111, column: 27
+                if(armSourceM.getprestatus()){//sysj\bottleLoaderController.sysj line: 111, column: 14
+                  armSource.setPresent();//sysj\bottleLoaderController.sysj line: 111, column: 27
                   currsigs.addElement(armSource);
-                  if(armDestM.getprestatus()){//sysj/bottleLoaderController.sysj line: 112, column: 14
-                    armDest.setPresent();//sysj/bottleLoaderController.sysj line: 112, column: 25
+                  if(armDestM.getprestatus()){//sysj\bottleLoaderController.sysj line: 112, column: 14
+                    armDest.setPresent();//sysj\bottleLoaderController.sysj line: 112, column: 25
                     currsigs.addElement(armDest);
                     active[4]=1;
                     ends[4]=1;
@@ -201,8 +201,8 @@ public class BottleLoaderController extends ClockDomain{
                   }
                 }
                 else {
-                  if(armDestM.getprestatus()){//sysj/bottleLoaderController.sysj line: 112, column: 14
-                    armDest.setPresent();//sysj/bottleLoaderController.sysj line: 112, column: 25
+                  if(armDestM.getprestatus()){//sysj\bottleLoaderController.sysj line: 112, column: 14
+                    armDest.setPresent();//sysj\bottleLoaderController.sysj line: 112, column: 25
                     currsigs.addElement(armDest);
                     active[4]=1;
                     ends[4]=1;
@@ -216,11 +216,11 @@ public class BottleLoaderController extends ClockDomain{
                 }
               }
               else {
-                if(armSourceM.getprestatus()){//sysj/bottleLoaderController.sysj line: 111, column: 14
-                  armSource.setPresent();//sysj/bottleLoaderController.sysj line: 111, column: 27
+                if(armSourceM.getprestatus()){//sysj\bottleLoaderController.sysj line: 111, column: 14
+                  armSource.setPresent();//sysj\bottleLoaderController.sysj line: 111, column: 27
                   currsigs.addElement(armSource);
-                  if(armDestM.getprestatus()){//sysj/bottleLoaderController.sysj line: 112, column: 14
-                    armDest.setPresent();//sysj/bottleLoaderController.sysj line: 112, column: 25
+                  if(armDestM.getprestatus()){//sysj\bottleLoaderController.sysj line: 112, column: 14
+                    armDest.setPresent();//sysj\bottleLoaderController.sysj line: 112, column: 25
                     currsigs.addElement(armDest);
                     active[4]=1;
                     ends[4]=1;
@@ -233,8 +233,8 @@ public class BottleLoaderController extends ClockDomain{
                   }
                 }
                 else {
-                  if(armDestM.getprestatus()){//sysj/bottleLoaderController.sysj line: 112, column: 14
-                    armDest.setPresent();//sysj/bottleLoaderController.sysj line: 112, column: 25
+                  if(armDestM.getprestatus()){//sysj\bottleLoaderController.sysj line: 112, column: 14
+                    armDest.setPresent();//sysj\bottleLoaderController.sysj line: 112, column: 25
                     currsigs.addElement(armDest);
                     active[4]=1;
                     ends[4]=1;
@@ -253,23 +253,23 @@ public class BottleLoaderController extends ClockDomain{
           case 2 : 
             S4477=2;
             S4477=0;
-            if(manual_1.getprestatus()){//sysj/bottleLoaderController.sysj line: 107, column: 20
+            if(manual_1.getprestatus()){//sysj\bottleLoaderController.sysj line: 107, column: 20
               S4477=1;
-              if(auto_1.getprestatus()){//sysj/bottleLoaderController.sysj line: 108, column: 20
+              if(auto_1.getprestatus()){//sysj\bottleLoaderController.sysj line: 108, column: 20
                 S4477=2;
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
               }
               else {
-                if(vacOnM.getprestatus()){//sysj/bottleLoaderController.sysj line: 110, column: 14
-                  vacOn.setPresent();//sysj/bottleLoaderController.sysj line: 110, column: 23
+                if(vacOnM.getprestatus()){//sysj\bottleLoaderController.sysj line: 110, column: 14
+                  vacOn.setPresent();//sysj\bottleLoaderController.sysj line: 110, column: 23
                   currsigs.addElement(vacOn);
-                  if(armSourceM.getprestatus()){//sysj/bottleLoaderController.sysj line: 111, column: 14
-                    armSource.setPresent();//sysj/bottleLoaderController.sysj line: 111, column: 27
+                  if(armSourceM.getprestatus()){//sysj\bottleLoaderController.sysj line: 111, column: 14
+                    armSource.setPresent();//sysj\bottleLoaderController.sysj line: 111, column: 27
                     currsigs.addElement(armSource);
-                    if(armDestM.getprestatus()){//sysj/bottleLoaderController.sysj line: 112, column: 14
-                      armDest.setPresent();//sysj/bottleLoaderController.sysj line: 112, column: 25
+                    if(armDestM.getprestatus()){//sysj\bottleLoaderController.sysj line: 112, column: 14
+                      armDest.setPresent();//sysj\bottleLoaderController.sysj line: 112, column: 25
                       currsigs.addElement(armDest);
                       active[4]=1;
                       ends[4]=1;
@@ -282,8 +282,8 @@ public class BottleLoaderController extends ClockDomain{
                     }
                   }
                   else {
-                    if(armDestM.getprestatus()){//sysj/bottleLoaderController.sysj line: 112, column: 14
-                      armDest.setPresent();//sysj/bottleLoaderController.sysj line: 112, column: 25
+                    if(armDestM.getprestatus()){//sysj\bottleLoaderController.sysj line: 112, column: 14
+                      armDest.setPresent();//sysj\bottleLoaderController.sysj line: 112, column: 25
                       currsigs.addElement(armDest);
                       active[4]=1;
                       ends[4]=1;
@@ -297,11 +297,11 @@ public class BottleLoaderController extends ClockDomain{
                   }
                 }
                 else {
-                  if(armSourceM.getprestatus()){//sysj/bottleLoaderController.sysj line: 111, column: 14
-                    armSource.setPresent();//sysj/bottleLoaderController.sysj line: 111, column: 27
+                  if(armSourceM.getprestatus()){//sysj\bottleLoaderController.sysj line: 111, column: 14
+                    armSource.setPresent();//sysj\bottleLoaderController.sysj line: 111, column: 27
                     currsigs.addElement(armSource);
-                    if(armDestM.getprestatus()){//sysj/bottleLoaderController.sysj line: 112, column: 14
-                      armDest.setPresent();//sysj/bottleLoaderController.sysj line: 112, column: 25
+                    if(armDestM.getprestatus()){//sysj\bottleLoaderController.sysj line: 112, column: 14
+                      armDest.setPresent();//sysj\bottleLoaderController.sysj line: 112, column: 25
                       currsigs.addElement(armDest);
                       active[4]=1;
                       ends[4]=1;
@@ -314,8 +314,8 @@ public class BottleLoaderController extends ClockDomain{
                     }
                   }
                   else {
-                    if(armDestM.getprestatus()){//sysj/bottleLoaderController.sysj line: 112, column: 14
-                      armDest.setPresent();//sysj/bottleLoaderController.sysj line: 112, column: 25
+                    if(armDestM.getprestatus()){//sysj\bottleLoaderController.sysj line: 112, column: 14
+                      armDest.setPresent();//sysj\bottleLoaderController.sysj line: 112, column: 25
                       currsigs.addElement(armDest);
                       active[4]=1;
                       ends[4]=1;
@@ -354,9 +354,9 @@ public class BottleLoaderController extends ClockDomain{
       case 1 : 
         switch(S740){
           case 0 : 
-            if(auto_1.getprestatus()){//sysj/bottleLoaderController.sysj line: 58, column: 20
+            if(auto_1.getprestatus()){//sysj\bottleLoaderController.sysj line: 58, column: 20
               S740=1;
-              if(manual_1.getprestatus()){//sysj/bottleLoaderController.sysj line: 60, column: 20
+              if(manual_1.getprestatus()){//sysj\bottleLoaderController.sysj line: 60, column: 20
                 loadOrder_in.setPreempted();
                 bottleHandoff_o.setPreempted();
                 loadAck_o.setPreempted();
@@ -368,8 +368,8 @@ public class BottleLoaderController extends ClockDomain{
               else {
                 S36=0;
                 S20=0;
-                if(!loadOrder_in.isPartnerPresent() || loadOrder_in.isPartnerPreempted()){//sysj/bottleLoaderController.sysj line: 62, column: 5
-                  loadOrder_in.setACK(false);//sysj/bottleLoaderController.sysj line: 62, column: 5
+                if(!loadOrder_in.isPartnerPresent() || loadOrder_in.isPartnerPreempted()){//sysj\bottleLoaderController.sysj line: 62, column: 5
+                  loadOrder_in.setACK(false);//sysj\bottleLoaderController.sysj line: 62, column: 5
                   S20=1;
                   active[3]=1;
                   ends[3]=1;
@@ -377,27 +377,27 @@ public class BottleLoaderController extends ClockDomain{
                 }
                 else {
                   S15=0;
-                  if(!loadOrder_in.isREQ()){//sysj/bottleLoaderController.sysj line: 62, column: 5
-                    loadOrder_in.setACK(true);//sysj/bottleLoaderController.sysj line: 62, column: 5
+                  if(!loadOrder_in.isREQ()){//sysj\bottleLoaderController.sysj line: 62, column: 5
+                    loadOrder_in.setACK(true);//sysj\bottleLoaderController.sysj line: 62, column: 5
                     S15=1;
-                    if(loadOrder_in.isREQ()){//sysj/bottleLoaderController.sysj line: 62, column: 5
-                      loadOrder_in.setACK(false);//sysj/bottleLoaderController.sysj line: 62, column: 5
+                    if(loadOrder_in.isREQ()){//sysj\bottleLoaderController.sysj line: 62, column: 5
+                      loadOrder_in.setACK(false);//sysj\bottleLoaderController.sysj line: 62, column: 5
                       ends[3]=2;
-                      ;//sysj/bottleLoaderController.sysj line: 62, column: 5
-                      w_thread_3 = (Workpiece)(loadOrder_in.getVal() == null ? null : ((Workpiece)loadOrder_in.getVal()));//sysj/bottleLoaderController.sysj line: 63, column: 5
-                      System.out.println("[BL] Order received for " + w_thread_3 + ".");//sysj/bottleLoaderController.sysj line: 64, column: 5
-                      if(bottleAtSource.getprestatus()){//sysj/bottleLoaderController.sysj line: 66, column: 13
+                      ;//sysj\bottleLoaderController.sysj line: 62, column: 5
+                      w_thread_3 = (Workpiece)(loadOrder_in.getVal() == null ? null : ((Workpiece)loadOrder_in.getVal()));//sysj\bottleLoaderController.sysj line: 63, column: 5
+                      System.out.println("[BL] Order received for " + w_thread_3 + ".");//sysj\bottleLoaderController.sysj line: 64, column: 5
+                      if(bottleAtSource.getprestatus()){//sysj\bottleLoaderController.sysj line: 66, column: 13
                         S36=1;
-                        armSource.setPresent();//sysj/bottleLoaderController.sysj line: 75, column: 6
+                        armSource.setPresent();//sysj\bottleLoaderController.sysj line: 75, column: 6
                         currsigs.addElement(armSource);
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        System.out.println("[BL] Warning: no bottle at source.");//sysj/bottleLoaderController.sysj line: 70, column: 6
+                        System.out.println("[BL] Warning: no bottle at source.");//sysj\bottleLoaderController.sysj line: 70, column: 6
                         S36=1;
-                        armSource.setPresent();//sysj/bottleLoaderController.sysj line: 75, column: 6
+                        armSource.setPresent();//sysj\bottleLoaderController.sysj line: 75, column: 6
                         currsigs.addElement(armSource);
                         active[3]=1;
                         ends[3]=1;
@@ -426,7 +426,7 @@ public class BottleLoaderController extends ClockDomain{
             break;
           
           case 1 : 
-            if(manual_1.getprestatus()){//sysj/bottleLoaderController.sysj line: 60, column: 20
+            if(manual_1.getprestatus()){//sysj\bottleLoaderController.sysj line: 60, column: 20
               loadOrder_in.setPreempted();
               bottleHandoff_o.setPreempted();
               loadAck_o.setPreempted();
@@ -440,8 +440,8 @@ public class BottleLoaderController extends ClockDomain{
                 case 0 : 
                   switch(S20){
                     case 0 : 
-                      if(!loadOrder_in.isPartnerPresent() || loadOrder_in.isPartnerPreempted()){//sysj/bottleLoaderController.sysj line: 62, column: 5
-                        loadOrder_in.setACK(false);//sysj/bottleLoaderController.sysj line: 62, column: 5
+                      if(!loadOrder_in.isPartnerPresent() || loadOrder_in.isPartnerPreempted()){//sysj\bottleLoaderController.sysj line: 62, column: 5
+                        loadOrder_in.setACK(false);//sysj\bottleLoaderController.sysj line: 62, column: 5
                         S20=1;
                         active[3]=1;
                         ends[3]=1;
@@ -450,27 +450,27 @@ public class BottleLoaderController extends ClockDomain{
                       else {
                         switch(S15){
                           case 0 : 
-                            if(!loadOrder_in.isREQ()){//sysj/bottleLoaderController.sysj line: 62, column: 5
-                              loadOrder_in.setACK(true);//sysj/bottleLoaderController.sysj line: 62, column: 5
+                            if(!loadOrder_in.isREQ()){//sysj\bottleLoaderController.sysj line: 62, column: 5
+                              loadOrder_in.setACK(true);//sysj\bottleLoaderController.sysj line: 62, column: 5
                               S15=1;
-                              if(loadOrder_in.isREQ()){//sysj/bottleLoaderController.sysj line: 62, column: 5
-                                loadOrder_in.setACK(false);//sysj/bottleLoaderController.sysj line: 62, column: 5
+                              if(loadOrder_in.isREQ()){//sysj\bottleLoaderController.sysj line: 62, column: 5
+                                loadOrder_in.setACK(false);//sysj\bottleLoaderController.sysj line: 62, column: 5
                                 ends[3]=2;
-                                ;//sysj/bottleLoaderController.sysj line: 62, column: 5
-                                w_thread_3 = (Workpiece)(loadOrder_in.getVal() == null ? null : ((Workpiece)loadOrder_in.getVal()));//sysj/bottleLoaderController.sysj line: 63, column: 5
-                                System.out.println("[BL] Order received for " + w_thread_3 + ".");//sysj/bottleLoaderController.sysj line: 64, column: 5
-                                if(bottleAtSource.getprestatus()){//sysj/bottleLoaderController.sysj line: 66, column: 13
+                                ;//sysj\bottleLoaderController.sysj line: 62, column: 5
+                                w_thread_3 = (Workpiece)(loadOrder_in.getVal() == null ? null : ((Workpiece)loadOrder_in.getVal()));//sysj\bottleLoaderController.sysj line: 63, column: 5
+                                System.out.println("[BL] Order received for " + w_thread_3 + ".");//sysj\bottleLoaderController.sysj line: 64, column: 5
+                                if(bottleAtSource.getprestatus()){//sysj\bottleLoaderController.sysj line: 66, column: 13
                                   S36=1;
-                                  armSource.setPresent();//sysj/bottleLoaderController.sysj line: 75, column: 6
+                                  armSource.setPresent();//sysj\bottleLoaderController.sysj line: 75, column: 6
                                   currsigs.addElement(armSource);
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
                                 }
                                 else {
-                                  System.out.println("[BL] Warning: no bottle at source.");//sysj/bottleLoaderController.sysj line: 70, column: 6
+                                  System.out.println("[BL] Warning: no bottle at source.");//sysj\bottleLoaderController.sysj line: 70, column: 6
                                   S36=1;
-                                  armSource.setPresent();//sysj/bottleLoaderController.sysj line: 75, column: 6
+                                  armSource.setPresent();//sysj\bottleLoaderController.sysj line: 75, column: 6
                                   currsigs.addElement(armSource);
                                   active[3]=1;
                                   ends[3]=1;
@@ -491,24 +491,24 @@ public class BottleLoaderController extends ClockDomain{
                             break;
                           
                           case 1 : 
-                            if(loadOrder_in.isREQ()){//sysj/bottleLoaderController.sysj line: 62, column: 5
-                              loadOrder_in.setACK(false);//sysj/bottleLoaderController.sysj line: 62, column: 5
+                            if(loadOrder_in.isREQ()){//sysj\bottleLoaderController.sysj line: 62, column: 5
+                              loadOrder_in.setACK(false);//sysj\bottleLoaderController.sysj line: 62, column: 5
                               ends[3]=2;
-                              ;//sysj/bottleLoaderController.sysj line: 62, column: 5
-                              w_thread_3 = (Workpiece)(loadOrder_in.getVal() == null ? null : ((Workpiece)loadOrder_in.getVal()));//sysj/bottleLoaderController.sysj line: 63, column: 5
-                              System.out.println("[BL] Order received for " + w_thread_3 + ".");//sysj/bottleLoaderController.sysj line: 64, column: 5
-                              if(bottleAtSource.getprestatus()){//sysj/bottleLoaderController.sysj line: 66, column: 13
+                              ;//sysj\bottleLoaderController.sysj line: 62, column: 5
+                              w_thread_3 = (Workpiece)(loadOrder_in.getVal() == null ? null : ((Workpiece)loadOrder_in.getVal()));//sysj\bottleLoaderController.sysj line: 63, column: 5
+                              System.out.println("[BL] Order received for " + w_thread_3 + ".");//sysj\bottleLoaderController.sysj line: 64, column: 5
+                              if(bottleAtSource.getprestatus()){//sysj\bottleLoaderController.sysj line: 66, column: 13
                                 S36=1;
-                                armSource.setPresent();//sysj/bottleLoaderController.sysj line: 75, column: 6
+                                armSource.setPresent();//sysj\bottleLoaderController.sysj line: 75, column: 6
                                 currsigs.addElement(armSource);
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
                               else {
-                                System.out.println("[BL] Warning: no bottle at source.");//sysj/bottleLoaderController.sysj line: 70, column: 6
+                                System.out.println("[BL] Warning: no bottle at source.");//sysj\bottleLoaderController.sysj line: 70, column: 6
                                 S36=1;
-                                armSource.setPresent();//sysj/bottleLoaderController.sysj line: 75, column: 6
+                                armSource.setPresent();//sysj\bottleLoaderController.sysj line: 75, column: 6
                                 currsigs.addElement(armSource);
                                 active[3]=1;
                                 ends[3]=1;
@@ -529,8 +529,8 @@ public class BottleLoaderController extends ClockDomain{
                     case 1 : 
                       S20=1;
                       S20=0;
-                      if(!loadOrder_in.isPartnerPresent() || loadOrder_in.isPartnerPreempted()){//sysj/bottleLoaderController.sysj line: 62, column: 5
-                        loadOrder_in.setACK(false);//sysj/bottleLoaderController.sysj line: 62, column: 5
+                      if(!loadOrder_in.isPartnerPresent() || loadOrder_in.isPartnerPreempted()){//sysj\bottleLoaderController.sysj line: 62, column: 5
+                        loadOrder_in.setACK(false);//sysj\bottleLoaderController.sysj line: 62, column: 5
                         S20=1;
                         active[3]=1;
                         ends[3]=1;
@@ -538,27 +538,27 @@ public class BottleLoaderController extends ClockDomain{
                       }
                       else {
                         S15=0;
-                        if(!loadOrder_in.isREQ()){//sysj/bottleLoaderController.sysj line: 62, column: 5
-                          loadOrder_in.setACK(true);//sysj/bottleLoaderController.sysj line: 62, column: 5
+                        if(!loadOrder_in.isREQ()){//sysj\bottleLoaderController.sysj line: 62, column: 5
+                          loadOrder_in.setACK(true);//sysj\bottleLoaderController.sysj line: 62, column: 5
                           S15=1;
-                          if(loadOrder_in.isREQ()){//sysj/bottleLoaderController.sysj line: 62, column: 5
-                            loadOrder_in.setACK(false);//sysj/bottleLoaderController.sysj line: 62, column: 5
+                          if(loadOrder_in.isREQ()){//sysj\bottleLoaderController.sysj line: 62, column: 5
+                            loadOrder_in.setACK(false);//sysj\bottleLoaderController.sysj line: 62, column: 5
                             ends[3]=2;
-                            ;//sysj/bottleLoaderController.sysj line: 62, column: 5
-                            w_thread_3 = (Workpiece)(loadOrder_in.getVal() == null ? null : ((Workpiece)loadOrder_in.getVal()));//sysj/bottleLoaderController.sysj line: 63, column: 5
-                            System.out.println("[BL] Order received for " + w_thread_3 + ".");//sysj/bottleLoaderController.sysj line: 64, column: 5
-                            if(bottleAtSource.getprestatus()){//sysj/bottleLoaderController.sysj line: 66, column: 13
+                            ;//sysj\bottleLoaderController.sysj line: 62, column: 5
+                            w_thread_3 = (Workpiece)(loadOrder_in.getVal() == null ? null : ((Workpiece)loadOrder_in.getVal()));//sysj\bottleLoaderController.sysj line: 63, column: 5
+                            System.out.println("[BL] Order received for " + w_thread_3 + ".");//sysj\bottleLoaderController.sysj line: 64, column: 5
+                            if(bottleAtSource.getprestatus()){//sysj\bottleLoaderController.sysj line: 66, column: 13
                               S36=1;
-                              armSource.setPresent();//sysj/bottleLoaderController.sysj line: 75, column: 6
+                              armSource.setPresent();//sysj\bottleLoaderController.sysj line: 75, column: 6
                               currsigs.addElement(armSource);
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
-                              System.out.println("[BL] Warning: no bottle at source.");//sysj/bottleLoaderController.sysj line: 70, column: 6
+                              System.out.println("[BL] Warning: no bottle at source.");//sysj\bottleLoaderController.sysj line: 70, column: 6
                               S36=1;
-                              armSource.setPresent();//sysj/bottleLoaderController.sysj line: 75, column: 6
+                              armSource.setPresent();//sysj\bottleLoaderController.sysj line: 75, column: 6
                               currsigs.addElement(armSource);
                               active[3]=1;
                               ends[3]=1;
@@ -583,16 +583,16 @@ public class BottleLoaderController extends ClockDomain{
                   break;
                 
                 case 1 : 
-                  if(armAtSource.getprestatus()){//sysj/bottleLoaderController.sysj line: 74, column: 11
+                  if(armAtSource.getprestatus()){//sysj\bottleLoaderController.sysj line: 74, column: 11
                     S36=2;
-                    vacOn.setPresent();//sysj/bottleLoaderController.sysj line: 80, column: 6
+                    vacOn.setPresent();//sysj\bottleLoaderController.sysj line: 80, column: 6
                     currsigs.addElement(vacOn);
                     active[3]=1;
                     ends[3]=1;
                     tdone[3]=1;
                   }
                   else {
-                    armSource.setPresent();//sysj/bottleLoaderController.sysj line: 75, column: 6
+                    armSource.setPresent();//sysj\bottleLoaderController.sysj line: 75, column: 6
                     currsigs.addElement(armSource);
                     active[3]=1;
                     ends[3]=1;
@@ -601,17 +601,17 @@ public class BottleLoaderController extends ClockDomain{
                   break;
                 
                 case 2 : 
-                  if(WPgripped.getprestatus()){//sysj/bottleLoaderController.sysj line: 79, column: 11
-                    System.out.println("[BL] " + w_thread_3 + " gripped.");//sysj/bottleLoaderController.sysj line: 82, column: 5
+                  if(WPgripped.getprestatus()){//sysj\bottleLoaderController.sysj line: 79, column: 11
+                    System.out.println("[BL] " + w_thread_3 + " gripped.");//sysj\bottleLoaderController.sysj line: 82, column: 5
                     S36=3;
-                    armDest.setPresent();//sysj/bottleLoaderController.sysj line: 86, column: 6
+                    armDest.setPresent();//sysj\bottleLoaderController.sysj line: 86, column: 6
                     currsigs.addElement(armDest);
                     active[3]=1;
                     ends[3]=1;
                     tdone[3]=1;
                   }
                   else {
-                    vacOn.setPresent();//sysj/bottleLoaderController.sysj line: 80, column: 6
+                    vacOn.setPresent();//sysj\bottleLoaderController.sysj line: 80, column: 6
                     currsigs.addElement(vacOn);
                     active[3]=1;
                     ends[3]=1;
@@ -620,12 +620,12 @@ public class BottleLoaderController extends ClockDomain{
                   break;
                 
                 case 3 : 
-                  if(armAtDest.getprestatus()){//sysj/bottleLoaderController.sysj line: 85, column: 11
-                    System.out.println("[BL] Offering " + w_thread_3 + " to the conveyor.");//sysj/bottleLoaderController.sysj line: 90, column: 5
+                  if(armAtDest.getprestatus()){//sysj\bottleLoaderController.sysj line: 85, column: 11
+                    System.out.println("[BL] Offering " + w_thread_3 + " to the conveyor.");//sysj\bottleLoaderController.sysj line: 90, column: 5
                     S36=4;
                     S91=0;
-                    if(!bottleHandoff_o.isPartnerPresent() || bottleHandoff_o.isPartnerPreempted()){//sysj/bottleLoaderController.sysj line: 91, column: 5
-                      bottleHandoff_o.setREQ(false);//sysj/bottleLoaderController.sysj line: 91, column: 5
+                    if(!bottleHandoff_o.isPartnerPresent() || bottleHandoff_o.isPartnerPreempted()){//sysj\bottleLoaderController.sysj line: 91, column: 5
+                      bottleHandoff_o.setREQ(false);//sysj\bottleLoaderController.sysj line: 91, column: 5
                       S91=1;
                       active[3]=1;
                       ends[3]=1;
@@ -633,19 +633,19 @@ public class BottleLoaderController extends ClockDomain{
                     }
                     else {
                       S86=0;
-                      if(bottleHandoff_o.isACK()){//sysj/bottleLoaderController.sysj line: 91, column: 5
-                        bottleHandoff_o.setVal(w_thread_3);//sysj/bottleLoaderController.sysj line: 91, column: 5
+                      if(bottleHandoff_o.isACK()){//sysj\bottleLoaderController.sysj line: 91, column: 5
+                        bottleHandoff_o.setVal(w_thread_3);//sysj\bottleLoaderController.sysj line: 91, column: 5
                         S86=1;
-                        if(!bottleHandoff_o.isACK()){//sysj/bottleLoaderController.sysj line: 91, column: 5
-                          bottleHandoff_o.setREQ(false);//sysj/bottleLoaderController.sysj line: 91, column: 5
+                        if(!bottleHandoff_o.isACK()){//sysj\bottleLoaderController.sysj line: 91, column: 5
+                          bottleHandoff_o.setREQ(false);//sysj\bottleLoaderController.sysj line: 91, column: 5
                           ends[3]=2;
-                          ;//sysj/bottleLoaderController.sysj line: 91, column: 5
+                          ;//sysj\bottleLoaderController.sysj line: 91, column: 5
                           S36=5;
-                          if(!WPgripped.getprestatus()){//sysj/bottleLoaderController.sysj line: 95, column: 21
+                          if(!WPgripped.getprestatus()){//sysj\bottleLoaderController.sysj line: 95, column: 21
                             S36=6;
                             S151=0;
-                            if(!loadAck_o.isPartnerPresent() || loadAck_o.isPartnerPreempted()){//sysj/bottleLoaderController.sysj line: 99, column: 5
-                              loadAck_o.setREQ(false);//sysj/bottleLoaderController.sysj line: 99, column: 5
+                            if(!loadAck_o.isPartnerPresent() || loadAck_o.isPartnerPreempted()){//sysj\bottleLoaderController.sysj line: 99, column: 5
+                              loadAck_o.setREQ(false);//sysj\bottleLoaderController.sysj line: 99, column: 5
                               S151=1;
                               active[3]=1;
                               ends[3]=1;
@@ -653,13 +653,13 @@ public class BottleLoaderController extends ClockDomain{
                             }
                             else {
                               S146=0;
-                              if(loadAck_o.isACK()){//sysj/bottleLoaderController.sysj line: 99, column: 5
-                                loadAck_o.setVal(w_thread_3);//sysj/bottleLoaderController.sysj line: 99, column: 5
+                              if(loadAck_o.isACK()){//sysj\bottleLoaderController.sysj line: 99, column: 5
+                                loadAck_o.setVal(w_thread_3);//sysj\bottleLoaderController.sysj line: 99, column: 5
                                 S146=1;
-                                if(!loadAck_o.isACK()){//sysj/bottleLoaderController.sysj line: 99, column: 5
-                                  loadAck_o.setREQ(false);//sysj/bottleLoaderController.sysj line: 99, column: 5
+                                if(!loadAck_o.isACK()){//sysj\bottleLoaderController.sysj line: 99, column: 5
+                                  loadAck_o.setREQ(false);//sysj\bottleLoaderController.sysj line: 99, column: 5
                                   ends[3]=2;
-                                  ;//sysj/bottleLoaderController.sysj line: 99, column: 5
+                                  ;//sysj\bottleLoaderController.sysj line: 99, column: 5
                                   S740=2;
                                   active[3]=1;
                                   ends[3]=1;
@@ -679,7 +679,7 @@ public class BottleLoaderController extends ClockDomain{
                             }
                           }
                           else {
-                            release.setPresent();//sysj/bottleLoaderController.sysj line: 96, column: 6
+                            release.setPresent();//sysj\bottleLoaderController.sysj line: 96, column: 6
                             currsigs.addElement(release);
                             active[3]=1;
                             ends[3]=1;
@@ -700,7 +700,7 @@ public class BottleLoaderController extends ClockDomain{
                     }
                   }
                   else {
-                    armDest.setPresent();//sysj/bottleLoaderController.sysj line: 86, column: 6
+                    armDest.setPresent();//sysj\bottleLoaderController.sysj line: 86, column: 6
                     currsigs.addElement(armDest);
                     active[3]=1;
                     ends[3]=1;
@@ -711,8 +711,8 @@ public class BottleLoaderController extends ClockDomain{
                 case 4 : 
                   switch(S91){
                     case 0 : 
-                      if(!bottleHandoff_o.isPartnerPresent() || bottleHandoff_o.isPartnerPreempted()){//sysj/bottleLoaderController.sysj line: 91, column: 5
-                        bottleHandoff_o.setREQ(false);//sysj/bottleLoaderController.sysj line: 91, column: 5
+                      if(!bottleHandoff_o.isPartnerPresent() || bottleHandoff_o.isPartnerPreempted()){//sysj\bottleLoaderController.sysj line: 91, column: 5
+                        bottleHandoff_o.setREQ(false);//sysj\bottleLoaderController.sysj line: 91, column: 5
                         S91=1;
                         active[3]=1;
                         ends[3]=1;
@@ -721,19 +721,19 @@ public class BottleLoaderController extends ClockDomain{
                       else {
                         switch(S86){
                           case 0 : 
-                            if(bottleHandoff_o.isACK()){//sysj/bottleLoaderController.sysj line: 91, column: 5
-                              bottleHandoff_o.setVal(w_thread_3);//sysj/bottleLoaderController.sysj line: 91, column: 5
+                            if(bottleHandoff_o.isACK()){//sysj\bottleLoaderController.sysj line: 91, column: 5
+                              bottleHandoff_o.setVal(w_thread_3);//sysj\bottleLoaderController.sysj line: 91, column: 5
                               S86=1;
-                              if(!bottleHandoff_o.isACK()){//sysj/bottleLoaderController.sysj line: 91, column: 5
-                                bottleHandoff_o.setREQ(false);//sysj/bottleLoaderController.sysj line: 91, column: 5
+                              if(!bottleHandoff_o.isACK()){//sysj\bottleLoaderController.sysj line: 91, column: 5
+                                bottleHandoff_o.setREQ(false);//sysj\bottleLoaderController.sysj line: 91, column: 5
                                 ends[3]=2;
-                                ;//sysj/bottleLoaderController.sysj line: 91, column: 5
+                                ;//sysj\bottleLoaderController.sysj line: 91, column: 5
                                 S36=5;
-                                if(!WPgripped.getprestatus()){//sysj/bottleLoaderController.sysj line: 95, column: 21
+                                if(!WPgripped.getprestatus()){//sysj\bottleLoaderController.sysj line: 95, column: 21
                                   S36=6;
                                   S151=0;
-                                  if(!loadAck_o.isPartnerPresent() || loadAck_o.isPartnerPreempted()){//sysj/bottleLoaderController.sysj line: 99, column: 5
-                                    loadAck_o.setREQ(false);//sysj/bottleLoaderController.sysj line: 99, column: 5
+                                  if(!loadAck_o.isPartnerPresent() || loadAck_o.isPartnerPreempted()){//sysj\bottleLoaderController.sysj line: 99, column: 5
+                                    loadAck_o.setREQ(false);//sysj\bottleLoaderController.sysj line: 99, column: 5
                                     S151=1;
                                     active[3]=1;
                                     ends[3]=1;
@@ -741,13 +741,13 @@ public class BottleLoaderController extends ClockDomain{
                                   }
                                   else {
                                     S146=0;
-                                    if(loadAck_o.isACK()){//sysj/bottleLoaderController.sysj line: 99, column: 5
-                                      loadAck_o.setVal(w_thread_3);//sysj/bottleLoaderController.sysj line: 99, column: 5
+                                    if(loadAck_o.isACK()){//sysj\bottleLoaderController.sysj line: 99, column: 5
+                                      loadAck_o.setVal(w_thread_3);//sysj\bottleLoaderController.sysj line: 99, column: 5
                                       S146=1;
-                                      if(!loadAck_o.isACK()){//sysj/bottleLoaderController.sysj line: 99, column: 5
-                                        loadAck_o.setREQ(false);//sysj/bottleLoaderController.sysj line: 99, column: 5
+                                      if(!loadAck_o.isACK()){//sysj\bottleLoaderController.sysj line: 99, column: 5
+                                        loadAck_o.setREQ(false);//sysj\bottleLoaderController.sysj line: 99, column: 5
                                         ends[3]=2;
-                                        ;//sysj/bottleLoaderController.sysj line: 99, column: 5
+                                        ;//sysj\bottleLoaderController.sysj line: 99, column: 5
                                         S740=2;
                                         active[3]=1;
                                         ends[3]=1;
@@ -767,7 +767,7 @@ public class BottleLoaderController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  release.setPresent();//sysj/bottleLoaderController.sysj line: 96, column: 6
+                                  release.setPresent();//sysj\bottleLoaderController.sysj line: 96, column: 6
                                   currsigs.addElement(release);
                                   active[3]=1;
                                   ends[3]=1;
@@ -788,16 +788,16 @@ public class BottleLoaderController extends ClockDomain{
                             break;
                           
                           case 1 : 
-                            if(!bottleHandoff_o.isACK()){//sysj/bottleLoaderController.sysj line: 91, column: 5
-                              bottleHandoff_o.setREQ(false);//sysj/bottleLoaderController.sysj line: 91, column: 5
+                            if(!bottleHandoff_o.isACK()){//sysj\bottleLoaderController.sysj line: 91, column: 5
+                              bottleHandoff_o.setREQ(false);//sysj\bottleLoaderController.sysj line: 91, column: 5
                               ends[3]=2;
-                              ;//sysj/bottleLoaderController.sysj line: 91, column: 5
+                              ;//sysj\bottleLoaderController.sysj line: 91, column: 5
                               S36=5;
-                              if(!WPgripped.getprestatus()){//sysj/bottleLoaderController.sysj line: 95, column: 21
+                              if(!WPgripped.getprestatus()){//sysj\bottleLoaderController.sysj line: 95, column: 21
                                 S36=6;
                                 S151=0;
-                                if(!loadAck_o.isPartnerPresent() || loadAck_o.isPartnerPreempted()){//sysj/bottleLoaderController.sysj line: 99, column: 5
-                                  loadAck_o.setREQ(false);//sysj/bottleLoaderController.sysj line: 99, column: 5
+                                if(!loadAck_o.isPartnerPresent() || loadAck_o.isPartnerPreempted()){//sysj\bottleLoaderController.sysj line: 99, column: 5
+                                  loadAck_o.setREQ(false);//sysj\bottleLoaderController.sysj line: 99, column: 5
                                   S151=1;
                                   active[3]=1;
                                   ends[3]=1;
@@ -805,13 +805,13 @@ public class BottleLoaderController extends ClockDomain{
                                 }
                                 else {
                                   S146=0;
-                                  if(loadAck_o.isACK()){//sysj/bottleLoaderController.sysj line: 99, column: 5
-                                    loadAck_o.setVal(w_thread_3);//sysj/bottleLoaderController.sysj line: 99, column: 5
+                                  if(loadAck_o.isACK()){//sysj\bottleLoaderController.sysj line: 99, column: 5
+                                    loadAck_o.setVal(w_thread_3);//sysj\bottleLoaderController.sysj line: 99, column: 5
                                     S146=1;
-                                    if(!loadAck_o.isACK()){//sysj/bottleLoaderController.sysj line: 99, column: 5
-                                      loadAck_o.setREQ(false);//sysj/bottleLoaderController.sysj line: 99, column: 5
+                                    if(!loadAck_o.isACK()){//sysj\bottleLoaderController.sysj line: 99, column: 5
+                                      loadAck_o.setREQ(false);//sysj\bottleLoaderController.sysj line: 99, column: 5
                                       ends[3]=2;
-                                      ;//sysj/bottleLoaderController.sysj line: 99, column: 5
+                                      ;//sysj\bottleLoaderController.sysj line: 99, column: 5
                                       S740=2;
                                       active[3]=1;
                                       ends[3]=1;
@@ -831,7 +831,7 @@ public class BottleLoaderController extends ClockDomain{
                                 }
                               }
                               else {
-                                release.setPresent();//sysj/bottleLoaderController.sysj line: 96, column: 6
+                                release.setPresent();//sysj\bottleLoaderController.sysj line: 96, column: 6
                                 currsigs.addElement(release);
                                 active[3]=1;
                                 ends[3]=1;
@@ -852,8 +852,8 @@ public class BottleLoaderController extends ClockDomain{
                     case 1 : 
                       S91=1;
                       S91=0;
-                      if(!bottleHandoff_o.isPartnerPresent() || bottleHandoff_o.isPartnerPreempted()){//sysj/bottleLoaderController.sysj line: 91, column: 5
-                        bottleHandoff_o.setREQ(false);//sysj/bottleLoaderController.sysj line: 91, column: 5
+                      if(!bottleHandoff_o.isPartnerPresent() || bottleHandoff_o.isPartnerPreempted()){//sysj\bottleLoaderController.sysj line: 91, column: 5
+                        bottleHandoff_o.setREQ(false);//sysj\bottleLoaderController.sysj line: 91, column: 5
                         S91=1;
                         active[3]=1;
                         ends[3]=1;
@@ -861,19 +861,19 @@ public class BottleLoaderController extends ClockDomain{
                       }
                       else {
                         S86=0;
-                        if(bottleHandoff_o.isACK()){//sysj/bottleLoaderController.sysj line: 91, column: 5
-                          bottleHandoff_o.setVal(w_thread_3);//sysj/bottleLoaderController.sysj line: 91, column: 5
+                        if(bottleHandoff_o.isACK()){//sysj\bottleLoaderController.sysj line: 91, column: 5
+                          bottleHandoff_o.setVal(w_thread_3);//sysj\bottleLoaderController.sysj line: 91, column: 5
                           S86=1;
-                          if(!bottleHandoff_o.isACK()){//sysj/bottleLoaderController.sysj line: 91, column: 5
-                            bottleHandoff_o.setREQ(false);//sysj/bottleLoaderController.sysj line: 91, column: 5
+                          if(!bottleHandoff_o.isACK()){//sysj\bottleLoaderController.sysj line: 91, column: 5
+                            bottleHandoff_o.setREQ(false);//sysj\bottleLoaderController.sysj line: 91, column: 5
                             ends[3]=2;
-                            ;//sysj/bottleLoaderController.sysj line: 91, column: 5
+                            ;//sysj\bottleLoaderController.sysj line: 91, column: 5
                             S36=5;
-                            if(!WPgripped.getprestatus()){//sysj/bottleLoaderController.sysj line: 95, column: 21
+                            if(!WPgripped.getprestatus()){//sysj\bottleLoaderController.sysj line: 95, column: 21
                               S36=6;
                               S151=0;
-                              if(!loadAck_o.isPartnerPresent() || loadAck_o.isPartnerPreempted()){//sysj/bottleLoaderController.sysj line: 99, column: 5
-                                loadAck_o.setREQ(false);//sysj/bottleLoaderController.sysj line: 99, column: 5
+                              if(!loadAck_o.isPartnerPresent() || loadAck_o.isPartnerPreempted()){//sysj\bottleLoaderController.sysj line: 99, column: 5
+                                loadAck_o.setREQ(false);//sysj\bottleLoaderController.sysj line: 99, column: 5
                                 S151=1;
                                 active[3]=1;
                                 ends[3]=1;
@@ -881,13 +881,13 @@ public class BottleLoaderController extends ClockDomain{
                               }
                               else {
                                 S146=0;
-                                if(loadAck_o.isACK()){//sysj/bottleLoaderController.sysj line: 99, column: 5
-                                  loadAck_o.setVal(w_thread_3);//sysj/bottleLoaderController.sysj line: 99, column: 5
+                                if(loadAck_o.isACK()){//sysj\bottleLoaderController.sysj line: 99, column: 5
+                                  loadAck_o.setVal(w_thread_3);//sysj\bottleLoaderController.sysj line: 99, column: 5
                                   S146=1;
-                                  if(!loadAck_o.isACK()){//sysj/bottleLoaderController.sysj line: 99, column: 5
-                                    loadAck_o.setREQ(false);//sysj/bottleLoaderController.sysj line: 99, column: 5
+                                  if(!loadAck_o.isACK()){//sysj\bottleLoaderController.sysj line: 99, column: 5
+                                    loadAck_o.setREQ(false);//sysj\bottleLoaderController.sysj line: 99, column: 5
                                     ends[3]=2;
-                                    ;//sysj/bottleLoaderController.sysj line: 99, column: 5
+                                    ;//sysj\bottleLoaderController.sysj line: 99, column: 5
                                     S740=2;
                                     active[3]=1;
                                     ends[3]=1;
@@ -907,7 +907,7 @@ public class BottleLoaderController extends ClockDomain{
                               }
                             }
                             else {
-                              release.setPresent();//sysj/bottleLoaderController.sysj line: 96, column: 6
+                              release.setPresent();//sysj\bottleLoaderController.sysj line: 96, column: 6
                               currsigs.addElement(release);
                               active[3]=1;
                               ends[3]=1;
@@ -932,11 +932,11 @@ public class BottleLoaderController extends ClockDomain{
                   break;
                 
                 case 5 : 
-                  if(!WPgripped.getprestatus()){//sysj/bottleLoaderController.sysj line: 95, column: 21
+                  if(!WPgripped.getprestatus()){//sysj\bottleLoaderController.sysj line: 95, column: 21
                     S36=6;
                     S151=0;
-                    if(!loadAck_o.isPartnerPresent() || loadAck_o.isPartnerPreempted()){//sysj/bottleLoaderController.sysj line: 99, column: 5
-                      loadAck_o.setREQ(false);//sysj/bottleLoaderController.sysj line: 99, column: 5
+                    if(!loadAck_o.isPartnerPresent() || loadAck_o.isPartnerPreempted()){//sysj\bottleLoaderController.sysj line: 99, column: 5
+                      loadAck_o.setREQ(false);//sysj\bottleLoaderController.sysj line: 99, column: 5
                       S151=1;
                       active[3]=1;
                       ends[3]=1;
@@ -944,13 +944,13 @@ public class BottleLoaderController extends ClockDomain{
                     }
                     else {
                       S146=0;
-                      if(loadAck_o.isACK()){//sysj/bottleLoaderController.sysj line: 99, column: 5
-                        loadAck_o.setVal(w_thread_3);//sysj/bottleLoaderController.sysj line: 99, column: 5
+                      if(loadAck_o.isACK()){//sysj\bottleLoaderController.sysj line: 99, column: 5
+                        loadAck_o.setVal(w_thread_3);//sysj\bottleLoaderController.sysj line: 99, column: 5
                         S146=1;
-                        if(!loadAck_o.isACK()){//sysj/bottleLoaderController.sysj line: 99, column: 5
-                          loadAck_o.setREQ(false);//sysj/bottleLoaderController.sysj line: 99, column: 5
+                        if(!loadAck_o.isACK()){//sysj\bottleLoaderController.sysj line: 99, column: 5
+                          loadAck_o.setREQ(false);//sysj\bottleLoaderController.sysj line: 99, column: 5
                           ends[3]=2;
-                          ;//sysj/bottleLoaderController.sysj line: 99, column: 5
+                          ;//sysj\bottleLoaderController.sysj line: 99, column: 5
                           S740=2;
                           active[3]=1;
                           ends[3]=1;
@@ -970,7 +970,7 @@ public class BottleLoaderController extends ClockDomain{
                     }
                   }
                   else {
-                    release.setPresent();//sysj/bottleLoaderController.sysj line: 96, column: 6
+                    release.setPresent();//sysj\bottleLoaderController.sysj line: 96, column: 6
                     currsigs.addElement(release);
                     active[3]=1;
                     ends[3]=1;
@@ -981,8 +981,8 @@ public class BottleLoaderController extends ClockDomain{
                 case 6 : 
                   switch(S151){
                     case 0 : 
-                      if(!loadAck_o.isPartnerPresent() || loadAck_o.isPartnerPreempted()){//sysj/bottleLoaderController.sysj line: 99, column: 5
-                        loadAck_o.setREQ(false);//sysj/bottleLoaderController.sysj line: 99, column: 5
+                      if(!loadAck_o.isPartnerPresent() || loadAck_o.isPartnerPreempted()){//sysj\bottleLoaderController.sysj line: 99, column: 5
+                        loadAck_o.setREQ(false);//sysj\bottleLoaderController.sysj line: 99, column: 5
                         S151=1;
                         active[3]=1;
                         ends[3]=1;
@@ -991,13 +991,13 @@ public class BottleLoaderController extends ClockDomain{
                       else {
                         switch(S146){
                           case 0 : 
-                            if(loadAck_o.isACK()){//sysj/bottleLoaderController.sysj line: 99, column: 5
-                              loadAck_o.setVal(w_thread_3);//sysj/bottleLoaderController.sysj line: 99, column: 5
+                            if(loadAck_o.isACK()){//sysj\bottleLoaderController.sysj line: 99, column: 5
+                              loadAck_o.setVal(w_thread_3);//sysj\bottleLoaderController.sysj line: 99, column: 5
                               S146=1;
-                              if(!loadAck_o.isACK()){//sysj/bottleLoaderController.sysj line: 99, column: 5
-                                loadAck_o.setREQ(false);//sysj/bottleLoaderController.sysj line: 99, column: 5
+                              if(!loadAck_o.isACK()){//sysj\bottleLoaderController.sysj line: 99, column: 5
+                                loadAck_o.setREQ(false);//sysj\bottleLoaderController.sysj line: 99, column: 5
                                 ends[3]=2;
-                                ;//sysj/bottleLoaderController.sysj line: 99, column: 5
+                                ;//sysj\bottleLoaderController.sysj line: 99, column: 5
                                 S740=2;
                                 active[3]=1;
                                 ends[3]=1;
@@ -1017,10 +1017,10 @@ public class BottleLoaderController extends ClockDomain{
                             break;
                           
                           case 1 : 
-                            if(!loadAck_o.isACK()){//sysj/bottleLoaderController.sysj line: 99, column: 5
-                              loadAck_o.setREQ(false);//sysj/bottleLoaderController.sysj line: 99, column: 5
+                            if(!loadAck_o.isACK()){//sysj\bottleLoaderController.sysj line: 99, column: 5
+                              loadAck_o.setREQ(false);//sysj\bottleLoaderController.sysj line: 99, column: 5
                               ends[3]=2;
-                              ;//sysj/bottleLoaderController.sysj line: 99, column: 5
+                              ;//sysj\bottleLoaderController.sysj line: 99, column: 5
                               S740=2;
                               active[3]=1;
                               ends[3]=1;
@@ -1040,8 +1040,8 @@ public class BottleLoaderController extends ClockDomain{
                     case 1 : 
                       S151=1;
                       S151=0;
-                      if(!loadAck_o.isPartnerPresent() || loadAck_o.isPartnerPreempted()){//sysj/bottleLoaderController.sysj line: 99, column: 5
-                        loadAck_o.setREQ(false);//sysj/bottleLoaderController.sysj line: 99, column: 5
+                      if(!loadAck_o.isPartnerPresent() || loadAck_o.isPartnerPreempted()){//sysj\bottleLoaderController.sysj line: 99, column: 5
+                        loadAck_o.setREQ(false);//sysj\bottleLoaderController.sysj line: 99, column: 5
                         S151=1;
                         active[3]=1;
                         ends[3]=1;
@@ -1049,13 +1049,13 @@ public class BottleLoaderController extends ClockDomain{
                       }
                       else {
                         S146=0;
-                        if(loadAck_o.isACK()){//sysj/bottleLoaderController.sysj line: 99, column: 5
-                          loadAck_o.setVal(w_thread_3);//sysj/bottleLoaderController.sysj line: 99, column: 5
+                        if(loadAck_o.isACK()){//sysj\bottleLoaderController.sysj line: 99, column: 5
+                          loadAck_o.setVal(w_thread_3);//sysj\bottleLoaderController.sysj line: 99, column: 5
                           S146=1;
-                          if(!loadAck_o.isACK()){//sysj/bottleLoaderController.sysj line: 99, column: 5
-                            loadAck_o.setREQ(false);//sysj/bottleLoaderController.sysj line: 99, column: 5
+                          if(!loadAck_o.isACK()){//sysj\bottleLoaderController.sysj line: 99, column: 5
+                            loadAck_o.setREQ(false);//sysj\bottleLoaderController.sysj line: 99, column: 5
                             ends[3]=2;
-                            ;//sysj/bottleLoaderController.sysj line: 99, column: 5
+                            ;//sysj\bottleLoaderController.sysj line: 99, column: 5
                             S740=2;
                             active[3]=1;
                             ends[3]=1;
@@ -1092,9 +1092,9 @@ public class BottleLoaderController extends ClockDomain{
           case 2 : 
             S740=2;
             S740=0;
-            if(auto_1.getprestatus()){//sysj/bottleLoaderController.sysj line: 58, column: 20
+            if(auto_1.getprestatus()){//sysj\bottleLoaderController.sysj line: 58, column: 20
               S740=1;
-              if(manual_1.getprestatus()){//sysj/bottleLoaderController.sysj line: 60, column: 20
+              if(manual_1.getprestatus()){//sysj\bottleLoaderController.sysj line: 60, column: 20
                 loadOrder_in.setPreempted();
                 bottleHandoff_o.setPreempted();
                 loadAck_o.setPreempted();
@@ -1106,8 +1106,8 @@ public class BottleLoaderController extends ClockDomain{
               else {
                 S36=0;
                 S20=0;
-                if(!loadOrder_in.isPartnerPresent() || loadOrder_in.isPartnerPreempted()){//sysj/bottleLoaderController.sysj line: 62, column: 5
-                  loadOrder_in.setACK(false);//sysj/bottleLoaderController.sysj line: 62, column: 5
+                if(!loadOrder_in.isPartnerPresent() || loadOrder_in.isPartnerPreempted()){//sysj\bottleLoaderController.sysj line: 62, column: 5
+                  loadOrder_in.setACK(false);//sysj\bottleLoaderController.sysj line: 62, column: 5
                   S20=1;
                   active[3]=1;
                   ends[3]=1;
@@ -1115,27 +1115,27 @@ public class BottleLoaderController extends ClockDomain{
                 }
                 else {
                   S15=0;
-                  if(!loadOrder_in.isREQ()){//sysj/bottleLoaderController.sysj line: 62, column: 5
-                    loadOrder_in.setACK(true);//sysj/bottleLoaderController.sysj line: 62, column: 5
+                  if(!loadOrder_in.isREQ()){//sysj\bottleLoaderController.sysj line: 62, column: 5
+                    loadOrder_in.setACK(true);//sysj\bottleLoaderController.sysj line: 62, column: 5
                     S15=1;
-                    if(loadOrder_in.isREQ()){//sysj/bottleLoaderController.sysj line: 62, column: 5
-                      loadOrder_in.setACK(false);//sysj/bottleLoaderController.sysj line: 62, column: 5
+                    if(loadOrder_in.isREQ()){//sysj\bottleLoaderController.sysj line: 62, column: 5
+                      loadOrder_in.setACK(false);//sysj\bottleLoaderController.sysj line: 62, column: 5
                       ends[3]=2;
-                      ;//sysj/bottleLoaderController.sysj line: 62, column: 5
-                      w_thread_3 = (Workpiece)(loadOrder_in.getVal() == null ? null : ((Workpiece)loadOrder_in.getVal()));//sysj/bottleLoaderController.sysj line: 63, column: 5
-                      System.out.println("[BL] Order received for " + w_thread_3 + ".");//sysj/bottleLoaderController.sysj line: 64, column: 5
-                      if(bottleAtSource.getprestatus()){//sysj/bottleLoaderController.sysj line: 66, column: 13
+                      ;//sysj\bottleLoaderController.sysj line: 62, column: 5
+                      w_thread_3 = (Workpiece)(loadOrder_in.getVal() == null ? null : ((Workpiece)loadOrder_in.getVal()));//sysj\bottleLoaderController.sysj line: 63, column: 5
+                      System.out.println("[BL] Order received for " + w_thread_3 + ".");//sysj\bottleLoaderController.sysj line: 64, column: 5
+                      if(bottleAtSource.getprestatus()){//sysj\bottleLoaderController.sysj line: 66, column: 13
                         S36=1;
-                        armSource.setPresent();//sysj/bottleLoaderController.sysj line: 75, column: 6
+                        armSource.setPresent();//sysj\bottleLoaderController.sysj line: 75, column: 6
                         currsigs.addElement(armSource);
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        System.out.println("[BL] Warning: no bottle at source.");//sysj/bottleLoaderController.sysj line: 70, column: 6
+                        System.out.println("[BL] Warning: no bottle at source.");//sysj\bottleLoaderController.sysj line: 70, column: 6
                         S36=1;
-                        armSource.setPresent();//sysj/bottleLoaderController.sysj line: 75, column: 6
+                        armSource.setPresent();//sysj\bottleLoaderController.sysj line: 75, column: 6
                         currsigs.addElement(armSource);
                         active[3]=1;
                         ends[3]=1;
@@ -1178,16 +1178,16 @@ public class BottleLoaderController extends ClockDomain{
         break;
       
       case 1 : 
-        if(mode.getprestatus()){//sysj/bottleLoaderController.sysj line: 42, column: 12
-          if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj/bottleLoaderController.sysj line: 43, column: 8
-            auto_1.setPresent();//sysj/bottleLoaderController.sysj line: 44, column: 6
+        if(mode.getprestatus()){//sysj\bottleLoaderController.sysj line: 42, column: 12
+          if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\bottleLoaderController.sysj line: 43, column: 8
+            auto_1.setPresent();//sysj\bottleLoaderController.sysj line: 44, column: 6
             currsigs.addElement(auto_1);
             active[2]=1;
             ends[2]=1;
             tdone[2]=1;
           }
           else {
-            manual_1.setPresent();//sysj/bottleLoaderController.sysj line: 47, column: 6
+            manual_1.setPresent();//sysj\bottleLoaderController.sysj line: 47, column: 6
             currsigs.addElement(manual_1);
             active[2]=1;
             ends[2]=1;
@@ -1206,18 +1206,18 @@ public class BottleLoaderController extends ClockDomain{
 
   public void thread4690(int [] tdone, int [] ends){
         S4683=1;
-    reported_thread_5 = false;//sysj/bottleLoaderController.sysj line: 121, column: 3
-    if(supplyEmpty.getprestatus()){//sysj/bottleLoaderController.sysj line: 123, column: 12
-      if(!reported_thread_5) {//sysj/bottleLoaderController.sysj line: 124, column: 18
-        System.out.println("[BL] Bottle supply is empty.");//sysj/bottleLoaderController.sysj line: 125, column: 6
-        reported_thread_5 = true;//sysj/bottleLoaderController.sysj line: 126, column: 6
+    reported_thread_5 = false;//sysj\bottleLoaderController.sysj line: 121, column: 3
+    if(supplyEmpty.getprestatus()){//sysj\bottleLoaderController.sysj line: 123, column: 12
+      if(!reported_thread_5) {//sysj\bottleLoaderController.sysj line: 124, column: 18
+        System.out.println("[BL] Bottle supply is empty.");//sysj\bottleLoaderController.sysj line: 125, column: 6
+        reported_thread_5 = true;//sysj\bottleLoaderController.sysj line: 126, column: 6
       }
       active[5]=1;
       ends[5]=1;
       tdone[5]=1;
     }
     else {
-      reported_thread_5 = false;//sysj/bottleLoaderController.sysj line: 130, column: 5
+      reported_thread_5 = false;//sysj\bottleLoaderController.sysj line: 130, column: 5
       active[5]=1;
       ends[5]=1;
       tdone[5]=1;
@@ -1227,23 +1227,23 @@ public class BottleLoaderController extends ClockDomain{
   public void thread4689(int [] tdone, int [] ends){
         S4669=1;
     S4477=0;
-    if(manual_1.getprestatus()){//sysj/bottleLoaderController.sysj line: 107, column: 20
+    if(manual_1.getprestatus()){//sysj\bottleLoaderController.sysj line: 107, column: 20
       S4477=1;
-      if(auto_1.getprestatus()){//sysj/bottleLoaderController.sysj line: 108, column: 20
+      if(auto_1.getprestatus()){//sysj\bottleLoaderController.sysj line: 108, column: 20
         S4477=2;
         active[4]=1;
         ends[4]=1;
         tdone[4]=1;
       }
       else {
-        if(vacOnM.getprestatus()){//sysj/bottleLoaderController.sysj line: 110, column: 14
-          vacOn.setPresent();//sysj/bottleLoaderController.sysj line: 110, column: 23
+        if(vacOnM.getprestatus()){//sysj\bottleLoaderController.sysj line: 110, column: 14
+          vacOn.setPresent();//sysj\bottleLoaderController.sysj line: 110, column: 23
           currsigs.addElement(vacOn);
-          if(armSourceM.getprestatus()){//sysj/bottleLoaderController.sysj line: 111, column: 14
-            armSource.setPresent();//sysj/bottleLoaderController.sysj line: 111, column: 27
+          if(armSourceM.getprestatus()){//sysj\bottleLoaderController.sysj line: 111, column: 14
+            armSource.setPresent();//sysj\bottleLoaderController.sysj line: 111, column: 27
             currsigs.addElement(armSource);
-            if(armDestM.getprestatus()){//sysj/bottleLoaderController.sysj line: 112, column: 14
-              armDest.setPresent();//sysj/bottleLoaderController.sysj line: 112, column: 25
+            if(armDestM.getprestatus()){//sysj\bottleLoaderController.sysj line: 112, column: 14
+              armDest.setPresent();//sysj\bottleLoaderController.sysj line: 112, column: 25
               currsigs.addElement(armDest);
               active[4]=1;
               ends[4]=1;
@@ -1256,8 +1256,8 @@ public class BottleLoaderController extends ClockDomain{
             }
           }
           else {
-            if(armDestM.getprestatus()){//sysj/bottleLoaderController.sysj line: 112, column: 14
-              armDest.setPresent();//sysj/bottleLoaderController.sysj line: 112, column: 25
+            if(armDestM.getprestatus()){//sysj\bottleLoaderController.sysj line: 112, column: 14
+              armDest.setPresent();//sysj\bottleLoaderController.sysj line: 112, column: 25
               currsigs.addElement(armDest);
               active[4]=1;
               ends[4]=1;
@@ -1271,11 +1271,11 @@ public class BottleLoaderController extends ClockDomain{
           }
         }
         else {
-          if(armSourceM.getprestatus()){//sysj/bottleLoaderController.sysj line: 111, column: 14
-            armSource.setPresent();//sysj/bottleLoaderController.sysj line: 111, column: 27
+          if(armSourceM.getprestatus()){//sysj\bottleLoaderController.sysj line: 111, column: 14
+            armSource.setPresent();//sysj\bottleLoaderController.sysj line: 111, column: 27
             currsigs.addElement(armSource);
-            if(armDestM.getprestatus()){//sysj/bottleLoaderController.sysj line: 112, column: 14
-              armDest.setPresent();//sysj/bottleLoaderController.sysj line: 112, column: 25
+            if(armDestM.getprestatus()){//sysj\bottleLoaderController.sysj line: 112, column: 14
+              armDest.setPresent();//sysj\bottleLoaderController.sysj line: 112, column: 25
               currsigs.addElement(armDest);
               active[4]=1;
               ends[4]=1;
@@ -1288,8 +1288,8 @@ public class BottleLoaderController extends ClockDomain{
             }
           }
           else {
-            if(armDestM.getprestatus()){//sysj/bottleLoaderController.sysj line: 112, column: 14
-              armDest.setPresent();//sysj/bottleLoaderController.sysj line: 112, column: 25
+            if(armDestM.getprestatus()){//sysj\bottleLoaderController.sysj line: 112, column: 14
+              armDest.setPresent();//sysj\bottleLoaderController.sysj line: 112, column: 25
               currsigs.addElement(armDest);
               active[4]=1;
               ends[4]=1;
@@ -1313,11 +1313,11 @@ public class BottleLoaderController extends ClockDomain{
 
   public void thread4688(int [] tdone, int [] ends){
         S4382=1;
-    w_thread_3 = null;//sysj/bottleLoaderController.sysj line: 55, column: 3
+    w_thread_3 = null;//sysj\bottleLoaderController.sysj line: 55, column: 3
     S740=0;
-    if(auto_1.getprestatus()){//sysj/bottleLoaderController.sysj line: 58, column: 20
+    if(auto_1.getprestatus()){//sysj\bottleLoaderController.sysj line: 58, column: 20
       S740=1;
-      if(manual_1.getprestatus()){//sysj/bottleLoaderController.sysj line: 60, column: 20
+      if(manual_1.getprestatus()){//sysj\bottleLoaderController.sysj line: 60, column: 20
         loadOrder_in.setPreempted();
         bottleHandoff_o.setPreempted();
         loadAck_o.setPreempted();
@@ -1329,8 +1329,8 @@ public class BottleLoaderController extends ClockDomain{
       else {
         S36=0;
         S20=0;
-        if(!loadOrder_in.isPartnerPresent() || loadOrder_in.isPartnerPreempted()){//sysj/bottleLoaderController.sysj line: 62, column: 5
-          loadOrder_in.setACK(false);//sysj/bottleLoaderController.sysj line: 62, column: 5
+        if(!loadOrder_in.isPartnerPresent() || loadOrder_in.isPartnerPreempted()){//sysj\bottleLoaderController.sysj line: 62, column: 5
+          loadOrder_in.setACK(false);//sysj\bottleLoaderController.sysj line: 62, column: 5
           S20=1;
           active[3]=1;
           ends[3]=1;
@@ -1338,27 +1338,27 @@ public class BottleLoaderController extends ClockDomain{
         }
         else {
           S15=0;
-          if(!loadOrder_in.isREQ()){//sysj/bottleLoaderController.sysj line: 62, column: 5
-            loadOrder_in.setACK(true);//sysj/bottleLoaderController.sysj line: 62, column: 5
+          if(!loadOrder_in.isREQ()){//sysj\bottleLoaderController.sysj line: 62, column: 5
+            loadOrder_in.setACK(true);//sysj\bottleLoaderController.sysj line: 62, column: 5
             S15=1;
-            if(loadOrder_in.isREQ()){//sysj/bottleLoaderController.sysj line: 62, column: 5
-              loadOrder_in.setACK(false);//sysj/bottleLoaderController.sysj line: 62, column: 5
+            if(loadOrder_in.isREQ()){//sysj\bottleLoaderController.sysj line: 62, column: 5
+              loadOrder_in.setACK(false);//sysj\bottleLoaderController.sysj line: 62, column: 5
               ends[3]=2;
-              ;//sysj/bottleLoaderController.sysj line: 62, column: 5
-              w_thread_3 = (Workpiece)(loadOrder_in.getVal() == null ? null : ((Workpiece)loadOrder_in.getVal()));//sysj/bottleLoaderController.sysj line: 63, column: 5
-              System.out.println("[BL] Order received for " + w_thread_3 + ".");//sysj/bottleLoaderController.sysj line: 64, column: 5
-              if(bottleAtSource.getprestatus()){//sysj/bottleLoaderController.sysj line: 66, column: 13
+              ;//sysj\bottleLoaderController.sysj line: 62, column: 5
+              w_thread_3 = (Workpiece)(loadOrder_in.getVal() == null ? null : ((Workpiece)loadOrder_in.getVal()));//sysj\bottleLoaderController.sysj line: 63, column: 5
+              System.out.println("[BL] Order received for " + w_thread_3 + ".");//sysj\bottleLoaderController.sysj line: 64, column: 5
+              if(bottleAtSource.getprestatus()){//sysj\bottleLoaderController.sysj line: 66, column: 13
                 S36=1;
-                armSource.setPresent();//sysj/bottleLoaderController.sysj line: 75, column: 6
+                armSource.setPresent();//sysj\bottleLoaderController.sysj line: 75, column: 6
                 currsigs.addElement(armSource);
                 active[3]=1;
                 ends[3]=1;
                 tdone[3]=1;
               }
               else {
-                System.out.println("[BL] Warning: no bottle at source.");//sysj/bottleLoaderController.sysj line: 70, column: 6
+                System.out.println("[BL] Warning: no bottle at source.");//sysj\bottleLoaderController.sysj line: 70, column: 6
                 S36=1;
-                armSource.setPresent();//sysj/bottleLoaderController.sysj line: 75, column: 6
+                armSource.setPresent();//sysj\bottleLoaderController.sysj line: 75, column: 6
                 currsigs.addElement(armSource);
                 active[3]=1;
                 ends[3]=1;
@@ -1388,16 +1388,16 @@ public class BottleLoaderController extends ClockDomain{
 
   public void thread4687(int [] tdone, int [] ends){
         S12=1;
-    if(mode.getprestatus()){//sysj/bottleLoaderController.sysj line: 42, column: 12
-      if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj/bottleLoaderController.sysj line: 43, column: 8
-        auto_1.setPresent();//sysj/bottleLoaderController.sysj line: 44, column: 6
+    if(mode.getprestatus()){//sysj\bottleLoaderController.sysj line: 42, column: 12
+      if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\bottleLoaderController.sysj line: 43, column: 8
+        auto_1.setPresent();//sysj\bottleLoaderController.sysj line: 44, column: 6
         currsigs.addElement(auto_1);
         active[2]=1;
         ends[2]=1;
         tdone[2]=1;
       }
       else {
-        manual_1.setPresent();//sysj/bottleLoaderController.sysj line: 47, column: 6
+        manual_1.setPresent();//sysj\bottleLoaderController.sysj line: 47, column: 6
         currsigs.addElement(manual_1);
         active[2]=1;
         ends[2]=1;
@@ -1426,8 +1426,8 @@ public class BottleLoaderController extends ClockDomain{
         case 1 : 
           S4685=2;
           S4685=2;
-          auto_1.setClear();//sysj/bottleLoaderController.sysj line: 38, column: 2
-          manual_1.setClear();//sysj/bottleLoaderController.sysj line: 38, column: 2
+          auto_1.setClear();//sysj\bottleLoaderController.sysj line: 38, column: 2
+          manual_1.setClear();//sysj\bottleLoaderController.sysj line: 38, column: 2
           thread4687(tdone,ends);
           thread4688(tdone,ends);
           thread4689(tdone,ends);
@@ -1452,8 +1452,8 @@ public class BottleLoaderController extends ClockDomain{
           }
         
         case 2 : 
-          auto_1.setClear();//sysj/bottleLoaderController.sysj line: 38, column: 2
-          manual_1.setClear();//sysj/bottleLoaderController.sysj line: 38, column: 2
+          auto_1.setClear();//sysj\bottleLoaderController.sysj line: 38, column: 2
+          manual_1.setClear();//sysj\bottleLoaderController.sysj line: 38, column: 2
           thread4692(tdone,ends);
           thread4693(tdone,ends);
           thread4694(tdone,ends);

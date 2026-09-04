@@ -4,6 +4,7 @@
 	<SubSystem Name="PosStubCD" Local="true">
 		<ClockDomain Name="PosStubCD" Class="PosStub">
 			<iChannel Name="completed"     From="SystemControllerCD.orderProgress" />
+			<iChannel Name="recycled"      From="SystemControllerCD.orderRejected" />
 			<oChannel Name="order"         To="SystemControllerCD.purchaseOrder" />
 
 		</ClockDomain>

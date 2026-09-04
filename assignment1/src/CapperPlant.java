@@ -14,9 +14,9 @@ public class CapperPlant extends ClockDomain{
   public Signal enable = new Signal("enable", Signal.INPUT);
   public Signal screwOn = new Signal("screwOn", Signal.INPUT);
   public Signal capSeated = new Signal("capSeated", Signal.OUTPUT);
-  private int TURNS_thread_1;//sysj/capperPlant.sysj line: 11, column: 2
-  private int turned_thread_1;//sysj/capperPlant.sysj line: 12, column: 2
-  private int S9341 = 1;
+  private int TURNS_thread_1;//sysj\capperPlant.sysj line: 11, column: 2
+  private int turned_thread_1;//sysj\capperPlant.sysj line: 12, column: 2
+  private int S17505 = 1;
   
   private int[] ends = new int[2];
   private int[] tdone = new int[2];
@@ -28,23 +28,23 @@ public class CapperPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S9341){
+      switch(S17505){
         case 0 : 
-          S9341=0;
+          S17505=0;
           break RUN;
         
         case 1 : 
-          S9341=2;
-          S9341=2;
-          TURNS_thread_1 = 12;//sysj/capperPlant.sysj line: 11, column: 2
-          turned_thread_1 = 0;//sysj/capperPlant.sysj line: 12, column: 2
-          if(enable.getprestatus()){//sysj/capperPlant.sysj line: 15, column: 11
-            if(screwOn.getprestatus()){//sysj/capperPlant.sysj line: 16, column: 12
-              if(turned_thread_1 < TURNS_thread_1) {//sysj/capperPlant.sysj line: 17, column: 23
-                turned_thread_1 = turned_thread_1 + 1;//sysj/capperPlant.sysj line: 17, column: 25
+          S17505=2;
+          S17505=2;
+          TURNS_thread_1 = 12;//sysj\capperPlant.sysj line: 11, column: 2
+          turned_thread_1 = 0;//sysj\capperPlant.sysj line: 12, column: 2
+          if(enable.getprestatus()){//sysj\capperPlant.sysj line: 15, column: 11
+            if(screwOn.getprestatus()){//sysj\capperPlant.sysj line: 16, column: 12
+              if(turned_thread_1 < TURNS_thread_1) {//sysj\capperPlant.sysj line: 17, column: 23
+                turned_thread_1 = turned_thread_1 + 1;//sysj\capperPlant.sysj line: 17, column: 25
               }
-              if(turned_thread_1 >= TURNS_thread_1){//sysj/capperPlant.sysj line: 18, column: 8
-                capSeated.setPresent();//sysj/capperPlant.sysj line: 18, column: 26
+              if(turned_thread_1 >= TURNS_thread_1){//sysj\capperPlant.sysj line: 18, column: 8
+                capSeated.setPresent();//sysj\capperPlant.sysj line: 18, column: 26
                 currsigs.addElement(capSeated);
                 active[1]=1;
                 ends[1]=1;
@@ -57,7 +57,7 @@ public class CapperPlant extends ClockDomain{
               }
             }
             else {
-              turned_thread_1 = 0;//sysj/capperPlant.sysj line: 21, column: 5
+              turned_thread_1 = 0;//sysj\capperPlant.sysj line: 21, column: 5
               active[1]=1;
               ends[1]=1;
               break RUN;
@@ -70,13 +70,13 @@ public class CapperPlant extends ClockDomain{
           }
         
         case 2 : 
-          if(enable.getprestatus()){//sysj/capperPlant.sysj line: 15, column: 11
-            if(screwOn.getprestatus()){//sysj/capperPlant.sysj line: 16, column: 12
-              if(turned_thread_1 < TURNS_thread_1) {//sysj/capperPlant.sysj line: 17, column: 23
-                turned_thread_1 = turned_thread_1 + 1;//sysj/capperPlant.sysj line: 17, column: 25
+          if(enable.getprestatus()){//sysj\capperPlant.sysj line: 15, column: 11
+            if(screwOn.getprestatus()){//sysj\capperPlant.sysj line: 16, column: 12
+              if(turned_thread_1 < TURNS_thread_1) {//sysj\capperPlant.sysj line: 17, column: 23
+                turned_thread_1 = turned_thread_1 + 1;//sysj\capperPlant.sysj line: 17, column: 25
               }
-              if(turned_thread_1 >= TURNS_thread_1){//sysj/capperPlant.sysj line: 18, column: 8
-                capSeated.setPresent();//sysj/capperPlant.sysj line: 18, column: 26
+              if(turned_thread_1 >= TURNS_thread_1){//sysj\capperPlant.sysj line: 18, column: 8
+                capSeated.setPresent();//sysj\capperPlant.sysj line: 18, column: 26
                 currsigs.addElement(capSeated);
                 active[1]=1;
                 ends[1]=1;
@@ -89,7 +89,7 @@ public class CapperPlant extends ClockDomain{
               }
             }
             else {
-              turned_thread_1 = 0;//sysj/capperPlant.sysj line: 21, column: 5
+              turned_thread_1 = 0;//sysj\capperPlant.sysj line: 21, column: 5
               active[1]=1;
               ends[1]=1;
               break RUN;
