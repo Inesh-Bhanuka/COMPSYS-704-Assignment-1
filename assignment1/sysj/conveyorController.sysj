@@ -20,14 +20,14 @@
  */
 ConveyorController(
 		// from the Bottle Loader
-		input  Integer channel bottleHandoff;
+		input  Workpiece channel bottleHandoff;
 
 		// to / from the Rotary Table
-		output Integer channel tableInfeed;
-		input  Integer channel tableOutfeed;
+		output Workpiece channel tableInfeed;
+		input  Workpiece channel tableOutfeed;
 
 		// to the System Controller
-		output Integer channel bottleDone;
+		output Workpiece channel bottleDone;
 
 		// from the plant
 		input signal bottleAtPos1, infeedClear, infeedAdmitted;
@@ -41,16 +41,16 @@ ConveyorController(
 {
 	{ // ---- 1. Accept from the loader ----
 		BeltQueue q = BeltQueue.shared();
-		int id = 0;
+		Workpiece w = null;
 		while(true){
 			// Only offer to take one when the load point is free. The loader
 			// blocks at its send until this reaction reaches the receive.
 			await(immediate infeedClear);
 
 			receive bottleHandoff;
-			id = ((Integer)#bottleHandoff).intValue();
-			q.push(id);
-			System.out.println("[CV] Accepted bottle " + id + " from the loader.");
+			w = (Workpiece)#bottleHandoff;
+			q.push(w);
+			System.out.println("[CV] Accepted " + w + " from the loader.");
 
 			// Hold the injection until the plant confirms the bottle is on
 			// the belt. Note this acknowledges against infeedAdmitted, not
@@ -73,15 +73,15 @@ ConveyorController(
 	||
 	{ // ---- 3. Hand off position 1 to the table ----
 		BeltQueue q = BeltQueue.shared();
-		int id = 0;
+		Workpiece w = null;
 		while(true){
 			await(immediate bottleAtPos1);
 
-			id = q.peek();
-			System.out.println("[CV] Bottle " + id + " at position 1, offering to the table.");
+			w = q.peek();
+			System.out.println("[CV] " + w + " at position 1, offering to the table.");
 
 			// Blocks until the table's intake reaction takes it
-			send tableInfeed(id);
+			send tableInfeed(w);
 			q.pop();
 
 			// Remove it from the belt, holding the command until the plant
@@ -89,19 +89,19 @@ ConveyorController(
 			abort(immediate !bottleAtPos1){
 				sustain takeFromPos1;
 			}
-			System.out.println("[CV] Bottle " + id + " handed to the table.");
+			System.out.println("[CV] " + w + " handed to the table.");
 			pause;
 		}
 	}
 	||
 	{ // ---- 4. Outfeed ----
-		int id = 0;
+		Workpiece w = null;
 		while(true){
 			await(immediate outfeedClear);
 
 			receive tableOutfeed;
-			id = ((Integer)#tableOutfeed).intValue();
-			System.out.println("[CV] Bottle " + id + " received from the table.");
+			w = (Workpiece)#tableOutfeed;
+			System.out.println("[CV] " + w + " received from the table.");
 
 			abort(immediate !outfeedClear){
 				sustain injectOutfeed;
@@ -114,9 +114,9 @@ ConveyorController(
 			abort(immediate !bottleAtOutfeedEnd){
 				sustain collectFromEnd;
 			}
-			System.out.println("[CV] Bottle " + id + " delivered to the labeller point.");
+			System.out.println("[CV] " + w + " delivered to the labeller point.");
 
-			send bottleDone(id);
+			send bottleDone(w);
 			pause;
 		}
 	}

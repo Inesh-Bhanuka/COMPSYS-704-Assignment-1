@@ -1,25 +1,14 @@
 /**
- * FIFO of workpiece identities travelling on one conveyor belt.
+ * Workpieces travelling on the infeed belt, in arrival order.
  *
- * The belt is physically first-in-first-out, so the controller does not need
- * to know where on the belt a given bottle is - only the order they arrive
- * in. A bottle is pushed when it is injected at the load point and popped
- * when it is handed to the next machine.
- *
- * Held as a Java object at clock-domain scope, like TableModel, so that the
- * two conveyor reactions that share it see the same queue and the array
- * handling stays out of the generated state machine.
+ * The belt is physically FIFO, so the controller only needs the order, not
+ * where on the belt anything is.
  */
 public class BeltQueue {
 
-	/**
-	 * The SystemJ compiler gives each reaction its own local scope, so an
-	 * object declared at clock-domain level is not visible inside the parallel
-	 * reactions that need it. There is exactly one of these per system, so the
-	 * reactions share it through this accessor instead.
-	 */
 	private static BeltQueue SHARED;
 
+	/** Reactions get their own scope, so they share the queue through this. */
 	public static BeltQueue shared() {
 		if (SHARED == null) {
 			SHARED = new BeltQueue();
@@ -27,35 +16,34 @@ public class BeltQueue {
 		return SHARED;
 	}
 
-	private final int[] q = new int[16];
+	private final Workpiece[] q = new Workpiece[16];
 	private int head = 0;
 	private int tail = 0;
 	private int count = 0;
 
-	public void push(int id) {
+	public void push(Workpiece w) {
 		if (count == q.length) {
-			System.out.println("[Q] Belt queue overflow, dropped bottle " + id + ".");
+			System.out.println("[Q] Belt queue full, dropped " + w + ".");
 			return;
 		}
-		q[tail] = id;
+		q[tail] = w;
 		tail = (tail + 1) % q.length;
 		count++;
 	}
 
-	/** Identity of the bottle that will arrive next, or 0 if the belt is empty. */
-	public int peek() {
-		return count == 0 ? 0 : q[head];
+	public Workpiece peek() {
+		return count == 0 ? null : q[head];
 	}
 
-	public int pop() {
+	public Workpiece pop() {
 		if (count == 0) {
-			System.out.println("[Q] Belt queue underflow - a bottle arrived that was never injected.");
-			return 0;
+			System.out.println("[Q] A bottle arrived that was never injected.");
+			return null;
 		}
-		int v = q[head];
+		Workpiece w = q[head];
 		head = (head + 1) % q.length;
 		count--;
-		return v;
+		return w;
 	}
 
 	public int size() {

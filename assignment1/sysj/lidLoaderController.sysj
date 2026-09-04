@@ -1,98 +1,102 @@
+/*
+ * Lid loader. Pushes a lid out of the magazine, picks it up with the vacuum
+ * arm and places it on the bottle at the table.
+ *
+ * Refills itself when the magazine runs out, which stalls the table for a
+ * cycle - that is the intended behaviour, not a fault.
+ */
 LidLoaderController(
-        // Plant signals
-		input signal pusherRetracted,pusherExtended,WPgripped,armAtSource,armAtDest,empty,refilled;
-		output signal pusherExtend,vacOn,armSource,armDest,refill;
-        
-		// Coordinator signals
+		// from / to the Rotary Table
+		input  Workpiece channel start;
+		output Workpiece channel done;
+
+		// operating mode
 		input Integer signal mode;
-        input signal lidLoaderLoad;
-        output signal lidLoaderLoaded;
-        
-		// Manual signals
-		input signal pusherExtendM,vacOnM,armSourceM,armDestM;
+
+		// from the plant
+		input signal pusherExtended, pusherRetracted, lidAtPickup, WPgripped;
+		input signal armAtSource, armAtDest, magazineEmpty, refilled;
+
+		// to the plant
+		output signal pusherExtend, vacOn, armSource, armDest, refill;
+
+		// manual overrides - the operator panel attaches here
+		input signal pusherExtendM, vacOnM, armSourceM, armDestM;
 		)
-->{
+->
+{
 	signal auto, manual;
 
-    { // MODE SELECTION
-		pause;
-		emit auto;
-		while (true) {
+	{ // Mode select
+		while(true){
 			present(mode){
-				{
-					if ((Integer)#mode == 0) {emit auto; }//System.out.println("LidLoader Auto mode!");}
-				}||{
-					if ((Integer)#mode == 1) {emit manual; }//System.out.println("LidLoader Manual mode!");}
-				}
+				if((Integer)#mode == 0){ emit auto; }
+				else { emit manual; }
 			}
 			pause;
 		}
 	}
 	||
-    {// Auto Mode
-        while(true){
-            await(immediate auto);
-            abort(immediate manual){
-                //System.out.println("auto mode");
-		        present(lidLoaderLoad)
-		        {
-		        	abort(armAtDest){
-		        		sustain armDest; 
-		        	}
-		        	pause;
-		        	present(pusherRetracted){
-		        		abort(pusherExtended){
-		        			sustain pusherExtend; 
-		        		}
-		        	}
-		        	pause;
-		        	abort(armAtSource){ 
-		        		sustain armSource; 
-		        	}
-		        	pause;
-		        	abort(WPgripped){
-		        		sustain vacOn;
-		        	}
-		        	pause;
-		        	abort(armAtDest) {
-		        		{sustain armDest;}||{sustain vacOn;}
-		        	}
-		        	pause;
-		        	await(!WPgripped);
-		        	pause;
-		        	emit vacOn;
-		        	abort(armAtDest){
-		        		sustain armDest; 
-		        	}
-		        	pause;
-                    emit lidLoaderLoaded;
+	{ // Auto
+		Workpiece w = null;
 
-		        }
-            }
-            pause;
-        }   
-    }
-	||
-	{ // Refill
-		while(true) {
-			await(empty);
-			emit refill; 
-			await(refilled); 
+		while(true){
+			await(immediate auto);
+
+			abort(immediate manual){
+				receive start;
+				w = (Workpiece)#start;
+
+				if(w != null){
+					// Refill first if the magazine is out
+					present(magazineEmpty){
+						System.out.println("[LID] Magazine empty, refilling.");
+						abort(immediate refilled){
+							sustain refill;
+						}
+					}
+
+					// Push a lid to the pick-up point, then retract
+					abort(immediate pusherExtended){
+						sustain pusherExtend;
+					}
+					await(immediate pusherRetracted);
+
+					// Fetch it
+					abort(immediate armAtSource){
+						sustain armSource;
+					}
+					abort(immediate WPgripped){
+						sustain vacOn;
+					}
+
+					// Place it on the bottle
+					abort(immediate armAtDest){
+						{ sustain armDest; } || { sustain vacOn; }
+					}
+					await(immediate !WPgripped);
+
+					w.lid();
+					System.out.println("[LID] Lid placed on " + w + ".");
+				}
+
+				send done(w);
+			}
+			pause;
 		}
 	}
-    ||
-    { // Manual Mode
-		while (true) {
+	||
+	{ // Manual
+		while(true){
 			await(immediate manual);
-			
 			abort(immediate auto){
-				{while (true){present(pusherExtendM){emit pusherExtend;} pause;}}
-				||
-				{while (true){present(vacOnM){emit vacOn;} pause;}}
-				||
-				{while (true){present(armSourceM){emit armSource;} pause;}}
-				||
-				{while (true){present(armDestM){emit armDest;} pause;}}	
+				while(true){
+					present(pusherExtendM){ emit pusherExtend; }
+					present(vacOnM){ emit vacOn; }
+					present(armSourceM){ emit armSource; }
+					present(armDestM){ emit armDest; }
+					pause;
+				}
 			}
 			pause;
 		}

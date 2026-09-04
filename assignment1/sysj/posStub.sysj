@@ -1,0 +1,41 @@
+/*
+ * Stands in for the Purchase Order System.
+ *
+ * Issues a fixed list of orders and prints completions coming back. When the
+ * real POS arrives, delete this and point SystemControllerCD.purchaseOrder at
+ * it instead - nothing downstream changes.
+ */
+PosStub(
+		output Workpiece channel order;
+		input  Integer channel completed;
+		)
+->
+{
+	{ // Issue the orders
+		int i = 0;
+		Workpiece w = null;
+
+		pause; pause; pause;
+
+		while(i < OrderBook.count()){
+			w = OrderBook.order(i);
+			System.out.println("[POS] Order " + (i + 1) + ": " + w + ".");
+			send order(w);
+			i++;
+			pause;
+		}
+
+		System.out.println("[POS] All orders placed.");
+		while(true){ pause; }
+	}
+	||
+	{ // Progress back from the plant
+		int n = 0;
+		while(true){
+			receive completed;
+			n++;
+			System.out.println("[POS] Bottle " + (Integer)#completed + " delivered (" + n + " done).");
+			pause;
+		}
+	}
+}

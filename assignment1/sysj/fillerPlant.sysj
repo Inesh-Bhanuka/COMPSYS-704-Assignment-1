@@ -1,0 +1,43 @@
+/*
+ * Filler plant: a valve and a flow meter.
+ *
+ * While the valve is open the plant meters out RATE millilitres per tick and
+ * reports when it has reached the volume the controller asked for.
+ */
+FillerPlant(
+		input signal enable, valveOpen;
+		input Integer signal fillTarget;
+
+		output signal filled;
+		)
+->
+{
+	int RATE = 20;          // ml per tick
+
+	int target = 0;
+	int poured = 0;
+
+	while(true){
+		present(enable){
+
+			present(fillTarget){
+				if(target != (Integer)#fillTarget){
+					target = (Integer)#fillTarget;
+					poured = 0;
+				}
+			}
+
+			present(valveOpen){
+				if(poured < target){
+					poured += RATE;
+					if(poured > target){ poured = target; }
+				}
+			}
+
+			if(target > 0 && poured >= target){
+				emit filled;
+			}
+		}
+		pause;
+	}
+}

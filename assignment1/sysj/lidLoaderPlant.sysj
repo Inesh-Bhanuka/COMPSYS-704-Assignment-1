@@ -1,16 +1,17 @@
+/*
+ * Lid loader plant: a magazine with a pusher, and a vacuum arm that moves
+ * between the pick-up point and the bottle.
+ */
 LidLoaderPlant(
-		input signal pusherExtend,vacOn,armSource,armDest;
-		input signal enable,refill;
-		output signal pusherRetracted,pusherExtended,WPgripped,armAtSource,armAtDest,empty,refilled;
-		output signal pusherRetractedE,pusherExtendedE,WPgrippedE,armAtSourceE,armAtDestE,emptyE;
+		input signal enable;
+		input signal pusherExtend, vacOn, armSource, armDest, refill;
+
+		output signal pusherExtended, pusherRetracted, lidAtPickup, WPgripped;
+		output signal armAtSource, armAtDest, magazineEmpty, refilled;
 		)
 ->
 {
-
-	signal capDec;
-	int signal capPos;
-	emit capPos(0);
-	{// Arm
+	{ // Arm: reports the end it is sitting at
 		while(true){
 			abort(armSource && enable){
 				sustain armAtDest;
@@ -21,85 +22,64 @@ LidLoaderPlant(
 		}
 	}
 	||
-	{// Pusher
+	{ // Pusher, magazine and gripper
+		int STOCK = 3;   // small on purpose, so a refill happens during a demo run
+		int lids = STOCK;
+		boolean extended = false;
+		boolean lidReady = false;
+		boolean holding = false;
+
 		while(true){
-			abort(pusherExtend && enable){
-				sustain pusherRetracted;
-			}
-			abort(!pusherExtend && enable){
-				sustain pusherExtended;
-			}
-		}
-	}
-	||
-	{// Vacuum
-		while(true){
-			present(vacOn && armAtSource){
-				if((Integer)#capPos == 1){
-					emit capPos(0);
-					abort(!vacOn){
-						sustain WPgripped; 
+			present(enable){
+
+				// Pusher follows the command directly
+				present(pusherExtend){
+					if(!extended){
+						extended = true;
+						if(lids > 0 && !lidReady){
+							lids--;
+							lidReady = true;
+							System.out.println("[LIDPlant] Lid pushed out, " + lids + " left.");
+						}
 					}
-					present(armAtSource){
-						emit capPos(1);
+					emit pusherExtended;
+				}
+				else {
+					extended = false;
+					emit pusherRetracted;
+				}
+
+				// Vacuum picks up whatever is at the pick-up point
+				if(holding){
+					present(vacOn){
+						// still holding
 					}
+					else {
+						holding = false;
+						System.out.println("[LIDPlant] Lid released.");
+					}
+				}
+				else {
+					present(vacOn && armAtSource){
+						if(lidReady){
+							lidReady = false;
+							holding = true;
+						}
+					}
+				}
+
+				if(lidReady){ emit lidAtPickup; }
+				if(holding){ emit WPgripped; }
+
+				present(refill){
+					lids = STOCK;
+					emit refilled;
+				}
+				else if(lids == 0 && !lidReady && !holding){
+					emit magazineEmpty;
 				}
 			}
 			pause;
 		}
-	}
-	||
-	{
-		/*
-		 * Cap positions
-		 * 0 = at Mag
-		 * 1 = at pick-up
-		 */
-		while(true){
-			// At mag
-			abort(empty){
-				while(true){
-						await(pusherRetracted);
-						await(pusherExtended);
-						// At pick-up
-						emit capPos(1);
-						await(pusherRetracted);
-						emit capDec;
-				}
-			}
-			await(refill);
-			emit refilled;
-		}
-	}
-	||
-	{
-		int capcount = 5;
-		while(true){
-			present(capDec){
-				if(capcount > 0)
-					capcount--;
-				System.out.println("[Plant] capcount = " + capcount);
-			}
-			present(refill){
-				capcount = 5;
-			}
-			if(capcount == 0)
-				emit empty;
-			pause;
-		}
-	}
-	||
-	{// Visualizing signals, unused right now
-		{while(true){present(pusherRetracted){emit pusherRetractedE;} pause;}}
-		||
-		{while(true){present(pusherExtended){emit pusherExtendedE;} pause;}}
-		||
-		{while(true){present(WPgripped){emit WPgrippedE;} pause;}}
-		||
-		{while(true){present(armAtSource){emit armAtSourceE;} pause;}}
-		||
-		{while(true){present(armAtDest){emit armAtDestE;} pause;}}
-		||
-		{while(true){present(empty){emit emptyE;} pause;}}
 	}
 }

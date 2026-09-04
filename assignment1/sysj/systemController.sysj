@@ -1,89 +1,78 @@
 /*
  * Plant coordinator.
  *
- * Commands and acknowledgements are channels: they are transactions that
- * carry a workpiece identity and must not be lost. Operating mode and plant
- * power stay signals, because they are levels that every reaction tests each
- * tick rather than transfers between two parties.
+ * Takes orders from the POS, turns each into a load command, and reports
+ * completions back. Commands and acknowledgements are channels because they
+ * carry a workpiece; mode and plant power are signals because they are levels
+ * every machine tests each tick.
  *
- * Each channel gets its own reaction. A rendezvous blocks the reaction that
- * performs it, so putting the load orders, the loader's acknowledgements and
- * the end-of-line reports in one sequential reaction would let any one of
- * them stall the others.
+ * One reaction per channel, so a slow machine cannot stall the others.
  */
 SystemController(
+		// from / to the POS
+		input  Workpiece channel purchaseOrder;
+		output Integer  channel orderProgress;
+
 		// to / from the Bottle Loader
-		output Integer channel loadOrder;
-		input  Integer channel loadAck;
+		output Workpiece channel loadOrder;
+		input  Workpiece channel loadAck;
 
 		// from the end of the line
-		input  Integer channel bottleDone;
+		input Workpiece channel bottleDone;
 
-		// levels, not transfers
-		output Integer signal mode;
-		output signal enableBL;   // -> BottleLoaderPlantCD
-		output signal enableCV;   // -> ConveyorPlantCD
-		output signal enableRT;   // -> RotaryTablePlantCD
-		output signal enableST;   // -> StationStubsCD
+		// operating mode, one output per machine controller
+		output Integer signal modeBL, modeF1, modeF2, modeLL, modeCP;
+
+		// plant power, one output per plant
+		output signal enableBL, enableCV, enableRT;
+		output signal enableF1, enableF2, enableLL, enableCP;
 		)
 ->
 {
-	{ // ---- Operating mode ----
+	{ // Operating mode: 0 = auto, 1 = manual
 		while(true){
-			emit mode(0);
+			emit modeBL(0); emit modeF1(0); emit modeF2(0);
+			emit modeLL(0); emit modeCP(0);
 			pause;
 		}
 	}
 	||
-	{ // ---- Plant power ----
+	{ // Plant power
 		while(true){
-			emit enableBL;
-			emit enableCV;
-			emit enableRT;
-			emit enableST;
+			emit enableBL; emit enableCV; emit enableRT;
+			emit enableF1; emit enableF2; emit enableLL; emit enableCP;
 			pause;
 		}
 	}
 	||
-	{ // ---- Issue load orders ----
-		//
-		// The send blocks until the loader is actually free to take the next
-		// order, so the coordinator needs no artificial spacing between
-		// cycles. The bottle number is the workpiece identity from here on.
-		pause; pause; pause; pause; pause;
-
-		int cycles = 4;
-		int i = 1;
-
-		while(i <= cycles){
-			System.out.println("[SC] Order: load bottle " + i + " of " + cycles + ".");
-			send loadOrder(i);
-			i++;
+	{ // Orders in, load commands out
+		Workpiece w = null;
+		while(true){
+			receive purchaseOrder;
+			w = (Workpiece)#purchaseOrder;
+			System.out.println("[SC] Loading " + w + ".");
+			send loadOrder(w);
 			pause;
 		}
-
-		System.out.println("[SC] All " + cycles + " load orders issued.");
-		while(true){ pause; }
 	}
 	||
-	{ // ---- Acknowledgements from the loader ----
-		int b = 0;
+	{ // Loader acknowledgements
 		while(true){
 			receive loadAck;
-			b = ((Integer)#loadAck).intValue();
-			System.out.println("[SC] Bottle " + b + " is on the conveyor.");
+			System.out.println("[SC] " + (Workpiece)#loadAck + " is on the conveyor.");
 			pause;
 		}
 	}
 	||
-	{ // ---- End of line ----
-		int delivered = 0;
-		int b = 0;
+	{ // End of line
+		Workpiece w = null;
+		int done = 0;
 		while(true){
 			receive bottleDone;
-			b = ((Integer)#bottleDone).intValue();
-			delivered++;
-			System.out.println("[SC] Bottle " + b + " finished. " + delivered + " complete.");
+			w = (Workpiece)#bottleDone;
+			done++;
+			System.out.println("[SC] " + w + " finished at " + w.filledMl() + "ml, sealed=" + w.isSealed() + ". " + done + " complete.");
+			send orderProgress(new Integer(w.id));
 			pause;
 		}
 	}

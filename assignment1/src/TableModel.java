@@ -1,30 +1,18 @@
 /**
- * The rotary table's occupancy model, held outside the clock domain.
+ * Where every workpiece on the rotary table is.
  *
- * Two reasons for this class. First, the SystemJ compiler inlines Java
- * statements into the generated state machine, so keeping logic here rather
- * than in the reaction keeps the generated method well under the JVM's 64 KB
- * limit. Second, this is the controller's record of where every workpiece is,
- * which is the natural place to attach workpiece identity later.
+ * Kept out of the clock domain for two reasons: the compiler inlines Java
+ * into the generated state machine, so this keeps it under the JVM's 64 KB
+ * method limit, and the reactions that share it need one accessor.
  *
- * Index 0..5 corresponds to table positions 1..6:
- *   0 - load from the infeed conveyor
- *   1 - liquid filler 1
- *   2 - liquid filler 2
- *   3 - lid placement
- *   4 - capper
- *   5 - unload to the outfeed conveyor
+ * Index 0..5 is table position 1..6: load, filler A, filler B, lid, capper,
+ * unload.
  */
 public class TableModel {
 
-	/**
-	 * The SystemJ compiler gives each reaction its own local scope, so an
-	 * object declared at clock-domain level is not visible inside the parallel
-	 * reactions that need it. There is exactly one of these per system, so the
-	 * reactions share it through this accessor instead.
-	 */
 	private static TableModel SHARED;
 
+	/** Reactions get their own scope, so they share the model through this. */
 	public static TableModel shared() {
 		if (SHARED == null) {
 			SHARED = new TableModel();
@@ -32,96 +20,93 @@ public class TableModel {
 		return SHARED;
 	}
 
-	private final int[] id = new int[6];
+	private final Workpiece[] pos = new Workpiece[6];
 
 	/**
-	 * One-deep intake buffer. The infeed rendezvous commits the transfer at
-	 * the instant the channel completes, which is not necessarily an instant
-	 * at which the table is aligned. The accepted bottle waits here and is
-	 * placed at position 1 on the next alignment.
+	 * A rendezvous completes whenever both sides are ready, which is not
+	 * necessarily an aligned instant, so an accepted bottle waits here and is
+	 * placed at the next alignment.
 	 */
-	private int pending = 0;
+	private Workpiece pending;
 
 	public boolean hasPending() {
-		return pending != 0;
+		return pending != null;
 	}
 
-	public void setPending(int bottle) {
-		pending = bottle;
+	public void setPending(Workpiece w) {
+		pending = w;
 	}
 
-	/** Move the accepted bottle onto position 1. */
 	public void commitPending() {
-		id[0] = pending;
-		System.out.println("[RT] Bottle " + pending + " placed at position 1.");
-		pending = 0;
+		pos[0] = pending;
+		System.out.println("[RT] " + pending + " placed at position 1.");
+		pending = null;
 	}
 
-	/** Identity at a position, or 0 if that position is empty. */
-	public int idAt(int i) {
-		return id[i];
+	/** The workpiece at a position, or null. */
+	public Workpiece at(int i) {
+		return pos[i];
 	}
 
-	public int exitId() {
-		return id[5];
+	public boolean occupied(int i) {
+		return pos[i] != null;
 	}
 
-	public boolean at(int i) {
-		return id[i] != 0;
-	}
-
-	/** Load point free, nothing accepted, and nothing on the table. */
-	public boolean idle() {
-		return id[0] == 0 && pending == 0 && !anyOccupied();
-	}
-
-	/** Load point free and a bottle waiting in the intake buffer. */
-	public boolean readyToPlace() {
-		return id[0] == 0 && pending != 0;
-	}
-
-	public boolean loadPointFree() {
-		return id[0] == 0;
+	public Workpiece exitWorkpiece() {
+		return pos[5];
 	}
 
 	public boolean exitOccupied() {
-		return id[5] != 0;
+		return pos[5] != null;
+	}
+
+	public boolean loadPointFree() {
+		return pos[0] == null;
 	}
 
 	public boolean anyOccupied() {
 		for (int i = 0; i < 6; i++) {
-			if (id[i] != 0) {
+			if (pos[i] != null) {
 				return true;
 			}
 		}
 		return false;
 	}
 
+	/** Load point free, nothing accepted, nothing on the table. */
+	public boolean idle() {
+		return pos[0] == null && pending == null && !anyOccupied();
+	}
+
+	public boolean readyToPlace() {
+		return pos[0] == null && pending != null;
+	}
+
 	public void clearExit() {
-		id[5] = 0;
+		pos[5] = null;
 	}
 
 	/** Advance every workpiece one position. */
 	public void index() {
-		int last = id[5];
+		Workpiece last = pos[5];
 		for (int i = 5; i > 0; i--) {
-			id[i] = id[i - 1];
+			pos[i] = pos[i - 1];
 		}
-		id[0] = last;
+		pos[0] = last;
 	}
 
 	public void sayUnloading() {
-		System.out.println("[RT] Unloading bottle " + id[5] + " from position 6.");
+		System.out.println("[RT] Unloading " + pos[5] + " from position 6.");
 	}
 
-	/** Prints the occupancy line, but only when the table is carrying work. */
+	/** Occupancy line, only when the table is carrying something. */
 	public void report() {
 		if (!anyOccupied()) {
 			return;
 		}
 		StringBuilder sb = new StringBuilder("[RT] Indexed. Positions 1-6:");
 		for (int i = 0; i < 6; i++) {
-			sb.append(' ').append(id[i] == 0 ? "." : Integer.toString(id[i]));
+			sb.append(' ').append(pos[i] == null ? "." : Integer.toString(pos[i].id));
 		}
 		System.out.println(sb.toString());
 	}

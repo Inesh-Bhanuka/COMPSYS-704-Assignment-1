@@ -31,43 +31,43 @@ public class RotaryTableController extends ClockDomain{
   public output_Channel startLid_o = new output_Channel();
   public output_Channel startCapper_o = new output_Channel();
   private Signal placed_1;
-  private TableModel m_thread_2;//sysj/turntableController.sysj line: 56, column: 3
-  private int exiting_thread_2;//sysj/turntableController.sysj line: 57, column: 3
-  private TableModel m_thread_3;//sysj/turntableController.sysj line: 137, column: 3
-  private int b_thread_3;//sysj/turntableController.sysj line: 138, column: 3
-  private int S42359 = 1;
-  private int S42193 = 1;
-  private int S14096 = 1;
-  private int S13910 = 1;
-  private int S13917 = 1;
-  private int S13912 = 1;
-  private int S14141 = 1;
-  private int S14239 = 1;
-  private int S14234 = 1;
-  private int S14613 = 1;
-  private int S14608 = 1;
-  private int S15031 = 1;
-  private int S15026 = 1;
-  private int S15493 = 1;
-  private int S15488 = 1;
-  private int S15999 = 1;
-  private int S15994 = 1;
-  private int S16549 = 1;
-  private int S16544 = 1;
-  private int S17143 = 1;
-  private int S17138 = 1;
-  private int S17781 = 1;
-  private int S17776 = 1;
-  private int S42357 = 1;
-  private int S42217 = 1;
-  private int S42201 = 1;
-  private int S42196 = 1;
+  private TableModel m_thread_2;//sysj/rotaryTableController.sysj line: 56, column: 3
+  private Workpiece exiting_thread_2;//sysj/rotaryTableController.sysj line: 57, column: 3
+  private TableModel m_thread_3;//sysj/rotaryTableController.sysj line: 137, column: 3
+  private Workpiece w_thread_3;//sysj/rotaryTableController.sysj line: 138, column: 3
+  private int S69149 = 1;
+  private int S68983 = 1;
+  private int S40886 = 1;
+  private int S40700 = 1;
+  private int S40707 = 1;
+  private int S40702 = 1;
+  private int S40931 = 1;
+  private int S41029 = 1;
+  private int S41024 = 1;
+  private int S41403 = 1;
+  private int S41398 = 1;
+  private int S41821 = 1;
+  private int S41816 = 1;
+  private int S42283 = 1;
+  private int S42278 = 1;
+  private int S42789 = 1;
+  private int S42784 = 1;
+  private int S43339 = 1;
+  private int S43334 = 1;
+  private int S43933 = 1;
+  private int S43928 = 1;
+  private int S44571 = 1;
+  private int S44566 = 1;
+  private int S69147 = 1;
+  private int S69007 = 1;
+  private int S68991 = 1;
+  private int S68986 = 1;
   
   private int[] ends = new int[4];
   private int[] tdone = new int[4];
   
-  public void thread42365(int [] tdone, int [] ends){
-        switch(S42357){
+  public void thread69155(int [] tdone, int [] ends){
+        switch(S69147){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -75,33 +75,33 @@ public class RotaryTableController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S42217){
+        switch(S69007){
           case 0 : 
-            switch(S42201){
+            switch(S68991){
               case 0 : 
-                if(!tableInfeed_in.isPartnerPresent() || tableInfeed_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 140, column: 4
-                  tableInfeed_in.setACK(false);//sysj/turntableController.sysj line: 140, column: 4
-                  S42201=1;
+                if(!tableInfeed_in.isPartnerPresent() || tableInfeed_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 140, column: 4
+                  tableInfeed_in.setACK(false);//sysj/rotaryTableController.sysj line: 140, column: 4
+                  S68991=1;
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  switch(S42196){
+                  switch(S68986){
                     case 0 : 
-                      if(!tableInfeed_in.isREQ()){//sysj/turntableController.sysj line: 140, column: 4
-                        tableInfeed_in.setACK(true);//sysj/turntableController.sysj line: 140, column: 4
-                        S42196=1;
-                        if(tableInfeed_in.isREQ()){//sysj/turntableController.sysj line: 140, column: 4
-                          tableInfeed_in.setACK(false);//sysj/turntableController.sysj line: 140, column: 4
+                      if(!tableInfeed_in.isREQ()){//sysj/rotaryTableController.sysj line: 140, column: 4
+                        tableInfeed_in.setACK(true);//sysj/rotaryTableController.sysj line: 140, column: 4
+                        S68986=1;
+                        if(tableInfeed_in.isREQ()){//sysj/rotaryTableController.sysj line: 140, column: 4
+                          tableInfeed_in.setACK(false);//sysj/rotaryTableController.sysj line: 140, column: 4
                           ends[3]=2;
-                          ;//sysj/turntableController.sysj line: 140, column: 4
-                          b_thread_3 = ((Integer)(tableInfeed_in.getVal() == null ? null : ((Integer)tableInfeed_in.getVal()))).intValue();//sysj/turntableController.sysj line: 141, column: 4
-                          m_thread_3.setPending(b_thread_3);//sysj/turntableController.sysj line: 142, column: 4
-                          System.out.println("[RT] Accepted bottle " + b_thread_3 + " from the conveyor.");//sysj/turntableController.sysj line: 143, column: 4
-                          S42217=1;
-                          if(placed_1.getprestatus()){//sysj/turntableController.sysj line: 144, column: 20
-                            S42217=2;
+                          ;//sysj/rotaryTableController.sysj line: 140, column: 4
+                          w_thread_3 = (Workpiece)(tableInfeed_in.getVal() == null ? null : ((Workpiece)tableInfeed_in.getVal()));//sysj/rotaryTableController.sysj line: 141, column: 4
+                          m_thread_3.setPending(w_thread_3);//sysj/rotaryTableController.sysj line: 142, column: 4
+                          System.out.println("[RT] Accepted " + w_thread_3 + " from the conveyor.");//sysj/rotaryTableController.sysj line: 143, column: 4
+                          S69007=1;
+                          if(placed_1.getprestatus()){//sysj/rotaryTableController.sysj line: 144, column: 20
+                            S69007=2;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -126,16 +126,16 @@ public class RotaryTableController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      if(tableInfeed_in.isREQ()){//sysj/turntableController.sysj line: 140, column: 4
-                        tableInfeed_in.setACK(false);//sysj/turntableController.sysj line: 140, column: 4
+                      if(tableInfeed_in.isREQ()){//sysj/rotaryTableController.sysj line: 140, column: 4
+                        tableInfeed_in.setACK(false);//sysj/rotaryTableController.sysj line: 140, column: 4
                         ends[3]=2;
-                        ;//sysj/turntableController.sysj line: 140, column: 4
-                        b_thread_3 = ((Integer)(tableInfeed_in.getVal() == null ? null : ((Integer)tableInfeed_in.getVal()))).intValue();//sysj/turntableController.sysj line: 141, column: 4
-                        m_thread_3.setPending(b_thread_3);//sysj/turntableController.sysj line: 142, column: 4
-                        System.out.println("[RT] Accepted bottle " + b_thread_3 + " from the conveyor.");//sysj/turntableController.sysj line: 143, column: 4
-                        S42217=1;
-                        if(placed_1.getprestatus()){//sysj/turntableController.sysj line: 144, column: 20
-                          S42217=2;
+                        ;//sysj/rotaryTableController.sysj line: 140, column: 4
+                        w_thread_3 = (Workpiece)(tableInfeed_in.getVal() == null ? null : ((Workpiece)tableInfeed_in.getVal()));//sysj/rotaryTableController.sysj line: 141, column: 4
+                        m_thread_3.setPending(w_thread_3);//sysj/rotaryTableController.sysj line: 142, column: 4
+                        System.out.println("[RT] Accepted " + w_thread_3 + " from the conveyor.");//sysj/rotaryTableController.sysj line: 143, column: 4
+                        S69007=1;
+                        if(placed_1.getprestatus()){//sysj/rotaryTableController.sysj line: 144, column: 20
+                          S69007=2;
                           active[3]=1;
                           ends[3]=1;
                           tdone[3]=1;
@@ -158,30 +158,30 @@ public class RotaryTableController extends ClockDomain{
                 break;
               
               case 1 : 
-                S42201=1;
-                S42201=0;
-                if(!tableInfeed_in.isPartnerPresent() || tableInfeed_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 140, column: 4
-                  tableInfeed_in.setACK(false);//sysj/turntableController.sysj line: 140, column: 4
-                  S42201=1;
+                S68991=1;
+                S68991=0;
+                if(!tableInfeed_in.isPartnerPresent() || tableInfeed_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 140, column: 4
+                  tableInfeed_in.setACK(false);//sysj/rotaryTableController.sysj line: 140, column: 4
+                  S68991=1;
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  S42196=0;
-                  if(!tableInfeed_in.isREQ()){//sysj/turntableController.sysj line: 140, column: 4
-                    tableInfeed_in.setACK(true);//sysj/turntableController.sysj line: 140, column: 4
-                    S42196=1;
-                    if(tableInfeed_in.isREQ()){//sysj/turntableController.sysj line: 140, column: 4
-                      tableInfeed_in.setACK(false);//sysj/turntableController.sysj line: 140, column: 4
+                  S68986=0;
+                  if(!tableInfeed_in.isREQ()){//sysj/rotaryTableController.sysj line: 140, column: 4
+                    tableInfeed_in.setACK(true);//sysj/rotaryTableController.sysj line: 140, column: 4
+                    S68986=1;
+                    if(tableInfeed_in.isREQ()){//sysj/rotaryTableController.sysj line: 140, column: 4
+                      tableInfeed_in.setACK(false);//sysj/rotaryTableController.sysj line: 140, column: 4
                       ends[3]=2;
-                      ;//sysj/turntableController.sysj line: 140, column: 4
-                      b_thread_3 = ((Integer)(tableInfeed_in.getVal() == null ? null : ((Integer)tableInfeed_in.getVal()))).intValue();//sysj/turntableController.sysj line: 141, column: 4
-                      m_thread_3.setPending(b_thread_3);//sysj/turntableController.sysj line: 142, column: 4
-                      System.out.println("[RT] Accepted bottle " + b_thread_3 + " from the conveyor.");//sysj/turntableController.sysj line: 143, column: 4
-                      S42217=1;
-                      if(placed_1.getprestatus()){//sysj/turntableController.sysj line: 144, column: 20
-                        S42217=2;
+                      ;//sysj/rotaryTableController.sysj line: 140, column: 4
+                      w_thread_3 = (Workpiece)(tableInfeed_in.getVal() == null ? null : ((Workpiece)tableInfeed_in.getVal()));//sysj/rotaryTableController.sysj line: 141, column: 4
+                      m_thread_3.setPending(w_thread_3);//sysj/rotaryTableController.sysj line: 142, column: 4
+                      System.out.println("[RT] Accepted " + w_thread_3 + " from the conveyor.");//sysj/rotaryTableController.sysj line: 143, column: 4
+                      S69007=1;
+                      if(placed_1.getprestatus()){//sysj/rotaryTableController.sysj line: 144, column: 20
+                        S69007=2;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
@@ -210,8 +210,8 @@ public class RotaryTableController extends ClockDomain{
             break;
           
           case 1 : 
-            if(placed_1.getprestatus()){//sysj/turntableController.sysj line: 144, column: 20
-              S42217=2;
+            if(placed_1.getprestatus()){//sysj/rotaryTableController.sysj line: 144, column: 20
+              S69007=2;
               active[3]=1;
               ends[3]=1;
               tdone[3]=1;
@@ -224,31 +224,31 @@ public class RotaryTableController extends ClockDomain{
             break;
           
           case 2 : 
-            S42217=2;
-            S42217=0;
-            S42201=0;
-            if(!tableInfeed_in.isPartnerPresent() || tableInfeed_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 140, column: 4
-              tableInfeed_in.setACK(false);//sysj/turntableController.sysj line: 140, column: 4
-              S42201=1;
+            S69007=2;
+            S69007=0;
+            S68991=0;
+            if(!tableInfeed_in.isPartnerPresent() || tableInfeed_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 140, column: 4
+              tableInfeed_in.setACK(false);//sysj/rotaryTableController.sysj line: 140, column: 4
+              S68991=1;
               active[3]=1;
               ends[3]=1;
               tdone[3]=1;
             }
             else {
-              S42196=0;
-              if(!tableInfeed_in.isREQ()){//sysj/turntableController.sysj line: 140, column: 4
-                tableInfeed_in.setACK(true);//sysj/turntableController.sysj line: 140, column: 4
-                S42196=1;
-                if(tableInfeed_in.isREQ()){//sysj/turntableController.sysj line: 140, column: 4
-                  tableInfeed_in.setACK(false);//sysj/turntableController.sysj line: 140, column: 4
+              S68986=0;
+              if(!tableInfeed_in.isREQ()){//sysj/rotaryTableController.sysj line: 140, column: 4
+                tableInfeed_in.setACK(true);//sysj/rotaryTableController.sysj line: 140, column: 4
+                S68986=1;
+                if(tableInfeed_in.isREQ()){//sysj/rotaryTableController.sysj line: 140, column: 4
+                  tableInfeed_in.setACK(false);//sysj/rotaryTableController.sysj line: 140, column: 4
                   ends[3]=2;
-                  ;//sysj/turntableController.sysj line: 140, column: 4
-                  b_thread_3 = ((Integer)(tableInfeed_in.getVal() == null ? null : ((Integer)tableInfeed_in.getVal()))).intValue();//sysj/turntableController.sysj line: 141, column: 4
-                  m_thread_3.setPending(b_thread_3);//sysj/turntableController.sysj line: 142, column: 4
-                  System.out.println("[RT] Accepted bottle " + b_thread_3 + " from the conveyor.");//sysj/turntableController.sysj line: 143, column: 4
-                  S42217=1;
-                  if(placed_1.getprestatus()){//sysj/turntableController.sysj line: 144, column: 20
-                    S42217=2;
+                  ;//sysj/rotaryTableController.sysj line: 140, column: 4
+                  w_thread_3 = (Workpiece)(tableInfeed_in.getVal() == null ? null : ((Workpiece)tableInfeed_in.getVal()));//sysj/rotaryTableController.sysj line: 141, column: 4
+                  m_thread_3.setPending(w_thread_3);//sysj/rotaryTableController.sysj line: 142, column: 4
+                  System.out.println("[RT] Accepted " + w_thread_3 + " from the conveyor.");//sysj/rotaryTableController.sysj line: 143, column: 4
+                  S69007=1;
+                  if(placed_1.getprestatus()){//sysj/rotaryTableController.sysj line: 144, column: 20
+                    S69007=2;
                     active[3]=1;
                     ends[3]=1;
                     tdone[3]=1;
@@ -279,8 +279,8 @@ public class RotaryTableController extends ClockDomain{
     }
   }
 
-  public void thread42364(int [] tdone, int [] ends){
-        switch(S42193){
+  public void thread69154(int [] tdone, int [] ends){
+        switch(S68983){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -288,58 +288,58 @@ public class RotaryTableController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S14096){
+        switch(S40886){
           case 0 : 
-            if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 61, column: 20
-              S14096=1;
-              if(m_thread_2.exitOccupied()){//sysj/turntableController.sysj line: 69, column: 4
-                exiting_thread_2 = m_thread_2.exitId();//sysj/turntableController.sysj line: 70, column: 5
-                m_thread_2.sayUnloading();//sysj/turntableController.sysj line: 71, column: 5
-                S13910=0;
-                S13917=0;
-                if(!tableOutfeed_o.isPartnerPresent() || tableOutfeed_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 72, column: 5
-                  tableOutfeed_o.setREQ(false);//sysj/turntableController.sysj line: 72, column: 5
-                  S13917=1;
+            if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 61, column: 20
+              S40886=1;
+              if(m_thread_2.exitOccupied()){//sysj/rotaryTableController.sysj line: 69, column: 4
+                exiting_thread_2 = m_thread_2.exitWorkpiece();//sysj/rotaryTableController.sysj line: 70, column: 5
+                m_thread_2.sayUnloading();//sysj/rotaryTableController.sysj line: 71, column: 5
+                S40700=0;
+                S40707=0;
+                if(!tableOutfeed_o.isPartnerPresent() || tableOutfeed_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 72, column: 5
+                  tableOutfeed_o.setREQ(false);//sysj/rotaryTableController.sysj line: 72, column: 5
+                  S40707=1;
                   active[2]=1;
                   ends[2]=1;
                   tdone[2]=1;
                 }
                 else {
-                  S13912=0;
-                  if(tableOutfeed_o.isACK()){//sysj/turntableController.sysj line: 72, column: 5
-                    tableOutfeed_o.setVal(exiting_thread_2);//sysj/turntableController.sysj line: 72, column: 5
-                    S13912=1;
-                    if(!tableOutfeed_o.isACK()){//sysj/turntableController.sysj line: 72, column: 5
-                      tableOutfeed_o.setREQ(false);//sysj/turntableController.sysj line: 72, column: 5
+                  S40702=0;
+                  if(tableOutfeed_o.isACK()){//sysj/rotaryTableController.sysj line: 72, column: 5
+                    tableOutfeed_o.setVal(exiting_thread_2);//sysj/rotaryTableController.sysj line: 72, column: 5
+                    S40702=1;
+                    if(!tableOutfeed_o.isACK()){//sysj/rotaryTableController.sysj line: 72, column: 5
+                      tableOutfeed_o.setREQ(false);//sysj/rotaryTableController.sysj line: 72, column: 5
                       ends[2]=2;
-                      ;//sysj/turntableController.sysj line: 72, column: 5
-                      S13910=1;
-                      if(exitCleared.getprestatus()){//sysj/turntableController.sysj line: 73, column: 21
-                        m_thread_2.clearExit();//sysj/turntableController.sysj line: 76, column: 5
-                        S14096=2;
-                        if(m_thread_2.idle()){//sysj/turntableController.sysj line: 82, column: 4
-                          if(!m_thread_2.hasPending()){//sysj/turntableController.sysj line: 83, column: 11
+                      ;//sysj/rotaryTableController.sysj line: 72, column: 5
+                      S40700=1;
+                      if(exitCleared.getprestatus()){//sysj/rotaryTableController.sysj line: 73, column: 21
+                        m_thread_2.clearExit();//sysj/rotaryTableController.sysj line: 76, column: 5
+                        S40886=2;
+                        if(m_thread_2.idle()){//sysj/rotaryTableController.sysj line: 82, column: 4
+                          if(!m_thread_2.hasPending()){//sysj/rotaryTableController.sysj line: 83, column: 11
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             ends[2]=2;
-                            ;//sysj/turntableController.sysj line: 83, column: 5
-                            S14096=3;
-                            if(m_thread_2.readyToPlace()){//sysj/turntableController.sysj line: 85, column: 4
-                              S14141=0;
-                              if(bottleAtPos1.getprestatus()){//sysj/turntableController.sysj line: 86, column: 21
-                                m_thread_2.commitPending();//sysj/turntableController.sysj line: 89, column: 5
-                                placed_1.setPresent();//sysj/turntableController.sysj line: 90, column: 5
+                            ;//sysj/rotaryTableController.sysj line: 83, column: 5
+                            S40886=3;
+                            if(m_thread_2.readyToPlace()){//sysj/rotaryTableController.sysj line: 85, column: 4
+                              S40931=0;
+                              if(bottleAtPos1.getprestatus()){//sysj/rotaryTableController.sysj line: 86, column: 21
+                                m_thread_2.commitPending();//sysj/rotaryTableController.sysj line: 89, column: 5
+                                placed_1.setPresent();//sysj/rotaryTableController.sysj line: 90, column: 5
                                 currsigs.addElement(placed_1);
-                                S14141=1;
+                                S40931=1;
                                 active[2]=1;
                                 ends[2]=1;
                                 tdone[2]=1;
                               }
                               else {
-                                loadPos1.setPresent();//sysj/turntableController.sysj line: 87, column: 6
+                                loadPos1.setPresent();//sysj/rotaryTableController.sysj line: 87, column: 6
                                 currsigs.addElement(loadPos1);
                                 active[2]=1;
                                 ends[2]=1;
@@ -347,157 +347,157 @@ public class RotaryTableController extends ClockDomain{
                               }
                             }
                             else {
-                              S14096=4;
-                              S14239=0;
-                              if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 111, column: 4
-                                startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
-                                S14239=1;
+                              S40886=4;
+                              S41029=0;
+                              if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                                startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
+                                S41029=1;
                                 active[2]=1;
                                 ends[2]=1;
                                 tdone[2]=1;
                               }
                               else {
-                                S14234=0;
-                                if(startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                                  startFiller1_o.setVal(m_thread_2.idAt(1));//sysj/turntableController.sysj line: 111, column: 4
-                                  S14234=1;
-                                  if(!startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                                    startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
+                                S41024=0;
+                                if(startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                                  startFiller1_o.setVal(m_thread_2.at(1));//sysj/rotaryTableController.sysj line: 111, column: 4
+                                  S41024=1;
+                                  if(!startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                                    startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
                                     ends[2]=2;
-                                    ;//sysj/turntableController.sysj line: 111, column: 4
-                                    S14096=5;
-                                    S14613=0;
-                                    if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 112, column: 4
-                                      startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
-                                      S14613=1;
+                                    ;//sysj/rotaryTableController.sysj line: 111, column: 4
+                                    S40886=5;
+                                    S41403=0;
+                                    if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                      startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
+                                      S41403=1;
                                       active[2]=1;
                                       ends[2]=1;
                                       tdone[2]=1;
                                     }
                                     else {
-                                      S14608=0;
-                                      if(startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                        startFiller2_o.setVal(m_thread_2.idAt(2));//sysj/turntableController.sysj line: 112, column: 4
-                                        S14608=1;
-                                        if(!startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                          startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
+                                      S41398=0;
+                                      if(startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                        startFiller2_o.setVal(m_thread_2.at(2));//sysj/rotaryTableController.sysj line: 112, column: 4
+                                        S41398=1;
+                                        if(!startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                          startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
                                           ends[2]=2;
-                                          ;//sysj/turntableController.sysj line: 112, column: 4
-                                          S14096=6;
-                                          S15031=0;
-                                          if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 113, column: 4
-                                            startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
-                                            S15031=1;
+                                          ;//sysj/rotaryTableController.sysj line: 112, column: 4
+                                          S40886=6;
+                                          S41821=0;
+                                          if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                            startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
+                                            S41821=1;
                                             active[2]=1;
                                             ends[2]=1;
                                             tdone[2]=1;
                                           }
                                           else {
-                                            S15026=0;
-                                            if(startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                              startLid_o.setVal(m_thread_2.idAt(3));//sysj/turntableController.sysj line: 113, column: 4
-                                              S15026=1;
-                                              if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                                startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                                            S41816=0;
+                                            if(startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                              startLid_o.setVal(m_thread_2.at(3));//sysj/rotaryTableController.sysj line: 113, column: 4
+                                              S41816=1;
+                                              if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                                                 ends[2]=2;
-                                                ;//sysj/turntableController.sysj line: 113, column: 4
-                                                S14096=7;
-                                                S15493=0;
-                                                if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                                                  startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                                                  S15493=1;
+                                                ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                S40886=7;
+                                                S42283=0;
+                                                if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                  startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                  S42283=1;
                                                   active[2]=1;
                                                   ends[2]=1;
                                                   tdone[2]=1;
                                                 }
                                                 else {
-                                                  S15488=0;
-                                                  if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                                    startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                                                    S15488=1;
-                                                    if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                                      startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                                                  S42278=0;
+                                                  if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                    startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                    S42278=1;
+                                                    if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                      startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                                                       ends[2]=2;
-                                                      ;//sysj/turntableController.sysj line: 114, column: 4
-                                                      S14096=8;
-                                                      S15999=0;
-                                                      if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                                                        doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                                                        S15999=1;
+                                                      ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                      S40886=8;
+                                                      S42789=0;
+                                                      if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                        doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                        S42789=1;
                                                         active[2]=1;
                                                         ends[2]=1;
                                                         tdone[2]=1;
                                                       }
                                                       else {
-                                                        S15994=0;
-                                                        if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                          doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                                          S15994=1;
-                                                          if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                            doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                                                        S42784=0;
+                                                        if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                          doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                          S42784=1;
+                                                          if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                            doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                                             ends[2]=2;
-                                                            ;//sysj/turntableController.sysj line: 116, column: 4
-                                                            S14096=9;
-                                                            S16549=0;
-                                                            if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                                              doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                                              S16549=1;
+                                                            ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                            S40886=9;
+                                                            S43339=0;
+                                                            if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                              doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                              S43339=1;
                                                               active[2]=1;
                                                               ends[2]=1;
                                                               tdone[2]=1;
                                                             }
                                                             else {
-                                                              S16544=0;
-                                                              if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                                doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                                                S16544=1;
-                                                                if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                                  doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                                              S43334=0;
+                                                              if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                S43334=1;
+                                                                if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                  doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                                                   ends[2]=2;
-                                                                  ;//sysj/turntableController.sysj line: 117, column: 4
-                                                                  S14096=10;
-                                                                  S17143=0;
-                                                                  if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                    doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                                                    S17143=1;
+                                                                  ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                  S40886=10;
+                                                                  S43933=0;
+                                                                  if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                    doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                    S43933=1;
                                                                     active[2]=1;
                                                                     ends[2]=1;
                                                                     tdone[2]=1;
                                                                   }
                                                                   else {
-                                                                    S17138=0;
-                                                                    if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                      doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                                                      S17138=1;
-                                                                      if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                        doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                                                    S43928=0;
+                                                                    if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                      doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                      S43928=1;
+                                                                      if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                        doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                                                         ends[2]=2;
-                                                                        ;//sysj/turntableController.sysj line: 118, column: 4
-                                                                        S14096=11;
-                                                                        S17781=0;
-                                                                        if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                          doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                                          S17781=1;
+                                                                        ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                        S40886=11;
+                                                                        S44571=0;
+                                                                        if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                          doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                          S44571=1;
                                                                           active[2]=1;
                                                                           ends[2]=1;
                                                                           tdone[2]=1;
                                                                         }
                                                                         else {
-                                                                          S17776=0;
-                                                                          if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                            doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                                            S17776=1;
-                                                                            if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                              doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                                          S44566=0;
+                                                                          if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                            doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                            S44566=1;
+                                                                            if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                              doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                                               ends[2]=2;
-                                                                              ;//sysj/turntableController.sysj line: 119, column: 4
-                                                                              S14096=12;
-                                                                              if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                                                S14096=13;
-                                                                                if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                                                  m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                                                  m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                                                  S14096=14;
+                                                                              ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                              S40886=12;
+                                                                              if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                                                S40886=13;
+                                                                                if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                                                  m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                                                  m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                                                  S40886=14;
                                                                                   active[2]=1;
                                                                                   ends[2]=1;
                                                                                   tdone[2]=1;
@@ -509,7 +509,7 @@ public class RotaryTableController extends ClockDomain{
                                                                                 }
                                                                               }
                                                                               else {
-                                                                                rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                                                rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                                                 currsigs.addElement(rotaryTrigger);
                                                                                 active[2]=1;
                                                                                 ends[2]=1;
@@ -623,20 +623,20 @@ public class RotaryTableController extends ClockDomain{
                           }
                         }
                         else {
-                          S14096=3;
-                          if(m_thread_2.readyToPlace()){//sysj/turntableController.sysj line: 85, column: 4
-                            S14141=0;
-                            if(bottleAtPos1.getprestatus()){//sysj/turntableController.sysj line: 86, column: 21
-                              m_thread_2.commitPending();//sysj/turntableController.sysj line: 89, column: 5
-                              placed_1.setPresent();//sysj/turntableController.sysj line: 90, column: 5
+                          S40886=3;
+                          if(m_thread_2.readyToPlace()){//sysj/rotaryTableController.sysj line: 85, column: 4
+                            S40931=0;
+                            if(bottleAtPos1.getprestatus()){//sysj/rotaryTableController.sysj line: 86, column: 21
+                              m_thread_2.commitPending();//sysj/rotaryTableController.sysj line: 89, column: 5
+                              placed_1.setPresent();//sysj/rotaryTableController.sysj line: 90, column: 5
                               currsigs.addElement(placed_1);
-                              S14141=1;
+                              S40931=1;
                               active[2]=1;
                               ends[2]=1;
                               tdone[2]=1;
                             }
                             else {
-                              loadPos1.setPresent();//sysj/turntableController.sysj line: 87, column: 6
+                              loadPos1.setPresent();//sysj/rotaryTableController.sysj line: 87, column: 6
                               currsigs.addElement(loadPos1);
                               active[2]=1;
                               ends[2]=1;
@@ -644,157 +644,157 @@ public class RotaryTableController extends ClockDomain{
                             }
                           }
                           else {
-                            S14096=4;
-                            S14239=0;
-                            if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 111, column: 4
-                              startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
-                              S14239=1;
+                            S40886=4;
+                            S41029=0;
+                            if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                              startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
+                              S41029=1;
                               active[2]=1;
                               ends[2]=1;
                               tdone[2]=1;
                             }
                             else {
-                              S14234=0;
-                              if(startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                                startFiller1_o.setVal(m_thread_2.idAt(1));//sysj/turntableController.sysj line: 111, column: 4
-                                S14234=1;
-                                if(!startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                                  startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
+                              S41024=0;
+                              if(startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                                startFiller1_o.setVal(m_thread_2.at(1));//sysj/rotaryTableController.sysj line: 111, column: 4
+                                S41024=1;
+                                if(!startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                                  startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
                                   ends[2]=2;
-                                  ;//sysj/turntableController.sysj line: 111, column: 4
-                                  S14096=5;
-                                  S14613=0;
-                                  if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 112, column: 4
-                                    startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
-                                    S14613=1;
+                                  ;//sysj/rotaryTableController.sysj line: 111, column: 4
+                                  S40886=5;
+                                  S41403=0;
+                                  if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                    startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
+                                    S41403=1;
                                     active[2]=1;
                                     ends[2]=1;
                                     tdone[2]=1;
                                   }
                                   else {
-                                    S14608=0;
-                                    if(startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                      startFiller2_o.setVal(m_thread_2.idAt(2));//sysj/turntableController.sysj line: 112, column: 4
-                                      S14608=1;
-                                      if(!startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                        startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
+                                    S41398=0;
+                                    if(startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                      startFiller2_o.setVal(m_thread_2.at(2));//sysj/rotaryTableController.sysj line: 112, column: 4
+                                      S41398=1;
+                                      if(!startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                        startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
                                         ends[2]=2;
-                                        ;//sysj/turntableController.sysj line: 112, column: 4
-                                        S14096=6;
-                                        S15031=0;
-                                        if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 113, column: 4
-                                          startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
-                                          S15031=1;
+                                        ;//sysj/rotaryTableController.sysj line: 112, column: 4
+                                        S40886=6;
+                                        S41821=0;
+                                        if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                          startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
+                                          S41821=1;
                                           active[2]=1;
                                           ends[2]=1;
                                           tdone[2]=1;
                                         }
                                         else {
-                                          S15026=0;
-                                          if(startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                            startLid_o.setVal(m_thread_2.idAt(3));//sysj/turntableController.sysj line: 113, column: 4
-                                            S15026=1;
-                                            if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                              startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                                          S41816=0;
+                                          if(startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                            startLid_o.setVal(m_thread_2.at(3));//sysj/rotaryTableController.sysj line: 113, column: 4
+                                            S41816=1;
+                                            if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                              startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                                               ends[2]=2;
-                                              ;//sysj/turntableController.sysj line: 113, column: 4
-                                              S14096=7;
-                                              S15493=0;
-                                              if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                                                startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                                                S15493=1;
+                                              ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                                              S40886=7;
+                                              S42283=0;
+                                              if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                S42283=1;
                                                 active[2]=1;
                                                 ends[2]=1;
                                                 tdone[2]=1;
                                               }
                                               else {
-                                                S15488=0;
-                                                if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                                  startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                                                  S15488=1;
-                                                  if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                                    startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                                                S42278=0;
+                                                if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                  startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                  S42278=1;
+                                                  if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                    startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                                                     ends[2]=2;
-                                                    ;//sysj/turntableController.sysj line: 114, column: 4
-                                                    S14096=8;
-                                                    S15999=0;
-                                                    if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                                                      doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                                                      S15999=1;
+                                                    ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                    S40886=8;
+                                                    S42789=0;
+                                                    if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                      doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                      S42789=1;
                                                       active[2]=1;
                                                       ends[2]=1;
                                                       tdone[2]=1;
                                                     }
                                                     else {
-                                                      S15994=0;
-                                                      if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                        doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                                        S15994=1;
-                                                        if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                          doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                                                      S42784=0;
+                                                      if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                        doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                        S42784=1;
+                                                        if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                          doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                                           ends[2]=2;
-                                                          ;//sysj/turntableController.sysj line: 116, column: 4
-                                                          S14096=9;
-                                                          S16549=0;
-                                                          if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                                            doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                                            S16549=1;
+                                                          ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                          S40886=9;
+                                                          S43339=0;
+                                                          if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                            doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                            S43339=1;
                                                             active[2]=1;
                                                             ends[2]=1;
                                                             tdone[2]=1;
                                                           }
                                                           else {
-                                                            S16544=0;
-                                                            if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                              doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                                              S16544=1;
-                                                              if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                                doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                                            S43334=0;
+                                                            if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                              doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                              S43334=1;
+                                                              if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                                                 ends[2]=2;
-                                                                ;//sysj/turntableController.sysj line: 117, column: 4
-                                                                S14096=10;
-                                                                S17143=0;
-                                                                if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                  doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                                                  S17143=1;
+                                                                ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                S40886=10;
+                                                                S43933=0;
+                                                                if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                  doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                  S43933=1;
                                                                   active[2]=1;
                                                                   ends[2]=1;
                                                                   tdone[2]=1;
                                                                 }
                                                                 else {
-                                                                  S17138=0;
-                                                                  if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                    doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                                                    S17138=1;
-                                                                    if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                      doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                                                  S43928=0;
+                                                                  if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                    doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                    S43928=1;
+                                                                    if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                      doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                                                       ends[2]=2;
-                                                                      ;//sysj/turntableController.sysj line: 118, column: 4
-                                                                      S14096=11;
-                                                                      S17781=0;
-                                                                      if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                        doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                                        S17781=1;
+                                                                      ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                      S40886=11;
+                                                                      S44571=0;
+                                                                      if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                        doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                        S44571=1;
                                                                         active[2]=1;
                                                                         ends[2]=1;
                                                                         tdone[2]=1;
                                                                       }
                                                                       else {
-                                                                        S17776=0;
-                                                                        if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                          doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                                          S17776=1;
-                                                                          if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                            doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                                        S44566=0;
+                                                                        if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                          doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                          S44566=1;
+                                                                          if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                            doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                                             ends[2]=2;
-                                                                            ;//sysj/turntableController.sysj line: 119, column: 4
-                                                                            S14096=12;
-                                                                            if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                                              S14096=13;
-                                                                              if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                                                m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                                                m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                                                S14096=14;
+                                                                            ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                            S40886=12;
+                                                                            if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                                              S40886=13;
+                                                                              if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                                                m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                                                m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                                                S40886=14;
                                                                                 active[2]=1;
                                                                                 ends[2]=1;
                                                                                 tdone[2]=1;
@@ -806,7 +806,7 @@ public class RotaryTableController extends ClockDomain{
                                                                               }
                                                                             }
                                                                             else {
-                                                                              rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                                              rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                                               currsigs.addElement(rotaryTrigger);
                                                                               active[2]=1;
                                                                               ends[2]=1;
@@ -920,7 +920,7 @@ public class RotaryTableController extends ClockDomain{
                         }
                       }
                       else {
-                        unloadExit.setPresent();//sysj/turntableController.sysj line: 74, column: 6
+                        unloadExit.setPresent();//sysj/rotaryTableController.sysj line: 74, column: 6
                         currsigs.addElement(unloadExit);
                         active[2]=1;
                         ends[2]=1;
@@ -941,30 +941,30 @@ public class RotaryTableController extends ClockDomain{
                 }
               }
               else {
-                S14096=2;
-                if(m_thread_2.idle()){//sysj/turntableController.sysj line: 82, column: 4
-                  if(!m_thread_2.hasPending()){//sysj/turntableController.sysj line: 83, column: 11
+                S40886=2;
+                if(m_thread_2.idle()){//sysj/rotaryTableController.sysj line: 82, column: 4
+                  if(!m_thread_2.hasPending()){//sysj/rotaryTableController.sysj line: 83, column: 11
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
                   }
                   else {
                     ends[2]=2;
-                    ;//sysj/turntableController.sysj line: 83, column: 5
-                    S14096=3;
-                    if(m_thread_2.readyToPlace()){//sysj/turntableController.sysj line: 85, column: 4
-                      S14141=0;
-                      if(bottleAtPos1.getprestatus()){//sysj/turntableController.sysj line: 86, column: 21
-                        m_thread_2.commitPending();//sysj/turntableController.sysj line: 89, column: 5
-                        placed_1.setPresent();//sysj/turntableController.sysj line: 90, column: 5
+                    ;//sysj/rotaryTableController.sysj line: 83, column: 5
+                    S40886=3;
+                    if(m_thread_2.readyToPlace()){//sysj/rotaryTableController.sysj line: 85, column: 4
+                      S40931=0;
+                      if(bottleAtPos1.getprestatus()){//sysj/rotaryTableController.sysj line: 86, column: 21
+                        m_thread_2.commitPending();//sysj/rotaryTableController.sysj line: 89, column: 5
+                        placed_1.setPresent();//sysj/rotaryTableController.sysj line: 90, column: 5
                         currsigs.addElement(placed_1);
-                        S14141=1;
+                        S40931=1;
                         active[2]=1;
                         ends[2]=1;
                         tdone[2]=1;
                       }
                       else {
-                        loadPos1.setPresent();//sysj/turntableController.sysj line: 87, column: 6
+                        loadPos1.setPresent();//sysj/rotaryTableController.sysj line: 87, column: 6
                         currsigs.addElement(loadPos1);
                         active[2]=1;
                         ends[2]=1;
@@ -972,157 +972,157 @@ public class RotaryTableController extends ClockDomain{
                       }
                     }
                     else {
-                      S14096=4;
-                      S14239=0;
-                      if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 111, column: 4
-                        startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
-                        S14239=1;
+                      S40886=4;
+                      S41029=0;
+                      if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                        startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
+                        S41029=1;
                         active[2]=1;
                         ends[2]=1;
                         tdone[2]=1;
                       }
                       else {
-                        S14234=0;
-                        if(startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                          startFiller1_o.setVal(m_thread_2.idAt(1));//sysj/turntableController.sysj line: 111, column: 4
-                          S14234=1;
-                          if(!startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                            startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
+                        S41024=0;
+                        if(startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                          startFiller1_o.setVal(m_thread_2.at(1));//sysj/rotaryTableController.sysj line: 111, column: 4
+                          S41024=1;
+                          if(!startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                            startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
                             ends[2]=2;
-                            ;//sysj/turntableController.sysj line: 111, column: 4
-                            S14096=5;
-                            S14613=0;
-                            if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 112, column: 4
-                              startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
-                              S14613=1;
+                            ;//sysj/rotaryTableController.sysj line: 111, column: 4
+                            S40886=5;
+                            S41403=0;
+                            if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                              startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
+                              S41403=1;
                               active[2]=1;
                               ends[2]=1;
                               tdone[2]=1;
                             }
                             else {
-                              S14608=0;
-                              if(startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                startFiller2_o.setVal(m_thread_2.idAt(2));//sysj/turntableController.sysj line: 112, column: 4
-                                S14608=1;
-                                if(!startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                  startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
+                              S41398=0;
+                              if(startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                startFiller2_o.setVal(m_thread_2.at(2));//sysj/rotaryTableController.sysj line: 112, column: 4
+                                S41398=1;
+                                if(!startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                  startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
                                   ends[2]=2;
-                                  ;//sysj/turntableController.sysj line: 112, column: 4
-                                  S14096=6;
-                                  S15031=0;
-                                  if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 113, column: 4
-                                    startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
-                                    S15031=1;
+                                  ;//sysj/rotaryTableController.sysj line: 112, column: 4
+                                  S40886=6;
+                                  S41821=0;
+                                  if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                    startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
+                                    S41821=1;
                                     active[2]=1;
                                     ends[2]=1;
                                     tdone[2]=1;
                                   }
                                   else {
-                                    S15026=0;
-                                    if(startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                      startLid_o.setVal(m_thread_2.idAt(3));//sysj/turntableController.sysj line: 113, column: 4
-                                      S15026=1;
-                                      if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                        startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                                    S41816=0;
+                                    if(startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                      startLid_o.setVal(m_thread_2.at(3));//sysj/rotaryTableController.sysj line: 113, column: 4
+                                      S41816=1;
+                                      if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                        startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                                         ends[2]=2;
-                                        ;//sysj/turntableController.sysj line: 113, column: 4
-                                        S14096=7;
-                                        S15493=0;
-                                        if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                                          startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                                          S15493=1;
+                                        ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                                        S40886=7;
+                                        S42283=0;
+                                        if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                          startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                                          S42283=1;
                                           active[2]=1;
                                           ends[2]=1;
                                           tdone[2]=1;
                                         }
                                         else {
-                                          S15488=0;
-                                          if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                            startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                                            S15488=1;
-                                            if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                              startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                                          S42278=0;
+                                          if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                            startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                                            S42278=1;
+                                            if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                              startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                                               ends[2]=2;
-                                              ;//sysj/turntableController.sysj line: 114, column: 4
-                                              S14096=8;
-                                              S15999=0;
-                                              if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                                                doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                                                S15999=1;
+                                              ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                                              S40886=8;
+                                              S42789=0;
+                                              if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                S42789=1;
                                                 active[2]=1;
                                                 ends[2]=1;
                                                 tdone[2]=1;
                                               }
                                               else {
-                                                S15994=0;
-                                                if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                  doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                                  S15994=1;
-                                                  if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                    doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                                                S42784=0;
+                                                if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                  doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                  S42784=1;
+                                                  if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                    doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                                     ends[2]=2;
-                                                    ;//sysj/turntableController.sysj line: 116, column: 4
-                                                    S14096=9;
-                                                    S16549=0;
-                                                    if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                                      doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                                      S16549=1;
+                                                    ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                    S40886=9;
+                                                    S43339=0;
+                                                    if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                      doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                      S43339=1;
                                                       active[2]=1;
                                                       ends[2]=1;
                                                       tdone[2]=1;
                                                     }
                                                     else {
-                                                      S16544=0;
-                                                      if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                        doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                                        S16544=1;
-                                                        if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                          doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                                      S43334=0;
+                                                      if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                        doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                        S43334=1;
+                                                        if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                          doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                                           ends[2]=2;
-                                                          ;//sysj/turntableController.sysj line: 117, column: 4
-                                                          S14096=10;
-                                                          S17143=0;
-                                                          if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                                            doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                                            S17143=1;
+                                                          ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                          S40886=10;
+                                                          S43933=0;
+                                                          if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                            doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                            S43933=1;
                                                             active[2]=1;
                                                             ends[2]=1;
                                                             tdone[2]=1;
                                                           }
                                                           else {
-                                                            S17138=0;
-                                                            if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                              doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                                              S17138=1;
-                                                              if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                                            S43928=0;
+                                                            if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                              doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                              S43928=1;
+                                                              if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                                                 ends[2]=2;
-                                                                ;//sysj/turntableController.sysj line: 118, column: 4
-                                                                S14096=11;
-                                                                S17781=0;
-                                                                if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                  doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                                  S17781=1;
+                                                                ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                S40886=11;
+                                                                S44571=0;
+                                                                if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                  doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                  S44571=1;
                                                                   active[2]=1;
                                                                   ends[2]=1;
                                                                   tdone[2]=1;
                                                                 }
                                                                 else {
-                                                                  S17776=0;
-                                                                  if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                    doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                                    S17776=1;
-                                                                    if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                      doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                                  S44566=0;
+                                                                  if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                    doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                    S44566=1;
+                                                                    if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                      doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                                       ends[2]=2;
-                                                                      ;//sysj/turntableController.sysj line: 119, column: 4
-                                                                      S14096=12;
-                                                                      if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                                        S14096=13;
-                                                                        if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                                          m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                                          m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                                          S14096=14;
+                                                                      ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                      S40886=12;
+                                                                      if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                                        S40886=13;
+                                                                        if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                                          m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                                          m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                                          S40886=14;
                                                                           active[2]=1;
                                                                           ends[2]=1;
                                                                           tdone[2]=1;
@@ -1134,7 +1134,7 @@ public class RotaryTableController extends ClockDomain{
                                                                         }
                                                                       }
                                                                       else {
-                                                                        rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                                        rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                                         currsigs.addElement(rotaryTrigger);
                                                                         active[2]=1;
                                                                         ends[2]=1;
@@ -1248,20 +1248,20 @@ public class RotaryTableController extends ClockDomain{
                   }
                 }
                 else {
-                  S14096=3;
-                  if(m_thread_2.readyToPlace()){//sysj/turntableController.sysj line: 85, column: 4
-                    S14141=0;
-                    if(bottleAtPos1.getprestatus()){//sysj/turntableController.sysj line: 86, column: 21
-                      m_thread_2.commitPending();//sysj/turntableController.sysj line: 89, column: 5
-                      placed_1.setPresent();//sysj/turntableController.sysj line: 90, column: 5
+                  S40886=3;
+                  if(m_thread_2.readyToPlace()){//sysj/rotaryTableController.sysj line: 85, column: 4
+                    S40931=0;
+                    if(bottleAtPos1.getprestatus()){//sysj/rotaryTableController.sysj line: 86, column: 21
+                      m_thread_2.commitPending();//sysj/rotaryTableController.sysj line: 89, column: 5
+                      placed_1.setPresent();//sysj/rotaryTableController.sysj line: 90, column: 5
                       currsigs.addElement(placed_1);
-                      S14141=1;
+                      S40931=1;
                       active[2]=1;
                       ends[2]=1;
                       tdone[2]=1;
                     }
                     else {
-                      loadPos1.setPresent();//sysj/turntableController.sysj line: 87, column: 6
+                      loadPos1.setPresent();//sysj/rotaryTableController.sysj line: 87, column: 6
                       currsigs.addElement(loadPos1);
                       active[2]=1;
                       ends[2]=1;
@@ -1269,157 +1269,157 @@ public class RotaryTableController extends ClockDomain{
                     }
                   }
                   else {
-                    S14096=4;
-                    S14239=0;
-                    if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 111, column: 4
-                      startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
-                      S14239=1;
+                    S40886=4;
+                    S41029=0;
+                    if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                      startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
+                      S41029=1;
                       active[2]=1;
                       ends[2]=1;
                       tdone[2]=1;
                     }
                     else {
-                      S14234=0;
-                      if(startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                        startFiller1_o.setVal(m_thread_2.idAt(1));//sysj/turntableController.sysj line: 111, column: 4
-                        S14234=1;
-                        if(!startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                          startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
+                      S41024=0;
+                      if(startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                        startFiller1_o.setVal(m_thread_2.at(1));//sysj/rotaryTableController.sysj line: 111, column: 4
+                        S41024=1;
+                        if(!startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                          startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
                           ends[2]=2;
-                          ;//sysj/turntableController.sysj line: 111, column: 4
-                          S14096=5;
-                          S14613=0;
-                          if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 112, column: 4
-                            startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
-                            S14613=1;
+                          ;//sysj/rotaryTableController.sysj line: 111, column: 4
+                          S40886=5;
+                          S41403=0;
+                          if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                            startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
+                            S41403=1;
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
-                            S14608=0;
-                            if(startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                              startFiller2_o.setVal(m_thread_2.idAt(2));//sysj/turntableController.sysj line: 112, column: 4
-                              S14608=1;
-                              if(!startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
+                            S41398=0;
+                            if(startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                              startFiller2_o.setVal(m_thread_2.at(2));//sysj/rotaryTableController.sysj line: 112, column: 4
+                              S41398=1;
+                              if(!startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
                                 ends[2]=2;
-                                ;//sysj/turntableController.sysj line: 112, column: 4
-                                S14096=6;
-                                S15031=0;
-                                if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 113, column: 4
-                                  startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
-                                  S15031=1;
+                                ;//sysj/rotaryTableController.sysj line: 112, column: 4
+                                S40886=6;
+                                S41821=0;
+                                if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                  startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
+                                  S41821=1;
                                   active[2]=1;
                                   ends[2]=1;
                                   tdone[2]=1;
                                 }
                                 else {
-                                  S15026=0;
-                                  if(startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                    startLid_o.setVal(m_thread_2.idAt(3));//sysj/turntableController.sysj line: 113, column: 4
-                                    S15026=1;
-                                    if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                      startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                                  S41816=0;
+                                  if(startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                    startLid_o.setVal(m_thread_2.at(3));//sysj/rotaryTableController.sysj line: 113, column: 4
+                                    S41816=1;
+                                    if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                      startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                                       ends[2]=2;
-                                      ;//sysj/turntableController.sysj line: 113, column: 4
-                                      S14096=7;
-                                      S15493=0;
-                                      if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                                        startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                                        S15493=1;
+                                      ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                                      S40886=7;
+                                      S42283=0;
+                                      if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                        startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                                        S42283=1;
                                         active[2]=1;
                                         ends[2]=1;
                                         tdone[2]=1;
                                       }
                                       else {
-                                        S15488=0;
-                                        if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                          startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                                          S15488=1;
-                                          if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                            startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                                        S42278=0;
+                                        if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                          startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                                          S42278=1;
+                                          if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                            startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                                             ends[2]=2;
-                                            ;//sysj/turntableController.sysj line: 114, column: 4
-                                            S14096=8;
-                                            S15999=0;
-                                            if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                                              doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                                              S15999=1;
+                                            ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                                            S40886=8;
+                                            S42789=0;
+                                            if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                              doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                              S42789=1;
                                               active[2]=1;
                                               ends[2]=1;
                                               tdone[2]=1;
                                             }
                                             else {
-                                              S15994=0;
-                                              if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                                S15994=1;
-                                                if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                  doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                                              S42784=0;
+                                              if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                S42784=1;
+                                                if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                  doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                                   ends[2]=2;
-                                                  ;//sysj/turntableController.sysj line: 116, column: 4
-                                                  S14096=9;
-                                                  S16549=0;
-                                                  if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                                    doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                                    S16549=1;
+                                                  ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                  S40886=9;
+                                                  S43339=0;
+                                                  if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                    doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                    S43339=1;
                                                     active[2]=1;
                                                     ends[2]=1;
                                                     tdone[2]=1;
                                                   }
                                                   else {
-                                                    S16544=0;
-                                                    if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                      doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                                      S16544=1;
-                                                      if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                        doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                                    S43334=0;
+                                                    if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                      doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                      S43334=1;
+                                                      if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                        doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                                         ends[2]=2;
-                                                        ;//sysj/turntableController.sysj line: 117, column: 4
-                                                        S14096=10;
-                                                        S17143=0;
-                                                        if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                                          doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                                          S17143=1;
+                                                        ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                        S40886=10;
+                                                        S43933=0;
+                                                        if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                          doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                          S43933=1;
                                                           active[2]=1;
                                                           ends[2]=1;
                                                           tdone[2]=1;
                                                         }
                                                         else {
-                                                          S17138=0;
-                                                          if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                            doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                                            S17138=1;
-                                                            if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                              doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                                          S43928=0;
+                                                          if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                            doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                            S43928=1;
+                                                            if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                              doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                                               ends[2]=2;
-                                                              ;//sysj/turntableController.sysj line: 118, column: 4
-                                                              S14096=11;
-                                                              S17781=0;
-                                                              if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                                S17781=1;
+                                                              ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                              S40886=11;
+                                                              S44571=0;
+                                                              if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                S44571=1;
                                                                 active[2]=1;
                                                                 ends[2]=1;
                                                                 tdone[2]=1;
                                                               }
                                                               else {
-                                                                S17776=0;
-                                                                if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                  doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                                  S17776=1;
-                                                                  if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                    doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                                S44566=0;
+                                                                if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                  doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                  S44566=1;
+                                                                  if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                    doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                                     ends[2]=2;
-                                                                    ;//sysj/turntableController.sysj line: 119, column: 4
-                                                                    S14096=12;
-                                                                    if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                                      S14096=13;
-                                                                      if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                                        m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                                        m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                                        S14096=14;
+                                                                    ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                    S40886=12;
+                                                                    if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                                      S40886=13;
+                                                                      if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                                        m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                                        m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                                        S40886=14;
                                                                         active[2]=1;
                                                                         ends[2]=1;
                                                                         tdone[2]=1;
@@ -1431,7 +1431,7 @@ public class RotaryTableController extends ClockDomain{
                                                                       }
                                                                     }
                                                                     else {
-                                                                      rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                                      rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                                       currsigs.addElement(rotaryTrigger);
                                                                       active[2]=1;
                                                                       ends[2]=1;
@@ -1553,54 +1553,54 @@ public class RotaryTableController extends ClockDomain{
             break;
           
           case 1 : 
-            switch(S13910){
+            switch(S40700){
               case 0 : 
-                switch(S13917){
+                switch(S40707){
                   case 0 : 
-                    if(!tableOutfeed_o.isPartnerPresent() || tableOutfeed_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 72, column: 5
-                      tableOutfeed_o.setREQ(false);//sysj/turntableController.sysj line: 72, column: 5
-                      S13917=1;
+                    if(!tableOutfeed_o.isPartnerPresent() || tableOutfeed_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 72, column: 5
+                      tableOutfeed_o.setREQ(false);//sysj/rotaryTableController.sysj line: 72, column: 5
+                      S40707=1;
                       active[2]=1;
                       ends[2]=1;
                       tdone[2]=1;
                     }
                     else {
-                      switch(S13912){
+                      switch(S40702){
                         case 0 : 
-                          if(tableOutfeed_o.isACK()){//sysj/turntableController.sysj line: 72, column: 5
-                            tableOutfeed_o.setVal(exiting_thread_2);//sysj/turntableController.sysj line: 72, column: 5
-                            S13912=1;
-                            if(!tableOutfeed_o.isACK()){//sysj/turntableController.sysj line: 72, column: 5
-                              tableOutfeed_o.setREQ(false);//sysj/turntableController.sysj line: 72, column: 5
+                          if(tableOutfeed_o.isACK()){//sysj/rotaryTableController.sysj line: 72, column: 5
+                            tableOutfeed_o.setVal(exiting_thread_2);//sysj/rotaryTableController.sysj line: 72, column: 5
+                            S40702=1;
+                            if(!tableOutfeed_o.isACK()){//sysj/rotaryTableController.sysj line: 72, column: 5
+                              tableOutfeed_o.setREQ(false);//sysj/rotaryTableController.sysj line: 72, column: 5
                               ends[2]=2;
-                              ;//sysj/turntableController.sysj line: 72, column: 5
-                              S13910=1;
-                              if(exitCleared.getprestatus()){//sysj/turntableController.sysj line: 73, column: 21
-                                m_thread_2.clearExit();//sysj/turntableController.sysj line: 76, column: 5
-                                S14096=2;
-                                if(m_thread_2.idle()){//sysj/turntableController.sysj line: 82, column: 4
-                                  if(!m_thread_2.hasPending()){//sysj/turntableController.sysj line: 83, column: 11
+                              ;//sysj/rotaryTableController.sysj line: 72, column: 5
+                              S40700=1;
+                              if(exitCleared.getprestatus()){//sysj/rotaryTableController.sysj line: 73, column: 21
+                                m_thread_2.clearExit();//sysj/rotaryTableController.sysj line: 76, column: 5
+                                S40886=2;
+                                if(m_thread_2.idle()){//sysj/rotaryTableController.sysj line: 82, column: 4
+                                  if(!m_thread_2.hasPending()){//sysj/rotaryTableController.sysj line: 83, column: 11
                                     active[2]=1;
                                     ends[2]=1;
                                     tdone[2]=1;
                                   }
                                   else {
                                     ends[2]=2;
-                                    ;//sysj/turntableController.sysj line: 83, column: 5
-                                    S14096=3;
-                                    if(m_thread_2.readyToPlace()){//sysj/turntableController.sysj line: 85, column: 4
-                                      S14141=0;
-                                      if(bottleAtPos1.getprestatus()){//sysj/turntableController.sysj line: 86, column: 21
-                                        m_thread_2.commitPending();//sysj/turntableController.sysj line: 89, column: 5
-                                        placed_1.setPresent();//sysj/turntableController.sysj line: 90, column: 5
+                                    ;//sysj/rotaryTableController.sysj line: 83, column: 5
+                                    S40886=3;
+                                    if(m_thread_2.readyToPlace()){//sysj/rotaryTableController.sysj line: 85, column: 4
+                                      S40931=0;
+                                      if(bottleAtPos1.getprestatus()){//sysj/rotaryTableController.sysj line: 86, column: 21
+                                        m_thread_2.commitPending();//sysj/rotaryTableController.sysj line: 89, column: 5
+                                        placed_1.setPresent();//sysj/rotaryTableController.sysj line: 90, column: 5
                                         currsigs.addElement(placed_1);
-                                        S14141=1;
+                                        S40931=1;
                                         active[2]=1;
                                         ends[2]=1;
                                         tdone[2]=1;
                                       }
                                       else {
-                                        loadPos1.setPresent();//sysj/turntableController.sysj line: 87, column: 6
+                                        loadPos1.setPresent();//sysj/rotaryTableController.sysj line: 87, column: 6
                                         currsigs.addElement(loadPos1);
                                         active[2]=1;
                                         ends[2]=1;
@@ -1608,157 +1608,157 @@ public class RotaryTableController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      S14096=4;
-                                      S14239=0;
-                                      if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 111, column: 4
-                                        startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
-                                        S14239=1;
+                                      S40886=4;
+                                      S41029=0;
+                                      if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                                        startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
+                                        S41029=1;
                                         active[2]=1;
                                         ends[2]=1;
                                         tdone[2]=1;
                                       }
                                       else {
-                                        S14234=0;
-                                        if(startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                                          startFiller1_o.setVal(m_thread_2.idAt(1));//sysj/turntableController.sysj line: 111, column: 4
-                                          S14234=1;
-                                          if(!startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                                            startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
+                                        S41024=0;
+                                        if(startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                                          startFiller1_o.setVal(m_thread_2.at(1));//sysj/rotaryTableController.sysj line: 111, column: 4
+                                          S41024=1;
+                                          if(!startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                                            startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
                                             ends[2]=2;
-                                            ;//sysj/turntableController.sysj line: 111, column: 4
-                                            S14096=5;
-                                            S14613=0;
-                                            if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 112, column: 4
-                                              startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
-                                              S14613=1;
+                                            ;//sysj/rotaryTableController.sysj line: 111, column: 4
+                                            S40886=5;
+                                            S41403=0;
+                                            if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                              startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
+                                              S41403=1;
                                               active[2]=1;
                                               ends[2]=1;
                                               tdone[2]=1;
                                             }
                                             else {
-                                              S14608=0;
-                                              if(startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                                startFiller2_o.setVal(m_thread_2.idAt(2));//sysj/turntableController.sysj line: 112, column: 4
-                                                S14608=1;
-                                                if(!startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                                  startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
+                                              S41398=0;
+                                              if(startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                                startFiller2_o.setVal(m_thread_2.at(2));//sysj/rotaryTableController.sysj line: 112, column: 4
+                                                S41398=1;
+                                                if(!startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                                  startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
                                                   ends[2]=2;
-                                                  ;//sysj/turntableController.sysj line: 112, column: 4
-                                                  S14096=6;
-                                                  S15031=0;
-                                                  if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 113, column: 4
-                                                    startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
-                                                    S15031=1;
+                                                  ;//sysj/rotaryTableController.sysj line: 112, column: 4
+                                                  S40886=6;
+                                                  S41821=0;
+                                                  if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                    startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                    S41821=1;
                                                     active[2]=1;
                                                     ends[2]=1;
                                                     tdone[2]=1;
                                                   }
                                                   else {
-                                                    S15026=0;
-                                                    if(startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                                      startLid_o.setVal(m_thread_2.idAt(3));//sysj/turntableController.sysj line: 113, column: 4
-                                                      S15026=1;
-                                                      if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                                        startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                                                    S41816=0;
+                                                    if(startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                      startLid_o.setVal(m_thread_2.at(3));//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                      S41816=1;
+                                                      if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                        startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                                                         ends[2]=2;
-                                                        ;//sysj/turntableController.sysj line: 113, column: 4
-                                                        S14096=7;
-                                                        S15493=0;
-                                                        if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                                                          startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                                                          S15493=1;
+                                                        ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                        S40886=7;
+                                                        S42283=0;
+                                                        if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                          startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                          S42283=1;
                                                           active[2]=1;
                                                           ends[2]=1;
                                                           tdone[2]=1;
                                                         }
                                                         else {
-                                                          S15488=0;
-                                                          if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                                            startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                                                            S15488=1;
-                                                            if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                                              startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                                                          S42278=0;
+                                                          if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                            startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                            S42278=1;
+                                                            if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                              startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                                                               ends[2]=2;
-                                                              ;//sysj/turntableController.sysj line: 114, column: 4
-                                                              S14096=8;
-                                                              S15999=0;
-                                                              if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                                                                doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                                                                S15999=1;
+                                                              ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                              S40886=8;
+                                                              S42789=0;
+                                                              if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                                doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                                S42789=1;
                                                                 active[2]=1;
                                                                 ends[2]=1;
                                                                 tdone[2]=1;
                                                               }
                                                               else {
-                                                                S15994=0;
-                                                                if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                                  doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                                                  S15994=1;
-                                                                  if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                                    doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                                                                S42784=0;
+                                                                if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                                  doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                                  S42784=1;
+                                                                  if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                                    doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                                                     ends[2]=2;
-                                                                    ;//sysj/turntableController.sysj line: 116, column: 4
-                                                                    S14096=9;
-                                                                    S16549=0;
-                                                                    if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                                                      doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                                                      S16549=1;
+                                                                    ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                                    S40886=9;
+                                                                    S43339=0;
+                                                                    if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                      doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                      S43339=1;
                                                                       active[2]=1;
                                                                       ends[2]=1;
                                                                       tdone[2]=1;
                                                                     }
                                                                     else {
-                                                                      S16544=0;
-                                                                      if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                                        doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                                                        S16544=1;
-                                                                        if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                                          doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                                                      S43334=0;
+                                                                      if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                        doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                        S43334=1;
+                                                                        if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                          doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                                                           ends[2]=2;
-                                                                          ;//sysj/turntableController.sysj line: 117, column: 4
-                                                                          S14096=10;
-                                                                          S17143=0;
-                                                                          if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                            doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                                                            S17143=1;
+                                                                          ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                          S40886=10;
+                                                                          S43933=0;
+                                                                          if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                            doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                            S43933=1;
                                                                             active[2]=1;
                                                                             ends[2]=1;
                                                                             tdone[2]=1;
                                                                           }
                                                                           else {
-                                                                            S17138=0;
-                                                                            if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                              doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                                                              S17138=1;
-                                                                              if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                                doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                                                            S43928=0;
+                                                                            if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                              doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                              S43928=1;
+                                                                              if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                                doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                                                                 ends[2]=2;
-                                                                                ;//sysj/turntableController.sysj line: 118, column: 4
-                                                                                S14096=11;
-                                                                                S17781=0;
-                                                                                if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                                  doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                                                  S17781=1;
+                                                                                ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                                S40886=11;
+                                                                                S44571=0;
+                                                                                if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                                  doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                                  S44571=1;
                                                                                   active[2]=1;
                                                                                   ends[2]=1;
                                                                                   tdone[2]=1;
                                                                                 }
                                                                                 else {
-                                                                                  S17776=0;
-                                                                                  if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                                    doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                                                    S17776=1;
-                                                                                    if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                                      doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                                                  S44566=0;
+                                                                                  if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                                    doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                                    S44566=1;
+                                                                                    if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                                      doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                                                       ends[2]=2;
-                                                                                      ;//sysj/turntableController.sysj line: 119, column: 4
-                                                                                      S14096=12;
-                                                                                      if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                                                        S14096=13;
-                                                                                        if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                                                          m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                                                          m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                                                          S14096=14;
+                                                                                      ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                                      S40886=12;
+                                                                                      if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                                                        S40886=13;
+                                                                                        if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                                                          m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                                                          m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                                                          S40886=14;
                                                                                           active[2]=1;
                                                                                           ends[2]=1;
                                                                                           tdone[2]=1;
@@ -1770,7 +1770,7 @@ public class RotaryTableController extends ClockDomain{
                                                                                         }
                                                                                       }
                                                                                       else {
-                                                                                        rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                                                        rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                                                         currsigs.addElement(rotaryTrigger);
                                                                                         active[2]=1;
                                                                                         ends[2]=1;
@@ -1884,20 +1884,20 @@ public class RotaryTableController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  S14096=3;
-                                  if(m_thread_2.readyToPlace()){//sysj/turntableController.sysj line: 85, column: 4
-                                    S14141=0;
-                                    if(bottleAtPos1.getprestatus()){//sysj/turntableController.sysj line: 86, column: 21
-                                      m_thread_2.commitPending();//sysj/turntableController.sysj line: 89, column: 5
-                                      placed_1.setPresent();//sysj/turntableController.sysj line: 90, column: 5
+                                  S40886=3;
+                                  if(m_thread_2.readyToPlace()){//sysj/rotaryTableController.sysj line: 85, column: 4
+                                    S40931=0;
+                                    if(bottleAtPos1.getprestatus()){//sysj/rotaryTableController.sysj line: 86, column: 21
+                                      m_thread_2.commitPending();//sysj/rotaryTableController.sysj line: 89, column: 5
+                                      placed_1.setPresent();//sysj/rotaryTableController.sysj line: 90, column: 5
                                       currsigs.addElement(placed_1);
-                                      S14141=1;
+                                      S40931=1;
                                       active[2]=1;
                                       ends[2]=1;
                                       tdone[2]=1;
                                     }
                                     else {
-                                      loadPos1.setPresent();//sysj/turntableController.sysj line: 87, column: 6
+                                      loadPos1.setPresent();//sysj/rotaryTableController.sysj line: 87, column: 6
                                       currsigs.addElement(loadPos1);
                                       active[2]=1;
                                       ends[2]=1;
@@ -1905,157 +1905,157 @@ public class RotaryTableController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    S14096=4;
-                                    S14239=0;
-                                    if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 111, column: 4
-                                      startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
-                                      S14239=1;
+                                    S40886=4;
+                                    S41029=0;
+                                    if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                                      startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
+                                      S41029=1;
                                       active[2]=1;
                                       ends[2]=1;
                                       tdone[2]=1;
                                     }
                                     else {
-                                      S14234=0;
-                                      if(startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                                        startFiller1_o.setVal(m_thread_2.idAt(1));//sysj/turntableController.sysj line: 111, column: 4
-                                        S14234=1;
-                                        if(!startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                                          startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
+                                      S41024=0;
+                                      if(startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                                        startFiller1_o.setVal(m_thread_2.at(1));//sysj/rotaryTableController.sysj line: 111, column: 4
+                                        S41024=1;
+                                        if(!startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                                          startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
                                           ends[2]=2;
-                                          ;//sysj/turntableController.sysj line: 111, column: 4
-                                          S14096=5;
-                                          S14613=0;
-                                          if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 112, column: 4
-                                            startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
-                                            S14613=1;
+                                          ;//sysj/rotaryTableController.sysj line: 111, column: 4
+                                          S40886=5;
+                                          S41403=0;
+                                          if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                            startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
+                                            S41403=1;
                                             active[2]=1;
                                             ends[2]=1;
                                             tdone[2]=1;
                                           }
                                           else {
-                                            S14608=0;
-                                            if(startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                              startFiller2_o.setVal(m_thread_2.idAt(2));//sysj/turntableController.sysj line: 112, column: 4
-                                              S14608=1;
-                                              if(!startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                                startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
+                                            S41398=0;
+                                            if(startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                              startFiller2_o.setVal(m_thread_2.at(2));//sysj/rotaryTableController.sysj line: 112, column: 4
+                                              S41398=1;
+                                              if(!startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                                startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
                                                 ends[2]=2;
-                                                ;//sysj/turntableController.sysj line: 112, column: 4
-                                                S14096=6;
-                                                S15031=0;
-                                                if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 113, column: 4
-                                                  startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
-                                                  S15031=1;
+                                                ;//sysj/rotaryTableController.sysj line: 112, column: 4
+                                                S40886=6;
+                                                S41821=0;
+                                                if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                  startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                  S41821=1;
                                                   active[2]=1;
                                                   ends[2]=1;
                                                   tdone[2]=1;
                                                 }
                                                 else {
-                                                  S15026=0;
-                                                  if(startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                                    startLid_o.setVal(m_thread_2.idAt(3));//sysj/turntableController.sysj line: 113, column: 4
-                                                    S15026=1;
-                                                    if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                                      startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                                                  S41816=0;
+                                                  if(startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                    startLid_o.setVal(m_thread_2.at(3));//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                    S41816=1;
+                                                    if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                      startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                                                       ends[2]=2;
-                                                      ;//sysj/turntableController.sysj line: 113, column: 4
-                                                      S14096=7;
-                                                      S15493=0;
-                                                      if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                                                        startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                                                        S15493=1;
+                                                      ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                      S40886=7;
+                                                      S42283=0;
+                                                      if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                        startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                        S42283=1;
                                                         active[2]=1;
                                                         ends[2]=1;
                                                         tdone[2]=1;
                                                       }
                                                       else {
-                                                        S15488=0;
-                                                        if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                                          startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                                                          S15488=1;
-                                                          if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                                            startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                                                        S42278=0;
+                                                        if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                          startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                          S42278=1;
+                                                          if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                            startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                                                             ends[2]=2;
-                                                            ;//sysj/turntableController.sysj line: 114, column: 4
-                                                            S14096=8;
-                                                            S15999=0;
-                                                            if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                                                              doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                                                              S15999=1;
+                                                            ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                            S40886=8;
+                                                            S42789=0;
+                                                            if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                              doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                              S42789=1;
                                                               active[2]=1;
                                                               ends[2]=1;
                                                               tdone[2]=1;
                                                             }
                                                             else {
-                                                              S15994=0;
-                                                              if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                                doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                                                S15994=1;
-                                                                if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                                  doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                                                              S42784=0;
+                                                              if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                                doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                                S42784=1;
+                                                                if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                                  doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                                                   ends[2]=2;
-                                                                  ;//sysj/turntableController.sysj line: 116, column: 4
-                                                                  S14096=9;
-                                                                  S16549=0;
-                                                                  if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                                                    doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                                                    S16549=1;
+                                                                  ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                                  S40886=9;
+                                                                  S43339=0;
+                                                                  if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                    doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                    S43339=1;
                                                                     active[2]=1;
                                                                     ends[2]=1;
                                                                     tdone[2]=1;
                                                                   }
                                                                   else {
-                                                                    S16544=0;
-                                                                    if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                                      doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                                                      S16544=1;
-                                                                      if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                                        doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                                                    S43334=0;
+                                                                    if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                      doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                      S43334=1;
+                                                                      if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                        doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                                                         ends[2]=2;
-                                                                        ;//sysj/turntableController.sysj line: 117, column: 4
-                                                                        S14096=10;
-                                                                        S17143=0;
-                                                                        if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                          doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                                                          S17143=1;
+                                                                        ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                        S40886=10;
+                                                                        S43933=0;
+                                                                        if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                          doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                          S43933=1;
                                                                           active[2]=1;
                                                                           ends[2]=1;
                                                                           tdone[2]=1;
                                                                         }
                                                                         else {
-                                                                          S17138=0;
-                                                                          if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                            doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                                                            S17138=1;
-                                                                            if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                              doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                                                          S43928=0;
+                                                                          if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                            doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                            S43928=1;
+                                                                            if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                              doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                                                               ends[2]=2;
-                                                                              ;//sysj/turntableController.sysj line: 118, column: 4
-                                                                              S14096=11;
-                                                                              S17781=0;
-                                                                              if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                                doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                                                S17781=1;
+                                                                              ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                              S40886=11;
+                                                                              S44571=0;
+                                                                              if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                                doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                                S44571=1;
                                                                                 active[2]=1;
                                                                                 ends[2]=1;
                                                                                 tdone[2]=1;
                                                                               }
                                                                               else {
-                                                                                S17776=0;
-                                                                                if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                                  doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                                                  S17776=1;
-                                                                                  if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                                    doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                                                S44566=0;
+                                                                                if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                                  doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                                  S44566=1;
+                                                                                  if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                                    doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                                                     ends[2]=2;
-                                                                                    ;//sysj/turntableController.sysj line: 119, column: 4
-                                                                                    S14096=12;
-                                                                                    if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                                                      S14096=13;
-                                                                                      if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                                                        m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                                                        m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                                                        S14096=14;
+                                                                                    ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                                    S40886=12;
+                                                                                    if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                                                      S40886=13;
+                                                                                      if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                                                        m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                                                        m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                                                        S40886=14;
                                                                                         active[2]=1;
                                                                                         ends[2]=1;
                                                                                         tdone[2]=1;
@@ -2067,7 +2067,7 @@ public class RotaryTableController extends ClockDomain{
                                                                                       }
                                                                                     }
                                                                                     else {
-                                                                                      rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                                                      rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                                                       currsigs.addElement(rotaryTrigger);
                                                                                       active[2]=1;
                                                                                       ends[2]=1;
@@ -2181,7 +2181,7 @@ public class RotaryTableController extends ClockDomain{
                                 }
                               }
                               else {
-                                unloadExit.setPresent();//sysj/turntableController.sysj line: 74, column: 6
+                                unloadExit.setPresent();//sysj/rotaryTableController.sysj line: 74, column: 6
                                 currsigs.addElement(unloadExit);
                                 active[2]=1;
                                 ends[2]=1;
@@ -2202,37 +2202,37 @@ public class RotaryTableController extends ClockDomain{
                           break;
                         
                         case 1 : 
-                          if(!tableOutfeed_o.isACK()){//sysj/turntableController.sysj line: 72, column: 5
-                            tableOutfeed_o.setREQ(false);//sysj/turntableController.sysj line: 72, column: 5
+                          if(!tableOutfeed_o.isACK()){//sysj/rotaryTableController.sysj line: 72, column: 5
+                            tableOutfeed_o.setREQ(false);//sysj/rotaryTableController.sysj line: 72, column: 5
                             ends[2]=2;
-                            ;//sysj/turntableController.sysj line: 72, column: 5
-                            S13910=1;
-                            if(exitCleared.getprestatus()){//sysj/turntableController.sysj line: 73, column: 21
-                              m_thread_2.clearExit();//sysj/turntableController.sysj line: 76, column: 5
-                              S14096=2;
-                              if(m_thread_2.idle()){//sysj/turntableController.sysj line: 82, column: 4
-                                if(!m_thread_2.hasPending()){//sysj/turntableController.sysj line: 83, column: 11
+                            ;//sysj/rotaryTableController.sysj line: 72, column: 5
+                            S40700=1;
+                            if(exitCleared.getprestatus()){//sysj/rotaryTableController.sysj line: 73, column: 21
+                              m_thread_2.clearExit();//sysj/rotaryTableController.sysj line: 76, column: 5
+                              S40886=2;
+                              if(m_thread_2.idle()){//sysj/rotaryTableController.sysj line: 82, column: 4
+                                if(!m_thread_2.hasPending()){//sysj/rotaryTableController.sysj line: 83, column: 11
                                   active[2]=1;
                                   ends[2]=1;
                                   tdone[2]=1;
                                 }
                                 else {
                                   ends[2]=2;
-                                  ;//sysj/turntableController.sysj line: 83, column: 5
-                                  S14096=3;
-                                  if(m_thread_2.readyToPlace()){//sysj/turntableController.sysj line: 85, column: 4
-                                    S14141=0;
-                                    if(bottleAtPos1.getprestatus()){//sysj/turntableController.sysj line: 86, column: 21
-                                      m_thread_2.commitPending();//sysj/turntableController.sysj line: 89, column: 5
-                                      placed_1.setPresent();//sysj/turntableController.sysj line: 90, column: 5
+                                  ;//sysj/rotaryTableController.sysj line: 83, column: 5
+                                  S40886=3;
+                                  if(m_thread_2.readyToPlace()){//sysj/rotaryTableController.sysj line: 85, column: 4
+                                    S40931=0;
+                                    if(bottleAtPos1.getprestatus()){//sysj/rotaryTableController.sysj line: 86, column: 21
+                                      m_thread_2.commitPending();//sysj/rotaryTableController.sysj line: 89, column: 5
+                                      placed_1.setPresent();//sysj/rotaryTableController.sysj line: 90, column: 5
                                       currsigs.addElement(placed_1);
-                                      S14141=1;
+                                      S40931=1;
                                       active[2]=1;
                                       ends[2]=1;
                                       tdone[2]=1;
                                     }
                                     else {
-                                      loadPos1.setPresent();//sysj/turntableController.sysj line: 87, column: 6
+                                      loadPos1.setPresent();//sysj/rotaryTableController.sysj line: 87, column: 6
                                       currsigs.addElement(loadPos1);
                                       active[2]=1;
                                       ends[2]=1;
@@ -2240,157 +2240,157 @@ public class RotaryTableController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    S14096=4;
-                                    S14239=0;
-                                    if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 111, column: 4
-                                      startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
-                                      S14239=1;
+                                    S40886=4;
+                                    S41029=0;
+                                    if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                                      startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
+                                      S41029=1;
                                       active[2]=1;
                                       ends[2]=1;
                                       tdone[2]=1;
                                     }
                                     else {
-                                      S14234=0;
-                                      if(startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                                        startFiller1_o.setVal(m_thread_2.idAt(1));//sysj/turntableController.sysj line: 111, column: 4
-                                        S14234=1;
-                                        if(!startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                                          startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
+                                      S41024=0;
+                                      if(startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                                        startFiller1_o.setVal(m_thread_2.at(1));//sysj/rotaryTableController.sysj line: 111, column: 4
+                                        S41024=1;
+                                        if(!startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                                          startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
                                           ends[2]=2;
-                                          ;//sysj/turntableController.sysj line: 111, column: 4
-                                          S14096=5;
-                                          S14613=0;
-                                          if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 112, column: 4
-                                            startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
-                                            S14613=1;
+                                          ;//sysj/rotaryTableController.sysj line: 111, column: 4
+                                          S40886=5;
+                                          S41403=0;
+                                          if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                            startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
+                                            S41403=1;
                                             active[2]=1;
                                             ends[2]=1;
                                             tdone[2]=1;
                                           }
                                           else {
-                                            S14608=0;
-                                            if(startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                              startFiller2_o.setVal(m_thread_2.idAt(2));//sysj/turntableController.sysj line: 112, column: 4
-                                              S14608=1;
-                                              if(!startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                                startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
+                                            S41398=0;
+                                            if(startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                              startFiller2_o.setVal(m_thread_2.at(2));//sysj/rotaryTableController.sysj line: 112, column: 4
+                                              S41398=1;
+                                              if(!startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                                startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
                                                 ends[2]=2;
-                                                ;//sysj/turntableController.sysj line: 112, column: 4
-                                                S14096=6;
-                                                S15031=0;
-                                                if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 113, column: 4
-                                                  startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
-                                                  S15031=1;
+                                                ;//sysj/rotaryTableController.sysj line: 112, column: 4
+                                                S40886=6;
+                                                S41821=0;
+                                                if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                  startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                  S41821=1;
                                                   active[2]=1;
                                                   ends[2]=1;
                                                   tdone[2]=1;
                                                 }
                                                 else {
-                                                  S15026=0;
-                                                  if(startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                                    startLid_o.setVal(m_thread_2.idAt(3));//sysj/turntableController.sysj line: 113, column: 4
-                                                    S15026=1;
-                                                    if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                                      startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                                                  S41816=0;
+                                                  if(startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                    startLid_o.setVal(m_thread_2.at(3));//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                    S41816=1;
+                                                    if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                      startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                                                       ends[2]=2;
-                                                      ;//sysj/turntableController.sysj line: 113, column: 4
-                                                      S14096=7;
-                                                      S15493=0;
-                                                      if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                                                        startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                                                        S15493=1;
+                                                      ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                      S40886=7;
+                                                      S42283=0;
+                                                      if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                        startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                        S42283=1;
                                                         active[2]=1;
                                                         ends[2]=1;
                                                         tdone[2]=1;
                                                       }
                                                       else {
-                                                        S15488=0;
-                                                        if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                                          startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                                                          S15488=1;
-                                                          if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                                            startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                                                        S42278=0;
+                                                        if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                          startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                          S42278=1;
+                                                          if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                            startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                                                             ends[2]=2;
-                                                            ;//sysj/turntableController.sysj line: 114, column: 4
-                                                            S14096=8;
-                                                            S15999=0;
-                                                            if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                                                              doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                                                              S15999=1;
+                                                            ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                            S40886=8;
+                                                            S42789=0;
+                                                            if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                              doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                              S42789=1;
                                                               active[2]=1;
                                                               ends[2]=1;
                                                               tdone[2]=1;
                                                             }
                                                             else {
-                                                              S15994=0;
-                                                              if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                                doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                                                S15994=1;
-                                                                if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                                  doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                                                              S42784=0;
+                                                              if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                                doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                                S42784=1;
+                                                                if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                                  doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                                                   ends[2]=2;
-                                                                  ;//sysj/turntableController.sysj line: 116, column: 4
-                                                                  S14096=9;
-                                                                  S16549=0;
-                                                                  if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                                                    doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                                                    S16549=1;
+                                                                  ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                                  S40886=9;
+                                                                  S43339=0;
+                                                                  if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                    doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                    S43339=1;
                                                                     active[2]=1;
                                                                     ends[2]=1;
                                                                     tdone[2]=1;
                                                                   }
                                                                   else {
-                                                                    S16544=0;
-                                                                    if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                                      doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                                                      S16544=1;
-                                                                      if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                                        doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                                                    S43334=0;
+                                                                    if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                      doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                      S43334=1;
+                                                                      if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                        doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                                                         ends[2]=2;
-                                                                        ;//sysj/turntableController.sysj line: 117, column: 4
-                                                                        S14096=10;
-                                                                        S17143=0;
-                                                                        if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                          doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                                                          S17143=1;
+                                                                        ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                        S40886=10;
+                                                                        S43933=0;
+                                                                        if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                          doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                          S43933=1;
                                                                           active[2]=1;
                                                                           ends[2]=1;
                                                                           tdone[2]=1;
                                                                         }
                                                                         else {
-                                                                          S17138=0;
-                                                                          if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                            doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                                                            S17138=1;
-                                                                            if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                              doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                                                          S43928=0;
+                                                                          if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                            doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                            S43928=1;
+                                                                            if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                              doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                                                               ends[2]=2;
-                                                                              ;//sysj/turntableController.sysj line: 118, column: 4
-                                                                              S14096=11;
-                                                                              S17781=0;
-                                                                              if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                                doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                                                S17781=1;
+                                                                              ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                              S40886=11;
+                                                                              S44571=0;
+                                                                              if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                                doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                                S44571=1;
                                                                                 active[2]=1;
                                                                                 ends[2]=1;
                                                                                 tdone[2]=1;
                                                                               }
                                                                               else {
-                                                                                S17776=0;
-                                                                                if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                                  doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                                                  S17776=1;
-                                                                                  if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                                    doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                                                S44566=0;
+                                                                                if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                                  doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                                  S44566=1;
+                                                                                  if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                                    doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                                                     ends[2]=2;
-                                                                                    ;//sysj/turntableController.sysj line: 119, column: 4
-                                                                                    S14096=12;
-                                                                                    if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                                                      S14096=13;
-                                                                                      if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                                                        m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                                                        m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                                                        S14096=14;
+                                                                                    ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                                    S40886=12;
+                                                                                    if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                                                      S40886=13;
+                                                                                      if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                                                        m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                                                        m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                                                        S40886=14;
                                                                                         active[2]=1;
                                                                                         ends[2]=1;
                                                                                         tdone[2]=1;
@@ -2402,7 +2402,7 @@ public class RotaryTableController extends ClockDomain{
                                                                                       }
                                                                                     }
                                                                                     else {
-                                                                                      rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                                                      rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                                                       currsigs.addElement(rotaryTrigger);
                                                                                       active[2]=1;
                                                                                       ends[2]=1;
@@ -2516,20 +2516,20 @@ public class RotaryTableController extends ClockDomain{
                                 }
                               }
                               else {
-                                S14096=3;
-                                if(m_thread_2.readyToPlace()){//sysj/turntableController.sysj line: 85, column: 4
-                                  S14141=0;
-                                  if(bottleAtPos1.getprestatus()){//sysj/turntableController.sysj line: 86, column: 21
-                                    m_thread_2.commitPending();//sysj/turntableController.sysj line: 89, column: 5
-                                    placed_1.setPresent();//sysj/turntableController.sysj line: 90, column: 5
+                                S40886=3;
+                                if(m_thread_2.readyToPlace()){//sysj/rotaryTableController.sysj line: 85, column: 4
+                                  S40931=0;
+                                  if(bottleAtPos1.getprestatus()){//sysj/rotaryTableController.sysj line: 86, column: 21
+                                    m_thread_2.commitPending();//sysj/rotaryTableController.sysj line: 89, column: 5
+                                    placed_1.setPresent();//sysj/rotaryTableController.sysj line: 90, column: 5
                                     currsigs.addElement(placed_1);
-                                    S14141=1;
+                                    S40931=1;
                                     active[2]=1;
                                     ends[2]=1;
                                     tdone[2]=1;
                                   }
                                   else {
-                                    loadPos1.setPresent();//sysj/turntableController.sysj line: 87, column: 6
+                                    loadPos1.setPresent();//sysj/rotaryTableController.sysj line: 87, column: 6
                                     currsigs.addElement(loadPos1);
                                     active[2]=1;
                                     ends[2]=1;
@@ -2537,157 +2537,157 @@ public class RotaryTableController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  S14096=4;
-                                  S14239=0;
-                                  if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 111, column: 4
-                                    startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
-                                    S14239=1;
+                                  S40886=4;
+                                  S41029=0;
+                                  if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                                    startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
+                                    S41029=1;
                                     active[2]=1;
                                     ends[2]=1;
                                     tdone[2]=1;
                                   }
                                   else {
-                                    S14234=0;
-                                    if(startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                                      startFiller1_o.setVal(m_thread_2.idAt(1));//sysj/turntableController.sysj line: 111, column: 4
-                                      S14234=1;
-                                      if(!startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                                        startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
+                                    S41024=0;
+                                    if(startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                                      startFiller1_o.setVal(m_thread_2.at(1));//sysj/rotaryTableController.sysj line: 111, column: 4
+                                      S41024=1;
+                                      if(!startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                                        startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
                                         ends[2]=2;
-                                        ;//sysj/turntableController.sysj line: 111, column: 4
-                                        S14096=5;
-                                        S14613=0;
-                                        if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 112, column: 4
-                                          startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
-                                          S14613=1;
+                                        ;//sysj/rotaryTableController.sysj line: 111, column: 4
+                                        S40886=5;
+                                        S41403=0;
+                                        if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                          startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
+                                          S41403=1;
                                           active[2]=1;
                                           ends[2]=1;
                                           tdone[2]=1;
                                         }
                                         else {
-                                          S14608=0;
-                                          if(startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                            startFiller2_o.setVal(m_thread_2.idAt(2));//sysj/turntableController.sysj line: 112, column: 4
-                                            S14608=1;
-                                            if(!startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                              startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
+                                          S41398=0;
+                                          if(startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                            startFiller2_o.setVal(m_thread_2.at(2));//sysj/rotaryTableController.sysj line: 112, column: 4
+                                            S41398=1;
+                                            if(!startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                              startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
                                               ends[2]=2;
-                                              ;//sysj/turntableController.sysj line: 112, column: 4
-                                              S14096=6;
-                                              S15031=0;
-                                              if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 113, column: 4
-                                                startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
-                                                S15031=1;
+                                              ;//sysj/rotaryTableController.sysj line: 112, column: 4
+                                              S40886=6;
+                                              S41821=0;
+                                              if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                S41821=1;
                                                 active[2]=1;
                                                 ends[2]=1;
                                                 tdone[2]=1;
                                               }
                                               else {
-                                                S15026=0;
-                                                if(startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                                  startLid_o.setVal(m_thread_2.idAt(3));//sysj/turntableController.sysj line: 113, column: 4
-                                                  S15026=1;
-                                                  if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                                    startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                                                S41816=0;
+                                                if(startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                  startLid_o.setVal(m_thread_2.at(3));//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                  S41816=1;
+                                                  if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                    startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                                                     ends[2]=2;
-                                                    ;//sysj/turntableController.sysj line: 113, column: 4
-                                                    S14096=7;
-                                                    S15493=0;
-                                                    if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                                                      startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                                                      S15493=1;
+                                                    ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                    S40886=7;
+                                                    S42283=0;
+                                                    if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                      startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                      S42283=1;
                                                       active[2]=1;
                                                       ends[2]=1;
                                                       tdone[2]=1;
                                                     }
                                                     else {
-                                                      S15488=0;
-                                                      if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                                        startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                                                        S15488=1;
-                                                        if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                                          startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                                                      S42278=0;
+                                                      if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                        startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                        S42278=1;
+                                                        if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                          startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                                                           ends[2]=2;
-                                                          ;//sysj/turntableController.sysj line: 114, column: 4
-                                                          S14096=8;
-                                                          S15999=0;
-                                                          if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                                                            doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                                                            S15999=1;
+                                                          ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                          S40886=8;
+                                                          S42789=0;
+                                                          if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                            doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                            S42789=1;
                                                             active[2]=1;
                                                             ends[2]=1;
                                                             tdone[2]=1;
                                                           }
                                                           else {
-                                                            S15994=0;
-                                                            if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                              doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                                              S15994=1;
-                                                              if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                                doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                                                            S42784=0;
+                                                            if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                              doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                              S42784=1;
+                                                              if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                                doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                                                 ends[2]=2;
-                                                                ;//sysj/turntableController.sysj line: 116, column: 4
-                                                                S14096=9;
-                                                                S16549=0;
-                                                                if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                                                  doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                                                  S16549=1;
+                                                                ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                                S40886=9;
+                                                                S43339=0;
+                                                                if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                  doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                  S43339=1;
                                                                   active[2]=1;
                                                                   ends[2]=1;
                                                                   tdone[2]=1;
                                                                 }
                                                                 else {
-                                                                  S16544=0;
-                                                                  if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                                    doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                                                    S16544=1;
-                                                                    if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                                      doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                                                  S43334=0;
+                                                                  if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                    doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                    S43334=1;
+                                                                    if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                      doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                                                       ends[2]=2;
-                                                                      ;//sysj/turntableController.sysj line: 117, column: 4
-                                                                      S14096=10;
-                                                                      S17143=0;
-                                                                      if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                        doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                                                        S17143=1;
+                                                                      ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                      S40886=10;
+                                                                      S43933=0;
+                                                                      if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                        doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                        S43933=1;
                                                                         active[2]=1;
                                                                         ends[2]=1;
                                                                         tdone[2]=1;
                                                                       }
                                                                       else {
-                                                                        S17138=0;
-                                                                        if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                          doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                                                          S17138=1;
-                                                                          if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                            doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                                                        S43928=0;
+                                                                        if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                          doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                          S43928=1;
+                                                                          if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                            doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                                                             ends[2]=2;
-                                                                            ;//sysj/turntableController.sysj line: 118, column: 4
-                                                                            S14096=11;
-                                                                            S17781=0;
-                                                                            if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                              doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                                              S17781=1;
+                                                                            ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                            S40886=11;
+                                                                            S44571=0;
+                                                                            if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                              doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                              S44571=1;
                                                                               active[2]=1;
                                                                               ends[2]=1;
                                                                               tdone[2]=1;
                                                                             }
                                                                             else {
-                                                                              S17776=0;
-                                                                              if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                                doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                                                S17776=1;
-                                                                                if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                                  doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                                              S44566=0;
+                                                                              if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                                doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                                S44566=1;
+                                                                                if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                                  doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                                                   ends[2]=2;
-                                                                                  ;//sysj/turntableController.sysj line: 119, column: 4
-                                                                                  S14096=12;
-                                                                                  if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                                                    S14096=13;
-                                                                                    if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                                                      m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                                                      m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                                                      S14096=14;
+                                                                                  ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                                  S40886=12;
+                                                                                  if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                                                    S40886=13;
+                                                                                    if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                                                      m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                                                      m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                                                      S40886=14;
                                                                                       active[2]=1;
                                                                                       ends[2]=1;
                                                                                       tdone[2]=1;
@@ -2699,7 +2699,7 @@ public class RotaryTableController extends ClockDomain{
                                                                                     }
                                                                                   }
                                                                                   else {
-                                                                                    rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                                                    rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                                                     currsigs.addElement(rotaryTrigger);
                                                                                     active[2]=1;
                                                                                     ends[2]=1;
@@ -2813,7 +2813,7 @@ public class RotaryTableController extends ClockDomain{
                               }
                             }
                             else {
-                              unloadExit.setPresent();//sysj/turntableController.sysj line: 74, column: 6
+                              unloadExit.setPresent();//sysj/rotaryTableController.sysj line: 74, column: 6
                               currsigs.addElement(unloadExit);
                               active[2]=1;
                               ends[2]=1;
@@ -2832,51 +2832,51 @@ public class RotaryTableController extends ClockDomain{
                     break;
                   
                   case 1 : 
-                    S13917=1;
-                    S13917=0;
-                    if(!tableOutfeed_o.isPartnerPresent() || tableOutfeed_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 72, column: 5
-                      tableOutfeed_o.setREQ(false);//sysj/turntableController.sysj line: 72, column: 5
-                      S13917=1;
+                    S40707=1;
+                    S40707=0;
+                    if(!tableOutfeed_o.isPartnerPresent() || tableOutfeed_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 72, column: 5
+                      tableOutfeed_o.setREQ(false);//sysj/rotaryTableController.sysj line: 72, column: 5
+                      S40707=1;
                       active[2]=1;
                       ends[2]=1;
                       tdone[2]=1;
                     }
                     else {
-                      S13912=0;
-                      if(tableOutfeed_o.isACK()){//sysj/turntableController.sysj line: 72, column: 5
-                        tableOutfeed_o.setVal(exiting_thread_2);//sysj/turntableController.sysj line: 72, column: 5
-                        S13912=1;
-                        if(!tableOutfeed_o.isACK()){//sysj/turntableController.sysj line: 72, column: 5
-                          tableOutfeed_o.setREQ(false);//sysj/turntableController.sysj line: 72, column: 5
+                      S40702=0;
+                      if(tableOutfeed_o.isACK()){//sysj/rotaryTableController.sysj line: 72, column: 5
+                        tableOutfeed_o.setVal(exiting_thread_2);//sysj/rotaryTableController.sysj line: 72, column: 5
+                        S40702=1;
+                        if(!tableOutfeed_o.isACK()){//sysj/rotaryTableController.sysj line: 72, column: 5
+                          tableOutfeed_o.setREQ(false);//sysj/rotaryTableController.sysj line: 72, column: 5
                           ends[2]=2;
-                          ;//sysj/turntableController.sysj line: 72, column: 5
-                          S13910=1;
-                          if(exitCleared.getprestatus()){//sysj/turntableController.sysj line: 73, column: 21
-                            m_thread_2.clearExit();//sysj/turntableController.sysj line: 76, column: 5
-                            S14096=2;
-                            if(m_thread_2.idle()){//sysj/turntableController.sysj line: 82, column: 4
-                              if(!m_thread_2.hasPending()){//sysj/turntableController.sysj line: 83, column: 11
+                          ;//sysj/rotaryTableController.sysj line: 72, column: 5
+                          S40700=1;
+                          if(exitCleared.getprestatus()){//sysj/rotaryTableController.sysj line: 73, column: 21
+                            m_thread_2.clearExit();//sysj/rotaryTableController.sysj line: 76, column: 5
+                            S40886=2;
+                            if(m_thread_2.idle()){//sysj/rotaryTableController.sysj line: 82, column: 4
+                              if(!m_thread_2.hasPending()){//sysj/rotaryTableController.sysj line: 83, column: 11
                                 active[2]=1;
                                 ends[2]=1;
                                 tdone[2]=1;
                               }
                               else {
                                 ends[2]=2;
-                                ;//sysj/turntableController.sysj line: 83, column: 5
-                                S14096=3;
-                                if(m_thread_2.readyToPlace()){//sysj/turntableController.sysj line: 85, column: 4
-                                  S14141=0;
-                                  if(bottleAtPos1.getprestatus()){//sysj/turntableController.sysj line: 86, column: 21
-                                    m_thread_2.commitPending();//sysj/turntableController.sysj line: 89, column: 5
-                                    placed_1.setPresent();//sysj/turntableController.sysj line: 90, column: 5
+                                ;//sysj/rotaryTableController.sysj line: 83, column: 5
+                                S40886=3;
+                                if(m_thread_2.readyToPlace()){//sysj/rotaryTableController.sysj line: 85, column: 4
+                                  S40931=0;
+                                  if(bottleAtPos1.getprestatus()){//sysj/rotaryTableController.sysj line: 86, column: 21
+                                    m_thread_2.commitPending();//sysj/rotaryTableController.sysj line: 89, column: 5
+                                    placed_1.setPresent();//sysj/rotaryTableController.sysj line: 90, column: 5
                                     currsigs.addElement(placed_1);
-                                    S14141=1;
+                                    S40931=1;
                                     active[2]=1;
                                     ends[2]=1;
                                     tdone[2]=1;
                                   }
                                   else {
-                                    loadPos1.setPresent();//sysj/turntableController.sysj line: 87, column: 6
+                                    loadPos1.setPresent();//sysj/rotaryTableController.sysj line: 87, column: 6
                                     currsigs.addElement(loadPos1);
                                     active[2]=1;
                                     ends[2]=1;
@@ -2884,157 +2884,157 @@ public class RotaryTableController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  S14096=4;
-                                  S14239=0;
-                                  if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 111, column: 4
-                                    startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
-                                    S14239=1;
+                                  S40886=4;
+                                  S41029=0;
+                                  if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                                    startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
+                                    S41029=1;
                                     active[2]=1;
                                     ends[2]=1;
                                     tdone[2]=1;
                                   }
                                   else {
-                                    S14234=0;
-                                    if(startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                                      startFiller1_o.setVal(m_thread_2.idAt(1));//sysj/turntableController.sysj line: 111, column: 4
-                                      S14234=1;
-                                      if(!startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                                        startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
+                                    S41024=0;
+                                    if(startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                                      startFiller1_o.setVal(m_thread_2.at(1));//sysj/rotaryTableController.sysj line: 111, column: 4
+                                      S41024=1;
+                                      if(!startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                                        startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
                                         ends[2]=2;
-                                        ;//sysj/turntableController.sysj line: 111, column: 4
-                                        S14096=5;
-                                        S14613=0;
-                                        if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 112, column: 4
-                                          startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
-                                          S14613=1;
+                                        ;//sysj/rotaryTableController.sysj line: 111, column: 4
+                                        S40886=5;
+                                        S41403=0;
+                                        if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                          startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
+                                          S41403=1;
                                           active[2]=1;
                                           ends[2]=1;
                                           tdone[2]=1;
                                         }
                                         else {
-                                          S14608=0;
-                                          if(startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                            startFiller2_o.setVal(m_thread_2.idAt(2));//sysj/turntableController.sysj line: 112, column: 4
-                                            S14608=1;
-                                            if(!startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                              startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
+                                          S41398=0;
+                                          if(startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                            startFiller2_o.setVal(m_thread_2.at(2));//sysj/rotaryTableController.sysj line: 112, column: 4
+                                            S41398=1;
+                                            if(!startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                              startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
                                               ends[2]=2;
-                                              ;//sysj/turntableController.sysj line: 112, column: 4
-                                              S14096=6;
-                                              S15031=0;
-                                              if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 113, column: 4
-                                                startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
-                                                S15031=1;
+                                              ;//sysj/rotaryTableController.sysj line: 112, column: 4
+                                              S40886=6;
+                                              S41821=0;
+                                              if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                S41821=1;
                                                 active[2]=1;
                                                 ends[2]=1;
                                                 tdone[2]=1;
                                               }
                                               else {
-                                                S15026=0;
-                                                if(startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                                  startLid_o.setVal(m_thread_2.idAt(3));//sysj/turntableController.sysj line: 113, column: 4
-                                                  S15026=1;
-                                                  if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                                    startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                                                S41816=0;
+                                                if(startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                  startLid_o.setVal(m_thread_2.at(3));//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                  S41816=1;
+                                                  if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                    startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                                                     ends[2]=2;
-                                                    ;//sysj/turntableController.sysj line: 113, column: 4
-                                                    S14096=7;
-                                                    S15493=0;
-                                                    if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                                                      startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                                                      S15493=1;
+                                                    ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                    S40886=7;
+                                                    S42283=0;
+                                                    if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                      startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                      S42283=1;
                                                       active[2]=1;
                                                       ends[2]=1;
                                                       tdone[2]=1;
                                                     }
                                                     else {
-                                                      S15488=0;
-                                                      if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                                        startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                                                        S15488=1;
-                                                        if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                                          startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                                                      S42278=0;
+                                                      if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                        startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                        S42278=1;
+                                                        if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                          startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                                                           ends[2]=2;
-                                                          ;//sysj/turntableController.sysj line: 114, column: 4
-                                                          S14096=8;
-                                                          S15999=0;
-                                                          if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                                                            doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                                                            S15999=1;
+                                                          ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                          S40886=8;
+                                                          S42789=0;
+                                                          if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                            doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                            S42789=1;
                                                             active[2]=1;
                                                             ends[2]=1;
                                                             tdone[2]=1;
                                                           }
                                                           else {
-                                                            S15994=0;
-                                                            if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                              doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                                              S15994=1;
-                                                              if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                                doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                                                            S42784=0;
+                                                            if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                              doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                              S42784=1;
+                                                              if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                                doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                                                 ends[2]=2;
-                                                                ;//sysj/turntableController.sysj line: 116, column: 4
-                                                                S14096=9;
-                                                                S16549=0;
-                                                                if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                                                  doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                                                  S16549=1;
+                                                                ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                                S40886=9;
+                                                                S43339=0;
+                                                                if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                  doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                  S43339=1;
                                                                   active[2]=1;
                                                                   ends[2]=1;
                                                                   tdone[2]=1;
                                                                 }
                                                                 else {
-                                                                  S16544=0;
-                                                                  if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                                    doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                                                    S16544=1;
-                                                                    if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                                      doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                                                  S43334=0;
+                                                                  if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                    doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                    S43334=1;
+                                                                    if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                      doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                                                       ends[2]=2;
-                                                                      ;//sysj/turntableController.sysj line: 117, column: 4
-                                                                      S14096=10;
-                                                                      S17143=0;
-                                                                      if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                        doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                                                        S17143=1;
+                                                                      ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                      S40886=10;
+                                                                      S43933=0;
+                                                                      if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                        doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                        S43933=1;
                                                                         active[2]=1;
                                                                         ends[2]=1;
                                                                         tdone[2]=1;
                                                                       }
                                                                       else {
-                                                                        S17138=0;
-                                                                        if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                          doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                                                          S17138=1;
-                                                                          if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                            doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                                                        S43928=0;
+                                                                        if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                          doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                          S43928=1;
+                                                                          if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                            doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                                                             ends[2]=2;
-                                                                            ;//sysj/turntableController.sysj line: 118, column: 4
-                                                                            S14096=11;
-                                                                            S17781=0;
-                                                                            if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                              doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                                              S17781=1;
+                                                                            ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                            S40886=11;
+                                                                            S44571=0;
+                                                                            if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                              doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                              S44571=1;
                                                                               active[2]=1;
                                                                               ends[2]=1;
                                                                               tdone[2]=1;
                                                                             }
                                                                             else {
-                                                                              S17776=0;
-                                                                              if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                                doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                                                S17776=1;
-                                                                                if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                                  doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                                              S44566=0;
+                                                                              if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                                doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                                S44566=1;
+                                                                                if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                                  doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                                                   ends[2]=2;
-                                                                                  ;//sysj/turntableController.sysj line: 119, column: 4
-                                                                                  S14096=12;
-                                                                                  if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                                                    S14096=13;
-                                                                                    if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                                                      m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                                                      m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                                                      S14096=14;
+                                                                                  ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                                  S40886=12;
+                                                                                  if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                                                    S40886=13;
+                                                                                    if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                                                      m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                                                      m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                                                      S40886=14;
                                                                                       active[2]=1;
                                                                                       ends[2]=1;
                                                                                       tdone[2]=1;
@@ -3046,7 +3046,7 @@ public class RotaryTableController extends ClockDomain{
                                                                                     }
                                                                                   }
                                                                                   else {
-                                                                                    rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                                                    rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                                                     currsigs.addElement(rotaryTrigger);
                                                                                     active[2]=1;
                                                                                     ends[2]=1;
@@ -3160,20 +3160,20 @@ public class RotaryTableController extends ClockDomain{
                               }
                             }
                             else {
-                              S14096=3;
-                              if(m_thread_2.readyToPlace()){//sysj/turntableController.sysj line: 85, column: 4
-                                S14141=0;
-                                if(bottleAtPos1.getprestatus()){//sysj/turntableController.sysj line: 86, column: 21
-                                  m_thread_2.commitPending();//sysj/turntableController.sysj line: 89, column: 5
-                                  placed_1.setPresent();//sysj/turntableController.sysj line: 90, column: 5
+                              S40886=3;
+                              if(m_thread_2.readyToPlace()){//sysj/rotaryTableController.sysj line: 85, column: 4
+                                S40931=0;
+                                if(bottleAtPos1.getprestatus()){//sysj/rotaryTableController.sysj line: 86, column: 21
+                                  m_thread_2.commitPending();//sysj/rotaryTableController.sysj line: 89, column: 5
+                                  placed_1.setPresent();//sysj/rotaryTableController.sysj line: 90, column: 5
                                   currsigs.addElement(placed_1);
-                                  S14141=1;
+                                  S40931=1;
                                   active[2]=1;
                                   ends[2]=1;
                                   tdone[2]=1;
                                 }
                                 else {
-                                  loadPos1.setPresent();//sysj/turntableController.sysj line: 87, column: 6
+                                  loadPos1.setPresent();//sysj/rotaryTableController.sysj line: 87, column: 6
                                   currsigs.addElement(loadPos1);
                                   active[2]=1;
                                   ends[2]=1;
@@ -3181,157 +3181,157 @@ public class RotaryTableController extends ClockDomain{
                                 }
                               }
                               else {
-                                S14096=4;
-                                S14239=0;
-                                if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 111, column: 4
-                                  startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
-                                  S14239=1;
+                                S40886=4;
+                                S41029=0;
+                                if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                                  startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
+                                  S41029=1;
                                   active[2]=1;
                                   ends[2]=1;
                                   tdone[2]=1;
                                 }
                                 else {
-                                  S14234=0;
-                                  if(startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                                    startFiller1_o.setVal(m_thread_2.idAt(1));//sysj/turntableController.sysj line: 111, column: 4
-                                    S14234=1;
-                                    if(!startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                                      startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
+                                  S41024=0;
+                                  if(startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                                    startFiller1_o.setVal(m_thread_2.at(1));//sysj/rotaryTableController.sysj line: 111, column: 4
+                                    S41024=1;
+                                    if(!startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                                      startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
                                       ends[2]=2;
-                                      ;//sysj/turntableController.sysj line: 111, column: 4
-                                      S14096=5;
-                                      S14613=0;
-                                      if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 112, column: 4
-                                        startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
-                                        S14613=1;
+                                      ;//sysj/rotaryTableController.sysj line: 111, column: 4
+                                      S40886=5;
+                                      S41403=0;
+                                      if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                        startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
+                                        S41403=1;
                                         active[2]=1;
                                         ends[2]=1;
                                         tdone[2]=1;
                                       }
                                       else {
-                                        S14608=0;
-                                        if(startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                          startFiller2_o.setVal(m_thread_2.idAt(2));//sysj/turntableController.sysj line: 112, column: 4
-                                          S14608=1;
-                                          if(!startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                            startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
+                                        S41398=0;
+                                        if(startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                          startFiller2_o.setVal(m_thread_2.at(2));//sysj/rotaryTableController.sysj line: 112, column: 4
+                                          S41398=1;
+                                          if(!startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                            startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
                                             ends[2]=2;
-                                            ;//sysj/turntableController.sysj line: 112, column: 4
-                                            S14096=6;
-                                            S15031=0;
-                                            if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 113, column: 4
-                                              startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
-                                              S15031=1;
+                                            ;//sysj/rotaryTableController.sysj line: 112, column: 4
+                                            S40886=6;
+                                            S41821=0;
+                                            if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                              startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
+                                              S41821=1;
                                               active[2]=1;
                                               ends[2]=1;
                                               tdone[2]=1;
                                             }
                                             else {
-                                              S15026=0;
-                                              if(startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                                startLid_o.setVal(m_thread_2.idAt(3));//sysj/turntableController.sysj line: 113, column: 4
-                                                S15026=1;
-                                                if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                                  startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                                              S41816=0;
+                                              if(startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                startLid_o.setVal(m_thread_2.at(3));//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                S41816=1;
+                                                if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                  startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                                                   ends[2]=2;
-                                                  ;//sysj/turntableController.sysj line: 113, column: 4
-                                                  S14096=7;
-                                                  S15493=0;
-                                                  if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                                                    startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                                                    S15493=1;
+                                                  ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                  S40886=7;
+                                                  S42283=0;
+                                                  if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                    startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                    S42283=1;
                                                     active[2]=1;
                                                     ends[2]=1;
                                                     tdone[2]=1;
                                                   }
                                                   else {
-                                                    S15488=0;
-                                                    if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                                      startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                                                      S15488=1;
-                                                      if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                                        startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                                                    S42278=0;
+                                                    if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                      startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                      S42278=1;
+                                                      if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                        startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                                                         ends[2]=2;
-                                                        ;//sysj/turntableController.sysj line: 114, column: 4
-                                                        S14096=8;
-                                                        S15999=0;
-                                                        if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                                                          doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                                                          S15999=1;
+                                                        ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                        S40886=8;
+                                                        S42789=0;
+                                                        if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                          doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                          S42789=1;
                                                           active[2]=1;
                                                           ends[2]=1;
                                                           tdone[2]=1;
                                                         }
                                                         else {
-                                                          S15994=0;
-                                                          if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                            doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                                            S15994=1;
-                                                            if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                              doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                                                          S42784=0;
+                                                          if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                            doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                            S42784=1;
+                                                            if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                              doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                                               ends[2]=2;
-                                                              ;//sysj/turntableController.sysj line: 116, column: 4
-                                                              S14096=9;
-                                                              S16549=0;
-                                                              if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                                                doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                                                S16549=1;
+                                                              ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                              S40886=9;
+                                                              S43339=0;
+                                                              if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                S43339=1;
                                                                 active[2]=1;
                                                                 ends[2]=1;
                                                                 tdone[2]=1;
                                                               }
                                                               else {
-                                                                S16544=0;
-                                                                if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                                  doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                                                  S16544=1;
-                                                                  if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                                    doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                                                S43334=0;
+                                                                if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                  doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                  S43334=1;
+                                                                  if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                    doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                                                     ends[2]=2;
-                                                                    ;//sysj/turntableController.sysj line: 117, column: 4
-                                                                    S14096=10;
-                                                                    S17143=0;
-                                                                    if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                      doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                                                      S17143=1;
+                                                                    ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                    S40886=10;
+                                                                    S43933=0;
+                                                                    if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                      doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                      S43933=1;
                                                                       active[2]=1;
                                                                       ends[2]=1;
                                                                       tdone[2]=1;
                                                                     }
                                                                     else {
-                                                                      S17138=0;
-                                                                      if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                        doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                                                        S17138=1;
-                                                                        if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                          doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                                                      S43928=0;
+                                                                      if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                        doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                        S43928=1;
+                                                                        if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                          doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                                                           ends[2]=2;
-                                                                          ;//sysj/turntableController.sysj line: 118, column: 4
-                                                                          S14096=11;
-                                                                          S17781=0;
-                                                                          if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                            doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                                            S17781=1;
+                                                                          ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                          S40886=11;
+                                                                          S44571=0;
+                                                                          if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                            doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                            S44571=1;
                                                                             active[2]=1;
                                                                             ends[2]=1;
                                                                             tdone[2]=1;
                                                                           }
                                                                           else {
-                                                                            S17776=0;
-                                                                            if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                              doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                                              S17776=1;
-                                                                              if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                                doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                                            S44566=0;
+                                                                            if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                              doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                              S44566=1;
+                                                                              if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                                doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                                                 ends[2]=2;
-                                                                                ;//sysj/turntableController.sysj line: 119, column: 4
-                                                                                S14096=12;
-                                                                                if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                                                  S14096=13;
-                                                                                  if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                                                    m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                                                    m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                                                    S14096=14;
+                                                                                ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                                S40886=12;
+                                                                                if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                                                  S40886=13;
+                                                                                  if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                                                    m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                                                    m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                                                    S40886=14;
                                                                                     active[2]=1;
                                                                                     ends[2]=1;
                                                                                     tdone[2]=1;
@@ -3343,7 +3343,7 @@ public class RotaryTableController extends ClockDomain{
                                                                                   }
                                                                                 }
                                                                                 else {
-                                                                                  rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                                                  rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                                                   currsigs.addElement(rotaryTrigger);
                                                                                   active[2]=1;
                                                                                   ends[2]=1;
@@ -3457,7 +3457,7 @@ public class RotaryTableController extends ClockDomain{
                             }
                           }
                           else {
-                            unloadExit.setPresent();//sysj/turntableController.sysj line: 74, column: 6
+                            unloadExit.setPresent();//sysj/rotaryTableController.sysj line: 74, column: 6
                             currsigs.addElement(unloadExit);
                             active[2]=1;
                             ends[2]=1;
@@ -3482,32 +3482,32 @@ public class RotaryTableController extends ClockDomain{
                 break;
               
               case 1 : 
-                if(exitCleared.getprestatus()){//sysj/turntableController.sysj line: 73, column: 21
-                  m_thread_2.clearExit();//sysj/turntableController.sysj line: 76, column: 5
-                  S14096=2;
-                  if(m_thread_2.idle()){//sysj/turntableController.sysj line: 82, column: 4
-                    if(!m_thread_2.hasPending()){//sysj/turntableController.sysj line: 83, column: 11
+                if(exitCleared.getprestatus()){//sysj/rotaryTableController.sysj line: 73, column: 21
+                  m_thread_2.clearExit();//sysj/rotaryTableController.sysj line: 76, column: 5
+                  S40886=2;
+                  if(m_thread_2.idle()){//sysj/rotaryTableController.sysj line: 82, column: 4
+                    if(!m_thread_2.hasPending()){//sysj/rotaryTableController.sysj line: 83, column: 11
                       active[2]=1;
                       ends[2]=1;
                       tdone[2]=1;
                     }
                     else {
                       ends[2]=2;
-                      ;//sysj/turntableController.sysj line: 83, column: 5
-                      S14096=3;
-                      if(m_thread_2.readyToPlace()){//sysj/turntableController.sysj line: 85, column: 4
-                        S14141=0;
-                        if(bottleAtPos1.getprestatus()){//sysj/turntableController.sysj line: 86, column: 21
-                          m_thread_2.commitPending();//sysj/turntableController.sysj line: 89, column: 5
-                          placed_1.setPresent();//sysj/turntableController.sysj line: 90, column: 5
+                      ;//sysj/rotaryTableController.sysj line: 83, column: 5
+                      S40886=3;
+                      if(m_thread_2.readyToPlace()){//sysj/rotaryTableController.sysj line: 85, column: 4
+                        S40931=0;
+                        if(bottleAtPos1.getprestatus()){//sysj/rotaryTableController.sysj line: 86, column: 21
+                          m_thread_2.commitPending();//sysj/rotaryTableController.sysj line: 89, column: 5
+                          placed_1.setPresent();//sysj/rotaryTableController.sysj line: 90, column: 5
                           currsigs.addElement(placed_1);
-                          S14141=1;
+                          S40931=1;
                           active[2]=1;
                           ends[2]=1;
                           tdone[2]=1;
                         }
                         else {
-                          loadPos1.setPresent();//sysj/turntableController.sysj line: 87, column: 6
+                          loadPos1.setPresent();//sysj/rotaryTableController.sysj line: 87, column: 6
                           currsigs.addElement(loadPos1);
                           active[2]=1;
                           ends[2]=1;
@@ -3515,157 +3515,157 @@ public class RotaryTableController extends ClockDomain{
                         }
                       }
                       else {
-                        S14096=4;
-                        S14239=0;
-                        if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 111, column: 4
-                          startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
-                          S14239=1;
+                        S40886=4;
+                        S41029=0;
+                        if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                          startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
+                          S41029=1;
                           active[2]=1;
                           ends[2]=1;
                           tdone[2]=1;
                         }
                         else {
-                          S14234=0;
-                          if(startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                            startFiller1_o.setVal(m_thread_2.idAt(1));//sysj/turntableController.sysj line: 111, column: 4
-                            S14234=1;
-                            if(!startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                              startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
+                          S41024=0;
+                          if(startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                            startFiller1_o.setVal(m_thread_2.at(1));//sysj/rotaryTableController.sysj line: 111, column: 4
+                            S41024=1;
+                            if(!startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                              startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
                               ends[2]=2;
-                              ;//sysj/turntableController.sysj line: 111, column: 4
-                              S14096=5;
-                              S14613=0;
-                              if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 112, column: 4
-                                startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
-                                S14613=1;
+                              ;//sysj/rotaryTableController.sysj line: 111, column: 4
+                              S40886=5;
+                              S41403=0;
+                              if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
+                                S41403=1;
                                 active[2]=1;
                                 ends[2]=1;
                                 tdone[2]=1;
                               }
                               else {
-                                S14608=0;
-                                if(startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                  startFiller2_o.setVal(m_thread_2.idAt(2));//sysj/turntableController.sysj line: 112, column: 4
-                                  S14608=1;
-                                  if(!startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                    startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
+                                S41398=0;
+                                if(startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                  startFiller2_o.setVal(m_thread_2.at(2));//sysj/rotaryTableController.sysj line: 112, column: 4
+                                  S41398=1;
+                                  if(!startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                    startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
                                     ends[2]=2;
-                                    ;//sysj/turntableController.sysj line: 112, column: 4
-                                    S14096=6;
-                                    S15031=0;
-                                    if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 113, column: 4
-                                      startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
-                                      S15031=1;
+                                    ;//sysj/rotaryTableController.sysj line: 112, column: 4
+                                    S40886=6;
+                                    S41821=0;
+                                    if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                      startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
+                                      S41821=1;
                                       active[2]=1;
                                       ends[2]=1;
                                       tdone[2]=1;
                                     }
                                     else {
-                                      S15026=0;
-                                      if(startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                        startLid_o.setVal(m_thread_2.idAt(3));//sysj/turntableController.sysj line: 113, column: 4
-                                        S15026=1;
-                                        if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                          startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                                      S41816=0;
+                                      if(startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                        startLid_o.setVal(m_thread_2.at(3));//sysj/rotaryTableController.sysj line: 113, column: 4
+                                        S41816=1;
+                                        if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                          startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                                           ends[2]=2;
-                                          ;//sysj/turntableController.sysj line: 113, column: 4
-                                          S14096=7;
-                                          S15493=0;
-                                          if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                                            startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                                            S15493=1;
+                                          ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                                          S40886=7;
+                                          S42283=0;
+                                          if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                            startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                                            S42283=1;
                                             active[2]=1;
                                             ends[2]=1;
                                             tdone[2]=1;
                                           }
                                           else {
-                                            S15488=0;
-                                            if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                              startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                                              S15488=1;
-                                              if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                                startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                                            S42278=0;
+                                            if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                              startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                                              S42278=1;
+                                              if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                                                 ends[2]=2;
-                                                ;//sysj/turntableController.sysj line: 114, column: 4
-                                                S14096=8;
-                                                S15999=0;
-                                                if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                                                  doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                                                  S15999=1;
+                                                ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                S40886=8;
+                                                S42789=0;
+                                                if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                  doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                  S42789=1;
                                                   active[2]=1;
                                                   ends[2]=1;
                                                   tdone[2]=1;
                                                 }
                                                 else {
-                                                  S15994=0;
-                                                  if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                    doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                                    S15994=1;
-                                                    if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                      doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                                                  S42784=0;
+                                                  if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                    doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                    S42784=1;
+                                                    if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                      doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                                       ends[2]=2;
-                                                      ;//sysj/turntableController.sysj line: 116, column: 4
-                                                      S14096=9;
-                                                      S16549=0;
-                                                      if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                                        doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                                        S16549=1;
+                                                      ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                      S40886=9;
+                                                      S43339=0;
+                                                      if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                        doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                        S43339=1;
                                                         active[2]=1;
                                                         ends[2]=1;
                                                         tdone[2]=1;
                                                       }
                                                       else {
-                                                        S16544=0;
-                                                        if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                          doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                                          S16544=1;
-                                                          if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                            doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                                        S43334=0;
+                                                        if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                          doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                          S43334=1;
+                                                          if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                            doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                                             ends[2]=2;
-                                                            ;//sysj/turntableController.sysj line: 117, column: 4
-                                                            S14096=10;
-                                                            S17143=0;
-                                                            if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                                              doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                                              S17143=1;
+                                                            ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                            S40886=10;
+                                                            S43933=0;
+                                                            if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                              doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                              S43933=1;
                                                               active[2]=1;
                                                               ends[2]=1;
                                                               tdone[2]=1;
                                                             }
                                                             else {
-                                                              S17138=0;
-                                                              if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                                                S17138=1;
-                                                                if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                  doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                                              S43928=0;
+                                                              if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                S43928=1;
+                                                                if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                  doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                                                   ends[2]=2;
-                                                                  ;//sysj/turntableController.sysj line: 118, column: 4
-                                                                  S14096=11;
-                                                                  S17781=0;
-                                                                  if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                    doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                                    S17781=1;
+                                                                  ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                  S40886=11;
+                                                                  S44571=0;
+                                                                  if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                    doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                    S44571=1;
                                                                     active[2]=1;
                                                                     ends[2]=1;
                                                                     tdone[2]=1;
                                                                   }
                                                                   else {
-                                                                    S17776=0;
-                                                                    if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                      doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                                      S17776=1;
-                                                                      if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                        doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                                    S44566=0;
+                                                                    if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                      doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                      S44566=1;
+                                                                      if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                        doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                                         ends[2]=2;
-                                                                        ;//sysj/turntableController.sysj line: 119, column: 4
-                                                                        S14096=12;
-                                                                        if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                                          S14096=13;
-                                                                          if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                                            m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                                            m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                                            S14096=14;
+                                                                        ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                        S40886=12;
+                                                                        if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                                          S40886=13;
+                                                                          if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                                            m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                                            m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                                            S40886=14;
                                                                             active[2]=1;
                                                                             ends[2]=1;
                                                                             tdone[2]=1;
@@ -3677,7 +3677,7 @@ public class RotaryTableController extends ClockDomain{
                                                                           }
                                                                         }
                                                                         else {
-                                                                          rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                                          rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                                           currsigs.addElement(rotaryTrigger);
                                                                           active[2]=1;
                                                                           ends[2]=1;
@@ -3791,20 +3791,20 @@ public class RotaryTableController extends ClockDomain{
                     }
                   }
                   else {
-                    S14096=3;
-                    if(m_thread_2.readyToPlace()){//sysj/turntableController.sysj line: 85, column: 4
-                      S14141=0;
-                      if(bottleAtPos1.getprestatus()){//sysj/turntableController.sysj line: 86, column: 21
-                        m_thread_2.commitPending();//sysj/turntableController.sysj line: 89, column: 5
-                        placed_1.setPresent();//sysj/turntableController.sysj line: 90, column: 5
+                    S40886=3;
+                    if(m_thread_2.readyToPlace()){//sysj/rotaryTableController.sysj line: 85, column: 4
+                      S40931=0;
+                      if(bottleAtPos1.getprestatus()){//sysj/rotaryTableController.sysj line: 86, column: 21
+                        m_thread_2.commitPending();//sysj/rotaryTableController.sysj line: 89, column: 5
+                        placed_1.setPresent();//sysj/rotaryTableController.sysj line: 90, column: 5
                         currsigs.addElement(placed_1);
-                        S14141=1;
+                        S40931=1;
                         active[2]=1;
                         ends[2]=1;
                         tdone[2]=1;
                       }
                       else {
-                        loadPos1.setPresent();//sysj/turntableController.sysj line: 87, column: 6
+                        loadPos1.setPresent();//sysj/rotaryTableController.sysj line: 87, column: 6
                         currsigs.addElement(loadPos1);
                         active[2]=1;
                         ends[2]=1;
@@ -3812,157 +3812,157 @@ public class RotaryTableController extends ClockDomain{
                       }
                     }
                     else {
-                      S14096=4;
-                      S14239=0;
-                      if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 111, column: 4
-                        startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
-                        S14239=1;
+                      S40886=4;
+                      S41029=0;
+                      if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                        startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
+                        S41029=1;
                         active[2]=1;
                         ends[2]=1;
                         tdone[2]=1;
                       }
                       else {
-                        S14234=0;
-                        if(startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                          startFiller1_o.setVal(m_thread_2.idAt(1));//sysj/turntableController.sysj line: 111, column: 4
-                          S14234=1;
-                          if(!startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                            startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
+                        S41024=0;
+                        if(startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                          startFiller1_o.setVal(m_thread_2.at(1));//sysj/rotaryTableController.sysj line: 111, column: 4
+                          S41024=1;
+                          if(!startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                            startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
                             ends[2]=2;
-                            ;//sysj/turntableController.sysj line: 111, column: 4
-                            S14096=5;
-                            S14613=0;
-                            if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 112, column: 4
-                              startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
-                              S14613=1;
+                            ;//sysj/rotaryTableController.sysj line: 111, column: 4
+                            S40886=5;
+                            S41403=0;
+                            if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                              startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
+                              S41403=1;
                               active[2]=1;
                               ends[2]=1;
                               tdone[2]=1;
                             }
                             else {
-                              S14608=0;
-                              if(startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                startFiller2_o.setVal(m_thread_2.idAt(2));//sysj/turntableController.sysj line: 112, column: 4
-                                S14608=1;
-                                if(!startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                  startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
+                              S41398=0;
+                              if(startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                startFiller2_o.setVal(m_thread_2.at(2));//sysj/rotaryTableController.sysj line: 112, column: 4
+                                S41398=1;
+                                if(!startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                  startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
                                   ends[2]=2;
-                                  ;//sysj/turntableController.sysj line: 112, column: 4
-                                  S14096=6;
-                                  S15031=0;
-                                  if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 113, column: 4
-                                    startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
-                                    S15031=1;
+                                  ;//sysj/rotaryTableController.sysj line: 112, column: 4
+                                  S40886=6;
+                                  S41821=0;
+                                  if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                    startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
+                                    S41821=1;
                                     active[2]=1;
                                     ends[2]=1;
                                     tdone[2]=1;
                                   }
                                   else {
-                                    S15026=0;
-                                    if(startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                      startLid_o.setVal(m_thread_2.idAt(3));//sysj/turntableController.sysj line: 113, column: 4
-                                      S15026=1;
-                                      if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                        startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                                    S41816=0;
+                                    if(startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                      startLid_o.setVal(m_thread_2.at(3));//sysj/rotaryTableController.sysj line: 113, column: 4
+                                      S41816=1;
+                                      if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                        startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                                         ends[2]=2;
-                                        ;//sysj/turntableController.sysj line: 113, column: 4
-                                        S14096=7;
-                                        S15493=0;
-                                        if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                                          startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                                          S15493=1;
+                                        ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                                        S40886=7;
+                                        S42283=0;
+                                        if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                          startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                                          S42283=1;
                                           active[2]=1;
                                           ends[2]=1;
                                           tdone[2]=1;
                                         }
                                         else {
-                                          S15488=0;
-                                          if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                            startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                                            S15488=1;
-                                            if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                              startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                                          S42278=0;
+                                          if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                            startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                                            S42278=1;
+                                            if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                              startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                                               ends[2]=2;
-                                              ;//sysj/turntableController.sysj line: 114, column: 4
-                                              S14096=8;
-                                              S15999=0;
-                                              if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                                                doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                                                S15999=1;
+                                              ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                                              S40886=8;
+                                              S42789=0;
+                                              if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                S42789=1;
                                                 active[2]=1;
                                                 ends[2]=1;
                                                 tdone[2]=1;
                                               }
                                               else {
-                                                S15994=0;
-                                                if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                  doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                                  S15994=1;
-                                                  if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                    doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                                                S42784=0;
+                                                if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                  doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                  S42784=1;
+                                                  if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                    doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                                     ends[2]=2;
-                                                    ;//sysj/turntableController.sysj line: 116, column: 4
-                                                    S14096=9;
-                                                    S16549=0;
-                                                    if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                                      doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                                      S16549=1;
+                                                    ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                    S40886=9;
+                                                    S43339=0;
+                                                    if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                      doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                      S43339=1;
                                                       active[2]=1;
                                                       ends[2]=1;
                                                       tdone[2]=1;
                                                     }
                                                     else {
-                                                      S16544=0;
-                                                      if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                        doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                                        S16544=1;
-                                                        if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                          doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                                      S43334=0;
+                                                      if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                        doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                        S43334=1;
+                                                        if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                          doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                                           ends[2]=2;
-                                                          ;//sysj/turntableController.sysj line: 117, column: 4
-                                                          S14096=10;
-                                                          S17143=0;
-                                                          if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                                            doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                                            S17143=1;
+                                                          ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                          S40886=10;
+                                                          S43933=0;
+                                                          if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                            doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                            S43933=1;
                                                             active[2]=1;
                                                             ends[2]=1;
                                                             tdone[2]=1;
                                                           }
                                                           else {
-                                                            S17138=0;
-                                                            if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                              doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                                              S17138=1;
-                                                              if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                                            S43928=0;
+                                                            if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                              doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                              S43928=1;
+                                                              if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                                                 ends[2]=2;
-                                                                ;//sysj/turntableController.sysj line: 118, column: 4
-                                                                S14096=11;
-                                                                S17781=0;
-                                                                if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                  doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                                  S17781=1;
+                                                                ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                S40886=11;
+                                                                S44571=0;
+                                                                if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                  doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                  S44571=1;
                                                                   active[2]=1;
                                                                   ends[2]=1;
                                                                   tdone[2]=1;
                                                                 }
                                                                 else {
-                                                                  S17776=0;
-                                                                  if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                    doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                                    S17776=1;
-                                                                    if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                      doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                                  S44566=0;
+                                                                  if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                    doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                    S44566=1;
+                                                                    if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                      doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                                       ends[2]=2;
-                                                                      ;//sysj/turntableController.sysj line: 119, column: 4
-                                                                      S14096=12;
-                                                                      if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                                        S14096=13;
-                                                                        if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                                          m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                                          m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                                          S14096=14;
+                                                                      ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                      S40886=12;
+                                                                      if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                                        S40886=13;
+                                                                        if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                                          m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                                          m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                                          S40886=14;
                                                                           active[2]=1;
                                                                           ends[2]=1;
                                                                           tdone[2]=1;
@@ -3974,7 +3974,7 @@ public class RotaryTableController extends ClockDomain{
                                                                         }
                                                                       }
                                                                       else {
-                                                                        rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                                        rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                                         currsigs.addElement(rotaryTrigger);
                                                                         active[2]=1;
                                                                         ends[2]=1;
@@ -4088,7 +4088,7 @@ public class RotaryTableController extends ClockDomain{
                   }
                 }
                 else {
-                  unloadExit.setPresent();//sysj/turntableController.sysj line: 74, column: 6
+                  unloadExit.setPresent();//sysj/rotaryTableController.sysj line: 74, column: 6
                   currsigs.addElement(unloadExit);
                   active[2]=1;
                   ends[2]=1;
@@ -4100,28 +4100,28 @@ public class RotaryTableController extends ClockDomain{
             break;
           
           case 2 : 
-            if(!m_thread_2.hasPending()){//sysj/turntableController.sysj line: 83, column: 11
+            if(!m_thread_2.hasPending()){//sysj/rotaryTableController.sysj line: 83, column: 11
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
             }
             else {
               ends[2]=2;
-              ;//sysj/turntableController.sysj line: 83, column: 5
-              S14096=3;
-              if(m_thread_2.readyToPlace()){//sysj/turntableController.sysj line: 85, column: 4
-                S14141=0;
-                if(bottleAtPos1.getprestatus()){//sysj/turntableController.sysj line: 86, column: 21
-                  m_thread_2.commitPending();//sysj/turntableController.sysj line: 89, column: 5
-                  placed_1.setPresent();//sysj/turntableController.sysj line: 90, column: 5
+              ;//sysj/rotaryTableController.sysj line: 83, column: 5
+              S40886=3;
+              if(m_thread_2.readyToPlace()){//sysj/rotaryTableController.sysj line: 85, column: 4
+                S40931=0;
+                if(bottleAtPos1.getprestatus()){//sysj/rotaryTableController.sysj line: 86, column: 21
+                  m_thread_2.commitPending();//sysj/rotaryTableController.sysj line: 89, column: 5
+                  placed_1.setPresent();//sysj/rotaryTableController.sysj line: 90, column: 5
                   currsigs.addElement(placed_1);
-                  S14141=1;
+                  S40931=1;
                   active[2]=1;
                   ends[2]=1;
                   tdone[2]=1;
                 }
                 else {
-                  loadPos1.setPresent();//sysj/turntableController.sysj line: 87, column: 6
+                  loadPos1.setPresent();//sysj/rotaryTableController.sysj line: 87, column: 6
                   currsigs.addElement(loadPos1);
                   active[2]=1;
                   ends[2]=1;
@@ -4129,157 +4129,157 @@ public class RotaryTableController extends ClockDomain{
                 }
               }
               else {
-                S14096=4;
-                S14239=0;
-                if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 111, column: 4
-                  startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
-                  S14239=1;
+                S40886=4;
+                S41029=0;
+                if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                  startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
+                  S41029=1;
                   active[2]=1;
                   ends[2]=1;
                   tdone[2]=1;
                 }
                 else {
-                  S14234=0;
-                  if(startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                    startFiller1_o.setVal(m_thread_2.idAt(1));//sysj/turntableController.sysj line: 111, column: 4
-                    S14234=1;
-                    if(!startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                      startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
+                  S41024=0;
+                  if(startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                    startFiller1_o.setVal(m_thread_2.at(1));//sysj/rotaryTableController.sysj line: 111, column: 4
+                    S41024=1;
+                    if(!startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                      startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
                       ends[2]=2;
-                      ;//sysj/turntableController.sysj line: 111, column: 4
-                      S14096=5;
-                      S14613=0;
-                      if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 112, column: 4
-                        startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
-                        S14613=1;
+                      ;//sysj/rotaryTableController.sysj line: 111, column: 4
+                      S40886=5;
+                      S41403=0;
+                      if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                        startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
+                        S41403=1;
                         active[2]=1;
                         ends[2]=1;
                         tdone[2]=1;
                       }
                       else {
-                        S14608=0;
-                        if(startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                          startFiller2_o.setVal(m_thread_2.idAt(2));//sysj/turntableController.sysj line: 112, column: 4
-                          S14608=1;
-                          if(!startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                            startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
+                        S41398=0;
+                        if(startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                          startFiller2_o.setVal(m_thread_2.at(2));//sysj/rotaryTableController.sysj line: 112, column: 4
+                          S41398=1;
+                          if(!startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                            startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
                             ends[2]=2;
-                            ;//sysj/turntableController.sysj line: 112, column: 4
-                            S14096=6;
-                            S15031=0;
-                            if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 113, column: 4
-                              startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
-                              S15031=1;
+                            ;//sysj/rotaryTableController.sysj line: 112, column: 4
+                            S40886=6;
+                            S41821=0;
+                            if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                              startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
+                              S41821=1;
                               active[2]=1;
                               ends[2]=1;
                               tdone[2]=1;
                             }
                             else {
-                              S15026=0;
-                              if(startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                startLid_o.setVal(m_thread_2.idAt(3));//sysj/turntableController.sysj line: 113, column: 4
-                                S15026=1;
-                                if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                  startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                              S41816=0;
+                              if(startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                startLid_o.setVal(m_thread_2.at(3));//sysj/rotaryTableController.sysj line: 113, column: 4
+                                S41816=1;
+                                if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                  startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                                   ends[2]=2;
-                                  ;//sysj/turntableController.sysj line: 113, column: 4
-                                  S14096=7;
-                                  S15493=0;
-                                  if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                                    startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                                    S15493=1;
+                                  ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                                  S40886=7;
+                                  S42283=0;
+                                  if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                    startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                                    S42283=1;
                                     active[2]=1;
                                     ends[2]=1;
                                     tdone[2]=1;
                                   }
                                   else {
-                                    S15488=0;
-                                    if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                      startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                                      S15488=1;
-                                      if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                        startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                                    S42278=0;
+                                    if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                      startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                                      S42278=1;
+                                      if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                        startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                                         ends[2]=2;
-                                        ;//sysj/turntableController.sysj line: 114, column: 4
-                                        S14096=8;
-                                        S15999=0;
-                                        if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                                          doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                                          S15999=1;
+                                        ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                                        S40886=8;
+                                        S42789=0;
+                                        if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                          doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                          S42789=1;
                                           active[2]=1;
                                           ends[2]=1;
                                           tdone[2]=1;
                                         }
                                         else {
-                                          S15994=0;
-                                          if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                            doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                            S15994=1;
-                                            if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                              doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                                          S42784=0;
+                                          if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                            doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                            S42784=1;
+                                            if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                              doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                               ends[2]=2;
-                                              ;//sysj/turntableController.sysj line: 116, column: 4
-                                              S14096=9;
-                                              S16549=0;
-                                              if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                                doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                                S16549=1;
+                                              ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                              S40886=9;
+                                              S43339=0;
+                                              if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                S43339=1;
                                                 active[2]=1;
                                                 ends[2]=1;
                                                 tdone[2]=1;
                                               }
                                               else {
-                                                S16544=0;
-                                                if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                  doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                                  S16544=1;
-                                                  if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                    doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                                S43334=0;
+                                                if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                  doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                  S43334=1;
+                                                  if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                    doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                                     ends[2]=2;
-                                                    ;//sysj/turntableController.sysj line: 117, column: 4
-                                                    S14096=10;
-                                                    S17143=0;
-                                                    if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                                      doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                                      S17143=1;
+                                                    ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                    S40886=10;
+                                                    S43933=0;
+                                                    if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                      doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                      S43933=1;
                                                       active[2]=1;
                                                       ends[2]=1;
                                                       tdone[2]=1;
                                                     }
                                                     else {
-                                                      S17138=0;
-                                                      if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                        doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                                        S17138=1;
-                                                        if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                          doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                                      S43928=0;
+                                                      if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                        doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                        S43928=1;
+                                                        if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                          doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                                           ends[2]=2;
-                                                          ;//sysj/turntableController.sysj line: 118, column: 4
-                                                          S14096=11;
-                                                          S17781=0;
-                                                          if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                            doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                            S17781=1;
+                                                          ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                          S40886=11;
+                                                          S44571=0;
+                                                          if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                            doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                            S44571=1;
                                                             active[2]=1;
                                                             ends[2]=1;
                                                             tdone[2]=1;
                                                           }
                                                           else {
-                                                            S17776=0;
-                                                            if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                              doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                              S17776=1;
-                                                              if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                            S44566=0;
+                                                            if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                              doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                              S44566=1;
+                                                              if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                                 ends[2]=2;
-                                                                ;//sysj/turntableController.sysj line: 119, column: 4
-                                                                S14096=12;
-                                                                if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                                  S14096=13;
-                                                                  if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                                    m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                                    m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                                    S14096=14;
+                                                                ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                S40886=12;
+                                                                if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                                  S40886=13;
+                                                                  if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                                    m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                                    m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                                    S40886=14;
                                                                     active[2]=1;
                                                                     ends[2]=1;
                                                                     tdone[2]=1;
@@ -4291,7 +4291,7 @@ public class RotaryTableController extends ClockDomain{
                                                                   }
                                                                 }
                                                                 else {
-                                                                  rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                                  rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                                   currsigs.addElement(rotaryTrigger);
                                                                   active[2]=1;
                                                                   ends[2]=1;
@@ -4406,19 +4406,19 @@ public class RotaryTableController extends ClockDomain{
             break;
           
           case 3 : 
-            switch(S14141){
+            switch(S40931){
               case 0 : 
-                if(bottleAtPos1.getprestatus()){//sysj/turntableController.sysj line: 86, column: 21
-                  m_thread_2.commitPending();//sysj/turntableController.sysj line: 89, column: 5
-                  placed_1.setPresent();//sysj/turntableController.sysj line: 90, column: 5
+                if(bottleAtPos1.getprestatus()){//sysj/rotaryTableController.sysj line: 86, column: 21
+                  m_thread_2.commitPending();//sysj/rotaryTableController.sysj line: 89, column: 5
+                  placed_1.setPresent();//sysj/rotaryTableController.sysj line: 90, column: 5
                   currsigs.addElement(placed_1);
-                  S14141=1;
+                  S40931=1;
                   active[2]=1;
                   ends[2]=1;
                   tdone[2]=1;
                 }
                 else {
-                  loadPos1.setPresent();//sysj/turntableController.sysj line: 87, column: 6
+                  loadPos1.setPresent();//sysj/rotaryTableController.sysj line: 87, column: 6
                   currsigs.addElement(loadPos1);
                   active[2]=1;
                   ends[2]=1;
@@ -4427,158 +4427,158 @@ public class RotaryTableController extends ClockDomain{
                 break;
               
               case 1 : 
-                S14141=1;
-                S14096=4;
-                S14239=0;
-                if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 111, column: 4
-                  startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
-                  S14239=1;
+                S40931=1;
+                S40886=4;
+                S41029=0;
+                if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                  startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
+                  S41029=1;
                   active[2]=1;
                   ends[2]=1;
                   tdone[2]=1;
                 }
                 else {
-                  S14234=0;
-                  if(startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                    startFiller1_o.setVal(m_thread_2.idAt(1));//sysj/turntableController.sysj line: 111, column: 4
-                    S14234=1;
-                    if(!startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                      startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
+                  S41024=0;
+                  if(startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                    startFiller1_o.setVal(m_thread_2.at(1));//sysj/rotaryTableController.sysj line: 111, column: 4
+                    S41024=1;
+                    if(!startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                      startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
                       ends[2]=2;
-                      ;//sysj/turntableController.sysj line: 111, column: 4
-                      S14096=5;
-                      S14613=0;
-                      if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 112, column: 4
-                        startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
-                        S14613=1;
+                      ;//sysj/rotaryTableController.sysj line: 111, column: 4
+                      S40886=5;
+                      S41403=0;
+                      if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                        startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
+                        S41403=1;
                         active[2]=1;
                         ends[2]=1;
                         tdone[2]=1;
                       }
                       else {
-                        S14608=0;
-                        if(startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                          startFiller2_o.setVal(m_thread_2.idAt(2));//sysj/turntableController.sysj line: 112, column: 4
-                          S14608=1;
-                          if(!startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                            startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
+                        S41398=0;
+                        if(startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                          startFiller2_o.setVal(m_thread_2.at(2));//sysj/rotaryTableController.sysj line: 112, column: 4
+                          S41398=1;
+                          if(!startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                            startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
                             ends[2]=2;
-                            ;//sysj/turntableController.sysj line: 112, column: 4
-                            S14096=6;
-                            S15031=0;
-                            if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 113, column: 4
-                              startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
-                              S15031=1;
+                            ;//sysj/rotaryTableController.sysj line: 112, column: 4
+                            S40886=6;
+                            S41821=0;
+                            if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                              startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
+                              S41821=1;
                               active[2]=1;
                               ends[2]=1;
                               tdone[2]=1;
                             }
                             else {
-                              S15026=0;
-                              if(startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                startLid_o.setVal(m_thread_2.idAt(3));//sysj/turntableController.sysj line: 113, column: 4
-                                S15026=1;
-                                if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                  startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                              S41816=0;
+                              if(startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                startLid_o.setVal(m_thread_2.at(3));//sysj/rotaryTableController.sysj line: 113, column: 4
+                                S41816=1;
+                                if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                  startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                                   ends[2]=2;
-                                  ;//sysj/turntableController.sysj line: 113, column: 4
-                                  S14096=7;
-                                  S15493=0;
-                                  if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                                    startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                                    S15493=1;
+                                  ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                                  S40886=7;
+                                  S42283=0;
+                                  if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                    startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                                    S42283=1;
                                     active[2]=1;
                                     ends[2]=1;
                                     tdone[2]=1;
                                   }
                                   else {
-                                    S15488=0;
-                                    if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                      startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                                      S15488=1;
-                                      if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                        startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                                    S42278=0;
+                                    if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                      startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                                      S42278=1;
+                                      if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                        startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                                         ends[2]=2;
-                                        ;//sysj/turntableController.sysj line: 114, column: 4
-                                        S14096=8;
-                                        S15999=0;
-                                        if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                                          doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                                          S15999=1;
+                                        ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                                        S40886=8;
+                                        S42789=0;
+                                        if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                          doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                          S42789=1;
                                           active[2]=1;
                                           ends[2]=1;
                                           tdone[2]=1;
                                         }
                                         else {
-                                          S15994=0;
-                                          if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                            doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                            S15994=1;
-                                            if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                              doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                                          S42784=0;
+                                          if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                            doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                            S42784=1;
+                                            if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                              doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                               ends[2]=2;
-                                              ;//sysj/turntableController.sysj line: 116, column: 4
-                                              S14096=9;
-                                              S16549=0;
-                                              if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                                doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                                S16549=1;
+                                              ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                              S40886=9;
+                                              S43339=0;
+                                              if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                S43339=1;
                                                 active[2]=1;
                                                 ends[2]=1;
                                                 tdone[2]=1;
                                               }
                                               else {
-                                                S16544=0;
-                                                if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                  doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                                  S16544=1;
-                                                  if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                    doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                                S43334=0;
+                                                if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                  doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                  S43334=1;
+                                                  if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                    doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                                     ends[2]=2;
-                                                    ;//sysj/turntableController.sysj line: 117, column: 4
-                                                    S14096=10;
-                                                    S17143=0;
-                                                    if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                                      doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                                      S17143=1;
+                                                    ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                    S40886=10;
+                                                    S43933=0;
+                                                    if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                      doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                      S43933=1;
                                                       active[2]=1;
                                                       ends[2]=1;
                                                       tdone[2]=1;
                                                     }
                                                     else {
-                                                      S17138=0;
-                                                      if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                        doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                                        S17138=1;
-                                                        if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                          doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                                      S43928=0;
+                                                      if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                        doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                        S43928=1;
+                                                        if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                          doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                                           ends[2]=2;
-                                                          ;//sysj/turntableController.sysj line: 118, column: 4
-                                                          S14096=11;
-                                                          S17781=0;
-                                                          if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                            doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                            S17781=1;
+                                                          ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                          S40886=11;
+                                                          S44571=0;
+                                                          if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                            doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                            S44571=1;
                                                             active[2]=1;
                                                             ends[2]=1;
                                                             tdone[2]=1;
                                                           }
                                                           else {
-                                                            S17776=0;
-                                                            if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                              doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                              S17776=1;
-                                                              if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                            S44566=0;
+                                                            if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                              doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                              S44566=1;
+                                                              if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                                 ends[2]=2;
-                                                                ;//sysj/turntableController.sysj line: 119, column: 4
-                                                                S14096=12;
-                                                                if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                                  S14096=13;
-                                                                  if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                                    m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                                    m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                                    S14096=14;
+                                                                ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                S40886=12;
+                                                                if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                                  S40886=13;
+                                                                  if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                                    m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                                    m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                                    S40886=14;
                                                                     active[2]=1;
                                                                     ends[2]=1;
                                                                     tdone[2]=1;
@@ -4590,7 +4590,7 @@ public class RotaryTableController extends ClockDomain{
                                                                   }
                                                                 }
                                                                 else {
-                                                                  rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                                  rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                                   currsigs.addElement(rotaryTrigger);
                                                                   active[2]=1;
                                                                   ends[2]=1;
@@ -4706,158 +4706,158 @@ public class RotaryTableController extends ClockDomain{
             break;
           
           case 4 : 
-            switch(S14239){
+            switch(S41029){
               case 0 : 
-                if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 111, column: 4
-                  startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
-                  S14239=1;
+                if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                  startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
+                  S41029=1;
                   active[2]=1;
                   ends[2]=1;
                   tdone[2]=1;
                 }
                 else {
-                  switch(S14234){
+                  switch(S41024){
                     case 0 : 
-                      if(startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                        startFiller1_o.setVal(m_thread_2.idAt(1));//sysj/turntableController.sysj line: 111, column: 4
-                        S14234=1;
-                        if(!startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                          startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
+                      if(startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                        startFiller1_o.setVal(m_thread_2.at(1));//sysj/rotaryTableController.sysj line: 111, column: 4
+                        S41024=1;
+                        if(!startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                          startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
                           ends[2]=2;
-                          ;//sysj/turntableController.sysj line: 111, column: 4
-                          S14096=5;
-                          S14613=0;
-                          if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 112, column: 4
-                            startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
-                            S14613=1;
+                          ;//sysj/rotaryTableController.sysj line: 111, column: 4
+                          S40886=5;
+                          S41403=0;
+                          if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                            startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
+                            S41403=1;
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
-                            S14608=0;
-                            if(startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                              startFiller2_o.setVal(m_thread_2.idAt(2));//sysj/turntableController.sysj line: 112, column: 4
-                              S14608=1;
-                              if(!startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
+                            S41398=0;
+                            if(startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                              startFiller2_o.setVal(m_thread_2.at(2));//sysj/rotaryTableController.sysj line: 112, column: 4
+                              S41398=1;
+                              if(!startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
                                 ends[2]=2;
-                                ;//sysj/turntableController.sysj line: 112, column: 4
-                                S14096=6;
-                                S15031=0;
-                                if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 113, column: 4
-                                  startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
-                                  S15031=1;
+                                ;//sysj/rotaryTableController.sysj line: 112, column: 4
+                                S40886=6;
+                                S41821=0;
+                                if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                  startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
+                                  S41821=1;
                                   active[2]=1;
                                   ends[2]=1;
                                   tdone[2]=1;
                                 }
                                 else {
-                                  S15026=0;
-                                  if(startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                    startLid_o.setVal(m_thread_2.idAt(3));//sysj/turntableController.sysj line: 113, column: 4
-                                    S15026=1;
-                                    if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                      startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                                  S41816=0;
+                                  if(startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                    startLid_o.setVal(m_thread_2.at(3));//sysj/rotaryTableController.sysj line: 113, column: 4
+                                    S41816=1;
+                                    if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                      startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                                       ends[2]=2;
-                                      ;//sysj/turntableController.sysj line: 113, column: 4
-                                      S14096=7;
-                                      S15493=0;
-                                      if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                                        startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                                        S15493=1;
+                                      ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                                      S40886=7;
+                                      S42283=0;
+                                      if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                        startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                                        S42283=1;
                                         active[2]=1;
                                         ends[2]=1;
                                         tdone[2]=1;
                                       }
                                       else {
-                                        S15488=0;
-                                        if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                          startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                                          S15488=1;
-                                          if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                            startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                                        S42278=0;
+                                        if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                          startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                                          S42278=1;
+                                          if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                            startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                                             ends[2]=2;
-                                            ;//sysj/turntableController.sysj line: 114, column: 4
-                                            S14096=8;
-                                            S15999=0;
-                                            if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                                              doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                                              S15999=1;
+                                            ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                                            S40886=8;
+                                            S42789=0;
+                                            if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                              doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                              S42789=1;
                                               active[2]=1;
                                               ends[2]=1;
                                               tdone[2]=1;
                                             }
                                             else {
-                                              S15994=0;
-                                              if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                                S15994=1;
-                                                if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                  doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                                              S42784=0;
+                                              if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                S42784=1;
+                                                if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                  doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                                   ends[2]=2;
-                                                  ;//sysj/turntableController.sysj line: 116, column: 4
-                                                  S14096=9;
-                                                  S16549=0;
-                                                  if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                                    doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                                    S16549=1;
+                                                  ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                  S40886=9;
+                                                  S43339=0;
+                                                  if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                    doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                    S43339=1;
                                                     active[2]=1;
                                                     ends[2]=1;
                                                     tdone[2]=1;
                                                   }
                                                   else {
-                                                    S16544=0;
-                                                    if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                      doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                                      S16544=1;
-                                                      if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                        doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                                    S43334=0;
+                                                    if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                      doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                      S43334=1;
+                                                      if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                        doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                                         ends[2]=2;
-                                                        ;//sysj/turntableController.sysj line: 117, column: 4
-                                                        S14096=10;
-                                                        S17143=0;
-                                                        if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                                          doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                                          S17143=1;
+                                                        ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                        S40886=10;
+                                                        S43933=0;
+                                                        if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                          doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                          S43933=1;
                                                           active[2]=1;
                                                           ends[2]=1;
                                                           tdone[2]=1;
                                                         }
                                                         else {
-                                                          S17138=0;
-                                                          if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                            doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                                            S17138=1;
-                                                            if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                              doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                                          S43928=0;
+                                                          if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                            doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                            S43928=1;
+                                                            if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                              doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                                               ends[2]=2;
-                                                              ;//sysj/turntableController.sysj line: 118, column: 4
-                                                              S14096=11;
-                                                              S17781=0;
-                                                              if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                                S17781=1;
+                                                              ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                              S40886=11;
+                                                              S44571=0;
+                                                              if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                S44571=1;
                                                                 active[2]=1;
                                                                 ends[2]=1;
                                                                 tdone[2]=1;
                                                               }
                                                               else {
-                                                                S17776=0;
-                                                                if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                  doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                                  S17776=1;
-                                                                  if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                    doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                                S44566=0;
+                                                                if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                  doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                  S44566=1;
+                                                                  if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                    doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                                     ends[2]=2;
-                                                                    ;//sysj/turntableController.sysj line: 119, column: 4
-                                                                    S14096=12;
-                                                                    if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                                      S14096=13;
-                                                                      if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                                        m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                                        m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                                        S14096=14;
+                                                                    ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                    S40886=12;
+                                                                    if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                                      S40886=13;
+                                                                      if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                                        m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                                        m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                                        S40886=14;
                                                                         active[2]=1;
                                                                         ends[2]=1;
                                                                         tdone[2]=1;
@@ -4869,7 +4869,7 @@ public class RotaryTableController extends ClockDomain{
                                                                       }
                                                                     }
                                                                     else {
-                                                                      rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                                      rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                                       currsigs.addElement(rotaryTrigger);
                                                                       active[2]=1;
                                                                       ends[2]=1;
@@ -4981,143 +4981,143 @@ public class RotaryTableController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      if(!startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                        startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
+                      if(!startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                        startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
                         ends[2]=2;
-                        ;//sysj/turntableController.sysj line: 111, column: 4
-                        S14096=5;
-                        S14613=0;
-                        if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 112, column: 4
-                          startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
-                          S14613=1;
+                        ;//sysj/rotaryTableController.sysj line: 111, column: 4
+                        S40886=5;
+                        S41403=0;
+                        if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                          startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
+                          S41403=1;
                           active[2]=1;
                           ends[2]=1;
                           tdone[2]=1;
                         }
                         else {
-                          S14608=0;
-                          if(startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                            startFiller2_o.setVal(m_thread_2.idAt(2));//sysj/turntableController.sysj line: 112, column: 4
-                            S14608=1;
-                            if(!startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                              startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
+                          S41398=0;
+                          if(startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                            startFiller2_o.setVal(m_thread_2.at(2));//sysj/rotaryTableController.sysj line: 112, column: 4
+                            S41398=1;
+                            if(!startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                              startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
                               ends[2]=2;
-                              ;//sysj/turntableController.sysj line: 112, column: 4
-                              S14096=6;
-                              S15031=0;
-                              if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 113, column: 4
-                                startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
-                                S15031=1;
+                              ;//sysj/rotaryTableController.sysj line: 112, column: 4
+                              S40886=6;
+                              S41821=0;
+                              if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
+                                S41821=1;
                                 active[2]=1;
                                 ends[2]=1;
                                 tdone[2]=1;
                               }
                               else {
-                                S15026=0;
-                                if(startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                  startLid_o.setVal(m_thread_2.idAt(3));//sysj/turntableController.sysj line: 113, column: 4
-                                  S15026=1;
-                                  if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                    startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                                S41816=0;
+                                if(startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                  startLid_o.setVal(m_thread_2.at(3));//sysj/rotaryTableController.sysj line: 113, column: 4
+                                  S41816=1;
+                                  if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                    startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                                     ends[2]=2;
-                                    ;//sysj/turntableController.sysj line: 113, column: 4
-                                    S14096=7;
-                                    S15493=0;
-                                    if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                                      startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                                      S15493=1;
+                                    ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                                    S40886=7;
+                                    S42283=0;
+                                    if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                      startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                                      S42283=1;
                                       active[2]=1;
                                       ends[2]=1;
                                       tdone[2]=1;
                                     }
                                     else {
-                                      S15488=0;
-                                      if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                        startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                                        S15488=1;
-                                        if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                          startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                                      S42278=0;
+                                      if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                        startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                                        S42278=1;
+                                        if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                          startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                                           ends[2]=2;
-                                          ;//sysj/turntableController.sysj line: 114, column: 4
-                                          S14096=8;
-                                          S15999=0;
-                                          if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                                            doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                                            S15999=1;
+                                          ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                                          S40886=8;
+                                          S42789=0;
+                                          if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                            doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                            S42789=1;
                                             active[2]=1;
                                             ends[2]=1;
                                             tdone[2]=1;
                                           }
                                           else {
-                                            S15994=0;
-                                            if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                              doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                              S15994=1;
-                                              if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                                            S42784=0;
+                                            if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                              doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                              S42784=1;
+                                              if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                                 ends[2]=2;
-                                                ;//sysj/turntableController.sysj line: 116, column: 4
-                                                S14096=9;
-                                                S16549=0;
-                                                if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                                  doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                                  S16549=1;
+                                                ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                S40886=9;
+                                                S43339=0;
+                                                if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                  doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                  S43339=1;
                                                   active[2]=1;
                                                   ends[2]=1;
                                                   tdone[2]=1;
                                                 }
                                                 else {
-                                                  S16544=0;
-                                                  if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                    doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                                    S16544=1;
-                                                    if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                      doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                                  S43334=0;
+                                                  if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                    doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                    S43334=1;
+                                                    if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                      doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                                       ends[2]=2;
-                                                      ;//sysj/turntableController.sysj line: 117, column: 4
-                                                      S14096=10;
-                                                      S17143=0;
-                                                      if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                                        doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                                        S17143=1;
+                                                      ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                      S40886=10;
+                                                      S43933=0;
+                                                      if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                        doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                        S43933=1;
                                                         active[2]=1;
                                                         ends[2]=1;
                                                         tdone[2]=1;
                                                       }
                                                       else {
-                                                        S17138=0;
-                                                        if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                          doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                                          S17138=1;
-                                                          if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                            doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                                        S43928=0;
+                                                        if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                          doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                          S43928=1;
+                                                          if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                            doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                                             ends[2]=2;
-                                                            ;//sysj/turntableController.sysj line: 118, column: 4
-                                                            S14096=11;
-                                                            S17781=0;
-                                                            if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                              doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                              S17781=1;
+                                                            ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                            S40886=11;
+                                                            S44571=0;
+                                                            if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                              doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                              S44571=1;
                                                               active[2]=1;
                                                               ends[2]=1;
                                                               tdone[2]=1;
                                                             }
                                                             else {
-                                                              S17776=0;
-                                                              if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                                S17776=1;
-                                                                if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                  doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                              S44566=0;
+                                                              if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                S44566=1;
+                                                                if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                  doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                                   ends[2]=2;
-                                                                  ;//sysj/turntableController.sysj line: 119, column: 4
-                                                                  S14096=12;
-                                                                  if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                                    S14096=13;
-                                                                    if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                                      m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                                      m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                                      S14096=14;
+                                                                  ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                  S40886=12;
+                                                                  if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                                    S40886=13;
+                                                                    if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                                      m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                                      m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                                      S40886=14;
                                                                       active[2]=1;
                                                                       ends[2]=1;
                                                                       tdone[2]=1;
@@ -5129,7 +5129,7 @@ public class RotaryTableController extends ClockDomain{
                                                                     }
                                                                   }
                                                                   else {
-                                                                    rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                                    rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                                     currsigs.addElement(rotaryTrigger);
                                                                     active[2]=1;
                                                                     ends[2]=1;
@@ -5239,157 +5239,157 @@ public class RotaryTableController extends ClockDomain{
                 break;
               
               case 1 : 
-                S14239=1;
-                S14239=0;
-                if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 111, column: 4
-                  startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
-                  S14239=1;
+                S41029=1;
+                S41029=0;
+                if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                  startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
+                  S41029=1;
                   active[2]=1;
                   ends[2]=1;
                   tdone[2]=1;
                 }
                 else {
-                  S14234=0;
-                  if(startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                    startFiller1_o.setVal(m_thread_2.idAt(1));//sysj/turntableController.sysj line: 111, column: 4
-                    S14234=1;
-                    if(!startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                      startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
+                  S41024=0;
+                  if(startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                    startFiller1_o.setVal(m_thread_2.at(1));//sysj/rotaryTableController.sysj line: 111, column: 4
+                    S41024=1;
+                    if(!startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                      startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
                       ends[2]=2;
-                      ;//sysj/turntableController.sysj line: 111, column: 4
-                      S14096=5;
-                      S14613=0;
-                      if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 112, column: 4
-                        startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
-                        S14613=1;
+                      ;//sysj/rotaryTableController.sysj line: 111, column: 4
+                      S40886=5;
+                      S41403=0;
+                      if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                        startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
+                        S41403=1;
                         active[2]=1;
                         ends[2]=1;
                         tdone[2]=1;
                       }
                       else {
-                        S14608=0;
-                        if(startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                          startFiller2_o.setVal(m_thread_2.idAt(2));//sysj/turntableController.sysj line: 112, column: 4
-                          S14608=1;
-                          if(!startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                            startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
+                        S41398=0;
+                        if(startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                          startFiller2_o.setVal(m_thread_2.at(2));//sysj/rotaryTableController.sysj line: 112, column: 4
+                          S41398=1;
+                          if(!startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                            startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
                             ends[2]=2;
-                            ;//sysj/turntableController.sysj line: 112, column: 4
-                            S14096=6;
-                            S15031=0;
-                            if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 113, column: 4
-                              startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
-                              S15031=1;
+                            ;//sysj/rotaryTableController.sysj line: 112, column: 4
+                            S40886=6;
+                            S41821=0;
+                            if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                              startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
+                              S41821=1;
                               active[2]=1;
                               ends[2]=1;
                               tdone[2]=1;
                             }
                             else {
-                              S15026=0;
-                              if(startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                startLid_o.setVal(m_thread_2.idAt(3));//sysj/turntableController.sysj line: 113, column: 4
-                                S15026=1;
-                                if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                  startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                              S41816=0;
+                              if(startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                startLid_o.setVal(m_thread_2.at(3));//sysj/rotaryTableController.sysj line: 113, column: 4
+                                S41816=1;
+                                if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                  startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                                   ends[2]=2;
-                                  ;//sysj/turntableController.sysj line: 113, column: 4
-                                  S14096=7;
-                                  S15493=0;
-                                  if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                                    startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                                    S15493=1;
+                                  ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                                  S40886=7;
+                                  S42283=0;
+                                  if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                    startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                                    S42283=1;
                                     active[2]=1;
                                     ends[2]=1;
                                     tdone[2]=1;
                                   }
                                   else {
-                                    S15488=0;
-                                    if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                      startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                                      S15488=1;
-                                      if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                        startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                                    S42278=0;
+                                    if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                      startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                                      S42278=1;
+                                      if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                        startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                                         ends[2]=2;
-                                        ;//sysj/turntableController.sysj line: 114, column: 4
-                                        S14096=8;
-                                        S15999=0;
-                                        if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                                          doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                                          S15999=1;
+                                        ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                                        S40886=8;
+                                        S42789=0;
+                                        if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                          doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                          S42789=1;
                                           active[2]=1;
                                           ends[2]=1;
                                           tdone[2]=1;
                                         }
                                         else {
-                                          S15994=0;
-                                          if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                            doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                            S15994=1;
-                                            if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                              doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                                          S42784=0;
+                                          if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                            doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                            S42784=1;
+                                            if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                              doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                               ends[2]=2;
-                                              ;//sysj/turntableController.sysj line: 116, column: 4
-                                              S14096=9;
-                                              S16549=0;
-                                              if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                                doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                                S16549=1;
+                                              ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                              S40886=9;
+                                              S43339=0;
+                                              if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                S43339=1;
                                                 active[2]=1;
                                                 ends[2]=1;
                                                 tdone[2]=1;
                                               }
                                               else {
-                                                S16544=0;
-                                                if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                  doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                                  S16544=1;
-                                                  if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                    doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                                S43334=0;
+                                                if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                  doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                  S43334=1;
+                                                  if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                    doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                                     ends[2]=2;
-                                                    ;//sysj/turntableController.sysj line: 117, column: 4
-                                                    S14096=10;
-                                                    S17143=0;
-                                                    if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                                      doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                                      S17143=1;
+                                                    ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                    S40886=10;
+                                                    S43933=0;
+                                                    if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                      doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                      S43933=1;
                                                       active[2]=1;
                                                       ends[2]=1;
                                                       tdone[2]=1;
                                                     }
                                                     else {
-                                                      S17138=0;
-                                                      if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                        doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                                        S17138=1;
-                                                        if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                          doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                                      S43928=0;
+                                                      if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                        doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                        S43928=1;
+                                                        if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                          doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                                           ends[2]=2;
-                                                          ;//sysj/turntableController.sysj line: 118, column: 4
-                                                          S14096=11;
-                                                          S17781=0;
-                                                          if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                            doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                            S17781=1;
+                                                          ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                          S40886=11;
+                                                          S44571=0;
+                                                          if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                            doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                            S44571=1;
                                                             active[2]=1;
                                                             ends[2]=1;
                                                             tdone[2]=1;
                                                           }
                                                           else {
-                                                            S17776=0;
-                                                            if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                              doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                              S17776=1;
-                                                              if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                            S44566=0;
+                                                            if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                              doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                              S44566=1;
+                                                              if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                                 ends[2]=2;
-                                                                ;//sysj/turntableController.sysj line: 119, column: 4
-                                                                S14096=12;
-                                                                if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                                  S14096=13;
-                                                                  if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                                    m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                                    m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                                    S14096=14;
+                                                                ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                S40886=12;
+                                                                if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                                  S40886=13;
+                                                                  if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                                    m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                                    m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                                    S40886=14;
                                                                     active[2]=1;
                                                                     ends[2]=1;
                                                                     tdone[2]=1;
@@ -5401,7 +5401,7 @@ public class RotaryTableController extends ClockDomain{
                                                                   }
                                                                 }
                                                                 else {
-                                                                  rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                                  rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                                   currsigs.addElement(rotaryTrigger);
                                                                   active[2]=1;
                                                                   ends[2]=1;
@@ -5517,140 +5517,140 @@ public class RotaryTableController extends ClockDomain{
             break;
           
           case 5 : 
-            switch(S14613){
+            switch(S41403){
               case 0 : 
-                if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 112, column: 4
-                  startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
-                  S14613=1;
+                if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                  startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
+                  S41403=1;
                   active[2]=1;
                   ends[2]=1;
                   tdone[2]=1;
                 }
                 else {
-                  switch(S14608){
+                  switch(S41398){
                     case 0 : 
-                      if(startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                        startFiller2_o.setVal(m_thread_2.idAt(2));//sysj/turntableController.sysj line: 112, column: 4
-                        S14608=1;
-                        if(!startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                          startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
+                      if(startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                        startFiller2_o.setVal(m_thread_2.at(2));//sysj/rotaryTableController.sysj line: 112, column: 4
+                        S41398=1;
+                        if(!startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                          startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
                           ends[2]=2;
-                          ;//sysj/turntableController.sysj line: 112, column: 4
-                          S14096=6;
-                          S15031=0;
-                          if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 113, column: 4
-                            startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
-                            S15031=1;
+                          ;//sysj/rotaryTableController.sysj line: 112, column: 4
+                          S40886=6;
+                          S41821=0;
+                          if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                            startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
+                            S41821=1;
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
-                            S15026=0;
-                            if(startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                              startLid_o.setVal(m_thread_2.idAt(3));//sysj/turntableController.sysj line: 113, column: 4
-                              S15026=1;
-                              if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                            S41816=0;
+                            if(startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                              startLid_o.setVal(m_thread_2.at(3));//sysj/rotaryTableController.sysj line: 113, column: 4
+                              S41816=1;
+                              if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                                 ends[2]=2;
-                                ;//sysj/turntableController.sysj line: 113, column: 4
-                                S14096=7;
-                                S15493=0;
-                                if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                                  startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                                  S15493=1;
+                                ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                                S40886=7;
+                                S42283=0;
+                                if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                  startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                                  S42283=1;
                                   active[2]=1;
                                   ends[2]=1;
                                   tdone[2]=1;
                                 }
                                 else {
-                                  S15488=0;
-                                  if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                    startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                                    S15488=1;
-                                    if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                      startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                                  S42278=0;
+                                  if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                    startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                                    S42278=1;
+                                    if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                      startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                                       ends[2]=2;
-                                      ;//sysj/turntableController.sysj line: 114, column: 4
-                                      S14096=8;
-                                      S15999=0;
-                                      if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                                        doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                                        S15999=1;
+                                      ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                                      S40886=8;
+                                      S42789=0;
+                                      if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                        doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                        S42789=1;
                                         active[2]=1;
                                         ends[2]=1;
                                         tdone[2]=1;
                                       }
                                       else {
-                                        S15994=0;
-                                        if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                          doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                          S15994=1;
-                                          if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                            doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                                        S42784=0;
+                                        if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                          doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                          S42784=1;
+                                          if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                            doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                             ends[2]=2;
-                                            ;//sysj/turntableController.sysj line: 116, column: 4
-                                            S14096=9;
-                                            S16549=0;
-                                            if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                              doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                              S16549=1;
+                                            ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                            S40886=9;
+                                            S43339=0;
+                                            if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                              doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                              S43339=1;
                                               active[2]=1;
                                               ends[2]=1;
                                               tdone[2]=1;
                                             }
                                             else {
-                                              S16544=0;
-                                              if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                                S16544=1;
-                                                if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                  doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                              S43334=0;
+                                              if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                S43334=1;
+                                                if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                  doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                                   ends[2]=2;
-                                                  ;//sysj/turntableController.sysj line: 117, column: 4
-                                                  S14096=10;
-                                                  S17143=0;
-                                                  if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                                    doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                                    S17143=1;
+                                                  ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                  S40886=10;
+                                                  S43933=0;
+                                                  if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                    doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                    S43933=1;
                                                     active[2]=1;
                                                     ends[2]=1;
                                                     tdone[2]=1;
                                                   }
                                                   else {
-                                                    S17138=0;
-                                                    if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                      doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                                      S17138=1;
-                                                      if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                        doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                                    S43928=0;
+                                                    if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                      doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                      S43928=1;
+                                                      if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                        doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                                         ends[2]=2;
-                                                        ;//sysj/turntableController.sysj line: 118, column: 4
-                                                        S14096=11;
-                                                        S17781=0;
-                                                        if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                          doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                          S17781=1;
+                                                        ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                        S40886=11;
+                                                        S44571=0;
+                                                        if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                          doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                          S44571=1;
                                                           active[2]=1;
                                                           ends[2]=1;
                                                           tdone[2]=1;
                                                         }
                                                         else {
-                                                          S17776=0;
-                                                          if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                            doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                            S17776=1;
-                                                            if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                              doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                          S44566=0;
+                                                          if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                            doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                            S44566=1;
+                                                            if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                              doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                               ends[2]=2;
-                                                              ;//sysj/turntableController.sysj line: 119, column: 4
-                                                              S14096=12;
-                                                              if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                                S14096=13;
-                                                                if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                                  m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                                  m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                                  S14096=14;
+                                                              ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                              S40886=12;
+                                                              if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                                S40886=13;
+                                                                if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                                  m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                                  m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                                  S40886=14;
                                                                   active[2]=1;
                                                                   ends[2]=1;
                                                                   tdone[2]=1;
@@ -5662,7 +5662,7 @@ public class RotaryTableController extends ClockDomain{
                                                                 }
                                                               }
                                                               else {
-                                                                rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                                rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                                 currsigs.addElement(rotaryTrigger);
                                                                 active[2]=1;
                                                                 ends[2]=1;
@@ -5761,125 +5761,125 @@ public class RotaryTableController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      if(!startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                        startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
+                      if(!startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                        startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
                         ends[2]=2;
-                        ;//sysj/turntableController.sysj line: 112, column: 4
-                        S14096=6;
-                        S15031=0;
-                        if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 113, column: 4
-                          startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
-                          S15031=1;
+                        ;//sysj/rotaryTableController.sysj line: 112, column: 4
+                        S40886=6;
+                        S41821=0;
+                        if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                          startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
+                          S41821=1;
                           active[2]=1;
                           ends[2]=1;
                           tdone[2]=1;
                         }
                         else {
-                          S15026=0;
-                          if(startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                            startLid_o.setVal(m_thread_2.idAt(3));//sysj/turntableController.sysj line: 113, column: 4
-                            S15026=1;
-                            if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                              startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                          S41816=0;
+                          if(startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                            startLid_o.setVal(m_thread_2.at(3));//sysj/rotaryTableController.sysj line: 113, column: 4
+                            S41816=1;
+                            if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                              startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                               ends[2]=2;
-                              ;//sysj/turntableController.sysj line: 113, column: 4
-                              S14096=7;
-                              S15493=0;
-                              if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                                startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                                S15493=1;
+                              ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                              S40886=7;
+                              S42283=0;
+                              if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                                S42283=1;
                                 active[2]=1;
                                 ends[2]=1;
                                 tdone[2]=1;
                               }
                               else {
-                                S15488=0;
-                                if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                  startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                                  S15488=1;
-                                  if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                    startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                                S42278=0;
+                                if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                  startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                                  S42278=1;
+                                  if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                    startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                                     ends[2]=2;
-                                    ;//sysj/turntableController.sysj line: 114, column: 4
-                                    S14096=8;
-                                    S15999=0;
-                                    if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                                      doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                                      S15999=1;
+                                    ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                                    S40886=8;
+                                    S42789=0;
+                                    if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                      doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                      S42789=1;
                                       active[2]=1;
                                       ends[2]=1;
                                       tdone[2]=1;
                                     }
                                     else {
-                                      S15994=0;
-                                      if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                        doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                        S15994=1;
-                                        if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                          doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                                      S42784=0;
+                                      if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                        doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                        S42784=1;
+                                        if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                          doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                           ends[2]=2;
-                                          ;//sysj/turntableController.sysj line: 116, column: 4
-                                          S14096=9;
-                                          S16549=0;
-                                          if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                            doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                            S16549=1;
+                                          ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                          S40886=9;
+                                          S43339=0;
+                                          if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                            doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                            S43339=1;
                                             active[2]=1;
                                             ends[2]=1;
                                             tdone[2]=1;
                                           }
                                           else {
-                                            S16544=0;
-                                            if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                              doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                              S16544=1;
-                                              if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                            S43334=0;
+                                            if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                              doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                              S43334=1;
+                                              if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                                 ends[2]=2;
-                                                ;//sysj/turntableController.sysj line: 117, column: 4
-                                                S14096=10;
-                                                S17143=0;
-                                                if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                                  doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                                  S17143=1;
+                                                ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                S40886=10;
+                                                S43933=0;
+                                                if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                  doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                  S43933=1;
                                                   active[2]=1;
                                                   ends[2]=1;
                                                   tdone[2]=1;
                                                 }
                                                 else {
-                                                  S17138=0;
-                                                  if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                    doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                                    S17138=1;
-                                                    if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                      doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                                  S43928=0;
+                                                  if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                    doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                    S43928=1;
+                                                    if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                      doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                                       ends[2]=2;
-                                                      ;//sysj/turntableController.sysj line: 118, column: 4
-                                                      S14096=11;
-                                                      S17781=0;
-                                                      if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                        doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                        S17781=1;
+                                                      ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                      S40886=11;
+                                                      S44571=0;
+                                                      if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                        doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                        S44571=1;
                                                         active[2]=1;
                                                         ends[2]=1;
                                                         tdone[2]=1;
                                                       }
                                                       else {
-                                                        S17776=0;
-                                                        if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                          doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                          S17776=1;
-                                                          if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                            doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                        S44566=0;
+                                                        if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                          doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                          S44566=1;
+                                                          if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                            doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                             ends[2]=2;
-                                                            ;//sysj/turntableController.sysj line: 119, column: 4
-                                                            S14096=12;
-                                                            if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                              S14096=13;
-                                                              if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                                m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                                m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                                S14096=14;
+                                                            ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                            S40886=12;
+                                                            if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                              S40886=13;
+                                                              if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                                m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                                m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                                S40886=14;
                                                                 active[2]=1;
                                                                 ends[2]=1;
                                                                 tdone[2]=1;
@@ -5891,7 +5891,7 @@ public class RotaryTableController extends ClockDomain{
                                                               }
                                                             }
                                                             else {
-                                                              rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                              rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                               currsigs.addElement(rotaryTrigger);
                                                               active[2]=1;
                                                               ends[2]=1;
@@ -5988,139 +5988,139 @@ public class RotaryTableController extends ClockDomain{
                 break;
               
               case 1 : 
-                S14613=1;
-                S14613=0;
-                if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 112, column: 4
-                  startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
-                  S14613=1;
+                S41403=1;
+                S41403=0;
+                if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                  startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
+                  S41403=1;
                   active[2]=1;
                   ends[2]=1;
                   tdone[2]=1;
                 }
                 else {
-                  S14608=0;
-                  if(startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                    startFiller2_o.setVal(m_thread_2.idAt(2));//sysj/turntableController.sysj line: 112, column: 4
-                    S14608=1;
-                    if(!startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                      startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
+                  S41398=0;
+                  if(startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                    startFiller2_o.setVal(m_thread_2.at(2));//sysj/rotaryTableController.sysj line: 112, column: 4
+                    S41398=1;
+                    if(!startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                      startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
                       ends[2]=2;
-                      ;//sysj/turntableController.sysj line: 112, column: 4
-                      S14096=6;
-                      S15031=0;
-                      if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 113, column: 4
-                        startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
-                        S15031=1;
+                      ;//sysj/rotaryTableController.sysj line: 112, column: 4
+                      S40886=6;
+                      S41821=0;
+                      if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                        startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
+                        S41821=1;
                         active[2]=1;
                         ends[2]=1;
                         tdone[2]=1;
                       }
                       else {
-                        S15026=0;
-                        if(startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                          startLid_o.setVal(m_thread_2.idAt(3));//sysj/turntableController.sysj line: 113, column: 4
-                          S15026=1;
-                          if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                            startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                        S41816=0;
+                        if(startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                          startLid_o.setVal(m_thread_2.at(3));//sysj/rotaryTableController.sysj line: 113, column: 4
+                          S41816=1;
+                          if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                            startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                             ends[2]=2;
-                            ;//sysj/turntableController.sysj line: 113, column: 4
-                            S14096=7;
-                            S15493=0;
-                            if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                              startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                              S15493=1;
+                            ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                            S40886=7;
+                            S42283=0;
+                            if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                              startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                              S42283=1;
                               active[2]=1;
                               ends[2]=1;
                               tdone[2]=1;
                             }
                             else {
-                              S15488=0;
-                              if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                                S15488=1;
-                                if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                  startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                              S42278=0;
+                              if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                                S42278=1;
+                                if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                  startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                                   ends[2]=2;
-                                  ;//sysj/turntableController.sysj line: 114, column: 4
-                                  S14096=8;
-                                  S15999=0;
-                                  if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                                    doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                                    S15999=1;
+                                  ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                                  S40886=8;
+                                  S42789=0;
+                                  if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                    doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                    S42789=1;
                                     active[2]=1;
                                     ends[2]=1;
                                     tdone[2]=1;
                                   }
                                   else {
-                                    S15994=0;
-                                    if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                      doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                      S15994=1;
-                                      if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                        doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                                    S42784=0;
+                                    if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                      doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                      S42784=1;
+                                      if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                        doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                         ends[2]=2;
-                                        ;//sysj/turntableController.sysj line: 116, column: 4
-                                        S14096=9;
-                                        S16549=0;
-                                        if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                          doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                          S16549=1;
+                                        ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                        S40886=9;
+                                        S43339=0;
+                                        if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                          doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                          S43339=1;
                                           active[2]=1;
                                           ends[2]=1;
                                           tdone[2]=1;
                                         }
                                         else {
-                                          S16544=0;
-                                          if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                            doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                            S16544=1;
-                                            if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                              doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                          S43334=0;
+                                          if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                            doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                            S43334=1;
+                                            if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                              doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                               ends[2]=2;
-                                              ;//sysj/turntableController.sysj line: 117, column: 4
-                                              S14096=10;
-                                              S17143=0;
-                                              if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                                doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                                S17143=1;
+                                              ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                              S40886=10;
+                                              S43933=0;
+                                              if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                S43933=1;
                                                 active[2]=1;
                                                 ends[2]=1;
                                                 tdone[2]=1;
                                               }
                                               else {
-                                                S17138=0;
-                                                if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                  doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                                  S17138=1;
-                                                  if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                    doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                                S43928=0;
+                                                if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                  doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                  S43928=1;
+                                                  if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                    doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                                     ends[2]=2;
-                                                    ;//sysj/turntableController.sysj line: 118, column: 4
-                                                    S14096=11;
-                                                    S17781=0;
-                                                    if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                      doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                      S17781=1;
+                                                    ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                    S40886=11;
+                                                    S44571=0;
+                                                    if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                      doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                      S44571=1;
                                                       active[2]=1;
                                                       ends[2]=1;
                                                       tdone[2]=1;
                                                     }
                                                     else {
-                                                      S17776=0;
-                                                      if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                        doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                        S17776=1;
-                                                        if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                          doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                      S44566=0;
+                                                      if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                        doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                        S44566=1;
+                                                        if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                          doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                           ends[2]=2;
-                                                          ;//sysj/turntableController.sysj line: 119, column: 4
-                                                          S14096=12;
-                                                          if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                            S14096=13;
-                                                            if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                              m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                              m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                              S14096=14;
+                                                          ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                          S40886=12;
+                                                          if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                            S40886=13;
+                                                            if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                              m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                              m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                              S40886=14;
                                                               active[2]=1;
                                                               ends[2]=1;
                                                               tdone[2]=1;
@@ -6132,7 +6132,7 @@ public class RotaryTableController extends ClockDomain{
                                                             }
                                                           }
                                                           else {
-                                                            rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                            rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                             currsigs.addElement(rotaryTrigger);
                                                             active[2]=1;
                                                             ends[2]=1;
@@ -6235,122 +6235,122 @@ public class RotaryTableController extends ClockDomain{
             break;
           
           case 6 : 
-            switch(S15031){
+            switch(S41821){
               case 0 : 
-                if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 113, column: 4
-                  startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
-                  S15031=1;
+                if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                  startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
+                  S41821=1;
                   active[2]=1;
                   ends[2]=1;
                   tdone[2]=1;
                 }
                 else {
-                  switch(S15026){
+                  switch(S41816){
                     case 0 : 
-                      if(startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                        startLid_o.setVal(m_thread_2.idAt(3));//sysj/turntableController.sysj line: 113, column: 4
-                        S15026=1;
-                        if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                          startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                      if(startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                        startLid_o.setVal(m_thread_2.at(3));//sysj/rotaryTableController.sysj line: 113, column: 4
+                        S41816=1;
+                        if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                          startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                           ends[2]=2;
-                          ;//sysj/turntableController.sysj line: 113, column: 4
-                          S14096=7;
-                          S15493=0;
-                          if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                            startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                            S15493=1;
+                          ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                          S40886=7;
+                          S42283=0;
+                          if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                            startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                            S42283=1;
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
-                            S15488=0;
-                            if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                              startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                              S15488=1;
-                              if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                            S42278=0;
+                            if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                              startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                              S42278=1;
+                              if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                                 ends[2]=2;
-                                ;//sysj/turntableController.sysj line: 114, column: 4
-                                S14096=8;
-                                S15999=0;
-                                if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                                  doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                                  S15999=1;
+                                ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                                S40886=8;
+                                S42789=0;
+                                if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                  doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                  S42789=1;
                                   active[2]=1;
                                   ends[2]=1;
                                   tdone[2]=1;
                                 }
                                 else {
-                                  S15994=0;
-                                  if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                    doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                    S15994=1;
-                                    if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                      doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                                  S42784=0;
+                                  if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                    doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                    S42784=1;
+                                    if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                      doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                       ends[2]=2;
-                                      ;//sysj/turntableController.sysj line: 116, column: 4
-                                      S14096=9;
-                                      S16549=0;
-                                      if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                        doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                        S16549=1;
+                                      ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                      S40886=9;
+                                      S43339=0;
+                                      if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                        doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                        S43339=1;
                                         active[2]=1;
                                         ends[2]=1;
                                         tdone[2]=1;
                                       }
                                       else {
-                                        S16544=0;
-                                        if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                          doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                          S16544=1;
-                                          if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                            doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                        S43334=0;
+                                        if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                          doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                          S43334=1;
+                                          if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                            doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                             ends[2]=2;
-                                            ;//sysj/turntableController.sysj line: 117, column: 4
-                                            S14096=10;
-                                            S17143=0;
-                                            if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                              doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                              S17143=1;
+                                            ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                            S40886=10;
+                                            S43933=0;
+                                            if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                              doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                              S43933=1;
                                               active[2]=1;
                                               ends[2]=1;
                                               tdone[2]=1;
                                             }
                                             else {
-                                              S17138=0;
-                                              if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                                S17138=1;
-                                                if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                  doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                              S43928=0;
+                                              if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                S43928=1;
+                                                if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                  doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                                   ends[2]=2;
-                                                  ;//sysj/turntableController.sysj line: 118, column: 4
-                                                  S14096=11;
-                                                  S17781=0;
-                                                  if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                    doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                    S17781=1;
+                                                  ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                  S40886=11;
+                                                  S44571=0;
+                                                  if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                    doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                    S44571=1;
                                                     active[2]=1;
                                                     ends[2]=1;
                                                     tdone[2]=1;
                                                   }
                                                   else {
-                                                    S17776=0;
-                                                    if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                      doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                      S17776=1;
-                                                      if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                        doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                    S44566=0;
+                                                    if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                      doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                      S44566=1;
+                                                      if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                        doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                         ends[2]=2;
-                                                        ;//sysj/turntableController.sysj line: 119, column: 4
-                                                        S14096=12;
-                                                        if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                          S14096=13;
-                                                          if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                            m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                            m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                            S14096=14;
+                                                        ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                        S40886=12;
+                                                        if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                          S40886=13;
+                                                          if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                            m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                            m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                            S40886=14;
                                                             active[2]=1;
                                                             ends[2]=1;
                                                             tdone[2]=1;
@@ -6362,7 +6362,7 @@ public class RotaryTableController extends ClockDomain{
                                                           }
                                                         }
                                                         else {
-                                                          rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                          rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                           currsigs.addElement(rotaryTrigger);
                                                           active[2]=1;
                                                           ends[2]=1;
@@ -6448,107 +6448,107 @@ public class RotaryTableController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                        startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                      if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                        startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                         ends[2]=2;
-                        ;//sysj/turntableController.sysj line: 113, column: 4
-                        S14096=7;
-                        S15493=0;
-                        if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                          startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                          S15493=1;
+                        ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                        S40886=7;
+                        S42283=0;
+                        if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                          startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                          S42283=1;
                           active[2]=1;
                           ends[2]=1;
                           tdone[2]=1;
                         }
                         else {
-                          S15488=0;
-                          if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                            startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                            S15488=1;
-                            if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                              startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                          S42278=0;
+                          if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                            startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                            S42278=1;
+                            if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                              startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                               ends[2]=2;
-                              ;//sysj/turntableController.sysj line: 114, column: 4
-                              S14096=8;
-                              S15999=0;
-                              if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                                doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                                S15999=1;
+                              ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                              S40886=8;
+                              S42789=0;
+                              if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                S42789=1;
                                 active[2]=1;
                                 ends[2]=1;
                                 tdone[2]=1;
                               }
                               else {
-                                S15994=0;
-                                if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                  doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                  S15994=1;
-                                  if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                    doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                                S42784=0;
+                                if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                  doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                  S42784=1;
+                                  if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                    doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                     ends[2]=2;
-                                    ;//sysj/turntableController.sysj line: 116, column: 4
-                                    S14096=9;
-                                    S16549=0;
-                                    if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                      doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                      S16549=1;
+                                    ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                    S40886=9;
+                                    S43339=0;
+                                    if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                      doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                      S43339=1;
                                       active[2]=1;
                                       ends[2]=1;
                                       tdone[2]=1;
                                     }
                                     else {
-                                      S16544=0;
-                                      if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                        doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                        S16544=1;
-                                        if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                          doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                      S43334=0;
+                                      if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                        doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                        S43334=1;
+                                        if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                          doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                           ends[2]=2;
-                                          ;//sysj/turntableController.sysj line: 117, column: 4
-                                          S14096=10;
-                                          S17143=0;
-                                          if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                            doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                            S17143=1;
+                                          ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                          S40886=10;
+                                          S43933=0;
+                                          if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                            doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                            S43933=1;
                                             active[2]=1;
                                             ends[2]=1;
                                             tdone[2]=1;
                                           }
                                           else {
-                                            S17138=0;
-                                            if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                              doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                              S17138=1;
-                                              if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                            S43928=0;
+                                            if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                              doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                              S43928=1;
+                                              if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                                 ends[2]=2;
-                                                ;//sysj/turntableController.sysj line: 118, column: 4
-                                                S14096=11;
-                                                S17781=0;
-                                                if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                  doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                  S17781=1;
+                                                ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                S40886=11;
+                                                S44571=0;
+                                                if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                  doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                  S44571=1;
                                                   active[2]=1;
                                                   ends[2]=1;
                                                   tdone[2]=1;
                                                 }
                                                 else {
-                                                  S17776=0;
-                                                  if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                    doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                    S17776=1;
-                                                    if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                      doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                  S44566=0;
+                                                  if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                    doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                    S44566=1;
+                                                    if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                      doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                       ends[2]=2;
-                                                      ;//sysj/turntableController.sysj line: 119, column: 4
-                                                      S14096=12;
-                                                      if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                        S14096=13;
-                                                        if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                          m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                          m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                          S14096=14;
+                                                      ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                      S40886=12;
+                                                      if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                        S40886=13;
+                                                        if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                          m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                          m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                          S40886=14;
                                                           active[2]=1;
                                                           ends[2]=1;
                                                           tdone[2]=1;
@@ -6560,7 +6560,7 @@ public class RotaryTableController extends ClockDomain{
                                                         }
                                                       }
                                                       else {
-                                                        rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                        rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                         currsigs.addElement(rotaryTrigger);
                                                         active[2]=1;
                                                         ends[2]=1;
@@ -6644,121 +6644,121 @@ public class RotaryTableController extends ClockDomain{
                 break;
               
               case 1 : 
-                S15031=1;
-                S15031=0;
-                if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 113, column: 4
-                  startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
-                  S15031=1;
+                S41821=1;
+                S41821=0;
+                if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                  startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
+                  S41821=1;
                   active[2]=1;
                   ends[2]=1;
                   tdone[2]=1;
                 }
                 else {
-                  S15026=0;
-                  if(startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                    startLid_o.setVal(m_thread_2.idAt(3));//sysj/turntableController.sysj line: 113, column: 4
-                    S15026=1;
-                    if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                      startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                  S41816=0;
+                  if(startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                    startLid_o.setVal(m_thread_2.at(3));//sysj/rotaryTableController.sysj line: 113, column: 4
+                    S41816=1;
+                    if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                      startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                       ends[2]=2;
-                      ;//sysj/turntableController.sysj line: 113, column: 4
-                      S14096=7;
-                      S15493=0;
-                      if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                        startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                        S15493=1;
+                      ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                      S40886=7;
+                      S42283=0;
+                      if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                        startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                        S42283=1;
                         active[2]=1;
                         ends[2]=1;
                         tdone[2]=1;
                       }
                       else {
-                        S15488=0;
-                        if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                          startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                          S15488=1;
-                          if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                            startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                        S42278=0;
+                        if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                          startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                          S42278=1;
+                          if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                            startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                             ends[2]=2;
-                            ;//sysj/turntableController.sysj line: 114, column: 4
-                            S14096=8;
-                            S15999=0;
-                            if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                              doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                              S15999=1;
+                            ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                            S40886=8;
+                            S42789=0;
+                            if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                              doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                              S42789=1;
                               active[2]=1;
                               ends[2]=1;
                               tdone[2]=1;
                             }
                             else {
-                              S15994=0;
-                              if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                S15994=1;
-                                if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                  doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                              S42784=0;
+                              if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                S42784=1;
+                                if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                  doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                   ends[2]=2;
-                                  ;//sysj/turntableController.sysj line: 116, column: 4
-                                  S14096=9;
-                                  S16549=0;
-                                  if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                    doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                    S16549=1;
+                                  ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                  S40886=9;
+                                  S43339=0;
+                                  if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                    doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                    S43339=1;
                                     active[2]=1;
                                     ends[2]=1;
                                     tdone[2]=1;
                                   }
                                   else {
-                                    S16544=0;
-                                    if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                      doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                      S16544=1;
-                                      if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                        doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                    S43334=0;
+                                    if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                      doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                      S43334=1;
+                                      if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                        doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                         ends[2]=2;
-                                        ;//sysj/turntableController.sysj line: 117, column: 4
-                                        S14096=10;
-                                        S17143=0;
-                                        if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                          doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                          S17143=1;
+                                        ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                        S40886=10;
+                                        S43933=0;
+                                        if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                          doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                          S43933=1;
                                           active[2]=1;
                                           ends[2]=1;
                                           tdone[2]=1;
                                         }
                                         else {
-                                          S17138=0;
-                                          if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                            doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                            S17138=1;
-                                            if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                              doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                          S43928=0;
+                                          if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                            doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                            S43928=1;
+                                            if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                              doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                               ends[2]=2;
-                                              ;//sysj/turntableController.sysj line: 118, column: 4
-                                              S14096=11;
-                                              S17781=0;
-                                              if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                S17781=1;
+                                              ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                              S40886=11;
+                                              S44571=0;
+                                              if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                S44571=1;
                                                 active[2]=1;
                                                 ends[2]=1;
                                                 tdone[2]=1;
                                               }
                                               else {
-                                                S17776=0;
-                                                if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                  doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                  S17776=1;
-                                                  if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                    doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                S44566=0;
+                                                if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                  doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                  S44566=1;
+                                                  if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                    doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                     ends[2]=2;
-                                                    ;//sysj/turntableController.sysj line: 119, column: 4
-                                                    S14096=12;
-                                                    if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                      S14096=13;
-                                                      if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                        m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                        m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                        S14096=14;
+                                                    ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                    S40886=12;
+                                                    if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                      S40886=13;
+                                                      if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                        m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                        m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                        S40886=14;
                                                         active[2]=1;
                                                         ends[2]=1;
                                                         tdone[2]=1;
@@ -6770,7 +6770,7 @@ public class RotaryTableController extends ClockDomain{
                                                       }
                                                     }
                                                     else {
-                                                      rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                      rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                       currsigs.addElement(rotaryTrigger);
                                                       active[2]=1;
                                                       ends[2]=1;
@@ -6860,104 +6860,104 @@ public class RotaryTableController extends ClockDomain{
             break;
           
           case 7 : 
-            switch(S15493){
+            switch(S42283){
               case 0 : 
-                if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                  startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                  S15493=1;
+                if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                  startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                  S42283=1;
                   active[2]=1;
                   ends[2]=1;
                   tdone[2]=1;
                 }
                 else {
-                  switch(S15488){
+                  switch(S42278){
                     case 0 : 
-                      if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                        startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                        S15488=1;
-                        if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                          startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                      if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                        startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                        S42278=1;
+                        if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                          startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                           ends[2]=2;
-                          ;//sysj/turntableController.sysj line: 114, column: 4
-                          S14096=8;
-                          S15999=0;
-                          if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                            doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                            S15999=1;
+                          ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                          S40886=8;
+                          S42789=0;
+                          if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                            doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                            S42789=1;
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
-                            S15994=0;
-                            if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                              doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                              S15994=1;
-                              if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                            S42784=0;
+                            if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                              doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                              S42784=1;
+                              if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                 ends[2]=2;
-                                ;//sysj/turntableController.sysj line: 116, column: 4
-                                S14096=9;
-                                S16549=0;
-                                if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                  doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                  S16549=1;
+                                ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                S40886=9;
+                                S43339=0;
+                                if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                  doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                  S43339=1;
                                   active[2]=1;
                                   ends[2]=1;
                                   tdone[2]=1;
                                 }
                                 else {
-                                  S16544=0;
-                                  if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                    doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                    S16544=1;
-                                    if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                      doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                  S43334=0;
+                                  if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                    doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                    S43334=1;
+                                    if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                      doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                       ends[2]=2;
-                                      ;//sysj/turntableController.sysj line: 117, column: 4
-                                      S14096=10;
-                                      S17143=0;
-                                      if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                        doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                        S17143=1;
+                                      ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                      S40886=10;
+                                      S43933=0;
+                                      if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                        doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                        S43933=1;
                                         active[2]=1;
                                         ends[2]=1;
                                         tdone[2]=1;
                                       }
                                       else {
-                                        S17138=0;
-                                        if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                          doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                          S17138=1;
-                                          if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                            doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                        S43928=0;
+                                        if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                          doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                          S43928=1;
+                                          if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                            doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                             ends[2]=2;
-                                            ;//sysj/turntableController.sysj line: 118, column: 4
-                                            S14096=11;
-                                            S17781=0;
-                                            if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                              doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                              S17781=1;
+                                            ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                            S40886=11;
+                                            S44571=0;
+                                            if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                              doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                              S44571=1;
                                               active[2]=1;
                                               ends[2]=1;
                                               tdone[2]=1;
                                             }
                                             else {
-                                              S17776=0;
-                                              if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                S17776=1;
-                                                if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                  doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                              S44566=0;
+                                              if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                S44566=1;
+                                                if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                  doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                   ends[2]=2;
-                                                  ;//sysj/turntableController.sysj line: 119, column: 4
-                                                  S14096=12;
-                                                  if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                    S14096=13;
-                                                    if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                      m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                      m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                      S14096=14;
+                                                  ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                  S40886=12;
+                                                  if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                    S40886=13;
+                                                    if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                      m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                      m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                      S40886=14;
                                                       active[2]=1;
                                                       ends[2]=1;
                                                       tdone[2]=1;
@@ -6969,7 +6969,7 @@ public class RotaryTableController extends ClockDomain{
                                                     }
                                                   }
                                                   else {
-                                                    rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                    rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                     currsigs.addElement(rotaryTrigger);
                                                     active[2]=1;
                                                     ends[2]=1;
@@ -7042,89 +7042,89 @@ public class RotaryTableController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                        startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                      if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                        startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                         ends[2]=2;
-                        ;//sysj/turntableController.sysj line: 114, column: 4
-                        S14096=8;
-                        S15999=0;
-                        if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                          doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                          S15999=1;
+                        ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                        S40886=8;
+                        S42789=0;
+                        if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                          doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                          S42789=1;
                           active[2]=1;
                           ends[2]=1;
                           tdone[2]=1;
                         }
                         else {
-                          S15994=0;
-                          if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                            doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                            S15994=1;
-                            if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                              doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                          S42784=0;
+                          if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                            doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                            S42784=1;
+                            if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                              doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                               ends[2]=2;
-                              ;//sysj/turntableController.sysj line: 116, column: 4
-                              S14096=9;
-                              S16549=0;
-                              if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                S16549=1;
+                              ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                              S40886=9;
+                              S43339=0;
+                              if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                S43339=1;
                                 active[2]=1;
                                 ends[2]=1;
                                 tdone[2]=1;
                               }
                               else {
-                                S16544=0;
-                                if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                  doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                  S16544=1;
-                                  if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                    doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                S43334=0;
+                                if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                  doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                  S43334=1;
+                                  if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                    doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                     ends[2]=2;
-                                    ;//sysj/turntableController.sysj line: 117, column: 4
-                                    S14096=10;
-                                    S17143=0;
-                                    if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                      doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                      S17143=1;
+                                    ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                    S40886=10;
+                                    S43933=0;
+                                    if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                      doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                      S43933=1;
                                       active[2]=1;
                                       ends[2]=1;
                                       tdone[2]=1;
                                     }
                                     else {
-                                      S17138=0;
-                                      if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                        doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                        S17138=1;
-                                        if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                          doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                      S43928=0;
+                                      if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                        doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                        S43928=1;
+                                        if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                          doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                           ends[2]=2;
-                                          ;//sysj/turntableController.sysj line: 118, column: 4
-                                          S14096=11;
-                                          S17781=0;
-                                          if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                            doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                            S17781=1;
+                                          ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                          S40886=11;
+                                          S44571=0;
+                                          if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                            doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                            S44571=1;
                                             active[2]=1;
                                             ends[2]=1;
                                             tdone[2]=1;
                                           }
                                           else {
-                                            S17776=0;
-                                            if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                              doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                              S17776=1;
-                                              if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                            S44566=0;
+                                            if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                              doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                              S44566=1;
+                                              if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                 ends[2]=2;
-                                                ;//sysj/turntableController.sysj line: 119, column: 4
-                                                S14096=12;
-                                                if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                  S14096=13;
-                                                  if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                    m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                    m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                    S14096=14;
+                                                ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                S40886=12;
+                                                if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                  S40886=13;
+                                                  if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                    m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                    m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                    S40886=14;
                                                     active[2]=1;
                                                     ends[2]=1;
                                                     tdone[2]=1;
@@ -7136,7 +7136,7 @@ public class RotaryTableController extends ClockDomain{
                                                   }
                                                 }
                                                 else {
-                                                  rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                  rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                   currsigs.addElement(rotaryTrigger);
                                                   active[2]=1;
                                                   ends[2]=1;
@@ -7207,103 +7207,103 @@ public class RotaryTableController extends ClockDomain{
                 break;
               
               case 1 : 
-                S15493=1;
-                S15493=0;
-                if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                  startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                  S15493=1;
+                S42283=1;
+                S42283=0;
+                if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                  startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                  S42283=1;
                   active[2]=1;
                   ends[2]=1;
                   tdone[2]=1;
                 }
                 else {
-                  S15488=0;
-                  if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                    startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                    S15488=1;
-                    if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                      startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                  S42278=0;
+                  if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                    startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                    S42278=1;
+                    if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                      startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                       ends[2]=2;
-                      ;//sysj/turntableController.sysj line: 114, column: 4
-                      S14096=8;
-                      S15999=0;
-                      if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                        doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                        S15999=1;
+                      ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                      S40886=8;
+                      S42789=0;
+                      if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                        doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                        S42789=1;
                         active[2]=1;
                         ends[2]=1;
                         tdone[2]=1;
                       }
                       else {
-                        S15994=0;
-                        if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                          doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                          S15994=1;
-                          if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                            doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                        S42784=0;
+                        if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                          doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                          S42784=1;
+                          if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                            doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                             ends[2]=2;
-                            ;//sysj/turntableController.sysj line: 116, column: 4
-                            S14096=9;
-                            S16549=0;
-                            if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                              doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                              S16549=1;
+                            ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                            S40886=9;
+                            S43339=0;
+                            if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                              doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                              S43339=1;
                               active[2]=1;
                               ends[2]=1;
                               tdone[2]=1;
                             }
                             else {
-                              S16544=0;
-                              if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                S16544=1;
-                                if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                  doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                              S43334=0;
+                              if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                S43334=1;
+                                if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                  doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                   ends[2]=2;
-                                  ;//sysj/turntableController.sysj line: 117, column: 4
-                                  S14096=10;
-                                  S17143=0;
-                                  if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                    doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                    S17143=1;
+                                  ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                  S40886=10;
+                                  S43933=0;
+                                  if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                    doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                    S43933=1;
                                     active[2]=1;
                                     ends[2]=1;
                                     tdone[2]=1;
                                   }
                                   else {
-                                    S17138=0;
-                                    if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                      doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                      S17138=1;
-                                      if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                        doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                    S43928=0;
+                                    if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                      doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                      S43928=1;
+                                      if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                        doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                         ends[2]=2;
-                                        ;//sysj/turntableController.sysj line: 118, column: 4
-                                        S14096=11;
-                                        S17781=0;
-                                        if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                          doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                          S17781=1;
+                                        ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                        S40886=11;
+                                        S44571=0;
+                                        if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                          doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                          S44571=1;
                                           active[2]=1;
                                           ends[2]=1;
                                           tdone[2]=1;
                                         }
                                         else {
-                                          S17776=0;
-                                          if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                            doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                            S17776=1;
-                                            if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                              doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                          S44566=0;
+                                          if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                            doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                            S44566=1;
+                                            if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                              doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                               ends[2]=2;
-                                              ;//sysj/turntableController.sysj line: 119, column: 4
-                                              S14096=12;
-                                              if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                S14096=13;
-                                                if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                  m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                  m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                  S14096=14;
+                                              ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                              S40886=12;
+                                              if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                S40886=13;
+                                                if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                  m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                  m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                  S40886=14;
                                                   active[2]=1;
                                                   ends[2]=1;
                                                   tdone[2]=1;
@@ -7315,7 +7315,7 @@ public class RotaryTableController extends ClockDomain{
                                                 }
                                               }
                                               else {
-                                                rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                 currsigs.addElement(rotaryTrigger);
                                                 active[2]=1;
                                                 ends[2]=1;
@@ -7392,86 +7392,86 @@ public class RotaryTableController extends ClockDomain{
             break;
           
           case 8 : 
-            switch(S15999){
+            switch(S42789){
               case 0 : 
-                if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                  doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                  S15999=1;
+                if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                  doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                  S42789=1;
                   active[2]=1;
                   ends[2]=1;
                   tdone[2]=1;
                 }
                 else {
-                  switch(S15994){
+                  switch(S42784){
                     case 0 : 
-                      if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                        doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                        S15994=1;
-                        if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                          doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                      if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                        doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                        S42784=1;
+                        if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                          doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                           ends[2]=2;
-                          ;//sysj/turntableController.sysj line: 116, column: 4
-                          S14096=9;
-                          S16549=0;
-                          if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                            doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                            S16549=1;
+                          ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                          S40886=9;
+                          S43339=0;
+                          if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                            doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                            S43339=1;
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
-                            S16544=0;
-                            if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                              doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                              S16544=1;
-                              if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                            S43334=0;
+                            if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                              doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                              S43334=1;
+                              if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                 ends[2]=2;
-                                ;//sysj/turntableController.sysj line: 117, column: 4
-                                S14096=10;
-                                S17143=0;
-                                if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                  doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                  S17143=1;
+                                ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                S40886=10;
+                                S43933=0;
+                                if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                  doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                  S43933=1;
                                   active[2]=1;
                                   ends[2]=1;
                                   tdone[2]=1;
                                 }
                                 else {
-                                  S17138=0;
-                                  if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                    doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                    S17138=1;
-                                    if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                      doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                  S43928=0;
+                                  if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                    doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                    S43928=1;
+                                    if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                      doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                       ends[2]=2;
-                                      ;//sysj/turntableController.sysj line: 118, column: 4
-                                      S14096=11;
-                                      S17781=0;
-                                      if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                        doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                        S17781=1;
+                                      ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                      S40886=11;
+                                      S44571=0;
+                                      if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                        doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                        S44571=1;
                                         active[2]=1;
                                         ends[2]=1;
                                         tdone[2]=1;
                                       }
                                       else {
-                                        S17776=0;
-                                        if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                          doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                          S17776=1;
-                                          if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                            doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                        S44566=0;
+                                        if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                          doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                          S44566=1;
+                                          if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                            doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                             ends[2]=2;
-                                            ;//sysj/turntableController.sysj line: 119, column: 4
-                                            S14096=12;
-                                            if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                              S14096=13;
-                                              if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                S14096=14;
+                                            ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                            S40886=12;
+                                            if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                              S40886=13;
+                                              if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                S40886=14;
                                                 active[2]=1;
                                                 ends[2]=1;
                                                 tdone[2]=1;
@@ -7483,7 +7483,7 @@ public class RotaryTableController extends ClockDomain{
                                               }
                                             }
                                             else {
-                                              rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                              rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                               currsigs.addElement(rotaryTrigger);
                                               active[2]=1;
                                               ends[2]=1;
@@ -7543,71 +7543,71 @@ public class RotaryTableController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                        doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                      if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                        doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                         ends[2]=2;
-                        ;//sysj/turntableController.sysj line: 116, column: 4
-                        S14096=9;
-                        S16549=0;
-                        if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                          doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                          S16549=1;
+                        ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                        S40886=9;
+                        S43339=0;
+                        if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                          doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                          S43339=1;
                           active[2]=1;
                           ends[2]=1;
                           tdone[2]=1;
                         }
                         else {
-                          S16544=0;
-                          if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                            doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                            S16544=1;
-                            if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                              doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                          S43334=0;
+                          if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                            doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                            S43334=1;
+                            if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                              doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                               ends[2]=2;
-                              ;//sysj/turntableController.sysj line: 117, column: 4
-                              S14096=10;
-                              S17143=0;
-                              if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                S17143=1;
+                              ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                              S40886=10;
+                              S43933=0;
+                              if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                S43933=1;
                                 active[2]=1;
                                 ends[2]=1;
                                 tdone[2]=1;
                               }
                               else {
-                                S17138=0;
-                                if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                  doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                  S17138=1;
-                                  if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                    doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                S43928=0;
+                                if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                  doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                  S43928=1;
+                                  if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                    doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                     ends[2]=2;
-                                    ;//sysj/turntableController.sysj line: 118, column: 4
-                                    S14096=11;
-                                    S17781=0;
-                                    if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                      doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                      S17781=1;
+                                    ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                    S40886=11;
+                                    S44571=0;
+                                    if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                      doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                      S44571=1;
                                       active[2]=1;
                                       ends[2]=1;
                                       tdone[2]=1;
                                     }
                                     else {
-                                      S17776=0;
-                                      if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                        doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                        S17776=1;
-                                        if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                          doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                      S44566=0;
+                                      if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                        doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                        S44566=1;
+                                        if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                          doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                           ends[2]=2;
-                                          ;//sysj/turntableController.sysj line: 119, column: 4
-                                          S14096=12;
-                                          if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                            S14096=13;
-                                            if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                              m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                              m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                              S14096=14;
+                                          ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                          S40886=12;
+                                          if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                            S40886=13;
+                                            if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                              m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                              m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                              S40886=14;
                                               active[2]=1;
                                               ends[2]=1;
                                               tdone[2]=1;
@@ -7619,7 +7619,7 @@ public class RotaryTableController extends ClockDomain{
                                             }
                                           }
                                           else {
-                                            rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                            rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                             currsigs.addElement(rotaryTrigger);
                                             active[2]=1;
                                             ends[2]=1;
@@ -7677,85 +7677,85 @@ public class RotaryTableController extends ClockDomain{
                 break;
               
               case 1 : 
-                S15999=1;
-                S15999=0;
-                if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                  doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                  S15999=1;
+                S42789=1;
+                S42789=0;
+                if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                  doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                  S42789=1;
                   active[2]=1;
                   ends[2]=1;
                   tdone[2]=1;
                 }
                 else {
-                  S15994=0;
-                  if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                    doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                    S15994=1;
-                    if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                      doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                  S42784=0;
+                  if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                    doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                    S42784=1;
+                    if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                      doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                       ends[2]=2;
-                      ;//sysj/turntableController.sysj line: 116, column: 4
-                      S14096=9;
-                      S16549=0;
-                      if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                        doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                        S16549=1;
+                      ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                      S40886=9;
+                      S43339=0;
+                      if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                        doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                        S43339=1;
                         active[2]=1;
                         ends[2]=1;
                         tdone[2]=1;
                       }
                       else {
-                        S16544=0;
-                        if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                          doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                          S16544=1;
-                          if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                            doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                        S43334=0;
+                        if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                          doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                          S43334=1;
+                          if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                            doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                             ends[2]=2;
-                            ;//sysj/turntableController.sysj line: 117, column: 4
-                            S14096=10;
-                            S17143=0;
-                            if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                              doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                              S17143=1;
+                            ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                            S40886=10;
+                            S43933=0;
+                            if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                              doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                              S43933=1;
                               active[2]=1;
                               ends[2]=1;
                               tdone[2]=1;
                             }
                             else {
-                              S17138=0;
-                              if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                S17138=1;
-                                if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                  doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                              S43928=0;
+                              if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                S43928=1;
+                                if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                  doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                   ends[2]=2;
-                                  ;//sysj/turntableController.sysj line: 118, column: 4
-                                  S14096=11;
-                                  S17781=0;
-                                  if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                    doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                    S17781=1;
+                                  ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                  S40886=11;
+                                  S44571=0;
+                                  if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                    doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                    S44571=1;
                                     active[2]=1;
                                     ends[2]=1;
                                     tdone[2]=1;
                                   }
                                   else {
-                                    S17776=0;
-                                    if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                      doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                      S17776=1;
-                                      if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                        doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                    S44566=0;
+                                    if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                      doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                      S44566=1;
+                                      if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                        doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                         ends[2]=2;
-                                        ;//sysj/turntableController.sysj line: 119, column: 4
-                                        S14096=12;
-                                        if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                          S14096=13;
-                                          if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                            m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                            m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                            S14096=14;
+                                        ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                        S40886=12;
+                                        if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                          S40886=13;
+                                          if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                            m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                            m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                            S40886=14;
                                             active[2]=1;
                                             ends[2]=1;
                                             tdone[2]=1;
@@ -7767,7 +7767,7 @@ public class RotaryTableController extends ClockDomain{
                                           }
                                         }
                                         else {
-                                          rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                          rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                           currsigs.addElement(rotaryTrigger);
                                           active[2]=1;
                                           ends[2]=1;
@@ -7831,68 +7831,68 @@ public class RotaryTableController extends ClockDomain{
             break;
           
           case 9 : 
-            switch(S16549){
+            switch(S43339){
               case 0 : 
-                if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                  doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                  S16549=1;
+                if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                  doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                  S43339=1;
                   active[2]=1;
                   ends[2]=1;
                   tdone[2]=1;
                 }
                 else {
-                  switch(S16544){
+                  switch(S43334){
                     case 0 : 
-                      if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                        doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                        S16544=1;
-                        if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                          doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                      if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                        doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                        S43334=1;
+                        if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                          doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                           ends[2]=2;
-                          ;//sysj/turntableController.sysj line: 117, column: 4
-                          S14096=10;
-                          S17143=0;
-                          if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                            doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                            S17143=1;
+                          ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                          S40886=10;
+                          S43933=0;
+                          if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                            doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                            S43933=1;
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
-                            S17138=0;
-                            if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                              doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                              S17138=1;
-                              if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                            S43928=0;
+                            if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                              doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                              S43928=1;
+                              if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                 ends[2]=2;
-                                ;//sysj/turntableController.sysj line: 118, column: 4
-                                S14096=11;
-                                S17781=0;
-                                if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                  doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                  S17781=1;
+                                ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                S40886=11;
+                                S44571=0;
+                                if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                  doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                  S44571=1;
                                   active[2]=1;
                                   ends[2]=1;
                                   tdone[2]=1;
                                 }
                                 else {
-                                  S17776=0;
-                                  if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                    doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                    S17776=1;
-                                    if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                      doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                  S44566=0;
+                                  if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                    doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                    S44566=1;
+                                    if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                      doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                       ends[2]=2;
-                                      ;//sysj/turntableController.sysj line: 119, column: 4
-                                      S14096=12;
-                                      if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                        S14096=13;
-                                        if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                          m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                          m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                          S14096=14;
+                                      ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                      S40886=12;
+                                      if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                        S40886=13;
+                                        if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                          m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                          m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                          S40886=14;
                                           active[2]=1;
                                           ends[2]=1;
                                           tdone[2]=1;
@@ -7904,7 +7904,7 @@ public class RotaryTableController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                        rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                         currsigs.addElement(rotaryTrigger);
                                         active[2]=1;
                                         ends[2]=1;
@@ -7951,53 +7951,53 @@ public class RotaryTableController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                        doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                      if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                        doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                         ends[2]=2;
-                        ;//sysj/turntableController.sysj line: 117, column: 4
-                        S14096=10;
-                        S17143=0;
-                        if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                          doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                          S17143=1;
+                        ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                        S40886=10;
+                        S43933=0;
+                        if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                          doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                          S43933=1;
                           active[2]=1;
                           ends[2]=1;
                           tdone[2]=1;
                         }
                         else {
-                          S17138=0;
-                          if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                            doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                            S17138=1;
-                            if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                              doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                          S43928=0;
+                          if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                            doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                            S43928=1;
+                            if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                              doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                               ends[2]=2;
-                              ;//sysj/turntableController.sysj line: 118, column: 4
-                              S14096=11;
-                              S17781=0;
-                              if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                S17781=1;
+                              ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                              S40886=11;
+                              S44571=0;
+                              if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                S44571=1;
                                 active[2]=1;
                                 ends[2]=1;
                                 tdone[2]=1;
                               }
                               else {
-                                S17776=0;
-                                if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                  doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                  S17776=1;
-                                  if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                    doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                S44566=0;
+                                if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                  doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                  S44566=1;
+                                  if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                    doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                     ends[2]=2;
-                                    ;//sysj/turntableController.sysj line: 119, column: 4
-                                    S14096=12;
-                                    if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                      S14096=13;
-                                      if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                        m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                        m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                        S14096=14;
+                                    ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                    S40886=12;
+                                    if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                      S40886=13;
+                                      if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                        m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                        m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                        S40886=14;
                                         active[2]=1;
                                         ends[2]=1;
                                         tdone[2]=1;
@@ -8009,7 +8009,7 @@ public class RotaryTableController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                      rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                       currsigs.addElement(rotaryTrigger);
                                       active[2]=1;
                                       ends[2]=1;
@@ -8054,67 +8054,67 @@ public class RotaryTableController extends ClockDomain{
                 break;
               
               case 1 : 
-                S16549=1;
-                S16549=0;
-                if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                  doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                  S16549=1;
+                S43339=1;
+                S43339=0;
+                if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                  doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                  S43339=1;
                   active[2]=1;
                   ends[2]=1;
                   tdone[2]=1;
                 }
                 else {
-                  S16544=0;
-                  if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                    doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                    S16544=1;
-                    if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                      doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                  S43334=0;
+                  if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                    doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                    S43334=1;
+                    if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                      doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                       ends[2]=2;
-                      ;//sysj/turntableController.sysj line: 117, column: 4
-                      S14096=10;
-                      S17143=0;
-                      if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                        doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                        S17143=1;
+                      ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                      S40886=10;
+                      S43933=0;
+                      if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                        doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                        S43933=1;
                         active[2]=1;
                         ends[2]=1;
                         tdone[2]=1;
                       }
                       else {
-                        S17138=0;
-                        if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                          doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                          S17138=1;
-                          if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                            doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                        S43928=0;
+                        if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                          doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                          S43928=1;
+                          if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                            doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                             ends[2]=2;
-                            ;//sysj/turntableController.sysj line: 118, column: 4
-                            S14096=11;
-                            S17781=0;
-                            if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                              doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                              S17781=1;
+                            ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                            S40886=11;
+                            S44571=0;
+                            if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                              doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                              S44571=1;
                               active[2]=1;
                               ends[2]=1;
                               tdone[2]=1;
                             }
                             else {
-                              S17776=0;
-                              if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                S17776=1;
-                                if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                  doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                              S44566=0;
+                              if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                S44566=1;
+                                if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                  doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                   ends[2]=2;
-                                  ;//sysj/turntableController.sysj line: 119, column: 4
-                                  S14096=12;
-                                  if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                    S14096=13;
-                                    if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                      m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                      m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                      S14096=14;
+                                  ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                  S40886=12;
+                                  if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                    S40886=13;
+                                    if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                      m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                      m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                      S40886=14;
                                       active[2]=1;
                                       ends[2]=1;
                                       tdone[2]=1;
@@ -8126,7 +8126,7 @@ public class RotaryTableController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                    rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                     currsigs.addElement(rotaryTrigger);
                                     active[2]=1;
                                     ends[2]=1;
@@ -8177,50 +8177,50 @@ public class RotaryTableController extends ClockDomain{
             break;
           
           case 10 : 
-            switch(S17143){
+            switch(S43933){
               case 0 : 
-                if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                  doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                  S17143=1;
+                if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                  doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                  S43933=1;
                   active[2]=1;
                   ends[2]=1;
                   tdone[2]=1;
                 }
                 else {
-                  switch(S17138){
+                  switch(S43928){
                     case 0 : 
-                      if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                        doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                        S17138=1;
-                        if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                          doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                      if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                        doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                        S43928=1;
+                        if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                          doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                           ends[2]=2;
-                          ;//sysj/turntableController.sysj line: 118, column: 4
-                          S14096=11;
-                          S17781=0;
-                          if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                            doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                            S17781=1;
+                          ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                          S40886=11;
+                          S44571=0;
+                          if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                            doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                            S44571=1;
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
-                            S17776=0;
-                            if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                              doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                              S17776=1;
-                              if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                            S44566=0;
+                            if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                              doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                              S44566=1;
+                              if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                 ends[2]=2;
-                                ;//sysj/turntableController.sysj line: 119, column: 4
-                                S14096=12;
-                                if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                  S14096=13;
-                                  if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                    m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                    m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                    S14096=14;
+                                ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                S40886=12;
+                                if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                  S40886=13;
+                                  if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                    m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                    m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                    S40886=14;
                                     active[2]=1;
                                     ends[2]=1;
                                     tdone[2]=1;
@@ -8232,7 +8232,7 @@ public class RotaryTableController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                  rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                   currsigs.addElement(rotaryTrigger);
                                   active[2]=1;
                                   ends[2]=1;
@@ -8266,35 +8266,35 @@ public class RotaryTableController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                        doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                      if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                        doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                         ends[2]=2;
-                        ;//sysj/turntableController.sysj line: 118, column: 4
-                        S14096=11;
-                        S17781=0;
-                        if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                          doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                          S17781=1;
+                        ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                        S40886=11;
+                        S44571=0;
+                        if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                          doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                          S44571=1;
                           active[2]=1;
                           ends[2]=1;
                           tdone[2]=1;
                         }
                         else {
-                          S17776=0;
-                          if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                            doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                            S17776=1;
-                            if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                              doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                          S44566=0;
+                          if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                            doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                            S44566=1;
+                            if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                              doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                               ends[2]=2;
-                              ;//sysj/turntableController.sysj line: 119, column: 4
-                              S14096=12;
-                              if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                S14096=13;
-                                if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                  m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                  m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                  S14096=14;
+                              ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                              S40886=12;
+                              if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                S40886=13;
+                                if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                  m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                  m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                  S40886=14;
                                   active[2]=1;
                                   ends[2]=1;
                                   tdone[2]=1;
@@ -8306,7 +8306,7 @@ public class RotaryTableController extends ClockDomain{
                                 }
                               }
                               else {
-                                rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                 currsigs.addElement(rotaryTrigger);
                                 active[2]=1;
                                 ends[2]=1;
@@ -8338,49 +8338,49 @@ public class RotaryTableController extends ClockDomain{
                 break;
               
               case 1 : 
-                S17143=1;
-                S17143=0;
-                if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                  doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                  S17143=1;
+                S43933=1;
+                S43933=0;
+                if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                  doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                  S43933=1;
                   active[2]=1;
                   ends[2]=1;
                   tdone[2]=1;
                 }
                 else {
-                  S17138=0;
-                  if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                    doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                    S17138=1;
-                    if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                      doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                  S43928=0;
+                  if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                    doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                    S43928=1;
+                    if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                      doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                       ends[2]=2;
-                      ;//sysj/turntableController.sysj line: 118, column: 4
-                      S14096=11;
-                      S17781=0;
-                      if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                        doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                        S17781=1;
+                      ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                      S40886=11;
+                      S44571=0;
+                      if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                        doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                        S44571=1;
                         active[2]=1;
                         ends[2]=1;
                         tdone[2]=1;
                       }
                       else {
-                        S17776=0;
-                        if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                          doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                          S17776=1;
-                          if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                            doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                        S44566=0;
+                        if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                          doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                          S44566=1;
+                          if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                            doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                             ends[2]=2;
-                            ;//sysj/turntableController.sysj line: 119, column: 4
-                            S14096=12;
-                            if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                              S14096=13;
-                              if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                S14096=14;
+                            ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                            S40886=12;
+                            if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                              S40886=13;
+                              if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                S40886=14;
                                 active[2]=1;
                                 ends[2]=1;
                                 tdone[2]=1;
@@ -8392,7 +8392,7 @@ public class RotaryTableController extends ClockDomain{
                               }
                             }
                             else {
-                              rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                              rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                               currsigs.addElement(rotaryTrigger);
                               active[2]=1;
                               ends[2]=1;
@@ -8430,32 +8430,32 @@ public class RotaryTableController extends ClockDomain{
             break;
           
           case 11 : 
-            switch(S17781){
+            switch(S44571){
               case 0 : 
-                if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                  doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                  S17781=1;
+                if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                  doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                  S44571=1;
                   active[2]=1;
                   ends[2]=1;
                   tdone[2]=1;
                 }
                 else {
-                  switch(S17776){
+                  switch(S44566){
                     case 0 : 
-                      if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                        doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                        S17776=1;
-                        if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                          doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                      if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                        doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                        S44566=1;
+                        if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                          doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                           ends[2]=2;
-                          ;//sysj/turntableController.sysj line: 119, column: 4
-                          S14096=12;
-                          if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                            S14096=13;
-                            if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                              m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                              m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                              S14096=14;
+                          ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                          S40886=12;
+                          if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                            S40886=13;
+                            if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                              m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                              m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                              S40886=14;
                               active[2]=1;
                               ends[2]=1;
                               tdone[2]=1;
@@ -8467,7 +8467,7 @@ public class RotaryTableController extends ClockDomain{
                             }
                           }
                           else {
-                            rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                            rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                             currsigs.addElement(rotaryTrigger);
                             active[2]=1;
                             ends[2]=1;
@@ -8488,17 +8488,17 @@ public class RotaryTableController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                        doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                      if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                        doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                         ends[2]=2;
-                        ;//sysj/turntableController.sysj line: 119, column: 4
-                        S14096=12;
-                        if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                          S14096=13;
-                          if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                            m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                            m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                            S14096=14;
+                        ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                        S40886=12;
+                        if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                          S40886=13;
+                          if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                            m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                            m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                            S40886=14;
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -8510,7 +8510,7 @@ public class RotaryTableController extends ClockDomain{
                           }
                         }
                         else {
-                          rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                          rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                           currsigs.addElement(rotaryTrigger);
                           active[2]=1;
                           ends[2]=1;
@@ -8529,31 +8529,31 @@ public class RotaryTableController extends ClockDomain{
                 break;
               
               case 1 : 
-                S17781=1;
-                S17781=0;
-                if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                  doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                  S17781=1;
+                S44571=1;
+                S44571=0;
+                if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                  doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                  S44571=1;
                   active[2]=1;
                   ends[2]=1;
                   tdone[2]=1;
                 }
                 else {
-                  S17776=0;
-                  if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                    doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                    S17776=1;
-                    if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                      doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                  S44566=0;
+                  if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                    doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                    S44566=1;
+                    if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                      doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                       ends[2]=2;
-                      ;//sysj/turntableController.sysj line: 119, column: 4
-                      S14096=12;
-                      if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                        S14096=13;
-                        if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                          m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                          m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                          S14096=14;
+                      ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                      S40886=12;
+                      if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                        S40886=13;
+                        if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                          m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                          m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                          S40886=14;
                           active[2]=1;
                           ends[2]=1;
                           tdone[2]=1;
@@ -8565,7 +8565,7 @@ public class RotaryTableController extends ClockDomain{
                         }
                       }
                       else {
-                        rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                        rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                         currsigs.addElement(rotaryTrigger);
                         active[2]=1;
                         ends[2]=1;
@@ -8590,12 +8590,12 @@ public class RotaryTableController extends ClockDomain{
             break;
           
           case 12 : 
-            if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-              S14096=13;
-              if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                S14096=14;
+            if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+              S40886=13;
+              if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                S40886=14;
                 active[2]=1;
                 ends[2]=1;
                 tdone[2]=1;
@@ -8607,7 +8607,7 @@ public class RotaryTableController extends ClockDomain{
               }
             }
             else {
-              rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+              rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
               currsigs.addElement(rotaryTrigger);
               active[2]=1;
               ends[2]=1;
@@ -8616,10 +8616,10 @@ public class RotaryTableController extends ClockDomain{
             break;
           
           case 13 : 
-            if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-              m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-              m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-              S14096=14;
+            if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+              m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+              m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+              S40886=14;
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
@@ -8632,58 +8632,58 @@ public class RotaryTableController extends ClockDomain{
             break;
           
           case 14 : 
-            S14096=14;
-            S14096=0;
-            if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 61, column: 20
-              S14096=1;
-              if(m_thread_2.exitOccupied()){//sysj/turntableController.sysj line: 69, column: 4
-                exiting_thread_2 = m_thread_2.exitId();//sysj/turntableController.sysj line: 70, column: 5
-                m_thread_2.sayUnloading();//sysj/turntableController.sysj line: 71, column: 5
-                S13910=0;
-                S13917=0;
-                if(!tableOutfeed_o.isPartnerPresent() || tableOutfeed_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 72, column: 5
-                  tableOutfeed_o.setREQ(false);//sysj/turntableController.sysj line: 72, column: 5
-                  S13917=1;
+            S40886=14;
+            S40886=0;
+            if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 61, column: 20
+              S40886=1;
+              if(m_thread_2.exitOccupied()){//sysj/rotaryTableController.sysj line: 69, column: 4
+                exiting_thread_2 = m_thread_2.exitWorkpiece();//sysj/rotaryTableController.sysj line: 70, column: 5
+                m_thread_2.sayUnloading();//sysj/rotaryTableController.sysj line: 71, column: 5
+                S40700=0;
+                S40707=0;
+                if(!tableOutfeed_o.isPartnerPresent() || tableOutfeed_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 72, column: 5
+                  tableOutfeed_o.setREQ(false);//sysj/rotaryTableController.sysj line: 72, column: 5
+                  S40707=1;
                   active[2]=1;
                   ends[2]=1;
                   tdone[2]=1;
                 }
                 else {
-                  S13912=0;
-                  if(tableOutfeed_o.isACK()){//sysj/turntableController.sysj line: 72, column: 5
-                    tableOutfeed_o.setVal(exiting_thread_2);//sysj/turntableController.sysj line: 72, column: 5
-                    S13912=1;
-                    if(!tableOutfeed_o.isACK()){//sysj/turntableController.sysj line: 72, column: 5
-                      tableOutfeed_o.setREQ(false);//sysj/turntableController.sysj line: 72, column: 5
+                  S40702=0;
+                  if(tableOutfeed_o.isACK()){//sysj/rotaryTableController.sysj line: 72, column: 5
+                    tableOutfeed_o.setVal(exiting_thread_2);//sysj/rotaryTableController.sysj line: 72, column: 5
+                    S40702=1;
+                    if(!tableOutfeed_o.isACK()){//sysj/rotaryTableController.sysj line: 72, column: 5
+                      tableOutfeed_o.setREQ(false);//sysj/rotaryTableController.sysj line: 72, column: 5
                       ends[2]=2;
-                      ;//sysj/turntableController.sysj line: 72, column: 5
-                      S13910=1;
-                      if(exitCleared.getprestatus()){//sysj/turntableController.sysj line: 73, column: 21
-                        m_thread_2.clearExit();//sysj/turntableController.sysj line: 76, column: 5
-                        S14096=2;
-                        if(m_thread_2.idle()){//sysj/turntableController.sysj line: 82, column: 4
-                          if(!m_thread_2.hasPending()){//sysj/turntableController.sysj line: 83, column: 11
+                      ;//sysj/rotaryTableController.sysj line: 72, column: 5
+                      S40700=1;
+                      if(exitCleared.getprestatus()){//sysj/rotaryTableController.sysj line: 73, column: 21
+                        m_thread_2.clearExit();//sysj/rotaryTableController.sysj line: 76, column: 5
+                        S40886=2;
+                        if(m_thread_2.idle()){//sysj/rotaryTableController.sysj line: 82, column: 4
+                          if(!m_thread_2.hasPending()){//sysj/rotaryTableController.sysj line: 83, column: 11
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             ends[2]=2;
-                            ;//sysj/turntableController.sysj line: 83, column: 5
-                            S14096=3;
-                            if(m_thread_2.readyToPlace()){//sysj/turntableController.sysj line: 85, column: 4
-                              S14141=0;
-                              if(bottleAtPos1.getprestatus()){//sysj/turntableController.sysj line: 86, column: 21
-                                m_thread_2.commitPending();//sysj/turntableController.sysj line: 89, column: 5
-                                placed_1.setPresent();//sysj/turntableController.sysj line: 90, column: 5
+                            ;//sysj/rotaryTableController.sysj line: 83, column: 5
+                            S40886=3;
+                            if(m_thread_2.readyToPlace()){//sysj/rotaryTableController.sysj line: 85, column: 4
+                              S40931=0;
+                              if(bottleAtPos1.getprestatus()){//sysj/rotaryTableController.sysj line: 86, column: 21
+                                m_thread_2.commitPending();//sysj/rotaryTableController.sysj line: 89, column: 5
+                                placed_1.setPresent();//sysj/rotaryTableController.sysj line: 90, column: 5
                                 currsigs.addElement(placed_1);
-                                S14141=1;
+                                S40931=1;
                                 active[2]=1;
                                 ends[2]=1;
                                 tdone[2]=1;
                               }
                               else {
-                                loadPos1.setPresent();//sysj/turntableController.sysj line: 87, column: 6
+                                loadPos1.setPresent();//sysj/rotaryTableController.sysj line: 87, column: 6
                                 currsigs.addElement(loadPos1);
                                 active[2]=1;
                                 ends[2]=1;
@@ -8691,157 +8691,157 @@ public class RotaryTableController extends ClockDomain{
                               }
                             }
                             else {
-                              S14096=4;
-                              S14239=0;
-                              if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 111, column: 4
-                                startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
-                                S14239=1;
+                              S40886=4;
+                              S41029=0;
+                              if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                                startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
+                                S41029=1;
                                 active[2]=1;
                                 ends[2]=1;
                                 tdone[2]=1;
                               }
                               else {
-                                S14234=0;
-                                if(startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                                  startFiller1_o.setVal(m_thread_2.idAt(1));//sysj/turntableController.sysj line: 111, column: 4
-                                  S14234=1;
-                                  if(!startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                                    startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
+                                S41024=0;
+                                if(startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                                  startFiller1_o.setVal(m_thread_2.at(1));//sysj/rotaryTableController.sysj line: 111, column: 4
+                                  S41024=1;
+                                  if(!startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                                    startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
                                     ends[2]=2;
-                                    ;//sysj/turntableController.sysj line: 111, column: 4
-                                    S14096=5;
-                                    S14613=0;
-                                    if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 112, column: 4
-                                      startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
-                                      S14613=1;
+                                    ;//sysj/rotaryTableController.sysj line: 111, column: 4
+                                    S40886=5;
+                                    S41403=0;
+                                    if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                      startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
+                                      S41403=1;
                                       active[2]=1;
                                       ends[2]=1;
                                       tdone[2]=1;
                                     }
                                     else {
-                                      S14608=0;
-                                      if(startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                        startFiller2_o.setVal(m_thread_2.idAt(2));//sysj/turntableController.sysj line: 112, column: 4
-                                        S14608=1;
-                                        if(!startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                          startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
+                                      S41398=0;
+                                      if(startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                        startFiller2_o.setVal(m_thread_2.at(2));//sysj/rotaryTableController.sysj line: 112, column: 4
+                                        S41398=1;
+                                        if(!startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                          startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
                                           ends[2]=2;
-                                          ;//sysj/turntableController.sysj line: 112, column: 4
-                                          S14096=6;
-                                          S15031=0;
-                                          if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 113, column: 4
-                                            startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
-                                            S15031=1;
+                                          ;//sysj/rotaryTableController.sysj line: 112, column: 4
+                                          S40886=6;
+                                          S41821=0;
+                                          if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                            startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
+                                            S41821=1;
                                             active[2]=1;
                                             ends[2]=1;
                                             tdone[2]=1;
                                           }
                                           else {
-                                            S15026=0;
-                                            if(startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                              startLid_o.setVal(m_thread_2.idAt(3));//sysj/turntableController.sysj line: 113, column: 4
-                                              S15026=1;
-                                              if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                                startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                                            S41816=0;
+                                            if(startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                              startLid_o.setVal(m_thread_2.at(3));//sysj/rotaryTableController.sysj line: 113, column: 4
+                                              S41816=1;
+                                              if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                                                 ends[2]=2;
-                                                ;//sysj/turntableController.sysj line: 113, column: 4
-                                                S14096=7;
-                                                S15493=0;
-                                                if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                                                  startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                                                  S15493=1;
+                                                ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                                                S40886=7;
+                                                S42283=0;
+                                                if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                  startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                  S42283=1;
                                                   active[2]=1;
                                                   ends[2]=1;
                                                   tdone[2]=1;
                                                 }
                                                 else {
-                                                  S15488=0;
-                                                  if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                                    startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                                                    S15488=1;
-                                                    if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                                      startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                                                  S42278=0;
+                                                  if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                    startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                    S42278=1;
+                                                    if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                      startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                                                       ends[2]=2;
-                                                      ;//sysj/turntableController.sysj line: 114, column: 4
-                                                      S14096=8;
-                                                      S15999=0;
-                                                      if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                                                        doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                                                        S15999=1;
+                                                      ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                      S40886=8;
+                                                      S42789=0;
+                                                      if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                        doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                        S42789=1;
                                                         active[2]=1;
                                                         ends[2]=1;
                                                         tdone[2]=1;
                                                       }
                                                       else {
-                                                        S15994=0;
-                                                        if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                          doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                                          S15994=1;
-                                                          if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                            doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                                                        S42784=0;
+                                                        if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                          doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                          S42784=1;
+                                                          if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                            doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                                             ends[2]=2;
-                                                            ;//sysj/turntableController.sysj line: 116, column: 4
-                                                            S14096=9;
-                                                            S16549=0;
-                                                            if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                                              doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                                              S16549=1;
+                                                            ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                            S40886=9;
+                                                            S43339=0;
+                                                            if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                              doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                              S43339=1;
                                                               active[2]=1;
                                                               ends[2]=1;
                                                               tdone[2]=1;
                                                             }
                                                             else {
-                                                              S16544=0;
-                                                              if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                                doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                                                S16544=1;
-                                                                if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                                  doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                                              S43334=0;
+                                                              if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                S43334=1;
+                                                                if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                  doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                                                   ends[2]=2;
-                                                                  ;//sysj/turntableController.sysj line: 117, column: 4
-                                                                  S14096=10;
-                                                                  S17143=0;
-                                                                  if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                    doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                                                    S17143=1;
+                                                                  ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                  S40886=10;
+                                                                  S43933=0;
+                                                                  if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                    doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                    S43933=1;
                                                                     active[2]=1;
                                                                     ends[2]=1;
                                                                     tdone[2]=1;
                                                                   }
                                                                   else {
-                                                                    S17138=0;
-                                                                    if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                      doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                                                      S17138=1;
-                                                                      if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                        doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                                                    S43928=0;
+                                                                    if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                      doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                      S43928=1;
+                                                                      if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                        doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                                                         ends[2]=2;
-                                                                        ;//sysj/turntableController.sysj line: 118, column: 4
-                                                                        S14096=11;
-                                                                        S17781=0;
-                                                                        if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                          doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                                          S17781=1;
+                                                                        ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                        S40886=11;
+                                                                        S44571=0;
+                                                                        if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                          doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                          S44571=1;
                                                                           active[2]=1;
                                                                           ends[2]=1;
                                                                           tdone[2]=1;
                                                                         }
                                                                         else {
-                                                                          S17776=0;
-                                                                          if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                            doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                                            S17776=1;
-                                                                            if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                              doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                                          S44566=0;
+                                                                          if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                            doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                            S44566=1;
+                                                                            if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                              doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                                               ends[2]=2;
-                                                                              ;//sysj/turntableController.sysj line: 119, column: 4
-                                                                              S14096=12;
-                                                                              if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                                                S14096=13;
-                                                                                if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                                                  m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                                                  m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                                                  S14096=14;
+                                                                              ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                              S40886=12;
+                                                                              if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                                                S40886=13;
+                                                                                if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                                                  m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                                                  m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                                                  S40886=14;
                                                                                   active[2]=1;
                                                                                   ends[2]=1;
                                                                                   tdone[2]=1;
@@ -8853,7 +8853,7 @@ public class RotaryTableController extends ClockDomain{
                                                                                 }
                                                                               }
                                                                               else {
-                                                                                rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                                                rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                                                 currsigs.addElement(rotaryTrigger);
                                                                                 active[2]=1;
                                                                                 ends[2]=1;
@@ -8967,20 +8967,20 @@ public class RotaryTableController extends ClockDomain{
                           }
                         }
                         else {
-                          S14096=3;
-                          if(m_thread_2.readyToPlace()){//sysj/turntableController.sysj line: 85, column: 4
-                            S14141=0;
-                            if(bottleAtPos1.getprestatus()){//sysj/turntableController.sysj line: 86, column: 21
-                              m_thread_2.commitPending();//sysj/turntableController.sysj line: 89, column: 5
-                              placed_1.setPresent();//sysj/turntableController.sysj line: 90, column: 5
+                          S40886=3;
+                          if(m_thread_2.readyToPlace()){//sysj/rotaryTableController.sysj line: 85, column: 4
+                            S40931=0;
+                            if(bottleAtPos1.getprestatus()){//sysj/rotaryTableController.sysj line: 86, column: 21
+                              m_thread_2.commitPending();//sysj/rotaryTableController.sysj line: 89, column: 5
+                              placed_1.setPresent();//sysj/rotaryTableController.sysj line: 90, column: 5
                               currsigs.addElement(placed_1);
-                              S14141=1;
+                              S40931=1;
                               active[2]=1;
                               ends[2]=1;
                               tdone[2]=1;
                             }
                             else {
-                              loadPos1.setPresent();//sysj/turntableController.sysj line: 87, column: 6
+                              loadPos1.setPresent();//sysj/rotaryTableController.sysj line: 87, column: 6
                               currsigs.addElement(loadPos1);
                               active[2]=1;
                               ends[2]=1;
@@ -8988,157 +8988,157 @@ public class RotaryTableController extends ClockDomain{
                             }
                           }
                           else {
-                            S14096=4;
-                            S14239=0;
-                            if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 111, column: 4
-                              startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
-                              S14239=1;
+                            S40886=4;
+                            S41029=0;
+                            if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                              startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
+                              S41029=1;
                               active[2]=1;
                               ends[2]=1;
                               tdone[2]=1;
                             }
                             else {
-                              S14234=0;
-                              if(startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                                startFiller1_o.setVal(m_thread_2.idAt(1));//sysj/turntableController.sysj line: 111, column: 4
-                                S14234=1;
-                                if(!startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                                  startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
+                              S41024=0;
+                              if(startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                                startFiller1_o.setVal(m_thread_2.at(1));//sysj/rotaryTableController.sysj line: 111, column: 4
+                                S41024=1;
+                                if(!startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                                  startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
                                   ends[2]=2;
-                                  ;//sysj/turntableController.sysj line: 111, column: 4
-                                  S14096=5;
-                                  S14613=0;
-                                  if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 112, column: 4
-                                    startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
-                                    S14613=1;
+                                  ;//sysj/rotaryTableController.sysj line: 111, column: 4
+                                  S40886=5;
+                                  S41403=0;
+                                  if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                    startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
+                                    S41403=1;
                                     active[2]=1;
                                     ends[2]=1;
                                     tdone[2]=1;
                                   }
                                   else {
-                                    S14608=0;
-                                    if(startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                      startFiller2_o.setVal(m_thread_2.idAt(2));//sysj/turntableController.sysj line: 112, column: 4
-                                      S14608=1;
-                                      if(!startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                        startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
+                                    S41398=0;
+                                    if(startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                      startFiller2_o.setVal(m_thread_2.at(2));//sysj/rotaryTableController.sysj line: 112, column: 4
+                                      S41398=1;
+                                      if(!startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                        startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
                                         ends[2]=2;
-                                        ;//sysj/turntableController.sysj line: 112, column: 4
-                                        S14096=6;
-                                        S15031=0;
-                                        if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 113, column: 4
-                                          startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
-                                          S15031=1;
+                                        ;//sysj/rotaryTableController.sysj line: 112, column: 4
+                                        S40886=6;
+                                        S41821=0;
+                                        if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                          startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
+                                          S41821=1;
                                           active[2]=1;
                                           ends[2]=1;
                                           tdone[2]=1;
                                         }
                                         else {
-                                          S15026=0;
-                                          if(startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                            startLid_o.setVal(m_thread_2.idAt(3));//sysj/turntableController.sysj line: 113, column: 4
-                                            S15026=1;
-                                            if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                              startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                                          S41816=0;
+                                          if(startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                            startLid_o.setVal(m_thread_2.at(3));//sysj/rotaryTableController.sysj line: 113, column: 4
+                                            S41816=1;
+                                            if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                              startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                                               ends[2]=2;
-                                              ;//sysj/turntableController.sysj line: 113, column: 4
-                                              S14096=7;
-                                              S15493=0;
-                                              if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                                                startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                                                S15493=1;
+                                              ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                                              S40886=7;
+                                              S42283=0;
+                                              if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                S42283=1;
                                                 active[2]=1;
                                                 ends[2]=1;
                                                 tdone[2]=1;
                                               }
                                               else {
-                                                S15488=0;
-                                                if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                                  startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                                                  S15488=1;
-                                                  if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                                    startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                                                S42278=0;
+                                                if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                  startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                  S42278=1;
+                                                  if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                    startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                                                     ends[2]=2;
-                                                    ;//sysj/turntableController.sysj line: 114, column: 4
-                                                    S14096=8;
-                                                    S15999=0;
-                                                    if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                                                      doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                                                      S15999=1;
+                                                    ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                                                    S40886=8;
+                                                    S42789=0;
+                                                    if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                      doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                      S42789=1;
                                                       active[2]=1;
                                                       ends[2]=1;
                                                       tdone[2]=1;
                                                     }
                                                     else {
-                                                      S15994=0;
-                                                      if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                        doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                                        S15994=1;
-                                                        if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                          doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                                                      S42784=0;
+                                                      if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                        doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                        S42784=1;
+                                                        if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                          doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                                           ends[2]=2;
-                                                          ;//sysj/turntableController.sysj line: 116, column: 4
-                                                          S14096=9;
-                                                          S16549=0;
-                                                          if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                                            doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                                            S16549=1;
+                                                          ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                          S40886=9;
+                                                          S43339=0;
+                                                          if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                            doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                            S43339=1;
                                                             active[2]=1;
                                                             ends[2]=1;
                                                             tdone[2]=1;
                                                           }
                                                           else {
-                                                            S16544=0;
-                                                            if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                              doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                                              S16544=1;
-                                                              if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                                doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                                            S43334=0;
+                                                            if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                              doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                              S43334=1;
+                                                              if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                                                 ends[2]=2;
-                                                                ;//sysj/turntableController.sysj line: 117, column: 4
-                                                                S14096=10;
-                                                                S17143=0;
-                                                                if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                  doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                                                  S17143=1;
+                                                                ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                                S40886=10;
+                                                                S43933=0;
+                                                                if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                  doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                  S43933=1;
                                                                   active[2]=1;
                                                                   ends[2]=1;
                                                                   tdone[2]=1;
                                                                 }
                                                                 else {
-                                                                  S17138=0;
-                                                                  if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                    doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                                                    S17138=1;
-                                                                    if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                      doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                                                  S43928=0;
+                                                                  if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                    doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                    S43928=1;
+                                                                    if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                      doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                                                       ends[2]=2;
-                                                                      ;//sysj/turntableController.sysj line: 118, column: 4
-                                                                      S14096=11;
-                                                                      S17781=0;
-                                                                      if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                        doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                                        S17781=1;
+                                                                      ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                      S40886=11;
+                                                                      S44571=0;
+                                                                      if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                        doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                        S44571=1;
                                                                         active[2]=1;
                                                                         ends[2]=1;
                                                                         tdone[2]=1;
                                                                       }
                                                                       else {
-                                                                        S17776=0;
-                                                                        if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                          doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                                          S17776=1;
-                                                                          if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                            doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                                        S44566=0;
+                                                                        if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                          doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                          S44566=1;
+                                                                          if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                            doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                                             ends[2]=2;
-                                                                            ;//sysj/turntableController.sysj line: 119, column: 4
-                                                                            S14096=12;
-                                                                            if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                                              S14096=13;
-                                                                              if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                                                m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                                                m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                                                S14096=14;
+                                                                            ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                            S40886=12;
+                                                                            if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                                              S40886=13;
+                                                                              if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                                                m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                                                m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                                                S40886=14;
                                                                                 active[2]=1;
                                                                                 ends[2]=1;
                                                                                 tdone[2]=1;
@@ -9150,7 +9150,7 @@ public class RotaryTableController extends ClockDomain{
                                                                               }
                                                                             }
                                                                             else {
-                                                                              rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                                              rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                                               currsigs.addElement(rotaryTrigger);
                                                                               active[2]=1;
                                                                               ends[2]=1;
@@ -9264,7 +9264,7 @@ public class RotaryTableController extends ClockDomain{
                         }
                       }
                       else {
-                        unloadExit.setPresent();//sysj/turntableController.sysj line: 74, column: 6
+                        unloadExit.setPresent();//sysj/rotaryTableController.sysj line: 74, column: 6
                         currsigs.addElement(unloadExit);
                         active[2]=1;
                         ends[2]=1;
@@ -9285,30 +9285,30 @@ public class RotaryTableController extends ClockDomain{
                 }
               }
               else {
-                S14096=2;
-                if(m_thread_2.idle()){//sysj/turntableController.sysj line: 82, column: 4
-                  if(!m_thread_2.hasPending()){//sysj/turntableController.sysj line: 83, column: 11
+                S40886=2;
+                if(m_thread_2.idle()){//sysj/rotaryTableController.sysj line: 82, column: 4
+                  if(!m_thread_2.hasPending()){//sysj/rotaryTableController.sysj line: 83, column: 11
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
                   }
                   else {
                     ends[2]=2;
-                    ;//sysj/turntableController.sysj line: 83, column: 5
-                    S14096=3;
-                    if(m_thread_2.readyToPlace()){//sysj/turntableController.sysj line: 85, column: 4
-                      S14141=0;
-                      if(bottleAtPos1.getprestatus()){//sysj/turntableController.sysj line: 86, column: 21
-                        m_thread_2.commitPending();//sysj/turntableController.sysj line: 89, column: 5
-                        placed_1.setPresent();//sysj/turntableController.sysj line: 90, column: 5
+                    ;//sysj/rotaryTableController.sysj line: 83, column: 5
+                    S40886=3;
+                    if(m_thread_2.readyToPlace()){//sysj/rotaryTableController.sysj line: 85, column: 4
+                      S40931=0;
+                      if(bottleAtPos1.getprestatus()){//sysj/rotaryTableController.sysj line: 86, column: 21
+                        m_thread_2.commitPending();//sysj/rotaryTableController.sysj line: 89, column: 5
+                        placed_1.setPresent();//sysj/rotaryTableController.sysj line: 90, column: 5
                         currsigs.addElement(placed_1);
-                        S14141=1;
+                        S40931=1;
                         active[2]=1;
                         ends[2]=1;
                         tdone[2]=1;
                       }
                       else {
-                        loadPos1.setPresent();//sysj/turntableController.sysj line: 87, column: 6
+                        loadPos1.setPresent();//sysj/rotaryTableController.sysj line: 87, column: 6
                         currsigs.addElement(loadPos1);
                         active[2]=1;
                         ends[2]=1;
@@ -9316,157 +9316,157 @@ public class RotaryTableController extends ClockDomain{
                       }
                     }
                     else {
-                      S14096=4;
-                      S14239=0;
-                      if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 111, column: 4
-                        startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
-                        S14239=1;
+                      S40886=4;
+                      S41029=0;
+                      if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                        startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
+                        S41029=1;
                         active[2]=1;
                         ends[2]=1;
                         tdone[2]=1;
                       }
                       else {
-                        S14234=0;
-                        if(startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                          startFiller1_o.setVal(m_thread_2.idAt(1));//sysj/turntableController.sysj line: 111, column: 4
-                          S14234=1;
-                          if(!startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                            startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
+                        S41024=0;
+                        if(startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                          startFiller1_o.setVal(m_thread_2.at(1));//sysj/rotaryTableController.sysj line: 111, column: 4
+                          S41024=1;
+                          if(!startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                            startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
                             ends[2]=2;
-                            ;//sysj/turntableController.sysj line: 111, column: 4
-                            S14096=5;
-                            S14613=0;
-                            if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 112, column: 4
-                              startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
-                              S14613=1;
+                            ;//sysj/rotaryTableController.sysj line: 111, column: 4
+                            S40886=5;
+                            S41403=0;
+                            if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                              startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
+                              S41403=1;
                               active[2]=1;
                               ends[2]=1;
                               tdone[2]=1;
                             }
                             else {
-                              S14608=0;
-                              if(startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                startFiller2_o.setVal(m_thread_2.idAt(2));//sysj/turntableController.sysj line: 112, column: 4
-                                S14608=1;
-                                if(!startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                  startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
+                              S41398=0;
+                              if(startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                startFiller2_o.setVal(m_thread_2.at(2));//sysj/rotaryTableController.sysj line: 112, column: 4
+                                S41398=1;
+                                if(!startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                  startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
                                   ends[2]=2;
-                                  ;//sysj/turntableController.sysj line: 112, column: 4
-                                  S14096=6;
-                                  S15031=0;
-                                  if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 113, column: 4
-                                    startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
-                                    S15031=1;
+                                  ;//sysj/rotaryTableController.sysj line: 112, column: 4
+                                  S40886=6;
+                                  S41821=0;
+                                  if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                    startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
+                                    S41821=1;
                                     active[2]=1;
                                     ends[2]=1;
                                     tdone[2]=1;
                                   }
                                   else {
-                                    S15026=0;
-                                    if(startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                      startLid_o.setVal(m_thread_2.idAt(3));//sysj/turntableController.sysj line: 113, column: 4
-                                      S15026=1;
-                                      if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                        startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                                    S41816=0;
+                                    if(startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                      startLid_o.setVal(m_thread_2.at(3));//sysj/rotaryTableController.sysj line: 113, column: 4
+                                      S41816=1;
+                                      if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                        startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                                         ends[2]=2;
-                                        ;//sysj/turntableController.sysj line: 113, column: 4
-                                        S14096=7;
-                                        S15493=0;
-                                        if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                                          startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                                          S15493=1;
+                                        ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                                        S40886=7;
+                                        S42283=0;
+                                        if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                          startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                                          S42283=1;
                                           active[2]=1;
                                           ends[2]=1;
                                           tdone[2]=1;
                                         }
                                         else {
-                                          S15488=0;
-                                          if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                            startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                                            S15488=1;
-                                            if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                              startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                                          S42278=0;
+                                          if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                            startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                                            S42278=1;
+                                            if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                              startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                                               ends[2]=2;
-                                              ;//sysj/turntableController.sysj line: 114, column: 4
-                                              S14096=8;
-                                              S15999=0;
-                                              if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                                                doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                                                S15999=1;
+                                              ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                                              S40886=8;
+                                              S42789=0;
+                                              if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                S42789=1;
                                                 active[2]=1;
                                                 ends[2]=1;
                                                 tdone[2]=1;
                                               }
                                               else {
-                                                S15994=0;
-                                                if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                  doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                                  S15994=1;
-                                                  if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                    doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                                                S42784=0;
+                                                if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                  doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                  S42784=1;
+                                                  if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                    doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                                     ends[2]=2;
-                                                    ;//sysj/turntableController.sysj line: 116, column: 4
-                                                    S14096=9;
-                                                    S16549=0;
-                                                    if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                                      doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                                      S16549=1;
+                                                    ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                    S40886=9;
+                                                    S43339=0;
+                                                    if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                      doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                      S43339=1;
                                                       active[2]=1;
                                                       ends[2]=1;
                                                       tdone[2]=1;
                                                     }
                                                     else {
-                                                      S16544=0;
-                                                      if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                        doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                                        S16544=1;
-                                                        if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                          doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                                      S43334=0;
+                                                      if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                        doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                        S43334=1;
+                                                        if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                          doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                                           ends[2]=2;
-                                                          ;//sysj/turntableController.sysj line: 117, column: 4
-                                                          S14096=10;
-                                                          S17143=0;
-                                                          if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                                            doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                                            S17143=1;
+                                                          ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                          S40886=10;
+                                                          S43933=0;
+                                                          if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                            doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                            S43933=1;
                                                             active[2]=1;
                                                             ends[2]=1;
                                                             tdone[2]=1;
                                                           }
                                                           else {
-                                                            S17138=0;
-                                                            if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                              doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                                              S17138=1;
-                                                              if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                                            S43928=0;
+                                                            if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                              doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                              S43928=1;
+                                                              if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                                                 ends[2]=2;
-                                                                ;//sysj/turntableController.sysj line: 118, column: 4
-                                                                S14096=11;
-                                                                S17781=0;
-                                                                if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                  doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                                  S17781=1;
+                                                                ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                S40886=11;
+                                                                S44571=0;
+                                                                if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                  doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                  S44571=1;
                                                                   active[2]=1;
                                                                   ends[2]=1;
                                                                   tdone[2]=1;
                                                                 }
                                                                 else {
-                                                                  S17776=0;
-                                                                  if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                    doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                                    S17776=1;
-                                                                    if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                      doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                                  S44566=0;
+                                                                  if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                    doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                    S44566=1;
+                                                                    if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                      doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                                       ends[2]=2;
-                                                                      ;//sysj/turntableController.sysj line: 119, column: 4
-                                                                      S14096=12;
-                                                                      if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                                        S14096=13;
-                                                                        if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                                          m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                                          m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                                          S14096=14;
+                                                                      ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                      S40886=12;
+                                                                      if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                                        S40886=13;
+                                                                        if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                                          m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                                          m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                                          S40886=14;
                                                                           active[2]=1;
                                                                           ends[2]=1;
                                                                           tdone[2]=1;
@@ -9478,7 +9478,7 @@ public class RotaryTableController extends ClockDomain{
                                                                         }
                                                                       }
                                                                       else {
-                                                                        rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                                        rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                                         currsigs.addElement(rotaryTrigger);
                                                                         active[2]=1;
                                                                         ends[2]=1;
@@ -9592,20 +9592,20 @@ public class RotaryTableController extends ClockDomain{
                   }
                 }
                 else {
-                  S14096=3;
-                  if(m_thread_2.readyToPlace()){//sysj/turntableController.sysj line: 85, column: 4
-                    S14141=0;
-                    if(bottleAtPos1.getprestatus()){//sysj/turntableController.sysj line: 86, column: 21
-                      m_thread_2.commitPending();//sysj/turntableController.sysj line: 89, column: 5
-                      placed_1.setPresent();//sysj/turntableController.sysj line: 90, column: 5
+                  S40886=3;
+                  if(m_thread_2.readyToPlace()){//sysj/rotaryTableController.sysj line: 85, column: 4
+                    S40931=0;
+                    if(bottleAtPos1.getprestatus()){//sysj/rotaryTableController.sysj line: 86, column: 21
+                      m_thread_2.commitPending();//sysj/rotaryTableController.sysj line: 89, column: 5
+                      placed_1.setPresent();//sysj/rotaryTableController.sysj line: 90, column: 5
                       currsigs.addElement(placed_1);
-                      S14141=1;
+                      S40931=1;
                       active[2]=1;
                       ends[2]=1;
                       tdone[2]=1;
                     }
                     else {
-                      loadPos1.setPresent();//sysj/turntableController.sysj line: 87, column: 6
+                      loadPos1.setPresent();//sysj/rotaryTableController.sysj line: 87, column: 6
                       currsigs.addElement(loadPos1);
                       active[2]=1;
                       ends[2]=1;
@@ -9613,157 +9613,157 @@ public class RotaryTableController extends ClockDomain{
                     }
                   }
                   else {
-                    S14096=4;
-                    S14239=0;
-                    if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 111, column: 4
-                      startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
-                      S14239=1;
+                    S40886=4;
+                    S41029=0;
+                    if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                      startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
+                      S41029=1;
                       active[2]=1;
                       ends[2]=1;
                       tdone[2]=1;
                     }
                     else {
-                      S14234=0;
-                      if(startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                        startFiller1_o.setVal(m_thread_2.idAt(1));//sysj/turntableController.sysj line: 111, column: 4
-                        S14234=1;
-                        if(!startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                          startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
+                      S41024=0;
+                      if(startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                        startFiller1_o.setVal(m_thread_2.at(1));//sysj/rotaryTableController.sysj line: 111, column: 4
+                        S41024=1;
+                        if(!startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                          startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
                           ends[2]=2;
-                          ;//sysj/turntableController.sysj line: 111, column: 4
-                          S14096=5;
-                          S14613=0;
-                          if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 112, column: 4
-                            startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
-                            S14613=1;
+                          ;//sysj/rotaryTableController.sysj line: 111, column: 4
+                          S40886=5;
+                          S41403=0;
+                          if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                            startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
+                            S41403=1;
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
-                            S14608=0;
-                            if(startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                              startFiller2_o.setVal(m_thread_2.idAt(2));//sysj/turntableController.sysj line: 112, column: 4
-                              S14608=1;
-                              if(!startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
+                            S41398=0;
+                            if(startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                              startFiller2_o.setVal(m_thread_2.at(2));//sysj/rotaryTableController.sysj line: 112, column: 4
+                              S41398=1;
+                              if(!startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
                                 ends[2]=2;
-                                ;//sysj/turntableController.sysj line: 112, column: 4
-                                S14096=6;
-                                S15031=0;
-                                if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 113, column: 4
-                                  startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
-                                  S15031=1;
+                                ;//sysj/rotaryTableController.sysj line: 112, column: 4
+                                S40886=6;
+                                S41821=0;
+                                if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                  startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
+                                  S41821=1;
                                   active[2]=1;
                                   ends[2]=1;
                                   tdone[2]=1;
                                 }
                                 else {
-                                  S15026=0;
-                                  if(startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                    startLid_o.setVal(m_thread_2.idAt(3));//sysj/turntableController.sysj line: 113, column: 4
-                                    S15026=1;
-                                    if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                      startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                                  S41816=0;
+                                  if(startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                    startLid_o.setVal(m_thread_2.at(3));//sysj/rotaryTableController.sysj line: 113, column: 4
+                                    S41816=1;
+                                    if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                      startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                                       ends[2]=2;
-                                      ;//sysj/turntableController.sysj line: 113, column: 4
-                                      S14096=7;
-                                      S15493=0;
-                                      if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                                        startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                                        S15493=1;
+                                      ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                                      S40886=7;
+                                      S42283=0;
+                                      if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                        startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                                        S42283=1;
                                         active[2]=1;
                                         ends[2]=1;
                                         tdone[2]=1;
                                       }
                                       else {
-                                        S15488=0;
-                                        if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                          startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                                          S15488=1;
-                                          if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                            startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                                        S42278=0;
+                                        if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                          startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                                          S42278=1;
+                                          if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                            startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                                             ends[2]=2;
-                                            ;//sysj/turntableController.sysj line: 114, column: 4
-                                            S14096=8;
-                                            S15999=0;
-                                            if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                                              doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                                              S15999=1;
+                                            ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                                            S40886=8;
+                                            S42789=0;
+                                            if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                              doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                              S42789=1;
                                               active[2]=1;
                                               ends[2]=1;
                                               tdone[2]=1;
                                             }
                                             else {
-                                              S15994=0;
-                                              if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                                S15994=1;
-                                                if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                  doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                                              S42784=0;
+                                              if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                S42784=1;
+                                                if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                  doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                                   ends[2]=2;
-                                                  ;//sysj/turntableController.sysj line: 116, column: 4
-                                                  S14096=9;
-                                                  S16549=0;
-                                                  if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                                    doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                                    S16549=1;
+                                                  ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                  S40886=9;
+                                                  S43339=0;
+                                                  if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                    doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                    S43339=1;
                                                     active[2]=1;
                                                     ends[2]=1;
                                                     tdone[2]=1;
                                                   }
                                                   else {
-                                                    S16544=0;
-                                                    if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                      doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                                      S16544=1;
-                                                      if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                        doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                                    S43334=0;
+                                                    if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                      doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                      S43334=1;
+                                                      if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                        doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                                         ends[2]=2;
-                                                        ;//sysj/turntableController.sysj line: 117, column: 4
-                                                        S14096=10;
-                                                        S17143=0;
-                                                        if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                                          doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                                          S17143=1;
+                                                        ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                        S40886=10;
+                                                        S43933=0;
+                                                        if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                          doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                          S43933=1;
                                                           active[2]=1;
                                                           ends[2]=1;
                                                           tdone[2]=1;
                                                         }
                                                         else {
-                                                          S17138=0;
-                                                          if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                            doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                                            S17138=1;
-                                                            if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                              doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                                          S43928=0;
+                                                          if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                            doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                            S43928=1;
+                                                            if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                              doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                                               ends[2]=2;
-                                                              ;//sysj/turntableController.sysj line: 118, column: 4
-                                                              S14096=11;
-                                                              S17781=0;
-                                                              if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                                S17781=1;
+                                                              ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                              S40886=11;
+                                                              S44571=0;
+                                                              if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                S44571=1;
                                                                 active[2]=1;
                                                                 ends[2]=1;
                                                                 tdone[2]=1;
                                                               }
                                                               else {
-                                                                S17776=0;
-                                                                if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                  doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                                  S17776=1;
-                                                                  if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                    doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                                S44566=0;
+                                                                if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                  doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                  S44566=1;
+                                                                  if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                    doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                                     ends[2]=2;
-                                                                    ;//sysj/turntableController.sysj line: 119, column: 4
-                                                                    S14096=12;
-                                                                    if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                                      S14096=13;
-                                                                      if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                                        m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                                        m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                                        S14096=14;
+                                                                    ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                    S40886=12;
+                                                                    if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                                      S40886=13;
+                                                                      if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                                        m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                                        m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                                        S40886=14;
                                                                         active[2]=1;
                                                                         ends[2]=1;
                                                                         tdone[2]=1;
@@ -9775,7 +9775,7 @@ public class RotaryTableController extends ClockDomain{
                                                                       }
                                                                     }
                                                                     else {
-                                                                      rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                                      rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                                       currsigs.addElement(rotaryTrigger);
                                                                       active[2]=1;
                                                                       ends[2]=1;
@@ -9902,34 +9902,34 @@ public class RotaryTableController extends ClockDomain{
     }
   }
 
-  public void thread42362(int [] tdone, int [] ends){
-        S42357=1;
-    m_thread_3 = TableModel.shared();//sysj/turntableController.sysj line: 137, column: 3
-    b_thread_3 = 0;//sysj/turntableController.sysj line: 138, column: 3
-    S42217=0;
-    S42201=0;
-    if(!tableInfeed_in.isPartnerPresent() || tableInfeed_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 140, column: 4
-      tableInfeed_in.setACK(false);//sysj/turntableController.sysj line: 140, column: 4
-      S42201=1;
+  public void thread69152(int [] tdone, int [] ends){
+        S69147=1;
+    m_thread_3 = TableModel.shared();//sysj/rotaryTableController.sysj line: 137, column: 3
+    w_thread_3 = null;//sysj/rotaryTableController.sysj line: 138, column: 3
+    S69007=0;
+    S68991=0;
+    if(!tableInfeed_in.isPartnerPresent() || tableInfeed_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 140, column: 4
+      tableInfeed_in.setACK(false);//sysj/rotaryTableController.sysj line: 140, column: 4
+      S68991=1;
       active[3]=1;
       ends[3]=1;
       tdone[3]=1;
     }
     else {
-      S42196=0;
-      if(!tableInfeed_in.isREQ()){//sysj/turntableController.sysj line: 140, column: 4
-        tableInfeed_in.setACK(true);//sysj/turntableController.sysj line: 140, column: 4
-        S42196=1;
-        if(tableInfeed_in.isREQ()){//sysj/turntableController.sysj line: 140, column: 4
-          tableInfeed_in.setACK(false);//sysj/turntableController.sysj line: 140, column: 4
+      S68986=0;
+      if(!tableInfeed_in.isREQ()){//sysj/rotaryTableController.sysj line: 140, column: 4
+        tableInfeed_in.setACK(true);//sysj/rotaryTableController.sysj line: 140, column: 4
+        S68986=1;
+        if(tableInfeed_in.isREQ()){//sysj/rotaryTableController.sysj line: 140, column: 4
+          tableInfeed_in.setACK(false);//sysj/rotaryTableController.sysj line: 140, column: 4
           ends[3]=2;
-          ;//sysj/turntableController.sysj line: 140, column: 4
-          b_thread_3 = ((Integer)(tableInfeed_in.getVal() == null ? null : ((Integer)tableInfeed_in.getVal()))).intValue();//sysj/turntableController.sysj line: 141, column: 4
-          m_thread_3.setPending(b_thread_3);//sysj/turntableController.sysj line: 142, column: 4
-          System.out.println("[RT] Accepted bottle " + b_thread_3 + " from the conveyor.");//sysj/turntableController.sysj line: 143, column: 4
-          S42217=1;
-          if(placed_1.getprestatus()){//sysj/turntableController.sysj line: 144, column: 20
-            S42217=2;
+          ;//sysj/rotaryTableController.sysj line: 140, column: 4
+          w_thread_3 = (Workpiece)(tableInfeed_in.getVal() == null ? null : ((Workpiece)tableInfeed_in.getVal()));//sysj/rotaryTableController.sysj line: 141, column: 4
+          m_thread_3.setPending(w_thread_3);//sysj/rotaryTableController.sysj line: 142, column: 4
+          System.out.println("[RT] Accepted " + w_thread_3 + " from the conveyor.");//sysj/rotaryTableController.sysj line: 143, column: 4
+          S69007=1;
+          if(placed_1.getprestatus()){//sysj/rotaryTableController.sysj line: 144, column: 20
+            S69007=2;
             active[3]=1;
             ends[3]=1;
             tdone[3]=1;
@@ -9954,61 +9954,61 @@ public class RotaryTableController extends ClockDomain{
     }
   }
 
-  public void thread42361(int [] tdone, int [] ends){
-        S42193=1;
-    m_thread_2 = TableModel.shared();//sysj/turntableController.sysj line: 56, column: 3
-    exiting_thread_2 = 0;//sysj/turntableController.sysj line: 57, column: 3
-    S14096=0;
-    if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 61, column: 20
-      S14096=1;
-      if(m_thread_2.exitOccupied()){//sysj/turntableController.sysj line: 69, column: 4
-        exiting_thread_2 = m_thread_2.exitId();//sysj/turntableController.sysj line: 70, column: 5
-        m_thread_2.sayUnloading();//sysj/turntableController.sysj line: 71, column: 5
-        S13910=0;
-        S13917=0;
-        if(!tableOutfeed_o.isPartnerPresent() || tableOutfeed_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 72, column: 5
-          tableOutfeed_o.setREQ(false);//sysj/turntableController.sysj line: 72, column: 5
-          S13917=1;
+  public void thread69151(int [] tdone, int [] ends){
+        S68983=1;
+    m_thread_2 = TableModel.shared();//sysj/rotaryTableController.sysj line: 56, column: 3
+    exiting_thread_2 = null;//sysj/rotaryTableController.sysj line: 57, column: 3
+    S40886=0;
+    if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 61, column: 20
+      S40886=1;
+      if(m_thread_2.exitOccupied()){//sysj/rotaryTableController.sysj line: 69, column: 4
+        exiting_thread_2 = m_thread_2.exitWorkpiece();//sysj/rotaryTableController.sysj line: 70, column: 5
+        m_thread_2.sayUnloading();//sysj/rotaryTableController.sysj line: 71, column: 5
+        S40700=0;
+        S40707=0;
+        if(!tableOutfeed_o.isPartnerPresent() || tableOutfeed_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 72, column: 5
+          tableOutfeed_o.setREQ(false);//sysj/rotaryTableController.sysj line: 72, column: 5
+          S40707=1;
           active[2]=1;
           ends[2]=1;
           tdone[2]=1;
         }
         else {
-          S13912=0;
-          if(tableOutfeed_o.isACK()){//sysj/turntableController.sysj line: 72, column: 5
-            tableOutfeed_o.setVal(exiting_thread_2);//sysj/turntableController.sysj line: 72, column: 5
-            S13912=1;
-            if(!tableOutfeed_o.isACK()){//sysj/turntableController.sysj line: 72, column: 5
-              tableOutfeed_o.setREQ(false);//sysj/turntableController.sysj line: 72, column: 5
+          S40702=0;
+          if(tableOutfeed_o.isACK()){//sysj/rotaryTableController.sysj line: 72, column: 5
+            tableOutfeed_o.setVal(exiting_thread_2);//sysj/rotaryTableController.sysj line: 72, column: 5
+            S40702=1;
+            if(!tableOutfeed_o.isACK()){//sysj/rotaryTableController.sysj line: 72, column: 5
+              tableOutfeed_o.setREQ(false);//sysj/rotaryTableController.sysj line: 72, column: 5
               ends[2]=2;
-              ;//sysj/turntableController.sysj line: 72, column: 5
-              S13910=1;
-              if(exitCleared.getprestatus()){//sysj/turntableController.sysj line: 73, column: 21
-                m_thread_2.clearExit();//sysj/turntableController.sysj line: 76, column: 5
-                S14096=2;
-                if(m_thread_2.idle()){//sysj/turntableController.sysj line: 82, column: 4
-                  if(!m_thread_2.hasPending()){//sysj/turntableController.sysj line: 83, column: 11
+              ;//sysj/rotaryTableController.sysj line: 72, column: 5
+              S40700=1;
+              if(exitCleared.getprestatus()){//sysj/rotaryTableController.sysj line: 73, column: 21
+                m_thread_2.clearExit();//sysj/rotaryTableController.sysj line: 76, column: 5
+                S40886=2;
+                if(m_thread_2.idle()){//sysj/rotaryTableController.sysj line: 82, column: 4
+                  if(!m_thread_2.hasPending()){//sysj/rotaryTableController.sysj line: 83, column: 11
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
                   }
                   else {
                     ends[2]=2;
-                    ;//sysj/turntableController.sysj line: 83, column: 5
-                    S14096=3;
-                    if(m_thread_2.readyToPlace()){//sysj/turntableController.sysj line: 85, column: 4
-                      S14141=0;
-                      if(bottleAtPos1.getprestatus()){//sysj/turntableController.sysj line: 86, column: 21
-                        m_thread_2.commitPending();//sysj/turntableController.sysj line: 89, column: 5
-                        placed_1.setPresent();//sysj/turntableController.sysj line: 90, column: 5
+                    ;//sysj/rotaryTableController.sysj line: 83, column: 5
+                    S40886=3;
+                    if(m_thread_2.readyToPlace()){//sysj/rotaryTableController.sysj line: 85, column: 4
+                      S40931=0;
+                      if(bottleAtPos1.getprestatus()){//sysj/rotaryTableController.sysj line: 86, column: 21
+                        m_thread_2.commitPending();//sysj/rotaryTableController.sysj line: 89, column: 5
+                        placed_1.setPresent();//sysj/rotaryTableController.sysj line: 90, column: 5
                         currsigs.addElement(placed_1);
-                        S14141=1;
+                        S40931=1;
                         active[2]=1;
                         ends[2]=1;
                         tdone[2]=1;
                       }
                       else {
-                        loadPos1.setPresent();//sysj/turntableController.sysj line: 87, column: 6
+                        loadPos1.setPresent();//sysj/rotaryTableController.sysj line: 87, column: 6
                         currsigs.addElement(loadPos1);
                         active[2]=1;
                         ends[2]=1;
@@ -10016,157 +10016,157 @@ public class RotaryTableController extends ClockDomain{
                       }
                     }
                     else {
-                      S14096=4;
-                      S14239=0;
-                      if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 111, column: 4
-                        startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
-                        S14239=1;
+                      S40886=4;
+                      S41029=0;
+                      if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                        startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
+                        S41029=1;
                         active[2]=1;
                         ends[2]=1;
                         tdone[2]=1;
                       }
                       else {
-                        S14234=0;
-                        if(startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                          startFiller1_o.setVal(m_thread_2.idAt(1));//sysj/turntableController.sysj line: 111, column: 4
-                          S14234=1;
-                          if(!startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                            startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
+                        S41024=0;
+                        if(startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                          startFiller1_o.setVal(m_thread_2.at(1));//sysj/rotaryTableController.sysj line: 111, column: 4
+                          S41024=1;
+                          if(!startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                            startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
                             ends[2]=2;
-                            ;//sysj/turntableController.sysj line: 111, column: 4
-                            S14096=5;
-                            S14613=0;
-                            if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 112, column: 4
-                              startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
-                              S14613=1;
+                            ;//sysj/rotaryTableController.sysj line: 111, column: 4
+                            S40886=5;
+                            S41403=0;
+                            if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                              startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
+                              S41403=1;
                               active[2]=1;
                               ends[2]=1;
                               tdone[2]=1;
                             }
                             else {
-                              S14608=0;
-                              if(startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                startFiller2_o.setVal(m_thread_2.idAt(2));//sysj/turntableController.sysj line: 112, column: 4
-                                S14608=1;
-                                if(!startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                  startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
+                              S41398=0;
+                              if(startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                startFiller2_o.setVal(m_thread_2.at(2));//sysj/rotaryTableController.sysj line: 112, column: 4
+                                S41398=1;
+                                if(!startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                  startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
                                   ends[2]=2;
-                                  ;//sysj/turntableController.sysj line: 112, column: 4
-                                  S14096=6;
-                                  S15031=0;
-                                  if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 113, column: 4
-                                    startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
-                                    S15031=1;
+                                  ;//sysj/rotaryTableController.sysj line: 112, column: 4
+                                  S40886=6;
+                                  S41821=0;
+                                  if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                    startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
+                                    S41821=1;
                                     active[2]=1;
                                     ends[2]=1;
                                     tdone[2]=1;
                                   }
                                   else {
-                                    S15026=0;
-                                    if(startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                      startLid_o.setVal(m_thread_2.idAt(3));//sysj/turntableController.sysj line: 113, column: 4
-                                      S15026=1;
-                                      if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                        startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                                    S41816=0;
+                                    if(startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                      startLid_o.setVal(m_thread_2.at(3));//sysj/rotaryTableController.sysj line: 113, column: 4
+                                      S41816=1;
+                                      if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                        startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                                         ends[2]=2;
-                                        ;//sysj/turntableController.sysj line: 113, column: 4
-                                        S14096=7;
-                                        S15493=0;
-                                        if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                                          startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                                          S15493=1;
+                                        ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                                        S40886=7;
+                                        S42283=0;
+                                        if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                          startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                                          S42283=1;
                                           active[2]=1;
                                           ends[2]=1;
                                           tdone[2]=1;
                                         }
                                         else {
-                                          S15488=0;
-                                          if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                            startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                                            S15488=1;
-                                            if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                              startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                                          S42278=0;
+                                          if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                            startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                                            S42278=1;
+                                            if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                              startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                                               ends[2]=2;
-                                              ;//sysj/turntableController.sysj line: 114, column: 4
-                                              S14096=8;
-                                              S15999=0;
-                                              if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                                                doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                                                S15999=1;
+                                              ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                                              S40886=8;
+                                              S42789=0;
+                                              if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                S42789=1;
                                                 active[2]=1;
                                                 ends[2]=1;
                                                 tdone[2]=1;
                                               }
                                               else {
-                                                S15994=0;
-                                                if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                  doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                                  S15994=1;
-                                                  if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                    doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                                                S42784=0;
+                                                if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                  doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                  S42784=1;
+                                                  if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                    doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                                     ends[2]=2;
-                                                    ;//sysj/turntableController.sysj line: 116, column: 4
-                                                    S14096=9;
-                                                    S16549=0;
-                                                    if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                                      doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                                      S16549=1;
+                                                    ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                    S40886=9;
+                                                    S43339=0;
+                                                    if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                      doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                      S43339=1;
                                                       active[2]=1;
                                                       ends[2]=1;
                                                       tdone[2]=1;
                                                     }
                                                     else {
-                                                      S16544=0;
-                                                      if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                        doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                                        S16544=1;
-                                                        if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                          doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                                      S43334=0;
+                                                      if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                        doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                        S43334=1;
+                                                        if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                          doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                                           ends[2]=2;
-                                                          ;//sysj/turntableController.sysj line: 117, column: 4
-                                                          S14096=10;
-                                                          S17143=0;
-                                                          if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                                            doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                                            S17143=1;
+                                                          ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                          S40886=10;
+                                                          S43933=0;
+                                                          if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                            doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                            S43933=1;
                                                             active[2]=1;
                                                             ends[2]=1;
                                                             tdone[2]=1;
                                                           }
                                                           else {
-                                                            S17138=0;
-                                                            if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                              doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                                              S17138=1;
-                                                              if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                                doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                                            S43928=0;
+                                                            if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                              doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                              S43928=1;
+                                                              if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                                                 ends[2]=2;
-                                                                ;//sysj/turntableController.sysj line: 118, column: 4
-                                                                S14096=11;
-                                                                S17781=0;
-                                                                if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                  doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                                  S17781=1;
+                                                                ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                                S40886=11;
+                                                                S44571=0;
+                                                                if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                  doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                  S44571=1;
                                                                   active[2]=1;
                                                                   ends[2]=1;
                                                                   tdone[2]=1;
                                                                 }
                                                                 else {
-                                                                  S17776=0;
-                                                                  if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                    doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                                    S17776=1;
-                                                                    if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                      doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                                  S44566=0;
+                                                                  if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                    doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                    S44566=1;
+                                                                    if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                      doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                                       ends[2]=2;
-                                                                      ;//sysj/turntableController.sysj line: 119, column: 4
-                                                                      S14096=12;
-                                                                      if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                                        S14096=13;
-                                                                        if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                                          m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                                          m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                                          S14096=14;
+                                                                      ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                      S40886=12;
+                                                                      if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                                        S40886=13;
+                                                                        if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                                          m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                                          m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                                          S40886=14;
                                                                           active[2]=1;
                                                                           ends[2]=1;
                                                                           tdone[2]=1;
@@ -10178,7 +10178,7 @@ public class RotaryTableController extends ClockDomain{
                                                                         }
                                                                       }
                                                                       else {
-                                                                        rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                                        rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                                         currsigs.addElement(rotaryTrigger);
                                                                         active[2]=1;
                                                                         ends[2]=1;
@@ -10292,20 +10292,20 @@ public class RotaryTableController extends ClockDomain{
                   }
                 }
                 else {
-                  S14096=3;
-                  if(m_thread_2.readyToPlace()){//sysj/turntableController.sysj line: 85, column: 4
-                    S14141=0;
-                    if(bottleAtPos1.getprestatus()){//sysj/turntableController.sysj line: 86, column: 21
-                      m_thread_2.commitPending();//sysj/turntableController.sysj line: 89, column: 5
-                      placed_1.setPresent();//sysj/turntableController.sysj line: 90, column: 5
+                  S40886=3;
+                  if(m_thread_2.readyToPlace()){//sysj/rotaryTableController.sysj line: 85, column: 4
+                    S40931=0;
+                    if(bottleAtPos1.getprestatus()){//sysj/rotaryTableController.sysj line: 86, column: 21
+                      m_thread_2.commitPending();//sysj/rotaryTableController.sysj line: 89, column: 5
+                      placed_1.setPresent();//sysj/rotaryTableController.sysj line: 90, column: 5
                       currsigs.addElement(placed_1);
-                      S14141=1;
+                      S40931=1;
                       active[2]=1;
                       ends[2]=1;
                       tdone[2]=1;
                     }
                     else {
-                      loadPos1.setPresent();//sysj/turntableController.sysj line: 87, column: 6
+                      loadPos1.setPresent();//sysj/rotaryTableController.sysj line: 87, column: 6
                       currsigs.addElement(loadPos1);
                       active[2]=1;
                       ends[2]=1;
@@ -10313,157 +10313,157 @@ public class RotaryTableController extends ClockDomain{
                     }
                   }
                   else {
-                    S14096=4;
-                    S14239=0;
-                    if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 111, column: 4
-                      startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
-                      S14239=1;
+                    S40886=4;
+                    S41029=0;
+                    if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                      startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
+                      S41029=1;
                       active[2]=1;
                       ends[2]=1;
                       tdone[2]=1;
                     }
                     else {
-                      S14234=0;
-                      if(startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                        startFiller1_o.setVal(m_thread_2.idAt(1));//sysj/turntableController.sysj line: 111, column: 4
-                        S14234=1;
-                        if(!startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                          startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
+                      S41024=0;
+                      if(startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                        startFiller1_o.setVal(m_thread_2.at(1));//sysj/rotaryTableController.sysj line: 111, column: 4
+                        S41024=1;
+                        if(!startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                          startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
                           ends[2]=2;
-                          ;//sysj/turntableController.sysj line: 111, column: 4
-                          S14096=5;
-                          S14613=0;
-                          if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 112, column: 4
-                            startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
-                            S14613=1;
+                          ;//sysj/rotaryTableController.sysj line: 111, column: 4
+                          S40886=5;
+                          S41403=0;
+                          if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                            startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
+                            S41403=1;
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
-                            S14608=0;
-                            if(startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                              startFiller2_o.setVal(m_thread_2.idAt(2));//sysj/turntableController.sysj line: 112, column: 4
-                              S14608=1;
-                              if(!startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                                startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
+                            S41398=0;
+                            if(startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                              startFiller2_o.setVal(m_thread_2.at(2));//sysj/rotaryTableController.sysj line: 112, column: 4
+                              S41398=1;
+                              if(!startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                                startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
                                 ends[2]=2;
-                                ;//sysj/turntableController.sysj line: 112, column: 4
-                                S14096=6;
-                                S15031=0;
-                                if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 113, column: 4
-                                  startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
-                                  S15031=1;
+                                ;//sysj/rotaryTableController.sysj line: 112, column: 4
+                                S40886=6;
+                                S41821=0;
+                                if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                  startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
+                                  S41821=1;
                                   active[2]=1;
                                   ends[2]=1;
                                   tdone[2]=1;
                                 }
                                 else {
-                                  S15026=0;
-                                  if(startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                    startLid_o.setVal(m_thread_2.idAt(3));//sysj/turntableController.sysj line: 113, column: 4
-                                    S15026=1;
-                                    if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                      startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                                  S41816=0;
+                                  if(startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                    startLid_o.setVal(m_thread_2.at(3));//sysj/rotaryTableController.sysj line: 113, column: 4
+                                    S41816=1;
+                                    if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                      startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                                       ends[2]=2;
-                                      ;//sysj/turntableController.sysj line: 113, column: 4
-                                      S14096=7;
-                                      S15493=0;
-                                      if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                                        startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                                        S15493=1;
+                                      ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                                      S40886=7;
+                                      S42283=0;
+                                      if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                        startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                                        S42283=1;
                                         active[2]=1;
                                         ends[2]=1;
                                         tdone[2]=1;
                                       }
                                       else {
-                                        S15488=0;
-                                        if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                          startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                                          S15488=1;
-                                          if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                            startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                                        S42278=0;
+                                        if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                          startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                                          S42278=1;
+                                          if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                            startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                                             ends[2]=2;
-                                            ;//sysj/turntableController.sysj line: 114, column: 4
-                                            S14096=8;
-                                            S15999=0;
-                                            if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                                              doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                                              S15999=1;
+                                            ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                                            S40886=8;
+                                            S42789=0;
+                                            if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                              doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                              S42789=1;
                                               active[2]=1;
                                               ends[2]=1;
                                               tdone[2]=1;
                                             }
                                             else {
-                                              S15994=0;
-                                              if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                                S15994=1;
-                                                if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                                  doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                                              S42784=0;
+                                              if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                S42784=1;
+                                                if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                  doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                                   ends[2]=2;
-                                                  ;//sysj/turntableController.sysj line: 116, column: 4
-                                                  S14096=9;
-                                                  S16549=0;
-                                                  if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                                    doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                                    S16549=1;
+                                                  ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                                  S40886=9;
+                                                  S43339=0;
+                                                  if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                    doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                    S43339=1;
                                                     active[2]=1;
                                                     ends[2]=1;
                                                     tdone[2]=1;
                                                   }
                                                   else {
-                                                    S16544=0;
-                                                    if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                      doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                                      S16544=1;
-                                                      if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                        doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                                    S43334=0;
+                                                    if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                      doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                      S43334=1;
+                                                      if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                        doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                                         ends[2]=2;
-                                                        ;//sysj/turntableController.sysj line: 117, column: 4
-                                                        S14096=10;
-                                                        S17143=0;
-                                                        if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                                          doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                                          S17143=1;
+                                                        ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                        S40886=10;
+                                                        S43933=0;
+                                                        if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                          doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                          S43933=1;
                                                           active[2]=1;
                                                           ends[2]=1;
                                                           tdone[2]=1;
                                                         }
                                                         else {
-                                                          S17138=0;
-                                                          if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                            doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                                            S17138=1;
-                                                            if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                              doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                                          S43928=0;
+                                                          if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                            doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                            S43928=1;
+                                                            if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                              doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                                               ends[2]=2;
-                                                              ;//sysj/turntableController.sysj line: 118, column: 4
-                                                              S14096=11;
-                                                              S17781=0;
-                                                              if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                                S17781=1;
+                                                              ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                              S40886=11;
+                                                              S44571=0;
+                                                              if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                S44571=1;
                                                                 active[2]=1;
                                                                 ends[2]=1;
                                                                 tdone[2]=1;
                                                               }
                                                               else {
-                                                                S17776=0;
-                                                                if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                  doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                                  S17776=1;
-                                                                  if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                                    doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                                S44566=0;
+                                                                if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                  doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                  S44566=1;
+                                                                  if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                    doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                                     ends[2]=2;
-                                                                    ;//sysj/turntableController.sysj line: 119, column: 4
-                                                                    S14096=12;
-                                                                    if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                                      S14096=13;
-                                                                      if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                                        m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                                        m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                                        S14096=14;
+                                                                    ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                                    S40886=12;
+                                                                    if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                                      S40886=13;
+                                                                      if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                                        m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                                        m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                                        S40886=14;
                                                                         active[2]=1;
                                                                         ends[2]=1;
                                                                         tdone[2]=1;
@@ -10475,7 +10475,7 @@ public class RotaryTableController extends ClockDomain{
                                                                       }
                                                                     }
                                                                     else {
-                                                                      rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                                      rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                                       currsigs.addElement(rotaryTrigger);
                                                                       active[2]=1;
                                                                       ends[2]=1;
@@ -10589,7 +10589,7 @@ public class RotaryTableController extends ClockDomain{
                 }
               }
               else {
-                unloadExit.setPresent();//sysj/turntableController.sysj line: 74, column: 6
+                unloadExit.setPresent();//sysj/rotaryTableController.sysj line: 74, column: 6
                 currsigs.addElement(unloadExit);
                 active[2]=1;
                 ends[2]=1;
@@ -10610,30 +10610,30 @@ public class RotaryTableController extends ClockDomain{
         }
       }
       else {
-        S14096=2;
-        if(m_thread_2.idle()){//sysj/turntableController.sysj line: 82, column: 4
-          if(!m_thread_2.hasPending()){//sysj/turntableController.sysj line: 83, column: 11
+        S40886=2;
+        if(m_thread_2.idle()){//sysj/rotaryTableController.sysj line: 82, column: 4
+          if(!m_thread_2.hasPending()){//sysj/rotaryTableController.sysj line: 83, column: 11
             active[2]=1;
             ends[2]=1;
             tdone[2]=1;
           }
           else {
             ends[2]=2;
-            ;//sysj/turntableController.sysj line: 83, column: 5
-            S14096=3;
-            if(m_thread_2.readyToPlace()){//sysj/turntableController.sysj line: 85, column: 4
-              S14141=0;
-              if(bottleAtPos1.getprestatus()){//sysj/turntableController.sysj line: 86, column: 21
-                m_thread_2.commitPending();//sysj/turntableController.sysj line: 89, column: 5
-                placed_1.setPresent();//sysj/turntableController.sysj line: 90, column: 5
+            ;//sysj/rotaryTableController.sysj line: 83, column: 5
+            S40886=3;
+            if(m_thread_2.readyToPlace()){//sysj/rotaryTableController.sysj line: 85, column: 4
+              S40931=0;
+              if(bottleAtPos1.getprestatus()){//sysj/rotaryTableController.sysj line: 86, column: 21
+                m_thread_2.commitPending();//sysj/rotaryTableController.sysj line: 89, column: 5
+                placed_1.setPresent();//sysj/rotaryTableController.sysj line: 90, column: 5
                 currsigs.addElement(placed_1);
-                S14141=1;
+                S40931=1;
                 active[2]=1;
                 ends[2]=1;
                 tdone[2]=1;
               }
               else {
-                loadPos1.setPresent();//sysj/turntableController.sysj line: 87, column: 6
+                loadPos1.setPresent();//sysj/rotaryTableController.sysj line: 87, column: 6
                 currsigs.addElement(loadPos1);
                 active[2]=1;
                 ends[2]=1;
@@ -10641,157 +10641,157 @@ public class RotaryTableController extends ClockDomain{
               }
             }
             else {
-              S14096=4;
-              S14239=0;
-              if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 111, column: 4
-                startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
-                S14239=1;
+              S40886=4;
+              S41029=0;
+              if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
+                S41029=1;
                 active[2]=1;
                 ends[2]=1;
                 tdone[2]=1;
               }
               else {
-                S14234=0;
-                if(startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                  startFiller1_o.setVal(m_thread_2.idAt(1));//sysj/turntableController.sysj line: 111, column: 4
-                  S14234=1;
-                  if(!startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                    startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
+                S41024=0;
+                if(startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                  startFiller1_o.setVal(m_thread_2.at(1));//sysj/rotaryTableController.sysj line: 111, column: 4
+                  S41024=1;
+                  if(!startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                    startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
                     ends[2]=2;
-                    ;//sysj/turntableController.sysj line: 111, column: 4
-                    S14096=5;
-                    S14613=0;
-                    if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 112, column: 4
-                      startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
-                      S14613=1;
+                    ;//sysj/rotaryTableController.sysj line: 111, column: 4
+                    S40886=5;
+                    S41403=0;
+                    if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                      startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
+                      S41403=1;
                       active[2]=1;
                       ends[2]=1;
                       tdone[2]=1;
                     }
                     else {
-                      S14608=0;
-                      if(startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                        startFiller2_o.setVal(m_thread_2.idAt(2));//sysj/turntableController.sysj line: 112, column: 4
-                        S14608=1;
-                        if(!startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                          startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
+                      S41398=0;
+                      if(startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                        startFiller2_o.setVal(m_thread_2.at(2));//sysj/rotaryTableController.sysj line: 112, column: 4
+                        S41398=1;
+                        if(!startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                          startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
                           ends[2]=2;
-                          ;//sysj/turntableController.sysj line: 112, column: 4
-                          S14096=6;
-                          S15031=0;
-                          if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 113, column: 4
-                            startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
-                            S15031=1;
+                          ;//sysj/rotaryTableController.sysj line: 112, column: 4
+                          S40886=6;
+                          S41821=0;
+                          if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                            startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
+                            S41821=1;
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
-                            S15026=0;
-                            if(startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                              startLid_o.setVal(m_thread_2.idAt(3));//sysj/turntableController.sysj line: 113, column: 4
-                              S15026=1;
-                              if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                                startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                            S41816=0;
+                            if(startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                              startLid_o.setVal(m_thread_2.at(3));//sysj/rotaryTableController.sysj line: 113, column: 4
+                              S41816=1;
+                              if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                                startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                                 ends[2]=2;
-                                ;//sysj/turntableController.sysj line: 113, column: 4
-                                S14096=7;
-                                S15493=0;
-                                if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                                  startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                                  S15493=1;
+                                ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                                S40886=7;
+                                S42283=0;
+                                if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                  startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                                  S42283=1;
                                   active[2]=1;
                                   ends[2]=1;
                                   tdone[2]=1;
                                 }
                                 else {
-                                  S15488=0;
-                                  if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                    startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                                    S15488=1;
-                                    if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                      startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                                  S42278=0;
+                                  if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                    startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                                    S42278=1;
+                                    if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                      startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                                       ends[2]=2;
-                                      ;//sysj/turntableController.sysj line: 114, column: 4
-                                      S14096=8;
-                                      S15999=0;
-                                      if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                                        doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                                        S15999=1;
+                                      ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                                      S40886=8;
+                                      S42789=0;
+                                      if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                        doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                        S42789=1;
                                         active[2]=1;
                                         ends[2]=1;
                                         tdone[2]=1;
                                       }
                                       else {
-                                        S15994=0;
-                                        if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                          doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                          S15994=1;
-                                          if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                            doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                                        S42784=0;
+                                        if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                          doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                          S42784=1;
+                                          if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                            doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                             ends[2]=2;
-                                            ;//sysj/turntableController.sysj line: 116, column: 4
-                                            S14096=9;
-                                            S16549=0;
-                                            if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                              doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                              S16549=1;
+                                            ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                            S40886=9;
+                                            S43339=0;
+                                            if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                              doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                              S43339=1;
                                               active[2]=1;
                                               ends[2]=1;
                                               tdone[2]=1;
                                             }
                                             else {
-                                              S16544=0;
-                                              if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                                S16544=1;
-                                                if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                  doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                              S43334=0;
+                                              if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                S43334=1;
+                                                if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                  doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                                   ends[2]=2;
-                                                  ;//sysj/turntableController.sysj line: 117, column: 4
-                                                  S14096=10;
-                                                  S17143=0;
-                                                  if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                                    doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                                    S17143=1;
+                                                  ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                  S40886=10;
+                                                  S43933=0;
+                                                  if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                    doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                    S43933=1;
                                                     active[2]=1;
                                                     ends[2]=1;
                                                     tdone[2]=1;
                                                   }
                                                   else {
-                                                    S17138=0;
-                                                    if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                      doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                                      S17138=1;
-                                                      if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                        doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                                    S43928=0;
+                                                    if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                      doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                      S43928=1;
+                                                      if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                        doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                                         ends[2]=2;
-                                                        ;//sysj/turntableController.sysj line: 118, column: 4
-                                                        S14096=11;
-                                                        S17781=0;
-                                                        if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                          doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                          S17781=1;
+                                                        ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                        S40886=11;
+                                                        S44571=0;
+                                                        if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                          doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                          S44571=1;
                                                           active[2]=1;
                                                           ends[2]=1;
                                                           tdone[2]=1;
                                                         }
                                                         else {
-                                                          S17776=0;
-                                                          if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                            doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                            S17776=1;
-                                                            if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                              doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                          S44566=0;
+                                                          if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                            doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                            S44566=1;
+                                                            if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                              doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                               ends[2]=2;
-                                                              ;//sysj/turntableController.sysj line: 119, column: 4
-                                                              S14096=12;
-                                                              if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                                S14096=13;
-                                                                if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                                  m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                                  m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                                  S14096=14;
+                                                              ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                              S40886=12;
+                                                              if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                                S40886=13;
+                                                                if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                                  m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                                  m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                                  S40886=14;
                                                                   active[2]=1;
                                                                   ends[2]=1;
                                                                   tdone[2]=1;
@@ -10803,7 +10803,7 @@ public class RotaryTableController extends ClockDomain{
                                                                 }
                                                               }
                                                               else {
-                                                                rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                                rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                                 currsigs.addElement(rotaryTrigger);
                                                                 active[2]=1;
                                                                 ends[2]=1;
@@ -10917,20 +10917,20 @@ public class RotaryTableController extends ClockDomain{
           }
         }
         else {
-          S14096=3;
-          if(m_thread_2.readyToPlace()){//sysj/turntableController.sysj line: 85, column: 4
-            S14141=0;
-            if(bottleAtPos1.getprestatus()){//sysj/turntableController.sysj line: 86, column: 21
-              m_thread_2.commitPending();//sysj/turntableController.sysj line: 89, column: 5
-              placed_1.setPresent();//sysj/turntableController.sysj line: 90, column: 5
+          S40886=3;
+          if(m_thread_2.readyToPlace()){//sysj/rotaryTableController.sysj line: 85, column: 4
+            S40931=0;
+            if(bottleAtPos1.getprestatus()){//sysj/rotaryTableController.sysj line: 86, column: 21
+              m_thread_2.commitPending();//sysj/rotaryTableController.sysj line: 89, column: 5
+              placed_1.setPresent();//sysj/rotaryTableController.sysj line: 90, column: 5
               currsigs.addElement(placed_1);
-              S14141=1;
+              S40931=1;
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
             }
             else {
-              loadPos1.setPresent();//sysj/turntableController.sysj line: 87, column: 6
+              loadPos1.setPresent();//sysj/rotaryTableController.sysj line: 87, column: 6
               currsigs.addElement(loadPos1);
               active[2]=1;
               ends[2]=1;
@@ -10938,157 +10938,157 @@ public class RotaryTableController extends ClockDomain{
             }
           }
           else {
-            S14096=4;
-            S14239=0;
-            if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 111, column: 4
-              startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
-              S14239=1;
+            S40886=4;
+            S41029=0;
+            if(!startFiller1_o.isPartnerPresent() || startFiller1_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 111, column: 4
+              startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
+              S41029=1;
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
             }
             else {
-              S14234=0;
-              if(startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                startFiller1_o.setVal(m_thread_2.idAt(1));//sysj/turntableController.sysj line: 111, column: 4
-                S14234=1;
-                if(!startFiller1_o.isACK()){//sysj/turntableController.sysj line: 111, column: 4
-                  startFiller1_o.setREQ(false);//sysj/turntableController.sysj line: 111, column: 4
+              S41024=0;
+              if(startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                startFiller1_o.setVal(m_thread_2.at(1));//sysj/rotaryTableController.sysj line: 111, column: 4
+                S41024=1;
+                if(!startFiller1_o.isACK()){//sysj/rotaryTableController.sysj line: 111, column: 4
+                  startFiller1_o.setREQ(false);//sysj/rotaryTableController.sysj line: 111, column: 4
                   ends[2]=2;
-                  ;//sysj/turntableController.sysj line: 111, column: 4
-                  S14096=5;
-                  S14613=0;
-                  if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 112, column: 4
-                    startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
-                    S14613=1;
+                  ;//sysj/rotaryTableController.sysj line: 111, column: 4
+                  S40886=5;
+                  S41403=0;
+                  if(!startFiller2_o.isPartnerPresent() || startFiller2_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                    startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
+                    S41403=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
                   }
                   else {
-                    S14608=0;
-                    if(startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                      startFiller2_o.setVal(m_thread_2.idAt(2));//sysj/turntableController.sysj line: 112, column: 4
-                      S14608=1;
-                      if(!startFiller2_o.isACK()){//sysj/turntableController.sysj line: 112, column: 4
-                        startFiller2_o.setREQ(false);//sysj/turntableController.sysj line: 112, column: 4
+                    S41398=0;
+                    if(startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                      startFiller2_o.setVal(m_thread_2.at(2));//sysj/rotaryTableController.sysj line: 112, column: 4
+                      S41398=1;
+                      if(!startFiller2_o.isACK()){//sysj/rotaryTableController.sysj line: 112, column: 4
+                        startFiller2_o.setREQ(false);//sysj/rotaryTableController.sysj line: 112, column: 4
                         ends[2]=2;
-                        ;//sysj/turntableController.sysj line: 112, column: 4
-                        S14096=6;
-                        S15031=0;
-                        if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 113, column: 4
-                          startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
-                          S15031=1;
+                        ;//sysj/rotaryTableController.sysj line: 112, column: 4
+                        S40886=6;
+                        S41821=0;
+                        if(!startLid_o.isPartnerPresent() || startLid_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                          startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
+                          S41821=1;
                           active[2]=1;
                           ends[2]=1;
                           tdone[2]=1;
                         }
                         else {
-                          S15026=0;
-                          if(startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                            startLid_o.setVal(m_thread_2.idAt(3));//sysj/turntableController.sysj line: 113, column: 4
-                            S15026=1;
-                            if(!startLid_o.isACK()){//sysj/turntableController.sysj line: 113, column: 4
-                              startLid_o.setREQ(false);//sysj/turntableController.sysj line: 113, column: 4
+                          S41816=0;
+                          if(startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                            startLid_o.setVal(m_thread_2.at(3));//sysj/rotaryTableController.sysj line: 113, column: 4
+                            S41816=1;
+                            if(!startLid_o.isACK()){//sysj/rotaryTableController.sysj line: 113, column: 4
+                              startLid_o.setREQ(false);//sysj/rotaryTableController.sysj line: 113, column: 4
                               ends[2]=2;
-                              ;//sysj/turntableController.sysj line: 113, column: 4
-                              S14096=7;
-                              S15493=0;
-                              if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/turntableController.sysj line: 114, column: 4
-                                startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
-                                S15493=1;
+                              ;//sysj/rotaryTableController.sysj line: 113, column: 4
+                              S40886=7;
+                              S42283=0;
+                              if(!startCapper_o.isPartnerPresent() || startCapper_o.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
+                                S42283=1;
                                 active[2]=1;
                                 ends[2]=1;
                                 tdone[2]=1;
                               }
                               else {
-                                S15488=0;
-                                if(startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                  startCapper_o.setVal(m_thread_2.idAt(4));//sysj/turntableController.sysj line: 114, column: 4
-                                  S15488=1;
-                                  if(!startCapper_o.isACK()){//sysj/turntableController.sysj line: 114, column: 4
-                                    startCapper_o.setREQ(false);//sysj/turntableController.sysj line: 114, column: 4
+                                S42278=0;
+                                if(startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                  startCapper_o.setVal(m_thread_2.at(4));//sysj/rotaryTableController.sysj line: 114, column: 4
+                                  S42278=1;
+                                  if(!startCapper_o.isACK()){//sysj/rotaryTableController.sysj line: 114, column: 4
+                                    startCapper_o.setREQ(false);//sysj/rotaryTableController.sysj line: 114, column: 4
                                     ends[2]=2;
-                                    ;//sysj/turntableController.sysj line: 114, column: 4
-                                    S14096=8;
-                                    S15999=0;
-                                    if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 116, column: 4
-                                      doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
-                                      S15999=1;
+                                    ;//sysj/rotaryTableController.sysj line: 114, column: 4
+                                    S40886=8;
+                                    S42789=0;
+                                    if(!doneFiller1_in.isPartnerPresent() || doneFiller1_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                      doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                      S42789=1;
                                       active[2]=1;
                                       ends[2]=1;
                                       tdone[2]=1;
                                     }
                                     else {
-                                      S15994=0;
-                                      if(!doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                        doneFiller1_in.setACK(true);//sysj/turntableController.sysj line: 116, column: 4
-                                        S15994=1;
-                                        if(doneFiller1_in.isREQ()){//sysj/turntableController.sysj line: 116, column: 4
-                                          doneFiller1_in.setACK(false);//sysj/turntableController.sysj line: 116, column: 4
+                                      S42784=0;
+                                      if(!doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                        doneFiller1_in.setACK(true);//sysj/rotaryTableController.sysj line: 116, column: 4
+                                        S42784=1;
+                                        if(doneFiller1_in.isREQ()){//sysj/rotaryTableController.sysj line: 116, column: 4
+                                          doneFiller1_in.setACK(false);//sysj/rotaryTableController.sysj line: 116, column: 4
                                           ends[2]=2;
-                                          ;//sysj/turntableController.sysj line: 116, column: 4
-                                          S14096=9;
-                                          S16549=0;
-                                          if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 117, column: 4
-                                            doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
-                                            S16549=1;
+                                          ;//sysj/rotaryTableController.sysj line: 116, column: 4
+                                          S40886=9;
+                                          S43339=0;
+                                          if(!doneFiller2_in.isPartnerPresent() || doneFiller2_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                            doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                            S43339=1;
                                             active[2]=1;
                                             ends[2]=1;
                                             tdone[2]=1;
                                           }
                                           else {
-                                            S16544=0;
-                                            if(!doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                              doneFiller2_in.setACK(true);//sysj/turntableController.sysj line: 117, column: 4
-                                              S16544=1;
-                                              if(doneFiller2_in.isREQ()){//sysj/turntableController.sysj line: 117, column: 4
-                                                doneFiller2_in.setACK(false);//sysj/turntableController.sysj line: 117, column: 4
+                                            S43334=0;
+                                            if(!doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                              doneFiller2_in.setACK(true);//sysj/rotaryTableController.sysj line: 117, column: 4
+                                              S43334=1;
+                                              if(doneFiller2_in.isREQ()){//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                doneFiller2_in.setACK(false);//sysj/rotaryTableController.sysj line: 117, column: 4
                                                 ends[2]=2;
-                                                ;//sysj/turntableController.sysj line: 117, column: 4
-                                                S14096=10;
-                                                S17143=0;
-                                                if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 118, column: 4
-                                                  doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
-                                                  S17143=1;
+                                                ;//sysj/rotaryTableController.sysj line: 117, column: 4
+                                                S40886=10;
+                                                S43933=0;
+                                                if(!doneLid_in.isPartnerPresent() || doneLid_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                  doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                  S43933=1;
                                                   active[2]=1;
                                                   ends[2]=1;
                                                   tdone[2]=1;
                                                 }
                                                 else {
-                                                  S17138=0;
-                                                  if(!doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                    doneLid_in.setACK(true);//sysj/turntableController.sysj line: 118, column: 4
-                                                    S17138=1;
-                                                    if(doneLid_in.isREQ()){//sysj/turntableController.sysj line: 118, column: 4
-                                                      doneLid_in.setACK(false);//sysj/turntableController.sysj line: 118, column: 4
+                                                  S43928=0;
+                                                  if(!doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                    doneLid_in.setACK(true);//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                    S43928=1;
+                                                    if(doneLid_in.isREQ()){//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                      doneLid_in.setACK(false);//sysj/rotaryTableController.sysj line: 118, column: 4
                                                       ends[2]=2;
-                                                      ;//sysj/turntableController.sysj line: 118, column: 4
-                                                      S14096=11;
-                                                      S17781=0;
-                                                      if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/turntableController.sysj line: 119, column: 4
-                                                        doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
-                                                        S17781=1;
+                                                      ;//sysj/rotaryTableController.sysj line: 118, column: 4
+                                                      S40886=11;
+                                                      S44571=0;
+                                                      if(!doneCapper_in.isPartnerPresent() || doneCapper_in.isPartnerPreempted()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                        doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                        S44571=1;
                                                         active[2]=1;
                                                         ends[2]=1;
                                                         tdone[2]=1;
                                                       }
                                                       else {
-                                                        S17776=0;
-                                                        if(!doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                          doneCapper_in.setACK(true);//sysj/turntableController.sysj line: 119, column: 4
-                                                          S17776=1;
-                                                          if(doneCapper_in.isREQ()){//sysj/turntableController.sysj line: 119, column: 4
-                                                            doneCapper_in.setACK(false);//sysj/turntableController.sysj line: 119, column: 4
+                                                        S44566=0;
+                                                        if(!doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                          doneCapper_in.setACK(true);//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                          S44566=1;
+                                                          if(doneCapper_in.isREQ()){//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                            doneCapper_in.setACK(false);//sysj/rotaryTableController.sysj line: 119, column: 4
                                                             ends[2]=2;
-                                                            ;//sysj/turntableController.sysj line: 119, column: 4
-                                                            S14096=12;
-                                                            if(!tableAligned.getprestatus()){//sysj/turntableController.sysj line: 125, column: 20
-                                                              S14096=13;
-                                                              if(tableAligned.getprestatus()){//sysj/turntableController.sysj line: 128, column: 20
-                                                                m_thread_2.index();//sysj/turntableController.sysj line: 130, column: 4
-                                                                m_thread_2.report();//sysj/turntableController.sysj line: 131, column: 4
-                                                                S14096=14;
+                                                            ;//sysj/rotaryTableController.sysj line: 119, column: 4
+                                                            S40886=12;
+                                                            if(!tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 125, column: 20
+                                                              S40886=13;
+                                                              if(tableAligned.getprestatus()){//sysj/rotaryTableController.sysj line: 128, column: 20
+                                                                m_thread_2.index();//sysj/rotaryTableController.sysj line: 130, column: 4
+                                                                m_thread_2.report();//sysj/rotaryTableController.sysj line: 131, column: 4
+                                                                S40886=14;
                                                                 active[2]=1;
                                                                 ends[2]=1;
                                                                 tdone[2]=1;
@@ -11100,7 +11100,7 @@ public class RotaryTableController extends ClockDomain{
                                                               }
                                                             }
                                                             else {
-                                                              rotaryTrigger.setPresent();//sysj/turntableController.sysj line: 126, column: 5
+                                                              rotaryTrigger.setPresent();//sysj/rotaryTableController.sysj line: 126, column: 5
                                                               currsigs.addElement(rotaryTrigger);
                                                               active[2]=1;
                                                               ends[2]=1;
@@ -11228,52 +11228,52 @@ public class RotaryTableController extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S42359){
+      switch(S69149){
         case 0 : 
-          S42359=0;
+          S69149=0;
           break RUN;
         
         case 1 : 
-          S42359=2;
-          S42359=2;
-          placed_1.setClear();//sysj/turntableController.sysj line: 53, column: 2
-          thread42361(tdone,ends);
-          thread42362(tdone,ends);
-          int biggest42363 = 0;
-          if(ends[2]>=biggest42363){
-            biggest42363=ends[2];
+          S69149=2;
+          S69149=2;
+          placed_1.setClear();//sysj/rotaryTableController.sysj line: 53, column: 2
+          thread69151(tdone,ends);
+          thread69152(tdone,ends);
+          int biggest69153 = 0;
+          if(ends[2]>=biggest69153){
+            biggest69153=ends[2];
           }
-          if(ends[3]>=biggest42363){
-            biggest42363=ends[3];
+          if(ends[3]>=biggest69153){
+            biggest69153=ends[3];
           }
-          if(biggest42363 == 1){
+          if(biggest69153 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
         
         case 2 : 
-          placed_1.setClear();//sysj/turntableController.sysj line: 53, column: 2
-          thread42364(tdone,ends);
-          thread42365(tdone,ends);
-          int biggest42366 = 0;
-          if(ends[2]>=biggest42366){
-            biggest42366=ends[2];
+          placed_1.setClear();//sysj/rotaryTableController.sysj line: 53, column: 2
+          thread69154(tdone,ends);
+          thread69155(tdone,ends);
+          int biggest69156 = 0;
+          if(ends[2]>=biggest69156){
+            biggest69156=ends[2];
           }
-          if(ends[3]>=biggest42366){
-            biggest42366=ends[3];
+          if(ends[3]>=biggest69156){
+            biggest69156=ends[3];
           }
-          if(biggest42366 == 1){
+          if(biggest69156 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest42366 == 0){
-            S42359=0;
+          if(biggest69156 == 0){
+            S69149=0;
             active[1]=0;
             ends[1]=0;
-            S42359=0;
+            S69149=0;
             break RUN;
           }
         

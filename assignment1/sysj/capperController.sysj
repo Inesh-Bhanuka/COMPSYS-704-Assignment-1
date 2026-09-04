@@ -1,0 +1,75 @@
+/*
+ * Capper. Screws the lid down once the lid loader has placed it.
+ *
+ * Slowest station on the table by design, so it is what the index barrier
+ * ends up waiting for.
+ */
+CapperController(
+		// from / to the Rotary Table
+		input  Workpiece channel start;
+		output Workpiece channel done;
+
+		// operating mode
+		input Integer signal mode;
+
+		// to / from the plant
+		output signal screwOn;
+		input  signal capSeated;
+
+		// manual override - the operator panel attaches here
+		input signal screwOnM;
+		)
+->
+{
+	signal auto, manual;
+
+	{ // Mode select
+		while(true){
+			present(mode){
+				if((Integer)#mode == 0){ emit auto; }
+				else { emit manual; }
+			}
+			pause;
+		}
+	}
+	||
+	{ // Auto
+		Workpiece w = null;
+
+		while(true){
+			await(immediate auto);
+
+			abort(immediate manual){
+				receive start;
+				w = (Workpiece)#start;
+
+				if(w != null){
+					System.out.println("[CAP] Sealing " + w + ".");
+
+					abort(immediate capSeated){
+						sustain screwOn;
+					}
+
+					w.cap();
+					System.out.println("[CAP] " + w + " sealed.");
+				}
+
+				send done(w);
+			}
+			pause;
+		}
+	}
+	||
+	{ // Manual
+		while(true){
+			await(immediate manual);
+			abort(immediate auto){
+				while(true){
+					present(screwOnM){ emit screwOn; }
+					pause;
+				}
+			}
+			pause;
+		}
+	}
+}

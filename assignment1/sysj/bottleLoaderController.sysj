@@ -15,11 +15,11 @@
  */
 BottleLoaderController(
 		// from / to the System Controller
-		input  Integer channel loadOrder;
-		output Integer channel loadAck;
+		input  Workpiece channel loadOrder;
+		output Workpiece channel loadAck;
 
 		// to the conveyor
-		output Integer channel bottleHandoff;
+		output Workpiece channel bottleHandoff;
 
 		// operating mode is a level, so it stays a signal
 		input Integer signal mode;
@@ -52,7 +52,7 @@ BottleLoaderController(
 	}
 	||
 	{ // Auto mode
-		int id = 0;
+		Workpiece w = null;
 
 		while(true){
 			await(immediate auto);
@@ -60,8 +60,8 @@ BottleLoaderController(
 			abort(immediate manual){
 
 				receive loadOrder;
-				id = ((Integer)#loadOrder).intValue();
-				System.out.println("[BL] Order received for bottle " + id + ".");
+				w = (Workpiece)#loadOrder;
+				System.out.println("[BL] Order received for " + w + ".");
 
 				present(bottleAtSource){
 					// a bottle is waiting
@@ -79,7 +79,7 @@ BottleLoaderController(
 				abort(WPgripped){
 					sustain vacOn;
 				}
-				System.out.println("[BL] Bottle " + id + " gripped.");
+				System.out.println("[BL] " + w + " gripped.");
 
 				// Move bottle to conveyor
 				abort(armAtDest){
@@ -87,8 +87,8 @@ BottleLoaderController(
 				}
 
 				// Offer it. Blocks until the conveyor takes it.
-				System.out.println("[BL] Offering bottle " + id + " to the conveyor.");
-				send bottleHandoff(id);
+				System.out.println("[BL] Offering " + w + " to the conveyor.");
+				send bottleHandoff(w);
 
 				// Release, holding the actuator until the plant confirms it
 				// let go. No fixed pulse width.
@@ -96,7 +96,7 @@ BottleLoaderController(
 					sustain release;
 				}
 
-				send loadAck(id);
+				send loadAck(w);
 			}
 			pause;
 		}

@@ -11,541 +11,35 @@ public class LidLoaderPlant extends ClockDomain{
   private char [] active;
   private char [] paused;
   private char [] suspended;
+  public Signal enable = new Signal("enable", Signal.INPUT);
   public Signal pusherExtend = new Signal("pusherExtend", Signal.INPUT);
   public Signal vacOn = new Signal("vacOn", Signal.INPUT);
   public Signal armSource = new Signal("armSource", Signal.INPUT);
   public Signal armDest = new Signal("armDest", Signal.INPUT);
-  public Signal enable = new Signal("enable", Signal.INPUT);
   public Signal refill = new Signal("refill", Signal.INPUT);
-  public Signal pusherRetracted = new Signal("pusherRetracted", Signal.OUTPUT);
   public Signal pusherExtended = new Signal("pusherExtended", Signal.OUTPUT);
+  public Signal pusherRetracted = new Signal("pusherRetracted", Signal.OUTPUT);
+  public Signal lidAtPickup = new Signal("lidAtPickup", Signal.OUTPUT);
   public Signal WPgripped = new Signal("WPgripped", Signal.OUTPUT);
   public Signal armAtSource = new Signal("armAtSource", Signal.OUTPUT);
   public Signal armAtDest = new Signal("armAtDest", Signal.OUTPUT);
-  public Signal empty = new Signal("empty", Signal.OUTPUT);
+  public Signal magazineEmpty = new Signal("magazineEmpty", Signal.OUTPUT);
   public Signal refilled = new Signal("refilled", Signal.OUTPUT);
-  public Signal pusherRetractedE = new Signal("pusherRetractedE", Signal.OUTPUT);
-  public Signal pusherExtendedE = new Signal("pusherExtendedE", Signal.OUTPUT);
-  public Signal WPgrippedE = new Signal("WPgrippedE", Signal.OUTPUT);
-  public Signal armAtSourceE = new Signal("armAtSourceE", Signal.OUTPUT);
-  public Signal armAtDestE = new Signal("armAtDestE", Signal.OUTPUT);
-  public Signal emptyE = new Signal("emptyE", Signal.OUTPUT);
-  private Signal capDec_1;
-  private Signal capPos_1;
-  private int capcount_thread_6;//sysj/lidLoaderPlant.sysj line: 76, column: 3
-  private int S9407 = 1;
-  private int S8822 = 1;
-  private int S8794 = 1;
-  private int S8863 = 1;
-  private int S8835 = 1;
-  private int S8907 = 1;
-  private int S8877 = 1;
-  private int S8872 = 1;
-  private int S8975 = 1;
-  private int S8929 = 1;
-  private int S8911 = 1;
-  private int S9043 = 1;
-  private int S9093 = 1;
-  private int S9051 = 1;
-  private int S9059 = 1;
-  private int S9067 = 1;
-  private int S9075 = 1;
-  private int S9083 = 1;
-  private int S9091 = 1;
+  private int STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 26, column: 3
+  private int lids_thread_3;//sysj/lidLoaderPlant.sysj line: 27, column: 3
+  private boolean extended_thread_3;//sysj/lidLoaderPlant.sysj line: 28, column: 3
+  private boolean lidReady_thread_3;//sysj/lidLoaderPlant.sysj line: 29, column: 3
+  private boolean holding_thread_3;//sysj/lidLoaderPlant.sysj line: 30, column: 3
+  private int S40260 = 1;
+  private int S39398 = 1;
+  private int S39370 = 1;
+  private int S40258 = 1;
   
-  private int[] ends = new int[14];
-  private int[] tdone = new int[14];
+  private int[] ends = new int[4];
+  private int[] tdone = new int[4];
   
-  public void thread9434(int [] tdone, int [] ends){
-        switch(S9091){
-      case 0 : 
-        active[13]=0;
-        ends[13]=0;
-        tdone[13]=1;
-        break;
-      
-      case 1 : 
-        if(empty.getprestatus()){//sysj/lidLoaderPlant.sysj line: 103, column: 24
-          emptyE.setPresent();//sysj/lidLoaderPlant.sysj line: 103, column: 31
-          currsigs.addElement(emptyE);
-          active[13]=1;
-          ends[13]=1;
-          tdone[13]=1;
-        }
-        else {
-          active[13]=1;
-          ends[13]=1;
-          tdone[13]=1;
-        }
-        break;
-      
-    }
-  }
-
-  public void thread9433(int [] tdone, int [] ends){
-        switch(S9083){
-      case 0 : 
-        active[12]=0;
-        ends[12]=0;
-        tdone[12]=1;
-        break;
-      
-      case 1 : 
-        if(armAtDest.getprestatus()){//sysj/lidLoaderPlant.sysj line: 101, column: 24
-          armAtDestE.setPresent();//sysj/lidLoaderPlant.sysj line: 101, column: 35
-          currsigs.addElement(armAtDestE);
-          active[12]=1;
-          ends[12]=1;
-          tdone[12]=1;
-        }
-        else {
-          active[12]=1;
-          ends[12]=1;
-          tdone[12]=1;
-        }
-        break;
-      
-    }
-  }
-
-  public void thread9432(int [] tdone, int [] ends){
-        switch(S9075){
-      case 0 : 
-        active[11]=0;
-        ends[11]=0;
-        tdone[11]=1;
-        break;
-      
-      case 1 : 
-        if(armAtSource.getprestatus()){//sysj/lidLoaderPlant.sysj line: 99, column: 24
-          armAtSourceE.setPresent();//sysj/lidLoaderPlant.sysj line: 99, column: 37
-          currsigs.addElement(armAtSourceE);
-          active[11]=1;
-          ends[11]=1;
-          tdone[11]=1;
-        }
-        else {
-          active[11]=1;
-          ends[11]=1;
-          tdone[11]=1;
-        }
-        break;
-      
-    }
-  }
-
-  public void thread9431(int [] tdone, int [] ends){
-        switch(S9067){
-      case 0 : 
-        active[10]=0;
-        ends[10]=0;
-        tdone[10]=1;
-        break;
-      
-      case 1 : 
-        if(WPgripped.getprestatus()){//sysj/lidLoaderPlant.sysj line: 97, column: 24
-          WPgrippedE.setPresent();//sysj/lidLoaderPlant.sysj line: 97, column: 35
-          currsigs.addElement(WPgrippedE);
-          active[10]=1;
-          ends[10]=1;
-          tdone[10]=1;
-        }
-        else {
-          active[10]=1;
-          ends[10]=1;
-          tdone[10]=1;
-        }
-        break;
-      
-    }
-  }
-
-  public void thread9430(int [] tdone, int [] ends){
-        switch(S9059){
-      case 0 : 
-        active[9]=0;
-        ends[9]=0;
-        tdone[9]=1;
-        break;
-      
-      case 1 : 
-        if(pusherExtended.getprestatus()){//sysj/lidLoaderPlant.sysj line: 95, column: 24
-          pusherExtendedE.setPresent();//sysj/lidLoaderPlant.sysj line: 95, column: 40
-          currsigs.addElement(pusherExtendedE);
-          active[9]=1;
-          ends[9]=1;
-          tdone[9]=1;
-        }
-        else {
-          active[9]=1;
-          ends[9]=1;
-          tdone[9]=1;
-        }
-        break;
-      
-    }
-  }
-
-  public void thread9429(int [] tdone, int [] ends){
-        switch(S9051){
-      case 0 : 
-        active[8]=0;
-        ends[8]=0;
-        tdone[8]=1;
-        break;
-      
-      case 1 : 
-        if(pusherRetracted.getprestatus()){//sysj/lidLoaderPlant.sysj line: 93, column: 24
-          pusherRetractedE.setPresent();//sysj/lidLoaderPlant.sysj line: 93, column: 41
-          currsigs.addElement(pusherRetractedE);
-          active[8]=1;
-          ends[8]=1;
-          tdone[8]=1;
-        }
-        else {
-          active[8]=1;
-          ends[8]=1;
-          tdone[8]=1;
-        }
-        break;
-      
-    }
-  }
-
-  public void thread9428(int [] tdone, int [] ends){
-        switch(S9093){
-      case 0 : 
-        active[7]=0;
-        ends[7]=0;
-        tdone[7]=1;
-        break;
-      
-      case 1 : 
-        thread9429(tdone,ends);
-        thread9430(tdone,ends);
-        thread9431(tdone,ends);
-        thread9432(tdone,ends);
-        thread9433(tdone,ends);
-        thread9434(tdone,ends);
-        int biggest9435 = 0;
-        if(ends[8]>=biggest9435){
-          biggest9435=ends[8];
-        }
-        if(ends[9]>=biggest9435){
-          biggest9435=ends[9];
-        }
-        if(ends[10]>=biggest9435){
-          biggest9435=ends[10];
-        }
-        if(ends[11]>=biggest9435){
-          biggest9435=ends[11];
-        }
-        if(ends[12]>=biggest9435){
-          biggest9435=ends[12];
-        }
-        if(ends[13]>=biggest9435){
-          biggest9435=ends[13];
-        }
-        if(biggest9435 == 1){
-          active[7]=1;
-          ends[7]=1;
-          tdone[7]=1;
-        }
-        //FINXME code
-        if(biggest9435 == 0){
-          S9093=0;
-          active[7]=0;
-          ends[7]=0;
-          tdone[7]=1;
-        }
-        break;
-      
-    }
-  }
-
-  public void thread9427(int [] tdone, int [] ends){
-        switch(S9043){
-      case 0 : 
-        active[6]=0;
-        ends[6]=0;
-        tdone[6]=1;
-        break;
-      
-      case 1 : 
-        if(capDec_1.getprestatus()){//sysj/lidLoaderPlant.sysj line: 78, column: 12
-          if(capcount_thread_6 > 0) {//sysj/lidLoaderPlant.sysj line: 79, column: 5
-            capcount_thread_6 = capcount_thread_6 - 1;//sysj/lidLoaderPlant.sysj line: 80, column: 6
-          }
-          System.out.println("[Plant] capcount = " + capcount_thread_6);//sysj/lidLoaderPlant.sysj line: 81, column: 5
-          if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 83, column: 12
-            capcount_thread_6 = 5;//sysj/lidLoaderPlant.sysj line: 84, column: 5
-            if(capcount_thread_6 == 0){//sysj/lidLoaderPlant.sysj line: 86, column: 7
-              empty.setPresent();//sysj/lidLoaderPlant.sysj line: 87, column: 5
-              currsigs.addElement(empty);
-              active[6]=1;
-              ends[6]=1;
-              tdone[6]=1;
-            }
-            else {
-              active[6]=1;
-              ends[6]=1;
-              tdone[6]=1;
-            }
-          }
-          else {
-            if(capcount_thread_6 == 0){//sysj/lidLoaderPlant.sysj line: 86, column: 7
-              empty.setPresent();//sysj/lidLoaderPlant.sysj line: 87, column: 5
-              currsigs.addElement(empty);
-              active[6]=1;
-              ends[6]=1;
-              tdone[6]=1;
-            }
-            else {
-              active[6]=1;
-              ends[6]=1;
-              tdone[6]=1;
-            }
-          }
-        }
-        else {
-          if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 83, column: 12
-            capcount_thread_6 = 5;//sysj/lidLoaderPlant.sysj line: 84, column: 5
-            if(capcount_thread_6 == 0){//sysj/lidLoaderPlant.sysj line: 86, column: 7
-              empty.setPresent();//sysj/lidLoaderPlant.sysj line: 87, column: 5
-              currsigs.addElement(empty);
-              active[6]=1;
-              ends[6]=1;
-              tdone[6]=1;
-            }
-            else {
-              active[6]=1;
-              ends[6]=1;
-              tdone[6]=1;
-            }
-          }
-          else {
-            if(capcount_thread_6 == 0){//sysj/lidLoaderPlant.sysj line: 86, column: 7
-              empty.setPresent();//sysj/lidLoaderPlant.sysj line: 87, column: 5
-              currsigs.addElement(empty);
-              active[6]=1;
-              ends[6]=1;
-              tdone[6]=1;
-            }
-            else {
-              active[6]=1;
-              ends[6]=1;
-              tdone[6]=1;
-            }
-          }
-        }
-        break;
-      
-    }
-  }
-
-  public void thread9426(int [] tdone, int [] ends){
-        switch(S8975){
-      case 0 : 
-        active[5]=0;
-        ends[5]=0;
-        tdone[5]=1;
-        break;
-      
-      case 1 : 
-        switch(S8929){
-          case 0 : 
-            if(empty.getprestatus()){//sysj/lidLoaderPlant.sysj line: 60, column: 10
-              S8929=1;
-              active[5]=1;
-              ends[5]=1;
-              tdone[5]=1;
-            }
-            else {
-              switch(S8911){
-                case 0 : 
-                  if(pusherRetracted.getprestatus()){//sysj/lidLoaderPlant.sysj line: 62, column: 13
-                    S8911=1;
-                    active[5]=1;
-                    ends[5]=1;
-                    tdone[5]=1;
-                  }
-                  else {
-                    active[5]=1;
-                    ends[5]=1;
-                    tdone[5]=1;
-                  }
-                  break;
-                
-                case 1 : 
-                  if(pusherExtended.getprestatus()){//sysj/lidLoaderPlant.sysj line: 63, column: 13
-                    capPos_1.setPresent();//sysj/lidLoaderPlant.sysj line: 65, column: 7
-                    currsigs.addElement(capPos_1);
-                    capPos_1.setValue(1);//sysj/lidLoaderPlant.sysj line: 65, column: 7
-                    S8911=2;
-                    active[5]=1;
-                    ends[5]=1;
-                    tdone[5]=1;
-                  }
-                  else {
-                    active[5]=1;
-                    ends[5]=1;
-                    tdone[5]=1;
-                  }
-                  break;
-                
-                case 2 : 
-                  if(pusherRetracted.getprestatus()){//sysj/lidLoaderPlant.sysj line: 66, column: 13
-                    capDec_1.setPresent();//sysj/lidLoaderPlant.sysj line: 67, column: 7
-                    currsigs.addElement(capDec_1);
-                    S8911=0;
-                    active[5]=1;
-                    ends[5]=1;
-                    tdone[5]=1;
-                  }
-                  else {
-                    active[5]=1;
-                    ends[5]=1;
-                    tdone[5]=1;
-                  }
-                  break;
-                
-              }
-            }
-            break;
-          
-          case 1 : 
-            if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 70, column: 10
-              refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 71, column: 4
-              currsigs.addElement(refilled);
-              S8929=0;
-              S8911=0;
-              active[5]=1;
-              ends[5]=1;
-              tdone[5]=1;
-            }
-            else {
-              active[5]=1;
-              ends[5]=1;
-              tdone[5]=1;
-            }
-            break;
-          
-        }
-        break;
-      
-    }
-  }
-
-  public void thread9425(int [] tdone, int [] ends){
-        switch(S8907){
-      case 0 : 
-        active[4]=0;
-        ends[4]=0;
-        tdone[4]=1;
-        break;
-      
-      case 1 : 
-        switch(S8877){
-          case 0 : 
-            switch(S8872){
-              case 0 : 
-                if(!vacOn.getprestatus()){//sysj/lidLoaderPlant.sysj line: 40, column: 12
-                  S8872=1;
-                  if(armAtSource.getprestatus()){//sysj/lidLoaderPlant.sysj line: 43, column: 14
-                    capPos_1.setPresent();//sysj/lidLoaderPlant.sysj line: 44, column: 7
-                    currsigs.addElement(capPos_1);
-                    capPos_1.setValue(1);//sysj/lidLoaderPlant.sysj line: 44, column: 7
-                    S8877=1;
-                    active[4]=1;
-                    ends[4]=1;
-                    tdone[4]=1;
-                  }
-                  else {
-                    S8877=1;
-                    active[4]=1;
-                    ends[4]=1;
-                    tdone[4]=1;
-                  }
-                }
-                else {
-                  WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 41, column: 7
-                  currsigs.addElement(WPgripped);
-                  active[4]=1;
-                  ends[4]=1;
-                  tdone[4]=1;
-                }
-                break;
-              
-              case 1 : 
-                S8877=0;
-                if(vacOn.getprestatus() && armAtSource.getprestatus()){//sysj/lidLoaderPlant.sysj line: 37, column: 12
-                  if((Integer)(capPos_1.getpreval() == null ? 0 : ((Integer)capPos_1.getpreval()).intValue()) == 1){//sysj/lidLoaderPlant.sysj line: 38, column: 8
-                    capPos_1.setPresent();//sysj/lidLoaderPlant.sysj line: 39, column: 6
-                    currsigs.addElement(capPos_1);
-                    capPos_1.setValue(0);//sysj/lidLoaderPlant.sysj line: 39, column: 6
-                    S8872=0;
-                    WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 41, column: 7
-                    currsigs.addElement(WPgripped);
-                    active[4]=1;
-                    ends[4]=1;
-                    tdone[4]=1;
-                  }
-                  else {
-                    S8877=1;
-                    active[4]=1;
-                    ends[4]=1;
-                    tdone[4]=1;
-                  }
-                }
-                else {
-                  S8877=1;
-                  active[4]=1;
-                  ends[4]=1;
-                  tdone[4]=1;
-                }
-                break;
-              
-            }
-            break;
-          
-          case 1 : 
-            S8877=1;
-            S8877=0;
-            if(vacOn.getprestatus() && armAtSource.getprestatus()){//sysj/lidLoaderPlant.sysj line: 37, column: 12
-              if((Integer)(capPos_1.getpreval() == null ? 0 : ((Integer)capPos_1.getpreval()).intValue()) == 1){//sysj/lidLoaderPlant.sysj line: 38, column: 8
-                capPos_1.setPresent();//sysj/lidLoaderPlant.sysj line: 39, column: 6
-                currsigs.addElement(capPos_1);
-                capPos_1.setValue(0);//sysj/lidLoaderPlant.sysj line: 39, column: 6
-                S8872=0;
-                WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 41, column: 7
-                currsigs.addElement(WPgripped);
-                active[4]=1;
-                ends[4]=1;
-                tdone[4]=1;
-              }
-              else {
-                S8877=1;
-                active[4]=1;
-                ends[4]=1;
-                tdone[4]=1;
-              }
-            }
-            else {
-              S8877=1;
-              active[4]=1;
-              ends[4]=1;
-              tdone[4]=1;
-            }
-            break;
-          
-        }
-        break;
-      
-    }
-  }
-
-  public void thread9424(int [] tdone, int [] ends){
-        switch(S8863){
+  public void thread40266(int [] tdone, int [] ends){
+        switch(S40258){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -553,51 +47,921 @@ public class LidLoaderPlant extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S8835){
-          case 0 : 
-            if(pusherExtend.getprestatus() && enable.getprestatus()){//sysj/lidLoaderPlant.sysj line: 26, column: 10
-              S8835=1;
-              pusherExtended.setPresent();//sysj/lidLoaderPlant.sysj line: 30, column: 5
-              currsigs.addElement(pusherExtended);
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
+        if(enable.getprestatus()){//sysj/lidLoaderPlant.sysj line: 33, column: 12
+          if(pusherExtend.getprestatus()){//sysj/lidLoaderPlant.sysj line: 36, column: 13
+            if(!extended_thread_3) {//sysj/lidLoaderPlant.sysj line: 37, column: 19
+              extended_thread_3 = true;//sysj/lidLoaderPlant.sysj line: 38, column: 7
+              if(lids_thread_3 > 0 && !lidReady_thread_3) {//sysj/lidLoaderPlant.sysj line: 39, column: 32
+                lids_thread_3 = lids_thread_3 - 1;//sysj/lidLoaderPlant.sysj line: 40, column: 8
+                lidReady_thread_3 = true;//sysj/lidLoaderPlant.sysj line: 41, column: 8
+                System.out.println("[LIDPlant] Lid pushed out, " + lids_thread_3 + " left.");//sysj/lidLoaderPlant.sysj line: 42, column: 8
+              }
+            }
+            pusherExtended.setPresent();//sysj/lidLoaderPlant.sysj line: 45, column: 6
+            currsigs.addElement(pusherExtended);
+            if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 53, column: 5
+              if(vacOn.getprestatus()){//sysj/lidLoaderPlant.sysj line: 54, column: 14
+                if(lidReady_thread_3){//sysj/lidLoaderPlant.sysj line: 71, column: 5
+                  lidAtPickup.setPresent();//sysj/lidLoaderPlant.sysj line: 71, column: 19
+                  currsigs.addElement(lidAtPickup);
+                  if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                    WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                    currsigs.addElement(WPgripped);
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                  else {
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                }
+                else {
+                  if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                    WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                    currsigs.addElement(WPgripped);
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                  else {
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                }
+              }
+              else {
+                holding_thread_3 = false;//sysj/lidLoaderPlant.sysj line: 58, column: 7
+                System.out.println("[LIDPlant] Lid released.");//sysj/lidLoaderPlant.sysj line: 59, column: 7
+                if(lidReady_thread_3){//sysj/lidLoaderPlant.sysj line: 71, column: 5
+                  lidAtPickup.setPresent();//sysj/lidLoaderPlant.sysj line: 71, column: 19
+                  currsigs.addElement(lidAtPickup);
+                  if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                    WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                    currsigs.addElement(WPgripped);
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                  else {
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                }
+                else {
+                  if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                    WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                    currsigs.addElement(WPgripped);
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                  else {
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                }
+              }
             }
             else {
-              pusherRetracted.setPresent();//sysj/lidLoaderPlant.sysj line: 27, column: 5
-              currsigs.addElement(pusherRetracted);
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
+              if(vacOn.getprestatus() && armAtSource.getprestatus()){//sysj/lidLoaderPlant.sysj line: 63, column: 14
+                if(lidReady_thread_3) {//sysj/lidLoaderPlant.sysj line: 64, column: 19
+                  lidReady_thread_3 = false;//sysj/lidLoaderPlant.sysj line: 65, column: 8
+                  holding_thread_3 = true;//sysj/lidLoaderPlant.sysj line: 66, column: 8
+                }
+                if(lidReady_thread_3){//sysj/lidLoaderPlant.sysj line: 71, column: 5
+                  lidAtPickup.setPresent();//sysj/lidLoaderPlant.sysj line: 71, column: 19
+                  currsigs.addElement(lidAtPickup);
+                  if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                    WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                    currsigs.addElement(WPgripped);
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                  else {
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                }
+                else {
+                  if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                    WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                    currsigs.addElement(WPgripped);
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                  else {
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                }
+              }
+              else {
+                if(lidReady_thread_3){//sysj/lidLoaderPlant.sysj line: 71, column: 5
+                  lidAtPickup.setPresent();//sysj/lidLoaderPlant.sysj line: 71, column: 19
+                  currsigs.addElement(lidAtPickup);
+                  if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                    WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                    currsigs.addElement(WPgripped);
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                  else {
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                }
+                else {
+                  if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                    WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                    currsigs.addElement(WPgripped);
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                  else {
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                }
+              }
             }
-            break;
-          
-          case 1 : 
-            if(!pusherExtend.getprestatus() && enable.getprestatus()){//sysj/lidLoaderPlant.sysj line: 29, column: 10
-              S8835=0;
-              pusherRetracted.setPresent();//sysj/lidLoaderPlant.sysj line: 27, column: 5
-              currsigs.addElement(pusherRetracted);
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
+          }
+          else {
+            extended_thread_3 = false;//sysj/lidLoaderPlant.sysj line: 48, column: 6
+            pusherRetracted.setPresent();//sysj/lidLoaderPlant.sysj line: 49, column: 6
+            currsigs.addElement(pusherRetracted);
+            if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 53, column: 5
+              if(vacOn.getprestatus()){//sysj/lidLoaderPlant.sysj line: 54, column: 14
+                if(lidReady_thread_3){//sysj/lidLoaderPlant.sysj line: 71, column: 5
+                  lidAtPickup.setPresent();//sysj/lidLoaderPlant.sysj line: 71, column: 19
+                  currsigs.addElement(lidAtPickup);
+                  if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                    WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                    currsigs.addElement(WPgripped);
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                  else {
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                }
+                else {
+                  if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                    WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                    currsigs.addElement(WPgripped);
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                  else {
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                }
+              }
+              else {
+                holding_thread_3 = false;//sysj/lidLoaderPlant.sysj line: 58, column: 7
+                System.out.println("[LIDPlant] Lid released.");//sysj/lidLoaderPlant.sysj line: 59, column: 7
+                if(lidReady_thread_3){//sysj/lidLoaderPlant.sysj line: 71, column: 5
+                  lidAtPickup.setPresent();//sysj/lidLoaderPlant.sysj line: 71, column: 19
+                  currsigs.addElement(lidAtPickup);
+                  if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                    WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                    currsigs.addElement(WPgripped);
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                  else {
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                }
+                else {
+                  if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                    WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                    currsigs.addElement(WPgripped);
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                  else {
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                }
+              }
             }
             else {
-              pusherExtended.setPresent();//sysj/lidLoaderPlant.sysj line: 30, column: 5
-              currsigs.addElement(pusherExtended);
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
+              if(vacOn.getprestatus() && armAtSource.getprestatus()){//sysj/lidLoaderPlant.sysj line: 63, column: 14
+                if(lidReady_thread_3) {//sysj/lidLoaderPlant.sysj line: 64, column: 19
+                  lidReady_thread_3 = false;//sysj/lidLoaderPlant.sysj line: 65, column: 8
+                  holding_thread_3 = true;//sysj/lidLoaderPlant.sysj line: 66, column: 8
+                }
+                if(lidReady_thread_3){//sysj/lidLoaderPlant.sysj line: 71, column: 5
+                  lidAtPickup.setPresent();//sysj/lidLoaderPlant.sysj line: 71, column: 19
+                  currsigs.addElement(lidAtPickup);
+                  if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                    WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                    currsigs.addElement(WPgripped);
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                  else {
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                }
+                else {
+                  if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                    WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                    currsigs.addElement(WPgripped);
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                  else {
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                }
+              }
+              else {
+                if(lidReady_thread_3){//sysj/lidLoaderPlant.sysj line: 71, column: 5
+                  lidAtPickup.setPresent();//sysj/lidLoaderPlant.sysj line: 71, column: 19
+                  currsigs.addElement(lidAtPickup);
+                  if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                    WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                    currsigs.addElement(WPgripped);
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                  else {
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                }
+                else {
+                  if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                    WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                    currsigs.addElement(WPgripped);
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                  else {
+                    if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                      lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                      refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                      currsigs.addElement(refilled);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                        magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                        currsigs.addElement(magazineEmpty);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                }
+              }
             }
-            break;
-          
+          }
+        }
+        else {
+          active[3]=1;
+          ends[3]=1;
+          tdone[3]=1;
         }
         break;
       
     }
   }
 
-  public void thread9423(int [] tdone, int [] ends){
-        switch(S8822){
+  public void thread40265(int [] tdone, int [] ends){
+        switch(S39398){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -605,18 +969,18 @@ public class LidLoaderPlant extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S8794){
+        switch(S39370){
           case 0 : 
-            if(armSource.getprestatus() && enable.getprestatus()){//sysj/lidLoaderPlant.sysj line: 15, column: 10
-              S8794=1;
-              armAtSource.setPresent();//sysj/lidLoaderPlant.sysj line: 19, column: 5
+            if(armSource.getprestatus() && enable.getprestatus()){//sysj/lidLoaderPlant.sysj line: 16, column: 10
+              S39370=1;
+              armAtSource.setPresent();//sysj/lidLoaderPlant.sysj line: 20, column: 5
               currsigs.addElement(armAtSource);
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
             }
             else {
-              armAtDest.setPresent();//sysj/lidLoaderPlant.sysj line: 16, column: 5
+              armAtDest.setPresent();//sysj/lidLoaderPlant.sysj line: 17, column: 5
               currsigs.addElement(armAtDest);
               active[2]=1;
               ends[2]=1;
@@ -625,16 +989,16 @@ public class LidLoaderPlant extends ClockDomain{
             break;
           
           case 1 : 
-            if(armDest.getprestatus() && enable.getprestatus()){//sysj/lidLoaderPlant.sysj line: 18, column: 10
-              S8794=0;
-              armAtDest.setPresent();//sysj/lidLoaderPlant.sysj line: 16, column: 5
+            if(armDest.getprestatus() && enable.getprestatus()){//sysj/lidLoaderPlant.sysj line: 19, column: 10
+              S39370=0;
+              armAtDest.setPresent();//sysj/lidLoaderPlant.sysj line: 17, column: 5
               currsigs.addElement(armAtDest);
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
             }
             else {
-              armAtSource.setPresent();//sysj/lidLoaderPlant.sysj line: 19, column: 5
+              armAtSource.setPresent();//sysj/lidLoaderPlant.sysj line: 20, column: 5
               currsigs.addElement(armAtSource);
               active[2]=1;
               ends[2]=1;
@@ -648,260 +1012,927 @@ public class LidLoaderPlant extends ClockDomain{
     }
   }
 
-  public void thread9420(int [] tdone, int [] ends){
-        S9091=1;
-    if(empty.getprestatus()){//sysj/lidLoaderPlant.sysj line: 103, column: 24
-      emptyE.setPresent();//sysj/lidLoaderPlant.sysj line: 103, column: 31
-      currsigs.addElement(emptyE);
-      active[13]=1;
-      ends[13]=1;
-      tdone[13]=1;
-    }
-    else {
-      active[13]=1;
-      ends[13]=1;
-      tdone[13]=1;
-    }
-  }
-
-  public void thread9419(int [] tdone, int [] ends){
-        S9083=1;
-    if(armAtDest.getprestatus()){//sysj/lidLoaderPlant.sysj line: 101, column: 24
-      armAtDestE.setPresent();//sysj/lidLoaderPlant.sysj line: 101, column: 35
-      currsigs.addElement(armAtDestE);
-      active[12]=1;
-      ends[12]=1;
-      tdone[12]=1;
-    }
-    else {
-      active[12]=1;
-      ends[12]=1;
-      tdone[12]=1;
-    }
-  }
-
-  public void thread9418(int [] tdone, int [] ends){
-        S9075=1;
-    if(armAtSource.getprestatus()){//sysj/lidLoaderPlant.sysj line: 99, column: 24
-      armAtSourceE.setPresent();//sysj/lidLoaderPlant.sysj line: 99, column: 37
-      currsigs.addElement(armAtSourceE);
-      active[11]=1;
-      ends[11]=1;
-      tdone[11]=1;
-    }
-    else {
-      active[11]=1;
-      ends[11]=1;
-      tdone[11]=1;
-    }
-  }
-
-  public void thread9417(int [] tdone, int [] ends){
-        S9067=1;
-    if(WPgripped.getprestatus()){//sysj/lidLoaderPlant.sysj line: 97, column: 24
-      WPgrippedE.setPresent();//sysj/lidLoaderPlant.sysj line: 97, column: 35
-      currsigs.addElement(WPgrippedE);
-      active[10]=1;
-      ends[10]=1;
-      tdone[10]=1;
-    }
-    else {
-      active[10]=1;
-      ends[10]=1;
-      tdone[10]=1;
-    }
-  }
-
-  public void thread9416(int [] tdone, int [] ends){
-        S9059=1;
-    if(pusherExtended.getprestatus()){//sysj/lidLoaderPlant.sysj line: 95, column: 24
-      pusherExtendedE.setPresent();//sysj/lidLoaderPlant.sysj line: 95, column: 40
-      currsigs.addElement(pusherExtendedE);
-      active[9]=1;
-      ends[9]=1;
-      tdone[9]=1;
-    }
-    else {
-      active[9]=1;
-      ends[9]=1;
-      tdone[9]=1;
-    }
-  }
-
-  public void thread9415(int [] tdone, int [] ends){
-        S9051=1;
-    if(pusherRetracted.getprestatus()){//sysj/lidLoaderPlant.sysj line: 93, column: 24
-      pusherRetractedE.setPresent();//sysj/lidLoaderPlant.sysj line: 93, column: 41
-      currsigs.addElement(pusherRetractedE);
-      active[8]=1;
-      ends[8]=1;
-      tdone[8]=1;
-    }
-    else {
-      active[8]=1;
-      ends[8]=1;
-      tdone[8]=1;
-    }
-  }
-
-  public void thread9414(int [] tdone, int [] ends){
-        S9093=1;
-    thread9415(tdone,ends);
-    thread9416(tdone,ends);
-    thread9417(tdone,ends);
-    thread9418(tdone,ends);
-    thread9419(tdone,ends);
-    thread9420(tdone,ends);
-    int biggest9421 = 0;
-    if(ends[8]>=biggest9421){
-      biggest9421=ends[8];
-    }
-    if(ends[9]>=biggest9421){
-      biggest9421=ends[9];
-    }
-    if(ends[10]>=biggest9421){
-      biggest9421=ends[10];
-    }
-    if(ends[11]>=biggest9421){
-      biggest9421=ends[11];
-    }
-    if(ends[12]>=biggest9421){
-      biggest9421=ends[12];
-    }
-    if(ends[13]>=biggest9421){
-      biggest9421=ends[13];
-    }
-    if(biggest9421 == 1){
-      active[7]=1;
-      ends[7]=1;
-      tdone[7]=1;
-    }
-  }
-
-  public void thread9413(int [] tdone, int [] ends){
-        S9043=1;
-    capcount_thread_6 = 5;//sysj/lidLoaderPlant.sysj line: 76, column: 3
-    if(capDec_1.getprestatus()){//sysj/lidLoaderPlant.sysj line: 78, column: 12
-      if(capcount_thread_6 > 0) {//sysj/lidLoaderPlant.sysj line: 79, column: 5
-        capcount_thread_6 = capcount_thread_6 - 1;//sysj/lidLoaderPlant.sysj line: 80, column: 6
-      }
-      System.out.println("[Plant] capcount = " + capcount_thread_6);//sysj/lidLoaderPlant.sysj line: 81, column: 5
-      if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 83, column: 12
-        capcount_thread_6 = 5;//sysj/lidLoaderPlant.sysj line: 84, column: 5
-        if(capcount_thread_6 == 0){//sysj/lidLoaderPlant.sysj line: 86, column: 7
-          empty.setPresent();//sysj/lidLoaderPlant.sysj line: 87, column: 5
-          currsigs.addElement(empty);
-          active[6]=1;
-          ends[6]=1;
-          tdone[6]=1;
+  public void thread40263(int [] tdone, int [] ends){
+        S40258=1;
+    STOCK_thread_3 = 3;//sysj/lidLoaderPlant.sysj line: 26, column: 3
+    lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 27, column: 3
+    extended_thread_3 = false;//sysj/lidLoaderPlant.sysj line: 28, column: 3
+    lidReady_thread_3 = false;//sysj/lidLoaderPlant.sysj line: 29, column: 3
+    holding_thread_3 = false;//sysj/lidLoaderPlant.sysj line: 30, column: 3
+    if(enable.getprestatus()){//sysj/lidLoaderPlant.sysj line: 33, column: 12
+      if(pusherExtend.getprestatus()){//sysj/lidLoaderPlant.sysj line: 36, column: 13
+        if(!extended_thread_3) {//sysj/lidLoaderPlant.sysj line: 37, column: 19
+          extended_thread_3 = true;//sysj/lidLoaderPlant.sysj line: 38, column: 7
+          if(lids_thread_3 > 0 && !lidReady_thread_3) {//sysj/lidLoaderPlant.sysj line: 39, column: 32
+            lids_thread_3 = lids_thread_3 - 1;//sysj/lidLoaderPlant.sysj line: 40, column: 8
+            lidReady_thread_3 = true;//sysj/lidLoaderPlant.sysj line: 41, column: 8
+            System.out.println("[LIDPlant] Lid pushed out, " + lids_thread_3 + " left.");//sysj/lidLoaderPlant.sysj line: 42, column: 8
+          }
+        }
+        pusherExtended.setPresent();//sysj/lidLoaderPlant.sysj line: 45, column: 6
+        currsigs.addElement(pusherExtended);
+        if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 53, column: 5
+          if(vacOn.getprestatus()){//sysj/lidLoaderPlant.sysj line: 54, column: 14
+            if(lidReady_thread_3){//sysj/lidLoaderPlant.sysj line: 71, column: 5
+              lidAtPickup.setPresent();//sysj/lidLoaderPlant.sysj line: 71, column: 19
+              currsigs.addElement(lidAtPickup);
+              if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                currsigs.addElement(WPgripped);
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+              else {
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+            }
+            else {
+              if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                currsigs.addElement(WPgripped);
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+              else {
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+            }
+          }
+          else {
+            holding_thread_3 = false;//sysj/lidLoaderPlant.sysj line: 58, column: 7
+            System.out.println("[LIDPlant] Lid released.");//sysj/lidLoaderPlant.sysj line: 59, column: 7
+            if(lidReady_thread_3){//sysj/lidLoaderPlant.sysj line: 71, column: 5
+              lidAtPickup.setPresent();//sysj/lidLoaderPlant.sysj line: 71, column: 19
+              currsigs.addElement(lidAtPickup);
+              if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                currsigs.addElement(WPgripped);
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+              else {
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+            }
+            else {
+              if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                currsigs.addElement(WPgripped);
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+              else {
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+            }
+          }
         }
         else {
-          active[6]=1;
-          ends[6]=1;
-          tdone[6]=1;
+          if(vacOn.getprestatus() && armAtSource.getprestatus()){//sysj/lidLoaderPlant.sysj line: 63, column: 14
+            if(lidReady_thread_3) {//sysj/lidLoaderPlant.sysj line: 64, column: 19
+              lidReady_thread_3 = false;//sysj/lidLoaderPlant.sysj line: 65, column: 8
+              holding_thread_3 = true;//sysj/lidLoaderPlant.sysj line: 66, column: 8
+            }
+            if(lidReady_thread_3){//sysj/lidLoaderPlant.sysj line: 71, column: 5
+              lidAtPickup.setPresent();//sysj/lidLoaderPlant.sysj line: 71, column: 19
+              currsigs.addElement(lidAtPickup);
+              if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                currsigs.addElement(WPgripped);
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+              else {
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+            }
+            else {
+              if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                currsigs.addElement(WPgripped);
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+              else {
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+            }
+          }
+          else {
+            if(lidReady_thread_3){//sysj/lidLoaderPlant.sysj line: 71, column: 5
+              lidAtPickup.setPresent();//sysj/lidLoaderPlant.sysj line: 71, column: 19
+              currsigs.addElement(lidAtPickup);
+              if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                currsigs.addElement(WPgripped);
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+              else {
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+            }
+            else {
+              if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                currsigs.addElement(WPgripped);
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+              else {
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+            }
+          }
         }
       }
       else {
-        if(capcount_thread_6 == 0){//sysj/lidLoaderPlant.sysj line: 86, column: 7
-          empty.setPresent();//sysj/lidLoaderPlant.sysj line: 87, column: 5
-          currsigs.addElement(empty);
-          active[6]=1;
-          ends[6]=1;
-          tdone[6]=1;
+        extended_thread_3 = false;//sysj/lidLoaderPlant.sysj line: 48, column: 6
+        pusherRetracted.setPresent();//sysj/lidLoaderPlant.sysj line: 49, column: 6
+        currsigs.addElement(pusherRetracted);
+        if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 53, column: 5
+          if(vacOn.getprestatus()){//sysj/lidLoaderPlant.sysj line: 54, column: 14
+            if(lidReady_thread_3){//sysj/lidLoaderPlant.sysj line: 71, column: 5
+              lidAtPickup.setPresent();//sysj/lidLoaderPlant.sysj line: 71, column: 19
+              currsigs.addElement(lidAtPickup);
+              if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                currsigs.addElement(WPgripped);
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+              else {
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+            }
+            else {
+              if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                currsigs.addElement(WPgripped);
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+              else {
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+            }
+          }
+          else {
+            holding_thread_3 = false;//sysj/lidLoaderPlant.sysj line: 58, column: 7
+            System.out.println("[LIDPlant] Lid released.");//sysj/lidLoaderPlant.sysj line: 59, column: 7
+            if(lidReady_thread_3){//sysj/lidLoaderPlant.sysj line: 71, column: 5
+              lidAtPickup.setPresent();//sysj/lidLoaderPlant.sysj line: 71, column: 19
+              currsigs.addElement(lidAtPickup);
+              if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                currsigs.addElement(WPgripped);
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+              else {
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+            }
+            else {
+              if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                currsigs.addElement(WPgripped);
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+              else {
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+            }
+          }
         }
         else {
-          active[6]=1;
-          ends[6]=1;
-          tdone[6]=1;
+          if(vacOn.getprestatus() && armAtSource.getprestatus()){//sysj/lidLoaderPlant.sysj line: 63, column: 14
+            if(lidReady_thread_3) {//sysj/lidLoaderPlant.sysj line: 64, column: 19
+              lidReady_thread_3 = false;//sysj/lidLoaderPlant.sysj line: 65, column: 8
+              holding_thread_3 = true;//sysj/lidLoaderPlant.sysj line: 66, column: 8
+            }
+            if(lidReady_thread_3){//sysj/lidLoaderPlant.sysj line: 71, column: 5
+              lidAtPickup.setPresent();//sysj/lidLoaderPlant.sysj line: 71, column: 19
+              currsigs.addElement(lidAtPickup);
+              if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                currsigs.addElement(WPgripped);
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+              else {
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+            }
+            else {
+              if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                currsigs.addElement(WPgripped);
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+              else {
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+            }
+          }
+          else {
+            if(lidReady_thread_3){//sysj/lidLoaderPlant.sysj line: 71, column: 5
+              lidAtPickup.setPresent();//sysj/lidLoaderPlant.sysj line: 71, column: 19
+              currsigs.addElement(lidAtPickup);
+              if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                currsigs.addElement(WPgripped);
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+              else {
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+            }
+            else {
+              if(holding_thread_3){//sysj/lidLoaderPlant.sysj line: 72, column: 5
+                WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 72, column: 18
+                currsigs.addElement(WPgripped);
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+              else {
+                if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj/lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj/lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj/lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj/lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
     else {
-      if(refill.getprestatus()){//sysj/lidLoaderPlant.sysj line: 83, column: 12
-        capcount_thread_6 = 5;//sysj/lidLoaderPlant.sysj line: 84, column: 5
-        if(capcount_thread_6 == 0){//sysj/lidLoaderPlant.sysj line: 86, column: 7
-          empty.setPresent();//sysj/lidLoaderPlant.sysj line: 87, column: 5
-          currsigs.addElement(empty);
-          active[6]=1;
-          ends[6]=1;
-          tdone[6]=1;
-        }
-        else {
-          active[6]=1;
-          ends[6]=1;
-          tdone[6]=1;
-        }
-      }
-      else {
-        if(capcount_thread_6 == 0){//sysj/lidLoaderPlant.sysj line: 86, column: 7
-          empty.setPresent();//sysj/lidLoaderPlant.sysj line: 87, column: 5
-          currsigs.addElement(empty);
-          active[6]=1;
-          ends[6]=1;
-          tdone[6]=1;
-        }
-        else {
-          active[6]=1;
-          ends[6]=1;
-          tdone[6]=1;
-        }
-      }
+      active[3]=1;
+      ends[3]=1;
+      tdone[3]=1;
     }
   }
 
-  public void thread9412(int [] tdone, int [] ends){
-        S8975=1;
-    S8929=0;
-    S8911=0;
-    active[5]=1;
-    ends[5]=1;
-    tdone[5]=1;
-  }
-
-  public void thread9411(int [] tdone, int [] ends){
-        S8907=1;
-    S8877=0;
-    if(vacOn.getprestatus() && armAtSource.getprestatus()){//sysj/lidLoaderPlant.sysj line: 37, column: 12
-      if((Integer)(capPos_1.getpreval() == null ? 0 : ((Integer)capPos_1.getpreval()).intValue()) == 1){//sysj/lidLoaderPlant.sysj line: 38, column: 8
-        capPos_1.setPresent();//sysj/lidLoaderPlant.sysj line: 39, column: 6
-        currsigs.addElement(capPos_1);
-        capPos_1.setValue(0);//sysj/lidLoaderPlant.sysj line: 39, column: 6
-        S8872=0;
-        WPgripped.setPresent();//sysj/lidLoaderPlant.sysj line: 41, column: 7
-        currsigs.addElement(WPgripped);
-        active[4]=1;
-        ends[4]=1;
-        tdone[4]=1;
-      }
-      else {
-        S8877=1;
-        active[4]=1;
-        ends[4]=1;
-        tdone[4]=1;
-      }
-    }
-    else {
-      S8877=1;
-      active[4]=1;
-      ends[4]=1;
-      tdone[4]=1;
-    }
-  }
-
-  public void thread9410(int [] tdone, int [] ends){
-        S8863=1;
-    S8835=0;
-    pusherRetracted.setPresent();//sysj/lidLoaderPlant.sysj line: 27, column: 5
-    currsigs.addElement(pusherRetracted);
-    active[3]=1;
-    ends[3]=1;
-    tdone[3]=1;
-  }
-
-  public void thread9409(int [] tdone, int [] ends){
-        S8822=1;
-    S8794=0;
-    armAtDest.setPresent();//sysj/lidLoaderPlant.sysj line: 16, column: 5
+  public void thread40262(int [] tdone, int [] ends){
+        S39398=1;
+    S39370=0;
+    armAtDest.setPresent();//sysj/lidLoaderPlant.sysj line: 17, column: 5
     currsigs.addElement(armAtDest);
     active[2]=1;
     ends[2]=1;
@@ -915,89 +1946,50 @@ public class LidLoaderPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S9407){
+      switch(S40260){
         case 0 : 
-          S9407=0;
+          S40260=0;
           break RUN;
         
         case 1 : 
-          S9407=2;
-          S9407=2;
-          capDec_1.setClear();//sysj/lidLoaderPlant.sysj line: 10, column: 2
-          capPos_1.setClear();//sysj/lidLoaderPlant.sysj line: 11, column: 2
-          capPos_1.setPresent();//sysj/lidLoaderPlant.sysj line: 12, column: 2
-          currsigs.addElement(capPos_1);
-          capPos_1.setValue(0);//sysj/lidLoaderPlant.sysj line: 12, column: 2
-          thread9409(tdone,ends);
-          thread9410(tdone,ends);
-          thread9411(tdone,ends);
-          thread9412(tdone,ends);
-          thread9413(tdone,ends);
-          thread9414(tdone,ends);
-          int biggest9422 = 0;
-          if(ends[2]>=biggest9422){
-            biggest9422=ends[2];
+          S40260=2;
+          S40260=2;
+          thread40262(tdone,ends);
+          thread40263(tdone,ends);
+          int biggest40264 = 0;
+          if(ends[2]>=biggest40264){
+            biggest40264=ends[2];
           }
-          if(ends[3]>=biggest9422){
-            biggest9422=ends[3];
+          if(ends[3]>=biggest40264){
+            biggest40264=ends[3];
           }
-          if(ends[4]>=biggest9422){
-            biggest9422=ends[4];
-          }
-          if(ends[5]>=biggest9422){
-            biggest9422=ends[5];
-          }
-          if(ends[6]>=biggest9422){
-            biggest9422=ends[6];
-          }
-          if(ends[7]>=biggest9422){
-            biggest9422=ends[7];
-          }
-          if(biggest9422 == 1){
+          if(biggest40264 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
         
         case 2 : 
-          capDec_1.setClear();//sysj/lidLoaderPlant.sysj line: 10, column: 2
-          capPos_1.setClear();//sysj/lidLoaderPlant.sysj line: 11, column: 2
-          thread9423(tdone,ends);
-          thread9424(tdone,ends);
-          thread9425(tdone,ends);
-          thread9426(tdone,ends);
-          thread9427(tdone,ends);
-          thread9428(tdone,ends);
-          int biggest9436 = 0;
-          if(ends[2]>=biggest9436){
-            biggest9436=ends[2];
+          thread40265(tdone,ends);
+          thread40266(tdone,ends);
+          int biggest40267 = 0;
+          if(ends[2]>=biggest40267){
+            biggest40267=ends[2];
           }
-          if(ends[3]>=biggest9436){
-            biggest9436=ends[3];
+          if(ends[3]>=biggest40267){
+            biggest40267=ends[3];
           }
-          if(ends[4]>=biggest9436){
-            biggest9436=ends[4];
-          }
-          if(ends[5]>=biggest9436){
-            biggest9436=ends[5];
-          }
-          if(ends[6]>=biggest9436){
-            biggest9436=ends[6];
-          }
-          if(ends[7]>=biggest9436){
-            biggest9436=ends[7];
-          }
-          if(biggest9436 == 1){
+          if(biggest40267 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest9436 == 0){
-            S9407=0;
+          if(biggest40267 == 0){
+            S40260=0;
             active[1]=0;
             ends[1]=0;
-            S9407=0;
+            S40260=0;
             break RUN;
           }
         
@@ -1006,15 +1998,13 @@ public class LidLoaderPlant extends ClockDomain{
   }
 
   public void init(){
-    char [] active1 = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-    char [] paused1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    char [] suspended1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    char [] active1 = {1, 1, 1, 1};
+    char [] paused1 = {0, 0, 0, 0};
+    char [] suspended1 = {0, 0, 0, 0};
     paused = paused1;
     active = active1;
     suspended = suspended1;
     // Now instantiate all the local signals ONLY
-    capDec_1 = new Signal();
-    capPos_1 = new Signal();
     // --------------------------------------------------
   }
   
@@ -1029,43 +2019,39 @@ public class LidLoaderPlant extends ClockDomain{
       if(paused[1]!=0 || suspended[1]!=0 || active[1]!=1);
       else{
         if(!df){
+          enable.gethook();
           pusherExtend.gethook();
           vacOn.gethook();
           armSource.gethook();
           armDest.gethook();
-          enable.gethook();
           refill.gethook();
           df = true;
         }
         runClockDomain();
       }
+      enable.setpreclear();
       pusherExtend.setpreclear();
       vacOn.setpreclear();
       armSource.setpreclear();
       armDest.setpreclear();
-      enable.setpreclear();
       refill.setpreclear();
-      pusherRetracted.setpreclear();
       pusherExtended.setpreclear();
+      pusherRetracted.setpreclear();
+      lidAtPickup.setpreclear();
       WPgripped.setpreclear();
       armAtSource.setpreclear();
       armAtDest.setpreclear();
-      empty.setpreclear();
+      magazineEmpty.setpreclear();
       refilled.setpreclear();
-      pusherRetractedE.setpreclear();
-      pusherExtendedE.setpreclear();
-      WPgrippedE.setpreclear();
-      armAtSourceE.setpreclear();
-      armAtDestE.setpreclear();
-      emptyE.setpreclear();
-      capDec_1.setpreclear();
-      capPos_1.setpreclear();
       int dummyint = 0;
       for(int qw=0;qw<currsigs.size();++qw){
         dummyint = ((Signal)currsigs.elementAt(qw)).getStatus() ? ((Signal)currsigs.elementAt(qw)).setprepresent() : ((Signal)currsigs.elementAt(qw)).setpreclear();
         ((Signal)currsigs.elementAt(qw)).setpreval(((Signal)currsigs.elementAt(qw)).getValue());
       }
       currsigs.removeAllElements();
+      dummyint = enable.getStatus() ? enable.setprepresent() : enable.setpreclear();
+      enable.setpreval(enable.getValue());
+      enable.setClear();
       dummyint = pusherExtend.getStatus() ? pusherExtend.setprepresent() : pusherExtend.setpreclear();
       pusherExtend.setpreval(pusherExtend.getValue());
       pusherExtend.setClear();
@@ -1078,47 +2064,32 @@ public class LidLoaderPlant extends ClockDomain{
       dummyint = armDest.getStatus() ? armDest.setprepresent() : armDest.setpreclear();
       armDest.setpreval(armDest.getValue());
       armDest.setClear();
-      dummyint = enable.getStatus() ? enable.setprepresent() : enable.setpreclear();
-      enable.setpreval(enable.getValue());
-      enable.setClear();
       dummyint = refill.getStatus() ? refill.setprepresent() : refill.setpreclear();
       refill.setpreval(refill.getValue());
       refill.setClear();
-      pusherRetracted.sethook();
-      pusherRetracted.setClear();
       pusherExtended.sethook();
       pusherExtended.setClear();
+      pusherRetracted.sethook();
+      pusherRetracted.setClear();
+      lidAtPickup.sethook();
+      lidAtPickup.setClear();
       WPgripped.sethook();
       WPgripped.setClear();
       armAtSource.sethook();
       armAtSource.setClear();
       armAtDest.sethook();
       armAtDest.setClear();
-      empty.sethook();
-      empty.setClear();
+      magazineEmpty.sethook();
+      magazineEmpty.setClear();
       refilled.sethook();
       refilled.setClear();
-      pusherRetractedE.sethook();
-      pusherRetractedE.setClear();
-      pusherExtendedE.sethook();
-      pusherExtendedE.setClear();
-      WPgrippedE.sethook();
-      WPgrippedE.setClear();
-      armAtSourceE.sethook();
-      armAtSourceE.setClear();
-      armAtDestE.sethook();
-      armAtDestE.setClear();
-      emptyE.sethook();
-      emptyE.setClear();
-      capDec_1.setClear();
-      capPos_1.setClear();
       if(paused[1]!=0 || suspended[1]!=0 || active[1]!=1);
       else{
+        enable.gethook();
         pusherExtend.gethook();
         vacOn.gethook();
         armSource.gethook();
         armDest.gethook();
-        enable.gethook();
         refill.gethook();
       }
       runFinisher();

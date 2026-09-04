@@ -1,0 +1,88 @@
+/*
+ * Liquid filler. Two of these run on the line - one at table position 2 for
+ * liquid A, one at position 3 for liquid B - so the code asks the bottle what
+ * it needs next rather than being told which liquid it is.
+ *
+ * Fill time comes out of the volume, so a 200ml bottle takes twice as long as
+ * a 100ml one at the same percentage.
+ */
+FillerController(
+		// from / to the Rotary Table
+		input  Workpiece channel start;
+		output Workpiece channel done;
+
+		// operating mode
+		input Integer signal mode;
+
+		// to / from the plant
+		output Integer signal fillTarget;
+		output signal valveOpen;
+		input  signal filled;
+
+		// manual override - the operator panel attaches here
+		input signal valveOpenM;
+		)
+->
+{
+	signal auto, manual;
+
+	{ // Mode select
+		while(true){
+			present(mode){
+				if((Integer)#mode == 0){ emit auto; }
+				else { emit manual; }
+			}
+			pause;
+		}
+	}
+	||
+	{ // Auto
+		Workpiece w = null;
+		int ml = 0;
+
+		while(true){
+			await(immediate auto);
+
+			abort(immediate manual){
+				receive start;
+				w = (Workpiece)#start;
+				ml = (w == null) ? 0 : w.nextVolumeMl();
+
+				if(ml == 0){
+					// no bottle at this position, or the recipe asks for none
+				}
+				else if(!w.fits(ml)){
+					// Overflow interlock: refuse rather than dispense.
+					System.out.println("[FILL] Refusing " + ml + "ml into " + w + " - would overflow.");
+				}
+				else {
+					System.out.println("[FILL] Liquid " + w.nextLiquidName() + ", " + ml + "ml into " + w + ".");
+					emit fillTarget(ml);
+
+					abort(immediate filled){
+						sustain valveOpen;
+					}
+
+					w.dispensed(ml);
+					System.out.println("[FILL] " + w + " now at " + w.filledMl() + "ml.");
+				}
+
+				send done(w);
+			}
+			pause;
+		}
+	}
+	||
+	{ // Manual
+		while(true){
+			await(immediate manual);
+			abort(immediate auto){
+				while(true){
+					present(valveOpenM){ emit valveOpen; }
+					pause;
+				}
+			}
+			pause;
+		}
+	}
+}

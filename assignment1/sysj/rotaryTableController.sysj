@@ -29,12 +29,12 @@
  */
 RotaryTableController(
 		// from / to the conveyor
-		input  Integer channel tableInfeed;
-		output Integer channel tableOutfeed;
+		input  Workpiece channel tableInfeed;
+		output Workpiece channel tableOutfeed;
 
 		// to / from the stations
-		output Integer channel startFiller1, startFiller2, startLid, startCapper;
-		input  Integer channel doneFiller1, doneFiller2, doneLid, doneCapper;
+		output Workpiece channel startFiller1, startFiller2, startLid, startCapper;
+		input  Workpiece channel doneFiller1, doneFiller2, doneLid, doneCapper;
 
 		// from the plant
 		// Presence sensors exist at positions 1, 2, 4 and 5 only. There is
@@ -54,7 +54,7 @@ RotaryTableController(
 
 	{ // ---- Sequencer ----
 		TableModel m = TableModel.shared();
-		int exiting = 0;
+		Workpiece exiting = null;
 
 		while(true){
 
@@ -67,7 +67,7 @@ RotaryTableController(
 			// and it replaces the old assumption that the collector was
 			// always available.
 			if(m.exitOccupied()){
-				exiting = m.exitId();
+				exiting = m.exitWorkpiece();
 				m.sayUnloading();
 				send tableOutfeed(exiting);
 				abort(immediate exitCleared){
@@ -94,8 +94,8 @@ RotaryTableController(
 			// ---- C. Run the stations, then wait for all of them ----
 			//
 			// Every station is started every cycle, whether or not its
-			// position holds a bottle: a station handed identity 0 has no
-			// workpiece and completes immediately. Keeping this unconditional
+			// position holds a bottle: a station handed null has no
+			// workpiece and returns straight away. Keeping this unconditional
 			// matters - four optional rendezvous is sixteen control paths
 			// through the reaction, and the generated state machine grows
 			// with every one of them.
@@ -108,10 +108,10 @@ RotaryTableController(
 			// the table waits for the slowest. That sequence of receives IS
 			// the barrier - no enable levels to hold or drop, and no
 			// acknowledgement padding.
-			send startFiller1(m.idAt(1));
-			send startFiller2(m.idAt(2));
-			send startLid(m.idAt(3));
-			send startCapper(m.idAt(4));
+			send startFiller1(m.at(1));
+			send startFiller2(m.at(2));
+			send startLid(m.at(3));
+			send startCapper(m.at(4));
 
 			receive doneFiller1;
 			receive doneFiller2;
@@ -135,12 +135,12 @@ RotaryTableController(
 	||
 	{ // ---- Intake ----
 		TableModel m = TableModel.shared();
-		int b = 0;
+		Workpiece w = null;
 		while(true){
 			receive tableInfeed;
-			b = ((Integer)#tableInfeed).intValue();
-			m.setPending(b);
-			System.out.println("[RT] Accepted bottle " + b + " from the conveyor.");
+			w = (Workpiece)#tableInfeed;
+			m.setPending(w);
+			System.out.println("[RT] Accepted " + w + " from the conveyor.");
 			await(immediate placed);
 			pause;
 		}
