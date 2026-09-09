@@ -1,10 +1,11 @@
 # ABS — build state
 
-Where the SystemJ bottling system stands, how to run it, and what is left
-against the brief. Current as of the `channels` branch.
+Where the SystemJ bottling system stands, how to run it, and what is left.
+Current as of the `channels` branch, which is **three commits ahead and not
+pushed**.
 
-Checked against our conceptual design rather than the brief PDF — worth
-reconciling with the real document before planning around the last section.
+Checked against our conceptual design and Ahil's IP report rather than the
+brief PDF — worth reconciling with the real document.
 
 ---
 
@@ -12,8 +13,8 @@ reconciling with the real document before planning around the last section.
 
 One launch target. **Refresh the project (F5) first** — Eclipse only lists
 `.launch` files it has scanned — then **Run As → RunABS**. That runs
-`SystemJRunner` against `sysj/abs.xml`, which brings up all sixteen clock
-domains in one JVM. It runs forever by design; stop it with the red square.
+`SystemJRunner` against `sysj/abs.xml`, which brings up all 29 clock domains
+in one JVM. It runs forever by design; stop it with the red square.
 
 You only need **Run As → BuildAll** after editing a `.sysj`. From a terminal,
 inside `assignment1`:
@@ -28,15 +29,17 @@ Semicolons in that last classpath — Windows separator.
 
 Give it about ninety seconds for four bottles to drain. The capper takes
 twelve ticks and the table cannot index until it is done, so the whole line
-paces off that.
+paces off that. At the end it prints every workpiece history and an audit.
 
 ### If it does not start
 
 - **No launch configs in the list** — the project name in `.project` must
   match what the `.launch` files expect (`assignment1`). Refresh after any
   change to the folder.
-- **22 missing-library errors** — `lib/` needs the SystemJ jars. They are in
-  the repo now; a fresh clone should be fine.
+- **Missing-library errors** — `lib/` needs the SystemJ jars. They are in the
+  repo now; a fresh clone should be fine.
+- **`.git` lock file errors** — delete `.git/HEAD.lock` and
+  `.git/objects/maintenance.lock` and retry.
 
 ---
 
@@ -51,41 +54,18 @@ paces off that.
 | Lid loader | Built | Magazine of three, refills itself |
 | Capper | Built | 12 ticks, sets the barrier pace |
 | Outfeed belt | Built | Pulls the finished bottle off at position 6 |
+| Quality splitter | **Misplaced** | Built and works, but wired downstream of the decision — see below |
 | Labeller | Built | Prints from the workpiece twin; refuses what the record can't justify |
-| Batch storage | Built | Where the line ends - labelled bottles retire onto their batch's shelf |
-| Recycling station | Built | Branch off the splitter: strip, drain, return |
+| Batch storage | Built | Where the line ends — labelled bottles retire onto their batch's shelf |
+| Recycling station | Built | The branch: strip the lid, drain, return the container |
 
----
-
-## Clock domains
-
-Every machine is a controller and plant pair, so each one could be deployed to
-its own microcomputer unchanged.
-
-| Clock domain | Port | State | Notes |
-| --- | --- | --- | --- |
-| `PosStubCD` | 10000 | Stub | Issues four orders, prints completions |
-| `SystemControllerCD` | 10001 | Live | Orders in, load commands out, mode and plant power |
-| `BottleLoaderControllerCD` | 11000 | Live | Auto/manual, supply monitoring |
-| `BottleLoaderPlantCD` | 11001 | Live | Arm and vacuum, supply of 20 |
-| `ConveyorControllerCD` | 12000 | Live | Accept, run, hand off, outfeed |
-| `ConveyorPlantCD` | 12001 | Live | Infeed is a 7-slot queue, outfeed single-bottle |
-| `RotaryTableControllerCD` | 13000 | Live | Unload, place, run stations, index |
-| `RotaryTablePlantCD` | 13001 | Live | 6 positions, 6-tick rotation, sensors at 1, 2, 4, 5 |
-| `Filler1ControllerCD` | 14000 | Live | Liquid A at position 2 |
-| `Filler1PlantCD` | 14001 | Live | Valve and flow meter, 20 ml per tick |
-| `Filler2ControllerCD` | 14100 | Live | Liquid B at position 3, same class as filler 1 |
-| `Filler2PlantCD` | 14101 | Live | Second instance of the same plant |
-| `LidLoaderControllerCD` | 14200 | Live | Pusher, vacuum arm, refill cycle |
-| `LidLoaderPlantCD` | 14201 | Live | Magazine of three |
-| `CapperControllerCD` | 14300 | Live | Slowest station |
-| `CapperPlantCD` | 14301 | Live | Screwing head, 12 ticks |
+29 clock domains, 31 channels, every one point-to-point with one sender.
 
 ---
 
 ## How the pieces talk
 
-One rule, and it is worth being able to state it in the demo:
+One rule, worth being able to state out loud in the demo:
 
 - A **transfer** between two machines — a command, an acknowledgement, a
   bottle changing hands — is a **channel**, carrying the workpiece.
@@ -96,143 +76,140 @@ Sensors cannot be channels: `abort(armAtSource){...}` has to evaluate a level
 at every tick boundary, and a rendezvous cannot be tested without committing
 to it.
 
-All sixteen clock domains sit in a single `<SubSystem>`. Channels are wired by
-name alone — `From` and `To`, no class, no IP, no port — and channels crossing
-a subsystem boundary would need an `<Interconnection>` block. One subsystem,
-and that question disappears. (`sysj.xsd` inside `sjrt-base` is the reference.)
+All 29 clock domains sit in a single `<SubSystem>`. Channels are wired by name
+alone — `From` and `To`, no class, no IP, no port — and channels crossing a
+subsystem boundary would need an `<Interconnection>` block. One subsystem, and
+that question disappears. (`sysj.xsd` inside `sjrt-base` is the reference.)
 
 There are no fixed-width pulse handshakes left in any controller. Every
 actuator command is held until the plant's own sensor confirms the effect.
 
 `tools/genxml.py` generates `sysj/abs.xml` and one file per clock domain into
 `sysj/machines/`, straight from the `.sysj` interfaces. **Do not hand-edit the
-XML** — change the interface and rerun the script.
+XML** — change the interface and rerun the script. Adding a machine is one row
+in `CDS` plus its links in `SIGNALS` and `CHANNELS`.
 
 ---
 
-## Recipes and bottle sizes
+## Recipes, sizes and the digital twin
 
-`Workpiece` carries the recipe: bottle size (100 or 200 ml), the percentage of
-each liquid, and how much has gone in so far. Percentages are arbitrary, not
-four fixed recipes — edit `OrderBook` to change the run.
+`WorkpieceTwin` is the bottle: identity, recipe, and an append-only history of
+everything that happened to it. Lifecycle state, station, fill level and
+whether it is lidded are all **folded out of the events** rather than stored
+beside them, so the two can never disagree. Every event carries a tick, so any
+past state can be replayed.
 
-Fill time comes out of the volume, at 20 ml per tick, so a 200 ml bottle takes
-twice as long as a 100 ml one at the same percentage. The two sizes fall out
-of the model rather than being special-cased.
+Ownership travels with the bottle — exactly one clock domain holds a twin at a
+time and hands it on by rendezvous, so appends never race.
 
-The fillers check `fits()` before opening a valve, so a recipe over 100% is
-refused rather than overflowing. Tested with a 200 ml bottle at 70% and 70%:
-140 ml went in, the second fill was refused, the bottle finished at 140 ml.
-That run is worth keeping for the validation section.
+Two bottle sizes (100 and 200 ml) and arbitrary percentages per liquid; edit
+`OrderBook` to change the run. Fill time comes out of the volume at 20 ml per
+tick, so the sizes fall out of the model rather than being special-cased. The
+fillers check `fits()` before opening a valve — a 200 ml bottle ordered at 70%
+and 70% takes 140 ml and has the second fill refused.
 
-Both fillers are the same class instantiated twice. The controller asks the
-bottle which liquid it needs next rather than being told which filler it is,
-which is what lets one piece of code serve both positions.
+Every machine also publishes a `MachineTwin`: an interpreted summary (status,
+last command, last confirmation), not a mirror of its raw signals, so a
+machine can be rebuilt without any consumer changing. The coordinator collects
+them into an `ABSTwin`.
+
+### For the GUI
+
+`ABSTwin` goes out on **port 20000** and the live `PurchaseOrder` on **20001**,
+via `com.systemj.netapi.TCPSender`, as complete snapshots every tick. A
+display that misses one is a tick behind rather than out of step. There are
+also **25 manual-override inputs** declared across the plant with nothing
+driving them — one per actuator on every machine, including the recycling
+station. That is the whole operator-panel attachment surface and it is ready.
+
+### Fault injection
+
+Two faults are armed in `OrderBook`: a bottle that arrives with a lid already
+fitted, and a short fill. Each is caught by the station that meets it rather
+than announced up front, so the history records where it was detected, not
+where it was acted on. Comment out those two lines for a clean run.
+
+This is also what finally made the recycling station execute — nothing in the
+plant had ever called `reject()`, so six machines had never run a line.
 
 ### Last verified run
 
 ```
-bottle 1 (100ml, 50/50)   A 50ml   B 50ml      → 100ml, sealed
-bottle 2 (200ml, 25/75)   A 50ml   B 150ml     → 200ml, sealed
-bottle 3 (100ml, 100/0)   A 100ml  (B skipped) → 100ml, sealed
-bottle 4 (200ml, 60/40)   A 120ml  B 80ml      → 200ml, sealed
+admitted 4, accepted 2, recovered 2
+batch storage holds 2 bottle(s)
+  batch 1: ABS-001-0001
+  batch 2: ABS-002-0004
+ok  serial ABS-001-0001 retrieves its own record
+AUDIT PASSED - every bottle is accounted for and every label is justified
 ```
-
-Four orders in, four bottles out in order, each visiting all four stations
-exactly once, with a magazine refill part way through.
 
 ---
 
-## Three design decisions worth being able to defend
+## The one thing that is wired wrong
 
-**The rotary table's intake is a separate reaction with a one-deep buffer.** A
-rendezvous completes whenever both sides are ready, which is not necessarily
-an instant when the table is aligned. So the transfer and the physical
-placement are separate events. Nothing is lost or duplicated.
+**The quality splitter is downstream of the decision it is supposed to make.**
 
-**The barrier starts all four stations even when positions are empty.** Four
-optional sends plus four optional receives is sixteen control paths; the
-compiler ran for over a minute and then died on the JVM's 64 KB method limit.
-Unconditional, with `null` meaning "nothing at this position", took the same
-file to two seconds. A station parked at its receive starts instantly, so they
-still run concurrently and the receives wait for the slowest.
+Both the interim report and the IP report say the outfeed carries a bottle to
+the splitter, which routes it forward to the labeller and batch storage or
+aside to the recycling station. What the code does is send every bottle to the
+labeller, let the labeller refuse a flagged one, hand it to the recycling
+station, and *then* fire the diverter — diverting a bottle off a belt it has
+already left.
 
-**Two plant signals exist to close handshakes that had nothing to acknowledge
-against.** The infeed belt runs every tick, so a bottle leaves the load point
-in the same instant it arrives and `infeedClear` never reads occupied — that
-is what the old three-tick pulse was papering over; `conveyorPlant` gains
-`infeedAdmitted`. And there is no presence sensor at table position 6, so
-`turntablePlant` gains `exitCleared`. Both are actuator-complete outputs, not
-new workpiece sensors, so the sensor set still matches Appendix 4.
+The splitter was built for the right place and the hook was left open:
+`admitBottle` is described in its own header as the stand-in for the outfeed
+releasing the workpiece. The fix is to have it take the bottle from the
+coordinator, read the quality record off the twin it is holding, and drive the
+diverter it already senses.
+
+It is worth doing, because it makes the labeller's refusal the **backstop**
+rather than the primary gate: a sensed diverter *and* a labeller that will not
+print against a flagged record even if that diverter jams. Two independent
+mechanisms is a much better validation story than one.
+
+It changes the recycling station's interface, so it needs agreeing first.
 
 ---
 
 ## SystemJ gotchas we have already paid for
 
-Worth reading before writing more `.sysj`.
+Read before writing more `.sysj`.
 
 - Channel declarations put the type **before** the keyword:
   `input Integer channel x`, matching valued signals.
 - Every loop needs a `pause` on every path. A `send` or `receive` does not
   count — the compiler rejects the loop outright.
 - A Java object **or constant** declared at clock-domain level is not visible
-  inside parallel reactions; each reaction gets its own scope. `TableModel`
-  and `BeltQueue` are reached through a static accessor for this reason.
+  inside parallel reactions; each reaction gets its own scope. `TableModel`,
+  `BeltQueue` and the rest go through a static accessor for this reason.
 - Array initialisers in a reaction (`int[] x = {1,2,3}`) generate a broken
-  type and fail at `javac`. `new int[n]` is fine. That is why the order list
-  lives in `OrderBook`.
-- Conditional rendezvous are expensive — see the barrier note above.
+  type and fail at `javac`. `new int[n]` is fine.
+- Conditional rendezvous are expensive. Four optional sends plus four optional
+  receives is sixteen paths, and the compiler died on the JVM's 64 KB method
+  limit before the barrier was made unconditional.
+- A clock domain must never block on something outside the plant. `TCPSender`
+  connects in its constructor, and building the twin publisher inside a
+  reaction froze the entire system when no GUI was listening.
 - Console output interleaves across clock domains. Print order is not
   evidence of timing.
-- `bottleAtPos6` used to read `occ[4]`, which is position 5. Renamed
-  `bottleAtPos5`.
 
 ---
 
 ## What is left
 
-### Group
-
-1. **Real POS.** `PosStub` issues four hardcoded orders. Replace it with
-   orders arriving as line items, each a batch of identical bottles, and
-   progress reported back. The channel it plugs into already exists.
-2. **Batch boundaries.** Finish a batch in full, then reconfigure — filler
-   proportions, label content — before the next starts. Nothing implements
-   this and our design commits to it.
-4. **Mode, safety and overrides.** Mode is wired to every station but only
-   ever set to 0. Running, suspended, draining, reconfiguring, plus the
-   §4.1.2 conditions and the operator path. "No opened bottles left across a
-   suspension" is testable, so it will be tested.
-5. **Status and Events.** Continuous state for the GUI, timestamped
-   occurrences for the log. Validation is reading one against the other.
-6. **Fault injection.** For the validation section. Nobody owns this yet.
-
-### Individual projects
-
-Every station already has auto/manual mode and manual override inputs
-declared with nothing driving them — `vacOnM`, `armSourceM`, `armDestM`,
-`pusherExtendM`, `valveOpenM`, `screwOnM`. That is where the **GUI** attaches,
-and the logic behind it works today.
-
-The **labeller** slots between the outfeed end and the `bottleDone` channel
-that currently reports straight to the coordinator. Make the conveyor send to
-the labeller and let the labeller report onward; the rendezvous then gives
-backpressure for free.
-
-The **recycling station** needs a quality decision that nothing in the line
-currently makes, and a diverter that does not exist.
-
----
-
-## Three things to settle as a group
-
-1. **The end of the outfeed is getting crowded.** The labeller and the
-   recycling station are both machines at the same end of the same belt. That
-   junction wants one design agreed between two people, not two designs
-   discovered at integration.
-2. **Who owns the operator panel.** The manual override inputs are the GUI's
-   attachment point; a visualisation feed would attach at the same place. Two
-   IPs, one screen, unless we decide otherwise now.
-3. **What we are deliberately skipping.** Fault injection, bottle size meaning
-   anything outside filling, and the Baxter robot. Better an explicit decision
-   than an accidental one.
+1. **Push the branch**, and move the splitter onto the outfeed.
+2. **Real POS.** `PosStub` issues one hardcoded order of two batches. The
+   channel and the `PurchaseOrder` object both already exist.
+3. **Batch boundaries.** Finish a batch in full, then reconfigure — filler
+   proportions, label content — before the next starts. `Batch.isComplete()`
+   already knows; nothing acts on it, and a rejected bottle currently leaves a
+   line item short forever.
+4. **Mode, safety and overrides.** Mode reaches every machine but is only ever
+   set to 0. Running, suspended, draining, reconfiguring, plus the §4.1.2
+   conditions. "No opened bottles left across a suspension" is testable, so it
+   will be tested.
+5. **The GUI consuming Status and Events.** The twin already carries both —
+   `ABSTwin` is the continuous state, every workpiece history is the discrete
+   log. What is missing is a consumer.
+6. **A `.gitattributes` with `* text=auto`.** Every diff currently shows tens
+   of thousands of phantom line-ending changes.
