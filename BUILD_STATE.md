@@ -50,9 +50,10 @@ paces off that.
 | Filler 1 + 2 | Built | Valve and flow meter, ml from the recipe |
 | Lid loader | Built | Magazine of three, refills itself |
 | Capper | Built | 12 ticks, sets the barrier pace |
-| Outfeed belt | Built | Ends at the labeller point |
-| Labeller | Missing | Ahil's IP |
-| Unloader | Missing | Bottles vanish at the end |
+| Outfeed belt | Built | Pulls the finished bottle off at position 6 |
+| Labeller | Built | Prints from the workpiece twin; refuses what the record can't justify |
+| Batch storage | Built | Where the line ends - labelled bottles retire onto their batch's shelf |
+| Recycling station | Built | Branch off the splitter: strip, drain, return |
 
 ---
 
@@ -198,7 +199,6 @@ Worth reading before writing more `.sysj`.
 2. **Batch boundaries.** Finish a batch in full, then reconfigure — filler
    proportions, label content — before the next starts. Nothing implements
    this and our design commits to it.
-3. **Unloader.** The outfeed still ends at a collector that never refuses.
 4. **Mode, safety and overrides.** Mode is wired to every station but only
    ever set to 0. Running, suspended, draining, reconfiguring, plus the
    §4.1.2 conditions and the operator path. "No opened bottles left across a

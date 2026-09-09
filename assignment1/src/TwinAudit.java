@@ -48,6 +48,25 @@ public class TwinAudit {
 				accepted + " + " + recovered + " vs " + admitted);
 
 		System.out.println();
+		System.out.println("  batch storage holds " + BatchStore.shared().total() + " bottle(s)");
+		for (Long b : BatchStore.shared().batches()) {
+			StringBuilder sb = new StringBuilder();
+			for (WorkpieceTwin w : BatchStore.shared().shelf(b)) {
+				sb.append(sb.length() == 0 ? "" : ", ").append(w.serial);
+			}
+			System.out.println("    batch " + b + ": " + sb);
+		}
+
+		// The serial on a label is the key back into the record.
+		if (BatchStore.shared().total() > 0) {
+			String serial = BatchStore.shared().shelf(BatchStore.shared().batches().iterator().next()).get(0).serial;
+			WorkpieceTwin found = BatchStore.shared().find(serial);
+			assertThat("serial " + serial + " retrieves its own record",
+					found != null && found.history().size() > 0,
+					found == null ? "not found" : "empty history");
+		}
+
+		System.out.println();
 		System.out.println("  order " + order.id + " is " + order.status());
 		for (Batch b : order.batches()) {
 			// A short batch is not a fault. It means bottles were rejected and

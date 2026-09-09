@@ -146,10 +146,15 @@ SystemController(
 				send bottleRejected(w);
 			}
 			else {
+				// The outfeed sets it down in the storage for its batch, which
+				// is where the line ends. The twin retires with it.
+				w.arrived(Machine.BATCH_STORAGE);
 				w.seal();
+				BatchStore.shared().store(w);
 				done++;
-				System.out.println("[SC] " + w + " finished at " + w.filledMl() + "ml, sealed="
-						+ w.isSealed() + ", labelled " + w.serial + ". " + done + " complete.");
+				System.out.println("[SC] " + w + " labelled " + w.serial + " and stored in batch "
+						+ w.batchId + " (" + BatchStore.shared().held(w.batchId) + " on the shelf). "
+						+ done + " complete.");
 				OrderBook.purchaseOrder().refresh();
 				send orderProgress(new Integer((int) w.id));
 			}
