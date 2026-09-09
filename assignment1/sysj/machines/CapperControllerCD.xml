@@ -3,13 +3,14 @@
 <System xmlns="http://systemjtechnology.com">
 	<SubSystem Name="CapperControllerCD" Local="true">
 		<ClockDomain Name="CapperControllerCD" Class="CapperController">
-			<iChannel Name="start"         From="RotaryTableControllerCD.startCapper" />
-			<oChannel Name="done"          To="RotaryTableControllerCD.doneCapper" />
+			<iChannel Name="start"           From="RotaryTableControllerCD.startCapper" />
+			<oChannel Name="done"            To="RotaryTableControllerCD.doneCapper" />
 
-			<iSignal Name="mode"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14300" />
-			<iSignal Name="capSeated"       Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14300" />
-			<iSignal Name="screwOnM"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14300" />
-			<oSignal Name="screwOn"         To="CapperPlantCD.screwOn"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14301" />
+			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14300" />
+			<iSignal Name="capSeated"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14300" />
+			<iSignal Name="screwOnM"          Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14300" />
+			<oSignal Name="twin"              To="SystemControllerCD.twinCP"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="screwOn"           To="CapperPlantCD.screwOn"                     Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14301" />
 		</ClockDomain>
 	</SubSystem>
 </System>

@@ -25,29 +25,45 @@
  */
 SystemController(
 		// from / to the POS
-		input  Workpiece channel purchaseOrder;
+		input  WorkpieceTwin channel purchaseOrder;
 		output Integer  channel orderProgress;
 		output Integer  channel orderRejected;
 
 		// to / from the Bottle Loader
-		output Workpiece channel loadOrder;
-		input  Workpiece channel loadAck;
+		output WorkpieceTwin channel loadOrder;
+		input  WorkpieceTwin channel loadAck;
 
 		// from the end of the line
-		input Workpiece channel bottleDone;
+		input WorkpieceTwin channel bottleDone;
+
+		// to / from the Labeller
+		output WorkpieceTwin channel labelBottle;
+		input  WorkpieceTwin channel labelDone;
+
+		// machine twins in, one per subsystem controller. Each machine writes
+		// its own; the coordinator only collects them.
+		input LoaderTwin      signal twinBL;
+		input ConveyorTwin    signal twinCV;
+		input RotaryTableTwin signal twinRT;
+		input FillerTwin      signal twinF1;
+		input FillerTwin      signal twinF2;
+		input LidLoaderTwin   signal twinLL;
+		input LidCapperTwin   signal twinCP;
+		input LabellerTwin    signal twinLB;
+		input Integer         signal labellerStatus;
 
 		// to / from the Recycling Station Controller
-		output Workpiece channel bottleRejected;
-		input  Workpiece channel bottleRecycled;
+		output WorkpieceTwin channel bottleRejected;
+		input  WorkpieceTwin channel bottleRecycled;
 		input  Integer signal recyclingStatus;
 
 		// operating mode, one output per machine controller
-		output Integer signal modeBL, modeF1, modeF2, modeLL, modeCP;
+		output Integer signal modeBL, modeF1, modeF2, modeLL, modeCP, modeLB;
 		output Integer signal modeSP, modeRC, modeLR, modeLD, modeBR;
 
 		// plant power, one output per plant
 		output signal enableBL, enableCV, enableRT;
-		output signal enableF1, enableF2, enableLL, enableCP;
+		output signal enableF1, enableF2, enableLL, enableCP, enableLB;
 		output signal enableSP, enableRC, enableLR, enableLD, enableBR;
 		)
 ->
@@ -55,7 +71,7 @@ SystemController(
 	{ // Operating mode: 0 = auto, 1 = manual
 		while(true){
 			emit modeBL(0); emit modeF1(0); emit modeF2(0);
-			emit modeLL(0); emit modeCP(0);
+			emit modeLL(0); emit modeCP(0); emit modeLB(0);
 			emit modeSP(0); emit modeRC(0); emit modeLR(0);
 			emit modeLD(0); emit modeBR(0);
 			pause;
@@ -65,7 +81,7 @@ SystemController(
 	{ // Plant power
 		while(true){
 			emit enableBL; emit enableCV; emit enableRT;
-			emit enableF1; emit enableF2; emit enableLL; emit enableCP;
+			emit enableF1; emit enableF2; emit enableLL; emit enableCP; emit enableLB;
 			emit enableSP; emit enableRC; emit enableLR;
 			emit enableLD; emit enableBR;
 			pause;
@@ -73,11 +89,12 @@ SystemController(
 	}
 	||
 	{ // Orders in, load commands out
-		Workpiece w = null;
+		WorkpieceTwin w = null;
 		while(true){
 			receive purchaseOrder;
-			w = (Workpiece)#purchaseOrder;
+			w = (WorkpieceTwin)#purchaseOrder;
 			System.out.println("[SC] Loading " + w + ".");
+			TwinRegistry.shared().admit(w);
 			send loadOrder(w);
 			pause;
 		}
@@ -86,38 +103,86 @@ SystemController(
 	{ // Loader acknowledgements
 		while(true){
 			receive loadAck;
-			System.out.println("[SC] " + (Workpiece)#loadAck + " is on the conveyor.");
+			System.out.println("[SC] " + (WorkpieceTwin)#loadAck + " is on the conveyor.");
 			pause;
 		}
 	}
 	||
 	{ // End of line: the quality splitter decides where the bottle goes
 		//
-		// A bottle whose quality record is clean goes on to the labeller and
-		// is reported to the POS as delivered. A flagged one is handed to the
-		// Recycling Station instead, and no progress is reported: it is not a
-		// saleable product, and the order line it belongs to is not filled.
-		// The send blocks until the station has taken it, which is the whole
-		// of the backpressure the coordinator needs - it never has to know
-		// how full the recycling conveyor is.
-		Workpiece w = null;
-		int done = 0;
+		// Bottles leave the outfeed here and go to the labeller. The quality
+		// decision is made after labelling rather than before, because the
+		// labeller is the station that checks a bottle against its own
+		// history.
+		WorkpieceTwin w = null;
 		while(true){
 			receive bottleDone;
-			w = (Workpiece)#bottleDone;
+			w = (WorkpieceTwin)#bottleDone;
+
+			// Everything goes to the labeller, flagged or not. The labeller
+			// refuses anything its own record does not justify, so it is the
+			// single gate at the end of the line rather than one of two - a
+			// diverted bottle cannot be labelled even if a diverter failed.
+			send labelBottle(w);
+			pause;
+		}
+	}
+	||
+	{ // Labelled bottles come back from the Labeller
+		//
+		// The labeller can refuse, so this is also where a bottle that failed
+		// its own record check is diverted. A refusal is a quality flag like
+		// any other and is already in the twin's history by the time it
+		// arrives here.
+		WorkpieceTwin w = null;
+		int done = 0;
+		while(true){
+			receive labelDone;
+			w = (WorkpieceTwin)#labelDone;
 
 			if(w.isRejected()){
-				System.out.println("[SC] " + w + " failed its quality check (" + w.defect()
+				System.out.println("[SC] " + w + " refused a label (" + w.defect()
 						+ "); handing it to the Recycling Station.");
 				send bottleRejected(w);
 			}
-
-			if(!w.isRejected()){
+			else {
+				w.seal();
 				done++;
 				System.out.println("[SC] " + w + " finished at " + w.filledMl() + "ml, sealed="
-						+ w.isSealed() + ". " + done + " complete.");
-				send orderProgress(new Integer(w.id));
+						+ w.isSealed() + ", labelled " + w.serial + ". " + done + " complete.");
+				OrderBook.purchaseOrder().refresh();
+				send orderProgress(new Integer((int) w.id));
 			}
+			pause;
+		}
+	}
+	||
+	{ // The plant twin
+		//
+		// One writer, one job: collect the machine twins as they arrive,
+		// track every workpiece admitted, advance the plant clock and publish
+		// the whole thing. A complete snapshot every tick rather than a
+		// differential, so a display that misses one is a tick behind rather
+		// than out of step.
+		ABSTwin plant = new ABSTwin();
+		TwinPublisher out = TwinPublisher.shared();
+
+		while(true){
+			PlantClock.advance();
+
+			present(twinBL){ plant.put((LoaderTwin)#twinBL); }
+			present(twinCV){ plant.put((ConveyorTwin)#twinCV); }
+			present(twinRT){ plant.put((RotaryTableTwin)#twinRT); }
+			present(twinF1){ plant.put((FillerTwin)#twinF1); }
+			present(twinF2){ plant.put((FillerTwin)#twinF2); }
+			present(twinLL){ plant.put((LidLoaderTwin)#twinLL); }
+			present(twinCP){ plant.put((LidCapperTwin)#twinCP); }
+			present(twinLB){ plant.put((LabellerTwin)#twinLB); }
+
+			plant.setTick(PlantClock.now());
+			plant.setMode(LineMode.AUTO);
+			TwinRegistry.shared().fill(plant);
+			out.publish(plant, OrderBook.purchaseOrder());
 			pause;
 		}
 	}
@@ -128,15 +193,15 @@ SystemController(
 		// the order line failed and the container was reclaimed, so its
 		// accounting stays honest - one order in, no bottle out, one
 		// container back in circulation.
-		Workpiece w = null;
+		WorkpieceTwin w = null;
 		int recovered = 0;
 		while(true){
 			receive bottleRecycled;
-			w = (Workpiece)#bottleRecycled;
+			w = (WorkpieceTwin)#bottleRecycled;
 			recovered++;
 			System.out.println("[SC] " + w + " recovered by the Recycling Station at "
 					+ w.filledMl() + "ml, sealed=" + w.isSealed() + ". " + recovered + " recycled.");
-			send orderRejected(new Integer(w.id));
+			send orderRejected(new Integer((int) w.id));
 			pause;
 		}
 	}

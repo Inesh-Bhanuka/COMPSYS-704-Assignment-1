@@ -3,38 +3,51 @@
 <System xmlns="http://systemjtechnology.com">
 	<SubSystem Name="SystemControllerCD" Local="true">
 		<ClockDomain Name="SystemControllerCD" Class="SystemController">
-			<iChannel Name="purchaseOrder" From="PosStubCD.order" />
-			<iChannel Name="loadAck"       From="BottleLoaderControllerCD.loadAck" />
-			<iChannel Name="bottleDone"    From="ConveyorControllerCD.bottleDone" />
-			<iChannel Name="bottleRecycled" From="RecyclingStationControllerCD.bottleRecycled" />
-			<oChannel Name="orderProgress" To="PosStubCD.completed" />
-			<oChannel Name="orderRejected" To="PosStubCD.recycled" />
-			<oChannel Name="loadOrder"     To="BottleLoaderControllerCD.loadOrder" />
-			<oChannel Name="bottleRejected" To="RecyclingStationControllerCD.bottleRejected" />
+			<iChannel Name="purchaseOrder"   From="PosStubCD.order" />
+			<iChannel Name="loadAck"         From="BottleLoaderControllerCD.loadAck" />
+			<iChannel Name="bottleDone"      From="ConveyorControllerCD.bottleDone" />
+			<iChannel Name="labelDone"       From="LabellerControllerCD.labelDone" />
+			<iChannel Name="bottleRecycled"  From="RecyclingStationControllerCD.bottleRecycled" />
+			<oChannel Name="orderProgress"   To="PosStubCD.completed" />
+			<oChannel Name="orderRejected"   To="PosStubCD.recycled" />
+			<oChannel Name="loadOrder"       To="BottleLoaderControllerCD.loadOrder" />
+			<oChannel Name="labelBottle"     To="LabellerControllerCD.labelBottle" />
+			<oChannel Name="bottleRejected"  To="RecyclingStationControllerCD.bottleRejected" />
 
-			<iSignal Name="recyclingStatus" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
-			<oSignal Name="modeBL"          To="BottleLoaderControllerCD.mode"         Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11000" />
-			<oSignal Name="modeF1"          To="Filler1ControllerCD.mode"              Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14000" />
-			<oSignal Name="modeF2"          To="Filler2ControllerCD.mode"              Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14100" />
-			<oSignal Name="modeLL"          To="LidLoaderControllerCD.mode"            Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14200" />
-			<oSignal Name="modeCP"          To="CapperControllerCD.mode"               Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14300" />
-			<oSignal Name="modeSP"          To="SplitterControllerCD.mode"             Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15100" />
-			<oSignal Name="modeRC"          To="RecyclingConveyorControllerCD.mode"    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15200" />
-			<oSignal Name="modeLR"          To="LidRemovalControllerCD.mode"           Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15300" />
-			<oSignal Name="modeLD"          To="LiquidDumperControllerCD.mode"         Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15400" />
-			<oSignal Name="modeBR"          To="BottleReturnControllerCD.mode"         Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15500" />
-			<oSignal Name="enableBL"        To="BottleLoaderPlantCD.enable"            Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11001" />
-			<oSignal Name="enableCV"        To="ConveyorPlantCD.enable"                Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12001" />
-			<oSignal Name="enableRT"        To="RotaryTablePlantCD.enable"             Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
-			<oSignal Name="enableF1"        To="Filler1PlantCD.enable"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14001" />
-			<oSignal Name="enableF2"        To="Filler2PlantCD.enable"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14101" />
-			<oSignal Name="enableLL"        To="LidLoaderPlantCD.enable"               Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14201" />
-			<oSignal Name="enableCP"        To="CapperPlantCD.enable"                  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14301" />
-			<oSignal Name="enableSP"        To="SplitterPlantCD.enable"                Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15101" />
-			<oSignal Name="enableRC"        To="RecyclingConveyorPlantCD.enable"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15201" />
-			<oSignal Name="enableLR"        To="LidRemovalPlantCD.enable"              Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15301" />
-			<oSignal Name="enableLD"        To="LiquidDumperPlantCD.enable"            Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15401" />
-			<oSignal Name="enableBR"        To="BottleReturnPlantCD.enable"            Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15501" />
+			<iSignal Name="twinBL"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="twinCV"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="twinRT"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="twinF1"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="twinF2"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="twinLL"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="twinCP"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="twinLB"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="labellerStatus"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="recyclingStatus"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="modeBL"            To="BottleLoaderControllerCD.mode"             Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11000" />
+			<oSignal Name="modeF1"            To="Filler1ControllerCD.mode"                  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14000" />
+			<oSignal Name="modeF2"            To="Filler2ControllerCD.mode"                  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14100" />
+			<oSignal Name="modeLL"            To="LidLoaderControllerCD.mode"                Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14200" />
+			<oSignal Name="modeCP"            To="CapperControllerCD.mode"                   Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14300" />
+			<oSignal Name="modeLB"            To="LabellerControllerCD.mode"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14400" />
+			<oSignal Name="modeSP"            To="SplitterControllerCD.mode"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15100" />
+			<oSignal Name="modeRC"            To="RecyclingConveyorControllerCD.mode"        Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15200" />
+			<oSignal Name="modeLR"            To="LidRemovalControllerCD.mode"               Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15300" />
+			<oSignal Name="modeLD"            To="LiquidDumperControllerCD.mode"             Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15400" />
+			<oSignal Name="modeBR"            To="BottleReturnControllerCD.mode"             Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15500" />
+			<oSignal Name="enableBL"          To="BottleLoaderPlantCD.enable"                Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11001" />
+			<oSignal Name="enableCV"          To="ConveyorPlantCD.enable"                    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12001" />
+			<oSignal Name="enableRT"          To="RotaryTablePlantCD.enable"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
+			<oSignal Name="enableF1"          To="Filler1PlantCD.enable"                     Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14001" />
+			<oSignal Name="enableF2"          To="Filler2PlantCD.enable"                     Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14101" />
+			<oSignal Name="enableLL"          To="LidLoaderPlantCD.enable"                   Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14201" />
+			<oSignal Name="enableCP"          To="CapperPlantCD.enable"                      Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14301" />
+			<oSignal Name="enableLB"          To="LabellerPlantCD.enable"                    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14401" />
+			<oSignal Name="enableSP"          To="SplitterPlantCD.enable"                    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15101" />
+			<oSignal Name="enableRC"          To="RecyclingConveyorPlantCD.enable"           Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15201" />
+			<oSignal Name="enableLR"          To="LidRemovalPlantCD.enable"                  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15301" />
+			<oSignal Name="enableLD"          To="LiquidDumperPlantCD.enable"                Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15401" />
+			<oSignal Name="enableBR"          To="BottleReturnPlantCD.enable"                Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15501" />
 		</ClockDomain>
 	</SubSystem>
 </System>

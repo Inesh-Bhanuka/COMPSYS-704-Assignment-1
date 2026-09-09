@@ -1,0 +1,152 @@
+/*
+ * Labeller. The last machine on the line, and the one that puts the workpiece
+ * twin onto the product.
+ *
+ * It receives a bottle as its twin rather than as a bare trigger, which is
+ * what lets it refuse. A label is evidence of what the plant did, so the
+ * content is rendered from the history - the proportions printed are the ones
+ * actually metered, not the ones the recipe asked for - and a bottle whose
+ * history does not justify a label does not get one. That gives a testable
+ * invariant: nothing leaves the ABS carrying a label its own record cannot
+ * support.
+ */
+LabellerController(
+		// from / to the System Controller
+		input  WorkpieceTwin channel labelBottle;
+		output WorkpieceTwin channel labelDone;
+
+		// operating mode
+		input Integer signal mode;
+
+		// to the plant
+		output LabelData signal printLabel;
+		output signal applyLabelExtend, applyLabelRetract, rollerOnOff;
+
+		// from the plant
+		input signal bottleAtLabeller, labelPrinted, labelApplied, labelStockLow, glueLow;
+		input Integer signal labelStock, glueLevel;
+
+		// the machine's own summary, out to the coordinator
+		output LabellerTwin signal twin;
+
+		// to the System Controller
+		output Integer signal status;
+
+		// manual override - the operator panel attaches here
+		input signal applyLabelExtendM, rollerOnOffM;
+		)
+->
+{
+	signal auto, manual;
+
+	{ // Mode select
+		while(true){
+			present(mode){
+				if((Integer)#mode == 0){ emit auto; }
+				else { emit manual; }
+			}
+			pause;
+		}
+	}
+	||
+	{ // Auto
+		LabellerTwin t = new LabellerTwin();
+		WorkpieceTwin w = null;
+		LabelData label = null;
+		String refusal = null;
+
+		while(true){
+			await(immediate auto);
+
+			abort(immediate manual){
+				receive labelBottle;
+				w = (WorkpieceTwin)#labelBottle;
+
+				if(w != null){
+					w.arrived(Machine.LABELLER);
+					refusal = w.labelRefusalReason();
+
+					if(refusal != null){
+						// The record does not support a label, so do not print one.
+						System.out.println("[LAB] Refusing " + w + ": " + refusal);
+						w.reject(Machine.LABELLER, "label refused - " + refusal);
+						if(t.update(PlantClock.now(), MachineStatus.FAULT, "refuse", refusal)){
+							emit twin(t);
+						}
+						emit status(2);
+					}
+					else {
+						w.started(Machine.LABELLER, "labelling");
+						label = new LabelData(w);
+						if(t.update(PlantClock.now(), MachineStatus.WORKING, "printLabel", label.serial)){
+							emit twin(t);
+						}
+
+						// Print, then apply, then let go
+						abort(immediate labelPrinted){
+							while(true){
+								emit printLabel(label);
+								emit rollerOnOff;
+								pause;
+							}
+						}
+
+						abort(immediate labelApplied){
+							while(true){
+								emit applyLabelExtend;
+								emit rollerOnOff;
+								pause;
+							}
+						}
+
+						emit applyLabelRetract;
+
+						w.completed(Machine.LABELLER, "label " + label.serial);
+						t.setLastSerial(label.serial);
+						System.out.println("[LAB] Labelled " + w + " as " + label.serial + ", mix " + label.actualPctOne + "/" + label.actualPctTwo + ".");
+						if(t.update(PlantClock.now(), MachineStatus.IDLE, "retract", label.serial)){
+							emit twin(t);
+						}
+						emit status(0);
+					}
+				}
+
+				send labelDone(w);
+			}
+			pause;
+		}
+	}
+	||
+	{ // Consumables, reported through the twin
+		LabellerTwin t = new LabellerTwin();
+		int labels = 0;
+		int glue = 0;
+
+		while(true){
+			present(labelStock){ labels = (Integer)#labelStock; }
+			present(glueLevel){ glue = (Integer)#glueLevel; }
+
+			present(labelStockLow){
+				System.out.println("[LAB] Label stock low: " + labels + " left.");
+			}
+			present(glueLow){
+				System.out.println("[LAB] Glue low: " + glue + " left.");
+			}
+			pause;
+		}
+	}
+	||
+	{ // Manual
+		while(true){
+			await(immediate manual);
+			abort(immediate auto){
+				while(true){
+					present(applyLabelExtendM){ emit applyLabelExtend; }
+					present(rollerOnOffM){ emit rollerOnOff; }
+					pause;
+				}
+			}
+			pause;
+		}
+	}
+}

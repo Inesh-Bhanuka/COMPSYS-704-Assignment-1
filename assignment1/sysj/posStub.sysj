@@ -15,7 +15,7 @@
  * from the screen once the GUI exists without anything below here changing.
  */
 PosStub(
-		output Workpiece channel order;
+		output WorkpieceTwin channel order;
 		input  Integer channel completed;
 		input  Integer channel recycled;
 		)
@@ -23,7 +23,7 @@ PosStub(
 {
 	{ // Issue the orders
 		int i = 0;
-		Workpiece w = null;
+		WorkpieceTwin w = null;
 
 		pause; pause; pause;
 
@@ -37,6 +37,13 @@ PosStub(
 		}
 
 		System.out.println("[POS] All orders placed.");
+
+		// Give the line time to drain, then audit the archive. This is the
+		// completeness check from the validation plan - properties of the
+		// record, not of the display.
+		int settle = 900;
+		while(settle > 0){ settle--; pause; }
+		TwinAudit.report();
 		while(true){ pause; }
 	}
 	||

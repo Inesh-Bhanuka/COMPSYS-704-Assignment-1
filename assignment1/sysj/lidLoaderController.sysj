@@ -7,8 +7,11 @@
  */
 LidLoaderController(
 		// from / to the Rotary Table
-		input  Workpiece channel start;
-		output Workpiece channel done;
+		input  WorkpieceTwin channel start;
+		output WorkpieceTwin channel done;
+
+		// the machine's own summary, out to the coordinator
+		output LidLoaderTwin signal twin;
 
 		// operating mode
 		input Integer signal mode;
@@ -38,16 +41,22 @@ LidLoaderController(
 	}
 	||
 	{ // Auto
-		Workpiece w = null;
+		LidLoaderTwin t = new LidLoaderTwin();
+		int lids = 3;
+		WorkpieceTwin w = null;
 
 		while(true){
 			await(immediate auto);
 
 			abort(immediate manual){
 				receive start;
-				w = (Workpiece)#start;
+				w = (WorkpieceTwin)#start;
 
-				if(w != null){
+				if(w != null && w.catchFault("lid-fitted")){
+					System.out.println("[LID] " + w + " already has a lid fitted.");
+					w.reject(Machine.LID_LOADER, "lid already fitted");
+				}
+				else if(w != null){
 					// Refill first if the magazine is out
 					present(magazineEmpty){
 						System.out.println("[LID] Magazine empty, refilling.");
@@ -77,6 +86,12 @@ LidLoaderController(
 					await(immediate !WPgripped);
 
 					w.lid();
+					lids--;
+					if(lids < 0){ lids = 3; }
+					t.setLidsRemaining(lids);
+					if(t.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w.id)){
+						emit twin(t);
+					}
 					System.out.println("[LID] Lid placed on " + w + ".");
 				}
 

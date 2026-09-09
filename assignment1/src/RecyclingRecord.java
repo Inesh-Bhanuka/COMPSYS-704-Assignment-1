@@ -36,13 +36,13 @@ public class RecyclingRecord {
 	public static final int FAULT = 2;
 	public static final int WARNING = 3;
 
-	private Workpiece bottle;
+	private WorkpieceTwin bottle;
 	private boolean jammed = false;
 	private boolean blocked = false;
 	private boolean warning = false;
 
 	/** Start a transaction for one rejected bottle. */
-	public void begin(Workpiece w) {
+	public void begin(WorkpieceTwin w) {
 		bottle = w;
 		jammed = false;
 		blocked = false;

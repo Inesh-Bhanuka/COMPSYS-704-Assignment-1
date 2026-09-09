@@ -3,14 +3,15 @@
 <System xmlns="http://systemjtechnology.com">
 	<SubSystem Name="Filler1ControllerCD" Local="true">
 		<ClockDomain Name="Filler1ControllerCD" Class="FillerController">
-			<iChannel Name="start"         From="RotaryTableControllerCD.startFiller1" />
-			<oChannel Name="done"          To="RotaryTableControllerCD.doneFiller1" />
+			<iChannel Name="start"           From="RotaryTableControllerCD.startFiller1" />
+			<oChannel Name="done"            To="RotaryTableControllerCD.doneFiller1" />
 
-			<iSignal Name="mode"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
-			<iSignal Name="filled"          Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
-			<iSignal Name="valveOpenM"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
-			<oSignal Name="fillTarget"      To="Filler1PlantCD.fillTarget"             Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14001" />
-			<oSignal Name="valveOpen"       To="Filler1PlantCD.valveOpen"              Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14001" />
+			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
+			<iSignal Name="filled"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
+			<iSignal Name="valveOpenM"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
+			<oSignal Name="twin"              To="SystemControllerCD.twinF1"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="fillTarget"        To="Filler1PlantCD.fillTarget"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14001" />
+			<oSignal Name="valveOpen"         To="Filler1PlantCD.valveOpen"                  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14001" />
 		</ClockDomain>
 	</SubSystem>
 </System>

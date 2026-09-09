@@ -3,18 +3,18 @@
 <System xmlns="http://systemjtechnology.com">
 	<SubSystem Name="ConveyorPlantCD" Local="true">
 		<ClockDomain Name="ConveyorPlantCD" Class="ConveyorPlant">
-			<iSignal Name="enable"          Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12001" />
-			<iSignal Name="motInfeed"       Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12001" />
-			<iSignal Name="injectInfeed"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12001" />
-			<iSignal Name="takeFromPos1"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12001" />
-			<iSignal Name="motOutfeed"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12001" />
-			<iSignal Name="injectOutfeed"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12001" />
-			<iSignal Name="collectFromEnd"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12001" />
-			<oSignal Name="bottleAtPos1"    To="ConveyorControllerCD.bottleAtPos1"     Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
-			<oSignal Name="infeedClear"     To="ConveyorControllerCD.infeedClear"      Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
-			<oSignal Name="infeedAdmitted"  To="ConveyorControllerCD.infeedAdmitted"   Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
-			<oSignal Name="bottleAtOutfeedEnd" To="ConveyorControllerCD.bottleAtOutfeedEnd" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
-			<oSignal Name="outfeedClear"    To="ConveyorControllerCD.outfeedClear"     Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
+			<iSignal Name="enable"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12001" />
+			<iSignal Name="motInfeed"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12001" />
+			<iSignal Name="injectInfeed"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12001" />
+			<iSignal Name="takeFromPos1"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12001" />
+			<iSignal Name="motOutfeed"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12001" />
+			<iSignal Name="injectOutfeed"     Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12001" />
+			<iSignal Name="collectFromEnd"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12001" />
+			<oSignal Name="bottleAtPos1"      To="ConveyorControllerCD.bottleAtPos1"         Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
+			<oSignal Name="infeedClear"       To="ConveyorControllerCD.infeedClear"          Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
+			<oSignal Name="infeedAdmitted"    To="ConveyorControllerCD.infeedAdmitted"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
+			<oSignal Name="bottleAtOutfeedEnd" To="ConveyorControllerCD.bottleAtOutfeedEnd"   Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
+			<oSignal Name="outfeedClear"      To="ConveyorControllerCD.outfeedClear"         Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
 		</ClockDomain>
 	</SubSystem>
 </System>

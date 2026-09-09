@@ -3,26 +3,27 @@
 <System xmlns="http://systemjtechnology.com">
 	<SubSystem Name="RotaryTableControllerCD" Local="true">
 		<ClockDomain Name="RotaryTableControllerCD" Class="RotaryTableController">
-			<iChannel Name="tableInfeed"   From="ConveyorControllerCD.tableInfeed" />
-			<iChannel Name="doneFiller1"   From="Filler1ControllerCD.done" />
-			<iChannel Name="doneFiller2"   From="Filler2ControllerCD.done" />
-			<iChannel Name="doneLid"       From="LidLoaderControllerCD.done" />
-			<iChannel Name="doneCapper"    From="CapperControllerCD.done" />
-			<oChannel Name="tableOutfeed"  To="ConveyorControllerCD.tableOutfeed" />
-			<oChannel Name="startFiller1"  To="Filler1ControllerCD.start" />
-			<oChannel Name="startFiller2"  To="Filler2ControllerCD.start" />
-			<oChannel Name="startLid"      To="LidLoaderControllerCD.start" />
-			<oChannel Name="startCapper"   To="CapperControllerCD.start" />
+			<iChannel Name="tableInfeed"     From="ConveyorControllerCD.tableInfeed" />
+			<iChannel Name="doneFiller1"     From="Filler1ControllerCD.done" />
+			<iChannel Name="doneFiller2"     From="Filler2ControllerCD.done" />
+			<iChannel Name="doneLid"         From="LidLoaderControllerCD.done" />
+			<iChannel Name="doneCapper"      From="CapperControllerCD.done" />
+			<oChannel Name="tableOutfeed"    To="ConveyorControllerCD.tableOutfeed" />
+			<oChannel Name="startFiller1"    To="Filler1ControllerCD.start" />
+			<oChannel Name="startFiller2"    To="Filler2ControllerCD.start" />
+			<oChannel Name="startLid"        To="LidLoaderControllerCD.start" />
+			<oChannel Name="startCapper"     To="CapperControllerCD.start" />
 
-			<iSignal Name="tableAligned"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
-			<iSignal Name="bottleAtPos1"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
-			<iSignal Name="bottleAtPos2"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
-			<iSignal Name="bottleAtPos4"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
-			<iSignal Name="bottleAtPos5"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
-			<iSignal Name="exitCleared"     Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
-			<oSignal Name="rotaryTrigger"   To="RotaryTablePlantCD.rotaryTrigger"      Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
-			<oSignal Name="loadPos1"        To="RotaryTablePlantCD.loadPos1"           Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
-			<oSignal Name="unloadExit"      To="RotaryTablePlantCD.unloadExit"         Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
+			<iSignal Name="tableAligned"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
+			<iSignal Name="bottleAtPos1"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
+			<iSignal Name="bottleAtPos2"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
+			<iSignal Name="bottleAtPos4"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
+			<iSignal Name="bottleAtPos5"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
+			<iSignal Name="exitCleared"       Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
+			<oSignal Name="twin"              To="SystemControllerCD.twinRT"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="rotaryTrigger"     To="RotaryTablePlantCD.rotaryTrigger"          Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
+			<oSignal Name="loadPos1"          To="RotaryTablePlantCD.loadPos1"               Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
+			<oSignal Name="unloadExit"        To="RotaryTablePlantCD.unloadExit"             Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
 		</ClockDomain>
 	</SubSystem>
 </System>

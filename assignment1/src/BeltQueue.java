@@ -16,12 +16,12 @@ public class BeltQueue {
 		return SHARED;
 	}
 
-	private final Workpiece[] q = new Workpiece[16];
+	private final WorkpieceTwin[] q = new WorkpieceTwin[16];
 	private int head = 0;
 	private int tail = 0;
 	private int count = 0;
 
-	public void push(Workpiece w) {
+	public void push(WorkpieceTwin w) {
 		if (count == q.length) {
 			System.out.println("[Q] Belt queue full, dropped " + w + ".");
 			return;
@@ -31,16 +31,16 @@ public class BeltQueue {
 		count++;
 	}
 
-	public Workpiece peek() {
+	public WorkpieceTwin peek() {
 		return count == 0 ? null : q[head];
 	}
 
-	public Workpiece pop() {
+	public WorkpieceTwin pop() {
 		if (count == 0) {
 			System.out.println("[Q] A bottle arrived that was never injected.");
 			return null;
 		}
-		Workpiece w = q[head];
+		WorkpieceTwin w = q[head];
 		head = (head + 1) % q.length;
 		count--;
 		return w;

@@ -11,12 +11,22 @@ public class SystemController extends ClockDomain{
   private char [] active;
   private char [] paused;
   private char [] suspended;
+  public Signal twinBL = new Signal("twinBL", Signal.INPUT);
+  public Signal twinCV = new Signal("twinCV", Signal.INPUT);
+  public Signal twinRT = new Signal("twinRT", Signal.INPUT);
+  public Signal twinF1 = new Signal("twinF1", Signal.INPUT);
+  public Signal twinF2 = new Signal("twinF2", Signal.INPUT);
+  public Signal twinLL = new Signal("twinLL", Signal.INPUT);
+  public Signal twinCP = new Signal("twinCP", Signal.INPUT);
+  public Signal twinLB = new Signal("twinLB", Signal.INPUT);
+  public Signal labellerStatus = new Signal("labellerStatus", Signal.INPUT);
   public Signal recyclingStatus = new Signal("recyclingStatus", Signal.INPUT);
   public Signal modeBL = new Signal("modeBL", Signal.OUTPUT);
   public Signal modeF1 = new Signal("modeF1", Signal.OUTPUT);
   public Signal modeF2 = new Signal("modeF2", Signal.OUTPUT);
   public Signal modeLL = new Signal("modeLL", Signal.OUTPUT);
   public Signal modeCP = new Signal("modeCP", Signal.OUTPUT);
+  public Signal modeLB = new Signal("modeLB", Signal.OUTPUT);
   public Signal modeSP = new Signal("modeSP", Signal.OUTPUT);
   public Signal modeRC = new Signal("modeRC", Signal.OUTPUT);
   public Signal modeLR = new Signal("modeLR", Signal.OUTPUT);
@@ -29,6 +39,7 @@ public class SystemController extends ClockDomain{
   public Signal enableF2 = new Signal("enableF2", Signal.OUTPUT);
   public Signal enableLL = new Signal("enableLL", Signal.OUTPUT);
   public Signal enableCP = new Signal("enableCP", Signal.OUTPUT);
+  public Signal enableLB = new Signal("enableLB", Signal.OUTPUT);
   public Signal enableSP = new Signal("enableSP", Signal.OUTPUT);
   public Signal enableRC = new Signal("enableRC", Signal.OUTPUT);
   public Signal enableLR = new Signal("enableLR", Signal.OUTPUT);
@@ -37,52 +48,497 @@ public class SystemController extends ClockDomain{
   public input_Channel purchaseOrder_in = new input_Channel();
   public input_Channel loadAck_in = new input_Channel();
   public input_Channel bottleDone_in = new input_Channel();
+  public input_Channel labelDone_in = new input_Channel();
   public input_Channel bottleRecycled_in = new input_Channel();
   public output_Channel orderProgress_o = new output_Channel();
   public output_Channel orderRejected_o = new output_Channel();
   public output_Channel loadOrder_o = new output_Channel();
+  public output_Channel labelBottle_o = new output_Channel();
   public output_Channel bottleRejected_o = new output_Channel();
-  private Workpiece w_thread_4;//sysj\systemController.sysj line: 76, column: 3
-  private Workpiece w_thread_6;//sysj\systemController.sysj line: 103, column: 3
-  private int done_thread_6;//sysj\systemController.sysj line: 104, column: 3
-  private Workpiece w_thread_7;//sysj\systemController.sysj line: 131, column: 3
-  private int recovered_thread_7;//sysj\systemController.sysj line: 132, column: 3
-  private int last_thread_8;//sysj\systemController.sysj line: 147, column: 3
-  private int v_thread_8;//sysj\systemController.sysj line: 148, column: 3
-  private int S175403 = 1;
-  private int S170241 = 1;
-  private int S170246 = 1;
-  private int S170914 = 1;
-  private int S170269 = 1;
-  private int S170253 = 1;
-  private int S170248 = 1;
-  private int S170276 = 1;
-  private int S170271 = 1;
-  private int S170985 = 1;
-  private int S170937 = 1;
-  private int S170921 = 1;
-  private int S170916 = 1;
-  private int S174713 = 1;
-  private int S171009 = 1;
-  private int S170993 = 1;
-  private int S170988 = 1;
-  private int S171016 = 1;
-  private int S171011 = 1;
-  private int S171201 = 1;
-  private int S171196 = 1;
-  private int S175381 = 1;
-  private int S174737 = 1;
-  private int S174721 = 1;
-  private int S174716 = 1;
-  private int S174744 = 1;
-  private int S174739 = 1;
-  private int S175401 = 1;
+  private WorkpieceTwin w_thread_4;//sysj/systemController.sysj line: 92, column: 3
+  private WorkpieceTwin w_thread_6;//sysj/systemController.sysj line: 117, column: 3
+  private WorkpieceTwin w_thread_7;//sysj/systemController.sysj line: 137, column: 3
+  private int done_thread_7;//sysj/systemController.sysj line: 138, column: 3
+  private ABSTwin plant_thread_8;//sysj/systemController.sysj line: 167, column: 3
+  private TwinPublisher out_thread_8;//sysj/systemController.sysj line: 168, column: 3
+  private WorkpieceTwin w_thread_9;//sysj/systemController.sysj line: 196, column: 3
+  private int recovered_thread_9;//sysj/systemController.sysj line: 197, column: 3
+  private int last_thread_10;//sysj/systemController.sysj line: 212, column: 3
+  private int v_thread_10;//sysj/systemController.sysj line: 213, column: 3
+  private int S214327 = 1;
+  private int S208315 = 1;
+  private int S208320 = 1;
+  private int S208988 = 1;
+  private int S208343 = 1;
+  private int S208327 = 1;
+  private int S208322 = 1;
+  private int S208350 = 1;
+  private int S208345 = 1;
+  private int S209059 = 1;
+  private int S209011 = 1;
+  private int S208995 = 1;
+  private int S208990 = 1;
+  private int S209727 = 1;
+  private int S209082 = 1;
+  private int S209066 = 1;
+  private int S209061 = 1;
+  private int S209089 = 1;
+  private int S209084 = 1;
+  private int S212051 = 1;
+  private int S209751 = 1;
+  private int S209735 = 1;
+  private int S209730 = 1;
+  private int S209842 = 1;
+  private int S209758 = 1;
+  private int S209753 = 1;
+  private int S209804 = 1;
+  private int S209799 = 1;
+  private int S213637 = 1;
+  private int S212055 = 1;
+  private int S214305 = 1;
+  private int S213661 = 1;
+  private int S213645 = 1;
+  private int S213640 = 1;
+  private int S213668 = 1;
+  private int S213663 = 1;
+  private int S214325 = 1;
   
-  private int[] ends = new int[9];
-  private int[] tdone = new int[9];
+  private int[] ends = new int[11];
+  private int[] tdone = new int[11];
   
-  public void thread175419(int [] tdone, int [] ends){
-        switch(S175401){
+  public void thread214347(int [] tdone, int [] ends){
+        switch(S214325){
+      case 0 : 
+        active[10]=0;
+        ends[10]=0;
+        tdone[10]=1;
+        break;
+      
+      case 1 : 
+        if(recyclingStatus.getprestatus()){//sysj/systemController.sysj line: 215, column: 12
+          v_thread_10 = ((Integer)(recyclingStatus.getpreval() == null ? null : ((Integer)recyclingStatus.getpreval()))).intValue();//sysj/systemController.sysj line: 216, column: 5
+          if(v_thread_10 != last_thread_10) {//sysj/systemController.sysj line: 217, column: 18
+            if(v_thread_10 == 0) {//sysj/systemController.sysj line: 218, column: 16
+              System.out.println("[SC] Recycling Station: idle.");//sysj/systemController.sysj line: 218, column: 18
+            }
+            if(v_thread_10 == 1) {//sysj/systemController.sysj line: 219, column: 16
+              System.out.println("[SC] Recycling Station: busy.");//sysj/systemController.sysj line: 219, column: 18
+            }
+            if(v_thread_10 == 2) {//sysj/systemController.sysj line: 220, column: 16
+              System.out.println("[SC] Recycling Station: FAULT - no further rejects accepted.");//sysj/systemController.sysj line: 220, column: 18
+            }
+            if(v_thread_10 == 3) {//sysj/systemController.sysj line: 221, column: 16
+              System.out.println("[SC] Recycling Station: running, bin or tank near capacity.");//sysj/systemController.sysj line: 221, column: 18
+            }
+            last_thread_10 = v_thread_10;//sysj/systemController.sysj line: 222, column: 6
+          }
+          active[10]=1;
+          ends[10]=1;
+          tdone[10]=1;
+        }
+        else {
+          active[10]=1;
+          ends[10]=1;
+          tdone[10]=1;
+        }
+        break;
+      
+    }
+  }
+
+  public void thread214346(int [] tdone, int [] ends){
+        switch(S214305){
+      case 0 : 
+        active[9]=0;
+        ends[9]=0;
+        tdone[9]=1;
+        break;
+      
+      case 1 : 
+        switch(S213661){
+          case 0 : 
+            switch(S213645){
+              case 0 : 
+                if(!bottleRecycled_in.isPartnerPresent() || bottleRecycled_in.isPartnerPreempted()){//sysj/systemController.sysj line: 199, column: 4
+                  bottleRecycled_in.setACK(false);//sysj/systemController.sysj line: 199, column: 4
+                  S213645=1;
+                  active[9]=1;
+                  ends[9]=1;
+                  tdone[9]=1;
+                }
+                else {
+                  switch(S213640){
+                    case 0 : 
+                      if(!bottleRecycled_in.isREQ()){//sysj/systemController.sysj line: 199, column: 4
+                        bottleRecycled_in.setACK(true);//sysj/systemController.sysj line: 199, column: 4
+                        S213640=1;
+                        if(bottleRecycled_in.isREQ()){//sysj/systemController.sysj line: 199, column: 4
+                          bottleRecycled_in.setACK(false);//sysj/systemController.sysj line: 199, column: 4
+                          ends[9]=2;
+                          ;//sysj/systemController.sysj line: 199, column: 4
+                          w_thread_9 = (WorkpieceTwin)(bottleRecycled_in.getVal() == null ? null : ((WorkpieceTwin)bottleRecycled_in.getVal()));//sysj/systemController.sysj line: 200, column: 4
+                          recovered_thread_9 = recovered_thread_9 + 1;//sysj/systemController.sysj line: 201, column: 4
+                          System.out.println("[SC] " + w_thread_9 + " recovered by the Recycling Station at " + w_thread_9.filledMl() + "ml, sealed=" + w_thread_9.isSealed() + ". " + recovered_thread_9 + " recycled.");//sysj/systemController.sysj line: 202, column: 4
+                          S213661=1;
+                          S213668=0;
+                          if(!orderRejected_o.isPartnerPresent() || orderRejected_o.isPartnerPreempted()){//sysj/systemController.sysj line: 204, column: 4
+                            orderRejected_o.setREQ(false);//sysj/systemController.sysj line: 204, column: 4
+                            S213668=1;
+                            active[9]=1;
+                            ends[9]=1;
+                            tdone[9]=1;
+                          }
+                          else {
+                            S213663=0;
+                            if(orderRejected_o.isACK()){//sysj/systemController.sysj line: 204, column: 4
+                              orderRejected_o.setVal(new Integer((int)w_thread_9.id));//sysj/systemController.sysj line: 204, column: 4
+                              S213663=1;
+                              if(!orderRejected_o.isACK()){//sysj/systemController.sysj line: 204, column: 4
+                                orderRejected_o.setREQ(false);//sysj/systemController.sysj line: 204, column: 4
+                                ends[9]=2;
+                                ;//sysj/systemController.sysj line: 204, column: 4
+                                S213661=2;
+                                active[9]=1;
+                                ends[9]=1;
+                                tdone[9]=1;
+                              }
+                              else {
+                                active[9]=1;
+                                ends[9]=1;
+                                tdone[9]=1;
+                              }
+                            }
+                            else {
+                              active[9]=1;
+                              ends[9]=1;
+                              tdone[9]=1;
+                            }
+                          }
+                        }
+                        else {
+                          active[9]=1;
+                          ends[9]=1;
+                          tdone[9]=1;
+                        }
+                      }
+                      else {
+                        active[9]=1;
+                        ends[9]=1;
+                        tdone[9]=1;
+                      }
+                      break;
+                    
+                    case 1 : 
+                      if(bottleRecycled_in.isREQ()){//sysj/systemController.sysj line: 199, column: 4
+                        bottleRecycled_in.setACK(false);//sysj/systemController.sysj line: 199, column: 4
+                        ends[9]=2;
+                        ;//sysj/systemController.sysj line: 199, column: 4
+                        w_thread_9 = (WorkpieceTwin)(bottleRecycled_in.getVal() == null ? null : ((WorkpieceTwin)bottleRecycled_in.getVal()));//sysj/systemController.sysj line: 200, column: 4
+                        recovered_thread_9 = recovered_thread_9 + 1;//sysj/systemController.sysj line: 201, column: 4
+                        System.out.println("[SC] " + w_thread_9 + " recovered by the Recycling Station at " + w_thread_9.filledMl() + "ml, sealed=" + w_thread_9.isSealed() + ". " + recovered_thread_9 + " recycled.");//sysj/systemController.sysj line: 202, column: 4
+                        S213661=1;
+                        S213668=0;
+                        if(!orderRejected_o.isPartnerPresent() || orderRejected_o.isPartnerPreempted()){//sysj/systemController.sysj line: 204, column: 4
+                          orderRejected_o.setREQ(false);//sysj/systemController.sysj line: 204, column: 4
+                          S213668=1;
+                          active[9]=1;
+                          ends[9]=1;
+                          tdone[9]=1;
+                        }
+                        else {
+                          S213663=0;
+                          if(orderRejected_o.isACK()){//sysj/systemController.sysj line: 204, column: 4
+                            orderRejected_o.setVal(new Integer((int)w_thread_9.id));//sysj/systemController.sysj line: 204, column: 4
+                            S213663=1;
+                            if(!orderRejected_o.isACK()){//sysj/systemController.sysj line: 204, column: 4
+                              orderRejected_o.setREQ(false);//sysj/systemController.sysj line: 204, column: 4
+                              ends[9]=2;
+                              ;//sysj/systemController.sysj line: 204, column: 4
+                              S213661=2;
+                              active[9]=1;
+                              ends[9]=1;
+                              tdone[9]=1;
+                            }
+                            else {
+                              active[9]=1;
+                              ends[9]=1;
+                              tdone[9]=1;
+                            }
+                          }
+                          else {
+                            active[9]=1;
+                            ends[9]=1;
+                            tdone[9]=1;
+                          }
+                        }
+                      }
+                      else {
+                        active[9]=1;
+                        ends[9]=1;
+                        tdone[9]=1;
+                      }
+                      break;
+                    
+                  }
+                }
+                break;
+              
+              case 1 : 
+                S213645=1;
+                S213645=0;
+                if(!bottleRecycled_in.isPartnerPresent() || bottleRecycled_in.isPartnerPreempted()){//sysj/systemController.sysj line: 199, column: 4
+                  bottleRecycled_in.setACK(false);//sysj/systemController.sysj line: 199, column: 4
+                  S213645=1;
+                  active[9]=1;
+                  ends[9]=1;
+                  tdone[9]=1;
+                }
+                else {
+                  S213640=0;
+                  if(!bottleRecycled_in.isREQ()){//sysj/systemController.sysj line: 199, column: 4
+                    bottleRecycled_in.setACK(true);//sysj/systemController.sysj line: 199, column: 4
+                    S213640=1;
+                    if(bottleRecycled_in.isREQ()){//sysj/systemController.sysj line: 199, column: 4
+                      bottleRecycled_in.setACK(false);//sysj/systemController.sysj line: 199, column: 4
+                      ends[9]=2;
+                      ;//sysj/systemController.sysj line: 199, column: 4
+                      w_thread_9 = (WorkpieceTwin)(bottleRecycled_in.getVal() == null ? null : ((WorkpieceTwin)bottleRecycled_in.getVal()));//sysj/systemController.sysj line: 200, column: 4
+                      recovered_thread_9 = recovered_thread_9 + 1;//sysj/systemController.sysj line: 201, column: 4
+                      System.out.println("[SC] " + w_thread_9 + " recovered by the Recycling Station at " + w_thread_9.filledMl() + "ml, sealed=" + w_thread_9.isSealed() + ". " + recovered_thread_9 + " recycled.");//sysj/systemController.sysj line: 202, column: 4
+                      S213661=1;
+                      S213668=0;
+                      if(!orderRejected_o.isPartnerPresent() || orderRejected_o.isPartnerPreempted()){//sysj/systemController.sysj line: 204, column: 4
+                        orderRejected_o.setREQ(false);//sysj/systemController.sysj line: 204, column: 4
+                        S213668=1;
+                        active[9]=1;
+                        ends[9]=1;
+                        tdone[9]=1;
+                      }
+                      else {
+                        S213663=0;
+                        if(orderRejected_o.isACK()){//sysj/systemController.sysj line: 204, column: 4
+                          orderRejected_o.setVal(new Integer((int)w_thread_9.id));//sysj/systemController.sysj line: 204, column: 4
+                          S213663=1;
+                          if(!orderRejected_o.isACK()){//sysj/systemController.sysj line: 204, column: 4
+                            orderRejected_o.setREQ(false);//sysj/systemController.sysj line: 204, column: 4
+                            ends[9]=2;
+                            ;//sysj/systemController.sysj line: 204, column: 4
+                            S213661=2;
+                            active[9]=1;
+                            ends[9]=1;
+                            tdone[9]=1;
+                          }
+                          else {
+                            active[9]=1;
+                            ends[9]=1;
+                            tdone[9]=1;
+                          }
+                        }
+                        else {
+                          active[9]=1;
+                          ends[9]=1;
+                          tdone[9]=1;
+                        }
+                      }
+                    }
+                    else {
+                      active[9]=1;
+                      ends[9]=1;
+                      tdone[9]=1;
+                    }
+                  }
+                  else {
+                    active[9]=1;
+                    ends[9]=1;
+                    tdone[9]=1;
+                  }
+                }
+                break;
+              
+            }
+            break;
+          
+          case 1 : 
+            switch(S213668){
+              case 0 : 
+                if(!orderRejected_o.isPartnerPresent() || orderRejected_o.isPartnerPreempted()){//sysj/systemController.sysj line: 204, column: 4
+                  orderRejected_o.setREQ(false);//sysj/systemController.sysj line: 204, column: 4
+                  S213668=1;
+                  active[9]=1;
+                  ends[9]=1;
+                  tdone[9]=1;
+                }
+                else {
+                  switch(S213663){
+                    case 0 : 
+                      if(orderRejected_o.isACK()){//sysj/systemController.sysj line: 204, column: 4
+                        orderRejected_o.setVal(new Integer((int)w_thread_9.id));//sysj/systemController.sysj line: 204, column: 4
+                        S213663=1;
+                        if(!orderRejected_o.isACK()){//sysj/systemController.sysj line: 204, column: 4
+                          orderRejected_o.setREQ(false);//sysj/systemController.sysj line: 204, column: 4
+                          ends[9]=2;
+                          ;//sysj/systemController.sysj line: 204, column: 4
+                          S213661=2;
+                          active[9]=1;
+                          ends[9]=1;
+                          tdone[9]=1;
+                        }
+                        else {
+                          active[9]=1;
+                          ends[9]=1;
+                          tdone[9]=1;
+                        }
+                      }
+                      else {
+                        active[9]=1;
+                        ends[9]=1;
+                        tdone[9]=1;
+                      }
+                      break;
+                    
+                    case 1 : 
+                      if(!orderRejected_o.isACK()){//sysj/systemController.sysj line: 204, column: 4
+                        orderRejected_o.setREQ(false);//sysj/systemController.sysj line: 204, column: 4
+                        ends[9]=2;
+                        ;//sysj/systemController.sysj line: 204, column: 4
+                        S213661=2;
+                        active[9]=1;
+                        ends[9]=1;
+                        tdone[9]=1;
+                      }
+                      else {
+                        active[9]=1;
+                        ends[9]=1;
+                        tdone[9]=1;
+                      }
+                      break;
+                    
+                  }
+                }
+                break;
+              
+              case 1 : 
+                S213668=1;
+                S213668=0;
+                if(!orderRejected_o.isPartnerPresent() || orderRejected_o.isPartnerPreempted()){//sysj/systemController.sysj line: 204, column: 4
+                  orderRejected_o.setREQ(false);//sysj/systemController.sysj line: 204, column: 4
+                  S213668=1;
+                  active[9]=1;
+                  ends[9]=1;
+                  tdone[9]=1;
+                }
+                else {
+                  S213663=0;
+                  if(orderRejected_o.isACK()){//sysj/systemController.sysj line: 204, column: 4
+                    orderRejected_o.setVal(new Integer((int)w_thread_9.id));//sysj/systemController.sysj line: 204, column: 4
+                    S213663=1;
+                    if(!orderRejected_o.isACK()){//sysj/systemController.sysj line: 204, column: 4
+                      orderRejected_o.setREQ(false);//sysj/systemController.sysj line: 204, column: 4
+                      ends[9]=2;
+                      ;//sysj/systemController.sysj line: 204, column: 4
+                      S213661=2;
+                      active[9]=1;
+                      ends[9]=1;
+                      tdone[9]=1;
+                    }
+                    else {
+                      active[9]=1;
+                      ends[9]=1;
+                      tdone[9]=1;
+                    }
+                  }
+                  else {
+                    active[9]=1;
+                    ends[9]=1;
+                    tdone[9]=1;
+                  }
+                }
+                break;
+              
+            }
+            break;
+          
+          case 2 : 
+            S213661=2;
+            S213661=0;
+            S213645=0;
+            if(!bottleRecycled_in.isPartnerPresent() || bottleRecycled_in.isPartnerPreempted()){//sysj/systemController.sysj line: 199, column: 4
+              bottleRecycled_in.setACK(false);//sysj/systemController.sysj line: 199, column: 4
+              S213645=1;
+              active[9]=1;
+              ends[9]=1;
+              tdone[9]=1;
+            }
+            else {
+              S213640=0;
+              if(!bottleRecycled_in.isREQ()){//sysj/systemController.sysj line: 199, column: 4
+                bottleRecycled_in.setACK(true);//sysj/systemController.sysj line: 199, column: 4
+                S213640=1;
+                if(bottleRecycled_in.isREQ()){//sysj/systemController.sysj line: 199, column: 4
+                  bottleRecycled_in.setACK(false);//sysj/systemController.sysj line: 199, column: 4
+                  ends[9]=2;
+                  ;//sysj/systemController.sysj line: 199, column: 4
+                  w_thread_9 = (WorkpieceTwin)(bottleRecycled_in.getVal() == null ? null : ((WorkpieceTwin)bottleRecycled_in.getVal()));//sysj/systemController.sysj line: 200, column: 4
+                  recovered_thread_9 = recovered_thread_9 + 1;//sysj/systemController.sysj line: 201, column: 4
+                  System.out.println("[SC] " + w_thread_9 + " recovered by the Recycling Station at " + w_thread_9.filledMl() + "ml, sealed=" + w_thread_9.isSealed() + ". " + recovered_thread_9 + " recycled.");//sysj/systemController.sysj line: 202, column: 4
+                  S213661=1;
+                  S213668=0;
+                  if(!orderRejected_o.isPartnerPresent() || orderRejected_o.isPartnerPreempted()){//sysj/systemController.sysj line: 204, column: 4
+                    orderRejected_o.setREQ(false);//sysj/systemController.sysj line: 204, column: 4
+                    S213668=1;
+                    active[9]=1;
+                    ends[9]=1;
+                    tdone[9]=1;
+                  }
+                  else {
+                    S213663=0;
+                    if(orderRejected_o.isACK()){//sysj/systemController.sysj line: 204, column: 4
+                      orderRejected_o.setVal(new Integer((int)w_thread_9.id));//sysj/systemController.sysj line: 204, column: 4
+                      S213663=1;
+                      if(!orderRejected_o.isACK()){//sysj/systemController.sysj line: 204, column: 4
+                        orderRejected_o.setREQ(false);//sysj/systemController.sysj line: 204, column: 4
+                        ends[9]=2;
+                        ;//sysj/systemController.sysj line: 204, column: 4
+                        S213661=2;
+                        active[9]=1;
+                        ends[9]=1;
+                        tdone[9]=1;
+                      }
+                      else {
+                        active[9]=1;
+                        ends[9]=1;
+                        tdone[9]=1;
+                      }
+                    }
+                    else {
+                      active[9]=1;
+                      ends[9]=1;
+                      tdone[9]=1;
+                    }
+                  }
+                }
+                else {
+                  active[9]=1;
+                  ends[9]=1;
+                  tdone[9]=1;
+                }
+              }
+              else {
+                active[9]=1;
+                ends[9]=1;
+                tdone[9]=1;
+              }
+            }
+            break;
+          
+        }
+        break;
+      
+    }
+  }
+
+  public void thread214345(int [] tdone, int [] ends){
+        switch(S213637){
       case 0 : 
         active[8]=0;
         ends[8]=0;
@@ -90,39 +546,6672 @@ public class SystemController extends ClockDomain{
         break;
       
       case 1 : 
-        if(recyclingStatus.getprestatus()){//sysj\systemController.sysj line: 150, column: 12
-          v_thread_8 = ((Integer)(recyclingStatus.getpreval() == null ? null : ((Integer)recyclingStatus.getpreval()))).intValue();//sysj\systemController.sysj line: 151, column: 5
-          if(v_thread_8 != last_thread_8) {//sysj\systemController.sysj line: 152, column: 18
-            if(v_thread_8 == 0) {//sysj\systemController.sysj line: 153, column: 16
-              System.out.println("[SC] Recycling Station: idle.");//sysj\systemController.sysj line: 153, column: 18
+        switch(S212055){
+          case 0 : 
+            PlantClock.advance();//sysj/systemController.sysj line: 171, column: 4
+            S212055=0;
+            if(twinBL.getprestatus()){//sysj/systemController.sysj line: 173, column: 12
+              plant_thread_8.put((LoaderTwin)(twinBL.getpreval() == null ? null : ((LoaderTwin)twinBL.getpreval())));//sysj/systemController.sysj line: 173, column: 21
+              if(twinCV.getprestatus()){//sysj/systemController.sysj line: 174, column: 12
+                plant_thread_8.put((ConveyorTwin)(twinCV.getpreval() == null ? null : ((ConveyorTwin)twinCV.getpreval())));//sysj/systemController.sysj line: 174, column: 21
+                if(twinRT.getprestatus()){//sysj/systemController.sysj line: 175, column: 12
+                  plant_thread_8.put((RotaryTableTwin)(twinRT.getpreval() == null ? null : ((RotaryTableTwin)twinRT.getpreval())));//sysj/systemController.sysj line: 175, column: 21
+                  if(twinF1.getprestatus()){//sysj/systemController.sysj line: 176, column: 12
+                    plant_thread_8.put((FillerTwin)(twinF1.getpreval() == null ? null : ((FillerTwin)twinF1.getpreval())));//sysj/systemController.sysj line: 176, column: 21
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                  else {
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                else {
+                  if(twinF1.getprestatus()){//sysj/systemController.sysj line: 176, column: 12
+                    plant_thread_8.put((FillerTwin)(twinF1.getpreval() == null ? null : ((FillerTwin)twinF1.getpreval())));//sysj/systemController.sysj line: 176, column: 21
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                  else {
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              else {
+                if(twinRT.getprestatus()){//sysj/systemController.sysj line: 175, column: 12
+                  plant_thread_8.put((RotaryTableTwin)(twinRT.getpreval() == null ? null : ((RotaryTableTwin)twinRT.getpreval())));//sysj/systemController.sysj line: 175, column: 21
+                  if(twinF1.getprestatus()){//sysj/systemController.sysj line: 176, column: 12
+                    plant_thread_8.put((FillerTwin)(twinF1.getpreval() == null ? null : ((FillerTwin)twinF1.getpreval())));//sysj/systemController.sysj line: 176, column: 21
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                  else {
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                else {
+                  if(twinF1.getprestatus()){//sysj/systemController.sysj line: 176, column: 12
+                    plant_thread_8.put((FillerTwin)(twinF1.getpreval() == null ? null : ((FillerTwin)twinF1.getpreval())));//sysj/systemController.sysj line: 176, column: 21
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                  else {
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
-            if(v_thread_8 == 1) {//sysj\systemController.sysj line: 154, column: 16
-              System.out.println("[SC] Recycling Station: busy.");//sysj\systemController.sysj line: 154, column: 18
+            else {
+              if(twinCV.getprestatus()){//sysj/systemController.sysj line: 174, column: 12
+                plant_thread_8.put((ConveyorTwin)(twinCV.getpreval() == null ? null : ((ConveyorTwin)twinCV.getpreval())));//sysj/systemController.sysj line: 174, column: 21
+                if(twinRT.getprestatus()){//sysj/systemController.sysj line: 175, column: 12
+                  plant_thread_8.put((RotaryTableTwin)(twinRT.getpreval() == null ? null : ((RotaryTableTwin)twinRT.getpreval())));//sysj/systemController.sysj line: 175, column: 21
+                  if(twinF1.getprestatus()){//sysj/systemController.sysj line: 176, column: 12
+                    plant_thread_8.put((FillerTwin)(twinF1.getpreval() == null ? null : ((FillerTwin)twinF1.getpreval())));//sysj/systemController.sysj line: 176, column: 21
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                  else {
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                else {
+                  if(twinF1.getprestatus()){//sysj/systemController.sysj line: 176, column: 12
+                    plant_thread_8.put((FillerTwin)(twinF1.getpreval() == null ? null : ((FillerTwin)twinF1.getpreval())));//sysj/systemController.sysj line: 176, column: 21
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                  else {
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              else {
+                if(twinRT.getprestatus()){//sysj/systemController.sysj line: 175, column: 12
+                  plant_thread_8.put((RotaryTableTwin)(twinRT.getpreval() == null ? null : ((RotaryTableTwin)twinRT.getpreval())));//sysj/systemController.sysj line: 175, column: 21
+                  if(twinF1.getprestatus()){//sysj/systemController.sysj line: 176, column: 12
+                    plant_thread_8.put((FillerTwin)(twinF1.getpreval() == null ? null : ((FillerTwin)twinF1.getpreval())));//sysj/systemController.sysj line: 176, column: 21
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                  else {
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                else {
+                  if(twinF1.getprestatus()){//sysj/systemController.sysj line: 176, column: 12
+                    plant_thread_8.put((FillerTwin)(twinF1.getpreval() == null ? null : ((FillerTwin)twinF1.getpreval())));//sysj/systemController.sysj line: 176, column: 21
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                  else {
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
-            if(v_thread_8 == 2) {//sysj\systemController.sysj line: 155, column: 16
-              System.out.println("[SC] Recycling Station: FAULT - no further rejects accepted.");//sysj\systemController.sysj line: 155, column: 18
+            break;
+          
+          case 1 : 
+            S212055=1;
+            PlantClock.advance();//sysj/systemController.sysj line: 171, column: 4
+            S212055=0;
+            if(twinBL.getprestatus()){//sysj/systemController.sysj line: 173, column: 12
+              plant_thread_8.put((LoaderTwin)(twinBL.getpreval() == null ? null : ((LoaderTwin)twinBL.getpreval())));//sysj/systemController.sysj line: 173, column: 21
+              if(twinCV.getprestatus()){//sysj/systemController.sysj line: 174, column: 12
+                plant_thread_8.put((ConveyorTwin)(twinCV.getpreval() == null ? null : ((ConveyorTwin)twinCV.getpreval())));//sysj/systemController.sysj line: 174, column: 21
+                if(twinRT.getprestatus()){//sysj/systemController.sysj line: 175, column: 12
+                  plant_thread_8.put((RotaryTableTwin)(twinRT.getpreval() == null ? null : ((RotaryTableTwin)twinRT.getpreval())));//sysj/systemController.sysj line: 175, column: 21
+                  if(twinF1.getprestatus()){//sysj/systemController.sysj line: 176, column: 12
+                    plant_thread_8.put((FillerTwin)(twinF1.getpreval() == null ? null : ((FillerTwin)twinF1.getpreval())));//sysj/systemController.sysj line: 176, column: 21
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                  else {
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                else {
+                  if(twinF1.getprestatus()){//sysj/systemController.sysj line: 176, column: 12
+                    plant_thread_8.put((FillerTwin)(twinF1.getpreval() == null ? null : ((FillerTwin)twinF1.getpreval())));//sysj/systemController.sysj line: 176, column: 21
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                  else {
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              else {
+                if(twinRT.getprestatus()){//sysj/systemController.sysj line: 175, column: 12
+                  plant_thread_8.put((RotaryTableTwin)(twinRT.getpreval() == null ? null : ((RotaryTableTwin)twinRT.getpreval())));//sysj/systemController.sysj line: 175, column: 21
+                  if(twinF1.getprestatus()){//sysj/systemController.sysj line: 176, column: 12
+                    plant_thread_8.put((FillerTwin)(twinF1.getpreval() == null ? null : ((FillerTwin)twinF1.getpreval())));//sysj/systemController.sysj line: 176, column: 21
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                  else {
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                else {
+                  if(twinF1.getprestatus()){//sysj/systemController.sysj line: 176, column: 12
+                    plant_thread_8.put((FillerTwin)(twinF1.getpreval() == null ? null : ((FillerTwin)twinF1.getpreval())));//sysj/systemController.sysj line: 176, column: 21
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                  else {
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
-            if(v_thread_8 == 3) {//sysj\systemController.sysj line: 156, column: 16
-              System.out.println("[SC] Recycling Station: running, bin or tank near capacity.");//sysj\systemController.sysj line: 156, column: 18
+            else {
+              if(twinCV.getprestatus()){//sysj/systemController.sysj line: 174, column: 12
+                plant_thread_8.put((ConveyorTwin)(twinCV.getpreval() == null ? null : ((ConveyorTwin)twinCV.getpreval())));//sysj/systemController.sysj line: 174, column: 21
+                if(twinRT.getprestatus()){//sysj/systemController.sysj line: 175, column: 12
+                  plant_thread_8.put((RotaryTableTwin)(twinRT.getpreval() == null ? null : ((RotaryTableTwin)twinRT.getpreval())));//sysj/systemController.sysj line: 175, column: 21
+                  if(twinF1.getprestatus()){//sysj/systemController.sysj line: 176, column: 12
+                    plant_thread_8.put((FillerTwin)(twinF1.getpreval() == null ? null : ((FillerTwin)twinF1.getpreval())));//sysj/systemController.sysj line: 176, column: 21
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                  else {
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                else {
+                  if(twinF1.getprestatus()){//sysj/systemController.sysj line: 176, column: 12
+                    plant_thread_8.put((FillerTwin)(twinF1.getpreval() == null ? null : ((FillerTwin)twinF1.getpreval())));//sysj/systemController.sysj line: 176, column: 21
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                  else {
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              else {
+                if(twinRT.getprestatus()){//sysj/systemController.sysj line: 175, column: 12
+                  plant_thread_8.put((RotaryTableTwin)(twinRT.getpreval() == null ? null : ((RotaryTableTwin)twinRT.getpreval())));//sysj/systemController.sysj line: 175, column: 21
+                  if(twinF1.getprestatus()){//sysj/systemController.sysj line: 176, column: 12
+                    plant_thread_8.put((FillerTwin)(twinF1.getpreval() == null ? null : ((FillerTwin)twinF1.getpreval())));//sysj/systemController.sysj line: 176, column: 21
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                  else {
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                else {
+                  if(twinF1.getprestatus()){//sysj/systemController.sysj line: 176, column: 12
+                    plant_thread_8.put((FillerTwin)(twinF1.getpreval() == null ? null : ((FillerTwin)twinF1.getpreval())));//sysj/systemController.sysj line: 176, column: 21
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                  else {
+                    if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+                      plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                        plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                          plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                        else {
+                          if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                            plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                          else {
+                            plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                            plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                            TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                            out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                            S212055=1;
+                            active[8]=1;
+                            ends[8]=1;
+                            tdone[8]=1;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
-            last_thread_8 = v_thread_8;//sysj\systemController.sysj line: 157, column: 6
-          }
-          active[8]=1;
-          ends[8]=1;
-          tdone[8]=1;
-        }
-        else {
-          active[8]=1;
-          ends[8]=1;
-          tdone[8]=1;
+            break;
+          
         }
         break;
       
     }
   }
 
-  public void thread175418(int [] tdone, int [] ends){
-        switch(S175381){
+  public void thread214344(int [] tdone, int [] ends){
+        switch(S212051){
       case 0 : 
         active[7]=0;
         ends[7]=0;
@@ -130,49 +7219,150 @@ public class SystemController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S174737){
+        switch(S209751){
           case 0 : 
-            switch(S174721){
+            switch(S209735){
               case 0 : 
-                if(!bottleRecycled_in.isPartnerPresent() || bottleRecycled_in.isPartnerPreempted()){//sysj\systemController.sysj line: 134, column: 4
-                  bottleRecycled_in.setACK(false);//sysj\systemController.sysj line: 134, column: 4
-                  S174721=1;
+                if(!labelDone_in.isPartnerPresent() || labelDone_in.isPartnerPreempted()){//sysj/systemController.sysj line: 140, column: 4
+                  labelDone_in.setACK(false);//sysj/systemController.sysj line: 140, column: 4
+                  S209735=1;
                   active[7]=1;
                   ends[7]=1;
                   tdone[7]=1;
                 }
                 else {
-                  switch(S174716){
+                  switch(S209730){
                     case 0 : 
-                      if(!bottleRecycled_in.isREQ()){//sysj\systemController.sysj line: 134, column: 4
-                        bottleRecycled_in.setACK(true);//sysj\systemController.sysj line: 134, column: 4
-                        S174716=1;
-                        if(bottleRecycled_in.isREQ()){//sysj\systemController.sysj line: 134, column: 4
-                          bottleRecycled_in.setACK(false);//sysj\systemController.sysj line: 134, column: 4
+                      if(!labelDone_in.isREQ()){//sysj/systemController.sysj line: 140, column: 4
+                        labelDone_in.setACK(true);//sysj/systemController.sysj line: 140, column: 4
+                        S209730=1;
+                        if(labelDone_in.isREQ()){//sysj/systemController.sysj line: 140, column: 4
+                          labelDone_in.setACK(false);//sysj/systemController.sysj line: 140, column: 4
                           ends[7]=2;
-                          ;//sysj\systemController.sysj line: 134, column: 4
-                          w_thread_7 = (Workpiece)(bottleRecycled_in.getVal() == null ? null : ((Workpiece)bottleRecycled_in.getVal()));//sysj\systemController.sysj line: 135, column: 4
-                          recovered_thread_7 = recovered_thread_7 + 1;//sysj\systemController.sysj line: 136, column: 4
-                          System.out.println("[SC] " + w_thread_7 + " recovered by the Recycling Station at " + w_thread_7.filledMl() + "ml, sealed=" + w_thread_7.isSealed() + ". " + recovered_thread_7 + " recycled.");//sysj\systemController.sysj line: 137, column: 4
-                          S174737=1;
-                          S174744=0;
-                          if(!orderRejected_o.isPartnerPresent() || orderRejected_o.isPartnerPreempted()){//sysj\systemController.sysj line: 139, column: 4
-                            orderRejected_o.setREQ(false);//sysj\systemController.sysj line: 139, column: 4
-                            S174744=1;
+                          ;//sysj/systemController.sysj line: 140, column: 4
+                          w_thread_7 = (WorkpieceTwin)(labelDone_in.getVal() == null ? null : ((WorkpieceTwin)labelDone_in.getVal()));//sysj/systemController.sysj line: 141, column: 4
+                          S209751=1;
+                          if(w_thread_7.isRejected()){//sysj/systemController.sysj line: 143, column: 4
+                            S209842=0;
+                            System.out.println("[SC] " + w_thread_7 + " refused a label (" + w_thread_7.defect() + "); handing it to the Recycling Station.");//sysj/systemController.sysj line: 144, column: 5
+                            S209758=0;
+                            if(!bottleRejected_o.isPartnerPresent() || bottleRejected_o.isPartnerPreempted()){//sysj/systemController.sysj line: 146, column: 5
+                              bottleRejected_o.setREQ(false);//sysj/systemController.sysj line: 146, column: 5
+                              S209758=1;
+                              active[7]=1;
+                              ends[7]=1;
+                              tdone[7]=1;
+                            }
+                            else {
+                              S209753=0;
+                              if(bottleRejected_o.isACK()){//sysj/systemController.sysj line: 146, column: 5
+                                bottleRejected_o.setVal(w_thread_7);//sysj/systemController.sysj line: 146, column: 5
+                                S209753=1;
+                                if(!bottleRejected_o.isACK()){//sysj/systemController.sysj line: 146, column: 5
+                                  bottleRejected_o.setREQ(false);//sysj/systemController.sysj line: 146, column: 5
+                                  ends[7]=2;
+                                  ;//sysj/systemController.sysj line: 146, column: 5
+                                  S209751=2;
+                                  active[7]=1;
+                                  ends[7]=1;
+                                  tdone[7]=1;
+                                }
+                                else {
+                                  active[7]=1;
+                                  ends[7]=1;
+                                  tdone[7]=1;
+                                }
+                              }
+                              else {
+                                active[7]=1;
+                                ends[7]=1;
+                                tdone[7]=1;
+                              }
+                            }
+                          }
+                          else {
+                            S209842=1;
+                            w_thread_7.seal();//sysj/systemController.sysj line: 149, column: 5
+                            done_thread_7 = done_thread_7 + 1;//sysj/systemController.sysj line: 150, column: 5
+                            System.out.println("[SC] " + w_thread_7 + " finished at " + w_thread_7.filledMl() + "ml, sealed=" + w_thread_7.isSealed() + ", labelled " + w_thread_7.serial + ". " + done_thread_7 + " complete.");//sysj/systemController.sysj line: 151, column: 5
+                            OrderBook.purchaseOrder().refresh();//sysj/systemController.sysj line: 153, column: 5
+                            S209804=0;
+                            if(!orderProgress_o.isPartnerPresent() || orderProgress_o.isPartnerPreempted()){//sysj/systemController.sysj line: 154, column: 5
+                              orderProgress_o.setREQ(false);//sysj/systemController.sysj line: 154, column: 5
+                              S209804=1;
+                              active[7]=1;
+                              ends[7]=1;
+                              tdone[7]=1;
+                            }
+                            else {
+                              S209799=0;
+                              if(orderProgress_o.isACK()){//sysj/systemController.sysj line: 154, column: 5
+                                orderProgress_o.setVal(new Integer((int)w_thread_7.id));//sysj/systemController.sysj line: 154, column: 5
+                                S209799=1;
+                                if(!orderProgress_o.isACK()){//sysj/systemController.sysj line: 154, column: 5
+                                  orderProgress_o.setREQ(false);//sysj/systemController.sysj line: 154, column: 5
+                                  ends[7]=2;
+                                  ;//sysj/systemController.sysj line: 154, column: 5
+                                  S209751=2;
+                                  active[7]=1;
+                                  ends[7]=1;
+                                  tdone[7]=1;
+                                }
+                                else {
+                                  active[7]=1;
+                                  ends[7]=1;
+                                  tdone[7]=1;
+                                }
+                              }
+                              else {
+                                active[7]=1;
+                                ends[7]=1;
+                                tdone[7]=1;
+                              }
+                            }
+                          }
+                        }
+                        else {
+                          active[7]=1;
+                          ends[7]=1;
+                          tdone[7]=1;
+                        }
+                      }
+                      else {
+                        active[7]=1;
+                        ends[7]=1;
+                        tdone[7]=1;
+                      }
+                      break;
+                    
+                    case 1 : 
+                      if(labelDone_in.isREQ()){//sysj/systemController.sysj line: 140, column: 4
+                        labelDone_in.setACK(false);//sysj/systemController.sysj line: 140, column: 4
+                        ends[7]=2;
+                        ;//sysj/systemController.sysj line: 140, column: 4
+                        w_thread_7 = (WorkpieceTwin)(labelDone_in.getVal() == null ? null : ((WorkpieceTwin)labelDone_in.getVal()));//sysj/systemController.sysj line: 141, column: 4
+                        S209751=1;
+                        if(w_thread_7.isRejected()){//sysj/systemController.sysj line: 143, column: 4
+                          S209842=0;
+                          System.out.println("[SC] " + w_thread_7 + " refused a label (" + w_thread_7.defect() + "); handing it to the Recycling Station.");//sysj/systemController.sysj line: 144, column: 5
+                          S209758=0;
+                          if(!bottleRejected_o.isPartnerPresent() || bottleRejected_o.isPartnerPreempted()){//sysj/systemController.sysj line: 146, column: 5
+                            bottleRejected_o.setREQ(false);//sysj/systemController.sysj line: 146, column: 5
+                            S209758=1;
                             active[7]=1;
                             ends[7]=1;
                             tdone[7]=1;
                           }
                           else {
-                            S174739=0;
-                            if(orderRejected_o.isACK()){//sysj\systemController.sysj line: 139, column: 4
-                              orderRejected_o.setVal(new Integer(w_thread_7.id));//sysj\systemController.sysj line: 139, column: 4
-                              S174739=1;
-                              if(!orderRejected_o.isACK()){//sysj\systemController.sysj line: 139, column: 4
-                                orderRejected_o.setREQ(false);//sysj\systemController.sysj line: 139, column: 4
+                            S209753=0;
+                            if(bottleRejected_o.isACK()){//sysj/systemController.sysj line: 146, column: 5
+                              bottleRejected_o.setVal(w_thread_7);//sysj/systemController.sysj line: 146, column: 5
+                              S209753=1;
+                              if(!bottleRejected_o.isACK()){//sysj/systemController.sysj line: 146, column: 5
+                                bottleRejected_o.setREQ(false);//sysj/systemController.sysj line: 146, column: 5
                                 ends[7]=2;
-                                ;//sysj\systemController.sysj line: 139, column: 4
-                                S174737=2;
+                                ;//sysj/systemController.sysj line: 146, column: 5
+                                S209751=2;
                                 active[7]=1;
                                 ends[7]=1;
                                 tdone[7]=1;
@@ -191,9 +7381,45 @@ public class SystemController extends ClockDomain{
                           }
                         }
                         else {
-                          active[7]=1;
-                          ends[7]=1;
-                          tdone[7]=1;
+                          S209842=1;
+                          w_thread_7.seal();//sysj/systemController.sysj line: 149, column: 5
+                          done_thread_7 = done_thread_7 + 1;//sysj/systemController.sysj line: 150, column: 5
+                          System.out.println("[SC] " + w_thread_7 + " finished at " + w_thread_7.filledMl() + "ml, sealed=" + w_thread_7.isSealed() + ", labelled " + w_thread_7.serial + ". " + done_thread_7 + " complete.");//sysj/systemController.sysj line: 151, column: 5
+                          OrderBook.purchaseOrder().refresh();//sysj/systemController.sysj line: 153, column: 5
+                          S209804=0;
+                          if(!orderProgress_o.isPartnerPresent() || orderProgress_o.isPartnerPreempted()){//sysj/systemController.sysj line: 154, column: 5
+                            orderProgress_o.setREQ(false);//sysj/systemController.sysj line: 154, column: 5
+                            S209804=1;
+                            active[7]=1;
+                            ends[7]=1;
+                            tdone[7]=1;
+                          }
+                          else {
+                            S209799=0;
+                            if(orderProgress_o.isACK()){//sysj/systemController.sysj line: 154, column: 5
+                              orderProgress_o.setVal(new Integer((int)w_thread_7.id));//sysj/systemController.sysj line: 154, column: 5
+                              S209799=1;
+                              if(!orderProgress_o.isACK()){//sysj/systemController.sysj line: 154, column: 5
+                                orderProgress_o.setREQ(false);//sysj/systemController.sysj line: 154, column: 5
+                                ends[7]=2;
+                                ;//sysj/systemController.sysj line: 154, column: 5
+                                S209751=2;
+                                active[7]=1;
+                                ends[7]=1;
+                                tdone[7]=1;
+                              }
+                              else {
+                                active[7]=1;
+                                ends[7]=1;
+                                tdone[7]=1;
+                              }
+                            }
+                            else {
+                              active[7]=1;
+                              ends[7]=1;
+                              tdone[7]=1;
+                            }
+                          }
                         }
                       }
                       else {
@@ -203,33 +7429,52 @@ public class SystemController extends ClockDomain{
                       }
                       break;
                     
-                    case 1 : 
-                      if(bottleRecycled_in.isREQ()){//sysj\systemController.sysj line: 134, column: 4
-                        bottleRecycled_in.setACK(false);//sysj\systemController.sysj line: 134, column: 4
-                        ends[7]=2;
-                        ;//sysj\systemController.sysj line: 134, column: 4
-                        w_thread_7 = (Workpiece)(bottleRecycled_in.getVal() == null ? null : ((Workpiece)bottleRecycled_in.getVal()));//sysj\systemController.sysj line: 135, column: 4
-                        recovered_thread_7 = recovered_thread_7 + 1;//sysj\systemController.sysj line: 136, column: 4
-                        System.out.println("[SC] " + w_thread_7 + " recovered by the Recycling Station at " + w_thread_7.filledMl() + "ml, sealed=" + w_thread_7.isSealed() + ". " + recovered_thread_7 + " recycled.");//sysj\systemController.sysj line: 137, column: 4
-                        S174737=1;
-                        S174744=0;
-                        if(!orderRejected_o.isPartnerPresent() || orderRejected_o.isPartnerPreempted()){//sysj\systemController.sysj line: 139, column: 4
-                          orderRejected_o.setREQ(false);//sysj\systemController.sysj line: 139, column: 4
-                          S174744=1;
+                  }
+                }
+                break;
+              
+              case 1 : 
+                S209735=1;
+                S209735=0;
+                if(!labelDone_in.isPartnerPresent() || labelDone_in.isPartnerPreempted()){//sysj/systemController.sysj line: 140, column: 4
+                  labelDone_in.setACK(false);//sysj/systemController.sysj line: 140, column: 4
+                  S209735=1;
+                  active[7]=1;
+                  ends[7]=1;
+                  tdone[7]=1;
+                }
+                else {
+                  S209730=0;
+                  if(!labelDone_in.isREQ()){//sysj/systemController.sysj line: 140, column: 4
+                    labelDone_in.setACK(true);//sysj/systemController.sysj line: 140, column: 4
+                    S209730=1;
+                    if(labelDone_in.isREQ()){//sysj/systemController.sysj line: 140, column: 4
+                      labelDone_in.setACK(false);//sysj/systemController.sysj line: 140, column: 4
+                      ends[7]=2;
+                      ;//sysj/systemController.sysj line: 140, column: 4
+                      w_thread_7 = (WorkpieceTwin)(labelDone_in.getVal() == null ? null : ((WorkpieceTwin)labelDone_in.getVal()));//sysj/systemController.sysj line: 141, column: 4
+                      S209751=1;
+                      if(w_thread_7.isRejected()){//sysj/systemController.sysj line: 143, column: 4
+                        S209842=0;
+                        System.out.println("[SC] " + w_thread_7 + " refused a label (" + w_thread_7.defect() + "); handing it to the Recycling Station.");//sysj/systemController.sysj line: 144, column: 5
+                        S209758=0;
+                        if(!bottleRejected_o.isPartnerPresent() || bottleRejected_o.isPartnerPreempted()){//sysj/systemController.sysj line: 146, column: 5
+                          bottleRejected_o.setREQ(false);//sysj/systemController.sysj line: 146, column: 5
+                          S209758=1;
                           active[7]=1;
                           ends[7]=1;
                           tdone[7]=1;
                         }
                         else {
-                          S174739=0;
-                          if(orderRejected_o.isACK()){//sysj\systemController.sysj line: 139, column: 4
-                            orderRejected_o.setVal(new Integer(w_thread_7.id));//sysj\systemController.sysj line: 139, column: 4
-                            S174739=1;
-                            if(!orderRejected_o.isACK()){//sysj\systemController.sysj line: 139, column: 4
-                              orderRejected_o.setREQ(false);//sysj\systemController.sysj line: 139, column: 4
+                          S209753=0;
+                          if(bottleRejected_o.isACK()){//sysj/systemController.sysj line: 146, column: 5
+                            bottleRejected_o.setVal(w_thread_7);//sysj/systemController.sysj line: 146, column: 5
+                            S209753=1;
+                            if(!bottleRejected_o.isACK()){//sysj/systemController.sysj line: 146, column: 5
+                              bottleRejected_o.setREQ(false);//sysj/systemController.sysj line: 146, column: 5
                               ends[7]=2;
-                              ;//sysj\systemController.sysj line: 139, column: 4
-                              S174737=2;
+                              ;//sysj/systemController.sysj line: 146, column: 5
+                              S209751=2;
                               active[7]=1;
                               ends[7]=1;
                               tdone[7]=1;
@@ -248,71 +7493,44 @@ public class SystemController extends ClockDomain{
                         }
                       }
                       else {
-                        active[7]=1;
-                        ends[7]=1;
-                        tdone[7]=1;
-                      }
-                      break;
-                    
-                  }
-                }
-                break;
-              
-              case 1 : 
-                S174721=1;
-                S174721=0;
-                if(!bottleRecycled_in.isPartnerPresent() || bottleRecycled_in.isPartnerPreempted()){//sysj\systemController.sysj line: 134, column: 4
-                  bottleRecycled_in.setACK(false);//sysj\systemController.sysj line: 134, column: 4
-                  S174721=1;
-                  active[7]=1;
-                  ends[7]=1;
-                  tdone[7]=1;
-                }
-                else {
-                  S174716=0;
-                  if(!bottleRecycled_in.isREQ()){//sysj\systemController.sysj line: 134, column: 4
-                    bottleRecycled_in.setACK(true);//sysj\systemController.sysj line: 134, column: 4
-                    S174716=1;
-                    if(bottleRecycled_in.isREQ()){//sysj\systemController.sysj line: 134, column: 4
-                      bottleRecycled_in.setACK(false);//sysj\systemController.sysj line: 134, column: 4
-                      ends[7]=2;
-                      ;//sysj\systemController.sysj line: 134, column: 4
-                      w_thread_7 = (Workpiece)(bottleRecycled_in.getVal() == null ? null : ((Workpiece)bottleRecycled_in.getVal()));//sysj\systemController.sysj line: 135, column: 4
-                      recovered_thread_7 = recovered_thread_7 + 1;//sysj\systemController.sysj line: 136, column: 4
-                      System.out.println("[SC] " + w_thread_7 + " recovered by the Recycling Station at " + w_thread_7.filledMl() + "ml, sealed=" + w_thread_7.isSealed() + ". " + recovered_thread_7 + " recycled.");//sysj\systemController.sysj line: 137, column: 4
-                      S174737=1;
-                      S174744=0;
-                      if(!orderRejected_o.isPartnerPresent() || orderRejected_o.isPartnerPreempted()){//sysj\systemController.sysj line: 139, column: 4
-                        orderRejected_o.setREQ(false);//sysj\systemController.sysj line: 139, column: 4
-                        S174744=1;
-                        active[7]=1;
-                        ends[7]=1;
-                        tdone[7]=1;
-                      }
-                      else {
-                        S174739=0;
-                        if(orderRejected_o.isACK()){//sysj\systemController.sysj line: 139, column: 4
-                          orderRejected_o.setVal(new Integer(w_thread_7.id));//sysj\systemController.sysj line: 139, column: 4
-                          S174739=1;
-                          if(!orderRejected_o.isACK()){//sysj\systemController.sysj line: 139, column: 4
-                            orderRejected_o.setREQ(false);//sysj\systemController.sysj line: 139, column: 4
-                            ends[7]=2;
-                            ;//sysj\systemController.sysj line: 139, column: 4
-                            S174737=2;
-                            active[7]=1;
-                            ends[7]=1;
-                            tdone[7]=1;
+                        S209842=1;
+                        w_thread_7.seal();//sysj/systemController.sysj line: 149, column: 5
+                        done_thread_7 = done_thread_7 + 1;//sysj/systemController.sysj line: 150, column: 5
+                        System.out.println("[SC] " + w_thread_7 + " finished at " + w_thread_7.filledMl() + "ml, sealed=" + w_thread_7.isSealed() + ", labelled " + w_thread_7.serial + ". " + done_thread_7 + " complete.");//sysj/systemController.sysj line: 151, column: 5
+                        OrderBook.purchaseOrder().refresh();//sysj/systemController.sysj line: 153, column: 5
+                        S209804=0;
+                        if(!orderProgress_o.isPartnerPresent() || orderProgress_o.isPartnerPreempted()){//sysj/systemController.sysj line: 154, column: 5
+                          orderProgress_o.setREQ(false);//sysj/systemController.sysj line: 154, column: 5
+                          S209804=1;
+                          active[7]=1;
+                          ends[7]=1;
+                          tdone[7]=1;
+                        }
+                        else {
+                          S209799=0;
+                          if(orderProgress_o.isACK()){//sysj/systemController.sysj line: 154, column: 5
+                            orderProgress_o.setVal(new Integer((int)w_thread_7.id));//sysj/systemController.sysj line: 154, column: 5
+                            S209799=1;
+                            if(!orderProgress_o.isACK()){//sysj/systemController.sysj line: 154, column: 5
+                              orderProgress_o.setREQ(false);//sysj/systemController.sysj line: 154, column: 5
+                              ends[7]=2;
+                              ;//sysj/systemController.sysj line: 154, column: 5
+                              S209751=2;
+                              active[7]=1;
+                              ends[7]=1;
+                              tdone[7]=1;
+                            }
+                            else {
+                              active[7]=1;
+                              ends[7]=1;
+                              tdone[7]=1;
+                            }
                           }
                           else {
                             active[7]=1;
                             ends[7]=1;
                             tdone[7]=1;
                           }
-                        }
-                        else {
-                          active[7]=1;
-                          ends[7]=1;
-                          tdone[7]=1;
                         }
                       }
                     }
@@ -334,26 +7552,86 @@ public class SystemController extends ClockDomain{
             break;
           
           case 1 : 
-            switch(S174744){
+            switch(S209842){
               case 0 : 
-                if(!orderRejected_o.isPartnerPresent() || orderRejected_o.isPartnerPreempted()){//sysj\systemController.sysj line: 139, column: 4
-                  orderRejected_o.setREQ(false);//sysj\systemController.sysj line: 139, column: 4
-                  S174744=1;
-                  active[7]=1;
-                  ends[7]=1;
-                  tdone[7]=1;
-                }
-                else {
-                  switch(S174739){
-                    case 0 : 
-                      if(orderRejected_o.isACK()){//sysj\systemController.sysj line: 139, column: 4
-                        orderRejected_o.setVal(new Integer(w_thread_7.id));//sysj\systemController.sysj line: 139, column: 4
-                        S174739=1;
-                        if(!orderRejected_o.isACK()){//sysj\systemController.sysj line: 139, column: 4
-                          orderRejected_o.setREQ(false);//sysj\systemController.sysj line: 139, column: 4
+                switch(S209758){
+                  case 0 : 
+                    if(!bottleRejected_o.isPartnerPresent() || bottleRejected_o.isPartnerPreempted()){//sysj/systemController.sysj line: 146, column: 5
+                      bottleRejected_o.setREQ(false);//sysj/systemController.sysj line: 146, column: 5
+                      S209758=1;
+                      active[7]=1;
+                      ends[7]=1;
+                      tdone[7]=1;
+                    }
+                    else {
+                      switch(S209753){
+                        case 0 : 
+                          if(bottleRejected_o.isACK()){//sysj/systemController.sysj line: 146, column: 5
+                            bottleRejected_o.setVal(w_thread_7);//sysj/systemController.sysj line: 146, column: 5
+                            S209753=1;
+                            if(!bottleRejected_o.isACK()){//sysj/systemController.sysj line: 146, column: 5
+                              bottleRejected_o.setREQ(false);//sysj/systemController.sysj line: 146, column: 5
+                              ends[7]=2;
+                              ;//sysj/systemController.sysj line: 146, column: 5
+                              S209751=2;
+                              active[7]=1;
+                              ends[7]=1;
+                              tdone[7]=1;
+                            }
+                            else {
+                              active[7]=1;
+                              ends[7]=1;
+                              tdone[7]=1;
+                            }
+                          }
+                          else {
+                            active[7]=1;
+                            ends[7]=1;
+                            tdone[7]=1;
+                          }
+                          break;
+                        
+                        case 1 : 
+                          if(!bottleRejected_o.isACK()){//sysj/systemController.sysj line: 146, column: 5
+                            bottleRejected_o.setREQ(false);//sysj/systemController.sysj line: 146, column: 5
+                            ends[7]=2;
+                            ;//sysj/systemController.sysj line: 146, column: 5
+                            S209751=2;
+                            active[7]=1;
+                            ends[7]=1;
+                            tdone[7]=1;
+                          }
+                          else {
+                            active[7]=1;
+                            ends[7]=1;
+                            tdone[7]=1;
+                          }
+                          break;
+                        
+                      }
+                    }
+                    break;
+                  
+                  case 1 : 
+                    S209758=1;
+                    S209758=0;
+                    if(!bottleRejected_o.isPartnerPresent() || bottleRejected_o.isPartnerPreempted()){//sysj/systemController.sysj line: 146, column: 5
+                      bottleRejected_o.setREQ(false);//sysj/systemController.sysj line: 146, column: 5
+                      S209758=1;
+                      active[7]=1;
+                      ends[7]=1;
+                      tdone[7]=1;
+                    }
+                    else {
+                      S209753=0;
+                      if(bottleRejected_o.isACK()){//sysj/systemController.sysj line: 146, column: 5
+                        bottleRejected_o.setVal(w_thread_7);//sysj/systemController.sysj line: 146, column: 5
+                        S209753=1;
+                        if(!bottleRejected_o.isACK()){//sysj/systemController.sysj line: 146, column: 5
+                          bottleRejected_o.setREQ(false);//sysj/systemController.sysj line: 146, column: 5
                           ends[7]=2;
-                          ;//sysj\systemController.sysj line: 139, column: 4
-                          S174737=2;
+                          ;//sysj/systemController.sysj line: 146, column: 5
+                          S209751=2;
                           active[7]=1;
                           ends[7]=1;
                           tdone[7]=1;
@@ -369,64 +7647,109 @@ public class SystemController extends ClockDomain{
                         ends[7]=1;
                         tdone[7]=1;
                       }
-                      break;
-                    
-                    case 1 : 
-                      if(!orderRejected_o.isACK()){//sysj\systemController.sysj line: 139, column: 4
-                        orderRejected_o.setREQ(false);//sysj\systemController.sysj line: 139, column: 4
-                        ends[7]=2;
-                        ;//sysj\systemController.sysj line: 139, column: 4
-                        S174737=2;
-                        active[7]=1;
-                        ends[7]=1;
-                        tdone[7]=1;
+                    }
+                    break;
+                  
+                }
+                break;
+              
+              case 1 : 
+                switch(S209804){
+                  case 0 : 
+                    if(!orderProgress_o.isPartnerPresent() || orderProgress_o.isPartnerPreempted()){//sysj/systemController.sysj line: 154, column: 5
+                      orderProgress_o.setREQ(false);//sysj/systemController.sysj line: 154, column: 5
+                      S209804=1;
+                      active[7]=1;
+                      ends[7]=1;
+                      tdone[7]=1;
+                    }
+                    else {
+                      switch(S209799){
+                        case 0 : 
+                          if(orderProgress_o.isACK()){//sysj/systemController.sysj line: 154, column: 5
+                            orderProgress_o.setVal(new Integer((int)w_thread_7.id));//sysj/systemController.sysj line: 154, column: 5
+                            S209799=1;
+                            if(!orderProgress_o.isACK()){//sysj/systemController.sysj line: 154, column: 5
+                              orderProgress_o.setREQ(false);//sysj/systemController.sysj line: 154, column: 5
+                              ends[7]=2;
+                              ;//sysj/systemController.sysj line: 154, column: 5
+                              S209751=2;
+                              active[7]=1;
+                              ends[7]=1;
+                              tdone[7]=1;
+                            }
+                            else {
+                              active[7]=1;
+                              ends[7]=1;
+                              tdone[7]=1;
+                            }
+                          }
+                          else {
+                            active[7]=1;
+                            ends[7]=1;
+                            tdone[7]=1;
+                          }
+                          break;
+                        
+                        case 1 : 
+                          if(!orderProgress_o.isACK()){//sysj/systemController.sysj line: 154, column: 5
+                            orderProgress_o.setREQ(false);//sysj/systemController.sysj line: 154, column: 5
+                            ends[7]=2;
+                            ;//sysj/systemController.sysj line: 154, column: 5
+                            S209751=2;
+                            active[7]=1;
+                            ends[7]=1;
+                            tdone[7]=1;
+                          }
+                          else {
+                            active[7]=1;
+                            ends[7]=1;
+                            tdone[7]=1;
+                          }
+                          break;
+                        
+                      }
+                    }
+                    break;
+                  
+                  case 1 : 
+                    S209804=1;
+                    S209804=0;
+                    if(!orderProgress_o.isPartnerPresent() || orderProgress_o.isPartnerPreempted()){//sysj/systemController.sysj line: 154, column: 5
+                      orderProgress_o.setREQ(false);//sysj/systemController.sysj line: 154, column: 5
+                      S209804=1;
+                      active[7]=1;
+                      ends[7]=1;
+                      tdone[7]=1;
+                    }
+                    else {
+                      S209799=0;
+                      if(orderProgress_o.isACK()){//sysj/systemController.sysj line: 154, column: 5
+                        orderProgress_o.setVal(new Integer((int)w_thread_7.id));//sysj/systemController.sysj line: 154, column: 5
+                        S209799=1;
+                        if(!orderProgress_o.isACK()){//sysj/systemController.sysj line: 154, column: 5
+                          orderProgress_o.setREQ(false);//sysj/systemController.sysj line: 154, column: 5
+                          ends[7]=2;
+                          ;//sysj/systemController.sysj line: 154, column: 5
+                          S209751=2;
+                          active[7]=1;
+                          ends[7]=1;
+                          tdone[7]=1;
+                        }
+                        else {
+                          active[7]=1;
+                          ends[7]=1;
+                          tdone[7]=1;
+                        }
                       }
                       else {
                         active[7]=1;
                         ends[7]=1;
                         tdone[7]=1;
                       }
-                      break;
-                    
-                  }
-                }
-                break;
-              
-              case 1 : 
-                S174744=1;
-                S174744=0;
-                if(!orderRejected_o.isPartnerPresent() || orderRejected_o.isPartnerPreempted()){//sysj\systemController.sysj line: 139, column: 4
-                  orderRejected_o.setREQ(false);//sysj\systemController.sysj line: 139, column: 4
-                  S174744=1;
-                  active[7]=1;
-                  ends[7]=1;
-                  tdone[7]=1;
-                }
-                else {
-                  S174739=0;
-                  if(orderRejected_o.isACK()){//sysj\systemController.sysj line: 139, column: 4
-                    orderRejected_o.setVal(new Integer(w_thread_7.id));//sysj\systemController.sysj line: 139, column: 4
-                    S174739=1;
-                    if(!orderRejected_o.isACK()){//sysj\systemController.sysj line: 139, column: 4
-                      orderRejected_o.setREQ(false);//sysj\systemController.sysj line: 139, column: 4
-                      ends[7]=2;
-                      ;//sysj\systemController.sysj line: 139, column: 4
-                      S174737=2;
-                      active[7]=1;
-                      ends[7]=1;
-                      tdone[7]=1;
                     }
-                    else {
-                      active[7]=1;
-                      ends[7]=1;
-                      tdone[7]=1;
-                    }
-                  }
-                  else {
-                    active[7]=1;
-                    ends[7]=1;
-                    tdone[7]=1;
-                  }
+                    break;
+                  
                 }
                 break;
               
@@ -434,50 +7757,57 @@ public class SystemController extends ClockDomain{
             break;
           
           case 2 : 
-            S174737=2;
-            S174737=0;
-            S174721=0;
-            if(!bottleRecycled_in.isPartnerPresent() || bottleRecycled_in.isPartnerPreempted()){//sysj\systemController.sysj line: 134, column: 4
-              bottleRecycled_in.setACK(false);//sysj\systemController.sysj line: 134, column: 4
-              S174721=1;
+            S209751=2;
+            S209751=0;
+            S209735=0;
+            if(!labelDone_in.isPartnerPresent() || labelDone_in.isPartnerPreempted()){//sysj/systemController.sysj line: 140, column: 4
+              labelDone_in.setACK(false);//sysj/systemController.sysj line: 140, column: 4
+              S209735=1;
               active[7]=1;
               ends[7]=1;
               tdone[7]=1;
             }
             else {
-              S174716=0;
-              if(!bottleRecycled_in.isREQ()){//sysj\systemController.sysj line: 134, column: 4
-                bottleRecycled_in.setACK(true);//sysj\systemController.sysj line: 134, column: 4
-                S174716=1;
-                if(bottleRecycled_in.isREQ()){//sysj\systemController.sysj line: 134, column: 4
-                  bottleRecycled_in.setACK(false);//sysj\systemController.sysj line: 134, column: 4
+              S209730=0;
+              if(!labelDone_in.isREQ()){//sysj/systemController.sysj line: 140, column: 4
+                labelDone_in.setACK(true);//sysj/systemController.sysj line: 140, column: 4
+                S209730=1;
+                if(labelDone_in.isREQ()){//sysj/systemController.sysj line: 140, column: 4
+                  labelDone_in.setACK(false);//sysj/systemController.sysj line: 140, column: 4
                   ends[7]=2;
-                  ;//sysj\systemController.sysj line: 134, column: 4
-                  w_thread_7 = (Workpiece)(bottleRecycled_in.getVal() == null ? null : ((Workpiece)bottleRecycled_in.getVal()));//sysj\systemController.sysj line: 135, column: 4
-                  recovered_thread_7 = recovered_thread_7 + 1;//sysj\systemController.sysj line: 136, column: 4
-                  System.out.println("[SC] " + w_thread_7 + " recovered by the Recycling Station at " + w_thread_7.filledMl() + "ml, sealed=" + w_thread_7.isSealed() + ". " + recovered_thread_7 + " recycled.");//sysj\systemController.sysj line: 137, column: 4
-                  S174737=1;
-                  S174744=0;
-                  if(!orderRejected_o.isPartnerPresent() || orderRejected_o.isPartnerPreempted()){//sysj\systemController.sysj line: 139, column: 4
-                    orderRejected_o.setREQ(false);//sysj\systemController.sysj line: 139, column: 4
-                    S174744=1;
-                    active[7]=1;
-                    ends[7]=1;
-                    tdone[7]=1;
-                  }
-                  else {
-                    S174739=0;
-                    if(orderRejected_o.isACK()){//sysj\systemController.sysj line: 139, column: 4
-                      orderRejected_o.setVal(new Integer(w_thread_7.id));//sysj\systemController.sysj line: 139, column: 4
-                      S174739=1;
-                      if(!orderRejected_o.isACK()){//sysj\systemController.sysj line: 139, column: 4
-                        orderRejected_o.setREQ(false);//sysj\systemController.sysj line: 139, column: 4
-                        ends[7]=2;
-                        ;//sysj\systemController.sysj line: 139, column: 4
-                        S174737=2;
-                        active[7]=1;
-                        ends[7]=1;
-                        tdone[7]=1;
+                  ;//sysj/systemController.sysj line: 140, column: 4
+                  w_thread_7 = (WorkpieceTwin)(labelDone_in.getVal() == null ? null : ((WorkpieceTwin)labelDone_in.getVal()));//sysj/systemController.sysj line: 141, column: 4
+                  S209751=1;
+                  if(w_thread_7.isRejected()){//sysj/systemController.sysj line: 143, column: 4
+                    S209842=0;
+                    System.out.println("[SC] " + w_thread_7 + " refused a label (" + w_thread_7.defect() + "); handing it to the Recycling Station.");//sysj/systemController.sysj line: 144, column: 5
+                    S209758=0;
+                    if(!bottleRejected_o.isPartnerPresent() || bottleRejected_o.isPartnerPreempted()){//sysj/systemController.sysj line: 146, column: 5
+                      bottleRejected_o.setREQ(false);//sysj/systemController.sysj line: 146, column: 5
+                      S209758=1;
+                      active[7]=1;
+                      ends[7]=1;
+                      tdone[7]=1;
+                    }
+                    else {
+                      S209753=0;
+                      if(bottleRejected_o.isACK()){//sysj/systemController.sysj line: 146, column: 5
+                        bottleRejected_o.setVal(w_thread_7);//sysj/systemController.sysj line: 146, column: 5
+                        S209753=1;
+                        if(!bottleRejected_o.isACK()){//sysj/systemController.sysj line: 146, column: 5
+                          bottleRejected_o.setREQ(false);//sysj/systemController.sysj line: 146, column: 5
+                          ends[7]=2;
+                          ;//sysj/systemController.sysj line: 146, column: 5
+                          S209751=2;
+                          active[7]=1;
+                          ends[7]=1;
+                          tdone[7]=1;
+                        }
+                        else {
+                          active[7]=1;
+                          ends[7]=1;
+                          tdone[7]=1;
+                        }
                       }
                       else {
                         active[7]=1;
@@ -485,10 +7815,46 @@ public class SystemController extends ClockDomain{
                         tdone[7]=1;
                       }
                     }
-                    else {
+                  }
+                  else {
+                    S209842=1;
+                    w_thread_7.seal();//sysj/systemController.sysj line: 149, column: 5
+                    done_thread_7 = done_thread_7 + 1;//sysj/systemController.sysj line: 150, column: 5
+                    System.out.println("[SC] " + w_thread_7 + " finished at " + w_thread_7.filledMl() + "ml, sealed=" + w_thread_7.isSealed() + ", labelled " + w_thread_7.serial + ". " + done_thread_7 + " complete.");//sysj/systemController.sysj line: 151, column: 5
+                    OrderBook.purchaseOrder().refresh();//sysj/systemController.sysj line: 153, column: 5
+                    S209804=0;
+                    if(!orderProgress_o.isPartnerPresent() || orderProgress_o.isPartnerPreempted()){//sysj/systemController.sysj line: 154, column: 5
+                      orderProgress_o.setREQ(false);//sysj/systemController.sysj line: 154, column: 5
+                      S209804=1;
                       active[7]=1;
                       ends[7]=1;
                       tdone[7]=1;
+                    }
+                    else {
+                      S209799=0;
+                      if(orderProgress_o.isACK()){//sysj/systemController.sysj line: 154, column: 5
+                        orderProgress_o.setVal(new Integer((int)w_thread_7.id));//sysj/systemController.sysj line: 154, column: 5
+                        S209799=1;
+                        if(!orderProgress_o.isACK()){//sysj/systemController.sysj line: 154, column: 5
+                          orderProgress_o.setREQ(false);//sysj/systemController.sysj line: 154, column: 5
+                          ends[7]=2;
+                          ;//sysj/systemController.sysj line: 154, column: 5
+                          S209751=2;
+                          active[7]=1;
+                          ends[7]=1;
+                          tdone[7]=1;
+                        }
+                        else {
+                          active[7]=1;
+                          ends[7]=1;
+                          tdone[7]=1;
+                        }
+                      }
+                      else {
+                        active[7]=1;
+                        ends[7]=1;
+                        tdone[7]=1;
+                      }
                     }
                   }
                 }
@@ -512,8 +7878,8 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread175417(int [] tdone, int [] ends){
-        switch(S174713){
+  public void thread214343(int [] tdone, int [] ends){
+        switch(S209727){
       case 0 : 
         active[6]=0;
         ends[6]=0;
@@ -521,149 +7887,58 @@ public class SystemController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S171009){
+        switch(S209082){
           case 0 : 
-            switch(S170993){
+            switch(S209066){
               case 0 : 
-                if(!bottleDone_in.isPartnerPresent() || bottleDone_in.isPartnerPreempted()){//sysj\systemController.sysj line: 106, column: 4
-                  bottleDone_in.setACK(false);//sysj\systemController.sysj line: 106, column: 4
-                  S170993=1;
+                if(!bottleDone_in.isPartnerPresent() || bottleDone_in.isPartnerPreempted()){//sysj/systemController.sysj line: 119, column: 4
+                  bottleDone_in.setACK(false);//sysj/systemController.sysj line: 119, column: 4
+                  S209066=1;
                   active[6]=1;
                   ends[6]=1;
                   tdone[6]=1;
                 }
                 else {
-                  switch(S170988){
+                  switch(S209061){
                     case 0 : 
-                      if(!bottleDone_in.isREQ()){//sysj\systemController.sysj line: 106, column: 4
-                        bottleDone_in.setACK(true);//sysj\systemController.sysj line: 106, column: 4
-                        S170988=1;
-                        if(bottleDone_in.isREQ()){//sysj\systemController.sysj line: 106, column: 4
-                          bottleDone_in.setACK(false);//sysj\systemController.sysj line: 106, column: 4
+                      if(!bottleDone_in.isREQ()){//sysj/systemController.sysj line: 119, column: 4
+                        bottleDone_in.setACK(true);//sysj/systemController.sysj line: 119, column: 4
+                        S209061=1;
+                        if(bottleDone_in.isREQ()){//sysj/systemController.sysj line: 119, column: 4
+                          bottleDone_in.setACK(false);//sysj/systemController.sysj line: 119, column: 4
                           ends[6]=2;
-                          ;//sysj\systemController.sysj line: 106, column: 4
-                          w_thread_6 = (Workpiece)(bottleDone_in.getVal() == null ? null : ((Workpiece)bottleDone_in.getVal()));//sysj\systemController.sysj line: 107, column: 4
-                          S171009=1;
-                          if(w_thread_6.isRejected()){//sysj\systemController.sysj line: 109, column: 4
-                            System.out.println("[SC] " + w_thread_6 + " failed its quality check (" + w_thread_6.defect() + "); handing it to the Recycling Station.");//sysj\systemController.sysj line: 110, column: 5
-                            S171016=0;
-                            if(!bottleRejected_o.isPartnerPresent() || bottleRejected_o.isPartnerPreempted()){//sysj\systemController.sysj line: 112, column: 5
-                              bottleRejected_o.setREQ(false);//sysj\systemController.sysj line: 112, column: 5
-                              S171016=1;
-                              active[6]=1;
-                              ends[6]=1;
-                              tdone[6]=1;
-                            }
-                            else {
-                              S171011=0;
-                              if(bottleRejected_o.isACK()){//sysj\systemController.sysj line: 112, column: 5
-                                bottleRejected_o.setVal(w_thread_6);//sysj\systemController.sysj line: 112, column: 5
-                                S171011=1;
-                                if(!bottleRejected_o.isACK()){//sysj\systemController.sysj line: 112, column: 5
-                                  bottleRejected_o.setREQ(false);//sysj\systemController.sysj line: 112, column: 5
-                                  ends[6]=2;
-                                  ;//sysj\systemController.sysj line: 112, column: 5
-                                  S171009=2;
-                                  if(!w_thread_6.isRejected()){//sysj\systemController.sysj line: 115, column: 7
-                                    done_thread_6 = done_thread_6 + 1;//sysj\systemController.sysj line: 116, column: 5
-                                    System.out.println("[SC] " + w_thread_6 + " finished at " + w_thread_6.filledMl() + "ml, sealed=" + w_thread_6.isSealed() + ". " + done_thread_6 + " complete.");//sysj\systemController.sysj line: 117, column: 5
-                                    S171201=0;
-                                    if(!orderProgress_o.isPartnerPresent() || orderProgress_o.isPartnerPreempted()){//sysj\systemController.sysj line: 119, column: 5
-                                      orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
-                                      S171201=1;
-                                      active[6]=1;
-                                      ends[6]=1;
-                                      tdone[6]=1;
-                                    }
-                                    else {
-                                      S171196=0;
-                                      if(orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                                        orderProgress_o.setVal(new Integer(w_thread_6.id));//sysj\systemController.sysj line: 119, column: 5
-                                        S171196=1;
-                                        if(!orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                                          orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
-                                          ends[6]=2;
-                                          ;//sysj\systemController.sysj line: 119, column: 5
-                                          S171009=3;
-                                          active[6]=1;
-                                          ends[6]=1;
-                                          tdone[6]=1;
-                                        }
-                                        else {
-                                          active[6]=1;
-                                          ends[6]=1;
-                                          tdone[6]=1;
-                                        }
-                                      }
-                                      else {
-                                        active[6]=1;
-                                        ends[6]=1;
-                                        tdone[6]=1;
-                                      }
-                                    }
-                                  }
-                                  else {
-                                    S171009=3;
-                                    active[6]=1;
-                                    ends[6]=1;
-                                    tdone[6]=1;
-                                  }
-                                }
-                                else {
-                                  active[6]=1;
-                                  ends[6]=1;
-                                  tdone[6]=1;
-                                }
-                              }
-                              else {
-                                active[6]=1;
-                                ends[6]=1;
-                                tdone[6]=1;
-                              }
-                            }
+                          ;//sysj/systemController.sysj line: 119, column: 4
+                          w_thread_6 = (WorkpieceTwin)(bottleDone_in.getVal() == null ? null : ((WorkpieceTwin)bottleDone_in.getVal()));//sysj/systemController.sysj line: 120, column: 4
+                          S209082=1;
+                          S209089=0;
+                          if(!labelBottle_o.isPartnerPresent() || labelBottle_o.isPartnerPreempted()){//sysj/systemController.sysj line: 126, column: 4
+                            labelBottle_o.setREQ(false);//sysj/systemController.sysj line: 126, column: 4
+                            S209089=1;
+                            active[6]=1;
+                            ends[6]=1;
+                            tdone[6]=1;
                           }
                           else {
-                            S171009=2;
-                            if(!w_thread_6.isRejected()){//sysj\systemController.sysj line: 115, column: 7
-                              done_thread_6 = done_thread_6 + 1;//sysj\systemController.sysj line: 116, column: 5
-                              System.out.println("[SC] " + w_thread_6 + " finished at " + w_thread_6.filledMl() + "ml, sealed=" + w_thread_6.isSealed() + ". " + done_thread_6 + " complete.");//sysj\systemController.sysj line: 117, column: 5
-                              S171201=0;
-                              if(!orderProgress_o.isPartnerPresent() || orderProgress_o.isPartnerPreempted()){//sysj\systemController.sysj line: 119, column: 5
-                                orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
-                                S171201=1;
+                            S209084=0;
+                            if(labelBottle_o.isACK()){//sysj/systemController.sysj line: 126, column: 4
+                              labelBottle_o.setVal(w_thread_6);//sysj/systemController.sysj line: 126, column: 4
+                              S209084=1;
+                              if(!labelBottle_o.isACK()){//sysj/systemController.sysj line: 126, column: 4
+                                labelBottle_o.setREQ(false);//sysj/systemController.sysj line: 126, column: 4
+                                ends[6]=2;
+                                ;//sysj/systemController.sysj line: 126, column: 4
+                                S209082=2;
                                 active[6]=1;
                                 ends[6]=1;
                                 tdone[6]=1;
                               }
                               else {
-                                S171196=0;
-                                if(orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                                  orderProgress_o.setVal(new Integer(w_thread_6.id));//sysj\systemController.sysj line: 119, column: 5
-                                  S171196=1;
-                                  if(!orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                                    orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
-                                    ends[6]=2;
-                                    ;//sysj\systemController.sysj line: 119, column: 5
-                                    S171009=3;
-                                    active[6]=1;
-                                    ends[6]=1;
-                                    tdone[6]=1;
-                                  }
-                                  else {
-                                    active[6]=1;
-                                    ends[6]=1;
-                                    tdone[6]=1;
-                                  }
-                                }
-                                else {
-                                  active[6]=1;
-                                  ends[6]=1;
-                                  tdone[6]=1;
-                                }
+                                active[6]=1;
+                                ends[6]=1;
+                                tdone[6]=1;
                               }
                             }
                             else {
-                              S171009=3;
                               active[6]=1;
                               ends[6]=1;
                               tdone[6]=1;
@@ -684,132 +7959,41 @@ public class SystemController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      if(bottleDone_in.isREQ()){//sysj\systemController.sysj line: 106, column: 4
-                        bottleDone_in.setACK(false);//sysj\systemController.sysj line: 106, column: 4
+                      if(bottleDone_in.isREQ()){//sysj/systemController.sysj line: 119, column: 4
+                        bottleDone_in.setACK(false);//sysj/systemController.sysj line: 119, column: 4
                         ends[6]=2;
-                        ;//sysj\systemController.sysj line: 106, column: 4
-                        w_thread_6 = (Workpiece)(bottleDone_in.getVal() == null ? null : ((Workpiece)bottleDone_in.getVal()));//sysj\systemController.sysj line: 107, column: 4
-                        S171009=1;
-                        if(w_thread_6.isRejected()){//sysj\systemController.sysj line: 109, column: 4
-                          System.out.println("[SC] " + w_thread_6 + " failed its quality check (" + w_thread_6.defect() + "); handing it to the Recycling Station.");//sysj\systemController.sysj line: 110, column: 5
-                          S171016=0;
-                          if(!bottleRejected_o.isPartnerPresent() || bottleRejected_o.isPartnerPreempted()){//sysj\systemController.sysj line: 112, column: 5
-                            bottleRejected_o.setREQ(false);//sysj\systemController.sysj line: 112, column: 5
-                            S171016=1;
-                            active[6]=1;
-                            ends[6]=1;
-                            tdone[6]=1;
-                          }
-                          else {
-                            S171011=0;
-                            if(bottleRejected_o.isACK()){//sysj\systemController.sysj line: 112, column: 5
-                              bottleRejected_o.setVal(w_thread_6);//sysj\systemController.sysj line: 112, column: 5
-                              S171011=1;
-                              if(!bottleRejected_o.isACK()){//sysj\systemController.sysj line: 112, column: 5
-                                bottleRejected_o.setREQ(false);//sysj\systemController.sysj line: 112, column: 5
-                                ends[6]=2;
-                                ;//sysj\systemController.sysj line: 112, column: 5
-                                S171009=2;
-                                if(!w_thread_6.isRejected()){//sysj\systemController.sysj line: 115, column: 7
-                                  done_thread_6 = done_thread_6 + 1;//sysj\systemController.sysj line: 116, column: 5
-                                  System.out.println("[SC] " + w_thread_6 + " finished at " + w_thread_6.filledMl() + "ml, sealed=" + w_thread_6.isSealed() + ". " + done_thread_6 + " complete.");//sysj\systemController.sysj line: 117, column: 5
-                                  S171201=0;
-                                  if(!orderProgress_o.isPartnerPresent() || orderProgress_o.isPartnerPreempted()){//sysj\systemController.sysj line: 119, column: 5
-                                    orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
-                                    S171201=1;
-                                    active[6]=1;
-                                    ends[6]=1;
-                                    tdone[6]=1;
-                                  }
-                                  else {
-                                    S171196=0;
-                                    if(orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                                      orderProgress_o.setVal(new Integer(w_thread_6.id));//sysj\systemController.sysj line: 119, column: 5
-                                      S171196=1;
-                                      if(!orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                                        orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
-                                        ends[6]=2;
-                                        ;//sysj\systemController.sysj line: 119, column: 5
-                                        S171009=3;
-                                        active[6]=1;
-                                        ends[6]=1;
-                                        tdone[6]=1;
-                                      }
-                                      else {
-                                        active[6]=1;
-                                        ends[6]=1;
-                                        tdone[6]=1;
-                                      }
-                                    }
-                                    else {
-                                      active[6]=1;
-                                      ends[6]=1;
-                                      tdone[6]=1;
-                                    }
-                                  }
-                                }
-                                else {
-                                  S171009=3;
-                                  active[6]=1;
-                                  ends[6]=1;
-                                  tdone[6]=1;
-                                }
-                              }
-                              else {
-                                active[6]=1;
-                                ends[6]=1;
-                                tdone[6]=1;
-                              }
-                            }
-                            else {
-                              active[6]=1;
-                              ends[6]=1;
-                              tdone[6]=1;
-                            }
-                          }
+                        ;//sysj/systemController.sysj line: 119, column: 4
+                        w_thread_6 = (WorkpieceTwin)(bottleDone_in.getVal() == null ? null : ((WorkpieceTwin)bottleDone_in.getVal()));//sysj/systemController.sysj line: 120, column: 4
+                        S209082=1;
+                        S209089=0;
+                        if(!labelBottle_o.isPartnerPresent() || labelBottle_o.isPartnerPreempted()){//sysj/systemController.sysj line: 126, column: 4
+                          labelBottle_o.setREQ(false);//sysj/systemController.sysj line: 126, column: 4
+                          S209089=1;
+                          active[6]=1;
+                          ends[6]=1;
+                          tdone[6]=1;
                         }
                         else {
-                          S171009=2;
-                          if(!w_thread_6.isRejected()){//sysj\systemController.sysj line: 115, column: 7
-                            done_thread_6 = done_thread_6 + 1;//sysj\systemController.sysj line: 116, column: 5
-                            System.out.println("[SC] " + w_thread_6 + " finished at " + w_thread_6.filledMl() + "ml, sealed=" + w_thread_6.isSealed() + ". " + done_thread_6 + " complete.");//sysj\systemController.sysj line: 117, column: 5
-                            S171201=0;
-                            if(!orderProgress_o.isPartnerPresent() || orderProgress_o.isPartnerPreempted()){//sysj\systemController.sysj line: 119, column: 5
-                              orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
-                              S171201=1;
+                          S209084=0;
+                          if(labelBottle_o.isACK()){//sysj/systemController.sysj line: 126, column: 4
+                            labelBottle_o.setVal(w_thread_6);//sysj/systemController.sysj line: 126, column: 4
+                            S209084=1;
+                            if(!labelBottle_o.isACK()){//sysj/systemController.sysj line: 126, column: 4
+                              labelBottle_o.setREQ(false);//sysj/systemController.sysj line: 126, column: 4
+                              ends[6]=2;
+                              ;//sysj/systemController.sysj line: 126, column: 4
+                              S209082=2;
                               active[6]=1;
                               ends[6]=1;
                               tdone[6]=1;
                             }
                             else {
-                              S171196=0;
-                              if(orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                                orderProgress_o.setVal(new Integer(w_thread_6.id));//sysj\systemController.sysj line: 119, column: 5
-                                S171196=1;
-                                if(!orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                                  orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
-                                  ends[6]=2;
-                                  ;//sysj\systemController.sysj line: 119, column: 5
-                                  S171009=3;
-                                  active[6]=1;
-                                  ends[6]=1;
-                                  tdone[6]=1;
-                                }
-                                else {
-                                  active[6]=1;
-                                  ends[6]=1;
-                                  tdone[6]=1;
-                                }
-                              }
-                              else {
-                                active[6]=1;
-                                ends[6]=1;
-                                tdone[6]=1;
-                              }
+                              active[6]=1;
+                              ends[6]=1;
+                              tdone[6]=1;
                             }
                           }
                           else {
-                            S171009=3;
                             active[6]=1;
                             ends[6]=1;
                             tdone[6]=1;
@@ -828,146 +8012,55 @@ public class SystemController extends ClockDomain{
                 break;
               
               case 1 : 
-                S170993=1;
-                S170993=0;
-                if(!bottleDone_in.isPartnerPresent() || bottleDone_in.isPartnerPreempted()){//sysj\systemController.sysj line: 106, column: 4
-                  bottleDone_in.setACK(false);//sysj\systemController.sysj line: 106, column: 4
-                  S170993=1;
+                S209066=1;
+                S209066=0;
+                if(!bottleDone_in.isPartnerPresent() || bottleDone_in.isPartnerPreempted()){//sysj/systemController.sysj line: 119, column: 4
+                  bottleDone_in.setACK(false);//sysj/systemController.sysj line: 119, column: 4
+                  S209066=1;
                   active[6]=1;
                   ends[6]=1;
                   tdone[6]=1;
                 }
                 else {
-                  S170988=0;
-                  if(!bottleDone_in.isREQ()){//sysj\systemController.sysj line: 106, column: 4
-                    bottleDone_in.setACK(true);//sysj\systemController.sysj line: 106, column: 4
-                    S170988=1;
-                    if(bottleDone_in.isREQ()){//sysj\systemController.sysj line: 106, column: 4
-                      bottleDone_in.setACK(false);//sysj\systemController.sysj line: 106, column: 4
+                  S209061=0;
+                  if(!bottleDone_in.isREQ()){//sysj/systemController.sysj line: 119, column: 4
+                    bottleDone_in.setACK(true);//sysj/systemController.sysj line: 119, column: 4
+                    S209061=1;
+                    if(bottleDone_in.isREQ()){//sysj/systemController.sysj line: 119, column: 4
+                      bottleDone_in.setACK(false);//sysj/systemController.sysj line: 119, column: 4
                       ends[6]=2;
-                      ;//sysj\systemController.sysj line: 106, column: 4
-                      w_thread_6 = (Workpiece)(bottleDone_in.getVal() == null ? null : ((Workpiece)bottleDone_in.getVal()));//sysj\systemController.sysj line: 107, column: 4
-                      S171009=1;
-                      if(w_thread_6.isRejected()){//sysj\systemController.sysj line: 109, column: 4
-                        System.out.println("[SC] " + w_thread_6 + " failed its quality check (" + w_thread_6.defect() + "); handing it to the Recycling Station.");//sysj\systemController.sysj line: 110, column: 5
-                        S171016=0;
-                        if(!bottleRejected_o.isPartnerPresent() || bottleRejected_o.isPartnerPreempted()){//sysj\systemController.sysj line: 112, column: 5
-                          bottleRejected_o.setREQ(false);//sysj\systemController.sysj line: 112, column: 5
-                          S171016=1;
-                          active[6]=1;
-                          ends[6]=1;
-                          tdone[6]=1;
-                        }
-                        else {
-                          S171011=0;
-                          if(bottleRejected_o.isACK()){//sysj\systemController.sysj line: 112, column: 5
-                            bottleRejected_o.setVal(w_thread_6);//sysj\systemController.sysj line: 112, column: 5
-                            S171011=1;
-                            if(!bottleRejected_o.isACK()){//sysj\systemController.sysj line: 112, column: 5
-                              bottleRejected_o.setREQ(false);//sysj\systemController.sysj line: 112, column: 5
-                              ends[6]=2;
-                              ;//sysj\systemController.sysj line: 112, column: 5
-                              S171009=2;
-                              if(!w_thread_6.isRejected()){//sysj\systemController.sysj line: 115, column: 7
-                                done_thread_6 = done_thread_6 + 1;//sysj\systemController.sysj line: 116, column: 5
-                                System.out.println("[SC] " + w_thread_6 + " finished at " + w_thread_6.filledMl() + "ml, sealed=" + w_thread_6.isSealed() + ". " + done_thread_6 + " complete.");//sysj\systemController.sysj line: 117, column: 5
-                                S171201=0;
-                                if(!orderProgress_o.isPartnerPresent() || orderProgress_o.isPartnerPreempted()){//sysj\systemController.sysj line: 119, column: 5
-                                  orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
-                                  S171201=1;
-                                  active[6]=1;
-                                  ends[6]=1;
-                                  tdone[6]=1;
-                                }
-                                else {
-                                  S171196=0;
-                                  if(orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                                    orderProgress_o.setVal(new Integer(w_thread_6.id));//sysj\systemController.sysj line: 119, column: 5
-                                    S171196=1;
-                                    if(!orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                                      orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
-                                      ends[6]=2;
-                                      ;//sysj\systemController.sysj line: 119, column: 5
-                                      S171009=3;
-                                      active[6]=1;
-                                      ends[6]=1;
-                                      tdone[6]=1;
-                                    }
-                                    else {
-                                      active[6]=1;
-                                      ends[6]=1;
-                                      tdone[6]=1;
-                                    }
-                                  }
-                                  else {
-                                    active[6]=1;
-                                    ends[6]=1;
-                                    tdone[6]=1;
-                                  }
-                                }
-                              }
-                              else {
-                                S171009=3;
-                                active[6]=1;
-                                ends[6]=1;
-                                tdone[6]=1;
-                              }
-                            }
-                            else {
-                              active[6]=1;
-                              ends[6]=1;
-                              tdone[6]=1;
-                            }
-                          }
-                          else {
-                            active[6]=1;
-                            ends[6]=1;
-                            tdone[6]=1;
-                          }
-                        }
+                      ;//sysj/systemController.sysj line: 119, column: 4
+                      w_thread_6 = (WorkpieceTwin)(bottleDone_in.getVal() == null ? null : ((WorkpieceTwin)bottleDone_in.getVal()));//sysj/systemController.sysj line: 120, column: 4
+                      S209082=1;
+                      S209089=0;
+                      if(!labelBottle_o.isPartnerPresent() || labelBottle_o.isPartnerPreempted()){//sysj/systemController.sysj line: 126, column: 4
+                        labelBottle_o.setREQ(false);//sysj/systemController.sysj line: 126, column: 4
+                        S209089=1;
+                        active[6]=1;
+                        ends[6]=1;
+                        tdone[6]=1;
                       }
                       else {
-                        S171009=2;
-                        if(!w_thread_6.isRejected()){//sysj\systemController.sysj line: 115, column: 7
-                          done_thread_6 = done_thread_6 + 1;//sysj\systemController.sysj line: 116, column: 5
-                          System.out.println("[SC] " + w_thread_6 + " finished at " + w_thread_6.filledMl() + "ml, sealed=" + w_thread_6.isSealed() + ". " + done_thread_6 + " complete.");//sysj\systemController.sysj line: 117, column: 5
-                          S171201=0;
-                          if(!orderProgress_o.isPartnerPresent() || orderProgress_o.isPartnerPreempted()){//sysj\systemController.sysj line: 119, column: 5
-                            orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
-                            S171201=1;
+                        S209084=0;
+                        if(labelBottle_o.isACK()){//sysj/systemController.sysj line: 126, column: 4
+                          labelBottle_o.setVal(w_thread_6);//sysj/systemController.sysj line: 126, column: 4
+                          S209084=1;
+                          if(!labelBottle_o.isACK()){//sysj/systemController.sysj line: 126, column: 4
+                            labelBottle_o.setREQ(false);//sysj/systemController.sysj line: 126, column: 4
+                            ends[6]=2;
+                            ;//sysj/systemController.sysj line: 126, column: 4
+                            S209082=2;
                             active[6]=1;
                             ends[6]=1;
                             tdone[6]=1;
                           }
                           else {
-                            S171196=0;
-                            if(orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                              orderProgress_o.setVal(new Integer(w_thread_6.id));//sysj\systemController.sysj line: 119, column: 5
-                              S171196=1;
-                              if(!orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                                orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
-                                ends[6]=2;
-                                ;//sysj\systemController.sysj line: 119, column: 5
-                                S171009=3;
-                                active[6]=1;
-                                ends[6]=1;
-                                tdone[6]=1;
-                              }
-                              else {
-                                active[6]=1;
-                                ends[6]=1;
-                                tdone[6]=1;
-                              }
-                            }
-                            else {
-                              active[6]=1;
-                              ends[6]=1;
-                              tdone[6]=1;
-                            }
+                            active[6]=1;
+                            ends[6]=1;
+                            tdone[6]=1;
                           }
                         }
                         else {
-                          S171009=3;
                           active[6]=1;
                           ends[6]=1;
                           tdone[6]=1;
@@ -992,249 +8085,26 @@ public class SystemController extends ClockDomain{
             break;
           
           case 1 : 
-            switch(S171016){
+            switch(S209089){
               case 0 : 
-                if(!bottleRejected_o.isPartnerPresent() || bottleRejected_o.isPartnerPreempted()){//sysj\systemController.sysj line: 112, column: 5
-                  bottleRejected_o.setREQ(false);//sysj\systemController.sysj line: 112, column: 5
-                  S171016=1;
+                if(!labelBottle_o.isPartnerPresent() || labelBottle_o.isPartnerPreempted()){//sysj/systemController.sysj line: 126, column: 4
+                  labelBottle_o.setREQ(false);//sysj/systemController.sysj line: 126, column: 4
+                  S209089=1;
                   active[6]=1;
                   ends[6]=1;
                   tdone[6]=1;
                 }
                 else {
-                  switch(S171011){
+                  switch(S209084){
                     case 0 : 
-                      if(bottleRejected_o.isACK()){//sysj\systemController.sysj line: 112, column: 5
-                        bottleRejected_o.setVal(w_thread_6);//sysj\systemController.sysj line: 112, column: 5
-                        S171011=1;
-                        if(!bottleRejected_o.isACK()){//sysj\systemController.sysj line: 112, column: 5
-                          bottleRejected_o.setREQ(false);//sysj\systemController.sysj line: 112, column: 5
+                      if(labelBottle_o.isACK()){//sysj/systemController.sysj line: 126, column: 4
+                        labelBottle_o.setVal(w_thread_6);//sysj/systemController.sysj line: 126, column: 4
+                        S209084=1;
+                        if(!labelBottle_o.isACK()){//sysj/systemController.sysj line: 126, column: 4
+                          labelBottle_o.setREQ(false);//sysj/systemController.sysj line: 126, column: 4
                           ends[6]=2;
-                          ;//sysj\systemController.sysj line: 112, column: 5
-                          S171009=2;
-                          if(!w_thread_6.isRejected()){//sysj\systemController.sysj line: 115, column: 7
-                            done_thread_6 = done_thread_6 + 1;//sysj\systemController.sysj line: 116, column: 5
-                            System.out.println("[SC] " + w_thread_6 + " finished at " + w_thread_6.filledMl() + "ml, sealed=" + w_thread_6.isSealed() + ". " + done_thread_6 + " complete.");//sysj\systemController.sysj line: 117, column: 5
-                            S171201=0;
-                            if(!orderProgress_o.isPartnerPresent() || orderProgress_o.isPartnerPreempted()){//sysj\systemController.sysj line: 119, column: 5
-                              orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
-                              S171201=1;
-                              active[6]=1;
-                              ends[6]=1;
-                              tdone[6]=1;
-                            }
-                            else {
-                              S171196=0;
-                              if(orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                                orderProgress_o.setVal(new Integer(w_thread_6.id));//sysj\systemController.sysj line: 119, column: 5
-                                S171196=1;
-                                if(!orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                                  orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
-                                  ends[6]=2;
-                                  ;//sysj\systemController.sysj line: 119, column: 5
-                                  S171009=3;
-                                  active[6]=1;
-                                  ends[6]=1;
-                                  tdone[6]=1;
-                                }
-                                else {
-                                  active[6]=1;
-                                  ends[6]=1;
-                                  tdone[6]=1;
-                                }
-                              }
-                              else {
-                                active[6]=1;
-                                ends[6]=1;
-                                tdone[6]=1;
-                              }
-                            }
-                          }
-                          else {
-                            S171009=3;
-                            active[6]=1;
-                            ends[6]=1;
-                            tdone[6]=1;
-                          }
-                        }
-                        else {
-                          active[6]=1;
-                          ends[6]=1;
-                          tdone[6]=1;
-                        }
-                      }
-                      else {
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                      break;
-                    
-                    case 1 : 
-                      if(!bottleRejected_o.isACK()){//sysj\systemController.sysj line: 112, column: 5
-                        bottleRejected_o.setREQ(false);//sysj\systemController.sysj line: 112, column: 5
-                        ends[6]=2;
-                        ;//sysj\systemController.sysj line: 112, column: 5
-                        S171009=2;
-                        if(!w_thread_6.isRejected()){//sysj\systemController.sysj line: 115, column: 7
-                          done_thread_6 = done_thread_6 + 1;//sysj\systemController.sysj line: 116, column: 5
-                          System.out.println("[SC] " + w_thread_6 + " finished at " + w_thread_6.filledMl() + "ml, sealed=" + w_thread_6.isSealed() + ". " + done_thread_6 + " complete.");//sysj\systemController.sysj line: 117, column: 5
-                          S171201=0;
-                          if(!orderProgress_o.isPartnerPresent() || orderProgress_o.isPartnerPreempted()){//sysj\systemController.sysj line: 119, column: 5
-                            orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
-                            S171201=1;
-                            active[6]=1;
-                            ends[6]=1;
-                            tdone[6]=1;
-                          }
-                          else {
-                            S171196=0;
-                            if(orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                              orderProgress_o.setVal(new Integer(w_thread_6.id));//sysj\systemController.sysj line: 119, column: 5
-                              S171196=1;
-                              if(!orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                                orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
-                                ends[6]=2;
-                                ;//sysj\systemController.sysj line: 119, column: 5
-                                S171009=3;
-                                active[6]=1;
-                                ends[6]=1;
-                                tdone[6]=1;
-                              }
-                              else {
-                                active[6]=1;
-                                ends[6]=1;
-                                tdone[6]=1;
-                              }
-                            }
-                            else {
-                              active[6]=1;
-                              ends[6]=1;
-                              tdone[6]=1;
-                            }
-                          }
-                        }
-                        else {
-                          S171009=3;
-                          active[6]=1;
-                          ends[6]=1;
-                          tdone[6]=1;
-                        }
-                      }
-                      else {
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                      break;
-                    
-                  }
-                }
-                break;
-              
-              case 1 : 
-                S171016=1;
-                S171016=0;
-                if(!bottleRejected_o.isPartnerPresent() || bottleRejected_o.isPartnerPreempted()){//sysj\systemController.sysj line: 112, column: 5
-                  bottleRejected_o.setREQ(false);//sysj\systemController.sysj line: 112, column: 5
-                  S171016=1;
-                  active[6]=1;
-                  ends[6]=1;
-                  tdone[6]=1;
-                }
-                else {
-                  S171011=0;
-                  if(bottleRejected_o.isACK()){//sysj\systemController.sysj line: 112, column: 5
-                    bottleRejected_o.setVal(w_thread_6);//sysj\systemController.sysj line: 112, column: 5
-                    S171011=1;
-                    if(!bottleRejected_o.isACK()){//sysj\systemController.sysj line: 112, column: 5
-                      bottleRejected_o.setREQ(false);//sysj\systemController.sysj line: 112, column: 5
-                      ends[6]=2;
-                      ;//sysj\systemController.sysj line: 112, column: 5
-                      S171009=2;
-                      if(!w_thread_6.isRejected()){//sysj\systemController.sysj line: 115, column: 7
-                        done_thread_6 = done_thread_6 + 1;//sysj\systemController.sysj line: 116, column: 5
-                        System.out.println("[SC] " + w_thread_6 + " finished at " + w_thread_6.filledMl() + "ml, sealed=" + w_thread_6.isSealed() + ". " + done_thread_6 + " complete.");//sysj\systemController.sysj line: 117, column: 5
-                        S171201=0;
-                        if(!orderProgress_o.isPartnerPresent() || orderProgress_o.isPartnerPreempted()){//sysj\systemController.sysj line: 119, column: 5
-                          orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
-                          S171201=1;
-                          active[6]=1;
-                          ends[6]=1;
-                          tdone[6]=1;
-                        }
-                        else {
-                          S171196=0;
-                          if(orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                            orderProgress_o.setVal(new Integer(w_thread_6.id));//sysj\systemController.sysj line: 119, column: 5
-                            S171196=1;
-                            if(!orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                              orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
-                              ends[6]=2;
-                              ;//sysj\systemController.sysj line: 119, column: 5
-                              S171009=3;
-                              active[6]=1;
-                              ends[6]=1;
-                              tdone[6]=1;
-                            }
-                            else {
-                              active[6]=1;
-                              ends[6]=1;
-                              tdone[6]=1;
-                            }
-                          }
-                          else {
-                            active[6]=1;
-                            ends[6]=1;
-                            tdone[6]=1;
-                          }
-                        }
-                      }
-                      else {
-                        S171009=3;
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                    }
-                    else {
-                      active[6]=1;
-                      ends[6]=1;
-                      tdone[6]=1;
-                    }
-                  }
-                  else {
-                    active[6]=1;
-                    ends[6]=1;
-                    tdone[6]=1;
-                  }
-                }
-                break;
-              
-            }
-            break;
-          
-          case 2 : 
-            switch(S171201){
-              case 0 : 
-                if(!orderProgress_o.isPartnerPresent() || orderProgress_o.isPartnerPreempted()){//sysj\systemController.sysj line: 119, column: 5
-                  orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
-                  S171201=1;
-                  active[6]=1;
-                  ends[6]=1;
-                  tdone[6]=1;
-                }
-                else {
-                  switch(S171196){
-                    case 0 : 
-                      if(orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                        orderProgress_o.setVal(new Integer(w_thread_6.id));//sysj\systemController.sysj line: 119, column: 5
-                        S171196=1;
-                        if(!orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                          orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
-                          ends[6]=2;
-                          ;//sysj\systemController.sysj line: 119, column: 5
-                          S171009=3;
+                          ;//sysj/systemController.sysj line: 126, column: 4
+                          S209082=2;
                           active[6]=1;
                           ends[6]=1;
                           tdone[6]=1;
@@ -1253,11 +8123,11 @@ public class SystemController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      if(!orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                        orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
+                      if(!labelBottle_o.isACK()){//sysj/systemController.sysj line: 126, column: 4
+                        labelBottle_o.setREQ(false);//sysj/systemController.sysj line: 126, column: 4
                         ends[6]=2;
-                        ;//sysj\systemController.sysj line: 119, column: 5
-                        S171009=3;
+                        ;//sysj/systemController.sysj line: 126, column: 4
+                        S209082=2;
                         active[6]=1;
                         ends[6]=1;
                         tdone[6]=1;
@@ -1274,25 +8144,25 @@ public class SystemController extends ClockDomain{
                 break;
               
               case 1 : 
-                S171201=1;
-                S171201=0;
-                if(!orderProgress_o.isPartnerPresent() || orderProgress_o.isPartnerPreempted()){//sysj\systemController.sysj line: 119, column: 5
-                  orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
-                  S171201=1;
+                S209089=1;
+                S209089=0;
+                if(!labelBottle_o.isPartnerPresent() || labelBottle_o.isPartnerPreempted()){//sysj/systemController.sysj line: 126, column: 4
+                  labelBottle_o.setREQ(false);//sysj/systemController.sysj line: 126, column: 4
+                  S209089=1;
                   active[6]=1;
                   ends[6]=1;
                   tdone[6]=1;
                 }
                 else {
-                  S171196=0;
-                  if(orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                    orderProgress_o.setVal(new Integer(w_thread_6.id));//sysj\systemController.sysj line: 119, column: 5
-                    S171196=1;
-                    if(!orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                      orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
+                  S209084=0;
+                  if(labelBottle_o.isACK()){//sysj/systemController.sysj line: 126, column: 4
+                    labelBottle_o.setVal(w_thread_6);//sysj/systemController.sysj line: 126, column: 4
+                    S209084=1;
+                    if(!labelBottle_o.isACK()){//sysj/systemController.sysj line: 126, column: 4
+                      labelBottle_o.setREQ(false);//sysj/systemController.sysj line: 126, column: 4
                       ends[6]=2;
-                      ;//sysj\systemController.sysj line: 119, column: 5
-                      S171009=3;
+                      ;//sysj/systemController.sysj line: 126, column: 4
+                      S209082=2;
                       active[6]=1;
                       ends[6]=1;
                       tdone[6]=1;
@@ -1314,148 +8184,57 @@ public class SystemController extends ClockDomain{
             }
             break;
           
-          case 3 : 
-            S171009=3;
-            S171009=0;
-            S170993=0;
-            if(!bottleDone_in.isPartnerPresent() || bottleDone_in.isPartnerPreempted()){//sysj\systemController.sysj line: 106, column: 4
-              bottleDone_in.setACK(false);//sysj\systemController.sysj line: 106, column: 4
-              S170993=1;
+          case 2 : 
+            S209082=2;
+            S209082=0;
+            S209066=0;
+            if(!bottleDone_in.isPartnerPresent() || bottleDone_in.isPartnerPreempted()){//sysj/systemController.sysj line: 119, column: 4
+              bottleDone_in.setACK(false);//sysj/systemController.sysj line: 119, column: 4
+              S209066=1;
               active[6]=1;
               ends[6]=1;
               tdone[6]=1;
             }
             else {
-              S170988=0;
-              if(!bottleDone_in.isREQ()){//sysj\systemController.sysj line: 106, column: 4
-                bottleDone_in.setACK(true);//sysj\systemController.sysj line: 106, column: 4
-                S170988=1;
-                if(bottleDone_in.isREQ()){//sysj\systemController.sysj line: 106, column: 4
-                  bottleDone_in.setACK(false);//sysj\systemController.sysj line: 106, column: 4
+              S209061=0;
+              if(!bottleDone_in.isREQ()){//sysj/systemController.sysj line: 119, column: 4
+                bottleDone_in.setACK(true);//sysj/systemController.sysj line: 119, column: 4
+                S209061=1;
+                if(bottleDone_in.isREQ()){//sysj/systemController.sysj line: 119, column: 4
+                  bottleDone_in.setACK(false);//sysj/systemController.sysj line: 119, column: 4
                   ends[6]=2;
-                  ;//sysj\systemController.sysj line: 106, column: 4
-                  w_thread_6 = (Workpiece)(bottleDone_in.getVal() == null ? null : ((Workpiece)bottleDone_in.getVal()));//sysj\systemController.sysj line: 107, column: 4
-                  S171009=1;
-                  if(w_thread_6.isRejected()){//sysj\systemController.sysj line: 109, column: 4
-                    System.out.println("[SC] " + w_thread_6 + " failed its quality check (" + w_thread_6.defect() + "); handing it to the Recycling Station.");//sysj\systemController.sysj line: 110, column: 5
-                    S171016=0;
-                    if(!bottleRejected_o.isPartnerPresent() || bottleRejected_o.isPartnerPreempted()){//sysj\systemController.sysj line: 112, column: 5
-                      bottleRejected_o.setREQ(false);//sysj\systemController.sysj line: 112, column: 5
-                      S171016=1;
-                      active[6]=1;
-                      ends[6]=1;
-                      tdone[6]=1;
-                    }
-                    else {
-                      S171011=0;
-                      if(bottleRejected_o.isACK()){//sysj\systemController.sysj line: 112, column: 5
-                        bottleRejected_o.setVal(w_thread_6);//sysj\systemController.sysj line: 112, column: 5
-                        S171011=1;
-                        if(!bottleRejected_o.isACK()){//sysj\systemController.sysj line: 112, column: 5
-                          bottleRejected_o.setREQ(false);//sysj\systemController.sysj line: 112, column: 5
-                          ends[6]=2;
-                          ;//sysj\systemController.sysj line: 112, column: 5
-                          S171009=2;
-                          if(!w_thread_6.isRejected()){//sysj\systemController.sysj line: 115, column: 7
-                            done_thread_6 = done_thread_6 + 1;//sysj\systemController.sysj line: 116, column: 5
-                            System.out.println("[SC] " + w_thread_6 + " finished at " + w_thread_6.filledMl() + "ml, sealed=" + w_thread_6.isSealed() + ". " + done_thread_6 + " complete.");//sysj\systemController.sysj line: 117, column: 5
-                            S171201=0;
-                            if(!orderProgress_o.isPartnerPresent() || orderProgress_o.isPartnerPreempted()){//sysj\systemController.sysj line: 119, column: 5
-                              orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
-                              S171201=1;
-                              active[6]=1;
-                              ends[6]=1;
-                              tdone[6]=1;
-                            }
-                            else {
-                              S171196=0;
-                              if(orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                                orderProgress_o.setVal(new Integer(w_thread_6.id));//sysj\systemController.sysj line: 119, column: 5
-                                S171196=1;
-                                if(!orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                                  orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
-                                  ends[6]=2;
-                                  ;//sysj\systemController.sysj line: 119, column: 5
-                                  S171009=3;
-                                  active[6]=1;
-                                  ends[6]=1;
-                                  tdone[6]=1;
-                                }
-                                else {
-                                  active[6]=1;
-                                  ends[6]=1;
-                                  tdone[6]=1;
-                                }
-                              }
-                              else {
-                                active[6]=1;
-                                ends[6]=1;
-                                tdone[6]=1;
-                              }
-                            }
-                          }
-                          else {
-                            S171009=3;
-                            active[6]=1;
-                            ends[6]=1;
-                            tdone[6]=1;
-                          }
-                        }
-                        else {
-                          active[6]=1;
-                          ends[6]=1;
-                          tdone[6]=1;
-                        }
-                      }
-                      else {
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                    }
+                  ;//sysj/systemController.sysj line: 119, column: 4
+                  w_thread_6 = (WorkpieceTwin)(bottleDone_in.getVal() == null ? null : ((WorkpieceTwin)bottleDone_in.getVal()));//sysj/systemController.sysj line: 120, column: 4
+                  S209082=1;
+                  S209089=0;
+                  if(!labelBottle_o.isPartnerPresent() || labelBottle_o.isPartnerPreempted()){//sysj/systemController.sysj line: 126, column: 4
+                    labelBottle_o.setREQ(false);//sysj/systemController.sysj line: 126, column: 4
+                    S209089=1;
+                    active[6]=1;
+                    ends[6]=1;
+                    tdone[6]=1;
                   }
                   else {
-                    S171009=2;
-                    if(!w_thread_6.isRejected()){//sysj\systemController.sysj line: 115, column: 7
-                      done_thread_6 = done_thread_6 + 1;//sysj\systemController.sysj line: 116, column: 5
-                      System.out.println("[SC] " + w_thread_6 + " finished at " + w_thread_6.filledMl() + "ml, sealed=" + w_thread_6.isSealed() + ". " + done_thread_6 + " complete.");//sysj\systemController.sysj line: 117, column: 5
-                      S171201=0;
-                      if(!orderProgress_o.isPartnerPresent() || orderProgress_o.isPartnerPreempted()){//sysj\systemController.sysj line: 119, column: 5
-                        orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
-                        S171201=1;
+                    S209084=0;
+                    if(labelBottle_o.isACK()){//sysj/systemController.sysj line: 126, column: 4
+                      labelBottle_o.setVal(w_thread_6);//sysj/systemController.sysj line: 126, column: 4
+                      S209084=1;
+                      if(!labelBottle_o.isACK()){//sysj/systemController.sysj line: 126, column: 4
+                        labelBottle_o.setREQ(false);//sysj/systemController.sysj line: 126, column: 4
+                        ends[6]=2;
+                        ;//sysj/systemController.sysj line: 126, column: 4
+                        S209082=2;
                         active[6]=1;
                         ends[6]=1;
                         tdone[6]=1;
                       }
                       else {
-                        S171196=0;
-                        if(orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                          orderProgress_o.setVal(new Integer(w_thread_6.id));//sysj\systemController.sysj line: 119, column: 5
-                          S171196=1;
-                          if(!orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                            orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
-                            ends[6]=2;
-                            ;//sysj\systemController.sysj line: 119, column: 5
-                            S171009=3;
-                            active[6]=1;
-                            ends[6]=1;
-                            tdone[6]=1;
-                          }
-                          else {
-                            active[6]=1;
-                            ends[6]=1;
-                            tdone[6]=1;
-                          }
-                        }
-                        else {
-                          active[6]=1;
-                          ends[6]=1;
-                          tdone[6]=1;
-                        }
+                        active[6]=1;
+                        ends[6]=1;
+                        tdone[6]=1;
                       }
                     }
                     else {
-                      S171009=3;
                       active[6]=1;
                       ends[6]=1;
                       tdone[6]=1;
@@ -1482,8 +8261,8 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread175416(int [] tdone, int [] ends){
-        switch(S170985){
+  public void thread214342(int [] tdone, int [] ends){
+        switch(S209059){
       case 0 : 
         active[5]=0;
         ends[5]=0;
@@ -1491,29 +8270,29 @@ public class SystemController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S170937){
+        switch(S209011){
           case 0 : 
-            switch(S170921){
+            switch(S208995){
               case 0 : 
-                if(!loadAck_in.isPartnerPresent() || loadAck_in.isPartnerPreempted()){//sysj\systemController.sysj line: 88, column: 4
-                  loadAck_in.setACK(false);//sysj\systemController.sysj line: 88, column: 4
-                  S170921=1;
+                if(!loadAck_in.isPartnerPresent() || loadAck_in.isPartnerPreempted()){//sysj/systemController.sysj line: 105, column: 4
+                  loadAck_in.setACK(false);//sysj/systemController.sysj line: 105, column: 4
+                  S208995=1;
                   active[5]=1;
                   ends[5]=1;
                   tdone[5]=1;
                 }
                 else {
-                  switch(S170916){
+                  switch(S208990){
                     case 0 : 
-                      if(!loadAck_in.isREQ()){//sysj\systemController.sysj line: 88, column: 4
-                        loadAck_in.setACK(true);//sysj\systemController.sysj line: 88, column: 4
-                        S170916=1;
-                        if(loadAck_in.isREQ()){//sysj\systemController.sysj line: 88, column: 4
-                          loadAck_in.setACK(false);//sysj\systemController.sysj line: 88, column: 4
+                      if(!loadAck_in.isREQ()){//sysj/systemController.sysj line: 105, column: 4
+                        loadAck_in.setACK(true);//sysj/systemController.sysj line: 105, column: 4
+                        S208990=1;
+                        if(loadAck_in.isREQ()){//sysj/systemController.sysj line: 105, column: 4
+                          loadAck_in.setACK(false);//sysj/systemController.sysj line: 105, column: 4
                           ends[5]=2;
-                          ;//sysj\systemController.sysj line: 88, column: 4
-                          System.out.println("[SC] " + (Workpiece)(loadAck_in.getVal() == null ? null : ((Workpiece)loadAck_in.getVal())) + " is on the conveyor.");//sysj\systemController.sysj line: 89, column: 4
-                          S170937=1;
+                          ;//sysj/systemController.sysj line: 105, column: 4
+                          System.out.println("[SC] " + (WorkpieceTwin)(loadAck_in.getVal() == null ? null : ((WorkpieceTwin)loadAck_in.getVal())) + " is on the conveyor.");//sysj/systemController.sysj line: 106, column: 4
+                          S209011=1;
                           active[5]=1;
                           ends[5]=1;
                           tdone[5]=1;
@@ -1532,12 +8311,12 @@ public class SystemController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      if(loadAck_in.isREQ()){//sysj\systemController.sysj line: 88, column: 4
-                        loadAck_in.setACK(false);//sysj\systemController.sysj line: 88, column: 4
+                      if(loadAck_in.isREQ()){//sysj/systemController.sysj line: 105, column: 4
+                        loadAck_in.setACK(false);//sysj/systemController.sysj line: 105, column: 4
                         ends[5]=2;
-                        ;//sysj\systemController.sysj line: 88, column: 4
-                        System.out.println("[SC] " + (Workpiece)(loadAck_in.getVal() == null ? null : ((Workpiece)loadAck_in.getVal())) + " is on the conveyor.");//sysj\systemController.sysj line: 89, column: 4
-                        S170937=1;
+                        ;//sysj/systemController.sysj line: 105, column: 4
+                        System.out.println("[SC] " + (WorkpieceTwin)(loadAck_in.getVal() == null ? null : ((WorkpieceTwin)loadAck_in.getVal())) + " is on the conveyor.");//sysj/systemController.sysj line: 106, column: 4
+                        S209011=1;
                         active[5]=1;
                         ends[5]=1;
                         tdone[5]=1;
@@ -1554,26 +8333,26 @@ public class SystemController extends ClockDomain{
                 break;
               
               case 1 : 
-                S170921=1;
-                S170921=0;
-                if(!loadAck_in.isPartnerPresent() || loadAck_in.isPartnerPreempted()){//sysj\systemController.sysj line: 88, column: 4
-                  loadAck_in.setACK(false);//sysj\systemController.sysj line: 88, column: 4
-                  S170921=1;
+                S208995=1;
+                S208995=0;
+                if(!loadAck_in.isPartnerPresent() || loadAck_in.isPartnerPreempted()){//sysj/systemController.sysj line: 105, column: 4
+                  loadAck_in.setACK(false);//sysj/systemController.sysj line: 105, column: 4
+                  S208995=1;
                   active[5]=1;
                   ends[5]=1;
                   tdone[5]=1;
                 }
                 else {
-                  S170916=0;
-                  if(!loadAck_in.isREQ()){//sysj\systemController.sysj line: 88, column: 4
-                    loadAck_in.setACK(true);//sysj\systemController.sysj line: 88, column: 4
-                    S170916=1;
-                    if(loadAck_in.isREQ()){//sysj\systemController.sysj line: 88, column: 4
-                      loadAck_in.setACK(false);//sysj\systemController.sysj line: 88, column: 4
+                  S208990=0;
+                  if(!loadAck_in.isREQ()){//sysj/systemController.sysj line: 105, column: 4
+                    loadAck_in.setACK(true);//sysj/systemController.sysj line: 105, column: 4
+                    S208990=1;
+                    if(loadAck_in.isREQ()){//sysj/systemController.sysj line: 105, column: 4
+                      loadAck_in.setACK(false);//sysj/systemController.sysj line: 105, column: 4
                       ends[5]=2;
-                      ;//sysj\systemController.sysj line: 88, column: 4
-                      System.out.println("[SC] " + (Workpiece)(loadAck_in.getVal() == null ? null : ((Workpiece)loadAck_in.getVal())) + " is on the conveyor.");//sysj\systemController.sysj line: 89, column: 4
-                      S170937=1;
+                      ;//sysj/systemController.sysj line: 105, column: 4
+                      System.out.println("[SC] " + (WorkpieceTwin)(loadAck_in.getVal() == null ? null : ((WorkpieceTwin)loadAck_in.getVal())) + " is on the conveyor.");//sysj/systemController.sysj line: 106, column: 4
+                      S209011=1;
                       active[5]=1;
                       ends[5]=1;
                       tdone[5]=1;
@@ -1596,27 +8375,27 @@ public class SystemController extends ClockDomain{
             break;
           
           case 1 : 
-            S170937=1;
-            S170937=0;
-            S170921=0;
-            if(!loadAck_in.isPartnerPresent() || loadAck_in.isPartnerPreempted()){//sysj\systemController.sysj line: 88, column: 4
-              loadAck_in.setACK(false);//sysj\systemController.sysj line: 88, column: 4
-              S170921=1;
+            S209011=1;
+            S209011=0;
+            S208995=0;
+            if(!loadAck_in.isPartnerPresent() || loadAck_in.isPartnerPreempted()){//sysj/systemController.sysj line: 105, column: 4
+              loadAck_in.setACK(false);//sysj/systemController.sysj line: 105, column: 4
+              S208995=1;
               active[5]=1;
               ends[5]=1;
               tdone[5]=1;
             }
             else {
-              S170916=0;
-              if(!loadAck_in.isREQ()){//sysj\systemController.sysj line: 88, column: 4
-                loadAck_in.setACK(true);//sysj\systemController.sysj line: 88, column: 4
-                S170916=1;
-                if(loadAck_in.isREQ()){//sysj\systemController.sysj line: 88, column: 4
-                  loadAck_in.setACK(false);//sysj\systemController.sysj line: 88, column: 4
+              S208990=0;
+              if(!loadAck_in.isREQ()){//sysj/systemController.sysj line: 105, column: 4
+                loadAck_in.setACK(true);//sysj/systemController.sysj line: 105, column: 4
+                S208990=1;
+                if(loadAck_in.isREQ()){//sysj/systemController.sysj line: 105, column: 4
+                  loadAck_in.setACK(false);//sysj/systemController.sysj line: 105, column: 4
                   ends[5]=2;
-                  ;//sysj\systemController.sysj line: 88, column: 4
-                  System.out.println("[SC] " + (Workpiece)(loadAck_in.getVal() == null ? null : ((Workpiece)loadAck_in.getVal())) + " is on the conveyor.");//sysj\systemController.sysj line: 89, column: 4
-                  S170937=1;
+                  ;//sysj/systemController.sysj line: 105, column: 4
+                  System.out.println("[SC] " + (WorkpieceTwin)(loadAck_in.getVal() == null ? null : ((WorkpieceTwin)loadAck_in.getVal())) + " is on the conveyor.");//sysj/systemController.sysj line: 106, column: 4
+                  S209011=1;
                   active[5]=1;
                   ends[5]=1;
                   tdone[5]=1;
@@ -1641,8 +8420,8 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread175415(int [] tdone, int [] ends){
-        switch(S170914){
+  public void thread214341(int [] tdone, int [] ends){
+        switch(S208988){
       case 0 : 
         active[4]=0;
         ends[4]=0;
@@ -1650,48 +8429,49 @@ public class SystemController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S170269){
+        switch(S208343){
           case 0 : 
-            switch(S170253){
+            switch(S208327){
               case 0 : 
-                if(!purchaseOrder_in.isPartnerPresent() || purchaseOrder_in.isPartnerPreempted()){//sysj\systemController.sysj line: 78, column: 4
-                  purchaseOrder_in.setACK(false);//sysj\systemController.sysj line: 78, column: 4
-                  S170253=1;
+                if(!purchaseOrder_in.isPartnerPresent() || purchaseOrder_in.isPartnerPreempted()){//sysj/systemController.sysj line: 94, column: 4
+                  purchaseOrder_in.setACK(false);//sysj/systemController.sysj line: 94, column: 4
+                  S208327=1;
                   active[4]=1;
                   ends[4]=1;
                   tdone[4]=1;
                 }
                 else {
-                  switch(S170248){
+                  switch(S208322){
                     case 0 : 
-                      if(!purchaseOrder_in.isREQ()){//sysj\systemController.sysj line: 78, column: 4
-                        purchaseOrder_in.setACK(true);//sysj\systemController.sysj line: 78, column: 4
-                        S170248=1;
-                        if(purchaseOrder_in.isREQ()){//sysj\systemController.sysj line: 78, column: 4
-                          purchaseOrder_in.setACK(false);//sysj\systemController.sysj line: 78, column: 4
+                      if(!purchaseOrder_in.isREQ()){//sysj/systemController.sysj line: 94, column: 4
+                        purchaseOrder_in.setACK(true);//sysj/systemController.sysj line: 94, column: 4
+                        S208322=1;
+                        if(purchaseOrder_in.isREQ()){//sysj/systemController.sysj line: 94, column: 4
+                          purchaseOrder_in.setACK(false);//sysj/systemController.sysj line: 94, column: 4
                           ends[4]=2;
-                          ;//sysj\systemController.sysj line: 78, column: 4
-                          w_thread_4 = (Workpiece)(purchaseOrder_in.getVal() == null ? null : ((Workpiece)purchaseOrder_in.getVal()));//sysj\systemController.sysj line: 79, column: 4
-                          System.out.println("[SC] Loading " + w_thread_4 + ".");//sysj\systemController.sysj line: 80, column: 4
-                          S170269=1;
-                          S170276=0;
-                          if(!loadOrder_o.isPartnerPresent() || loadOrder_o.isPartnerPreempted()){//sysj\systemController.sysj line: 81, column: 4
-                            loadOrder_o.setREQ(false);//sysj\systemController.sysj line: 81, column: 4
-                            S170276=1;
+                          ;//sysj/systemController.sysj line: 94, column: 4
+                          w_thread_4 = (WorkpieceTwin)(purchaseOrder_in.getVal() == null ? null : ((WorkpieceTwin)purchaseOrder_in.getVal()));//sysj/systemController.sysj line: 95, column: 4
+                          System.out.println("[SC] Loading " + w_thread_4 + ".");//sysj/systemController.sysj line: 96, column: 4
+                          TwinRegistry.shared().admit(w_thread_4);//sysj/systemController.sysj line: 97, column: 4
+                          S208343=1;
+                          S208350=0;
+                          if(!loadOrder_o.isPartnerPresent() || loadOrder_o.isPartnerPreempted()){//sysj/systemController.sysj line: 98, column: 4
+                            loadOrder_o.setREQ(false);//sysj/systemController.sysj line: 98, column: 4
+                            S208350=1;
                             active[4]=1;
                             ends[4]=1;
                             tdone[4]=1;
                           }
                           else {
-                            S170271=0;
-                            if(loadOrder_o.isACK()){//sysj\systemController.sysj line: 81, column: 4
-                              loadOrder_o.setVal(w_thread_4);//sysj\systemController.sysj line: 81, column: 4
-                              S170271=1;
-                              if(!loadOrder_o.isACK()){//sysj\systemController.sysj line: 81, column: 4
-                                loadOrder_o.setREQ(false);//sysj\systemController.sysj line: 81, column: 4
+                            S208345=0;
+                            if(loadOrder_o.isACK()){//sysj/systemController.sysj line: 98, column: 4
+                              loadOrder_o.setVal(w_thread_4);//sysj/systemController.sysj line: 98, column: 4
+                              S208345=1;
+                              if(!loadOrder_o.isACK()){//sysj/systemController.sysj line: 98, column: 4
+                                loadOrder_o.setREQ(false);//sysj/systemController.sysj line: 98, column: 4
                                 ends[4]=2;
-                                ;//sysj\systemController.sysj line: 81, column: 4
-                                S170269=2;
+                                ;//sysj/systemController.sysj line: 98, column: 4
+                                S208343=2;
                                 active[4]=1;
                                 ends[4]=1;
                                 tdone[4]=1;
@@ -1723,31 +8503,32 @@ public class SystemController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      if(purchaseOrder_in.isREQ()){//sysj\systemController.sysj line: 78, column: 4
-                        purchaseOrder_in.setACK(false);//sysj\systemController.sysj line: 78, column: 4
+                      if(purchaseOrder_in.isREQ()){//sysj/systemController.sysj line: 94, column: 4
+                        purchaseOrder_in.setACK(false);//sysj/systemController.sysj line: 94, column: 4
                         ends[4]=2;
-                        ;//sysj\systemController.sysj line: 78, column: 4
-                        w_thread_4 = (Workpiece)(purchaseOrder_in.getVal() == null ? null : ((Workpiece)purchaseOrder_in.getVal()));//sysj\systemController.sysj line: 79, column: 4
-                        System.out.println("[SC] Loading " + w_thread_4 + ".");//sysj\systemController.sysj line: 80, column: 4
-                        S170269=1;
-                        S170276=0;
-                        if(!loadOrder_o.isPartnerPresent() || loadOrder_o.isPartnerPreempted()){//sysj\systemController.sysj line: 81, column: 4
-                          loadOrder_o.setREQ(false);//sysj\systemController.sysj line: 81, column: 4
-                          S170276=1;
+                        ;//sysj/systemController.sysj line: 94, column: 4
+                        w_thread_4 = (WorkpieceTwin)(purchaseOrder_in.getVal() == null ? null : ((WorkpieceTwin)purchaseOrder_in.getVal()));//sysj/systemController.sysj line: 95, column: 4
+                        System.out.println("[SC] Loading " + w_thread_4 + ".");//sysj/systemController.sysj line: 96, column: 4
+                        TwinRegistry.shared().admit(w_thread_4);//sysj/systemController.sysj line: 97, column: 4
+                        S208343=1;
+                        S208350=0;
+                        if(!loadOrder_o.isPartnerPresent() || loadOrder_o.isPartnerPreempted()){//sysj/systemController.sysj line: 98, column: 4
+                          loadOrder_o.setREQ(false);//sysj/systemController.sysj line: 98, column: 4
+                          S208350=1;
                           active[4]=1;
                           ends[4]=1;
                           tdone[4]=1;
                         }
                         else {
-                          S170271=0;
-                          if(loadOrder_o.isACK()){//sysj\systemController.sysj line: 81, column: 4
-                            loadOrder_o.setVal(w_thread_4);//sysj\systemController.sysj line: 81, column: 4
-                            S170271=1;
-                            if(!loadOrder_o.isACK()){//sysj\systemController.sysj line: 81, column: 4
-                              loadOrder_o.setREQ(false);//sysj\systemController.sysj line: 81, column: 4
+                          S208345=0;
+                          if(loadOrder_o.isACK()){//sysj/systemController.sysj line: 98, column: 4
+                            loadOrder_o.setVal(w_thread_4);//sysj/systemController.sysj line: 98, column: 4
+                            S208345=1;
+                            if(!loadOrder_o.isACK()){//sysj/systemController.sysj line: 98, column: 4
+                              loadOrder_o.setREQ(false);//sysj/systemController.sysj line: 98, column: 4
                               ends[4]=2;
-                              ;//sysj\systemController.sysj line: 81, column: 4
-                              S170269=2;
+                              ;//sysj/systemController.sysj line: 98, column: 4
+                              S208343=2;
                               active[4]=1;
                               ends[4]=1;
                               tdone[4]=1;
@@ -1777,45 +8558,46 @@ public class SystemController extends ClockDomain{
                 break;
               
               case 1 : 
-                S170253=1;
-                S170253=0;
-                if(!purchaseOrder_in.isPartnerPresent() || purchaseOrder_in.isPartnerPreempted()){//sysj\systemController.sysj line: 78, column: 4
-                  purchaseOrder_in.setACK(false);//sysj\systemController.sysj line: 78, column: 4
-                  S170253=1;
+                S208327=1;
+                S208327=0;
+                if(!purchaseOrder_in.isPartnerPresent() || purchaseOrder_in.isPartnerPreempted()){//sysj/systemController.sysj line: 94, column: 4
+                  purchaseOrder_in.setACK(false);//sysj/systemController.sysj line: 94, column: 4
+                  S208327=1;
                   active[4]=1;
                   ends[4]=1;
                   tdone[4]=1;
                 }
                 else {
-                  S170248=0;
-                  if(!purchaseOrder_in.isREQ()){//sysj\systemController.sysj line: 78, column: 4
-                    purchaseOrder_in.setACK(true);//sysj\systemController.sysj line: 78, column: 4
-                    S170248=1;
-                    if(purchaseOrder_in.isREQ()){//sysj\systemController.sysj line: 78, column: 4
-                      purchaseOrder_in.setACK(false);//sysj\systemController.sysj line: 78, column: 4
+                  S208322=0;
+                  if(!purchaseOrder_in.isREQ()){//sysj/systemController.sysj line: 94, column: 4
+                    purchaseOrder_in.setACK(true);//sysj/systemController.sysj line: 94, column: 4
+                    S208322=1;
+                    if(purchaseOrder_in.isREQ()){//sysj/systemController.sysj line: 94, column: 4
+                      purchaseOrder_in.setACK(false);//sysj/systemController.sysj line: 94, column: 4
                       ends[4]=2;
-                      ;//sysj\systemController.sysj line: 78, column: 4
-                      w_thread_4 = (Workpiece)(purchaseOrder_in.getVal() == null ? null : ((Workpiece)purchaseOrder_in.getVal()));//sysj\systemController.sysj line: 79, column: 4
-                      System.out.println("[SC] Loading " + w_thread_4 + ".");//sysj\systemController.sysj line: 80, column: 4
-                      S170269=1;
-                      S170276=0;
-                      if(!loadOrder_o.isPartnerPresent() || loadOrder_o.isPartnerPreempted()){//sysj\systemController.sysj line: 81, column: 4
-                        loadOrder_o.setREQ(false);//sysj\systemController.sysj line: 81, column: 4
-                        S170276=1;
+                      ;//sysj/systemController.sysj line: 94, column: 4
+                      w_thread_4 = (WorkpieceTwin)(purchaseOrder_in.getVal() == null ? null : ((WorkpieceTwin)purchaseOrder_in.getVal()));//sysj/systemController.sysj line: 95, column: 4
+                      System.out.println("[SC] Loading " + w_thread_4 + ".");//sysj/systemController.sysj line: 96, column: 4
+                      TwinRegistry.shared().admit(w_thread_4);//sysj/systemController.sysj line: 97, column: 4
+                      S208343=1;
+                      S208350=0;
+                      if(!loadOrder_o.isPartnerPresent() || loadOrder_o.isPartnerPreempted()){//sysj/systemController.sysj line: 98, column: 4
+                        loadOrder_o.setREQ(false);//sysj/systemController.sysj line: 98, column: 4
+                        S208350=1;
                         active[4]=1;
                         ends[4]=1;
                         tdone[4]=1;
                       }
                       else {
-                        S170271=0;
-                        if(loadOrder_o.isACK()){//sysj\systemController.sysj line: 81, column: 4
-                          loadOrder_o.setVal(w_thread_4);//sysj\systemController.sysj line: 81, column: 4
-                          S170271=1;
-                          if(!loadOrder_o.isACK()){//sysj\systemController.sysj line: 81, column: 4
-                            loadOrder_o.setREQ(false);//sysj\systemController.sysj line: 81, column: 4
+                        S208345=0;
+                        if(loadOrder_o.isACK()){//sysj/systemController.sysj line: 98, column: 4
+                          loadOrder_o.setVal(w_thread_4);//sysj/systemController.sysj line: 98, column: 4
+                          S208345=1;
+                          if(!loadOrder_o.isACK()){//sysj/systemController.sysj line: 98, column: 4
+                            loadOrder_o.setREQ(false);//sysj/systemController.sysj line: 98, column: 4
                             ends[4]=2;
-                            ;//sysj\systemController.sysj line: 81, column: 4
-                            S170269=2;
+                            ;//sysj/systemController.sysj line: 98, column: 4
+                            S208343=2;
                             active[4]=1;
                             ends[4]=1;
                             tdone[4]=1;
@@ -1851,26 +8633,26 @@ public class SystemController extends ClockDomain{
             break;
           
           case 1 : 
-            switch(S170276){
+            switch(S208350){
               case 0 : 
-                if(!loadOrder_o.isPartnerPresent() || loadOrder_o.isPartnerPreempted()){//sysj\systemController.sysj line: 81, column: 4
-                  loadOrder_o.setREQ(false);//sysj\systemController.sysj line: 81, column: 4
-                  S170276=1;
+                if(!loadOrder_o.isPartnerPresent() || loadOrder_o.isPartnerPreempted()){//sysj/systemController.sysj line: 98, column: 4
+                  loadOrder_o.setREQ(false);//sysj/systemController.sysj line: 98, column: 4
+                  S208350=1;
                   active[4]=1;
                   ends[4]=1;
                   tdone[4]=1;
                 }
                 else {
-                  switch(S170271){
+                  switch(S208345){
                     case 0 : 
-                      if(loadOrder_o.isACK()){//sysj\systemController.sysj line: 81, column: 4
-                        loadOrder_o.setVal(w_thread_4);//sysj\systemController.sysj line: 81, column: 4
-                        S170271=1;
-                        if(!loadOrder_o.isACK()){//sysj\systemController.sysj line: 81, column: 4
-                          loadOrder_o.setREQ(false);//sysj\systemController.sysj line: 81, column: 4
+                      if(loadOrder_o.isACK()){//sysj/systemController.sysj line: 98, column: 4
+                        loadOrder_o.setVal(w_thread_4);//sysj/systemController.sysj line: 98, column: 4
+                        S208345=1;
+                        if(!loadOrder_o.isACK()){//sysj/systemController.sysj line: 98, column: 4
+                          loadOrder_o.setREQ(false);//sysj/systemController.sysj line: 98, column: 4
                           ends[4]=2;
-                          ;//sysj\systemController.sysj line: 81, column: 4
-                          S170269=2;
+                          ;//sysj/systemController.sysj line: 98, column: 4
+                          S208343=2;
                           active[4]=1;
                           ends[4]=1;
                           tdone[4]=1;
@@ -1889,11 +8671,11 @@ public class SystemController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      if(!loadOrder_o.isACK()){//sysj\systemController.sysj line: 81, column: 4
-                        loadOrder_o.setREQ(false);//sysj\systemController.sysj line: 81, column: 4
+                      if(!loadOrder_o.isACK()){//sysj/systemController.sysj line: 98, column: 4
+                        loadOrder_o.setREQ(false);//sysj/systemController.sysj line: 98, column: 4
                         ends[4]=2;
-                        ;//sysj\systemController.sysj line: 81, column: 4
-                        S170269=2;
+                        ;//sysj/systemController.sysj line: 98, column: 4
+                        S208343=2;
                         active[4]=1;
                         ends[4]=1;
                         tdone[4]=1;
@@ -1910,25 +8692,25 @@ public class SystemController extends ClockDomain{
                 break;
               
               case 1 : 
-                S170276=1;
-                S170276=0;
-                if(!loadOrder_o.isPartnerPresent() || loadOrder_o.isPartnerPreempted()){//sysj\systemController.sysj line: 81, column: 4
-                  loadOrder_o.setREQ(false);//sysj\systemController.sysj line: 81, column: 4
-                  S170276=1;
+                S208350=1;
+                S208350=0;
+                if(!loadOrder_o.isPartnerPresent() || loadOrder_o.isPartnerPreempted()){//sysj/systemController.sysj line: 98, column: 4
+                  loadOrder_o.setREQ(false);//sysj/systemController.sysj line: 98, column: 4
+                  S208350=1;
                   active[4]=1;
                   ends[4]=1;
                   tdone[4]=1;
                 }
                 else {
-                  S170271=0;
-                  if(loadOrder_o.isACK()){//sysj\systemController.sysj line: 81, column: 4
-                    loadOrder_o.setVal(w_thread_4);//sysj\systemController.sysj line: 81, column: 4
-                    S170271=1;
-                    if(!loadOrder_o.isACK()){//sysj\systemController.sysj line: 81, column: 4
-                      loadOrder_o.setREQ(false);//sysj\systemController.sysj line: 81, column: 4
+                  S208345=0;
+                  if(loadOrder_o.isACK()){//sysj/systemController.sysj line: 98, column: 4
+                    loadOrder_o.setVal(w_thread_4);//sysj/systemController.sysj line: 98, column: 4
+                    S208345=1;
+                    if(!loadOrder_o.isACK()){//sysj/systemController.sysj line: 98, column: 4
+                      loadOrder_o.setREQ(false);//sysj/systemController.sysj line: 98, column: 4
                       ends[4]=2;
-                      ;//sysj\systemController.sysj line: 81, column: 4
-                      S170269=2;
+                      ;//sysj/systemController.sysj line: 98, column: 4
+                      S208343=2;
                       active[4]=1;
                       ends[4]=1;
                       tdone[4]=1;
@@ -1951,46 +8733,47 @@ public class SystemController extends ClockDomain{
             break;
           
           case 2 : 
-            S170269=2;
-            S170269=0;
-            S170253=0;
-            if(!purchaseOrder_in.isPartnerPresent() || purchaseOrder_in.isPartnerPreempted()){//sysj\systemController.sysj line: 78, column: 4
-              purchaseOrder_in.setACK(false);//sysj\systemController.sysj line: 78, column: 4
-              S170253=1;
+            S208343=2;
+            S208343=0;
+            S208327=0;
+            if(!purchaseOrder_in.isPartnerPresent() || purchaseOrder_in.isPartnerPreempted()){//sysj/systemController.sysj line: 94, column: 4
+              purchaseOrder_in.setACK(false);//sysj/systemController.sysj line: 94, column: 4
+              S208327=1;
               active[4]=1;
               ends[4]=1;
               tdone[4]=1;
             }
             else {
-              S170248=0;
-              if(!purchaseOrder_in.isREQ()){//sysj\systemController.sysj line: 78, column: 4
-                purchaseOrder_in.setACK(true);//sysj\systemController.sysj line: 78, column: 4
-                S170248=1;
-                if(purchaseOrder_in.isREQ()){//sysj\systemController.sysj line: 78, column: 4
-                  purchaseOrder_in.setACK(false);//sysj\systemController.sysj line: 78, column: 4
+              S208322=0;
+              if(!purchaseOrder_in.isREQ()){//sysj/systemController.sysj line: 94, column: 4
+                purchaseOrder_in.setACK(true);//sysj/systemController.sysj line: 94, column: 4
+                S208322=1;
+                if(purchaseOrder_in.isREQ()){//sysj/systemController.sysj line: 94, column: 4
+                  purchaseOrder_in.setACK(false);//sysj/systemController.sysj line: 94, column: 4
                   ends[4]=2;
-                  ;//sysj\systemController.sysj line: 78, column: 4
-                  w_thread_4 = (Workpiece)(purchaseOrder_in.getVal() == null ? null : ((Workpiece)purchaseOrder_in.getVal()));//sysj\systemController.sysj line: 79, column: 4
-                  System.out.println("[SC] Loading " + w_thread_4 + ".");//sysj\systemController.sysj line: 80, column: 4
-                  S170269=1;
-                  S170276=0;
-                  if(!loadOrder_o.isPartnerPresent() || loadOrder_o.isPartnerPreempted()){//sysj\systemController.sysj line: 81, column: 4
-                    loadOrder_o.setREQ(false);//sysj\systemController.sysj line: 81, column: 4
-                    S170276=1;
+                  ;//sysj/systemController.sysj line: 94, column: 4
+                  w_thread_4 = (WorkpieceTwin)(purchaseOrder_in.getVal() == null ? null : ((WorkpieceTwin)purchaseOrder_in.getVal()));//sysj/systemController.sysj line: 95, column: 4
+                  System.out.println("[SC] Loading " + w_thread_4 + ".");//sysj/systemController.sysj line: 96, column: 4
+                  TwinRegistry.shared().admit(w_thread_4);//sysj/systemController.sysj line: 97, column: 4
+                  S208343=1;
+                  S208350=0;
+                  if(!loadOrder_o.isPartnerPresent() || loadOrder_o.isPartnerPreempted()){//sysj/systemController.sysj line: 98, column: 4
+                    loadOrder_o.setREQ(false);//sysj/systemController.sysj line: 98, column: 4
+                    S208350=1;
                     active[4]=1;
                     ends[4]=1;
                     tdone[4]=1;
                   }
                   else {
-                    S170271=0;
-                    if(loadOrder_o.isACK()){//sysj\systemController.sysj line: 81, column: 4
-                      loadOrder_o.setVal(w_thread_4);//sysj\systemController.sysj line: 81, column: 4
-                      S170271=1;
-                      if(!loadOrder_o.isACK()){//sysj\systemController.sysj line: 81, column: 4
-                        loadOrder_o.setREQ(false);//sysj\systemController.sysj line: 81, column: 4
+                    S208345=0;
+                    if(loadOrder_o.isACK()){//sysj/systemController.sysj line: 98, column: 4
+                      loadOrder_o.setVal(w_thread_4);//sysj/systemController.sysj line: 98, column: 4
+                      S208345=1;
+                      if(!loadOrder_o.isACK()){//sysj/systemController.sysj line: 98, column: 4
+                        loadOrder_o.setREQ(false);//sysj/systemController.sysj line: 98, column: 4
                         ends[4]=2;
-                        ;//sysj\systemController.sysj line: 81, column: 4
-                        S170269=2;
+                        ;//sysj/systemController.sysj line: 98, column: 4
+                        S208343=2;
                         active[4]=1;
                         ends[4]=1;
                         tdone[4]=1;
@@ -2028,8 +8811,8 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread175414(int [] tdone, int [] ends){
-        switch(S170246){
+  public void thread214340(int [] tdone, int [] ends){
+        switch(S208320){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -2037,29 +8820,31 @@ public class SystemController extends ClockDomain{
         break;
       
       case 1 : 
-        enableBL.setPresent();//sysj\systemController.sysj line: 67, column: 4
+        enableBL.setPresent();//sysj/systemController.sysj line: 83, column: 4
         currsigs.addElement(enableBL);
-        enableCV.setPresent();//sysj\systemController.sysj line: 67, column: 19
+        enableCV.setPresent();//sysj/systemController.sysj line: 83, column: 19
         currsigs.addElement(enableCV);
-        enableRT.setPresent();//sysj\systemController.sysj line: 67, column: 34
+        enableRT.setPresent();//sysj/systemController.sysj line: 83, column: 34
         currsigs.addElement(enableRT);
-        enableF1.setPresent();//sysj\systemController.sysj line: 68, column: 4
+        enableF1.setPresent();//sysj/systemController.sysj line: 84, column: 4
         currsigs.addElement(enableF1);
-        enableF2.setPresent();//sysj\systemController.sysj line: 68, column: 19
+        enableF2.setPresent();//sysj/systemController.sysj line: 84, column: 19
         currsigs.addElement(enableF2);
-        enableLL.setPresent();//sysj\systemController.sysj line: 68, column: 34
+        enableLL.setPresent();//sysj/systemController.sysj line: 84, column: 34
         currsigs.addElement(enableLL);
-        enableCP.setPresent();//sysj\systemController.sysj line: 68, column: 49
+        enableCP.setPresent();//sysj/systemController.sysj line: 84, column: 49
         currsigs.addElement(enableCP);
-        enableSP.setPresent();//sysj\systemController.sysj line: 69, column: 4
+        enableLB.setPresent();//sysj/systemController.sysj line: 84, column: 64
+        currsigs.addElement(enableLB);
+        enableSP.setPresent();//sysj/systemController.sysj line: 85, column: 4
         currsigs.addElement(enableSP);
-        enableRC.setPresent();//sysj\systemController.sysj line: 69, column: 19
+        enableRC.setPresent();//sysj/systemController.sysj line: 85, column: 19
         currsigs.addElement(enableRC);
-        enableLR.setPresent();//sysj\systemController.sysj line: 69, column: 34
+        enableLR.setPresent();//sysj/systemController.sysj line: 85, column: 34
         currsigs.addElement(enableLR);
-        enableLD.setPresent();//sysj\systemController.sysj line: 70, column: 4
+        enableLD.setPresent();//sysj/systemController.sysj line: 86, column: 4
         currsigs.addElement(enableLD);
-        enableBR.setPresent();//sysj\systemController.sysj line: 70, column: 19
+        enableBR.setPresent();//sysj/systemController.sysj line: 86, column: 19
         currsigs.addElement(enableBR);
         active[3]=1;
         ends[3]=1;
@@ -2069,8 +8854,8 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread175413(int [] tdone, int [] ends){
-        switch(S170241){
+  public void thread214339(int [] tdone, int [] ends){
+        switch(S208315){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -2078,36 +8863,39 @@ public class SystemController extends ClockDomain{
         break;
       
       case 1 : 
-        modeBL.setPresent();//sysj\systemController.sysj line: 57, column: 4
+        modeBL.setPresent();//sysj/systemController.sysj line: 73, column: 4
         currsigs.addElement(modeBL);
-        modeBL.setValue(0);//sysj\systemController.sysj line: 57, column: 4
-        modeF1.setPresent();//sysj\systemController.sysj line: 57, column: 20
+        modeBL.setValue(0);//sysj/systemController.sysj line: 73, column: 4
+        modeF1.setPresent();//sysj/systemController.sysj line: 73, column: 20
         currsigs.addElement(modeF1);
-        modeF1.setValue(0);//sysj\systemController.sysj line: 57, column: 20
-        modeF2.setPresent();//sysj\systemController.sysj line: 57, column: 36
+        modeF1.setValue(0);//sysj/systemController.sysj line: 73, column: 20
+        modeF2.setPresent();//sysj/systemController.sysj line: 73, column: 36
         currsigs.addElement(modeF2);
-        modeF2.setValue(0);//sysj\systemController.sysj line: 57, column: 36
-        modeLL.setPresent();//sysj\systemController.sysj line: 58, column: 4
+        modeF2.setValue(0);//sysj/systemController.sysj line: 73, column: 36
+        modeLL.setPresent();//sysj/systemController.sysj line: 74, column: 4
         currsigs.addElement(modeLL);
-        modeLL.setValue(0);//sysj\systemController.sysj line: 58, column: 4
-        modeCP.setPresent();//sysj\systemController.sysj line: 58, column: 20
+        modeLL.setValue(0);//sysj/systemController.sysj line: 74, column: 4
+        modeCP.setPresent();//sysj/systemController.sysj line: 74, column: 20
         currsigs.addElement(modeCP);
-        modeCP.setValue(0);//sysj\systemController.sysj line: 58, column: 20
-        modeSP.setPresent();//sysj\systemController.sysj line: 59, column: 4
+        modeCP.setValue(0);//sysj/systemController.sysj line: 74, column: 20
+        modeLB.setPresent();//sysj/systemController.sysj line: 74, column: 36
+        currsigs.addElement(modeLB);
+        modeLB.setValue(0);//sysj/systemController.sysj line: 74, column: 36
+        modeSP.setPresent();//sysj/systemController.sysj line: 75, column: 4
         currsigs.addElement(modeSP);
-        modeSP.setValue(0);//sysj\systemController.sysj line: 59, column: 4
-        modeRC.setPresent();//sysj\systemController.sysj line: 59, column: 20
+        modeSP.setValue(0);//sysj/systemController.sysj line: 75, column: 4
+        modeRC.setPresent();//sysj/systemController.sysj line: 75, column: 20
         currsigs.addElement(modeRC);
-        modeRC.setValue(0);//sysj\systemController.sysj line: 59, column: 20
-        modeLR.setPresent();//sysj\systemController.sysj line: 59, column: 36
+        modeRC.setValue(0);//sysj/systemController.sysj line: 75, column: 20
+        modeLR.setPresent();//sysj/systemController.sysj line: 75, column: 36
         currsigs.addElement(modeLR);
-        modeLR.setValue(0);//sysj\systemController.sysj line: 59, column: 36
-        modeLD.setPresent();//sysj\systemController.sysj line: 60, column: 4
+        modeLR.setValue(0);//sysj/systemController.sysj line: 75, column: 36
+        modeLD.setPresent();//sysj/systemController.sysj line: 76, column: 4
         currsigs.addElement(modeLD);
-        modeLD.setValue(0);//sysj\systemController.sysj line: 60, column: 4
-        modeBR.setPresent();//sysj\systemController.sysj line: 60, column: 20
+        modeLD.setValue(0);//sysj/systemController.sysj line: 76, column: 4
+        modeBR.setPresent();//sysj/systemController.sysj line: 76, column: 20
         currsigs.addElement(modeBR);
-        modeBR.setValue(0);//sysj\systemController.sysj line: 60, column: 20
+        modeBR.setValue(0);//sysj/systemController.sysj line: 76, column: 20
         active[2]=1;
         ends[2]=1;
         tdone[2]=1;
@@ -2116,85 +8904,3498 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread175411(int [] tdone, int [] ends){
-        S175401=1;
-    last_thread_8 = -1;//sysj\systemController.sysj line: 147, column: 3
-    v_thread_8 = 0;//sysj\systemController.sysj line: 148, column: 3
-    if(recyclingStatus.getprestatus()){//sysj\systemController.sysj line: 150, column: 12
-      v_thread_8 = ((Integer)(recyclingStatus.getpreval() == null ? null : ((Integer)recyclingStatus.getpreval()))).intValue();//sysj\systemController.sysj line: 151, column: 5
-      if(v_thread_8 != last_thread_8) {//sysj\systemController.sysj line: 152, column: 18
-        if(v_thread_8 == 0) {//sysj\systemController.sysj line: 153, column: 16
-          System.out.println("[SC] Recycling Station: idle.");//sysj\systemController.sysj line: 153, column: 18
+  public void thread214337(int [] tdone, int [] ends){
+        S214325=1;
+    last_thread_10 = -1;//sysj/systemController.sysj line: 212, column: 3
+    v_thread_10 = 0;//sysj/systemController.sysj line: 213, column: 3
+    if(recyclingStatus.getprestatus()){//sysj/systemController.sysj line: 215, column: 12
+      v_thread_10 = ((Integer)(recyclingStatus.getpreval() == null ? null : ((Integer)recyclingStatus.getpreval()))).intValue();//sysj/systemController.sysj line: 216, column: 5
+      if(v_thread_10 != last_thread_10) {//sysj/systemController.sysj line: 217, column: 18
+        if(v_thread_10 == 0) {//sysj/systemController.sysj line: 218, column: 16
+          System.out.println("[SC] Recycling Station: idle.");//sysj/systemController.sysj line: 218, column: 18
         }
-        if(v_thread_8 == 1) {//sysj\systemController.sysj line: 154, column: 16
-          System.out.println("[SC] Recycling Station: busy.");//sysj\systemController.sysj line: 154, column: 18
+        if(v_thread_10 == 1) {//sysj/systemController.sysj line: 219, column: 16
+          System.out.println("[SC] Recycling Station: busy.");//sysj/systemController.sysj line: 219, column: 18
         }
-        if(v_thread_8 == 2) {//sysj\systemController.sysj line: 155, column: 16
-          System.out.println("[SC] Recycling Station: FAULT - no further rejects accepted.");//sysj\systemController.sysj line: 155, column: 18
+        if(v_thread_10 == 2) {//sysj/systemController.sysj line: 220, column: 16
+          System.out.println("[SC] Recycling Station: FAULT - no further rejects accepted.");//sysj/systemController.sysj line: 220, column: 18
         }
-        if(v_thread_8 == 3) {//sysj\systemController.sysj line: 156, column: 16
-          System.out.println("[SC] Recycling Station: running, bin or tank near capacity.");//sysj\systemController.sysj line: 156, column: 18
+        if(v_thread_10 == 3) {//sysj/systemController.sysj line: 221, column: 16
+          System.out.println("[SC] Recycling Station: running, bin or tank near capacity.");//sysj/systemController.sysj line: 221, column: 18
         }
-        last_thread_8 = v_thread_8;//sysj\systemController.sysj line: 157, column: 6
+        last_thread_10 = v_thread_10;//sysj/systemController.sysj line: 222, column: 6
       }
-      active[8]=1;
-      ends[8]=1;
-      tdone[8]=1;
+      active[10]=1;
+      ends[10]=1;
+      tdone[10]=1;
     }
     else {
-      active[8]=1;
-      ends[8]=1;
-      tdone[8]=1;
+      active[10]=1;
+      ends[10]=1;
+      tdone[10]=1;
     }
   }
 
-  public void thread175410(int [] tdone, int [] ends){
-        S175381=1;
-    w_thread_7 = null;//sysj\systemController.sysj line: 131, column: 3
-    recovered_thread_7 = 0;//sysj\systemController.sysj line: 132, column: 3
-    S174737=0;
-    S174721=0;
-    if(!bottleRecycled_in.isPartnerPresent() || bottleRecycled_in.isPartnerPreempted()){//sysj\systemController.sysj line: 134, column: 4
-      bottleRecycled_in.setACK(false);//sysj\systemController.sysj line: 134, column: 4
-      S174721=1;
+  public void thread214336(int [] tdone, int [] ends){
+        S214305=1;
+    w_thread_9 = null;//sysj/systemController.sysj line: 196, column: 3
+    recovered_thread_9 = 0;//sysj/systemController.sysj line: 197, column: 3
+    S213661=0;
+    S213645=0;
+    if(!bottleRecycled_in.isPartnerPresent() || bottleRecycled_in.isPartnerPreempted()){//sysj/systemController.sysj line: 199, column: 4
+      bottleRecycled_in.setACK(false);//sysj/systemController.sysj line: 199, column: 4
+      S213645=1;
+      active[9]=1;
+      ends[9]=1;
+      tdone[9]=1;
+    }
+    else {
+      S213640=0;
+      if(!bottleRecycled_in.isREQ()){//sysj/systemController.sysj line: 199, column: 4
+        bottleRecycled_in.setACK(true);//sysj/systemController.sysj line: 199, column: 4
+        S213640=1;
+        if(bottleRecycled_in.isREQ()){//sysj/systemController.sysj line: 199, column: 4
+          bottleRecycled_in.setACK(false);//sysj/systemController.sysj line: 199, column: 4
+          ends[9]=2;
+          ;//sysj/systemController.sysj line: 199, column: 4
+          w_thread_9 = (WorkpieceTwin)(bottleRecycled_in.getVal() == null ? null : ((WorkpieceTwin)bottleRecycled_in.getVal()));//sysj/systemController.sysj line: 200, column: 4
+          recovered_thread_9 = recovered_thread_9 + 1;//sysj/systemController.sysj line: 201, column: 4
+          System.out.println("[SC] " + w_thread_9 + " recovered by the Recycling Station at " + w_thread_9.filledMl() + "ml, sealed=" + w_thread_9.isSealed() + ". " + recovered_thread_9 + " recycled.");//sysj/systemController.sysj line: 202, column: 4
+          S213661=1;
+          S213668=0;
+          if(!orderRejected_o.isPartnerPresent() || orderRejected_o.isPartnerPreempted()){//sysj/systemController.sysj line: 204, column: 4
+            orderRejected_o.setREQ(false);//sysj/systemController.sysj line: 204, column: 4
+            S213668=1;
+            active[9]=1;
+            ends[9]=1;
+            tdone[9]=1;
+          }
+          else {
+            S213663=0;
+            if(orderRejected_o.isACK()){//sysj/systemController.sysj line: 204, column: 4
+              orderRejected_o.setVal(new Integer((int)w_thread_9.id));//sysj/systemController.sysj line: 204, column: 4
+              S213663=1;
+              if(!orderRejected_o.isACK()){//sysj/systemController.sysj line: 204, column: 4
+                orderRejected_o.setREQ(false);//sysj/systemController.sysj line: 204, column: 4
+                ends[9]=2;
+                ;//sysj/systemController.sysj line: 204, column: 4
+                S213661=2;
+                active[9]=1;
+                ends[9]=1;
+                tdone[9]=1;
+              }
+              else {
+                active[9]=1;
+                ends[9]=1;
+                tdone[9]=1;
+              }
+            }
+            else {
+              active[9]=1;
+              ends[9]=1;
+              tdone[9]=1;
+            }
+          }
+        }
+        else {
+          active[9]=1;
+          ends[9]=1;
+          tdone[9]=1;
+        }
+      }
+      else {
+        active[9]=1;
+        ends[9]=1;
+        tdone[9]=1;
+      }
+    }
+  }
+
+  public void thread214335(int [] tdone, int [] ends){
+        S213637=1;
+    plant_thread_8 = new ABSTwin();//sysj/systemController.sysj line: 167, column: 3
+    out_thread_8 = TwinPublisher.shared();//sysj/systemController.sysj line: 168, column: 3
+    PlantClock.advance();//sysj/systemController.sysj line: 171, column: 4
+    S212055=0;
+    if(twinBL.getprestatus()){//sysj/systemController.sysj line: 173, column: 12
+      plant_thread_8.put((LoaderTwin)(twinBL.getpreval() == null ? null : ((LoaderTwin)twinBL.getpreval())));//sysj/systemController.sysj line: 173, column: 21
+      if(twinCV.getprestatus()){//sysj/systemController.sysj line: 174, column: 12
+        plant_thread_8.put((ConveyorTwin)(twinCV.getpreval() == null ? null : ((ConveyorTwin)twinCV.getpreval())));//sysj/systemController.sysj line: 174, column: 21
+        if(twinRT.getprestatus()){//sysj/systemController.sysj line: 175, column: 12
+          plant_thread_8.put((RotaryTableTwin)(twinRT.getpreval() == null ? null : ((RotaryTableTwin)twinRT.getpreval())));//sysj/systemController.sysj line: 175, column: 21
+          if(twinF1.getprestatus()){//sysj/systemController.sysj line: 176, column: 12
+            plant_thread_8.put((FillerTwin)(twinF1.getpreval() == null ? null : ((FillerTwin)twinF1.getpreval())));//sysj/systemController.sysj line: 176, column: 21
+            if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+              plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+            else {
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+          }
+          else {
+            if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+              plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+            else {
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+          }
+        }
+        else {
+          if(twinF1.getprestatus()){//sysj/systemController.sysj line: 176, column: 12
+            plant_thread_8.put((FillerTwin)(twinF1.getpreval() == null ? null : ((FillerTwin)twinF1.getpreval())));//sysj/systemController.sysj line: 176, column: 21
+            if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+              plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+            else {
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+          }
+          else {
+            if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+              plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+            else {
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      else {
+        if(twinRT.getprestatus()){//sysj/systemController.sysj line: 175, column: 12
+          plant_thread_8.put((RotaryTableTwin)(twinRT.getpreval() == null ? null : ((RotaryTableTwin)twinRT.getpreval())));//sysj/systemController.sysj line: 175, column: 21
+          if(twinF1.getprestatus()){//sysj/systemController.sysj line: 176, column: 12
+            plant_thread_8.put((FillerTwin)(twinF1.getpreval() == null ? null : ((FillerTwin)twinF1.getpreval())));//sysj/systemController.sysj line: 176, column: 21
+            if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+              plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+            else {
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+          }
+          else {
+            if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+              plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+            else {
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+          }
+        }
+        else {
+          if(twinF1.getprestatus()){//sysj/systemController.sysj line: 176, column: 12
+            plant_thread_8.put((FillerTwin)(twinF1.getpreval() == null ? null : ((FillerTwin)twinF1.getpreval())));//sysj/systemController.sysj line: 176, column: 21
+            if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+              plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+            else {
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+          }
+          else {
+            if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+              plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+            else {
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    else {
+      if(twinCV.getprestatus()){//sysj/systemController.sysj line: 174, column: 12
+        plant_thread_8.put((ConveyorTwin)(twinCV.getpreval() == null ? null : ((ConveyorTwin)twinCV.getpreval())));//sysj/systemController.sysj line: 174, column: 21
+        if(twinRT.getprestatus()){//sysj/systemController.sysj line: 175, column: 12
+          plant_thread_8.put((RotaryTableTwin)(twinRT.getpreval() == null ? null : ((RotaryTableTwin)twinRT.getpreval())));//sysj/systemController.sysj line: 175, column: 21
+          if(twinF1.getprestatus()){//sysj/systemController.sysj line: 176, column: 12
+            plant_thread_8.put((FillerTwin)(twinF1.getpreval() == null ? null : ((FillerTwin)twinF1.getpreval())));//sysj/systemController.sysj line: 176, column: 21
+            if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+              plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+            else {
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+          }
+          else {
+            if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+              plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+            else {
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+          }
+        }
+        else {
+          if(twinF1.getprestatus()){//sysj/systemController.sysj line: 176, column: 12
+            plant_thread_8.put((FillerTwin)(twinF1.getpreval() == null ? null : ((FillerTwin)twinF1.getpreval())));//sysj/systemController.sysj line: 176, column: 21
+            if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+              plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+            else {
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+          }
+          else {
+            if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+              plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+            else {
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      else {
+        if(twinRT.getprestatus()){//sysj/systemController.sysj line: 175, column: 12
+          plant_thread_8.put((RotaryTableTwin)(twinRT.getpreval() == null ? null : ((RotaryTableTwin)twinRT.getpreval())));//sysj/systemController.sysj line: 175, column: 21
+          if(twinF1.getprestatus()){//sysj/systemController.sysj line: 176, column: 12
+            plant_thread_8.put((FillerTwin)(twinF1.getpreval() == null ? null : ((FillerTwin)twinF1.getpreval())));//sysj/systemController.sysj line: 176, column: 21
+            if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+              plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+            else {
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+          }
+          else {
+            if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+              plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+            else {
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+          }
+        }
+        else {
+          if(twinF1.getprestatus()){//sysj/systemController.sysj line: 176, column: 12
+            plant_thread_8.put((FillerTwin)(twinF1.getpreval() == null ? null : ((FillerTwin)twinF1.getpreval())));//sysj/systemController.sysj line: 176, column: 21
+            if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+              plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+            else {
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+          }
+          else {
+            if(twinF2.getprestatus()){//sysj/systemController.sysj line: 177, column: 12
+              plant_thread_8.put((FillerTwin)(twinF2.getpreval() == null ? null : ((FillerTwin)twinF2.getpreval())));//sysj/systemController.sysj line: 177, column: 21
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+            else {
+              if(twinLL.getprestatus()){//sysj/systemController.sysj line: 178, column: 12
+                plant_thread_8.put((LidLoaderTwin)(twinLL.getpreval() == null ? null : ((LidLoaderTwin)twinLL.getpreval())));//sysj/systemController.sysj line: 178, column: 21
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+              else {
+                if(twinCP.getprestatus()){//sysj/systemController.sysj line: 179, column: 12
+                  plant_thread_8.put((LidCapperTwin)(twinCP.getpreval() == null ? null : ((LidCapperTwin)twinCP.getpreval())));//sysj/systemController.sysj line: 179, column: 21
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+                else {
+                  if(twinLB.getprestatus()){//sysj/systemController.sysj line: 180, column: 12
+                    plant_thread_8.put((LabellerTwin)(twinLB.getpreval() == null ? null : ((LabellerTwin)twinLB.getpreval())));//sysj/systemController.sysj line: 180, column: 21
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                  else {
+                    plant_thread_8.setTick(PlantClock.now());//sysj/systemController.sysj line: 182, column: 4
+                    plant_thread_8.setMode(LineMode.AUTO);//sysj/systemController.sysj line: 183, column: 4
+                    TwinRegistry.shared().fill(plant_thread_8);//sysj/systemController.sysj line: 184, column: 4
+                    out_thread_8.publish(plant_thread_8, OrderBook.purchaseOrder());//sysj/systemController.sysj line: 185, column: 4
+                    S212055=1;
+                    active[8]=1;
+                    ends[8]=1;
+                    tdone[8]=1;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  public void thread214334(int [] tdone, int [] ends){
+        S212051=1;
+    w_thread_7 = null;//sysj/systemController.sysj line: 137, column: 3
+    done_thread_7 = 0;//sysj/systemController.sysj line: 138, column: 3
+    S209751=0;
+    S209735=0;
+    if(!labelDone_in.isPartnerPresent() || labelDone_in.isPartnerPreempted()){//sysj/systemController.sysj line: 140, column: 4
+      labelDone_in.setACK(false);//sysj/systemController.sysj line: 140, column: 4
+      S209735=1;
       active[7]=1;
       ends[7]=1;
       tdone[7]=1;
     }
     else {
-      S174716=0;
-      if(!bottleRecycled_in.isREQ()){//sysj\systemController.sysj line: 134, column: 4
-        bottleRecycled_in.setACK(true);//sysj\systemController.sysj line: 134, column: 4
-        S174716=1;
-        if(bottleRecycled_in.isREQ()){//sysj\systemController.sysj line: 134, column: 4
-          bottleRecycled_in.setACK(false);//sysj\systemController.sysj line: 134, column: 4
+      S209730=0;
+      if(!labelDone_in.isREQ()){//sysj/systemController.sysj line: 140, column: 4
+        labelDone_in.setACK(true);//sysj/systemController.sysj line: 140, column: 4
+        S209730=1;
+        if(labelDone_in.isREQ()){//sysj/systemController.sysj line: 140, column: 4
+          labelDone_in.setACK(false);//sysj/systemController.sysj line: 140, column: 4
           ends[7]=2;
-          ;//sysj\systemController.sysj line: 134, column: 4
-          w_thread_7 = (Workpiece)(bottleRecycled_in.getVal() == null ? null : ((Workpiece)bottleRecycled_in.getVal()));//sysj\systemController.sysj line: 135, column: 4
-          recovered_thread_7 = recovered_thread_7 + 1;//sysj\systemController.sysj line: 136, column: 4
-          System.out.println("[SC] " + w_thread_7 + " recovered by the Recycling Station at " + w_thread_7.filledMl() + "ml, sealed=" + w_thread_7.isSealed() + ". " + recovered_thread_7 + " recycled.");//sysj\systemController.sysj line: 137, column: 4
-          S174737=1;
-          S174744=0;
-          if(!orderRejected_o.isPartnerPresent() || orderRejected_o.isPartnerPreempted()){//sysj\systemController.sysj line: 139, column: 4
-            orderRejected_o.setREQ(false);//sysj\systemController.sysj line: 139, column: 4
-            S174744=1;
-            active[7]=1;
-            ends[7]=1;
-            tdone[7]=1;
-          }
-          else {
-            S174739=0;
-            if(orderRejected_o.isACK()){//sysj\systemController.sysj line: 139, column: 4
-              orderRejected_o.setVal(new Integer(w_thread_7.id));//sysj\systemController.sysj line: 139, column: 4
-              S174739=1;
-              if(!orderRejected_o.isACK()){//sysj\systemController.sysj line: 139, column: 4
-                orderRejected_o.setREQ(false);//sysj\systemController.sysj line: 139, column: 4
-                ends[7]=2;
-                ;//sysj\systemController.sysj line: 139, column: 4
-                S174737=2;
-                active[7]=1;
-                ends[7]=1;
-                tdone[7]=1;
+          ;//sysj/systemController.sysj line: 140, column: 4
+          w_thread_7 = (WorkpieceTwin)(labelDone_in.getVal() == null ? null : ((WorkpieceTwin)labelDone_in.getVal()));//sysj/systemController.sysj line: 141, column: 4
+          S209751=1;
+          if(w_thread_7.isRejected()){//sysj/systemController.sysj line: 143, column: 4
+            S209842=0;
+            System.out.println("[SC] " + w_thread_7 + " refused a label (" + w_thread_7.defect() + "); handing it to the Recycling Station.");//sysj/systemController.sysj line: 144, column: 5
+            S209758=0;
+            if(!bottleRejected_o.isPartnerPresent() || bottleRejected_o.isPartnerPreempted()){//sysj/systemController.sysj line: 146, column: 5
+              bottleRejected_o.setREQ(false);//sysj/systemController.sysj line: 146, column: 5
+              S209758=1;
+              active[7]=1;
+              ends[7]=1;
+              tdone[7]=1;
+            }
+            else {
+              S209753=0;
+              if(bottleRejected_o.isACK()){//sysj/systemController.sysj line: 146, column: 5
+                bottleRejected_o.setVal(w_thread_7);//sysj/systemController.sysj line: 146, column: 5
+                S209753=1;
+                if(!bottleRejected_o.isACK()){//sysj/systemController.sysj line: 146, column: 5
+                  bottleRejected_o.setREQ(false);//sysj/systemController.sysj line: 146, column: 5
+                  ends[7]=2;
+                  ;//sysj/systemController.sysj line: 146, column: 5
+                  S209751=2;
+                  active[7]=1;
+                  ends[7]=1;
+                  tdone[7]=1;
+                }
+                else {
+                  active[7]=1;
+                  ends[7]=1;
+                  tdone[7]=1;
+                }
               }
               else {
                 active[7]=1;
@@ -2202,10 +12403,46 @@ public class SystemController extends ClockDomain{
                 tdone[7]=1;
               }
             }
-            else {
+          }
+          else {
+            S209842=1;
+            w_thread_7.seal();//sysj/systemController.sysj line: 149, column: 5
+            done_thread_7 = done_thread_7 + 1;//sysj/systemController.sysj line: 150, column: 5
+            System.out.println("[SC] " + w_thread_7 + " finished at " + w_thread_7.filledMl() + "ml, sealed=" + w_thread_7.isSealed() + ", labelled " + w_thread_7.serial + ". " + done_thread_7 + " complete.");//sysj/systemController.sysj line: 151, column: 5
+            OrderBook.purchaseOrder().refresh();//sysj/systemController.sysj line: 153, column: 5
+            S209804=0;
+            if(!orderProgress_o.isPartnerPresent() || orderProgress_o.isPartnerPreempted()){//sysj/systemController.sysj line: 154, column: 5
+              orderProgress_o.setREQ(false);//sysj/systemController.sysj line: 154, column: 5
+              S209804=1;
               active[7]=1;
               ends[7]=1;
               tdone[7]=1;
+            }
+            else {
+              S209799=0;
+              if(orderProgress_o.isACK()){//sysj/systemController.sysj line: 154, column: 5
+                orderProgress_o.setVal(new Integer((int)w_thread_7.id));//sysj/systemController.sysj line: 154, column: 5
+                S209799=1;
+                if(!orderProgress_o.isACK()){//sysj/systemController.sysj line: 154, column: 5
+                  orderProgress_o.setREQ(false);//sysj/systemController.sysj line: 154, column: 5
+                  ends[7]=2;
+                  ;//sysj/systemController.sysj line: 154, column: 5
+                  S209751=2;
+                  active[7]=1;
+                  ends[7]=1;
+                  tdone[7]=1;
+                }
+                else {
+                  active[7]=1;
+                  ends[7]=1;
+                  tdone[7]=1;
+                }
+              }
+              else {
+                active[7]=1;
+                ends[7]=1;
+                tdone[7]=1;
+              }
             }
           }
         }
@@ -2223,150 +12460,58 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread175409(int [] tdone, int [] ends){
-        S174713=1;
-    w_thread_6 = null;//sysj\systemController.sysj line: 103, column: 3
-    done_thread_6 = 0;//sysj\systemController.sysj line: 104, column: 3
-    S171009=0;
-    S170993=0;
-    if(!bottleDone_in.isPartnerPresent() || bottleDone_in.isPartnerPreempted()){//sysj\systemController.sysj line: 106, column: 4
-      bottleDone_in.setACK(false);//sysj\systemController.sysj line: 106, column: 4
-      S170993=1;
+  public void thread214333(int [] tdone, int [] ends){
+        S209727=1;
+    w_thread_6 = null;//sysj/systemController.sysj line: 117, column: 3
+    S209082=0;
+    S209066=0;
+    if(!bottleDone_in.isPartnerPresent() || bottleDone_in.isPartnerPreempted()){//sysj/systemController.sysj line: 119, column: 4
+      bottleDone_in.setACK(false);//sysj/systemController.sysj line: 119, column: 4
+      S209066=1;
       active[6]=1;
       ends[6]=1;
       tdone[6]=1;
     }
     else {
-      S170988=0;
-      if(!bottleDone_in.isREQ()){//sysj\systemController.sysj line: 106, column: 4
-        bottleDone_in.setACK(true);//sysj\systemController.sysj line: 106, column: 4
-        S170988=1;
-        if(bottleDone_in.isREQ()){//sysj\systemController.sysj line: 106, column: 4
-          bottleDone_in.setACK(false);//sysj\systemController.sysj line: 106, column: 4
+      S209061=0;
+      if(!bottleDone_in.isREQ()){//sysj/systemController.sysj line: 119, column: 4
+        bottleDone_in.setACK(true);//sysj/systemController.sysj line: 119, column: 4
+        S209061=1;
+        if(bottleDone_in.isREQ()){//sysj/systemController.sysj line: 119, column: 4
+          bottleDone_in.setACK(false);//sysj/systemController.sysj line: 119, column: 4
           ends[6]=2;
-          ;//sysj\systemController.sysj line: 106, column: 4
-          w_thread_6 = (Workpiece)(bottleDone_in.getVal() == null ? null : ((Workpiece)bottleDone_in.getVal()));//sysj\systemController.sysj line: 107, column: 4
-          S171009=1;
-          if(w_thread_6.isRejected()){//sysj\systemController.sysj line: 109, column: 4
-            System.out.println("[SC] " + w_thread_6 + " failed its quality check (" + w_thread_6.defect() + "); handing it to the Recycling Station.");//sysj\systemController.sysj line: 110, column: 5
-            S171016=0;
-            if(!bottleRejected_o.isPartnerPresent() || bottleRejected_o.isPartnerPreempted()){//sysj\systemController.sysj line: 112, column: 5
-              bottleRejected_o.setREQ(false);//sysj\systemController.sysj line: 112, column: 5
-              S171016=1;
-              active[6]=1;
-              ends[6]=1;
-              tdone[6]=1;
-            }
-            else {
-              S171011=0;
-              if(bottleRejected_o.isACK()){//sysj\systemController.sysj line: 112, column: 5
-                bottleRejected_o.setVal(w_thread_6);//sysj\systemController.sysj line: 112, column: 5
-                S171011=1;
-                if(!bottleRejected_o.isACK()){//sysj\systemController.sysj line: 112, column: 5
-                  bottleRejected_o.setREQ(false);//sysj\systemController.sysj line: 112, column: 5
-                  ends[6]=2;
-                  ;//sysj\systemController.sysj line: 112, column: 5
-                  S171009=2;
-                  if(!w_thread_6.isRejected()){//sysj\systemController.sysj line: 115, column: 7
-                    done_thread_6 = done_thread_6 + 1;//sysj\systemController.sysj line: 116, column: 5
-                    System.out.println("[SC] " + w_thread_6 + " finished at " + w_thread_6.filledMl() + "ml, sealed=" + w_thread_6.isSealed() + ". " + done_thread_6 + " complete.");//sysj\systemController.sysj line: 117, column: 5
-                    S171201=0;
-                    if(!orderProgress_o.isPartnerPresent() || orderProgress_o.isPartnerPreempted()){//sysj\systemController.sysj line: 119, column: 5
-                      orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
-                      S171201=1;
-                      active[6]=1;
-                      ends[6]=1;
-                      tdone[6]=1;
-                    }
-                    else {
-                      S171196=0;
-                      if(orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                        orderProgress_o.setVal(new Integer(w_thread_6.id));//sysj\systemController.sysj line: 119, column: 5
-                        S171196=1;
-                        if(!orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                          orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
-                          ends[6]=2;
-                          ;//sysj\systemController.sysj line: 119, column: 5
-                          S171009=3;
-                          active[6]=1;
-                          ends[6]=1;
-                          tdone[6]=1;
-                        }
-                        else {
-                          active[6]=1;
-                          ends[6]=1;
-                          tdone[6]=1;
-                        }
-                      }
-                      else {
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                    }
-                  }
-                  else {
-                    S171009=3;
-                    active[6]=1;
-                    ends[6]=1;
-                    tdone[6]=1;
-                  }
-                }
-                else {
-                  active[6]=1;
-                  ends[6]=1;
-                  tdone[6]=1;
-                }
-              }
-              else {
-                active[6]=1;
-                ends[6]=1;
-                tdone[6]=1;
-              }
-            }
+          ;//sysj/systemController.sysj line: 119, column: 4
+          w_thread_6 = (WorkpieceTwin)(bottleDone_in.getVal() == null ? null : ((WorkpieceTwin)bottleDone_in.getVal()));//sysj/systemController.sysj line: 120, column: 4
+          S209082=1;
+          S209089=0;
+          if(!labelBottle_o.isPartnerPresent() || labelBottle_o.isPartnerPreempted()){//sysj/systemController.sysj line: 126, column: 4
+            labelBottle_o.setREQ(false);//sysj/systemController.sysj line: 126, column: 4
+            S209089=1;
+            active[6]=1;
+            ends[6]=1;
+            tdone[6]=1;
           }
           else {
-            S171009=2;
-            if(!w_thread_6.isRejected()){//sysj\systemController.sysj line: 115, column: 7
-              done_thread_6 = done_thread_6 + 1;//sysj\systemController.sysj line: 116, column: 5
-              System.out.println("[SC] " + w_thread_6 + " finished at " + w_thread_6.filledMl() + "ml, sealed=" + w_thread_6.isSealed() + ". " + done_thread_6 + " complete.");//sysj\systemController.sysj line: 117, column: 5
-              S171201=0;
-              if(!orderProgress_o.isPartnerPresent() || orderProgress_o.isPartnerPreempted()){//sysj\systemController.sysj line: 119, column: 5
-                orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
-                S171201=1;
+            S209084=0;
+            if(labelBottle_o.isACK()){//sysj/systemController.sysj line: 126, column: 4
+              labelBottle_o.setVal(w_thread_6);//sysj/systemController.sysj line: 126, column: 4
+              S209084=1;
+              if(!labelBottle_o.isACK()){//sysj/systemController.sysj line: 126, column: 4
+                labelBottle_o.setREQ(false);//sysj/systemController.sysj line: 126, column: 4
+                ends[6]=2;
+                ;//sysj/systemController.sysj line: 126, column: 4
+                S209082=2;
                 active[6]=1;
                 ends[6]=1;
                 tdone[6]=1;
               }
               else {
-                S171196=0;
-                if(orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                  orderProgress_o.setVal(new Integer(w_thread_6.id));//sysj\systemController.sysj line: 119, column: 5
-                  S171196=1;
-                  if(!orderProgress_o.isACK()){//sysj\systemController.sysj line: 119, column: 5
-                    orderProgress_o.setREQ(false);//sysj\systemController.sysj line: 119, column: 5
-                    ends[6]=2;
-                    ;//sysj\systemController.sysj line: 119, column: 5
-                    S171009=3;
-                    active[6]=1;
-                    ends[6]=1;
-                    tdone[6]=1;
-                  }
-                  else {
-                    active[6]=1;
-                    ends[6]=1;
-                    tdone[6]=1;
-                  }
-                }
-                else {
-                  active[6]=1;
-                  ends[6]=1;
-                  tdone[6]=1;
-                }
+                active[6]=1;
+                ends[6]=1;
+                tdone[6]=1;
               }
             }
             else {
-              S171009=3;
               active[6]=1;
               ends[6]=1;
               tdone[6]=1;
@@ -2387,28 +12532,28 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread175408(int [] tdone, int [] ends){
-        S170985=1;
-    S170937=0;
-    S170921=0;
-    if(!loadAck_in.isPartnerPresent() || loadAck_in.isPartnerPreempted()){//sysj\systemController.sysj line: 88, column: 4
-      loadAck_in.setACK(false);//sysj\systemController.sysj line: 88, column: 4
-      S170921=1;
+  public void thread214332(int [] tdone, int [] ends){
+        S209059=1;
+    S209011=0;
+    S208995=0;
+    if(!loadAck_in.isPartnerPresent() || loadAck_in.isPartnerPreempted()){//sysj/systemController.sysj line: 105, column: 4
+      loadAck_in.setACK(false);//sysj/systemController.sysj line: 105, column: 4
+      S208995=1;
       active[5]=1;
       ends[5]=1;
       tdone[5]=1;
     }
     else {
-      S170916=0;
-      if(!loadAck_in.isREQ()){//sysj\systemController.sysj line: 88, column: 4
-        loadAck_in.setACK(true);//sysj\systemController.sysj line: 88, column: 4
-        S170916=1;
-        if(loadAck_in.isREQ()){//sysj\systemController.sysj line: 88, column: 4
-          loadAck_in.setACK(false);//sysj\systemController.sysj line: 88, column: 4
+      S208990=0;
+      if(!loadAck_in.isREQ()){//sysj/systemController.sysj line: 105, column: 4
+        loadAck_in.setACK(true);//sysj/systemController.sysj line: 105, column: 4
+        S208990=1;
+        if(loadAck_in.isREQ()){//sysj/systemController.sysj line: 105, column: 4
+          loadAck_in.setACK(false);//sysj/systemController.sysj line: 105, column: 4
           ends[5]=2;
-          ;//sysj\systemController.sysj line: 88, column: 4
-          System.out.println("[SC] " + (Workpiece)(loadAck_in.getVal() == null ? null : ((Workpiece)loadAck_in.getVal())) + " is on the conveyor.");//sysj\systemController.sysj line: 89, column: 4
-          S170937=1;
+          ;//sysj/systemController.sysj line: 105, column: 4
+          System.out.println("[SC] " + (WorkpieceTwin)(loadAck_in.getVal() == null ? null : ((WorkpieceTwin)loadAck_in.getVal())) + " is on the conveyor.");//sysj/systemController.sysj line: 106, column: 4
+          S209011=1;
           active[5]=1;
           ends[5]=1;
           tdone[5]=1;
@@ -2427,48 +12572,49 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread175407(int [] tdone, int [] ends){
-        S170914=1;
-    w_thread_4 = null;//sysj\systemController.sysj line: 76, column: 3
-    S170269=0;
-    S170253=0;
-    if(!purchaseOrder_in.isPartnerPresent() || purchaseOrder_in.isPartnerPreempted()){//sysj\systemController.sysj line: 78, column: 4
-      purchaseOrder_in.setACK(false);//sysj\systemController.sysj line: 78, column: 4
-      S170253=1;
+  public void thread214331(int [] tdone, int [] ends){
+        S208988=1;
+    w_thread_4 = null;//sysj/systemController.sysj line: 92, column: 3
+    S208343=0;
+    S208327=0;
+    if(!purchaseOrder_in.isPartnerPresent() || purchaseOrder_in.isPartnerPreempted()){//sysj/systemController.sysj line: 94, column: 4
+      purchaseOrder_in.setACK(false);//sysj/systemController.sysj line: 94, column: 4
+      S208327=1;
       active[4]=1;
       ends[4]=1;
       tdone[4]=1;
     }
     else {
-      S170248=0;
-      if(!purchaseOrder_in.isREQ()){//sysj\systemController.sysj line: 78, column: 4
-        purchaseOrder_in.setACK(true);//sysj\systemController.sysj line: 78, column: 4
-        S170248=1;
-        if(purchaseOrder_in.isREQ()){//sysj\systemController.sysj line: 78, column: 4
-          purchaseOrder_in.setACK(false);//sysj\systemController.sysj line: 78, column: 4
+      S208322=0;
+      if(!purchaseOrder_in.isREQ()){//sysj/systemController.sysj line: 94, column: 4
+        purchaseOrder_in.setACK(true);//sysj/systemController.sysj line: 94, column: 4
+        S208322=1;
+        if(purchaseOrder_in.isREQ()){//sysj/systemController.sysj line: 94, column: 4
+          purchaseOrder_in.setACK(false);//sysj/systemController.sysj line: 94, column: 4
           ends[4]=2;
-          ;//sysj\systemController.sysj line: 78, column: 4
-          w_thread_4 = (Workpiece)(purchaseOrder_in.getVal() == null ? null : ((Workpiece)purchaseOrder_in.getVal()));//sysj\systemController.sysj line: 79, column: 4
-          System.out.println("[SC] Loading " + w_thread_4 + ".");//sysj\systemController.sysj line: 80, column: 4
-          S170269=1;
-          S170276=0;
-          if(!loadOrder_o.isPartnerPresent() || loadOrder_o.isPartnerPreempted()){//sysj\systemController.sysj line: 81, column: 4
-            loadOrder_o.setREQ(false);//sysj\systemController.sysj line: 81, column: 4
-            S170276=1;
+          ;//sysj/systemController.sysj line: 94, column: 4
+          w_thread_4 = (WorkpieceTwin)(purchaseOrder_in.getVal() == null ? null : ((WorkpieceTwin)purchaseOrder_in.getVal()));//sysj/systemController.sysj line: 95, column: 4
+          System.out.println("[SC] Loading " + w_thread_4 + ".");//sysj/systemController.sysj line: 96, column: 4
+          TwinRegistry.shared().admit(w_thread_4);//sysj/systemController.sysj line: 97, column: 4
+          S208343=1;
+          S208350=0;
+          if(!loadOrder_o.isPartnerPresent() || loadOrder_o.isPartnerPreempted()){//sysj/systemController.sysj line: 98, column: 4
+            loadOrder_o.setREQ(false);//sysj/systemController.sysj line: 98, column: 4
+            S208350=1;
             active[4]=1;
             ends[4]=1;
             tdone[4]=1;
           }
           else {
-            S170271=0;
-            if(loadOrder_o.isACK()){//sysj\systemController.sysj line: 81, column: 4
-              loadOrder_o.setVal(w_thread_4);//sysj\systemController.sysj line: 81, column: 4
-              S170271=1;
-              if(!loadOrder_o.isACK()){//sysj\systemController.sysj line: 81, column: 4
-                loadOrder_o.setREQ(false);//sysj\systemController.sysj line: 81, column: 4
+            S208345=0;
+            if(loadOrder_o.isACK()){//sysj/systemController.sysj line: 98, column: 4
+              loadOrder_o.setVal(w_thread_4);//sysj/systemController.sysj line: 98, column: 4
+              S208345=1;
+              if(!loadOrder_o.isACK()){//sysj/systemController.sysj line: 98, column: 4
+                loadOrder_o.setREQ(false);//sysj/systemController.sysj line: 98, column: 4
                 ends[4]=2;
-                ;//sysj\systemController.sysj line: 81, column: 4
-                S170269=2;
+                ;//sysj/systemController.sysj line: 98, column: 4
+                S208343=2;
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
@@ -2500,69 +12646,74 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread175406(int [] tdone, int [] ends){
-        S170246=1;
-    enableBL.setPresent();//sysj\systemController.sysj line: 67, column: 4
+  public void thread214330(int [] tdone, int [] ends){
+        S208320=1;
+    enableBL.setPresent();//sysj/systemController.sysj line: 83, column: 4
     currsigs.addElement(enableBL);
-    enableCV.setPresent();//sysj\systemController.sysj line: 67, column: 19
+    enableCV.setPresent();//sysj/systemController.sysj line: 83, column: 19
     currsigs.addElement(enableCV);
-    enableRT.setPresent();//sysj\systemController.sysj line: 67, column: 34
+    enableRT.setPresent();//sysj/systemController.sysj line: 83, column: 34
     currsigs.addElement(enableRT);
-    enableF1.setPresent();//sysj\systemController.sysj line: 68, column: 4
+    enableF1.setPresent();//sysj/systemController.sysj line: 84, column: 4
     currsigs.addElement(enableF1);
-    enableF2.setPresent();//sysj\systemController.sysj line: 68, column: 19
+    enableF2.setPresent();//sysj/systemController.sysj line: 84, column: 19
     currsigs.addElement(enableF2);
-    enableLL.setPresent();//sysj\systemController.sysj line: 68, column: 34
+    enableLL.setPresent();//sysj/systemController.sysj line: 84, column: 34
     currsigs.addElement(enableLL);
-    enableCP.setPresent();//sysj\systemController.sysj line: 68, column: 49
+    enableCP.setPresent();//sysj/systemController.sysj line: 84, column: 49
     currsigs.addElement(enableCP);
-    enableSP.setPresent();//sysj\systemController.sysj line: 69, column: 4
+    enableLB.setPresent();//sysj/systemController.sysj line: 84, column: 64
+    currsigs.addElement(enableLB);
+    enableSP.setPresent();//sysj/systemController.sysj line: 85, column: 4
     currsigs.addElement(enableSP);
-    enableRC.setPresent();//sysj\systemController.sysj line: 69, column: 19
+    enableRC.setPresent();//sysj/systemController.sysj line: 85, column: 19
     currsigs.addElement(enableRC);
-    enableLR.setPresent();//sysj\systemController.sysj line: 69, column: 34
+    enableLR.setPresent();//sysj/systemController.sysj line: 85, column: 34
     currsigs.addElement(enableLR);
-    enableLD.setPresent();//sysj\systemController.sysj line: 70, column: 4
+    enableLD.setPresent();//sysj/systemController.sysj line: 86, column: 4
     currsigs.addElement(enableLD);
-    enableBR.setPresent();//sysj\systemController.sysj line: 70, column: 19
+    enableBR.setPresent();//sysj/systemController.sysj line: 86, column: 19
     currsigs.addElement(enableBR);
     active[3]=1;
     ends[3]=1;
     tdone[3]=1;
   }
 
-  public void thread175405(int [] tdone, int [] ends){
-        S170241=1;
-    modeBL.setPresent();//sysj\systemController.sysj line: 57, column: 4
+  public void thread214329(int [] tdone, int [] ends){
+        S208315=1;
+    modeBL.setPresent();//sysj/systemController.sysj line: 73, column: 4
     currsigs.addElement(modeBL);
-    modeBL.setValue(0);//sysj\systemController.sysj line: 57, column: 4
-    modeF1.setPresent();//sysj\systemController.sysj line: 57, column: 20
+    modeBL.setValue(0);//sysj/systemController.sysj line: 73, column: 4
+    modeF1.setPresent();//sysj/systemController.sysj line: 73, column: 20
     currsigs.addElement(modeF1);
-    modeF1.setValue(0);//sysj\systemController.sysj line: 57, column: 20
-    modeF2.setPresent();//sysj\systemController.sysj line: 57, column: 36
+    modeF1.setValue(0);//sysj/systemController.sysj line: 73, column: 20
+    modeF2.setPresent();//sysj/systemController.sysj line: 73, column: 36
     currsigs.addElement(modeF2);
-    modeF2.setValue(0);//sysj\systemController.sysj line: 57, column: 36
-    modeLL.setPresent();//sysj\systemController.sysj line: 58, column: 4
+    modeF2.setValue(0);//sysj/systemController.sysj line: 73, column: 36
+    modeLL.setPresent();//sysj/systemController.sysj line: 74, column: 4
     currsigs.addElement(modeLL);
-    modeLL.setValue(0);//sysj\systemController.sysj line: 58, column: 4
-    modeCP.setPresent();//sysj\systemController.sysj line: 58, column: 20
+    modeLL.setValue(0);//sysj/systemController.sysj line: 74, column: 4
+    modeCP.setPresent();//sysj/systemController.sysj line: 74, column: 20
     currsigs.addElement(modeCP);
-    modeCP.setValue(0);//sysj\systemController.sysj line: 58, column: 20
-    modeSP.setPresent();//sysj\systemController.sysj line: 59, column: 4
+    modeCP.setValue(0);//sysj/systemController.sysj line: 74, column: 20
+    modeLB.setPresent();//sysj/systemController.sysj line: 74, column: 36
+    currsigs.addElement(modeLB);
+    modeLB.setValue(0);//sysj/systemController.sysj line: 74, column: 36
+    modeSP.setPresent();//sysj/systemController.sysj line: 75, column: 4
     currsigs.addElement(modeSP);
-    modeSP.setValue(0);//sysj\systemController.sysj line: 59, column: 4
-    modeRC.setPresent();//sysj\systemController.sysj line: 59, column: 20
+    modeSP.setValue(0);//sysj/systemController.sysj line: 75, column: 4
+    modeRC.setPresent();//sysj/systemController.sysj line: 75, column: 20
     currsigs.addElement(modeRC);
-    modeRC.setValue(0);//sysj\systemController.sysj line: 59, column: 20
-    modeLR.setPresent();//sysj\systemController.sysj line: 59, column: 36
+    modeRC.setValue(0);//sysj/systemController.sysj line: 75, column: 20
+    modeLR.setPresent();//sysj/systemController.sysj line: 75, column: 36
     currsigs.addElement(modeLR);
-    modeLR.setValue(0);//sysj\systemController.sysj line: 59, column: 36
-    modeLD.setPresent();//sysj\systemController.sysj line: 60, column: 4
+    modeLR.setValue(0);//sysj/systemController.sysj line: 75, column: 36
+    modeLD.setPresent();//sysj/systemController.sysj line: 76, column: 4
     currsigs.addElement(modeLD);
-    modeLD.setValue(0);//sysj\systemController.sysj line: 60, column: 4
-    modeBR.setPresent();//sysj\systemController.sysj line: 60, column: 20
+    modeLD.setValue(0);//sysj/systemController.sysj line: 76, column: 4
+    modeBR.setPresent();//sysj/systemController.sysj line: 76, column: 20
     currsigs.addElement(modeBR);
-    modeBR.setValue(0);//sysj\systemController.sysj line: 60, column: 20
+    modeBR.setValue(0);//sysj/systemController.sysj line: 76, column: 20
     active[2]=1;
     ends[2]=1;
     tdone[2]=1;
@@ -2575,90 +12726,106 @@ public class SystemController extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S175403){
+      switch(S214327){
         case 0 : 
-          S175403=0;
+          S214327=0;
           break RUN;
         
         case 1 : 
-          S175403=2;
-          S175403=2;
-          thread175405(tdone,ends);
-          thread175406(tdone,ends);
-          thread175407(tdone,ends);
-          thread175408(tdone,ends);
-          thread175409(tdone,ends);
-          thread175410(tdone,ends);
-          thread175411(tdone,ends);
-          int biggest175412 = 0;
-          if(ends[2]>=biggest175412){
-            biggest175412=ends[2];
+          S214327=2;
+          S214327=2;
+          thread214329(tdone,ends);
+          thread214330(tdone,ends);
+          thread214331(tdone,ends);
+          thread214332(tdone,ends);
+          thread214333(tdone,ends);
+          thread214334(tdone,ends);
+          thread214335(tdone,ends);
+          thread214336(tdone,ends);
+          thread214337(tdone,ends);
+          int biggest214338 = 0;
+          if(ends[2]>=biggest214338){
+            biggest214338=ends[2];
           }
-          if(ends[3]>=biggest175412){
-            biggest175412=ends[3];
+          if(ends[3]>=biggest214338){
+            biggest214338=ends[3];
           }
-          if(ends[4]>=biggest175412){
-            biggest175412=ends[4];
+          if(ends[4]>=biggest214338){
+            biggest214338=ends[4];
           }
-          if(ends[5]>=biggest175412){
-            biggest175412=ends[5];
+          if(ends[5]>=biggest214338){
+            biggest214338=ends[5];
           }
-          if(ends[6]>=biggest175412){
-            biggest175412=ends[6];
+          if(ends[6]>=biggest214338){
+            biggest214338=ends[6];
           }
-          if(ends[7]>=biggest175412){
-            biggest175412=ends[7];
+          if(ends[7]>=biggest214338){
+            biggest214338=ends[7];
           }
-          if(ends[8]>=biggest175412){
-            biggest175412=ends[8];
+          if(ends[8]>=biggest214338){
+            biggest214338=ends[8];
           }
-          if(biggest175412 == 1){
+          if(ends[9]>=biggest214338){
+            biggest214338=ends[9];
+          }
+          if(ends[10]>=biggest214338){
+            biggest214338=ends[10];
+          }
+          if(biggest214338 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
         
         case 2 : 
-          thread175413(tdone,ends);
-          thread175414(tdone,ends);
-          thread175415(tdone,ends);
-          thread175416(tdone,ends);
-          thread175417(tdone,ends);
-          thread175418(tdone,ends);
-          thread175419(tdone,ends);
-          int biggest175420 = 0;
-          if(ends[2]>=biggest175420){
-            biggest175420=ends[2];
+          thread214339(tdone,ends);
+          thread214340(tdone,ends);
+          thread214341(tdone,ends);
+          thread214342(tdone,ends);
+          thread214343(tdone,ends);
+          thread214344(tdone,ends);
+          thread214345(tdone,ends);
+          thread214346(tdone,ends);
+          thread214347(tdone,ends);
+          int biggest214348 = 0;
+          if(ends[2]>=biggest214348){
+            biggest214348=ends[2];
           }
-          if(ends[3]>=biggest175420){
-            biggest175420=ends[3];
+          if(ends[3]>=biggest214348){
+            biggest214348=ends[3];
           }
-          if(ends[4]>=biggest175420){
-            biggest175420=ends[4];
+          if(ends[4]>=biggest214348){
+            biggest214348=ends[4];
           }
-          if(ends[5]>=biggest175420){
-            biggest175420=ends[5];
+          if(ends[5]>=biggest214348){
+            biggest214348=ends[5];
           }
-          if(ends[6]>=biggest175420){
-            biggest175420=ends[6];
+          if(ends[6]>=biggest214348){
+            biggest214348=ends[6];
           }
-          if(ends[7]>=biggest175420){
-            biggest175420=ends[7];
+          if(ends[7]>=biggest214348){
+            biggest214348=ends[7];
           }
-          if(ends[8]>=biggest175420){
-            biggest175420=ends[8];
+          if(ends[8]>=biggest214348){
+            biggest214348=ends[8];
           }
-          if(biggest175420 == 1){
+          if(ends[9]>=biggest214348){
+            biggest214348=ends[9];
+          }
+          if(ends[10]>=biggest214348){
+            biggest214348=ends[10];
+          }
+          if(biggest214348 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest175420 == 0){
-            S175403=0;
+          if(biggest214348 == 0){
+            S214327=0;
             active[1]=0;
             ends[1]=0;
-            S175403=0;
+            S214327=0;
             break RUN;
           }
         
@@ -2667,9 +12834,9 @@ public class SystemController extends ClockDomain{
   }
 
   public void init(){
-    char [] active1 = {1, 1, 1, 1, 1, 1, 1, 1, 1};
-    char [] paused1 = {0, 0, 0, 0, 0, 0, 0, 0, 0};
-    char [] suspended1 = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+    char [] active1 = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+    char [] paused1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    char [] suspended1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     paused = paused1;
     active = active1;
     suspended = suspended1;
@@ -2691,22 +12858,43 @@ public class SystemController extends ClockDomain{
           purchaseOrder_in.gethook();
           loadAck_in.gethook();
           bottleDone_in.gethook();
+          labelDone_in.gethook();
           bottleRecycled_in.gethook();
           orderProgress_o.gethook();
           orderRejected_o.gethook();
           loadOrder_o.gethook();
+          labelBottle_o.gethook();
           bottleRejected_o.gethook();
+          twinBL.gethook();
+          twinCV.gethook();
+          twinRT.gethook();
+          twinF1.gethook();
+          twinF2.gethook();
+          twinLL.gethook();
+          twinCP.gethook();
+          twinLB.gethook();
+          labellerStatus.gethook();
           recyclingStatus.gethook();
           df = true;
         }
         runClockDomain();
       }
+      twinBL.setpreclear();
+      twinCV.setpreclear();
+      twinRT.setpreclear();
+      twinF1.setpreclear();
+      twinF2.setpreclear();
+      twinLL.setpreclear();
+      twinCP.setpreclear();
+      twinLB.setpreclear();
+      labellerStatus.setpreclear();
       recyclingStatus.setpreclear();
       modeBL.setpreclear();
       modeF1.setpreclear();
       modeF2.setpreclear();
       modeLL.setpreclear();
       modeCP.setpreclear();
+      modeLB.setpreclear();
       modeSP.setpreclear();
       modeRC.setpreclear();
       modeLR.setpreclear();
@@ -2719,6 +12907,7 @@ public class SystemController extends ClockDomain{
       enableF2.setpreclear();
       enableLL.setpreclear();
       enableCP.setpreclear();
+      enableLB.setpreclear();
       enableSP.setpreclear();
       enableRC.setpreclear();
       enableLR.setpreclear();
@@ -2730,6 +12919,33 @@ public class SystemController extends ClockDomain{
         ((Signal)currsigs.elementAt(qw)).setpreval(((Signal)currsigs.elementAt(qw)).getValue());
       }
       currsigs.removeAllElements();
+      dummyint = twinBL.getStatus() ? twinBL.setprepresent() : twinBL.setpreclear();
+      twinBL.setpreval(twinBL.getValue());
+      twinBL.setClear();
+      dummyint = twinCV.getStatus() ? twinCV.setprepresent() : twinCV.setpreclear();
+      twinCV.setpreval(twinCV.getValue());
+      twinCV.setClear();
+      dummyint = twinRT.getStatus() ? twinRT.setprepresent() : twinRT.setpreclear();
+      twinRT.setpreval(twinRT.getValue());
+      twinRT.setClear();
+      dummyint = twinF1.getStatus() ? twinF1.setprepresent() : twinF1.setpreclear();
+      twinF1.setpreval(twinF1.getValue());
+      twinF1.setClear();
+      dummyint = twinF2.getStatus() ? twinF2.setprepresent() : twinF2.setpreclear();
+      twinF2.setpreval(twinF2.getValue());
+      twinF2.setClear();
+      dummyint = twinLL.getStatus() ? twinLL.setprepresent() : twinLL.setpreclear();
+      twinLL.setpreval(twinLL.getValue());
+      twinLL.setClear();
+      dummyint = twinCP.getStatus() ? twinCP.setprepresent() : twinCP.setpreclear();
+      twinCP.setpreval(twinCP.getValue());
+      twinCP.setClear();
+      dummyint = twinLB.getStatus() ? twinLB.setprepresent() : twinLB.setpreclear();
+      twinLB.setpreval(twinLB.getValue());
+      twinLB.setClear();
+      dummyint = labellerStatus.getStatus() ? labellerStatus.setprepresent() : labellerStatus.setpreclear();
+      labellerStatus.setpreval(labellerStatus.getValue());
+      labellerStatus.setClear();
       dummyint = recyclingStatus.getStatus() ? recyclingStatus.setprepresent() : recyclingStatus.setpreclear();
       recyclingStatus.setpreval(recyclingStatus.getValue());
       recyclingStatus.setClear();
@@ -2743,6 +12959,8 @@ public class SystemController extends ClockDomain{
       modeLL.setClear();
       modeCP.sethook();
       modeCP.setClear();
+      modeLB.sethook();
+      modeLB.setClear();
       modeSP.sethook();
       modeSP.setClear();
       modeRC.sethook();
@@ -2767,6 +12985,8 @@ public class SystemController extends ClockDomain{
       enableLL.setClear();
       enableCP.sethook();
       enableCP.setClear();
+      enableLB.sethook();
+      enableLB.setClear();
       enableSP.sethook();
       enableSP.setClear();
       enableRC.sethook();
@@ -2780,21 +13000,34 @@ public class SystemController extends ClockDomain{
       purchaseOrder_in.sethook();
       loadAck_in.sethook();
       bottleDone_in.sethook();
+      labelDone_in.sethook();
       bottleRecycled_in.sethook();
       orderProgress_o.sethook();
       orderRejected_o.sethook();
       loadOrder_o.sethook();
+      labelBottle_o.sethook();
       bottleRejected_o.sethook();
       if(paused[1]!=0 || suspended[1]!=0 || active[1]!=1);
       else{
         purchaseOrder_in.gethook();
         loadAck_in.gethook();
         bottleDone_in.gethook();
+        labelDone_in.gethook();
         bottleRecycled_in.gethook();
         orderProgress_o.gethook();
         orderRejected_o.gethook();
         loadOrder_o.gethook();
+        labelBottle_o.gethook();
         bottleRejected_o.gethook();
+        twinBL.gethook();
+        twinCV.gethook();
+        twinRT.gethook();
+        twinF1.gethook();
+        twinF2.gethook();
+        twinLL.gethook();
+        twinCP.gethook();
+        twinLB.gethook();
+        labellerStatus.gethook();
         recyclingStatus.gethook();
       }
       runFinisher();

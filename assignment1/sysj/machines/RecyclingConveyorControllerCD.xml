@@ -3,19 +3,19 @@
 <System xmlns="http://systemjtechnology.com">
 	<SubSystem Name="RecyclingConveyorControllerCD" Local="true">
 		<ClockDomain Name="RecyclingConveyorControllerCD" Class="RecyclingConveyorController">
-			<iChannel Name="enable"        From="RecyclingStationControllerCD.enableConveyor" />
-			<oChannel Name="status"        To="RecyclingStationControllerCD.statusConveyor" />
+			<iChannel Name="enable"          From="RecyclingStationControllerCD.enableConveyor" />
+			<oChannel Name="status"          To="RecyclingStationControllerCD.statusConveyor" />
 
-			<iSignal Name="mode"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15200" />
+			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15200" />
 			<iSignal Name="bottleAtSplitterExit" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15200" />
 			<iSignal Name="bottleAtLidRemoval" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15200" />
-			<iSignal Name="bottleAtDumper"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15200" />
-			<iSignal Name="bottleAtReturn"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15200" />
-			<iSignal Name="bottleLeftReturn" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15200" />
+			<iSignal Name="bottleAtDumper"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15200" />
+			<iSignal Name="bottleAtReturn"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15200" />
+			<iSignal Name="bottleLeftReturn"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15200" />
 			<iSignal Name="recyclingConveyorMotorM" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15200" />
 			<oSignal Name="recyclingConveyorMotor" To="RecyclingConveyorPlantCD.recyclingConveyorMotor" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15201" />
-			<oSignal Name="injectAtEntry"   To="RecyclingConveyorPlantCD.injectAtEntry" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15201" />
-			<oSignal Name="collectAtReturn" To="RecyclingConveyorPlantCD.collectAtReturn" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15201" />
+			<oSignal Name="injectAtEntry"     To="RecyclingConveyorPlantCD.injectAtEntry"    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15201" />
+			<oSignal Name="collectAtReturn"   To="RecyclingConveyorPlantCD.collectAtReturn"  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15201" />
 		</ClockDomain>
 	</SubSystem>
 </System>

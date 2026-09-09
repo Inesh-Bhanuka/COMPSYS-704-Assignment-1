@@ -15,11 +15,14 @@
  */
 BottleLoaderController(
 		// from / to the System Controller
-		input  Workpiece channel loadOrder;
-		output Workpiece channel loadAck;
+		input  WorkpieceTwin channel loadOrder;
+		output WorkpieceTwin channel loadAck;
 
 		// to the conveyor
-		output Workpiece channel bottleHandoff;
+		output WorkpieceTwin channel bottleHandoff;
+
+		// the machine's own summary, out to the coordinator
+		output LoaderTwin signal twin;
 
 		// operating mode is a level, so it stays a signal
 		input Integer signal mode;
@@ -52,7 +55,9 @@ BottleLoaderController(
 	}
 	||
 	{ // Auto mode
-		Workpiece w = null;
+		LoaderTwin t = new LoaderTwin();
+		int remaining = 20;
+		WorkpieceTwin w = null;
 
 		while(true){
 			await(immediate auto);
@@ -60,8 +65,13 @@ BottleLoaderController(
 			abort(immediate manual){
 
 				receive loadOrder;
-				w = (Workpiece)#loadOrder;
+				w = (WorkpieceTwin)#loadOrder;
 				System.out.println("[BL] Order received for " + w + ".");
+				w.arrived(Machine.LOADER);
+				w.started(Machine.LOADER, "pick and place");
+				if(t.update(PlantClock.now(), MachineStatus.WORKING, "load", "order " + w.id)){
+					emit twin(t);
+				}
 
 				present(bottleAtSource){
 					// a bottle is waiting
@@ -96,6 +106,12 @@ BottleLoaderController(
 					sustain release;
 				}
 
+				w.completed(Machine.LOADER, "placed on conveyor");
+				remaining--;
+				t.setBottlesRemaining(remaining);
+				if(t.update(PlantClock.now(), MachineStatus.IDLE, "idle", "loaded " + w.id)){
+					emit twin(t);
+				}
 				send loadAck(w);
 			}
 			pause;

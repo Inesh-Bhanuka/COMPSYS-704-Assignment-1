@@ -8,8 +8,11 @@
  */
 FillerController(
 		// from / to the Rotary Table
-		input  Workpiece channel start;
-		output Workpiece channel done;
+		input  WorkpieceTwin channel start;
+		output WorkpieceTwin channel done;
+
+		// the machine's own summary, out to the coordinator
+		output FillerTwin signal twin;
 
 		// operating mode
 		input Integer signal mode;
@@ -37,16 +40,19 @@ FillerController(
 	}
 	||
 	{ // Auto
-		Workpiece w = null;
+		FillerTwin t = new FillerTwin();
+		WorkpieceTwin w = null;
 		int ml = 0;
+		int asked = 0;
 
 		while(true){
 			await(immediate auto);
 
 			abort(immediate manual){
 				receive start;
-				w = (Workpiece)#start;
+				w = (WorkpieceTwin)#start;
 				ml = (w == null) ? 0 : w.nextVolumeMl();
+				asked = ml;
 
 				if(ml == 0){
 					// no bottle at this position, or the recipe asks for none
@@ -54,9 +60,23 @@ FillerController(
 				else if(!w.fits(ml)){
 					// Overflow interlock: refuse rather than dispense.
 					System.out.println("[FILL] Refusing " + ml + "ml into " + w + " - would overflow.");
+					w.reject(Machine.FILLER, "would overflow");
+					if(t.update(PlantClock.now(), MachineStatus.FAULT, "refuse", "overflow")){
+						emit twin(t);
+					}
 				}
 				else {
+					// An armed misfill makes the plant dispense short. The
+					// filler still measures what actually went in.
+					if(w.catchFault("misfill")){
+						ml = ml - 30;
+						System.out.println("[FILL] Metering fault on " + w + ".");
+					}
 					System.out.println("[FILL] Liquid " + w.nextLiquidName() + ", " + ml + "ml into " + w + ".");
+					w.started(Machine.FILLER, "liquid " + w.nextLiquidName());
+					if(t.update(PlantClock.now(), MachineStatus.WORKING, "valveOpen", ml + "ml")){
+						emit twin(t);
+					}
 					// Both are held for the whole fill. fillTarget used to be a
 					// single emit, which the plant can miss entirely - it is
 					// on the far side of a link, same as any other signal.
@@ -69,6 +89,15 @@ FillerController(
 					}
 
 					w.dispensed(ml);
+					if(!w.lastFillInTolerance(asked)){
+						System.out.println("[FILL] Out of tolerance: asked " + asked + "ml, metered " + ml + "ml.");
+						w.reject(Machine.FILLER, "fill out of tolerance");
+					}
+					w.completed(Machine.FILLER, "fill complete");
+					t.setDispensed(ml, ml / 20);
+					if(t.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml + "ml dispensed")){
+						emit twin(t);
+					}
 					System.out.println("[FILL] " + w + " now at " + w.filledMl() + "ml.");
 				}
 

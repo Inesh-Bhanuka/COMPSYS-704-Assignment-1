@@ -3,14 +3,14 @@
 <System xmlns="http://systemjtechnology.com">
 	<SubSystem Name="SplitterPlantCD" Local="true">
 		<ClockDomain Name="SplitterPlantCD" Class="SplitterPlant">
-			<iSignal Name="enable"          Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15101" />
-			<iSignal Name="admitBottle"     Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15101" />
-			<iSignal Name="diverterExtend"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15101" />
-			<iSignal Name="diverterRetract" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15101" />
-			<oSignal Name="bottleAtSplitter" To="SplitterControllerCD.bottleAtSplitter" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15100" />
-			<oSignal Name="divertAtNormal"  To="SplitterControllerCD.divertAtNormal"   Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15100" />
-			<oSignal Name="divertAtReject"  To="SplitterControllerCD.divertAtReject"   Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15100" />
-			<oSignal Name="bottleLeftSplitter" To="SplitterControllerCD.bottleLeftSplitter" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15100" />
+			<iSignal Name="enable"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15101" />
+			<iSignal Name="admitBottle"       Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15101" />
+			<iSignal Name="diverterExtend"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15101" />
+			<iSignal Name="diverterRetract"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15101" />
+			<oSignal Name="bottleAtSplitter"  To="SplitterControllerCD.bottleAtSplitter"     Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15100" />
+			<oSignal Name="divertAtNormal"    To="SplitterControllerCD.divertAtNormal"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15100" />
+			<oSignal Name="divertAtReject"    To="SplitterControllerCD.divertAtReject"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15100" />
+			<oSignal Name="bottleLeftSplitter" To="SplitterControllerCD.bottleLeftSplitter"   Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15100" />
 		</ClockDomain>
 	</SubSystem>
 </System>

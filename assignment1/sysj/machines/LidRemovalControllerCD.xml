@@ -3,25 +3,25 @@
 <System xmlns="http://systemjtechnology.com">
 	<SubSystem Name="LidRemovalControllerCD" Local="true">
 		<ClockDomain Name="LidRemovalControllerCD" Class="LidRemovalController">
-			<iChannel Name="enable"        From="RecyclingStationControllerCD.enableLidRemoval" />
-			<oChannel Name="status"        To="RecyclingStationControllerCD.statusLidRemoval" />
+			<iChannel Name="enable"          From="RecyclingStationControllerCD.enableLidRemoval" />
+			<oChannel Name="status"          To="RecyclingStationControllerCD.statusLidRemoval" />
 
-			<iSignal Name="mode"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
-			<iSignal Name="zAxisLowered"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
-			<iSignal Name="zAxisLifted"     Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
-			<iSignal Name="turnAtHomePos"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
-			<iSignal Name="turnAtFinalPos"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
-			<iSignal Name="lidGripped"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
-			<iSignal Name="lidBinFull"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
-			<iSignal Name="cylZaxisExtendM" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
+			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
+			<iSignal Name="zAxisLowered"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
+			<iSignal Name="zAxisLifted"       Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
+			<iSignal Name="turnAtHomePos"     Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
+			<iSignal Name="turnAtFinalPos"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
+			<iSignal Name="lidGripped"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
+			<iSignal Name="lidBinFull"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
+			<iSignal Name="cylZaxisExtendM"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
 			<iSignal Name="unscrewTurnExtendM" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
 			<iSignal Name="lidGripperExtendM" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
-			<iSignal Name="lidEjectExtendM" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
-			<oSignal Name="cylZaxisExtend"  To="LidRemovalPlantCD.cylZaxisExtend"      Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15301" />
-			<oSignal Name="unscrewTurnExtend" To="LidRemovalPlantCD.unscrewTurnExtend"   Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15301" />
-			<oSignal Name="unscrewTurnRetract" To="LidRemovalPlantCD.unscrewTurnRetract"  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15301" />
-			<oSignal Name="lidGripperExtend" To="LidRemovalPlantCD.lidGripperExtend"    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15301" />
-			<oSignal Name="lidEjectExtend"  To="LidRemovalPlantCD.lidEjectExtend"      Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15301" />
+			<iSignal Name="lidEjectExtendM"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
+			<oSignal Name="cylZaxisExtend"    To="LidRemovalPlantCD.cylZaxisExtend"          Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15301" />
+			<oSignal Name="unscrewTurnExtend" To="LidRemovalPlantCD.unscrewTurnExtend"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15301" />
+			<oSignal Name="unscrewTurnRetract" To="LidRemovalPlantCD.unscrewTurnRetract"      Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15301" />
+			<oSignal Name="lidGripperExtend"  To="LidRemovalPlantCD.lidGripperExtend"        Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15301" />
+			<oSignal Name="lidEjectExtend"    To="LidRemovalPlantCD.lidEjectExtend"          Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15301" />
 		</ClockDomain>
 	</SubSystem>
 </System>

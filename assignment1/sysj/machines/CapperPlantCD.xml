@@ -3,9 +3,9 @@
 <System xmlns="http://systemjtechnology.com">
 	<SubSystem Name="CapperPlantCD" Local="true">
 		<ClockDomain Name="CapperPlantCD" Class="CapperPlant">
-			<iSignal Name="enable"          Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14301" />
-			<iSignal Name="screwOn"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14301" />
-			<oSignal Name="capSeated"       To="CapperControllerCD.capSeated"          Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14300" />
+			<iSignal Name="enable"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14301" />
+			<iSignal Name="screwOn"           Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14301" />
+			<oSignal Name="capSeated"         To="CapperControllerCD.capSeated"              Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14300" />
 		</ClockDomain>
 	</SubSystem>
 </System>

@@ -1,53 +1,95 @@
 """Generates sysj/abs.xml and the per-machine XMLs from the .sysj interfaces.
 
 Edit a machine's interface, rerun this, and the wiring follows. Nothing here
-is hand-maintained, so the XML cannot drift from the code.
+is hand-maintained, so the XML cannot drift from the code. Add a machine by
+adding one row to CDS and its links to SIGNALS and CHANNELS.
 """
 import re, os
 
 # clock domain -> (class, .sysj file, port it listens on)
 CDS = [
-    ("PosStubCD",                "PosStub",              "posStub",              10000),
-    ("SystemControllerCD",       "SystemController",     "systemController",     10001),
-    ("BottleLoaderControllerCD", "BottleLoaderController","bottleLoaderController",11000),
-    ("BottleLoaderPlantCD",      "BottleLoaderPlant",    "bottleLoaderPlant",    11001),
-    ("ConveyorControllerCD",     "ConveyorController",   "conveyorController",   12000),
-    ("ConveyorPlantCD",          "ConveyorPlant",        "conveyorPlant",        12001),
-    ("RotaryTableControllerCD",  "RotaryTableController","rotaryTableController",13000),
-    ("RotaryTablePlantCD",       "RotaryTablePlant",     "rotaryTablePlant",     13001),
-    ("Filler1ControllerCD",      "FillerController",     "fillerController",     14000),
-    ("Filler1PlantCD",           "FillerPlant",          "fillerPlant",          14001),
-    ("Filler2ControllerCD",      "FillerController",     "fillerController",     14100),
-    ("Filler2PlantCD",           "FillerPlant",          "fillerPlant",          14101),
-    ("LidLoaderControllerCD",    "LidLoaderController",  "lidLoaderController",  14200),
-    ("LidLoaderPlantCD",         "LidLoaderPlant",       "lidLoaderPlant",       14201),
-    ("CapperControllerCD",       "CapperController",     "capperController",     14300),
-    ("CapperPlantCD",            "CapperPlant",          "capperPlant",          14301),
+    ("PosStubCD",                     "PosStub",                     "posStub",                     10000),
+    ("SystemControllerCD",            "SystemController",            "systemController",            10001),
+
+    ("BottleLoaderControllerCD",      "BottleLoaderController",      "bottleLoaderController",      11000),
+    ("BottleLoaderPlantCD",           "BottleLoaderPlant",           "bottleLoaderPlant",           11001),
+    ("ConveyorControllerCD",          "ConveyorController",          "conveyorController",          12000),
+    ("ConveyorPlantCD",               "ConveyorPlant",               "conveyorPlant",               12001),
+    ("RotaryTableControllerCD",       "RotaryTableController",       "rotaryTableController",       13000),
+    ("RotaryTablePlantCD",            "RotaryTablePlant",            "rotaryTablePlant",            13001),
+
+    ("Filler1ControllerCD",           "FillerController",            "fillerController",            14000),
+    ("Filler1PlantCD",                "FillerPlant",                 "fillerPlant",                 14001),
+    ("Filler2ControllerCD",           "FillerController",            "fillerController",            14100),
+    ("Filler2PlantCD",                "FillerPlant",                 "fillerPlant",                 14101),
+    ("LidLoaderControllerCD",         "LidLoaderController",         "lidLoaderController",         14200),
+    ("LidLoaderPlantCD",              "LidLoaderPlant",              "lidLoaderPlant",              14201),
+    ("CapperControllerCD",            "CapperController",            "capperController",            14300),
+    ("CapperPlantCD",                 "CapperPlant",                 "capperPlant",                 14301),
+    ("LabellerControllerCD",          "LabellerController",          "labellerController",          14400),
+    ("LabellerPlantCD",               "LabellerPlant",               "labellerPlant",               14401),
+
+    ("RecyclingStationControllerCD",  "RecyclingStationController",  "recyclingStationController",  15000),
+    ("SplitterControllerCD",          "SplitterController",          "splitterController",          15100),
+    ("SplitterPlantCD",               "SplitterPlant",               "splitterPlant",               15101),
+    ("RecyclingConveyorControllerCD", "RecyclingConveyorController", "recyclingConveyorController", 15200),
+    ("RecyclingConveyorPlantCD",      "RecyclingConveyorPlant",      "recyclingConveyorPlant",      15201),
+    ("LidRemovalControllerCD",        "LidRemovalController",        "lidRemovalController",        15300),
+    ("LidRemovalPlantCD",             "LidRemovalPlant",             "lidRemovalPlant",             15301),
+    ("LiquidDumperControllerCD",      "LiquidDumperController",      "liquidDumperController",      15400),
+    ("LiquidDumperPlantCD",           "LiquidDumperPlant",           "liquidDumperPlant",           15401),
+    ("BottleReturnControllerCD",      "BottleReturnController",      "bottleReturnController",      15500),
+    ("BottleReturnPlantCD",           "BottleReturnPlant",           "bottleReturnPlant",           15501),
 ]
 
-# Where each output signal goes. "*" means every output of that CD goes to one
-# place under the same name; otherwise name the target as "CD.signalName".
+# Where each output signal goes. "*" sends every remaining output of that CD to
+# one place under the same name; a named entry overrides it and may rename.
 SIGNALS = {
     "BottleLoaderPlantCD":      {"*": "BottleLoaderControllerCD"},
-    "BottleLoaderControllerCD": {"*": "BottleLoaderPlantCD"},
     "ConveyorPlantCD":          {"*": "ConveyorControllerCD"},
-    "ConveyorControllerCD":     {"*": "ConveyorPlantCD"},
     "RotaryTablePlantCD":       {"*": "RotaryTableControllerCD"},
-    "RotaryTableControllerCD":  {"*": "RotaryTablePlantCD"},
-    "Filler1ControllerCD":      {"*": "Filler1PlantCD"},
     "Filler1PlantCD":           {"*": "Filler1ControllerCD"},
-    "Filler2ControllerCD":      {"*": "Filler2PlantCD"},
     "Filler2PlantCD":           {"*": "Filler2ControllerCD"},
-    "LidLoaderControllerCD":    {"*": "LidLoaderPlantCD"},
     "LidLoaderPlantCD":         {"*": "LidLoaderControllerCD"},
-    "CapperControllerCD":       {"*": "CapperPlantCD"},
     "CapperPlantCD":            {"*": "CapperControllerCD"},
+    "LabellerPlantCD":          {"*": "LabellerControllerCD"},
+    "SplitterPlantCD":          {"*": "SplitterControllerCD"},
+    "RecyclingConveyorPlantCD": {"*": "RecyclingConveyorControllerCD"},
+    "LidRemovalPlantCD":        {"*": "LidRemovalControllerCD"},
+    "LiquidDumperPlantCD":      {"*": "LiquidDumperControllerCD"},
+    "BottleReturnPlantCD":      {"*": "BottleReturnControllerCD"},
+
+    # Controllers drive their own plant, and publish their machine twin to the
+    # coordinator. The twin is the only thing that leaves a machine.
+    "BottleLoaderControllerCD": {"*": "BottleLoaderPlantCD", "twin": "SystemControllerCD.twinBL"},
+    "ConveyorControllerCD":     {"*": "ConveyorPlantCD",     "twin": "SystemControllerCD.twinCV"},
+    "RotaryTableControllerCD":  {"*": "RotaryTablePlantCD",  "twin": "SystemControllerCD.twinRT"},
+    "Filler1ControllerCD":      {"*": "Filler1PlantCD",      "twin": "SystemControllerCD.twinF1"},
+    "Filler2ControllerCD":      {"*": "Filler2PlantCD",      "twin": "SystemControllerCD.twinF2"},
+    "LidLoaderControllerCD":    {"*": "LidLoaderPlantCD",    "twin": "SystemControllerCD.twinLL"},
+    "CapperControllerCD":       {"*": "CapperPlantCD",       "twin": "SystemControllerCD.twinCP"},
+    "LabellerControllerCD":     {"*": "LabellerPlantCD",     "twin": "SystemControllerCD.twinLB",
+                                 "status": "SystemControllerCD.labellerStatus"},
+    "SplitterControllerCD":          {"*": "SplitterPlantCD"},
+    "RecyclingConveyorControllerCD": {"*": "RecyclingConveyorPlantCD"},
+    "LidRemovalControllerCD":        {"*": "LidRemovalPlantCD"},
+    "LiquidDumperControllerCD":      {"*": "LiquidDumperPlantCD"},
+    "BottleReturnControllerCD":      {"*": "BottleReturnPlantCD"},
+
+    "RecyclingStationControllerCD": {"recyclingStatus": "SystemControllerCD.recyclingStatus"},
+
     "SystemControllerCD": {
         "modeBL": "BottleLoaderControllerCD.mode",
         "modeF1": "Filler1ControllerCD.mode",
         "modeF2": "Filler2ControllerCD.mode",
         "modeLL": "LidLoaderControllerCD.mode",
         "modeCP": "CapperControllerCD.mode",
+        "modeLB": "LabellerControllerCD.mode",
+        "modeSP": "SplitterControllerCD.mode",
+        "modeRC": "RecyclingConveyorControllerCD.mode",
+        "modeLR": "LidRemovalControllerCD.mode",
+        "modeLD": "LiquidDumperControllerCD.mode",
+        "modeBR": "BottleReturnControllerCD.mode",
         "enableBL": "BottleLoaderPlantCD.enable",
         "enableCV": "ConveyorPlantCD.enable",
         "enableRT": "RotaryTablePlantCD.enable",
@@ -55,6 +97,12 @@ SIGNALS = {
         "enableF2": "Filler2PlantCD.enable",
         "enableLL": "LidLoaderPlantCD.enable",
         "enableCP": "CapperPlantCD.enable",
+        "enableLB": "LabellerPlantCD.enable",
+        "enableSP": "SplitterPlantCD.enable",
+        "enableRC": "RecyclingConveyorPlantCD.enable",
+        "enableLR": "LidRemovalPlantCD.enable",
+        "enableLD": "LiquidDumperPlantCD.enable",
+        "enableBR": "BottleReturnPlantCD.enable",
     },
 }
 
@@ -62,7 +110,10 @@ SIGNALS = {
 CHANNELS = {
     "PosStubCD":                {"order": "SystemControllerCD.purchaseOrder"},
     "SystemControllerCD":       {"orderProgress": "PosStubCD.completed",
-                                 "loadOrder": "BottleLoaderControllerCD.loadOrder"},
+                                 "orderRejected": "PosStubCD.recycled",
+                                 "loadOrder": "BottleLoaderControllerCD.loadOrder",
+                                 "labelBottle": "LabellerControllerCD.labelBottle",
+                                 "bottleRejected": "RecyclingStationControllerCD.bottleRejected"},
     "BottleLoaderControllerCD": {"loadAck": "SystemControllerCD.loadAck",
                                  "bottleHandoff": "ConveyorControllerCD.bottleHandoff"},
     "ConveyorControllerCD":     {"tableInfeed": "RotaryTableControllerCD.tableInfeed",
@@ -76,6 +127,19 @@ CHANNELS = {
     "Filler2ControllerCD":      {"done": "RotaryTableControllerCD.doneFiller2"},
     "LidLoaderControllerCD":    {"done": "RotaryTableControllerCD.doneLid"},
     "CapperControllerCD":       {"done": "RotaryTableControllerCD.doneCapper"},
+    "LabellerControllerCD":     {"labelDone": "SystemControllerCD.labelDone"},
+
+    "RecyclingStationControllerCD": {"bottleRecycled": "SystemControllerCD.bottleRecycled",
+                                     "enableSplitter": "SplitterControllerCD.enable",
+                                     "enableLidRemoval": "LidRemovalControllerCD.enable",
+                                     "enableDumper": "LiquidDumperControllerCD.enable",
+                                     "enableReturn": "BottleReturnControllerCD.enable",
+                                     "enableConveyor": "RecyclingConveyorControllerCD.enable"},
+    "SplitterControllerCD":          {"status": "RecyclingStationControllerCD.statusSplitter"},
+    "RecyclingConveyorControllerCD": {"status": "RecyclingStationControllerCD.statusConveyor"},
+    "LidRemovalControllerCD":        {"status": "RecyclingStationControllerCD.statusLidRemoval"},
+    "LiquidDumperControllerCD":      {"status": "RecyclingStationControllerCD.statusDumper"},
+    "BottleReturnControllerCD":      {"status": "RecyclingStationControllerCD.statusReturn"},
 }
 
 SERVER = 'Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="%d"'
@@ -104,7 +168,7 @@ def target(cd, name, table):
     entry = table.get(cd, {})
     dest = entry.get(name) or entry.get("*")
     if dest is None:
-        raise SystemExit("no destination for %s.%s" % (cd, name))
+        raise SystemExit("genxml: no destination for %s.%s" % (cd, name))
     return dest if "." in dest else dest + "." + name
 
 
@@ -114,23 +178,31 @@ def main():
     port = {cd: p for cd, _, _, p in CDS}
     blocks = {}
 
+    # every channel endpoint, so an iChannel can name where it comes from
+    source = {}
+    for cd, links in CHANNELS.items():
+        for name, dest in links.items():
+            source[dest] = cd + "." + name
+
     for cd, cls, src, p in CDS:
         i = interface(os.path.join(sysj, src + ".sysj"))
         L = ['\t\t<ClockDomain Name="%s" Class="%s">' % (cd, cls)]
         for ch in i["ic"]:
-            src_cd = next(c for c, t in CHANNELS.items() for k, v in t.items() if v == cd + "." + ch)
-            src_ch = next(k for k, v in CHANNELS[src_cd].items() if v == cd + "." + ch)
-            L.append('\t\t\t<iChannel Name="%-14s From="%s.%s" />' % (ch + '"', src_cd, src_ch))
+            frm = source.get(cd + "." + ch)
+            if frm is None:
+                raise SystemExit("genxml: nothing sends to %s.%s" % (cd, ch))
+            L.append('\t\t\t<iChannel Name="%-16s From="%s" />' % (ch + '"', frm))
         for ch in i["oc"]:
-            L.append('\t\t\t<oChannel Name="%-14s To="%s" />' % (ch + '"', target(cd, ch, CHANNELS)))
+            L.append('\t\t\t<oChannel Name="%-16s To="%s" />' % (ch + '"', target(cd, ch, CHANNELS)))
         if i["ic"] or i["oc"]:
             L.append("")
         for sg in i["is"]:
-            L.append('\t\t\t<iSignal Name="%-16s %s />' % (sg + '"', SERVER % p))
+            L.append('\t\t\t<iSignal Name="%-18s %s />' % (sg + '"', SERVER % p))
         for sg in i["os"]:
             t = target(cd, sg, SIGNALS)
-            L.append('\t\t\t<oSignal Name="%-16s To="%-38s %s />'
-                     % (sg + '"', t + '"', CLIENT % port[t.split(".")[0]]))
+            tcd = t.split(".")[0]
+            L.append('\t\t\t<oSignal Name="%-18s To="%-42s %s />'
+                     % (sg + '"', t + '"', CLIENT % port[tcd]))
         L.append("\t\t</ClockDomain>")
         blocks[cd] = L
 
@@ -144,8 +216,8 @@ def main():
         head + '\t<SubSystem Name="ABS" Local="true">\n\n' + "\n".join(body)
         + "\t</SubSystem>\n</System>\n")
 
-    # One file per clock domain, named after the domain rather than the
-    # source, because the fillers are two instances of one class.
+    # One file per clock domain, named after the domain rather than the source,
+    # because the fillers are two instances of one class.
     machines = os.path.join(sysj, "machines")
     if not os.path.isdir(machines):
         os.makedirs(machines)

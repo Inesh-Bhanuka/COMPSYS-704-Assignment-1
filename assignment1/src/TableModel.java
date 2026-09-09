@@ -20,20 +20,20 @@ public class TableModel {
 		return SHARED;
 	}
 
-	private final Workpiece[] pos = new Workpiece[6];
+	private final WorkpieceTwin[] pos = new WorkpieceTwin[6];
 
 	/**
 	 * A rendezvous completes whenever both sides are ready, which is not
 	 * necessarily an aligned instant, so an accepted bottle waits here and is
 	 * placed at the next alignment.
 	 */
-	private Workpiece pending;
+	private WorkpieceTwin pending;
 
 	public boolean hasPending() {
 		return pending != null;
 	}
 
-	public void setPending(Workpiece w) {
+	public void setPending(WorkpieceTwin w) {
 		pending = w;
 	}
 
@@ -44,7 +44,7 @@ public class TableModel {
 	}
 
 	/** The workpiece at a position, or null. */
-	public Workpiece at(int i) {
+	public WorkpieceTwin at(int i) {
 		return pos[i];
 	}
 
@@ -52,7 +52,7 @@ public class TableModel {
 		return pos[i] != null;
 	}
 
-	public Workpiece exitWorkpiece() {
+	public WorkpieceTwin exitWorkpiece() {
 		return pos[5];
 	}
 
@@ -88,7 +88,7 @@ public class TableModel {
 
 	/** Advance every workpiece one position. */
 	public void index() {
-		Workpiece last = pos[5];
+		WorkpieceTwin last = pos[5];
 		for (int i = 5; i > 0; i--) {
 			pos[i] = pos[i - 1];
 		}
@@ -106,7 +106,7 @@ public class TableModel {
 		}
 		StringBuilder sb = new StringBuilder("[RT] Indexed. Positions 1-6:");
 		for (int i = 0; i < 6; i++) {
-			sb.append(' ').append(pos[i] == null ? "." : Integer.toString(pos[i].id));
+			sb.append(' ').append(pos[i] == null ? "." : Long.toString(pos[i].id));
 		}
 		System.out.println(sb.toString());
 	}

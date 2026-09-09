@@ -3,16 +3,16 @@
 <System xmlns="http://systemjtechnology.com">
 	<SubSystem Name="LiquidDumperPlantCD" Local="true">
 		<ClockDomain Name="LiquidDumperPlantCD" Class="LiquidDumperPlant">
-			<iSignal Name="enable"          Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15401" />
+			<iSignal Name="enable"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15401" />
 			<iSignal Name="cylClampBottleExtend" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15401" />
 			<iSignal Name="invertRotateExtend" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15401" />
 			<iSignal Name="invertRotateRetract" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15401" />
-			<iSignal Name="drainValveOnOff" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15401" />
-			<oSignal Name="clampClosed"     To="LiquidDumperControllerCD.clampClosed"  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15400" />
-			<oSignal Name="bottleInverted"  To="LiquidDumperControllerCD.bottleInverted" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15400" />
-			<oSignal Name="bottleUpright"   To="LiquidDumperControllerCD.bottleUpright" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15400" />
-			<oSignal Name="bottleDrained"   To="LiquidDumperControllerCD.bottleDrained" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15400" />
-			<oSignal Name="wasteTankLevel"  To="LiquidDumperControllerCD.wasteTankLevel" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15400" />
+			<iSignal Name="drainValveOnOff"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15401" />
+			<oSignal Name="clampClosed"       To="LiquidDumperControllerCD.clampClosed"      Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15400" />
+			<oSignal Name="bottleInverted"    To="LiquidDumperControllerCD.bottleInverted"   Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15400" />
+			<oSignal Name="bottleUpright"     To="LiquidDumperControllerCD.bottleUpright"    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15400" />
+			<oSignal Name="bottleDrained"     To="LiquidDumperControllerCD.bottleDrained"    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15400" />
+			<oSignal Name="wasteTankLevel"    To="LiquidDumperControllerCD.wasteTankLevel"   Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15400" />
 		</ClockDomain>
 	</SubSystem>
 </System>

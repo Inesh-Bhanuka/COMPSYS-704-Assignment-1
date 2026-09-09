@@ -3,27 +3,28 @@
 <System xmlns="http://systemjtechnology.com">
 	<SubSystem Name="LidLoaderControllerCD" Local="true">
 		<ClockDomain Name="LidLoaderControllerCD" Class="LidLoaderController">
-			<iChannel Name="start"         From="RotaryTableControllerCD.startLid" />
-			<oChannel Name="done"          To="RotaryTableControllerCD.doneLid" />
+			<iChannel Name="start"           From="RotaryTableControllerCD.startLid" />
+			<oChannel Name="done"            To="RotaryTableControllerCD.doneLid" />
 
-			<iSignal Name="mode"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
-			<iSignal Name="pusherExtended"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
-			<iSignal Name="pusherRetracted" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
-			<iSignal Name="lidAtPickup"     Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
-			<iSignal Name="WPgripped"       Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
-			<iSignal Name="armAtSource"     Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
-			<iSignal Name="armAtDest"       Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
-			<iSignal Name="magazineEmpty"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
-			<iSignal Name="refilled"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
-			<iSignal Name="pusherExtendM"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
-			<iSignal Name="vacOnM"          Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
-			<iSignal Name="armSourceM"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
-			<iSignal Name="armDestM"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
-			<oSignal Name="pusherExtend"    To="LidLoaderPlantCD.pusherExtend"         Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14201" />
-			<oSignal Name="vacOn"           To="LidLoaderPlantCD.vacOn"                Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14201" />
-			<oSignal Name="armSource"       To="LidLoaderPlantCD.armSource"            Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14201" />
-			<oSignal Name="armDest"         To="LidLoaderPlantCD.armDest"              Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14201" />
-			<oSignal Name="refill"          To="LidLoaderPlantCD.refill"               Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14201" />
+			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
+			<iSignal Name="pusherExtended"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
+			<iSignal Name="pusherRetracted"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
+			<iSignal Name="lidAtPickup"       Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
+			<iSignal Name="WPgripped"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
+			<iSignal Name="armAtSource"       Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
+			<iSignal Name="armAtDest"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
+			<iSignal Name="magazineEmpty"     Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
+			<iSignal Name="refilled"          Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
+			<iSignal Name="pusherExtendM"     Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
+			<iSignal Name="vacOnM"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
+			<iSignal Name="armSourceM"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
+			<iSignal Name="armDestM"          Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
+			<oSignal Name="twin"              To="SystemControllerCD.twinLL"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="pusherExtend"      To="LidLoaderPlantCD.pusherExtend"             Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14201" />
+			<oSignal Name="vacOn"             To="LidLoaderPlantCD.vacOn"                    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14201" />
+			<oSignal Name="armSource"         To="LidLoaderPlantCD.armSource"                Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14201" />
+			<oSignal Name="armDest"           To="LidLoaderPlantCD.armDest"                  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14201" />
+			<oSignal Name="refill"            To="LidLoaderPlantCD.refill"                   Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14201" />
 		</ClockDomain>
 	</SubSystem>
 </System>

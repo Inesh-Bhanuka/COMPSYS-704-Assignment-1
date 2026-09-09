@@ -6,8 +6,11 @@
  */
 CapperController(
 		// from / to the Rotary Table
-		input  Workpiece channel start;
-		output Workpiece channel done;
+		input  WorkpieceTwin channel start;
+		output WorkpieceTwin channel done;
+
+		// the machine's own summary, out to the coordinator
+		output LidCapperTwin signal twin;
 
 		// operating mode
 		input Integer signal mode;
@@ -34,23 +37,32 @@ CapperController(
 	}
 	||
 	{ // Auto
-		Workpiece w = null;
+		LidCapperTwin t = new LidCapperTwin();
+		WorkpieceTwin w = null;
 
 		while(true){
 			await(immediate auto);
 
 			abort(immediate manual){
 				receive start;
-				w = (Workpiece)#start;
+				w = (WorkpieceTwin)#start;
 
 				if(w != null){
 					System.out.println("[CAP] Sealing " + w + ".");
+					w.started(Machine.LID_CAPPER, "screwing cap");
+					if(t.update(PlantClock.now(), MachineStatus.WORKING, "screwOn", "sealing " + w.id)){
+						emit twin(t);
+					}
 
 					abort(immediate capSeated){
 						sustain screwOn;
 					}
 
 					w.cap();
+					t.setAppliedTurns(12);
+					if(t.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w.id)){
+						emit twin(t);
+					}
 					System.out.println("[CAP] " + w + " sealed.");
 				}
 

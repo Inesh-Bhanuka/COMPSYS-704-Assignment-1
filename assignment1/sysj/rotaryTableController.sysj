@@ -29,12 +29,15 @@
  */
 RotaryTableController(
 		// from / to the conveyor
-		input  Workpiece channel tableInfeed;
-		output Workpiece channel tableOutfeed;
+		input  WorkpieceTwin channel tableInfeed;
+		output WorkpieceTwin channel tableOutfeed;
 
 		// to / from the stations
-		output Workpiece channel startFiller1, startFiller2, startLid, startCapper;
-		input  Workpiece channel doneFiller1, doneFiller2, doneLid, doneCapper;
+		output WorkpieceTwin channel startFiller1, startFiller2, startLid, startCapper;
+		input  WorkpieceTwin channel doneFiller1, doneFiller2, doneLid, doneCapper;
+
+		// the machine's own summary, out to the coordinator
+		output RotaryTableTwin signal twin;
 
 		// from the plant
 		// Presence sensors exist at positions 1, 2, 4 and 5 only. There is
@@ -53,8 +56,10 @@ RotaryTableController(
 	signal placed;
 
 	{ // ---- Sequencer ----
+		RotaryTableTwin t = new RotaryTableTwin();
+		int step = 0;
 		TableModel m = TableModel.shared();
-		Workpiece exiting = null;
+		WorkpieceTwin exiting = null;
 
 		while(true){
 
@@ -129,16 +134,22 @@ RotaryTableController(
 
 			m.index();
 			m.report();
+			step = (step % 6) + 1;
+			t.setPosition(step);
+			t.setRotating(false);
+			if(t.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step)){
+				emit twin(t);
+			}
 			pause;
 		}
 	}
 	||
 	{ // ---- Intake ----
 		TableModel m = TableModel.shared();
-		Workpiece w = null;
+		WorkpieceTwin w = null;
 		while(true){
 			receive tableInfeed;
-			w = (Workpiece)#tableInfeed;
+			w = (WorkpieceTwin)#tableInfeed;
 			m.setPending(w);
 			System.out.println("[RT] Accepted " + w + " from the conveyor.");
 			await(immediate placed);

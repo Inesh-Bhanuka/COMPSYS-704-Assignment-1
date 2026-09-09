@@ -28,38 +28,38 @@ public class LiquidDumperController extends ClockDomain{
   public output_Channel status_o = new output_Channel();
   private Signal auto_1;
   private Signal manual_1;
-  private int OK_thread_3;//sysj\liquidDumperController.sysj line: 62, column: 3
-  private int BLOCKED_thread_3;//sysj\liquidDumperController.sysj line: 63, column: 3
-  private int WARN_thread_3;//sysj\liquidDumperController.sysj line: 64, column: 3
-  private int TANK_CAPACITY_thread_3;//sysj\liquidDumperController.sysj line: 66, column: 3
-  private int TANK_WARN_thread_3;//sysj\liquidDumperController.sysj line: 67, column: 3
-  private Workpiece w_thread_3;//sysj\liquidDumperController.sysj line: 69, column: 3
-  private int level_thread_3;//sysj\liquidDumperController.sysj line: 70, column: 3
-  private int code_thread_3;//sysj\liquidDumperController.sysj line: 71, column: 3
-  private int S79229 = 1;
-  private int S63896 = 1;
-  private int S78940 = 1;
-  private int S66404 = 1;
-  private int S63921 = 1;
-  private int S63905 = 1;
-  private int S63900 = 1;
-  private int S63942 = 1;
-  private int S63947 = 1;
-  private int S63997 = 1;
-  private int S64002 = 1;
-  private int S64007 = 1;
-  private int S64109 = 1;
-  private int S64114 = 1;
-  private int S64233 = 1;
-  private int S64228 = 1;
-  private int S79227 = 1;
-  private int S79035 = 1;
+  private int OK_thread_3;//sysj/liquidDumperController.sysj line: 62, column: 3
+  private int BLOCKED_thread_3;//sysj/liquidDumperController.sysj line: 63, column: 3
+  private int WARN_thread_3;//sysj/liquidDumperController.sysj line: 64, column: 3
+  private int TANK_CAPACITY_thread_3;//sysj/liquidDumperController.sysj line: 66, column: 3
+  private int TANK_WARN_thread_3;//sysj/liquidDumperController.sysj line: 67, column: 3
+  private Workpiece w_thread_3;//sysj/liquidDumperController.sysj line: 69, column: 3
+  private int level_thread_3;//sysj/liquidDumperController.sysj line: 70, column: 3
+  private int code_thread_3;//sysj/liquidDumperController.sysj line: 71, column: 3
+  private int S117072 = 1;
+  private int S101739 = 1;
+  private int S116783 = 1;
+  private int S104247 = 1;
+  private int S101764 = 1;
+  private int S101748 = 1;
+  private int S101743 = 1;
+  private int S101785 = 1;
+  private int S101790 = 1;
+  private int S101840 = 1;
+  private int S101845 = 1;
+  private int S101850 = 1;
+  private int S101952 = 1;
+  private int S101957 = 1;
+  private int S102076 = 1;
+  private int S102071 = 1;
+  private int S117070 = 1;
+  private int S116878 = 1;
   
   private int[] ends = new int[12];
   private int[] tdone = new int[12];
   
-  public void thread79337(int [] tdone, int [] ends){
-        switch(S79227){
+  public void thread117180(int [] tdone, int [] ends){
+        switch(S117070){
       case 0 : 
         active[11]=0;
         ends[11]=0;
@@ -67,25 +67,25 @@ public class LiquidDumperController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S79035){
+        switch(S116878){
           case 0 : 
-            if(manual_1.getprestatus()){//sysj\liquidDumperController.sysj line: 132, column: 20
-              S79035=1;
-              if(auto_1.getprestatus()){//sysj\liquidDumperController.sysj line: 133, column: 20
-                S79035=2;
+            if(manual_1.getprestatus()){//sysj/liquidDumperController.sysj line: 132, column: 20
+              S116878=1;
+              if(auto_1.getprestatus()){//sysj/liquidDumperController.sysj line: 133, column: 20
+                S116878=2;
                 active[11]=1;
                 ends[11]=1;
                 tdone[11]=1;
               }
               else {
-                if(cylClampBottleExtendM.getprestatus()){//sysj\liquidDumperController.sysj line: 135, column: 14
-                  cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 135, column: 38
+                if(cylClampBottleExtendM.getprestatus()){//sysj/liquidDumperController.sysj line: 135, column: 14
+                  cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 135, column: 38
                   currsigs.addElement(cylClampBottleExtend);
-                  if(invertRotateExtendM.getprestatus()){//sysj\liquidDumperController.sysj line: 136, column: 14
-                    invertRotateExtend.setPresent();//sysj\liquidDumperController.sysj line: 136, column: 36
+                  if(invertRotateExtendM.getprestatus()){//sysj/liquidDumperController.sysj line: 136, column: 14
+                    invertRotateExtend.setPresent();//sysj/liquidDumperController.sysj line: 136, column: 36
                     currsigs.addElement(invertRotateExtend);
-                    if(drainValveOnOffM.getprestatus()){//sysj\liquidDumperController.sysj line: 137, column: 14
-                      drainValveOnOff.setPresent();//sysj\liquidDumperController.sysj line: 137, column: 33
+                    if(drainValveOnOffM.getprestatus()){//sysj/liquidDumperController.sysj line: 137, column: 14
+                      drainValveOnOff.setPresent();//sysj/liquidDumperController.sysj line: 137, column: 33
                       currsigs.addElement(drainValveOnOff);
                       active[11]=1;
                       ends[11]=1;
@@ -98,8 +98,8 @@ public class LiquidDumperController extends ClockDomain{
                     }
                   }
                   else {
-                    if(drainValveOnOffM.getprestatus()){//sysj\liquidDumperController.sysj line: 137, column: 14
-                      drainValveOnOff.setPresent();//sysj\liquidDumperController.sysj line: 137, column: 33
+                    if(drainValveOnOffM.getprestatus()){//sysj/liquidDumperController.sysj line: 137, column: 14
+                      drainValveOnOff.setPresent();//sysj/liquidDumperController.sysj line: 137, column: 33
                       currsigs.addElement(drainValveOnOff);
                       active[11]=1;
                       ends[11]=1;
@@ -113,11 +113,11 @@ public class LiquidDumperController extends ClockDomain{
                   }
                 }
                 else {
-                  if(invertRotateExtendM.getprestatus()){//sysj\liquidDumperController.sysj line: 136, column: 14
-                    invertRotateExtend.setPresent();//sysj\liquidDumperController.sysj line: 136, column: 36
+                  if(invertRotateExtendM.getprestatus()){//sysj/liquidDumperController.sysj line: 136, column: 14
+                    invertRotateExtend.setPresent();//sysj/liquidDumperController.sysj line: 136, column: 36
                     currsigs.addElement(invertRotateExtend);
-                    if(drainValveOnOffM.getprestatus()){//sysj\liquidDumperController.sysj line: 137, column: 14
-                      drainValveOnOff.setPresent();//sysj\liquidDumperController.sysj line: 137, column: 33
+                    if(drainValveOnOffM.getprestatus()){//sysj/liquidDumperController.sysj line: 137, column: 14
+                      drainValveOnOff.setPresent();//sysj/liquidDumperController.sysj line: 137, column: 33
                       currsigs.addElement(drainValveOnOff);
                       active[11]=1;
                       ends[11]=1;
@@ -130,8 +130,8 @@ public class LiquidDumperController extends ClockDomain{
                     }
                   }
                   else {
-                    if(drainValveOnOffM.getprestatus()){//sysj\liquidDumperController.sysj line: 137, column: 14
-                      drainValveOnOff.setPresent();//sysj\liquidDumperController.sysj line: 137, column: 33
+                    if(drainValveOnOffM.getprestatus()){//sysj/liquidDumperController.sysj line: 137, column: 14
+                      drainValveOnOff.setPresent();//sysj/liquidDumperController.sysj line: 137, column: 33
                       currsigs.addElement(drainValveOnOff);
                       active[11]=1;
                       ends[11]=1;
@@ -154,21 +154,21 @@ public class LiquidDumperController extends ClockDomain{
             break;
           
           case 1 : 
-            if(auto_1.getprestatus()){//sysj\liquidDumperController.sysj line: 133, column: 20
-              S79035=2;
+            if(auto_1.getprestatus()){//sysj/liquidDumperController.sysj line: 133, column: 20
+              S116878=2;
               active[11]=1;
               ends[11]=1;
               tdone[11]=1;
             }
             else {
-              if(cylClampBottleExtendM.getprestatus()){//sysj\liquidDumperController.sysj line: 135, column: 14
-                cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 135, column: 38
+              if(cylClampBottleExtendM.getprestatus()){//sysj/liquidDumperController.sysj line: 135, column: 14
+                cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 135, column: 38
                 currsigs.addElement(cylClampBottleExtend);
-                if(invertRotateExtendM.getprestatus()){//sysj\liquidDumperController.sysj line: 136, column: 14
-                  invertRotateExtend.setPresent();//sysj\liquidDumperController.sysj line: 136, column: 36
+                if(invertRotateExtendM.getprestatus()){//sysj/liquidDumperController.sysj line: 136, column: 14
+                  invertRotateExtend.setPresent();//sysj/liquidDumperController.sysj line: 136, column: 36
                   currsigs.addElement(invertRotateExtend);
-                  if(drainValveOnOffM.getprestatus()){//sysj\liquidDumperController.sysj line: 137, column: 14
-                    drainValveOnOff.setPresent();//sysj\liquidDumperController.sysj line: 137, column: 33
+                  if(drainValveOnOffM.getprestatus()){//sysj/liquidDumperController.sysj line: 137, column: 14
+                    drainValveOnOff.setPresent();//sysj/liquidDumperController.sysj line: 137, column: 33
                     currsigs.addElement(drainValveOnOff);
                     active[11]=1;
                     ends[11]=1;
@@ -181,8 +181,8 @@ public class LiquidDumperController extends ClockDomain{
                   }
                 }
                 else {
-                  if(drainValveOnOffM.getprestatus()){//sysj\liquidDumperController.sysj line: 137, column: 14
-                    drainValveOnOff.setPresent();//sysj\liquidDumperController.sysj line: 137, column: 33
+                  if(drainValveOnOffM.getprestatus()){//sysj/liquidDumperController.sysj line: 137, column: 14
+                    drainValveOnOff.setPresent();//sysj/liquidDumperController.sysj line: 137, column: 33
                     currsigs.addElement(drainValveOnOff);
                     active[11]=1;
                     ends[11]=1;
@@ -196,11 +196,11 @@ public class LiquidDumperController extends ClockDomain{
                 }
               }
               else {
-                if(invertRotateExtendM.getprestatus()){//sysj\liquidDumperController.sysj line: 136, column: 14
-                  invertRotateExtend.setPresent();//sysj\liquidDumperController.sysj line: 136, column: 36
+                if(invertRotateExtendM.getprestatus()){//sysj/liquidDumperController.sysj line: 136, column: 14
+                  invertRotateExtend.setPresent();//sysj/liquidDumperController.sysj line: 136, column: 36
                   currsigs.addElement(invertRotateExtend);
-                  if(drainValveOnOffM.getprestatus()){//sysj\liquidDumperController.sysj line: 137, column: 14
-                    drainValveOnOff.setPresent();//sysj\liquidDumperController.sysj line: 137, column: 33
+                  if(drainValveOnOffM.getprestatus()){//sysj/liquidDumperController.sysj line: 137, column: 14
+                    drainValveOnOff.setPresent();//sysj/liquidDumperController.sysj line: 137, column: 33
                     currsigs.addElement(drainValveOnOff);
                     active[11]=1;
                     ends[11]=1;
@@ -213,8 +213,8 @@ public class LiquidDumperController extends ClockDomain{
                   }
                 }
                 else {
-                  if(drainValveOnOffM.getprestatus()){//sysj\liquidDumperController.sysj line: 137, column: 14
-                    drainValveOnOff.setPresent();//sysj\liquidDumperController.sysj line: 137, column: 33
+                  if(drainValveOnOffM.getprestatus()){//sysj/liquidDumperController.sysj line: 137, column: 14
+                    drainValveOnOff.setPresent();//sysj/liquidDumperController.sysj line: 137, column: 33
                     currsigs.addElement(drainValveOnOff);
                     active[11]=1;
                     ends[11]=1;
@@ -231,25 +231,25 @@ public class LiquidDumperController extends ClockDomain{
             break;
           
           case 2 : 
-            S79035=2;
-            S79035=0;
-            if(manual_1.getprestatus()){//sysj\liquidDumperController.sysj line: 132, column: 20
-              S79035=1;
-              if(auto_1.getprestatus()){//sysj\liquidDumperController.sysj line: 133, column: 20
-                S79035=2;
+            S116878=2;
+            S116878=0;
+            if(manual_1.getprestatus()){//sysj/liquidDumperController.sysj line: 132, column: 20
+              S116878=1;
+              if(auto_1.getprestatus()){//sysj/liquidDumperController.sysj line: 133, column: 20
+                S116878=2;
                 active[11]=1;
                 ends[11]=1;
                 tdone[11]=1;
               }
               else {
-                if(cylClampBottleExtendM.getprestatus()){//sysj\liquidDumperController.sysj line: 135, column: 14
-                  cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 135, column: 38
+                if(cylClampBottleExtendM.getprestatus()){//sysj/liquidDumperController.sysj line: 135, column: 14
+                  cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 135, column: 38
                   currsigs.addElement(cylClampBottleExtend);
-                  if(invertRotateExtendM.getprestatus()){//sysj\liquidDumperController.sysj line: 136, column: 14
-                    invertRotateExtend.setPresent();//sysj\liquidDumperController.sysj line: 136, column: 36
+                  if(invertRotateExtendM.getprestatus()){//sysj/liquidDumperController.sysj line: 136, column: 14
+                    invertRotateExtend.setPresent();//sysj/liquidDumperController.sysj line: 136, column: 36
                     currsigs.addElement(invertRotateExtend);
-                    if(drainValveOnOffM.getprestatus()){//sysj\liquidDumperController.sysj line: 137, column: 14
-                      drainValveOnOff.setPresent();//sysj\liquidDumperController.sysj line: 137, column: 33
+                    if(drainValveOnOffM.getprestatus()){//sysj/liquidDumperController.sysj line: 137, column: 14
+                      drainValveOnOff.setPresent();//sysj/liquidDumperController.sysj line: 137, column: 33
                       currsigs.addElement(drainValveOnOff);
                       active[11]=1;
                       ends[11]=1;
@@ -262,8 +262,8 @@ public class LiquidDumperController extends ClockDomain{
                     }
                   }
                   else {
-                    if(drainValveOnOffM.getprestatus()){//sysj\liquidDumperController.sysj line: 137, column: 14
-                      drainValveOnOff.setPresent();//sysj\liquidDumperController.sysj line: 137, column: 33
+                    if(drainValveOnOffM.getprestatus()){//sysj/liquidDumperController.sysj line: 137, column: 14
+                      drainValveOnOff.setPresent();//sysj/liquidDumperController.sysj line: 137, column: 33
                       currsigs.addElement(drainValveOnOff);
                       active[11]=1;
                       ends[11]=1;
@@ -277,11 +277,11 @@ public class LiquidDumperController extends ClockDomain{
                   }
                 }
                 else {
-                  if(invertRotateExtendM.getprestatus()){//sysj\liquidDumperController.sysj line: 136, column: 14
-                    invertRotateExtend.setPresent();//sysj\liquidDumperController.sysj line: 136, column: 36
+                  if(invertRotateExtendM.getprestatus()){//sysj/liquidDumperController.sysj line: 136, column: 14
+                    invertRotateExtend.setPresent();//sysj/liquidDumperController.sysj line: 136, column: 36
                     currsigs.addElement(invertRotateExtend);
-                    if(drainValveOnOffM.getprestatus()){//sysj\liquidDumperController.sysj line: 137, column: 14
-                      drainValveOnOff.setPresent();//sysj\liquidDumperController.sysj line: 137, column: 33
+                    if(drainValveOnOffM.getprestatus()){//sysj/liquidDumperController.sysj line: 137, column: 14
+                      drainValveOnOff.setPresent();//sysj/liquidDumperController.sysj line: 137, column: 33
                       currsigs.addElement(drainValveOnOff);
                       active[11]=1;
                       ends[11]=1;
@@ -294,8 +294,8 @@ public class LiquidDumperController extends ClockDomain{
                     }
                   }
                   else {
-                    if(drainValveOnOffM.getprestatus()){//sysj\liquidDumperController.sysj line: 137, column: 14
-                      drainValveOnOff.setPresent();//sysj\liquidDumperController.sysj line: 137, column: 33
+                    if(drainValveOnOffM.getprestatus()){//sysj/liquidDumperController.sysj line: 137, column: 14
+                      drainValveOnOff.setPresent();//sysj/liquidDumperController.sysj line: 137, column: 33
                       currsigs.addElement(drainValveOnOff);
                       active[11]=1;
                       ends[11]=1;
@@ -323,71 +323,71 @@ public class LiquidDumperController extends ClockDomain{
     }
   }
 
-  public void thread79335(int [] tdone, int [] ends){
-        S63947=1;
-    invertRotateExtend.setPresent();//sysj\liquidDumperController.sysj line: 88, column: 45
+  public void thread117178(int [] tdone, int [] ends){
+        S101790=1;
+    invertRotateExtend.setPresent();//sysj/liquidDumperController.sysj line: 88, column: 45
     currsigs.addElement(invertRotateExtend);
     active[5]=1;
     ends[5]=1;
     tdone[5]=1;
   }
 
-  public void thread79334(int [] tdone, int [] ends){
-        S63942=1;
-    cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 88, column: 8
+  public void thread117177(int [] tdone, int [] ends){
+        S101785=1;
+    cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 88, column: 8
     currsigs.addElement(cylClampBottleExtend);
     active[4]=1;
     ends[4]=1;
     tdone[4]=1;
   }
 
-  public void thread79332(int [] tdone, int [] ends){
-        S64007=1;
-    drainValveOnOff.setPresent();//sysj\liquidDumperController.sysj line: 94, column: 80
+  public void thread117175(int [] tdone, int [] ends){
+        S101850=1;
+    drainValveOnOff.setPresent();//sysj/liquidDumperController.sysj line: 94, column: 80
     currsigs.addElement(drainValveOnOff);
     active[8]=1;
     ends[8]=1;
     tdone[8]=1;
   }
 
-  public void thread79331(int [] tdone, int [] ends){
-        S64002=1;
-    invertRotateExtend.setPresent();//sysj\liquidDumperController.sysj line: 94, column: 45
+  public void thread117174(int [] tdone, int [] ends){
+        S101845=1;
+    invertRotateExtend.setPresent();//sysj/liquidDumperController.sysj line: 94, column: 45
     currsigs.addElement(invertRotateExtend);
     active[7]=1;
     ends[7]=1;
     tdone[7]=1;
   }
 
-  public void thread79330(int [] tdone, int [] ends){
-        S63997=1;
-    cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 94, column: 8
+  public void thread117173(int [] tdone, int [] ends){
+        S101840=1;
+    cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 94, column: 8
     currsigs.addElement(cylClampBottleExtend);
     active[6]=1;
     ends[6]=1;
     tdone[6]=1;
   }
 
-  public void thread79328(int [] tdone, int [] ends){
-        S64114=1;
-    invertRotateRetract.setPresent();//sysj\liquidDumperController.sysj line: 99, column: 45
+  public void thread117171(int [] tdone, int [] ends){
+        S101957=1;
+    invertRotateRetract.setPresent();//sysj/liquidDumperController.sysj line: 99, column: 45
     currsigs.addElement(invertRotateRetract);
     active[10]=1;
     ends[10]=1;
     tdone[10]=1;
   }
 
-  public void thread79327(int [] tdone, int [] ends){
-        S64109=1;
-    cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 99, column: 8
+  public void thread117170(int [] tdone, int [] ends){
+        S101952=1;
+    cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 99, column: 8
     currsigs.addElement(cylClampBottleExtend);
     active[9]=1;
     ends[9]=1;
     tdone[9]=1;
   }
 
-  public void thread79325(int [] tdone, int [] ends){
-        switch(S64114){
+  public void thread117168(int [] tdone, int [] ends){
+        switch(S101957){
       case 0 : 
         active[10]=0;
         ends[10]=0;
@@ -395,7 +395,7 @@ public class LiquidDumperController extends ClockDomain{
         break;
       
       case 1 : 
-        invertRotateRetract.setPresent();//sysj\liquidDumperController.sysj line: 99, column: 45
+        invertRotateRetract.setPresent();//sysj/liquidDumperController.sysj line: 99, column: 45
         currsigs.addElement(invertRotateRetract);
         active[10]=1;
         ends[10]=1;
@@ -405,8 +405,8 @@ public class LiquidDumperController extends ClockDomain{
     }
   }
 
-  public void thread79324(int [] tdone, int [] ends){
-        switch(S64109){
+  public void thread117167(int [] tdone, int [] ends){
+        switch(S101952){
       case 0 : 
         active[9]=0;
         ends[9]=0;
@@ -414,7 +414,7 @@ public class LiquidDumperController extends ClockDomain{
         break;
       
       case 1 : 
-        cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 99, column: 8
+        cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 99, column: 8
         currsigs.addElement(cylClampBottleExtend);
         active[9]=1;
         ends[9]=1;
@@ -424,26 +424,26 @@ public class LiquidDumperController extends ClockDomain{
     }
   }
 
-  public void thread79322(int [] tdone, int [] ends){
-        S64114=1;
-    invertRotateRetract.setPresent();//sysj\liquidDumperController.sysj line: 99, column: 45
+  public void thread117165(int [] tdone, int [] ends){
+        S101957=1;
+    invertRotateRetract.setPresent();//sysj/liquidDumperController.sysj line: 99, column: 45
     currsigs.addElement(invertRotateRetract);
     active[10]=1;
     ends[10]=1;
     tdone[10]=1;
   }
 
-  public void thread79321(int [] tdone, int [] ends){
-        S64109=1;
-    cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 99, column: 8
+  public void thread117164(int [] tdone, int [] ends){
+        S101952=1;
+    cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 99, column: 8
     currsigs.addElement(cylClampBottleExtend);
     active[9]=1;
     ends[9]=1;
     tdone[9]=1;
   }
 
-  public void thread79319(int [] tdone, int [] ends){
-        switch(S64007){
+  public void thread117162(int [] tdone, int [] ends){
+        switch(S101850){
       case 0 : 
         active[8]=0;
         ends[8]=0;
@@ -451,7 +451,7 @@ public class LiquidDumperController extends ClockDomain{
         break;
       
       case 1 : 
-        drainValveOnOff.setPresent();//sysj\liquidDumperController.sysj line: 94, column: 80
+        drainValveOnOff.setPresent();//sysj/liquidDumperController.sysj line: 94, column: 80
         currsigs.addElement(drainValveOnOff);
         active[8]=1;
         ends[8]=1;
@@ -461,8 +461,8 @@ public class LiquidDumperController extends ClockDomain{
     }
   }
 
-  public void thread79318(int [] tdone, int [] ends){
-        switch(S64002){
+  public void thread117161(int [] tdone, int [] ends){
+        switch(S101845){
       case 0 : 
         active[7]=0;
         ends[7]=0;
@@ -470,7 +470,7 @@ public class LiquidDumperController extends ClockDomain{
         break;
       
       case 1 : 
-        invertRotateExtend.setPresent();//sysj\liquidDumperController.sysj line: 94, column: 45
+        invertRotateExtend.setPresent();//sysj/liquidDumperController.sysj line: 94, column: 45
         currsigs.addElement(invertRotateExtend);
         active[7]=1;
         ends[7]=1;
@@ -480,8 +480,8 @@ public class LiquidDumperController extends ClockDomain{
     }
   }
 
-  public void thread79317(int [] tdone, int [] ends){
-        switch(S63997){
+  public void thread117160(int [] tdone, int [] ends){
+        switch(S101840){
       case 0 : 
         active[6]=0;
         ends[6]=0;
@@ -489,7 +489,7 @@ public class LiquidDumperController extends ClockDomain{
         break;
       
       case 1 : 
-        cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 94, column: 8
+        cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 94, column: 8
         currsigs.addElement(cylClampBottleExtend);
         active[6]=1;
         ends[6]=1;
@@ -499,71 +499,71 @@ public class LiquidDumperController extends ClockDomain{
     }
   }
 
-  public void thread79315(int [] tdone, int [] ends){
-        S64114=1;
-    invertRotateRetract.setPresent();//sysj\liquidDumperController.sysj line: 99, column: 45
+  public void thread117158(int [] tdone, int [] ends){
+        S101957=1;
+    invertRotateRetract.setPresent();//sysj/liquidDumperController.sysj line: 99, column: 45
     currsigs.addElement(invertRotateRetract);
     active[10]=1;
     ends[10]=1;
     tdone[10]=1;
   }
 
-  public void thread79314(int [] tdone, int [] ends){
-        S64109=1;
-    cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 99, column: 8
+  public void thread117157(int [] tdone, int [] ends){
+        S101952=1;
+    cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 99, column: 8
     currsigs.addElement(cylClampBottleExtend);
     active[9]=1;
     ends[9]=1;
     tdone[9]=1;
   }
 
-  public void thread79312(int [] tdone, int [] ends){
-        S64007=1;
-    drainValveOnOff.setPresent();//sysj\liquidDumperController.sysj line: 94, column: 80
+  public void thread117155(int [] tdone, int [] ends){
+        S101850=1;
+    drainValveOnOff.setPresent();//sysj/liquidDumperController.sysj line: 94, column: 80
     currsigs.addElement(drainValveOnOff);
     active[8]=1;
     ends[8]=1;
     tdone[8]=1;
   }
 
-  public void thread79311(int [] tdone, int [] ends){
-        S64002=1;
-    invertRotateExtend.setPresent();//sysj\liquidDumperController.sysj line: 94, column: 45
+  public void thread117154(int [] tdone, int [] ends){
+        S101845=1;
+    invertRotateExtend.setPresent();//sysj/liquidDumperController.sysj line: 94, column: 45
     currsigs.addElement(invertRotateExtend);
     active[7]=1;
     ends[7]=1;
     tdone[7]=1;
   }
 
-  public void thread79310(int [] tdone, int [] ends){
-        S63997=1;
-    cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 94, column: 8
+  public void thread117153(int [] tdone, int [] ends){
+        S101840=1;
+    cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 94, column: 8
     currsigs.addElement(cylClampBottleExtend);
     active[6]=1;
     ends[6]=1;
     tdone[6]=1;
   }
 
-  public void thread79308(int [] tdone, int [] ends){
-        S64114=1;
-    invertRotateRetract.setPresent();//sysj\liquidDumperController.sysj line: 99, column: 45
+  public void thread117151(int [] tdone, int [] ends){
+        S101957=1;
+    invertRotateRetract.setPresent();//sysj/liquidDumperController.sysj line: 99, column: 45
     currsigs.addElement(invertRotateRetract);
     active[10]=1;
     ends[10]=1;
     tdone[10]=1;
   }
 
-  public void thread79307(int [] tdone, int [] ends){
-        S64109=1;
-    cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 99, column: 8
+  public void thread117150(int [] tdone, int [] ends){
+        S101952=1;
+    cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 99, column: 8
     currsigs.addElement(cylClampBottleExtend);
     active[9]=1;
     ends[9]=1;
     tdone[9]=1;
   }
 
-  public void thread79305(int [] tdone, int [] ends){
-        switch(S63947){
+  public void thread117148(int [] tdone, int [] ends){
+        switch(S101790){
       case 0 : 
         active[5]=0;
         ends[5]=0;
@@ -571,7 +571,7 @@ public class LiquidDumperController extends ClockDomain{
         break;
       
       case 1 : 
-        invertRotateExtend.setPresent();//sysj\liquidDumperController.sysj line: 88, column: 45
+        invertRotateExtend.setPresent();//sysj/liquidDumperController.sysj line: 88, column: 45
         currsigs.addElement(invertRotateExtend);
         active[5]=1;
         ends[5]=1;
@@ -581,8 +581,8 @@ public class LiquidDumperController extends ClockDomain{
     }
   }
 
-  public void thread79304(int [] tdone, int [] ends){
-        switch(S63942){
+  public void thread117147(int [] tdone, int [] ends){
+        switch(S101785){
       case 0 : 
         active[4]=0;
         ends[4]=0;
@@ -590,7 +590,7 @@ public class LiquidDumperController extends ClockDomain{
         break;
       
       case 1 : 
-        cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 88, column: 8
+        cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 88, column: 8
         currsigs.addElement(cylClampBottleExtend);
         active[4]=1;
         ends[4]=1;
@@ -600,368 +600,368 @@ public class LiquidDumperController extends ClockDomain{
     }
   }
 
-  public void thread79302(int [] tdone, int [] ends){
-        S64007=1;
-    drainValveOnOff.setPresent();//sysj\liquidDumperController.sysj line: 94, column: 80
+  public void thread117145(int [] tdone, int [] ends){
+        S101850=1;
+    drainValveOnOff.setPresent();//sysj/liquidDumperController.sysj line: 94, column: 80
     currsigs.addElement(drainValveOnOff);
     active[8]=1;
     ends[8]=1;
     tdone[8]=1;
   }
 
-  public void thread79301(int [] tdone, int [] ends){
-        S64002=1;
-    invertRotateExtend.setPresent();//sysj\liquidDumperController.sysj line: 94, column: 45
+  public void thread117144(int [] tdone, int [] ends){
+        S101845=1;
+    invertRotateExtend.setPresent();//sysj/liquidDumperController.sysj line: 94, column: 45
     currsigs.addElement(invertRotateExtend);
     active[7]=1;
     ends[7]=1;
     tdone[7]=1;
   }
 
-  public void thread79300(int [] tdone, int [] ends){
-        S63997=1;
-    cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 94, column: 8
+  public void thread117143(int [] tdone, int [] ends){
+        S101840=1;
+    cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 94, column: 8
     currsigs.addElement(cylClampBottleExtend);
     active[6]=1;
     ends[6]=1;
     tdone[6]=1;
   }
 
-  public void thread79298(int [] tdone, int [] ends){
-        S64114=1;
-    invertRotateRetract.setPresent();//sysj\liquidDumperController.sysj line: 99, column: 45
+  public void thread117141(int [] tdone, int [] ends){
+        S101957=1;
+    invertRotateRetract.setPresent();//sysj/liquidDumperController.sysj line: 99, column: 45
     currsigs.addElement(invertRotateRetract);
     active[10]=1;
     ends[10]=1;
     tdone[10]=1;
   }
 
-  public void thread79297(int [] tdone, int [] ends){
-        S64109=1;
-    cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 99, column: 8
+  public void thread117140(int [] tdone, int [] ends){
+        S101952=1;
+    cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 99, column: 8
     currsigs.addElement(cylClampBottleExtend);
     active[9]=1;
     ends[9]=1;
     tdone[9]=1;
   }
 
-  public void thread79295(int [] tdone, int [] ends){
-        S63947=1;
-    invertRotateExtend.setPresent();//sysj\liquidDumperController.sysj line: 88, column: 45
+  public void thread117138(int [] tdone, int [] ends){
+        S101790=1;
+    invertRotateExtend.setPresent();//sysj/liquidDumperController.sysj line: 88, column: 45
     currsigs.addElement(invertRotateExtend);
     active[5]=1;
     ends[5]=1;
     tdone[5]=1;
   }
 
-  public void thread79294(int [] tdone, int [] ends){
-        S63942=1;
-    cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 88, column: 8
+  public void thread117137(int [] tdone, int [] ends){
+        S101785=1;
+    cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 88, column: 8
     currsigs.addElement(cylClampBottleExtend);
     active[4]=1;
     ends[4]=1;
     tdone[4]=1;
   }
 
-  public void thread79292(int [] tdone, int [] ends){
-        S64007=1;
-    drainValveOnOff.setPresent();//sysj\liquidDumperController.sysj line: 94, column: 80
+  public void thread117135(int [] tdone, int [] ends){
+        S101850=1;
+    drainValveOnOff.setPresent();//sysj/liquidDumperController.sysj line: 94, column: 80
     currsigs.addElement(drainValveOnOff);
     active[8]=1;
     ends[8]=1;
     tdone[8]=1;
   }
 
-  public void thread79291(int [] tdone, int [] ends){
-        S64002=1;
-    invertRotateExtend.setPresent();//sysj\liquidDumperController.sysj line: 94, column: 45
+  public void thread117134(int [] tdone, int [] ends){
+        S101845=1;
+    invertRotateExtend.setPresent();//sysj/liquidDumperController.sysj line: 94, column: 45
     currsigs.addElement(invertRotateExtend);
     active[7]=1;
     ends[7]=1;
     tdone[7]=1;
   }
 
-  public void thread79290(int [] tdone, int [] ends){
-        S63997=1;
-    cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 94, column: 8
+  public void thread117133(int [] tdone, int [] ends){
+        S101840=1;
+    cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 94, column: 8
     currsigs.addElement(cylClampBottleExtend);
     active[6]=1;
     ends[6]=1;
     tdone[6]=1;
   }
 
-  public void thread79288(int [] tdone, int [] ends){
-        S64114=1;
-    invertRotateRetract.setPresent();//sysj\liquidDumperController.sysj line: 99, column: 45
+  public void thread117131(int [] tdone, int [] ends){
+        S101957=1;
+    invertRotateRetract.setPresent();//sysj/liquidDumperController.sysj line: 99, column: 45
     currsigs.addElement(invertRotateRetract);
     active[10]=1;
     ends[10]=1;
     tdone[10]=1;
   }
 
-  public void thread79287(int [] tdone, int [] ends){
-        S64109=1;
-    cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 99, column: 8
+  public void thread117130(int [] tdone, int [] ends){
+        S101952=1;
+    cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 99, column: 8
     currsigs.addElement(cylClampBottleExtend);
     active[9]=1;
     ends[9]=1;
     tdone[9]=1;
   }
 
-  public void thread79285(int [] tdone, int [] ends){
-        S63947=1;
-    invertRotateExtend.setPresent();//sysj\liquidDumperController.sysj line: 88, column: 45
+  public void thread117128(int [] tdone, int [] ends){
+        S101790=1;
+    invertRotateExtend.setPresent();//sysj/liquidDumperController.sysj line: 88, column: 45
     currsigs.addElement(invertRotateExtend);
     active[5]=1;
     ends[5]=1;
     tdone[5]=1;
   }
 
-  public void thread79284(int [] tdone, int [] ends){
-        S63942=1;
-    cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 88, column: 8
+  public void thread117127(int [] tdone, int [] ends){
+        S101785=1;
+    cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 88, column: 8
     currsigs.addElement(cylClampBottleExtend);
     active[4]=1;
     ends[4]=1;
     tdone[4]=1;
   }
 
-  public void thread79282(int [] tdone, int [] ends){
-        S64007=1;
-    drainValveOnOff.setPresent();//sysj\liquidDumperController.sysj line: 94, column: 80
+  public void thread117125(int [] tdone, int [] ends){
+        S101850=1;
+    drainValveOnOff.setPresent();//sysj/liquidDumperController.sysj line: 94, column: 80
     currsigs.addElement(drainValveOnOff);
     active[8]=1;
     ends[8]=1;
     tdone[8]=1;
   }
 
-  public void thread79281(int [] tdone, int [] ends){
-        S64002=1;
-    invertRotateExtend.setPresent();//sysj\liquidDumperController.sysj line: 94, column: 45
+  public void thread117124(int [] tdone, int [] ends){
+        S101845=1;
+    invertRotateExtend.setPresent();//sysj/liquidDumperController.sysj line: 94, column: 45
     currsigs.addElement(invertRotateExtend);
     active[7]=1;
     ends[7]=1;
     tdone[7]=1;
   }
 
-  public void thread79280(int [] tdone, int [] ends){
-        S63997=1;
-    cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 94, column: 8
+  public void thread117123(int [] tdone, int [] ends){
+        S101840=1;
+    cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 94, column: 8
     currsigs.addElement(cylClampBottleExtend);
     active[6]=1;
     ends[6]=1;
     tdone[6]=1;
   }
 
-  public void thread79278(int [] tdone, int [] ends){
-        S64114=1;
-    invertRotateRetract.setPresent();//sysj\liquidDumperController.sysj line: 99, column: 45
+  public void thread117121(int [] tdone, int [] ends){
+        S101957=1;
+    invertRotateRetract.setPresent();//sysj/liquidDumperController.sysj line: 99, column: 45
     currsigs.addElement(invertRotateRetract);
     active[10]=1;
     ends[10]=1;
     tdone[10]=1;
   }
 
-  public void thread79277(int [] tdone, int [] ends){
-        S64109=1;
-    cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 99, column: 8
+  public void thread117120(int [] tdone, int [] ends){
+        S101952=1;
+    cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 99, column: 8
     currsigs.addElement(cylClampBottleExtend);
     active[9]=1;
     ends[9]=1;
     tdone[9]=1;
   }
 
-  public void thread79275(int [] tdone, int [] ends){
-        S63947=1;
-    invertRotateExtend.setPresent();//sysj\liquidDumperController.sysj line: 88, column: 45
+  public void thread117118(int [] tdone, int [] ends){
+        S101790=1;
+    invertRotateExtend.setPresent();//sysj/liquidDumperController.sysj line: 88, column: 45
     currsigs.addElement(invertRotateExtend);
     active[5]=1;
     ends[5]=1;
     tdone[5]=1;
   }
 
-  public void thread79274(int [] tdone, int [] ends){
-        S63942=1;
-    cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 88, column: 8
+  public void thread117117(int [] tdone, int [] ends){
+        S101785=1;
+    cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 88, column: 8
     currsigs.addElement(cylClampBottleExtend);
     active[4]=1;
     ends[4]=1;
     tdone[4]=1;
   }
 
-  public void thread79272(int [] tdone, int [] ends){
-        S64007=1;
-    drainValveOnOff.setPresent();//sysj\liquidDumperController.sysj line: 94, column: 80
+  public void thread117115(int [] tdone, int [] ends){
+        S101850=1;
+    drainValveOnOff.setPresent();//sysj/liquidDumperController.sysj line: 94, column: 80
     currsigs.addElement(drainValveOnOff);
     active[8]=1;
     ends[8]=1;
     tdone[8]=1;
   }
 
-  public void thread79271(int [] tdone, int [] ends){
-        S64002=1;
-    invertRotateExtend.setPresent();//sysj\liquidDumperController.sysj line: 94, column: 45
+  public void thread117114(int [] tdone, int [] ends){
+        S101845=1;
+    invertRotateExtend.setPresent();//sysj/liquidDumperController.sysj line: 94, column: 45
     currsigs.addElement(invertRotateExtend);
     active[7]=1;
     ends[7]=1;
     tdone[7]=1;
   }
 
-  public void thread79270(int [] tdone, int [] ends){
-        S63997=1;
-    cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 94, column: 8
+  public void thread117113(int [] tdone, int [] ends){
+        S101840=1;
+    cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 94, column: 8
     currsigs.addElement(cylClampBottleExtend);
     active[6]=1;
     ends[6]=1;
     tdone[6]=1;
   }
 
-  public void thread79268(int [] tdone, int [] ends){
-        S64114=1;
-    invertRotateRetract.setPresent();//sysj\liquidDumperController.sysj line: 99, column: 45
+  public void thread117111(int [] tdone, int [] ends){
+        S101957=1;
+    invertRotateRetract.setPresent();//sysj/liquidDumperController.sysj line: 99, column: 45
     currsigs.addElement(invertRotateRetract);
     active[10]=1;
     ends[10]=1;
     tdone[10]=1;
   }
 
-  public void thread79267(int [] tdone, int [] ends){
-        S64109=1;
-    cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 99, column: 8
+  public void thread117110(int [] tdone, int [] ends){
+        S101952=1;
+    cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 99, column: 8
     currsigs.addElement(cylClampBottleExtend);
     active[9]=1;
     ends[9]=1;
     tdone[9]=1;
   }
 
-  public void thread79265(int [] tdone, int [] ends){
-        S63947=1;
-    invertRotateExtend.setPresent();//sysj\liquidDumperController.sysj line: 88, column: 45
+  public void thread117108(int [] tdone, int [] ends){
+        S101790=1;
+    invertRotateExtend.setPresent();//sysj/liquidDumperController.sysj line: 88, column: 45
     currsigs.addElement(invertRotateExtend);
     active[5]=1;
     ends[5]=1;
     tdone[5]=1;
   }
 
-  public void thread79264(int [] tdone, int [] ends){
-        S63942=1;
-    cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 88, column: 8
+  public void thread117107(int [] tdone, int [] ends){
+        S101785=1;
+    cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 88, column: 8
     currsigs.addElement(cylClampBottleExtend);
     active[4]=1;
     ends[4]=1;
     tdone[4]=1;
   }
 
-  public void thread79262(int [] tdone, int [] ends){
-        S64007=1;
-    drainValveOnOff.setPresent();//sysj\liquidDumperController.sysj line: 94, column: 80
+  public void thread117105(int [] tdone, int [] ends){
+        S101850=1;
+    drainValveOnOff.setPresent();//sysj/liquidDumperController.sysj line: 94, column: 80
     currsigs.addElement(drainValveOnOff);
     active[8]=1;
     ends[8]=1;
     tdone[8]=1;
   }
 
-  public void thread79261(int [] tdone, int [] ends){
-        S64002=1;
-    invertRotateExtend.setPresent();//sysj\liquidDumperController.sysj line: 94, column: 45
+  public void thread117104(int [] tdone, int [] ends){
+        S101845=1;
+    invertRotateExtend.setPresent();//sysj/liquidDumperController.sysj line: 94, column: 45
     currsigs.addElement(invertRotateExtend);
     active[7]=1;
     ends[7]=1;
     tdone[7]=1;
   }
 
-  public void thread79260(int [] tdone, int [] ends){
-        S63997=1;
-    cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 94, column: 8
+  public void thread117103(int [] tdone, int [] ends){
+        S101840=1;
+    cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 94, column: 8
     currsigs.addElement(cylClampBottleExtend);
     active[6]=1;
     ends[6]=1;
     tdone[6]=1;
   }
 
-  public void thread79258(int [] tdone, int [] ends){
-        S64114=1;
-    invertRotateRetract.setPresent();//sysj\liquidDumperController.sysj line: 99, column: 45
+  public void thread117101(int [] tdone, int [] ends){
+        S101957=1;
+    invertRotateRetract.setPresent();//sysj/liquidDumperController.sysj line: 99, column: 45
     currsigs.addElement(invertRotateRetract);
     active[10]=1;
     ends[10]=1;
     tdone[10]=1;
   }
 
-  public void thread79257(int [] tdone, int [] ends){
-        S64109=1;
-    cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 99, column: 8
+  public void thread117100(int [] tdone, int [] ends){
+        S101952=1;
+    cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 99, column: 8
     currsigs.addElement(cylClampBottleExtend);
     active[9]=1;
     ends[9]=1;
     tdone[9]=1;
   }
 
-  public void thread79255(int [] tdone, int [] ends){
-        S63947=1;
-    invertRotateExtend.setPresent();//sysj\liquidDumperController.sysj line: 88, column: 45
+  public void thread117098(int [] tdone, int [] ends){
+        S101790=1;
+    invertRotateExtend.setPresent();//sysj/liquidDumperController.sysj line: 88, column: 45
     currsigs.addElement(invertRotateExtend);
     active[5]=1;
     ends[5]=1;
     tdone[5]=1;
   }
 
-  public void thread79254(int [] tdone, int [] ends){
-        S63942=1;
-    cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 88, column: 8
+  public void thread117097(int [] tdone, int [] ends){
+        S101785=1;
+    cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 88, column: 8
     currsigs.addElement(cylClampBottleExtend);
     active[4]=1;
     ends[4]=1;
     tdone[4]=1;
   }
 
-  public void thread79252(int [] tdone, int [] ends){
-        S64007=1;
-    drainValveOnOff.setPresent();//sysj\liquidDumperController.sysj line: 94, column: 80
+  public void thread117095(int [] tdone, int [] ends){
+        S101850=1;
+    drainValveOnOff.setPresent();//sysj/liquidDumperController.sysj line: 94, column: 80
     currsigs.addElement(drainValveOnOff);
     active[8]=1;
     ends[8]=1;
     tdone[8]=1;
   }
 
-  public void thread79251(int [] tdone, int [] ends){
-        S64002=1;
-    invertRotateExtend.setPresent();//sysj\liquidDumperController.sysj line: 94, column: 45
+  public void thread117094(int [] tdone, int [] ends){
+        S101845=1;
+    invertRotateExtend.setPresent();//sysj/liquidDumperController.sysj line: 94, column: 45
     currsigs.addElement(invertRotateExtend);
     active[7]=1;
     ends[7]=1;
     tdone[7]=1;
   }
 
-  public void thread79250(int [] tdone, int [] ends){
-        S63997=1;
-    cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 94, column: 8
+  public void thread117093(int [] tdone, int [] ends){
+        S101840=1;
+    cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 94, column: 8
     currsigs.addElement(cylClampBottleExtend);
     active[6]=1;
     ends[6]=1;
     tdone[6]=1;
   }
 
-  public void thread79248(int [] tdone, int [] ends){
-        S64114=1;
-    invertRotateRetract.setPresent();//sysj\liquidDumperController.sysj line: 99, column: 45
+  public void thread117091(int [] tdone, int [] ends){
+        S101957=1;
+    invertRotateRetract.setPresent();//sysj/liquidDumperController.sysj line: 99, column: 45
     currsigs.addElement(invertRotateRetract);
     active[10]=1;
     ends[10]=1;
     tdone[10]=1;
   }
 
-  public void thread79247(int [] tdone, int [] ends){
-        S64109=1;
-    cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 99, column: 8
+  public void thread117090(int [] tdone, int [] ends){
+        S101952=1;
+    cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 99, column: 8
     currsigs.addElement(cylClampBottleExtend);
     active[9]=1;
     ends[9]=1;
     tdone[9]=1;
   }
 
-  public void thread79246(int [] tdone, int [] ends){
-        switch(S78940){
+  public void thread117089(int [] tdone, int [] ends){
+        switch(S116783){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -969,82 +969,82 @@ public class LiquidDumperController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S66404){
+        switch(S104247){
           case 0 : 
-            if(auto_1.getprestatus()){//sysj\liquidDumperController.sysj line: 74, column: 20
-              S66404=1;
-              if(manual_1.getprestatus()){//sysj\liquidDumperController.sysj line: 76, column: 20
+            if(auto_1.getprestatus()){//sysj/liquidDumperController.sysj line: 74, column: 20
+              S104247=1;
+              if(manual_1.getprestatus()){//sysj/liquidDumperController.sysj line: 76, column: 20
                 enable_in.setPreempted();
                 status_o.setPreempted();
-                S66404=2;
+                S104247=2;
                 active[3]=1;
                 ends[3]=1;
                 tdone[3]=1;
               }
               else {
-                S63921=0;
-                S63905=0;
-                if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 77, column: 5
-                  enable_in.setACK(false);//sysj\liquidDumperController.sysj line: 77, column: 5
-                  S63905=1;
+                S101764=0;
+                S101748=0;
+                if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 77, column: 5
+                  enable_in.setACK(false);//sysj/liquidDumperController.sysj line: 77, column: 5
+                  S101748=1;
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  S63900=0;
-                  if(!enable_in.isREQ()){//sysj\liquidDumperController.sysj line: 77, column: 5
-                    enable_in.setACK(true);//sysj\liquidDumperController.sysj line: 77, column: 5
-                    S63900=1;
-                    if(enable_in.isREQ()){//sysj\liquidDumperController.sysj line: 77, column: 5
-                      enable_in.setACK(false);//sysj\liquidDumperController.sysj line: 77, column: 5
+                  S101743=0;
+                  if(!enable_in.isREQ()){//sysj/liquidDumperController.sysj line: 77, column: 5
+                    enable_in.setACK(true);//sysj/liquidDumperController.sysj line: 77, column: 5
+                    S101743=1;
+                    if(enable_in.isREQ()){//sysj/liquidDumperController.sysj line: 77, column: 5
+                      enable_in.setACK(false);//sysj/liquidDumperController.sysj line: 77, column: 5
                       ends[3]=2;
-                      ;//sysj\liquidDumperController.sysj line: 77, column: 5
-                      w_thread_3 = (Workpiece)(enable_in.getVal() == null ? null : ((Workpiece)enable_in.getVal()));//sysj\liquidDumperController.sysj line: 78, column: 5
-                      System.out.println("[LD] Draining " + w_thread_3 + " (" + w_thread_3.filledMl() + "ml).");//sysj\liquidDumperController.sysj line: 79, column: 5
-                      S63921=1;
-                      if(clampClosed.getprestatus()){//sysj\liquidDumperController.sysj line: 82, column: 21
-                        S63921=2;
-                        if(bottleInverted.getprestatus()){//sysj\liquidDumperController.sysj line: 87, column: 21
-                          S63921=3;
-                          if(bottleDrained.getprestatus()){//sysj\liquidDumperController.sysj line: 93, column: 21
-                            S63921=4;
-                            if(bottleUpright.getprestatus()){//sysj\liquidDumperController.sysj line: 98, column: 21
-                              S63921=5;
-                              if(!clampClosed.getprestatus()){//sysj\liquidDumperController.sysj line: 103, column: 21
-                                w_thread_3.drain();//sysj\liquidDumperController.sysj line: 105, column: 5
-                                System.out.println("[LD] " + w_thread_3 + " drained to the waste sink, now at " + w_thread_3.filledMl() + "ml.");//sysj\liquidDumperController.sysj line: 106, column: 5
-                                level_thread_3 = 0;//sysj\liquidDumperController.sysj line: 109, column: 5
-                                if(wasteTankLevel.getprestatus()){//sysj\liquidDumperController.sysj line: 110, column: 13
-                                  level_thread_3 = ((Integer)(wasteTankLevel.getpreval() == null ? null : ((Integer)wasteTankLevel.getpreval()))).intValue();//sysj\liquidDumperController.sysj line: 111, column: 6
-                                  code_thread_3 = OK_thread_3;//sysj\liquidDumperController.sysj line: 114, column: 5
-                                  if(level_thread_3 >= TANK_WARN_thread_3) {//sysj\liquidDumperController.sysj line: 115, column: 27
-                                    System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj\liquidDumperController.sysj line: 116, column: 6
-                                    code_thread_3 = WARN_thread_3;//sysj\liquidDumperController.sysj line: 117, column: 6
+                      ;//sysj/liquidDumperController.sysj line: 77, column: 5
+                      w_thread_3 = (Workpiece)(enable_in.getVal() == null ? null : ((Workpiece)enable_in.getVal()));//sysj/liquidDumperController.sysj line: 78, column: 5
+                      System.out.println("[LD] Draining " + w_thread_3 + " (" + w_thread_3.filledMl() + "ml).");//sysj/liquidDumperController.sysj line: 79, column: 5
+                      S101764=1;
+                      if(clampClosed.getprestatus()){//sysj/liquidDumperController.sysj line: 82, column: 21
+                        S101764=2;
+                        if(bottleInverted.getprestatus()){//sysj/liquidDumperController.sysj line: 87, column: 21
+                          S101764=3;
+                          if(bottleDrained.getprestatus()){//sysj/liquidDumperController.sysj line: 93, column: 21
+                            S101764=4;
+                            if(bottleUpright.getprestatus()){//sysj/liquidDumperController.sysj line: 98, column: 21
+                              S101764=5;
+                              if(!clampClosed.getprestatus()){//sysj/liquidDumperController.sysj line: 103, column: 21
+                                w_thread_3.drain();//sysj/liquidDumperController.sysj line: 105, column: 5
+                                System.out.println("[LD] " + w_thread_3 + " drained to the waste sink, now at " + w_thread_3.filledMl() + "ml.");//sysj/liquidDumperController.sysj line: 106, column: 5
+                                level_thread_3 = 0;//sysj/liquidDumperController.sysj line: 109, column: 5
+                                if(wasteTankLevel.getprestatus()){//sysj/liquidDumperController.sysj line: 110, column: 13
+                                  level_thread_3 = ((Integer)(wasteTankLevel.getpreval() == null ? null : ((Integer)wasteTankLevel.getpreval()))).intValue();//sysj/liquidDumperController.sysj line: 111, column: 6
+                                  code_thread_3 = OK_thread_3;//sysj/liquidDumperController.sysj line: 114, column: 5
+                                  if(level_thread_3 >= TANK_WARN_thread_3) {//sysj/liquidDumperController.sysj line: 115, column: 27
+                                    System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj/liquidDumperController.sysj line: 116, column: 6
+                                    code_thread_3 = WARN_thread_3;//sysj/liquidDumperController.sysj line: 117, column: 6
                                   }
-                                  if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj\liquidDumperController.sysj line: 119, column: 31
-                                    System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj\liquidDumperController.sysj line: 120, column: 6
-                                    code_thread_3 = BLOCKED_thread_3;//sysj\liquidDumperController.sysj line: 121, column: 6
+                                  if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj/liquidDumperController.sysj line: 119, column: 31
+                                    System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj/liquidDumperController.sysj line: 120, column: 6
+                                    code_thread_3 = BLOCKED_thread_3;//sysj/liquidDumperController.sysj line: 121, column: 6
                                   }
-                                  S63921=6;
-                                  S64233=0;
-                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                    status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
-                                    S64233=1;
+                                  S101764=6;
+                                  S102076=0;
+                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                    status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
+                                    S102076=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
                                   else {
-                                    S64228=0;
-                                    if(status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                      status_o.setVal(new Integer(code_thread_3));//sysj\liquidDumperController.sysj line: 124, column: 5
-                                      S64228=1;
-                                      if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                        status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                                    S102071=0;
+                                    if(status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                      status_o.setVal(new Integer(code_thread_3));//sysj/liquidDumperController.sysj line: 124, column: 5
+                                      S102071=1;
+                                      if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                        status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                                         ends[3]=2;
-                                        ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                                        S66404=2;
+                                        ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                                        S104247=2;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -1063,34 +1063,34 @@ public class LiquidDumperController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  code_thread_3 = OK_thread_3;//sysj\liquidDumperController.sysj line: 114, column: 5
-                                  if(level_thread_3 >= TANK_WARN_thread_3) {//sysj\liquidDumperController.sysj line: 115, column: 27
-                                    System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj\liquidDumperController.sysj line: 116, column: 6
-                                    code_thread_3 = WARN_thread_3;//sysj\liquidDumperController.sysj line: 117, column: 6
+                                  code_thread_3 = OK_thread_3;//sysj/liquidDumperController.sysj line: 114, column: 5
+                                  if(level_thread_3 >= TANK_WARN_thread_3) {//sysj/liquidDumperController.sysj line: 115, column: 27
+                                    System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj/liquidDumperController.sysj line: 116, column: 6
+                                    code_thread_3 = WARN_thread_3;//sysj/liquidDumperController.sysj line: 117, column: 6
                                   }
-                                  if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj\liquidDumperController.sysj line: 119, column: 31
-                                    System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj\liquidDumperController.sysj line: 120, column: 6
-                                    code_thread_3 = BLOCKED_thread_3;//sysj\liquidDumperController.sysj line: 121, column: 6
+                                  if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj/liquidDumperController.sysj line: 119, column: 31
+                                    System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj/liquidDumperController.sysj line: 120, column: 6
+                                    code_thread_3 = BLOCKED_thread_3;//sysj/liquidDumperController.sysj line: 121, column: 6
                                   }
-                                  S63921=6;
-                                  S64233=0;
-                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                    status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
-                                    S64233=1;
+                                  S101764=6;
+                                  S102076=0;
+                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                    status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
+                                    S102076=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
                                   else {
-                                    S64228=0;
-                                    if(status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                      status_o.setVal(new Integer(code_thread_3));//sysj\liquidDumperController.sysj line: 124, column: 5
-                                      S64228=1;
-                                      if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                        status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                                    S102071=0;
+                                    if(status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                      status_o.setVal(new Integer(code_thread_3));//sysj/liquidDumperController.sysj line: 124, column: 5
+                                      S102071=1;
+                                      if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                        status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                                         ends[3]=2;
-                                        ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                                        S66404=2;
+                                        ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                                        S104247=2;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -1116,16 +1116,16 @@ public class LiquidDumperController extends ClockDomain{
                               }
                             }
                             else {
-                              thread79247(tdone,ends);
-                              thread79248(tdone,ends);
-                              int biggest79249 = 0;
-                              if(ends[9]>=biggest79249){
-                                biggest79249=ends[9];
+                              thread117090(tdone,ends);
+                              thread117091(tdone,ends);
+                              int biggest117092 = 0;
+                              if(ends[9]>=biggest117092){
+                                biggest117092=ends[9];
                               }
-                              if(ends[10]>=biggest79249){
-                                biggest79249=ends[10];
+                              if(ends[10]>=biggest117092){
+                                biggest117092=ends[10];
                               }
-                              if(biggest79249 == 1){
+                              if(biggest117092 == 1){
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -1133,20 +1133,20 @@ public class LiquidDumperController extends ClockDomain{
                             }
                           }
                           else {
-                            thread79250(tdone,ends);
-                            thread79251(tdone,ends);
-                            thread79252(tdone,ends);
-                            int biggest79253 = 0;
-                            if(ends[6]>=biggest79253){
-                              biggest79253=ends[6];
+                            thread117093(tdone,ends);
+                            thread117094(tdone,ends);
+                            thread117095(tdone,ends);
+                            int biggest117096 = 0;
+                            if(ends[6]>=biggest117096){
+                              biggest117096=ends[6];
                             }
-                            if(ends[7]>=biggest79253){
-                              biggest79253=ends[7];
+                            if(ends[7]>=biggest117096){
+                              biggest117096=ends[7];
                             }
-                            if(ends[8]>=biggest79253){
-                              biggest79253=ends[8];
+                            if(ends[8]>=biggest117096){
+                              biggest117096=ends[8];
                             }
-                            if(biggest79253 == 1){
+                            if(biggest117096 == 1){
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
@@ -1154,16 +1154,16 @@ public class LiquidDumperController extends ClockDomain{
                           }
                         }
                         else {
-                          thread79254(tdone,ends);
-                          thread79255(tdone,ends);
-                          int biggest79256 = 0;
-                          if(ends[4]>=biggest79256){
-                            biggest79256=ends[4];
+                          thread117097(tdone,ends);
+                          thread117098(tdone,ends);
+                          int biggest117099 = 0;
+                          if(ends[4]>=biggest117099){
+                            biggest117099=ends[4];
                           }
-                          if(ends[5]>=biggest79256){
-                            biggest79256=ends[5];
+                          if(ends[5]>=biggest117099){
+                            biggest117099=ends[5];
                           }
-                          if(biggest79256 == 1){
+                          if(biggest117099 == 1){
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -1171,7 +1171,7 @@ public class LiquidDumperController extends ClockDomain{
                         }
                       }
                       else {
-                        cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 83, column: 6
+                        cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 83, column: 6
                         currsigs.addElement(cylClampBottleExtend);
                         active[3]=1;
                         ends[3]=1;
@@ -1200,81 +1200,81 @@ public class LiquidDumperController extends ClockDomain{
             break;
           
           case 1 : 
-            if(manual_1.getprestatus()){//sysj\liquidDumperController.sysj line: 76, column: 20
+            if(manual_1.getprestatus()){//sysj/liquidDumperController.sysj line: 76, column: 20
               enable_in.setPreempted();
               status_o.setPreempted();
-              S66404=2;
+              S104247=2;
               active[3]=1;
               ends[3]=1;
               tdone[3]=1;
             }
             else {
-              switch(S63921){
+              switch(S101764){
                 case 0 : 
-                  switch(S63905){
+                  switch(S101748){
                     case 0 : 
-                      if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 77, column: 5
-                        enable_in.setACK(false);//sysj\liquidDumperController.sysj line: 77, column: 5
-                        S63905=1;
+                      if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 77, column: 5
+                        enable_in.setACK(false);//sysj/liquidDumperController.sysj line: 77, column: 5
+                        S101748=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        switch(S63900){
+                        switch(S101743){
                           case 0 : 
-                            if(!enable_in.isREQ()){//sysj\liquidDumperController.sysj line: 77, column: 5
-                              enable_in.setACK(true);//sysj\liquidDumperController.sysj line: 77, column: 5
-                              S63900=1;
-                              if(enable_in.isREQ()){//sysj\liquidDumperController.sysj line: 77, column: 5
-                                enable_in.setACK(false);//sysj\liquidDumperController.sysj line: 77, column: 5
+                            if(!enable_in.isREQ()){//sysj/liquidDumperController.sysj line: 77, column: 5
+                              enable_in.setACK(true);//sysj/liquidDumperController.sysj line: 77, column: 5
+                              S101743=1;
+                              if(enable_in.isREQ()){//sysj/liquidDumperController.sysj line: 77, column: 5
+                                enable_in.setACK(false);//sysj/liquidDumperController.sysj line: 77, column: 5
                                 ends[3]=2;
-                                ;//sysj\liquidDumperController.sysj line: 77, column: 5
-                                w_thread_3 = (Workpiece)(enable_in.getVal() == null ? null : ((Workpiece)enable_in.getVal()));//sysj\liquidDumperController.sysj line: 78, column: 5
-                                System.out.println("[LD] Draining " + w_thread_3 + " (" + w_thread_3.filledMl() + "ml).");//sysj\liquidDumperController.sysj line: 79, column: 5
-                                S63921=1;
-                                if(clampClosed.getprestatus()){//sysj\liquidDumperController.sysj line: 82, column: 21
-                                  S63921=2;
-                                  if(bottleInverted.getprestatus()){//sysj\liquidDumperController.sysj line: 87, column: 21
-                                    S63921=3;
-                                    if(bottleDrained.getprestatus()){//sysj\liquidDumperController.sysj line: 93, column: 21
-                                      S63921=4;
-                                      if(bottleUpright.getprestatus()){//sysj\liquidDumperController.sysj line: 98, column: 21
-                                        S63921=5;
-                                        if(!clampClosed.getprestatus()){//sysj\liquidDumperController.sysj line: 103, column: 21
-                                          w_thread_3.drain();//sysj\liquidDumperController.sysj line: 105, column: 5
-                                          System.out.println("[LD] " + w_thread_3 + " drained to the waste sink, now at " + w_thread_3.filledMl() + "ml.");//sysj\liquidDumperController.sysj line: 106, column: 5
-                                          level_thread_3 = 0;//sysj\liquidDumperController.sysj line: 109, column: 5
-                                          if(wasteTankLevel.getprestatus()){//sysj\liquidDumperController.sysj line: 110, column: 13
-                                            level_thread_3 = ((Integer)(wasteTankLevel.getpreval() == null ? null : ((Integer)wasteTankLevel.getpreval()))).intValue();//sysj\liquidDumperController.sysj line: 111, column: 6
-                                            code_thread_3 = OK_thread_3;//sysj\liquidDumperController.sysj line: 114, column: 5
-                                            if(level_thread_3 >= TANK_WARN_thread_3) {//sysj\liquidDumperController.sysj line: 115, column: 27
-                                              System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj\liquidDumperController.sysj line: 116, column: 6
-                                              code_thread_3 = WARN_thread_3;//sysj\liquidDumperController.sysj line: 117, column: 6
+                                ;//sysj/liquidDumperController.sysj line: 77, column: 5
+                                w_thread_3 = (Workpiece)(enable_in.getVal() == null ? null : ((Workpiece)enable_in.getVal()));//sysj/liquidDumperController.sysj line: 78, column: 5
+                                System.out.println("[LD] Draining " + w_thread_3 + " (" + w_thread_3.filledMl() + "ml).");//sysj/liquidDumperController.sysj line: 79, column: 5
+                                S101764=1;
+                                if(clampClosed.getprestatus()){//sysj/liquidDumperController.sysj line: 82, column: 21
+                                  S101764=2;
+                                  if(bottleInverted.getprestatus()){//sysj/liquidDumperController.sysj line: 87, column: 21
+                                    S101764=3;
+                                    if(bottleDrained.getprestatus()){//sysj/liquidDumperController.sysj line: 93, column: 21
+                                      S101764=4;
+                                      if(bottleUpright.getprestatus()){//sysj/liquidDumperController.sysj line: 98, column: 21
+                                        S101764=5;
+                                        if(!clampClosed.getprestatus()){//sysj/liquidDumperController.sysj line: 103, column: 21
+                                          w_thread_3.drain();//sysj/liquidDumperController.sysj line: 105, column: 5
+                                          System.out.println("[LD] " + w_thread_3 + " drained to the waste sink, now at " + w_thread_3.filledMl() + "ml.");//sysj/liquidDumperController.sysj line: 106, column: 5
+                                          level_thread_3 = 0;//sysj/liquidDumperController.sysj line: 109, column: 5
+                                          if(wasteTankLevel.getprestatus()){//sysj/liquidDumperController.sysj line: 110, column: 13
+                                            level_thread_3 = ((Integer)(wasteTankLevel.getpreval() == null ? null : ((Integer)wasteTankLevel.getpreval()))).intValue();//sysj/liquidDumperController.sysj line: 111, column: 6
+                                            code_thread_3 = OK_thread_3;//sysj/liquidDumperController.sysj line: 114, column: 5
+                                            if(level_thread_3 >= TANK_WARN_thread_3) {//sysj/liquidDumperController.sysj line: 115, column: 27
+                                              System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj/liquidDumperController.sysj line: 116, column: 6
+                                              code_thread_3 = WARN_thread_3;//sysj/liquidDumperController.sysj line: 117, column: 6
                                             }
-                                            if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj\liquidDumperController.sysj line: 119, column: 31
-                                              System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj\liquidDumperController.sysj line: 120, column: 6
-                                              code_thread_3 = BLOCKED_thread_3;//sysj\liquidDumperController.sysj line: 121, column: 6
+                                            if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj/liquidDumperController.sysj line: 119, column: 31
+                                              System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj/liquidDumperController.sysj line: 120, column: 6
+                                              code_thread_3 = BLOCKED_thread_3;//sysj/liquidDumperController.sysj line: 121, column: 6
                                             }
-                                            S63921=6;
-                                            S64233=0;
-                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                              status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
-                                              S64233=1;
+                                            S101764=6;
+                                            S102076=0;
+                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                              status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
+                                              S102076=1;
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
                                             }
                                             else {
-                                              S64228=0;
-                                              if(status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                                status_o.setVal(new Integer(code_thread_3));//sysj\liquidDumperController.sysj line: 124, column: 5
-                                                S64228=1;
-                                                if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                                  status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                                              S102071=0;
+                                              if(status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                                status_o.setVal(new Integer(code_thread_3));//sysj/liquidDumperController.sysj line: 124, column: 5
+                                                S102071=1;
+                                                if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                                  status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                                                   ends[3]=2;
-                                                  ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                                                  S66404=2;
+                                                  ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                                                  S104247=2;
                                                   active[3]=1;
                                                   ends[3]=1;
                                                   tdone[3]=1;
@@ -1293,34 +1293,34 @@ public class LiquidDumperController extends ClockDomain{
                                             }
                                           }
                                           else {
-                                            code_thread_3 = OK_thread_3;//sysj\liquidDumperController.sysj line: 114, column: 5
-                                            if(level_thread_3 >= TANK_WARN_thread_3) {//sysj\liquidDumperController.sysj line: 115, column: 27
-                                              System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj\liquidDumperController.sysj line: 116, column: 6
-                                              code_thread_3 = WARN_thread_3;//sysj\liquidDumperController.sysj line: 117, column: 6
+                                            code_thread_3 = OK_thread_3;//sysj/liquidDumperController.sysj line: 114, column: 5
+                                            if(level_thread_3 >= TANK_WARN_thread_3) {//sysj/liquidDumperController.sysj line: 115, column: 27
+                                              System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj/liquidDumperController.sysj line: 116, column: 6
+                                              code_thread_3 = WARN_thread_3;//sysj/liquidDumperController.sysj line: 117, column: 6
                                             }
-                                            if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj\liquidDumperController.sysj line: 119, column: 31
-                                              System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj\liquidDumperController.sysj line: 120, column: 6
-                                              code_thread_3 = BLOCKED_thread_3;//sysj\liquidDumperController.sysj line: 121, column: 6
+                                            if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj/liquidDumperController.sysj line: 119, column: 31
+                                              System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj/liquidDumperController.sysj line: 120, column: 6
+                                              code_thread_3 = BLOCKED_thread_3;//sysj/liquidDumperController.sysj line: 121, column: 6
                                             }
-                                            S63921=6;
-                                            S64233=0;
-                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                              status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
-                                              S64233=1;
+                                            S101764=6;
+                                            S102076=0;
+                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                              status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
+                                              S102076=1;
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
                                             }
                                             else {
-                                              S64228=0;
-                                              if(status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                                status_o.setVal(new Integer(code_thread_3));//sysj\liquidDumperController.sysj line: 124, column: 5
-                                                S64228=1;
-                                                if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                                  status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                                              S102071=0;
+                                              if(status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                                status_o.setVal(new Integer(code_thread_3));//sysj/liquidDumperController.sysj line: 124, column: 5
+                                                S102071=1;
+                                                if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                                  status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                                                   ends[3]=2;
-                                                  ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                                                  S66404=2;
+                                                  ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                                                  S104247=2;
                                                   active[3]=1;
                                                   ends[3]=1;
                                                   tdone[3]=1;
@@ -1346,16 +1346,16 @@ public class LiquidDumperController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        thread79257(tdone,ends);
-                                        thread79258(tdone,ends);
-                                        int biggest79259 = 0;
-                                        if(ends[9]>=biggest79259){
-                                          biggest79259=ends[9];
+                                        thread117100(tdone,ends);
+                                        thread117101(tdone,ends);
+                                        int biggest117102 = 0;
+                                        if(ends[9]>=biggest117102){
+                                          biggest117102=ends[9];
                                         }
-                                        if(ends[10]>=biggest79259){
-                                          biggest79259=ends[10];
+                                        if(ends[10]>=biggest117102){
+                                          biggest117102=ends[10];
                                         }
-                                        if(biggest79259 == 1){
+                                        if(biggest117102 == 1){
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
@@ -1363,20 +1363,20 @@ public class LiquidDumperController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      thread79260(tdone,ends);
-                                      thread79261(tdone,ends);
-                                      thread79262(tdone,ends);
-                                      int biggest79263 = 0;
-                                      if(ends[6]>=biggest79263){
-                                        biggest79263=ends[6];
+                                      thread117103(tdone,ends);
+                                      thread117104(tdone,ends);
+                                      thread117105(tdone,ends);
+                                      int biggest117106 = 0;
+                                      if(ends[6]>=biggest117106){
+                                        biggest117106=ends[6];
                                       }
-                                      if(ends[7]>=biggest79263){
-                                        biggest79263=ends[7];
+                                      if(ends[7]>=biggest117106){
+                                        biggest117106=ends[7];
                                       }
-                                      if(ends[8]>=biggest79263){
-                                        biggest79263=ends[8];
+                                      if(ends[8]>=biggest117106){
+                                        biggest117106=ends[8];
                                       }
-                                      if(biggest79263 == 1){
+                                      if(biggest117106 == 1){
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -1384,16 +1384,16 @@ public class LiquidDumperController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    thread79264(tdone,ends);
-                                    thread79265(tdone,ends);
-                                    int biggest79266 = 0;
-                                    if(ends[4]>=biggest79266){
-                                      biggest79266=ends[4];
+                                    thread117107(tdone,ends);
+                                    thread117108(tdone,ends);
+                                    int biggest117109 = 0;
+                                    if(ends[4]>=biggest117109){
+                                      biggest117109=ends[4];
                                     }
-                                    if(ends[5]>=biggest79266){
-                                      biggest79266=ends[5];
+                                    if(ends[5]>=biggest117109){
+                                      biggest117109=ends[5];
                                     }
-                                    if(biggest79266 == 1){
+                                    if(biggest117109 == 1){
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
@@ -1401,7 +1401,7 @@ public class LiquidDumperController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 83, column: 6
+                                  cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 83, column: 6
                                   currsigs.addElement(cylClampBottleExtend);
                                   active[3]=1;
                                   ends[3]=1;
@@ -1422,55 +1422,55 @@ public class LiquidDumperController extends ClockDomain{
                             break;
                           
                           case 1 : 
-                            if(enable_in.isREQ()){//sysj\liquidDumperController.sysj line: 77, column: 5
-                              enable_in.setACK(false);//sysj\liquidDumperController.sysj line: 77, column: 5
+                            if(enable_in.isREQ()){//sysj/liquidDumperController.sysj line: 77, column: 5
+                              enable_in.setACK(false);//sysj/liquidDumperController.sysj line: 77, column: 5
                               ends[3]=2;
-                              ;//sysj\liquidDumperController.sysj line: 77, column: 5
-                              w_thread_3 = (Workpiece)(enable_in.getVal() == null ? null : ((Workpiece)enable_in.getVal()));//sysj\liquidDumperController.sysj line: 78, column: 5
-                              System.out.println("[LD] Draining " + w_thread_3 + " (" + w_thread_3.filledMl() + "ml).");//sysj\liquidDumperController.sysj line: 79, column: 5
-                              S63921=1;
-                              if(clampClosed.getprestatus()){//sysj\liquidDumperController.sysj line: 82, column: 21
-                                S63921=2;
-                                if(bottleInverted.getprestatus()){//sysj\liquidDumperController.sysj line: 87, column: 21
-                                  S63921=3;
-                                  if(bottleDrained.getprestatus()){//sysj\liquidDumperController.sysj line: 93, column: 21
-                                    S63921=4;
-                                    if(bottleUpright.getprestatus()){//sysj\liquidDumperController.sysj line: 98, column: 21
-                                      S63921=5;
-                                      if(!clampClosed.getprestatus()){//sysj\liquidDumperController.sysj line: 103, column: 21
-                                        w_thread_3.drain();//sysj\liquidDumperController.sysj line: 105, column: 5
-                                        System.out.println("[LD] " + w_thread_3 + " drained to the waste sink, now at " + w_thread_3.filledMl() + "ml.");//sysj\liquidDumperController.sysj line: 106, column: 5
-                                        level_thread_3 = 0;//sysj\liquidDumperController.sysj line: 109, column: 5
-                                        if(wasteTankLevel.getprestatus()){//sysj\liquidDumperController.sysj line: 110, column: 13
-                                          level_thread_3 = ((Integer)(wasteTankLevel.getpreval() == null ? null : ((Integer)wasteTankLevel.getpreval()))).intValue();//sysj\liquidDumperController.sysj line: 111, column: 6
-                                          code_thread_3 = OK_thread_3;//sysj\liquidDumperController.sysj line: 114, column: 5
-                                          if(level_thread_3 >= TANK_WARN_thread_3) {//sysj\liquidDumperController.sysj line: 115, column: 27
-                                            System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj\liquidDumperController.sysj line: 116, column: 6
-                                            code_thread_3 = WARN_thread_3;//sysj\liquidDumperController.sysj line: 117, column: 6
+                              ;//sysj/liquidDumperController.sysj line: 77, column: 5
+                              w_thread_3 = (Workpiece)(enable_in.getVal() == null ? null : ((Workpiece)enable_in.getVal()));//sysj/liquidDumperController.sysj line: 78, column: 5
+                              System.out.println("[LD] Draining " + w_thread_3 + " (" + w_thread_3.filledMl() + "ml).");//sysj/liquidDumperController.sysj line: 79, column: 5
+                              S101764=1;
+                              if(clampClosed.getprestatus()){//sysj/liquidDumperController.sysj line: 82, column: 21
+                                S101764=2;
+                                if(bottleInverted.getprestatus()){//sysj/liquidDumperController.sysj line: 87, column: 21
+                                  S101764=3;
+                                  if(bottleDrained.getprestatus()){//sysj/liquidDumperController.sysj line: 93, column: 21
+                                    S101764=4;
+                                    if(bottleUpright.getprestatus()){//sysj/liquidDumperController.sysj line: 98, column: 21
+                                      S101764=5;
+                                      if(!clampClosed.getprestatus()){//sysj/liquidDumperController.sysj line: 103, column: 21
+                                        w_thread_3.drain();//sysj/liquidDumperController.sysj line: 105, column: 5
+                                        System.out.println("[LD] " + w_thread_3 + " drained to the waste sink, now at " + w_thread_3.filledMl() + "ml.");//sysj/liquidDumperController.sysj line: 106, column: 5
+                                        level_thread_3 = 0;//sysj/liquidDumperController.sysj line: 109, column: 5
+                                        if(wasteTankLevel.getprestatus()){//sysj/liquidDumperController.sysj line: 110, column: 13
+                                          level_thread_3 = ((Integer)(wasteTankLevel.getpreval() == null ? null : ((Integer)wasteTankLevel.getpreval()))).intValue();//sysj/liquidDumperController.sysj line: 111, column: 6
+                                          code_thread_3 = OK_thread_3;//sysj/liquidDumperController.sysj line: 114, column: 5
+                                          if(level_thread_3 >= TANK_WARN_thread_3) {//sysj/liquidDumperController.sysj line: 115, column: 27
+                                            System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj/liquidDumperController.sysj line: 116, column: 6
+                                            code_thread_3 = WARN_thread_3;//sysj/liquidDumperController.sysj line: 117, column: 6
                                           }
-                                          if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj\liquidDumperController.sysj line: 119, column: 31
-                                            System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj\liquidDumperController.sysj line: 120, column: 6
-                                            code_thread_3 = BLOCKED_thread_3;//sysj\liquidDumperController.sysj line: 121, column: 6
+                                          if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj/liquidDumperController.sysj line: 119, column: 31
+                                            System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj/liquidDumperController.sysj line: 120, column: 6
+                                            code_thread_3 = BLOCKED_thread_3;//sysj/liquidDumperController.sysj line: 121, column: 6
                                           }
-                                          S63921=6;
-                                          S64233=0;
-                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                            status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
-                                            S64233=1;
+                                          S101764=6;
+                                          S102076=0;
+                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                            status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
+                                            S102076=1;
                                             active[3]=1;
                                             ends[3]=1;
                                             tdone[3]=1;
                                           }
                                           else {
-                                            S64228=0;
-                                            if(status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                              status_o.setVal(new Integer(code_thread_3));//sysj\liquidDumperController.sysj line: 124, column: 5
-                                              S64228=1;
-                                              if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                                status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                                            S102071=0;
+                                            if(status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                              status_o.setVal(new Integer(code_thread_3));//sysj/liquidDumperController.sysj line: 124, column: 5
+                                              S102071=1;
+                                              if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                                status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                                                 ends[3]=2;
-                                                ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                                                S66404=2;
+                                                ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                                                S104247=2;
                                                 active[3]=1;
                                                 ends[3]=1;
                                                 tdone[3]=1;
@@ -1489,34 +1489,34 @@ public class LiquidDumperController extends ClockDomain{
                                           }
                                         }
                                         else {
-                                          code_thread_3 = OK_thread_3;//sysj\liquidDumperController.sysj line: 114, column: 5
-                                          if(level_thread_3 >= TANK_WARN_thread_3) {//sysj\liquidDumperController.sysj line: 115, column: 27
-                                            System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj\liquidDumperController.sysj line: 116, column: 6
-                                            code_thread_3 = WARN_thread_3;//sysj\liquidDumperController.sysj line: 117, column: 6
+                                          code_thread_3 = OK_thread_3;//sysj/liquidDumperController.sysj line: 114, column: 5
+                                          if(level_thread_3 >= TANK_WARN_thread_3) {//sysj/liquidDumperController.sysj line: 115, column: 27
+                                            System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj/liquidDumperController.sysj line: 116, column: 6
+                                            code_thread_3 = WARN_thread_3;//sysj/liquidDumperController.sysj line: 117, column: 6
                                           }
-                                          if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj\liquidDumperController.sysj line: 119, column: 31
-                                            System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj\liquidDumperController.sysj line: 120, column: 6
-                                            code_thread_3 = BLOCKED_thread_3;//sysj\liquidDumperController.sysj line: 121, column: 6
+                                          if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj/liquidDumperController.sysj line: 119, column: 31
+                                            System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj/liquidDumperController.sysj line: 120, column: 6
+                                            code_thread_3 = BLOCKED_thread_3;//sysj/liquidDumperController.sysj line: 121, column: 6
                                           }
-                                          S63921=6;
-                                          S64233=0;
-                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                            status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
-                                            S64233=1;
+                                          S101764=6;
+                                          S102076=0;
+                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                            status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
+                                            S102076=1;
                                             active[3]=1;
                                             ends[3]=1;
                                             tdone[3]=1;
                                           }
                                           else {
-                                            S64228=0;
-                                            if(status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                              status_o.setVal(new Integer(code_thread_3));//sysj\liquidDumperController.sysj line: 124, column: 5
-                                              S64228=1;
-                                              if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                                status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                                            S102071=0;
+                                            if(status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                              status_o.setVal(new Integer(code_thread_3));//sysj/liquidDumperController.sysj line: 124, column: 5
+                                              S102071=1;
+                                              if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                                status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                                                 ends[3]=2;
-                                                ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                                                S66404=2;
+                                                ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                                                S104247=2;
                                                 active[3]=1;
                                                 ends[3]=1;
                                                 tdone[3]=1;
@@ -1542,16 +1542,16 @@ public class LiquidDumperController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      thread79267(tdone,ends);
-                                      thread79268(tdone,ends);
-                                      int biggest79269 = 0;
-                                      if(ends[9]>=biggest79269){
-                                        biggest79269=ends[9];
+                                      thread117110(tdone,ends);
+                                      thread117111(tdone,ends);
+                                      int biggest117112 = 0;
+                                      if(ends[9]>=biggest117112){
+                                        biggest117112=ends[9];
                                       }
-                                      if(ends[10]>=biggest79269){
-                                        biggest79269=ends[10];
+                                      if(ends[10]>=biggest117112){
+                                        biggest117112=ends[10];
                                       }
-                                      if(biggest79269 == 1){
+                                      if(biggest117112 == 1){
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -1559,20 +1559,20 @@ public class LiquidDumperController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    thread79270(tdone,ends);
-                                    thread79271(tdone,ends);
-                                    thread79272(tdone,ends);
-                                    int biggest79273 = 0;
-                                    if(ends[6]>=biggest79273){
-                                      biggest79273=ends[6];
+                                    thread117113(tdone,ends);
+                                    thread117114(tdone,ends);
+                                    thread117115(tdone,ends);
+                                    int biggest117116 = 0;
+                                    if(ends[6]>=biggest117116){
+                                      biggest117116=ends[6];
                                     }
-                                    if(ends[7]>=biggest79273){
-                                      biggest79273=ends[7];
+                                    if(ends[7]>=biggest117116){
+                                      biggest117116=ends[7];
                                     }
-                                    if(ends[8]>=biggest79273){
-                                      biggest79273=ends[8];
+                                    if(ends[8]>=biggest117116){
+                                      biggest117116=ends[8];
                                     }
-                                    if(biggest79273 == 1){
+                                    if(biggest117116 == 1){
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
@@ -1580,16 +1580,16 @@ public class LiquidDumperController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  thread79274(tdone,ends);
-                                  thread79275(tdone,ends);
-                                  int biggest79276 = 0;
-                                  if(ends[4]>=biggest79276){
-                                    biggest79276=ends[4];
+                                  thread117117(tdone,ends);
+                                  thread117118(tdone,ends);
+                                  int biggest117119 = 0;
+                                  if(ends[4]>=biggest117119){
+                                    biggest117119=ends[4];
                                   }
-                                  if(ends[5]>=biggest79276){
-                                    biggest79276=ends[5];
+                                  if(ends[5]>=biggest117119){
+                                    biggest117119=ends[5];
                                   }
-                                  if(biggest79276 == 1){
+                                  if(biggest117119 == 1){
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -1597,7 +1597,7 @@ public class LiquidDumperController extends ClockDomain{
                                 }
                               }
                               else {
-                                cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 83, column: 6
+                                cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 83, column: 6
                                 currsigs.addElement(cylClampBottleExtend);
                                 active[3]=1;
                                 ends[3]=1;
@@ -1616,69 +1616,69 @@ public class LiquidDumperController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      S63905=1;
-                      S63905=0;
-                      if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 77, column: 5
-                        enable_in.setACK(false);//sysj\liquidDumperController.sysj line: 77, column: 5
-                        S63905=1;
+                      S101748=1;
+                      S101748=0;
+                      if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 77, column: 5
+                        enable_in.setACK(false);//sysj/liquidDumperController.sysj line: 77, column: 5
+                        S101748=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S63900=0;
-                        if(!enable_in.isREQ()){//sysj\liquidDumperController.sysj line: 77, column: 5
-                          enable_in.setACK(true);//sysj\liquidDumperController.sysj line: 77, column: 5
-                          S63900=1;
-                          if(enable_in.isREQ()){//sysj\liquidDumperController.sysj line: 77, column: 5
-                            enable_in.setACK(false);//sysj\liquidDumperController.sysj line: 77, column: 5
+                        S101743=0;
+                        if(!enable_in.isREQ()){//sysj/liquidDumperController.sysj line: 77, column: 5
+                          enable_in.setACK(true);//sysj/liquidDumperController.sysj line: 77, column: 5
+                          S101743=1;
+                          if(enable_in.isREQ()){//sysj/liquidDumperController.sysj line: 77, column: 5
+                            enable_in.setACK(false);//sysj/liquidDumperController.sysj line: 77, column: 5
                             ends[3]=2;
-                            ;//sysj\liquidDumperController.sysj line: 77, column: 5
-                            w_thread_3 = (Workpiece)(enable_in.getVal() == null ? null : ((Workpiece)enable_in.getVal()));//sysj\liquidDumperController.sysj line: 78, column: 5
-                            System.out.println("[LD] Draining " + w_thread_3 + " (" + w_thread_3.filledMl() + "ml).");//sysj\liquidDumperController.sysj line: 79, column: 5
-                            S63921=1;
-                            if(clampClosed.getprestatus()){//sysj\liquidDumperController.sysj line: 82, column: 21
-                              S63921=2;
-                              if(bottleInverted.getprestatus()){//sysj\liquidDumperController.sysj line: 87, column: 21
-                                S63921=3;
-                                if(bottleDrained.getprestatus()){//sysj\liquidDumperController.sysj line: 93, column: 21
-                                  S63921=4;
-                                  if(bottleUpright.getprestatus()){//sysj\liquidDumperController.sysj line: 98, column: 21
-                                    S63921=5;
-                                    if(!clampClosed.getprestatus()){//sysj\liquidDumperController.sysj line: 103, column: 21
-                                      w_thread_3.drain();//sysj\liquidDumperController.sysj line: 105, column: 5
-                                      System.out.println("[LD] " + w_thread_3 + " drained to the waste sink, now at " + w_thread_3.filledMl() + "ml.");//sysj\liquidDumperController.sysj line: 106, column: 5
-                                      level_thread_3 = 0;//sysj\liquidDumperController.sysj line: 109, column: 5
-                                      if(wasteTankLevel.getprestatus()){//sysj\liquidDumperController.sysj line: 110, column: 13
-                                        level_thread_3 = ((Integer)(wasteTankLevel.getpreval() == null ? null : ((Integer)wasteTankLevel.getpreval()))).intValue();//sysj\liquidDumperController.sysj line: 111, column: 6
-                                        code_thread_3 = OK_thread_3;//sysj\liquidDumperController.sysj line: 114, column: 5
-                                        if(level_thread_3 >= TANK_WARN_thread_3) {//sysj\liquidDumperController.sysj line: 115, column: 27
-                                          System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj\liquidDumperController.sysj line: 116, column: 6
-                                          code_thread_3 = WARN_thread_3;//sysj\liquidDumperController.sysj line: 117, column: 6
+                            ;//sysj/liquidDumperController.sysj line: 77, column: 5
+                            w_thread_3 = (Workpiece)(enable_in.getVal() == null ? null : ((Workpiece)enable_in.getVal()));//sysj/liquidDumperController.sysj line: 78, column: 5
+                            System.out.println("[LD] Draining " + w_thread_3 + " (" + w_thread_3.filledMl() + "ml).");//sysj/liquidDumperController.sysj line: 79, column: 5
+                            S101764=1;
+                            if(clampClosed.getprestatus()){//sysj/liquidDumperController.sysj line: 82, column: 21
+                              S101764=2;
+                              if(bottleInverted.getprestatus()){//sysj/liquidDumperController.sysj line: 87, column: 21
+                                S101764=3;
+                                if(bottleDrained.getprestatus()){//sysj/liquidDumperController.sysj line: 93, column: 21
+                                  S101764=4;
+                                  if(bottleUpright.getprestatus()){//sysj/liquidDumperController.sysj line: 98, column: 21
+                                    S101764=5;
+                                    if(!clampClosed.getprestatus()){//sysj/liquidDumperController.sysj line: 103, column: 21
+                                      w_thread_3.drain();//sysj/liquidDumperController.sysj line: 105, column: 5
+                                      System.out.println("[LD] " + w_thread_3 + " drained to the waste sink, now at " + w_thread_3.filledMl() + "ml.");//sysj/liquidDumperController.sysj line: 106, column: 5
+                                      level_thread_3 = 0;//sysj/liquidDumperController.sysj line: 109, column: 5
+                                      if(wasteTankLevel.getprestatus()){//sysj/liquidDumperController.sysj line: 110, column: 13
+                                        level_thread_3 = ((Integer)(wasteTankLevel.getpreval() == null ? null : ((Integer)wasteTankLevel.getpreval()))).intValue();//sysj/liquidDumperController.sysj line: 111, column: 6
+                                        code_thread_3 = OK_thread_3;//sysj/liquidDumperController.sysj line: 114, column: 5
+                                        if(level_thread_3 >= TANK_WARN_thread_3) {//sysj/liquidDumperController.sysj line: 115, column: 27
+                                          System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj/liquidDumperController.sysj line: 116, column: 6
+                                          code_thread_3 = WARN_thread_3;//sysj/liquidDumperController.sysj line: 117, column: 6
                                         }
-                                        if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj\liquidDumperController.sysj line: 119, column: 31
-                                          System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj\liquidDumperController.sysj line: 120, column: 6
-                                          code_thread_3 = BLOCKED_thread_3;//sysj\liquidDumperController.sysj line: 121, column: 6
+                                        if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj/liquidDumperController.sysj line: 119, column: 31
+                                          System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj/liquidDumperController.sysj line: 120, column: 6
+                                          code_thread_3 = BLOCKED_thread_3;//sysj/liquidDumperController.sysj line: 121, column: 6
                                         }
-                                        S63921=6;
-                                        S64233=0;
-                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                          status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
-                                          S64233=1;
+                                        S101764=6;
+                                        S102076=0;
+                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                          status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
+                                          S102076=1;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
                                         }
                                         else {
-                                          S64228=0;
-                                          if(status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                            status_o.setVal(new Integer(code_thread_3));//sysj\liquidDumperController.sysj line: 124, column: 5
-                                            S64228=1;
-                                            if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                              status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                                          S102071=0;
+                                          if(status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                            status_o.setVal(new Integer(code_thread_3));//sysj/liquidDumperController.sysj line: 124, column: 5
+                                            S102071=1;
+                                            if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                              status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                                               ends[3]=2;
-                                              ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                                              S66404=2;
+                                              ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                                              S104247=2;
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
@@ -1697,34 +1697,34 @@ public class LiquidDumperController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        code_thread_3 = OK_thread_3;//sysj\liquidDumperController.sysj line: 114, column: 5
-                                        if(level_thread_3 >= TANK_WARN_thread_3) {//sysj\liquidDumperController.sysj line: 115, column: 27
-                                          System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj\liquidDumperController.sysj line: 116, column: 6
-                                          code_thread_3 = WARN_thread_3;//sysj\liquidDumperController.sysj line: 117, column: 6
+                                        code_thread_3 = OK_thread_3;//sysj/liquidDumperController.sysj line: 114, column: 5
+                                        if(level_thread_3 >= TANK_WARN_thread_3) {//sysj/liquidDumperController.sysj line: 115, column: 27
+                                          System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj/liquidDumperController.sysj line: 116, column: 6
+                                          code_thread_3 = WARN_thread_3;//sysj/liquidDumperController.sysj line: 117, column: 6
                                         }
-                                        if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj\liquidDumperController.sysj line: 119, column: 31
-                                          System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj\liquidDumperController.sysj line: 120, column: 6
-                                          code_thread_3 = BLOCKED_thread_3;//sysj\liquidDumperController.sysj line: 121, column: 6
+                                        if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj/liquidDumperController.sysj line: 119, column: 31
+                                          System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj/liquidDumperController.sysj line: 120, column: 6
+                                          code_thread_3 = BLOCKED_thread_3;//sysj/liquidDumperController.sysj line: 121, column: 6
                                         }
-                                        S63921=6;
-                                        S64233=0;
-                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                          status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
-                                          S64233=1;
+                                        S101764=6;
+                                        S102076=0;
+                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                          status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
+                                          S102076=1;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
                                         }
                                         else {
-                                          S64228=0;
-                                          if(status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                            status_o.setVal(new Integer(code_thread_3));//sysj\liquidDumperController.sysj line: 124, column: 5
-                                            S64228=1;
-                                            if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                              status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                                          S102071=0;
+                                          if(status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                            status_o.setVal(new Integer(code_thread_3));//sysj/liquidDumperController.sysj line: 124, column: 5
+                                            S102071=1;
+                                            if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                              status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                                               ends[3]=2;
-                                              ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                                              S66404=2;
+                                              ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                                              S104247=2;
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
@@ -1750,16 +1750,16 @@ public class LiquidDumperController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    thread79277(tdone,ends);
-                                    thread79278(tdone,ends);
-                                    int biggest79279 = 0;
-                                    if(ends[9]>=biggest79279){
-                                      biggest79279=ends[9];
+                                    thread117120(tdone,ends);
+                                    thread117121(tdone,ends);
+                                    int biggest117122 = 0;
+                                    if(ends[9]>=biggest117122){
+                                      biggest117122=ends[9];
                                     }
-                                    if(ends[10]>=biggest79279){
-                                      biggest79279=ends[10];
+                                    if(ends[10]>=biggest117122){
+                                      biggest117122=ends[10];
                                     }
-                                    if(biggest79279 == 1){
+                                    if(biggest117122 == 1){
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
@@ -1767,20 +1767,20 @@ public class LiquidDumperController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  thread79280(tdone,ends);
-                                  thread79281(tdone,ends);
-                                  thread79282(tdone,ends);
-                                  int biggest79283 = 0;
-                                  if(ends[6]>=biggest79283){
-                                    biggest79283=ends[6];
+                                  thread117123(tdone,ends);
+                                  thread117124(tdone,ends);
+                                  thread117125(tdone,ends);
+                                  int biggest117126 = 0;
+                                  if(ends[6]>=biggest117126){
+                                    biggest117126=ends[6];
                                   }
-                                  if(ends[7]>=biggest79283){
-                                    biggest79283=ends[7];
+                                  if(ends[7]>=biggest117126){
+                                    biggest117126=ends[7];
                                   }
-                                  if(ends[8]>=biggest79283){
-                                    biggest79283=ends[8];
+                                  if(ends[8]>=biggest117126){
+                                    biggest117126=ends[8];
                                   }
-                                  if(biggest79283 == 1){
+                                  if(biggest117126 == 1){
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -1788,16 +1788,16 @@ public class LiquidDumperController extends ClockDomain{
                                 }
                               }
                               else {
-                                thread79284(tdone,ends);
-                                thread79285(tdone,ends);
-                                int biggest79286 = 0;
-                                if(ends[4]>=biggest79286){
-                                  biggest79286=ends[4];
+                                thread117127(tdone,ends);
+                                thread117128(tdone,ends);
+                                int biggest117129 = 0;
+                                if(ends[4]>=biggest117129){
+                                  biggest117129=ends[4];
                                 }
-                                if(ends[5]>=biggest79286){
-                                  biggest79286=ends[5];
+                                if(ends[5]>=biggest117129){
+                                  biggest117129=ends[5];
                                 }
-                                if(biggest79286 == 1){
+                                if(biggest117129 == 1){
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -1805,7 +1805,7 @@ public class LiquidDumperController extends ClockDomain{
                               }
                             }
                             else {
-                              cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 83, column: 6
+                              cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 83, column: 6
                               currsigs.addElement(cylClampBottleExtend);
                               active[3]=1;
                               ends[3]=1;
@@ -1830,48 +1830,48 @@ public class LiquidDumperController extends ClockDomain{
                   break;
                 
                 case 1 : 
-                  if(clampClosed.getprestatus()){//sysj\liquidDumperController.sysj line: 82, column: 21
-                    S63921=2;
-                    if(bottleInverted.getprestatus()){//sysj\liquidDumperController.sysj line: 87, column: 21
-                      S63921=3;
-                      if(bottleDrained.getprestatus()){//sysj\liquidDumperController.sysj line: 93, column: 21
-                        S63921=4;
-                        if(bottleUpright.getprestatus()){//sysj\liquidDumperController.sysj line: 98, column: 21
-                          S63921=5;
-                          if(!clampClosed.getprestatus()){//sysj\liquidDumperController.sysj line: 103, column: 21
-                            w_thread_3.drain();//sysj\liquidDumperController.sysj line: 105, column: 5
-                            System.out.println("[LD] " + w_thread_3 + " drained to the waste sink, now at " + w_thread_3.filledMl() + "ml.");//sysj\liquidDumperController.sysj line: 106, column: 5
-                            level_thread_3 = 0;//sysj\liquidDumperController.sysj line: 109, column: 5
-                            if(wasteTankLevel.getprestatus()){//sysj\liquidDumperController.sysj line: 110, column: 13
-                              level_thread_3 = ((Integer)(wasteTankLevel.getpreval() == null ? null : ((Integer)wasteTankLevel.getpreval()))).intValue();//sysj\liquidDumperController.sysj line: 111, column: 6
-                              code_thread_3 = OK_thread_3;//sysj\liquidDumperController.sysj line: 114, column: 5
-                              if(level_thread_3 >= TANK_WARN_thread_3) {//sysj\liquidDumperController.sysj line: 115, column: 27
-                                System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj\liquidDumperController.sysj line: 116, column: 6
-                                code_thread_3 = WARN_thread_3;//sysj\liquidDumperController.sysj line: 117, column: 6
+                  if(clampClosed.getprestatus()){//sysj/liquidDumperController.sysj line: 82, column: 21
+                    S101764=2;
+                    if(bottleInverted.getprestatus()){//sysj/liquidDumperController.sysj line: 87, column: 21
+                      S101764=3;
+                      if(bottleDrained.getprestatus()){//sysj/liquidDumperController.sysj line: 93, column: 21
+                        S101764=4;
+                        if(bottleUpright.getprestatus()){//sysj/liquidDumperController.sysj line: 98, column: 21
+                          S101764=5;
+                          if(!clampClosed.getprestatus()){//sysj/liquidDumperController.sysj line: 103, column: 21
+                            w_thread_3.drain();//sysj/liquidDumperController.sysj line: 105, column: 5
+                            System.out.println("[LD] " + w_thread_3 + " drained to the waste sink, now at " + w_thread_3.filledMl() + "ml.");//sysj/liquidDumperController.sysj line: 106, column: 5
+                            level_thread_3 = 0;//sysj/liquidDumperController.sysj line: 109, column: 5
+                            if(wasteTankLevel.getprestatus()){//sysj/liquidDumperController.sysj line: 110, column: 13
+                              level_thread_3 = ((Integer)(wasteTankLevel.getpreval() == null ? null : ((Integer)wasteTankLevel.getpreval()))).intValue();//sysj/liquidDumperController.sysj line: 111, column: 6
+                              code_thread_3 = OK_thread_3;//sysj/liquidDumperController.sysj line: 114, column: 5
+                              if(level_thread_3 >= TANK_WARN_thread_3) {//sysj/liquidDumperController.sysj line: 115, column: 27
+                                System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj/liquidDumperController.sysj line: 116, column: 6
+                                code_thread_3 = WARN_thread_3;//sysj/liquidDumperController.sysj line: 117, column: 6
                               }
-                              if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj\liquidDumperController.sysj line: 119, column: 31
-                                System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj\liquidDumperController.sysj line: 120, column: 6
-                                code_thread_3 = BLOCKED_thread_3;//sysj\liquidDumperController.sysj line: 121, column: 6
+                              if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj/liquidDumperController.sysj line: 119, column: 31
+                                System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj/liquidDumperController.sysj line: 120, column: 6
+                                code_thread_3 = BLOCKED_thread_3;//sysj/liquidDumperController.sysj line: 121, column: 6
                               }
-                              S63921=6;
-                              S64233=0;
-                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
-                                S64233=1;
+                              S101764=6;
+                              S102076=0;
+                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
+                                S102076=1;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
                               else {
-                                S64228=0;
-                                if(status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                  status_o.setVal(new Integer(code_thread_3));//sysj\liquidDumperController.sysj line: 124, column: 5
-                                  S64228=1;
-                                  if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                    status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                                S102071=0;
+                                if(status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                  status_o.setVal(new Integer(code_thread_3));//sysj/liquidDumperController.sysj line: 124, column: 5
+                                  S102071=1;
+                                  if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                    status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                                     ends[3]=2;
-                                    ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                                    S66404=2;
+                                    ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                                    S104247=2;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -1890,34 +1890,34 @@ public class LiquidDumperController extends ClockDomain{
                               }
                             }
                             else {
-                              code_thread_3 = OK_thread_3;//sysj\liquidDumperController.sysj line: 114, column: 5
-                              if(level_thread_3 >= TANK_WARN_thread_3) {//sysj\liquidDumperController.sysj line: 115, column: 27
-                                System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj\liquidDumperController.sysj line: 116, column: 6
-                                code_thread_3 = WARN_thread_3;//sysj\liquidDumperController.sysj line: 117, column: 6
+                              code_thread_3 = OK_thread_3;//sysj/liquidDumperController.sysj line: 114, column: 5
+                              if(level_thread_3 >= TANK_WARN_thread_3) {//sysj/liquidDumperController.sysj line: 115, column: 27
+                                System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj/liquidDumperController.sysj line: 116, column: 6
+                                code_thread_3 = WARN_thread_3;//sysj/liquidDumperController.sysj line: 117, column: 6
                               }
-                              if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj\liquidDumperController.sysj line: 119, column: 31
-                                System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj\liquidDumperController.sysj line: 120, column: 6
-                                code_thread_3 = BLOCKED_thread_3;//sysj\liquidDumperController.sysj line: 121, column: 6
+                              if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj/liquidDumperController.sysj line: 119, column: 31
+                                System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj/liquidDumperController.sysj line: 120, column: 6
+                                code_thread_3 = BLOCKED_thread_3;//sysj/liquidDumperController.sysj line: 121, column: 6
                               }
-                              S63921=6;
-                              S64233=0;
-                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
-                                S64233=1;
+                              S101764=6;
+                              S102076=0;
+                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
+                                S102076=1;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
                               else {
-                                S64228=0;
-                                if(status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                  status_o.setVal(new Integer(code_thread_3));//sysj\liquidDumperController.sysj line: 124, column: 5
-                                  S64228=1;
-                                  if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                    status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                                S102071=0;
+                                if(status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                  status_o.setVal(new Integer(code_thread_3));//sysj/liquidDumperController.sysj line: 124, column: 5
+                                  S102071=1;
+                                  if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                    status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                                     ends[3]=2;
-                                    ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                                    S66404=2;
+                                    ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                                    S104247=2;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -1943,16 +1943,16 @@ public class LiquidDumperController extends ClockDomain{
                           }
                         }
                         else {
-                          thread79287(tdone,ends);
-                          thread79288(tdone,ends);
-                          int biggest79289 = 0;
-                          if(ends[9]>=biggest79289){
-                            biggest79289=ends[9];
+                          thread117130(tdone,ends);
+                          thread117131(tdone,ends);
+                          int biggest117132 = 0;
+                          if(ends[9]>=biggest117132){
+                            biggest117132=ends[9];
                           }
-                          if(ends[10]>=biggest79289){
-                            biggest79289=ends[10];
+                          if(ends[10]>=biggest117132){
+                            biggest117132=ends[10];
                           }
-                          if(biggest79289 == 1){
+                          if(biggest117132 == 1){
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -1960,20 +1960,20 @@ public class LiquidDumperController extends ClockDomain{
                         }
                       }
                       else {
-                        thread79290(tdone,ends);
-                        thread79291(tdone,ends);
-                        thread79292(tdone,ends);
-                        int biggest79293 = 0;
-                        if(ends[6]>=biggest79293){
-                          biggest79293=ends[6];
+                        thread117133(tdone,ends);
+                        thread117134(tdone,ends);
+                        thread117135(tdone,ends);
+                        int biggest117136 = 0;
+                        if(ends[6]>=biggest117136){
+                          biggest117136=ends[6];
                         }
-                        if(ends[7]>=biggest79293){
-                          biggest79293=ends[7];
+                        if(ends[7]>=biggest117136){
+                          biggest117136=ends[7];
                         }
-                        if(ends[8]>=biggest79293){
-                          biggest79293=ends[8];
+                        if(ends[8]>=biggest117136){
+                          biggest117136=ends[8];
                         }
-                        if(biggest79293 == 1){
+                        if(biggest117136 == 1){
                           active[3]=1;
                           ends[3]=1;
                           tdone[3]=1;
@@ -1981,16 +1981,16 @@ public class LiquidDumperController extends ClockDomain{
                       }
                     }
                     else {
-                      thread79294(tdone,ends);
-                      thread79295(tdone,ends);
-                      int biggest79296 = 0;
-                      if(ends[4]>=biggest79296){
-                        biggest79296=ends[4];
+                      thread117137(tdone,ends);
+                      thread117138(tdone,ends);
+                      int biggest117139 = 0;
+                      if(ends[4]>=biggest117139){
+                        biggest117139=ends[4];
                       }
-                      if(ends[5]>=biggest79296){
-                        biggest79296=ends[5];
+                      if(ends[5]>=biggest117139){
+                        biggest117139=ends[5];
                       }
-                      if(biggest79296 == 1){
+                      if(biggest117139 == 1){
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
@@ -1998,7 +1998,7 @@ public class LiquidDumperController extends ClockDomain{
                     }
                   }
                   else {
-                    cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 83, column: 6
+                    cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 83, column: 6
                     currsigs.addElement(cylClampBottleExtend);
                     active[3]=1;
                     ends[3]=1;
@@ -2007,46 +2007,46 @@ public class LiquidDumperController extends ClockDomain{
                   break;
                 
                 case 2 : 
-                  if(bottleInverted.getprestatus()){//sysj\liquidDumperController.sysj line: 87, column: 21
-                    S63921=3;
-                    if(bottleDrained.getprestatus()){//sysj\liquidDumperController.sysj line: 93, column: 21
-                      S63921=4;
-                      if(bottleUpright.getprestatus()){//sysj\liquidDumperController.sysj line: 98, column: 21
-                        S63921=5;
-                        if(!clampClosed.getprestatus()){//sysj\liquidDumperController.sysj line: 103, column: 21
-                          w_thread_3.drain();//sysj\liquidDumperController.sysj line: 105, column: 5
-                          System.out.println("[LD] " + w_thread_3 + " drained to the waste sink, now at " + w_thread_3.filledMl() + "ml.");//sysj\liquidDumperController.sysj line: 106, column: 5
-                          level_thread_3 = 0;//sysj\liquidDumperController.sysj line: 109, column: 5
-                          if(wasteTankLevel.getprestatus()){//sysj\liquidDumperController.sysj line: 110, column: 13
-                            level_thread_3 = ((Integer)(wasteTankLevel.getpreval() == null ? null : ((Integer)wasteTankLevel.getpreval()))).intValue();//sysj\liquidDumperController.sysj line: 111, column: 6
-                            code_thread_3 = OK_thread_3;//sysj\liquidDumperController.sysj line: 114, column: 5
-                            if(level_thread_3 >= TANK_WARN_thread_3) {//sysj\liquidDumperController.sysj line: 115, column: 27
-                              System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj\liquidDumperController.sysj line: 116, column: 6
-                              code_thread_3 = WARN_thread_3;//sysj\liquidDumperController.sysj line: 117, column: 6
+                  if(bottleInverted.getprestatus()){//sysj/liquidDumperController.sysj line: 87, column: 21
+                    S101764=3;
+                    if(bottleDrained.getprestatus()){//sysj/liquidDumperController.sysj line: 93, column: 21
+                      S101764=4;
+                      if(bottleUpright.getprestatus()){//sysj/liquidDumperController.sysj line: 98, column: 21
+                        S101764=5;
+                        if(!clampClosed.getprestatus()){//sysj/liquidDumperController.sysj line: 103, column: 21
+                          w_thread_3.drain();//sysj/liquidDumperController.sysj line: 105, column: 5
+                          System.out.println("[LD] " + w_thread_3 + " drained to the waste sink, now at " + w_thread_3.filledMl() + "ml.");//sysj/liquidDumperController.sysj line: 106, column: 5
+                          level_thread_3 = 0;//sysj/liquidDumperController.sysj line: 109, column: 5
+                          if(wasteTankLevel.getprestatus()){//sysj/liquidDumperController.sysj line: 110, column: 13
+                            level_thread_3 = ((Integer)(wasteTankLevel.getpreval() == null ? null : ((Integer)wasteTankLevel.getpreval()))).intValue();//sysj/liquidDumperController.sysj line: 111, column: 6
+                            code_thread_3 = OK_thread_3;//sysj/liquidDumperController.sysj line: 114, column: 5
+                            if(level_thread_3 >= TANK_WARN_thread_3) {//sysj/liquidDumperController.sysj line: 115, column: 27
+                              System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj/liquidDumperController.sysj line: 116, column: 6
+                              code_thread_3 = WARN_thread_3;//sysj/liquidDumperController.sysj line: 117, column: 6
                             }
-                            if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj\liquidDumperController.sysj line: 119, column: 31
-                              System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj\liquidDumperController.sysj line: 120, column: 6
-                              code_thread_3 = BLOCKED_thread_3;//sysj\liquidDumperController.sysj line: 121, column: 6
+                            if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj/liquidDumperController.sysj line: 119, column: 31
+                              System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj/liquidDumperController.sysj line: 120, column: 6
+                              code_thread_3 = BLOCKED_thread_3;//sysj/liquidDumperController.sysj line: 121, column: 6
                             }
-                            S63921=6;
-                            S64233=0;
-                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                              status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
-                              S64233=1;
+                            S101764=6;
+                            S102076=0;
+                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                              status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
+                              S102076=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
-                              S64228=0;
-                              if(status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                status_o.setVal(new Integer(code_thread_3));//sysj\liquidDumperController.sysj line: 124, column: 5
-                                S64228=1;
-                                if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                  status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                              S102071=0;
+                              if(status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                status_o.setVal(new Integer(code_thread_3));//sysj/liquidDumperController.sysj line: 124, column: 5
+                                S102071=1;
+                                if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                  status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                                   ends[3]=2;
-                                  ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                                  S66404=2;
+                                  ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                                  S104247=2;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -2065,34 +2065,34 @@ public class LiquidDumperController extends ClockDomain{
                             }
                           }
                           else {
-                            code_thread_3 = OK_thread_3;//sysj\liquidDumperController.sysj line: 114, column: 5
-                            if(level_thread_3 >= TANK_WARN_thread_3) {//sysj\liquidDumperController.sysj line: 115, column: 27
-                              System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj\liquidDumperController.sysj line: 116, column: 6
-                              code_thread_3 = WARN_thread_3;//sysj\liquidDumperController.sysj line: 117, column: 6
+                            code_thread_3 = OK_thread_3;//sysj/liquidDumperController.sysj line: 114, column: 5
+                            if(level_thread_3 >= TANK_WARN_thread_3) {//sysj/liquidDumperController.sysj line: 115, column: 27
+                              System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj/liquidDumperController.sysj line: 116, column: 6
+                              code_thread_3 = WARN_thread_3;//sysj/liquidDumperController.sysj line: 117, column: 6
                             }
-                            if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj\liquidDumperController.sysj line: 119, column: 31
-                              System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj\liquidDumperController.sysj line: 120, column: 6
-                              code_thread_3 = BLOCKED_thread_3;//sysj\liquidDumperController.sysj line: 121, column: 6
+                            if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj/liquidDumperController.sysj line: 119, column: 31
+                              System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj/liquidDumperController.sysj line: 120, column: 6
+                              code_thread_3 = BLOCKED_thread_3;//sysj/liquidDumperController.sysj line: 121, column: 6
                             }
-                            S63921=6;
-                            S64233=0;
-                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                              status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
-                              S64233=1;
+                            S101764=6;
+                            S102076=0;
+                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                              status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
+                              S102076=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
-                              S64228=0;
-                              if(status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                status_o.setVal(new Integer(code_thread_3));//sysj\liquidDumperController.sysj line: 124, column: 5
-                                S64228=1;
-                                if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                  status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                              S102071=0;
+                              if(status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                status_o.setVal(new Integer(code_thread_3));//sysj/liquidDumperController.sysj line: 124, column: 5
+                                S102071=1;
+                                if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                  status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                                   ends[3]=2;
-                                  ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                                  S66404=2;
+                                  ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                                  S104247=2;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -2118,16 +2118,16 @@ public class LiquidDumperController extends ClockDomain{
                         }
                       }
                       else {
-                        thread79297(tdone,ends);
-                        thread79298(tdone,ends);
-                        int biggest79299 = 0;
-                        if(ends[9]>=biggest79299){
-                          biggest79299=ends[9];
+                        thread117140(tdone,ends);
+                        thread117141(tdone,ends);
+                        int biggest117142 = 0;
+                        if(ends[9]>=biggest117142){
+                          biggest117142=ends[9];
                         }
-                        if(ends[10]>=biggest79299){
-                          biggest79299=ends[10];
+                        if(ends[10]>=biggest117142){
+                          biggest117142=ends[10];
                         }
-                        if(biggest79299 == 1){
+                        if(biggest117142 == 1){
                           active[3]=1;
                           ends[3]=1;
                           tdone[3]=1;
@@ -2135,20 +2135,20 @@ public class LiquidDumperController extends ClockDomain{
                       }
                     }
                     else {
-                      thread79300(tdone,ends);
-                      thread79301(tdone,ends);
-                      thread79302(tdone,ends);
-                      int biggest79303 = 0;
-                      if(ends[6]>=biggest79303){
-                        biggest79303=ends[6];
+                      thread117143(tdone,ends);
+                      thread117144(tdone,ends);
+                      thread117145(tdone,ends);
+                      int biggest117146 = 0;
+                      if(ends[6]>=biggest117146){
+                        biggest117146=ends[6];
                       }
-                      if(ends[7]>=biggest79303){
-                        biggest79303=ends[7];
+                      if(ends[7]>=biggest117146){
+                        biggest117146=ends[7];
                       }
-                      if(ends[8]>=biggest79303){
-                        biggest79303=ends[8];
+                      if(ends[8]>=biggest117146){
+                        biggest117146=ends[8];
                       }
-                      if(biggest79303 == 1){
+                      if(biggest117146 == 1){
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
@@ -2156,61 +2156,61 @@ public class LiquidDumperController extends ClockDomain{
                     }
                   }
                   else {
-                    thread79304(tdone,ends);
-                    thread79305(tdone,ends);
-                    int biggest79306 = 0;
-                    if(ends[4]>=biggest79306){
-                      biggest79306=ends[4];
+                    thread117147(tdone,ends);
+                    thread117148(tdone,ends);
+                    int biggest117149 = 0;
+                    if(ends[4]>=biggest117149){
+                      biggest117149=ends[4];
                     }
-                    if(ends[5]>=biggest79306){
-                      biggest79306=ends[5];
+                    if(ends[5]>=biggest117149){
+                      biggest117149=ends[5];
                     }
-                    if(biggest79306 == 1){
+                    if(biggest117149 == 1){
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     //FINXME code
-                    if(biggest79306 == 0){
-                      S63921=3;
-                      if(bottleDrained.getprestatus()){//sysj\liquidDumperController.sysj line: 93, column: 21
-                        S63921=4;
-                        if(bottleUpright.getprestatus()){//sysj\liquidDumperController.sysj line: 98, column: 21
-                          S63921=5;
-                          if(!clampClosed.getprestatus()){//sysj\liquidDumperController.sysj line: 103, column: 21
-                            w_thread_3.drain();//sysj\liquidDumperController.sysj line: 105, column: 5
-                            System.out.println("[LD] " + w_thread_3 + " drained to the waste sink, now at " + w_thread_3.filledMl() + "ml.");//sysj\liquidDumperController.sysj line: 106, column: 5
-                            level_thread_3 = 0;//sysj\liquidDumperController.sysj line: 109, column: 5
-                            if(wasteTankLevel.getprestatus()){//sysj\liquidDumperController.sysj line: 110, column: 13
-                              level_thread_3 = ((Integer)(wasteTankLevel.getpreval() == null ? null : ((Integer)wasteTankLevel.getpreval()))).intValue();//sysj\liquidDumperController.sysj line: 111, column: 6
-                              code_thread_3 = OK_thread_3;//sysj\liquidDumperController.sysj line: 114, column: 5
-                              if(level_thread_3 >= TANK_WARN_thread_3) {//sysj\liquidDumperController.sysj line: 115, column: 27
-                                System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj\liquidDumperController.sysj line: 116, column: 6
-                                code_thread_3 = WARN_thread_3;//sysj\liquidDumperController.sysj line: 117, column: 6
+                    if(biggest117149 == 0){
+                      S101764=3;
+                      if(bottleDrained.getprestatus()){//sysj/liquidDumperController.sysj line: 93, column: 21
+                        S101764=4;
+                        if(bottleUpright.getprestatus()){//sysj/liquidDumperController.sysj line: 98, column: 21
+                          S101764=5;
+                          if(!clampClosed.getprestatus()){//sysj/liquidDumperController.sysj line: 103, column: 21
+                            w_thread_3.drain();//sysj/liquidDumperController.sysj line: 105, column: 5
+                            System.out.println("[LD] " + w_thread_3 + " drained to the waste sink, now at " + w_thread_3.filledMl() + "ml.");//sysj/liquidDumperController.sysj line: 106, column: 5
+                            level_thread_3 = 0;//sysj/liquidDumperController.sysj line: 109, column: 5
+                            if(wasteTankLevel.getprestatus()){//sysj/liquidDumperController.sysj line: 110, column: 13
+                              level_thread_3 = ((Integer)(wasteTankLevel.getpreval() == null ? null : ((Integer)wasteTankLevel.getpreval()))).intValue();//sysj/liquidDumperController.sysj line: 111, column: 6
+                              code_thread_3 = OK_thread_3;//sysj/liquidDumperController.sysj line: 114, column: 5
+                              if(level_thread_3 >= TANK_WARN_thread_3) {//sysj/liquidDumperController.sysj line: 115, column: 27
+                                System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj/liquidDumperController.sysj line: 116, column: 6
+                                code_thread_3 = WARN_thread_3;//sysj/liquidDumperController.sysj line: 117, column: 6
                               }
-                              if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj\liquidDumperController.sysj line: 119, column: 31
-                                System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj\liquidDumperController.sysj line: 120, column: 6
-                                code_thread_3 = BLOCKED_thread_3;//sysj\liquidDumperController.sysj line: 121, column: 6
+                              if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj/liquidDumperController.sysj line: 119, column: 31
+                                System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj/liquidDumperController.sysj line: 120, column: 6
+                                code_thread_3 = BLOCKED_thread_3;//sysj/liquidDumperController.sysj line: 121, column: 6
                               }
-                              S63921=6;
-                              S64233=0;
-                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
-                                S64233=1;
+                              S101764=6;
+                              S102076=0;
+                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
+                                S102076=1;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
                               else {
-                                S64228=0;
-                                if(status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                  status_o.setVal(new Integer(code_thread_3));//sysj\liquidDumperController.sysj line: 124, column: 5
-                                  S64228=1;
-                                  if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                    status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                                S102071=0;
+                                if(status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                  status_o.setVal(new Integer(code_thread_3));//sysj/liquidDumperController.sysj line: 124, column: 5
+                                  S102071=1;
+                                  if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                    status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                                     ends[3]=2;
-                                    ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                                    S66404=2;
+                                    ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                                    S104247=2;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -2229,34 +2229,34 @@ public class LiquidDumperController extends ClockDomain{
                               }
                             }
                             else {
-                              code_thread_3 = OK_thread_3;//sysj\liquidDumperController.sysj line: 114, column: 5
-                              if(level_thread_3 >= TANK_WARN_thread_3) {//sysj\liquidDumperController.sysj line: 115, column: 27
-                                System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj\liquidDumperController.sysj line: 116, column: 6
-                                code_thread_3 = WARN_thread_3;//sysj\liquidDumperController.sysj line: 117, column: 6
+                              code_thread_3 = OK_thread_3;//sysj/liquidDumperController.sysj line: 114, column: 5
+                              if(level_thread_3 >= TANK_WARN_thread_3) {//sysj/liquidDumperController.sysj line: 115, column: 27
+                                System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj/liquidDumperController.sysj line: 116, column: 6
+                                code_thread_3 = WARN_thread_3;//sysj/liquidDumperController.sysj line: 117, column: 6
                               }
-                              if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj\liquidDumperController.sysj line: 119, column: 31
-                                System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj\liquidDumperController.sysj line: 120, column: 6
-                                code_thread_3 = BLOCKED_thread_3;//sysj\liquidDumperController.sysj line: 121, column: 6
+                              if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj/liquidDumperController.sysj line: 119, column: 31
+                                System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj/liquidDumperController.sysj line: 120, column: 6
+                                code_thread_3 = BLOCKED_thread_3;//sysj/liquidDumperController.sysj line: 121, column: 6
                               }
-                              S63921=6;
-                              S64233=0;
-                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
-                                S64233=1;
+                              S101764=6;
+                              S102076=0;
+                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
+                                S102076=1;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
                               else {
-                                S64228=0;
-                                if(status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                  status_o.setVal(new Integer(code_thread_3));//sysj\liquidDumperController.sysj line: 124, column: 5
-                                  S64228=1;
-                                  if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                    status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                                S102071=0;
+                                if(status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                  status_o.setVal(new Integer(code_thread_3));//sysj/liquidDumperController.sysj line: 124, column: 5
+                                  S102071=1;
+                                  if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                    status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                                     ends[3]=2;
-                                    ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                                    S66404=2;
+                                    ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                                    S104247=2;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -2282,16 +2282,16 @@ public class LiquidDumperController extends ClockDomain{
                           }
                         }
                         else {
-                          thread79307(tdone,ends);
-                          thread79308(tdone,ends);
-                          int biggest79309 = 0;
-                          if(ends[9]>=biggest79309){
-                            biggest79309=ends[9];
+                          thread117150(tdone,ends);
+                          thread117151(tdone,ends);
+                          int biggest117152 = 0;
+                          if(ends[9]>=biggest117152){
+                            biggest117152=ends[9];
                           }
-                          if(ends[10]>=biggest79309){
-                            biggest79309=ends[10];
+                          if(ends[10]>=biggest117152){
+                            biggest117152=ends[10];
                           }
-                          if(biggest79309 == 1){
+                          if(biggest117152 == 1){
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -2299,20 +2299,20 @@ public class LiquidDumperController extends ClockDomain{
                         }
                       }
                       else {
-                        thread79310(tdone,ends);
-                        thread79311(tdone,ends);
-                        thread79312(tdone,ends);
-                        int biggest79313 = 0;
-                        if(ends[6]>=biggest79313){
-                          biggest79313=ends[6];
+                        thread117153(tdone,ends);
+                        thread117154(tdone,ends);
+                        thread117155(tdone,ends);
+                        int biggest117156 = 0;
+                        if(ends[6]>=biggest117156){
+                          biggest117156=ends[6];
                         }
-                        if(ends[7]>=biggest79313){
-                          biggest79313=ends[7];
+                        if(ends[7]>=biggest117156){
+                          biggest117156=ends[7];
                         }
-                        if(ends[8]>=biggest79313){
-                          biggest79313=ends[8];
+                        if(ends[8]>=biggest117156){
+                          biggest117156=ends[8];
                         }
-                        if(biggest79313 == 1){
+                        if(biggest117156 == 1){
                           active[3]=1;
                           ends[3]=1;
                           tdone[3]=1;
@@ -2323,44 +2323,44 @@ public class LiquidDumperController extends ClockDomain{
                   break;
                 
                 case 3 : 
-                  if(bottleDrained.getprestatus()){//sysj\liquidDumperController.sysj line: 93, column: 21
-                    S63921=4;
-                    if(bottleUpright.getprestatus()){//sysj\liquidDumperController.sysj line: 98, column: 21
-                      S63921=5;
-                      if(!clampClosed.getprestatus()){//sysj\liquidDumperController.sysj line: 103, column: 21
-                        w_thread_3.drain();//sysj\liquidDumperController.sysj line: 105, column: 5
-                        System.out.println("[LD] " + w_thread_3 + " drained to the waste sink, now at " + w_thread_3.filledMl() + "ml.");//sysj\liquidDumperController.sysj line: 106, column: 5
-                        level_thread_3 = 0;//sysj\liquidDumperController.sysj line: 109, column: 5
-                        if(wasteTankLevel.getprestatus()){//sysj\liquidDumperController.sysj line: 110, column: 13
-                          level_thread_3 = ((Integer)(wasteTankLevel.getpreval() == null ? null : ((Integer)wasteTankLevel.getpreval()))).intValue();//sysj\liquidDumperController.sysj line: 111, column: 6
-                          code_thread_3 = OK_thread_3;//sysj\liquidDumperController.sysj line: 114, column: 5
-                          if(level_thread_3 >= TANK_WARN_thread_3) {//sysj\liquidDumperController.sysj line: 115, column: 27
-                            System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj\liquidDumperController.sysj line: 116, column: 6
-                            code_thread_3 = WARN_thread_3;//sysj\liquidDumperController.sysj line: 117, column: 6
+                  if(bottleDrained.getprestatus()){//sysj/liquidDumperController.sysj line: 93, column: 21
+                    S101764=4;
+                    if(bottleUpright.getprestatus()){//sysj/liquidDumperController.sysj line: 98, column: 21
+                      S101764=5;
+                      if(!clampClosed.getprestatus()){//sysj/liquidDumperController.sysj line: 103, column: 21
+                        w_thread_3.drain();//sysj/liquidDumperController.sysj line: 105, column: 5
+                        System.out.println("[LD] " + w_thread_3 + " drained to the waste sink, now at " + w_thread_3.filledMl() + "ml.");//sysj/liquidDumperController.sysj line: 106, column: 5
+                        level_thread_3 = 0;//sysj/liquidDumperController.sysj line: 109, column: 5
+                        if(wasteTankLevel.getprestatus()){//sysj/liquidDumperController.sysj line: 110, column: 13
+                          level_thread_3 = ((Integer)(wasteTankLevel.getpreval() == null ? null : ((Integer)wasteTankLevel.getpreval()))).intValue();//sysj/liquidDumperController.sysj line: 111, column: 6
+                          code_thread_3 = OK_thread_3;//sysj/liquidDumperController.sysj line: 114, column: 5
+                          if(level_thread_3 >= TANK_WARN_thread_3) {//sysj/liquidDumperController.sysj line: 115, column: 27
+                            System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj/liquidDumperController.sysj line: 116, column: 6
+                            code_thread_3 = WARN_thread_3;//sysj/liquidDumperController.sysj line: 117, column: 6
                           }
-                          if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj\liquidDumperController.sysj line: 119, column: 31
-                            System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj\liquidDumperController.sysj line: 120, column: 6
-                            code_thread_3 = BLOCKED_thread_3;//sysj\liquidDumperController.sysj line: 121, column: 6
+                          if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj/liquidDumperController.sysj line: 119, column: 31
+                            System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj/liquidDumperController.sysj line: 120, column: 6
+                            code_thread_3 = BLOCKED_thread_3;//sysj/liquidDumperController.sysj line: 121, column: 6
                           }
-                          S63921=6;
-                          S64233=0;
-                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                            status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
-                            S64233=1;
+                          S101764=6;
+                          S102076=0;
+                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                            status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
+                            S102076=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
                           }
                           else {
-                            S64228=0;
-                            if(status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                              status_o.setVal(new Integer(code_thread_3));//sysj\liquidDumperController.sysj line: 124, column: 5
-                              S64228=1;
-                              if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                            S102071=0;
+                            if(status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                              status_o.setVal(new Integer(code_thread_3));//sysj/liquidDumperController.sysj line: 124, column: 5
+                              S102071=1;
+                              if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                                 ends[3]=2;
-                                ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                                S66404=2;
+                                ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                                S104247=2;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -2379,34 +2379,34 @@ public class LiquidDumperController extends ClockDomain{
                           }
                         }
                         else {
-                          code_thread_3 = OK_thread_3;//sysj\liquidDumperController.sysj line: 114, column: 5
-                          if(level_thread_3 >= TANK_WARN_thread_3) {//sysj\liquidDumperController.sysj line: 115, column: 27
-                            System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj\liquidDumperController.sysj line: 116, column: 6
-                            code_thread_3 = WARN_thread_3;//sysj\liquidDumperController.sysj line: 117, column: 6
+                          code_thread_3 = OK_thread_3;//sysj/liquidDumperController.sysj line: 114, column: 5
+                          if(level_thread_3 >= TANK_WARN_thread_3) {//sysj/liquidDumperController.sysj line: 115, column: 27
+                            System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj/liquidDumperController.sysj line: 116, column: 6
+                            code_thread_3 = WARN_thread_3;//sysj/liquidDumperController.sysj line: 117, column: 6
                           }
-                          if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj\liquidDumperController.sysj line: 119, column: 31
-                            System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj\liquidDumperController.sysj line: 120, column: 6
-                            code_thread_3 = BLOCKED_thread_3;//sysj\liquidDumperController.sysj line: 121, column: 6
+                          if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj/liquidDumperController.sysj line: 119, column: 31
+                            System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj/liquidDumperController.sysj line: 120, column: 6
+                            code_thread_3 = BLOCKED_thread_3;//sysj/liquidDumperController.sysj line: 121, column: 6
                           }
-                          S63921=6;
-                          S64233=0;
-                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                            status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
-                            S64233=1;
+                          S101764=6;
+                          S102076=0;
+                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                            status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
+                            S102076=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
                           }
                           else {
-                            S64228=0;
-                            if(status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                              status_o.setVal(new Integer(code_thread_3));//sysj\liquidDumperController.sysj line: 124, column: 5
-                              S64228=1;
-                              if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                            S102071=0;
+                            if(status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                              status_o.setVal(new Integer(code_thread_3));//sysj/liquidDumperController.sysj line: 124, column: 5
+                              S102071=1;
+                              if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                                 ends[3]=2;
-                                ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                                S66404=2;
+                                ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                                S104247=2;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -2432,16 +2432,16 @@ public class LiquidDumperController extends ClockDomain{
                       }
                     }
                     else {
-                      thread79314(tdone,ends);
-                      thread79315(tdone,ends);
-                      int biggest79316 = 0;
-                      if(ends[9]>=biggest79316){
-                        biggest79316=ends[9];
+                      thread117157(tdone,ends);
+                      thread117158(tdone,ends);
+                      int biggest117159 = 0;
+                      if(ends[9]>=biggest117159){
+                        biggest117159=ends[9];
                       }
-                      if(ends[10]>=biggest79316){
-                        biggest79316=ends[10];
+                      if(ends[10]>=biggest117159){
+                        biggest117159=ends[10];
                       }
-                      if(biggest79316 == 1){
+                      if(biggest117159 == 1){
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
@@ -2449,63 +2449,63 @@ public class LiquidDumperController extends ClockDomain{
                     }
                   }
                   else {
-                    thread79317(tdone,ends);
-                    thread79318(tdone,ends);
-                    thread79319(tdone,ends);
-                    int biggest79320 = 0;
-                    if(ends[6]>=biggest79320){
-                      biggest79320=ends[6];
+                    thread117160(tdone,ends);
+                    thread117161(tdone,ends);
+                    thread117162(tdone,ends);
+                    int biggest117163 = 0;
+                    if(ends[6]>=biggest117163){
+                      biggest117163=ends[6];
                     }
-                    if(ends[7]>=biggest79320){
-                      biggest79320=ends[7];
+                    if(ends[7]>=biggest117163){
+                      biggest117163=ends[7];
                     }
-                    if(ends[8]>=biggest79320){
-                      biggest79320=ends[8];
+                    if(ends[8]>=biggest117163){
+                      biggest117163=ends[8];
                     }
-                    if(biggest79320 == 1){
+                    if(biggest117163 == 1){
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     //FINXME code
-                    if(biggest79320 == 0){
-                      S63921=4;
-                      if(bottleUpright.getprestatus()){//sysj\liquidDumperController.sysj line: 98, column: 21
-                        S63921=5;
-                        if(!clampClosed.getprestatus()){//sysj\liquidDumperController.sysj line: 103, column: 21
-                          w_thread_3.drain();//sysj\liquidDumperController.sysj line: 105, column: 5
-                          System.out.println("[LD] " + w_thread_3 + " drained to the waste sink, now at " + w_thread_3.filledMl() + "ml.");//sysj\liquidDumperController.sysj line: 106, column: 5
-                          level_thread_3 = 0;//sysj\liquidDumperController.sysj line: 109, column: 5
-                          if(wasteTankLevel.getprestatus()){//sysj\liquidDumperController.sysj line: 110, column: 13
-                            level_thread_3 = ((Integer)(wasteTankLevel.getpreval() == null ? null : ((Integer)wasteTankLevel.getpreval()))).intValue();//sysj\liquidDumperController.sysj line: 111, column: 6
-                            code_thread_3 = OK_thread_3;//sysj\liquidDumperController.sysj line: 114, column: 5
-                            if(level_thread_3 >= TANK_WARN_thread_3) {//sysj\liquidDumperController.sysj line: 115, column: 27
-                              System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj\liquidDumperController.sysj line: 116, column: 6
-                              code_thread_3 = WARN_thread_3;//sysj\liquidDumperController.sysj line: 117, column: 6
+                    if(biggest117163 == 0){
+                      S101764=4;
+                      if(bottleUpright.getprestatus()){//sysj/liquidDumperController.sysj line: 98, column: 21
+                        S101764=5;
+                        if(!clampClosed.getprestatus()){//sysj/liquidDumperController.sysj line: 103, column: 21
+                          w_thread_3.drain();//sysj/liquidDumperController.sysj line: 105, column: 5
+                          System.out.println("[LD] " + w_thread_3 + " drained to the waste sink, now at " + w_thread_3.filledMl() + "ml.");//sysj/liquidDumperController.sysj line: 106, column: 5
+                          level_thread_3 = 0;//sysj/liquidDumperController.sysj line: 109, column: 5
+                          if(wasteTankLevel.getprestatus()){//sysj/liquidDumperController.sysj line: 110, column: 13
+                            level_thread_3 = ((Integer)(wasteTankLevel.getpreval() == null ? null : ((Integer)wasteTankLevel.getpreval()))).intValue();//sysj/liquidDumperController.sysj line: 111, column: 6
+                            code_thread_3 = OK_thread_3;//sysj/liquidDumperController.sysj line: 114, column: 5
+                            if(level_thread_3 >= TANK_WARN_thread_3) {//sysj/liquidDumperController.sysj line: 115, column: 27
+                              System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj/liquidDumperController.sysj line: 116, column: 6
+                              code_thread_3 = WARN_thread_3;//sysj/liquidDumperController.sysj line: 117, column: 6
                             }
-                            if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj\liquidDumperController.sysj line: 119, column: 31
-                              System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj\liquidDumperController.sysj line: 120, column: 6
-                              code_thread_3 = BLOCKED_thread_3;//sysj\liquidDumperController.sysj line: 121, column: 6
+                            if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj/liquidDumperController.sysj line: 119, column: 31
+                              System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj/liquidDumperController.sysj line: 120, column: 6
+                              code_thread_3 = BLOCKED_thread_3;//sysj/liquidDumperController.sysj line: 121, column: 6
                             }
-                            S63921=6;
-                            S64233=0;
-                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                              status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
-                              S64233=1;
+                            S101764=6;
+                            S102076=0;
+                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                              status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
+                              S102076=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
-                              S64228=0;
-                              if(status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                status_o.setVal(new Integer(code_thread_3));//sysj\liquidDumperController.sysj line: 124, column: 5
-                                S64228=1;
-                                if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                  status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                              S102071=0;
+                              if(status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                status_o.setVal(new Integer(code_thread_3));//sysj/liquidDumperController.sysj line: 124, column: 5
+                                S102071=1;
+                                if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                  status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                                   ends[3]=2;
-                                  ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                                  S66404=2;
+                                  ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                                  S104247=2;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -2524,34 +2524,34 @@ public class LiquidDumperController extends ClockDomain{
                             }
                           }
                           else {
-                            code_thread_3 = OK_thread_3;//sysj\liquidDumperController.sysj line: 114, column: 5
-                            if(level_thread_3 >= TANK_WARN_thread_3) {//sysj\liquidDumperController.sysj line: 115, column: 27
-                              System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj\liquidDumperController.sysj line: 116, column: 6
-                              code_thread_3 = WARN_thread_3;//sysj\liquidDumperController.sysj line: 117, column: 6
+                            code_thread_3 = OK_thread_3;//sysj/liquidDumperController.sysj line: 114, column: 5
+                            if(level_thread_3 >= TANK_WARN_thread_3) {//sysj/liquidDumperController.sysj line: 115, column: 27
+                              System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj/liquidDumperController.sysj line: 116, column: 6
+                              code_thread_3 = WARN_thread_3;//sysj/liquidDumperController.sysj line: 117, column: 6
                             }
-                            if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj\liquidDumperController.sysj line: 119, column: 31
-                              System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj\liquidDumperController.sysj line: 120, column: 6
-                              code_thread_3 = BLOCKED_thread_3;//sysj\liquidDumperController.sysj line: 121, column: 6
+                            if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj/liquidDumperController.sysj line: 119, column: 31
+                              System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj/liquidDumperController.sysj line: 120, column: 6
+                              code_thread_3 = BLOCKED_thread_3;//sysj/liquidDumperController.sysj line: 121, column: 6
                             }
-                            S63921=6;
-                            S64233=0;
-                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                              status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
-                              S64233=1;
+                            S101764=6;
+                            S102076=0;
+                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                              status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
+                              S102076=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
-                              S64228=0;
-                              if(status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                status_o.setVal(new Integer(code_thread_3));//sysj\liquidDumperController.sysj line: 124, column: 5
-                                S64228=1;
-                                if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                  status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                              S102071=0;
+                              if(status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                status_o.setVal(new Integer(code_thread_3));//sysj/liquidDumperController.sysj line: 124, column: 5
+                                S102071=1;
+                                if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                  status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                                   ends[3]=2;
-                                  ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                                  S66404=2;
+                                  ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                                  S104247=2;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -2577,16 +2577,16 @@ public class LiquidDumperController extends ClockDomain{
                         }
                       }
                       else {
-                        thread79321(tdone,ends);
-                        thread79322(tdone,ends);
-                        int biggest79323 = 0;
-                        if(ends[9]>=biggest79323){
-                          biggest79323=ends[9];
+                        thread117164(tdone,ends);
+                        thread117165(tdone,ends);
+                        int biggest117166 = 0;
+                        if(ends[9]>=biggest117166){
+                          biggest117166=ends[9];
                         }
-                        if(ends[10]>=biggest79323){
-                          biggest79323=ends[10];
+                        if(ends[10]>=biggest117166){
+                          biggest117166=ends[10];
                         }
-                        if(biggest79323 == 1){
+                        if(biggest117166 == 1){
                           active[3]=1;
                           ends[3]=1;
                           tdone[3]=1;
@@ -2597,42 +2597,42 @@ public class LiquidDumperController extends ClockDomain{
                   break;
                 
                 case 4 : 
-                  if(bottleUpright.getprestatus()){//sysj\liquidDumperController.sysj line: 98, column: 21
-                    S63921=5;
-                    if(!clampClosed.getprestatus()){//sysj\liquidDumperController.sysj line: 103, column: 21
-                      w_thread_3.drain();//sysj\liquidDumperController.sysj line: 105, column: 5
-                      System.out.println("[LD] " + w_thread_3 + " drained to the waste sink, now at " + w_thread_3.filledMl() + "ml.");//sysj\liquidDumperController.sysj line: 106, column: 5
-                      level_thread_3 = 0;//sysj\liquidDumperController.sysj line: 109, column: 5
-                      if(wasteTankLevel.getprestatus()){//sysj\liquidDumperController.sysj line: 110, column: 13
-                        level_thread_3 = ((Integer)(wasteTankLevel.getpreval() == null ? null : ((Integer)wasteTankLevel.getpreval()))).intValue();//sysj\liquidDumperController.sysj line: 111, column: 6
-                        code_thread_3 = OK_thread_3;//sysj\liquidDumperController.sysj line: 114, column: 5
-                        if(level_thread_3 >= TANK_WARN_thread_3) {//sysj\liquidDumperController.sysj line: 115, column: 27
-                          System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj\liquidDumperController.sysj line: 116, column: 6
-                          code_thread_3 = WARN_thread_3;//sysj\liquidDumperController.sysj line: 117, column: 6
+                  if(bottleUpright.getprestatus()){//sysj/liquidDumperController.sysj line: 98, column: 21
+                    S101764=5;
+                    if(!clampClosed.getprestatus()){//sysj/liquidDumperController.sysj line: 103, column: 21
+                      w_thread_3.drain();//sysj/liquidDumperController.sysj line: 105, column: 5
+                      System.out.println("[LD] " + w_thread_3 + " drained to the waste sink, now at " + w_thread_3.filledMl() + "ml.");//sysj/liquidDumperController.sysj line: 106, column: 5
+                      level_thread_3 = 0;//sysj/liquidDumperController.sysj line: 109, column: 5
+                      if(wasteTankLevel.getprestatus()){//sysj/liquidDumperController.sysj line: 110, column: 13
+                        level_thread_3 = ((Integer)(wasteTankLevel.getpreval() == null ? null : ((Integer)wasteTankLevel.getpreval()))).intValue();//sysj/liquidDumperController.sysj line: 111, column: 6
+                        code_thread_3 = OK_thread_3;//sysj/liquidDumperController.sysj line: 114, column: 5
+                        if(level_thread_3 >= TANK_WARN_thread_3) {//sysj/liquidDumperController.sysj line: 115, column: 27
+                          System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj/liquidDumperController.sysj line: 116, column: 6
+                          code_thread_3 = WARN_thread_3;//sysj/liquidDumperController.sysj line: 117, column: 6
                         }
-                        if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj\liquidDumperController.sysj line: 119, column: 31
-                          System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj\liquidDumperController.sysj line: 120, column: 6
-                          code_thread_3 = BLOCKED_thread_3;//sysj\liquidDumperController.sysj line: 121, column: 6
+                        if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj/liquidDumperController.sysj line: 119, column: 31
+                          System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj/liquidDumperController.sysj line: 120, column: 6
+                          code_thread_3 = BLOCKED_thread_3;//sysj/liquidDumperController.sysj line: 121, column: 6
                         }
-                        S63921=6;
-                        S64233=0;
-                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                          status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
-                          S64233=1;
+                        S101764=6;
+                        S102076=0;
+                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                          status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
+                          S102076=1;
                           active[3]=1;
                           ends[3]=1;
                           tdone[3]=1;
                         }
                         else {
-                          S64228=0;
-                          if(status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                            status_o.setVal(new Integer(code_thread_3));//sysj\liquidDumperController.sysj line: 124, column: 5
-                            S64228=1;
-                            if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                              status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                          S102071=0;
+                          if(status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                            status_o.setVal(new Integer(code_thread_3));//sysj/liquidDumperController.sysj line: 124, column: 5
+                            S102071=1;
+                            if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                              status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                               ends[3]=2;
-                              ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                              S66404=2;
+                              ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                              S104247=2;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
@@ -2651,34 +2651,34 @@ public class LiquidDumperController extends ClockDomain{
                         }
                       }
                       else {
-                        code_thread_3 = OK_thread_3;//sysj\liquidDumperController.sysj line: 114, column: 5
-                        if(level_thread_3 >= TANK_WARN_thread_3) {//sysj\liquidDumperController.sysj line: 115, column: 27
-                          System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj\liquidDumperController.sysj line: 116, column: 6
-                          code_thread_3 = WARN_thread_3;//sysj\liquidDumperController.sysj line: 117, column: 6
+                        code_thread_3 = OK_thread_3;//sysj/liquidDumperController.sysj line: 114, column: 5
+                        if(level_thread_3 >= TANK_WARN_thread_3) {//sysj/liquidDumperController.sysj line: 115, column: 27
+                          System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj/liquidDumperController.sysj line: 116, column: 6
+                          code_thread_3 = WARN_thread_3;//sysj/liquidDumperController.sysj line: 117, column: 6
                         }
-                        if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj\liquidDumperController.sysj line: 119, column: 31
-                          System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj\liquidDumperController.sysj line: 120, column: 6
-                          code_thread_3 = BLOCKED_thread_3;//sysj\liquidDumperController.sysj line: 121, column: 6
+                        if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj/liquidDumperController.sysj line: 119, column: 31
+                          System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj/liquidDumperController.sysj line: 120, column: 6
+                          code_thread_3 = BLOCKED_thread_3;//sysj/liquidDumperController.sysj line: 121, column: 6
                         }
-                        S63921=6;
-                        S64233=0;
-                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                          status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
-                          S64233=1;
+                        S101764=6;
+                        S102076=0;
+                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                          status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
+                          S102076=1;
                           active[3]=1;
                           ends[3]=1;
                           tdone[3]=1;
                         }
                         else {
-                          S64228=0;
-                          if(status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                            status_o.setVal(new Integer(code_thread_3));//sysj\liquidDumperController.sysj line: 124, column: 5
-                            S64228=1;
-                            if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                              status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                          S102071=0;
+                          if(status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                            status_o.setVal(new Integer(code_thread_3));//sysj/liquidDumperController.sysj line: 124, column: 5
+                            S102071=1;
+                            if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                              status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                               ends[3]=2;
-                              ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                              S66404=2;
+                              ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                              S104247=2;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
@@ -2704,57 +2704,57 @@ public class LiquidDumperController extends ClockDomain{
                     }
                   }
                   else {
-                    thread79324(tdone,ends);
-                    thread79325(tdone,ends);
-                    int biggest79326 = 0;
-                    if(ends[9]>=biggest79326){
-                      biggest79326=ends[9];
+                    thread117167(tdone,ends);
+                    thread117168(tdone,ends);
+                    int biggest117169 = 0;
+                    if(ends[9]>=biggest117169){
+                      biggest117169=ends[9];
                     }
-                    if(ends[10]>=biggest79326){
-                      biggest79326=ends[10];
+                    if(ends[10]>=biggest117169){
+                      biggest117169=ends[10];
                     }
-                    if(biggest79326 == 1){
+                    if(biggest117169 == 1){
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     //FINXME code
-                    if(biggest79326 == 0){
-                      S63921=5;
-                      if(!clampClosed.getprestatus()){//sysj\liquidDumperController.sysj line: 103, column: 21
-                        w_thread_3.drain();//sysj\liquidDumperController.sysj line: 105, column: 5
-                        System.out.println("[LD] " + w_thread_3 + " drained to the waste sink, now at " + w_thread_3.filledMl() + "ml.");//sysj\liquidDumperController.sysj line: 106, column: 5
-                        level_thread_3 = 0;//sysj\liquidDumperController.sysj line: 109, column: 5
-                        if(wasteTankLevel.getprestatus()){//sysj\liquidDumperController.sysj line: 110, column: 13
-                          level_thread_3 = ((Integer)(wasteTankLevel.getpreval() == null ? null : ((Integer)wasteTankLevel.getpreval()))).intValue();//sysj\liquidDumperController.sysj line: 111, column: 6
-                          code_thread_3 = OK_thread_3;//sysj\liquidDumperController.sysj line: 114, column: 5
-                          if(level_thread_3 >= TANK_WARN_thread_3) {//sysj\liquidDumperController.sysj line: 115, column: 27
-                            System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj\liquidDumperController.sysj line: 116, column: 6
-                            code_thread_3 = WARN_thread_3;//sysj\liquidDumperController.sysj line: 117, column: 6
+                    if(biggest117169 == 0){
+                      S101764=5;
+                      if(!clampClosed.getprestatus()){//sysj/liquidDumperController.sysj line: 103, column: 21
+                        w_thread_3.drain();//sysj/liquidDumperController.sysj line: 105, column: 5
+                        System.out.println("[LD] " + w_thread_3 + " drained to the waste sink, now at " + w_thread_3.filledMl() + "ml.");//sysj/liquidDumperController.sysj line: 106, column: 5
+                        level_thread_3 = 0;//sysj/liquidDumperController.sysj line: 109, column: 5
+                        if(wasteTankLevel.getprestatus()){//sysj/liquidDumperController.sysj line: 110, column: 13
+                          level_thread_3 = ((Integer)(wasteTankLevel.getpreval() == null ? null : ((Integer)wasteTankLevel.getpreval()))).intValue();//sysj/liquidDumperController.sysj line: 111, column: 6
+                          code_thread_3 = OK_thread_3;//sysj/liquidDumperController.sysj line: 114, column: 5
+                          if(level_thread_3 >= TANK_WARN_thread_3) {//sysj/liquidDumperController.sysj line: 115, column: 27
+                            System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj/liquidDumperController.sysj line: 116, column: 6
+                            code_thread_3 = WARN_thread_3;//sysj/liquidDumperController.sysj line: 117, column: 6
                           }
-                          if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj\liquidDumperController.sysj line: 119, column: 31
-                            System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj\liquidDumperController.sysj line: 120, column: 6
-                            code_thread_3 = BLOCKED_thread_3;//sysj\liquidDumperController.sysj line: 121, column: 6
+                          if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj/liquidDumperController.sysj line: 119, column: 31
+                            System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj/liquidDumperController.sysj line: 120, column: 6
+                            code_thread_3 = BLOCKED_thread_3;//sysj/liquidDumperController.sysj line: 121, column: 6
                           }
-                          S63921=6;
-                          S64233=0;
-                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                            status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
-                            S64233=1;
+                          S101764=6;
+                          S102076=0;
+                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                            status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
+                            S102076=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
                           }
                           else {
-                            S64228=0;
-                            if(status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                              status_o.setVal(new Integer(code_thread_3));//sysj\liquidDumperController.sysj line: 124, column: 5
-                              S64228=1;
-                              if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                            S102071=0;
+                            if(status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                              status_o.setVal(new Integer(code_thread_3));//sysj/liquidDumperController.sysj line: 124, column: 5
+                              S102071=1;
+                              if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                                 ends[3]=2;
-                                ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                                S66404=2;
+                                ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                                S104247=2;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -2773,34 +2773,34 @@ public class LiquidDumperController extends ClockDomain{
                           }
                         }
                         else {
-                          code_thread_3 = OK_thread_3;//sysj\liquidDumperController.sysj line: 114, column: 5
-                          if(level_thread_3 >= TANK_WARN_thread_3) {//sysj\liquidDumperController.sysj line: 115, column: 27
-                            System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj\liquidDumperController.sysj line: 116, column: 6
-                            code_thread_3 = WARN_thread_3;//sysj\liquidDumperController.sysj line: 117, column: 6
+                          code_thread_3 = OK_thread_3;//sysj/liquidDumperController.sysj line: 114, column: 5
+                          if(level_thread_3 >= TANK_WARN_thread_3) {//sysj/liquidDumperController.sysj line: 115, column: 27
+                            System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj/liquidDumperController.sysj line: 116, column: 6
+                            code_thread_3 = WARN_thread_3;//sysj/liquidDumperController.sysj line: 117, column: 6
                           }
-                          if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj\liquidDumperController.sysj line: 119, column: 31
-                            System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj\liquidDumperController.sysj line: 120, column: 6
-                            code_thread_3 = BLOCKED_thread_3;//sysj\liquidDumperController.sysj line: 121, column: 6
+                          if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj/liquidDumperController.sysj line: 119, column: 31
+                            System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj/liquidDumperController.sysj line: 120, column: 6
+                            code_thread_3 = BLOCKED_thread_3;//sysj/liquidDumperController.sysj line: 121, column: 6
                           }
-                          S63921=6;
-                          S64233=0;
-                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                            status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
-                            S64233=1;
+                          S101764=6;
+                          S102076=0;
+                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                            status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
+                            S102076=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
                           }
                           else {
-                            S64228=0;
-                            if(status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                              status_o.setVal(new Integer(code_thread_3));//sysj\liquidDumperController.sysj line: 124, column: 5
-                              S64228=1;
-                              if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                            S102071=0;
+                            if(status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                              status_o.setVal(new Integer(code_thread_3));//sysj/liquidDumperController.sysj line: 124, column: 5
+                              S102071=1;
+                              if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                                 ends[3]=2;
-                                ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                                S66404=2;
+                                ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                                S104247=2;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -2829,40 +2829,40 @@ public class LiquidDumperController extends ClockDomain{
                   break;
                 
                 case 5 : 
-                  if(!clampClosed.getprestatus()){//sysj\liquidDumperController.sysj line: 103, column: 21
-                    w_thread_3.drain();//sysj\liquidDumperController.sysj line: 105, column: 5
-                    System.out.println("[LD] " + w_thread_3 + " drained to the waste sink, now at " + w_thread_3.filledMl() + "ml.");//sysj\liquidDumperController.sysj line: 106, column: 5
-                    level_thread_3 = 0;//sysj\liquidDumperController.sysj line: 109, column: 5
-                    if(wasteTankLevel.getprestatus()){//sysj\liquidDumperController.sysj line: 110, column: 13
-                      level_thread_3 = ((Integer)(wasteTankLevel.getpreval() == null ? null : ((Integer)wasteTankLevel.getpreval()))).intValue();//sysj\liquidDumperController.sysj line: 111, column: 6
-                      code_thread_3 = OK_thread_3;//sysj\liquidDumperController.sysj line: 114, column: 5
-                      if(level_thread_3 >= TANK_WARN_thread_3) {//sysj\liquidDumperController.sysj line: 115, column: 27
-                        System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj\liquidDumperController.sysj line: 116, column: 6
-                        code_thread_3 = WARN_thread_3;//sysj\liquidDumperController.sysj line: 117, column: 6
+                  if(!clampClosed.getprestatus()){//sysj/liquidDumperController.sysj line: 103, column: 21
+                    w_thread_3.drain();//sysj/liquidDumperController.sysj line: 105, column: 5
+                    System.out.println("[LD] " + w_thread_3 + " drained to the waste sink, now at " + w_thread_3.filledMl() + "ml.");//sysj/liquidDumperController.sysj line: 106, column: 5
+                    level_thread_3 = 0;//sysj/liquidDumperController.sysj line: 109, column: 5
+                    if(wasteTankLevel.getprestatus()){//sysj/liquidDumperController.sysj line: 110, column: 13
+                      level_thread_3 = ((Integer)(wasteTankLevel.getpreval() == null ? null : ((Integer)wasteTankLevel.getpreval()))).intValue();//sysj/liquidDumperController.sysj line: 111, column: 6
+                      code_thread_3 = OK_thread_3;//sysj/liquidDumperController.sysj line: 114, column: 5
+                      if(level_thread_3 >= TANK_WARN_thread_3) {//sysj/liquidDumperController.sysj line: 115, column: 27
+                        System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj/liquidDumperController.sysj line: 116, column: 6
+                        code_thread_3 = WARN_thread_3;//sysj/liquidDumperController.sysj line: 117, column: 6
                       }
-                      if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj\liquidDumperController.sysj line: 119, column: 31
-                        System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj\liquidDumperController.sysj line: 120, column: 6
-                        code_thread_3 = BLOCKED_thread_3;//sysj\liquidDumperController.sysj line: 121, column: 6
+                      if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj/liquidDumperController.sysj line: 119, column: 31
+                        System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj/liquidDumperController.sysj line: 120, column: 6
+                        code_thread_3 = BLOCKED_thread_3;//sysj/liquidDumperController.sysj line: 121, column: 6
                       }
-                      S63921=6;
-                      S64233=0;
-                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                        status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
-                        S64233=1;
+                      S101764=6;
+                      S102076=0;
+                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                        status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
+                        S102076=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S64228=0;
-                        if(status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                          status_o.setVal(new Integer(code_thread_3));//sysj\liquidDumperController.sysj line: 124, column: 5
-                          S64228=1;
-                          if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                            status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                        S102071=0;
+                        if(status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                          status_o.setVal(new Integer(code_thread_3));//sysj/liquidDumperController.sysj line: 124, column: 5
+                          S102071=1;
+                          if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                            status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                             ends[3]=2;
-                            ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                            S66404=2;
+                            ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                            S104247=2;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -2881,34 +2881,34 @@ public class LiquidDumperController extends ClockDomain{
                       }
                     }
                     else {
-                      code_thread_3 = OK_thread_3;//sysj\liquidDumperController.sysj line: 114, column: 5
-                      if(level_thread_3 >= TANK_WARN_thread_3) {//sysj\liquidDumperController.sysj line: 115, column: 27
-                        System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj\liquidDumperController.sysj line: 116, column: 6
-                        code_thread_3 = WARN_thread_3;//sysj\liquidDumperController.sysj line: 117, column: 6
+                      code_thread_3 = OK_thread_3;//sysj/liquidDumperController.sysj line: 114, column: 5
+                      if(level_thread_3 >= TANK_WARN_thread_3) {//sysj/liquidDumperController.sysj line: 115, column: 27
+                        System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj/liquidDumperController.sysj line: 116, column: 6
+                        code_thread_3 = WARN_thread_3;//sysj/liquidDumperController.sysj line: 117, column: 6
                       }
-                      if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj\liquidDumperController.sysj line: 119, column: 31
-                        System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj\liquidDumperController.sysj line: 120, column: 6
-                        code_thread_3 = BLOCKED_thread_3;//sysj\liquidDumperController.sysj line: 121, column: 6
+                      if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj/liquidDumperController.sysj line: 119, column: 31
+                        System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj/liquidDumperController.sysj line: 120, column: 6
+                        code_thread_3 = BLOCKED_thread_3;//sysj/liquidDumperController.sysj line: 121, column: 6
                       }
-                      S63921=6;
-                      S64233=0;
-                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                        status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
-                        S64233=1;
+                      S101764=6;
+                      S102076=0;
+                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                        status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
+                        S102076=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S64228=0;
-                        if(status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                          status_o.setVal(new Integer(code_thread_3));//sysj\liquidDumperController.sysj line: 124, column: 5
-                          S64228=1;
-                          if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                            status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                        S102071=0;
+                        if(status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                          status_o.setVal(new Integer(code_thread_3));//sysj/liquidDumperController.sysj line: 124, column: 5
+                          S102071=1;
+                          if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                            status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                             ends[3]=2;
-                            ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                            S66404=2;
+                            ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                            S104247=2;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -2935,26 +2935,26 @@ public class LiquidDumperController extends ClockDomain{
                   break;
                 
                 case 6 : 
-                  switch(S64233){
+                  switch(S102076){
                     case 0 : 
-                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                        status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
-                        S64233=1;
+                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                        status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
+                        S102076=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        switch(S64228){
+                        switch(S102071){
                           case 0 : 
-                            if(status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                              status_o.setVal(new Integer(code_thread_3));//sysj\liquidDumperController.sysj line: 124, column: 5
-                              S64228=1;
-                              if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                            if(status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                              status_o.setVal(new Integer(code_thread_3));//sysj/liquidDumperController.sysj line: 124, column: 5
+                              S102071=1;
+                              if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                                 ends[3]=2;
-                                ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                                S66404=2;
+                                ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                                S104247=2;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -2973,11 +2973,11 @@ public class LiquidDumperController extends ClockDomain{
                             break;
                           
                           case 1 : 
-                            if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                              status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                            if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                              status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                               ends[3]=2;
-                              ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                              S66404=2;
+                              ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                              S104247=2;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
@@ -2994,25 +2994,25 @@ public class LiquidDumperController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      S64233=1;
-                      S64233=0;
-                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                        status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
-                        S64233=1;
+                      S102076=1;
+                      S102076=0;
+                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                        status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
+                        S102076=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S64228=0;
-                        if(status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                          status_o.setVal(new Integer(code_thread_3));//sysj\liquidDumperController.sysj line: 124, column: 5
-                          S64228=1;
-                          if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                            status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                        S102071=0;
+                        if(status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                          status_o.setVal(new Integer(code_thread_3));//sysj/liquidDumperController.sysj line: 124, column: 5
+                          S102071=1;
+                          if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                            status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                             ends[3]=2;
-                            ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                            S66404=2;
+                            ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                            S104247=2;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -3035,7 +3035,7 @@ public class LiquidDumperController extends ClockDomain{
                   break;
                 
                 case 7 : 
-                  S66404=2;
+                  S104247=2;
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
@@ -3046,82 +3046,82 @@ public class LiquidDumperController extends ClockDomain{
             break;
           
           case 2 : 
-            S66404=2;
-            S66404=0;
-            if(auto_1.getprestatus()){//sysj\liquidDumperController.sysj line: 74, column: 20
-              S66404=1;
-              if(manual_1.getprestatus()){//sysj\liquidDumperController.sysj line: 76, column: 20
+            S104247=2;
+            S104247=0;
+            if(auto_1.getprestatus()){//sysj/liquidDumperController.sysj line: 74, column: 20
+              S104247=1;
+              if(manual_1.getprestatus()){//sysj/liquidDumperController.sysj line: 76, column: 20
                 enable_in.setPreempted();
                 status_o.setPreempted();
-                S66404=2;
+                S104247=2;
                 active[3]=1;
                 ends[3]=1;
                 tdone[3]=1;
               }
               else {
-                S63921=0;
-                S63905=0;
-                if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 77, column: 5
-                  enable_in.setACK(false);//sysj\liquidDumperController.sysj line: 77, column: 5
-                  S63905=1;
+                S101764=0;
+                S101748=0;
+                if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 77, column: 5
+                  enable_in.setACK(false);//sysj/liquidDumperController.sysj line: 77, column: 5
+                  S101748=1;
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  S63900=0;
-                  if(!enable_in.isREQ()){//sysj\liquidDumperController.sysj line: 77, column: 5
-                    enable_in.setACK(true);//sysj\liquidDumperController.sysj line: 77, column: 5
-                    S63900=1;
-                    if(enable_in.isREQ()){//sysj\liquidDumperController.sysj line: 77, column: 5
-                      enable_in.setACK(false);//sysj\liquidDumperController.sysj line: 77, column: 5
+                  S101743=0;
+                  if(!enable_in.isREQ()){//sysj/liquidDumperController.sysj line: 77, column: 5
+                    enable_in.setACK(true);//sysj/liquidDumperController.sysj line: 77, column: 5
+                    S101743=1;
+                    if(enable_in.isREQ()){//sysj/liquidDumperController.sysj line: 77, column: 5
+                      enable_in.setACK(false);//sysj/liquidDumperController.sysj line: 77, column: 5
                       ends[3]=2;
-                      ;//sysj\liquidDumperController.sysj line: 77, column: 5
-                      w_thread_3 = (Workpiece)(enable_in.getVal() == null ? null : ((Workpiece)enable_in.getVal()));//sysj\liquidDumperController.sysj line: 78, column: 5
-                      System.out.println("[LD] Draining " + w_thread_3 + " (" + w_thread_3.filledMl() + "ml).");//sysj\liquidDumperController.sysj line: 79, column: 5
-                      S63921=1;
-                      if(clampClosed.getprestatus()){//sysj\liquidDumperController.sysj line: 82, column: 21
-                        S63921=2;
-                        if(bottleInverted.getprestatus()){//sysj\liquidDumperController.sysj line: 87, column: 21
-                          S63921=3;
-                          if(bottleDrained.getprestatus()){//sysj\liquidDumperController.sysj line: 93, column: 21
-                            S63921=4;
-                            if(bottleUpright.getprestatus()){//sysj\liquidDumperController.sysj line: 98, column: 21
-                              S63921=5;
-                              if(!clampClosed.getprestatus()){//sysj\liquidDumperController.sysj line: 103, column: 21
-                                w_thread_3.drain();//sysj\liquidDumperController.sysj line: 105, column: 5
-                                System.out.println("[LD] " + w_thread_3 + " drained to the waste sink, now at " + w_thread_3.filledMl() + "ml.");//sysj\liquidDumperController.sysj line: 106, column: 5
-                                level_thread_3 = 0;//sysj\liquidDumperController.sysj line: 109, column: 5
-                                if(wasteTankLevel.getprestatus()){//sysj\liquidDumperController.sysj line: 110, column: 13
-                                  level_thread_3 = ((Integer)(wasteTankLevel.getpreval() == null ? null : ((Integer)wasteTankLevel.getpreval()))).intValue();//sysj\liquidDumperController.sysj line: 111, column: 6
-                                  code_thread_3 = OK_thread_3;//sysj\liquidDumperController.sysj line: 114, column: 5
-                                  if(level_thread_3 >= TANK_WARN_thread_3) {//sysj\liquidDumperController.sysj line: 115, column: 27
-                                    System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj\liquidDumperController.sysj line: 116, column: 6
-                                    code_thread_3 = WARN_thread_3;//sysj\liquidDumperController.sysj line: 117, column: 6
+                      ;//sysj/liquidDumperController.sysj line: 77, column: 5
+                      w_thread_3 = (Workpiece)(enable_in.getVal() == null ? null : ((Workpiece)enable_in.getVal()));//sysj/liquidDumperController.sysj line: 78, column: 5
+                      System.out.println("[LD] Draining " + w_thread_3 + " (" + w_thread_3.filledMl() + "ml).");//sysj/liquidDumperController.sysj line: 79, column: 5
+                      S101764=1;
+                      if(clampClosed.getprestatus()){//sysj/liquidDumperController.sysj line: 82, column: 21
+                        S101764=2;
+                        if(bottleInverted.getprestatus()){//sysj/liquidDumperController.sysj line: 87, column: 21
+                          S101764=3;
+                          if(bottleDrained.getprestatus()){//sysj/liquidDumperController.sysj line: 93, column: 21
+                            S101764=4;
+                            if(bottleUpright.getprestatus()){//sysj/liquidDumperController.sysj line: 98, column: 21
+                              S101764=5;
+                              if(!clampClosed.getprestatus()){//sysj/liquidDumperController.sysj line: 103, column: 21
+                                w_thread_3.drain();//sysj/liquidDumperController.sysj line: 105, column: 5
+                                System.out.println("[LD] " + w_thread_3 + " drained to the waste sink, now at " + w_thread_3.filledMl() + "ml.");//sysj/liquidDumperController.sysj line: 106, column: 5
+                                level_thread_3 = 0;//sysj/liquidDumperController.sysj line: 109, column: 5
+                                if(wasteTankLevel.getprestatus()){//sysj/liquidDumperController.sysj line: 110, column: 13
+                                  level_thread_3 = ((Integer)(wasteTankLevel.getpreval() == null ? null : ((Integer)wasteTankLevel.getpreval()))).intValue();//sysj/liquidDumperController.sysj line: 111, column: 6
+                                  code_thread_3 = OK_thread_3;//sysj/liquidDumperController.sysj line: 114, column: 5
+                                  if(level_thread_3 >= TANK_WARN_thread_3) {//sysj/liquidDumperController.sysj line: 115, column: 27
+                                    System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj/liquidDumperController.sysj line: 116, column: 6
+                                    code_thread_3 = WARN_thread_3;//sysj/liquidDumperController.sysj line: 117, column: 6
                                   }
-                                  if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj\liquidDumperController.sysj line: 119, column: 31
-                                    System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj\liquidDumperController.sysj line: 120, column: 6
-                                    code_thread_3 = BLOCKED_thread_3;//sysj\liquidDumperController.sysj line: 121, column: 6
+                                  if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj/liquidDumperController.sysj line: 119, column: 31
+                                    System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj/liquidDumperController.sysj line: 120, column: 6
+                                    code_thread_3 = BLOCKED_thread_3;//sysj/liquidDumperController.sysj line: 121, column: 6
                                   }
-                                  S63921=6;
-                                  S64233=0;
-                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                    status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
-                                    S64233=1;
+                                  S101764=6;
+                                  S102076=0;
+                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                    status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
+                                    S102076=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
                                   else {
-                                    S64228=0;
-                                    if(status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                      status_o.setVal(new Integer(code_thread_3));//sysj\liquidDumperController.sysj line: 124, column: 5
-                                      S64228=1;
-                                      if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                        status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                                    S102071=0;
+                                    if(status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                      status_o.setVal(new Integer(code_thread_3));//sysj/liquidDumperController.sysj line: 124, column: 5
+                                      S102071=1;
+                                      if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                        status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                                         ends[3]=2;
-                                        ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                                        S66404=2;
+                                        ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                                        S104247=2;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -3140,34 +3140,34 @@ public class LiquidDumperController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  code_thread_3 = OK_thread_3;//sysj\liquidDumperController.sysj line: 114, column: 5
-                                  if(level_thread_3 >= TANK_WARN_thread_3) {//sysj\liquidDumperController.sysj line: 115, column: 27
-                                    System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj\liquidDumperController.sysj line: 116, column: 6
-                                    code_thread_3 = WARN_thread_3;//sysj\liquidDumperController.sysj line: 117, column: 6
+                                  code_thread_3 = OK_thread_3;//sysj/liquidDumperController.sysj line: 114, column: 5
+                                  if(level_thread_3 >= TANK_WARN_thread_3) {//sysj/liquidDumperController.sysj line: 115, column: 27
+                                    System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj/liquidDumperController.sysj line: 116, column: 6
+                                    code_thread_3 = WARN_thread_3;//sysj/liquidDumperController.sysj line: 117, column: 6
                                   }
-                                  if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj\liquidDumperController.sysj line: 119, column: 31
-                                    System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj\liquidDumperController.sysj line: 120, column: 6
-                                    code_thread_3 = BLOCKED_thread_3;//sysj\liquidDumperController.sysj line: 121, column: 6
+                                  if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj/liquidDumperController.sysj line: 119, column: 31
+                                    System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj/liquidDumperController.sysj line: 120, column: 6
+                                    code_thread_3 = BLOCKED_thread_3;//sysj/liquidDumperController.sysj line: 121, column: 6
                                   }
-                                  S63921=6;
-                                  S64233=0;
-                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                    status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
-                                    S64233=1;
+                                  S101764=6;
+                                  S102076=0;
+                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                    status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
+                                    S102076=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
                                   else {
-                                    S64228=0;
-                                    if(status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                      status_o.setVal(new Integer(code_thread_3));//sysj\liquidDumperController.sysj line: 124, column: 5
-                                      S64228=1;
-                                      if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                        status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                                    S102071=0;
+                                    if(status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                      status_o.setVal(new Integer(code_thread_3));//sysj/liquidDumperController.sysj line: 124, column: 5
+                                      S102071=1;
+                                      if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                        status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                                         ends[3]=2;
-                                        ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                                        S66404=2;
+                                        ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                                        S104247=2;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -3193,16 +3193,16 @@ public class LiquidDumperController extends ClockDomain{
                               }
                             }
                             else {
-                              thread79327(tdone,ends);
-                              thread79328(tdone,ends);
-                              int biggest79329 = 0;
-                              if(ends[9]>=biggest79329){
-                                biggest79329=ends[9];
+                              thread117170(tdone,ends);
+                              thread117171(tdone,ends);
+                              int biggest117172 = 0;
+                              if(ends[9]>=biggest117172){
+                                biggest117172=ends[9];
                               }
-                              if(ends[10]>=biggest79329){
-                                biggest79329=ends[10];
+                              if(ends[10]>=biggest117172){
+                                biggest117172=ends[10];
                               }
-                              if(biggest79329 == 1){
+                              if(biggest117172 == 1){
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -3210,20 +3210,20 @@ public class LiquidDumperController extends ClockDomain{
                             }
                           }
                           else {
-                            thread79330(tdone,ends);
-                            thread79331(tdone,ends);
-                            thread79332(tdone,ends);
-                            int biggest79333 = 0;
-                            if(ends[6]>=biggest79333){
-                              biggest79333=ends[6];
+                            thread117173(tdone,ends);
+                            thread117174(tdone,ends);
+                            thread117175(tdone,ends);
+                            int biggest117176 = 0;
+                            if(ends[6]>=biggest117176){
+                              biggest117176=ends[6];
                             }
-                            if(ends[7]>=biggest79333){
-                              biggest79333=ends[7];
+                            if(ends[7]>=biggest117176){
+                              biggest117176=ends[7];
                             }
-                            if(ends[8]>=biggest79333){
-                              biggest79333=ends[8];
+                            if(ends[8]>=biggest117176){
+                              biggest117176=ends[8];
                             }
-                            if(biggest79333 == 1){
+                            if(biggest117176 == 1){
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
@@ -3231,16 +3231,16 @@ public class LiquidDumperController extends ClockDomain{
                           }
                         }
                         else {
-                          thread79334(tdone,ends);
-                          thread79335(tdone,ends);
-                          int biggest79336 = 0;
-                          if(ends[4]>=biggest79336){
-                            biggest79336=ends[4];
+                          thread117177(tdone,ends);
+                          thread117178(tdone,ends);
+                          int biggest117179 = 0;
+                          if(ends[4]>=biggest117179){
+                            biggest117179=ends[4];
                           }
-                          if(ends[5]>=biggest79336){
-                            biggest79336=ends[5];
+                          if(ends[5]>=biggest117179){
+                            biggest117179=ends[5];
                           }
-                          if(biggest79336 == 1){
+                          if(biggest117179 == 1){
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -3248,7 +3248,7 @@ public class LiquidDumperController extends ClockDomain{
                         }
                       }
                       else {
-                        cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 83, column: 6
+                        cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 83, column: 6
                         currsigs.addElement(cylClampBottleExtend);
                         active[3]=1;
                         ends[3]=1;
@@ -3282,8 +3282,8 @@ public class LiquidDumperController extends ClockDomain{
     }
   }
 
-  public void thread79245(int [] tdone, int [] ends){
-        switch(S63896){
+  public void thread117088(int [] tdone, int [] ends){
+        switch(S101739){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -3291,16 +3291,16 @@ public class LiquidDumperController extends ClockDomain{
         break;
       
       case 1 : 
-        if(mode.getprestatus()){//sysj\liquidDumperController.sysj line: 53, column: 12
-          if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\liquidDumperController.sysj line: 54, column: 8
-            auto_1.setPresent();//sysj\liquidDumperController.sysj line: 54, column: 30
+        if(mode.getprestatus()){//sysj/liquidDumperController.sysj line: 53, column: 12
+          if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj/liquidDumperController.sysj line: 54, column: 8
+            auto_1.setPresent();//sysj/liquidDumperController.sysj line: 54, column: 30
             currsigs.addElement(auto_1);
             active[2]=1;
             ends[2]=1;
             tdone[2]=1;
           }
           else {
-            manual_1.setPresent();//sysj\liquidDumperController.sysj line: 55, column: 12
+            manual_1.setPresent();//sysj/liquidDumperController.sysj line: 55, column: 12
             currsigs.addElement(manual_1);
             active[2]=1;
             ends[2]=1;
@@ -3317,26 +3317,26 @@ public class LiquidDumperController extends ClockDomain{
     }
   }
 
-  public void thread79243(int [] tdone, int [] ends){
-        S79227=1;
-    S79035=0;
-    if(manual_1.getprestatus()){//sysj\liquidDumperController.sysj line: 132, column: 20
-      S79035=1;
-      if(auto_1.getprestatus()){//sysj\liquidDumperController.sysj line: 133, column: 20
-        S79035=2;
+  public void thread117086(int [] tdone, int [] ends){
+        S117070=1;
+    S116878=0;
+    if(manual_1.getprestatus()){//sysj/liquidDumperController.sysj line: 132, column: 20
+      S116878=1;
+      if(auto_1.getprestatus()){//sysj/liquidDumperController.sysj line: 133, column: 20
+        S116878=2;
         active[11]=1;
         ends[11]=1;
         tdone[11]=1;
       }
       else {
-        if(cylClampBottleExtendM.getprestatus()){//sysj\liquidDumperController.sysj line: 135, column: 14
-          cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 135, column: 38
+        if(cylClampBottleExtendM.getprestatus()){//sysj/liquidDumperController.sysj line: 135, column: 14
+          cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 135, column: 38
           currsigs.addElement(cylClampBottleExtend);
-          if(invertRotateExtendM.getprestatus()){//sysj\liquidDumperController.sysj line: 136, column: 14
-            invertRotateExtend.setPresent();//sysj\liquidDumperController.sysj line: 136, column: 36
+          if(invertRotateExtendM.getprestatus()){//sysj/liquidDumperController.sysj line: 136, column: 14
+            invertRotateExtend.setPresent();//sysj/liquidDumperController.sysj line: 136, column: 36
             currsigs.addElement(invertRotateExtend);
-            if(drainValveOnOffM.getprestatus()){//sysj\liquidDumperController.sysj line: 137, column: 14
-              drainValveOnOff.setPresent();//sysj\liquidDumperController.sysj line: 137, column: 33
+            if(drainValveOnOffM.getprestatus()){//sysj/liquidDumperController.sysj line: 137, column: 14
+              drainValveOnOff.setPresent();//sysj/liquidDumperController.sysj line: 137, column: 33
               currsigs.addElement(drainValveOnOff);
               active[11]=1;
               ends[11]=1;
@@ -3349,8 +3349,8 @@ public class LiquidDumperController extends ClockDomain{
             }
           }
           else {
-            if(drainValveOnOffM.getprestatus()){//sysj\liquidDumperController.sysj line: 137, column: 14
-              drainValveOnOff.setPresent();//sysj\liquidDumperController.sysj line: 137, column: 33
+            if(drainValveOnOffM.getprestatus()){//sysj/liquidDumperController.sysj line: 137, column: 14
+              drainValveOnOff.setPresent();//sysj/liquidDumperController.sysj line: 137, column: 33
               currsigs.addElement(drainValveOnOff);
               active[11]=1;
               ends[11]=1;
@@ -3364,11 +3364,11 @@ public class LiquidDumperController extends ClockDomain{
           }
         }
         else {
-          if(invertRotateExtendM.getprestatus()){//sysj\liquidDumperController.sysj line: 136, column: 14
-            invertRotateExtend.setPresent();//sysj\liquidDumperController.sysj line: 136, column: 36
+          if(invertRotateExtendM.getprestatus()){//sysj/liquidDumperController.sysj line: 136, column: 14
+            invertRotateExtend.setPresent();//sysj/liquidDumperController.sysj line: 136, column: 36
             currsigs.addElement(invertRotateExtend);
-            if(drainValveOnOffM.getprestatus()){//sysj\liquidDumperController.sysj line: 137, column: 14
-              drainValveOnOff.setPresent();//sysj\liquidDumperController.sysj line: 137, column: 33
+            if(drainValveOnOffM.getprestatus()){//sysj/liquidDumperController.sysj line: 137, column: 14
+              drainValveOnOff.setPresent();//sysj/liquidDumperController.sysj line: 137, column: 33
               currsigs.addElement(drainValveOnOff);
               active[11]=1;
               ends[11]=1;
@@ -3381,8 +3381,8 @@ public class LiquidDumperController extends ClockDomain{
             }
           }
           else {
-            if(drainValveOnOffM.getprestatus()){//sysj\liquidDumperController.sysj line: 137, column: 14
-              drainValveOnOff.setPresent();//sysj\liquidDumperController.sysj line: 137, column: 33
+            if(drainValveOnOffM.getprestatus()){//sysj/liquidDumperController.sysj line: 137, column: 14
+              drainValveOnOff.setPresent();//sysj/liquidDumperController.sysj line: 137, column: 33
               currsigs.addElement(drainValveOnOff);
               active[11]=1;
               ends[11]=1;
@@ -3404,154 +3404,154 @@ public class LiquidDumperController extends ClockDomain{
     }
   }
 
-  public void thread79241(int [] tdone, int [] ends){
-        S63947=1;
-    invertRotateExtend.setPresent();//sysj\liquidDumperController.sysj line: 88, column: 45
+  public void thread117084(int [] tdone, int [] ends){
+        S101790=1;
+    invertRotateExtend.setPresent();//sysj/liquidDumperController.sysj line: 88, column: 45
     currsigs.addElement(invertRotateExtend);
     active[5]=1;
     ends[5]=1;
     tdone[5]=1;
   }
 
-  public void thread79240(int [] tdone, int [] ends){
-        S63942=1;
-    cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 88, column: 8
+  public void thread117083(int [] tdone, int [] ends){
+        S101785=1;
+    cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 88, column: 8
     currsigs.addElement(cylClampBottleExtend);
     active[4]=1;
     ends[4]=1;
     tdone[4]=1;
   }
 
-  public void thread79238(int [] tdone, int [] ends){
-        S64007=1;
-    drainValveOnOff.setPresent();//sysj\liquidDumperController.sysj line: 94, column: 80
+  public void thread117081(int [] tdone, int [] ends){
+        S101850=1;
+    drainValveOnOff.setPresent();//sysj/liquidDumperController.sysj line: 94, column: 80
     currsigs.addElement(drainValveOnOff);
     active[8]=1;
     ends[8]=1;
     tdone[8]=1;
   }
 
-  public void thread79237(int [] tdone, int [] ends){
-        S64002=1;
-    invertRotateExtend.setPresent();//sysj\liquidDumperController.sysj line: 94, column: 45
+  public void thread117080(int [] tdone, int [] ends){
+        S101845=1;
+    invertRotateExtend.setPresent();//sysj/liquidDumperController.sysj line: 94, column: 45
     currsigs.addElement(invertRotateExtend);
     active[7]=1;
     ends[7]=1;
     tdone[7]=1;
   }
 
-  public void thread79236(int [] tdone, int [] ends){
-        S63997=1;
-    cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 94, column: 8
+  public void thread117079(int [] tdone, int [] ends){
+        S101840=1;
+    cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 94, column: 8
     currsigs.addElement(cylClampBottleExtend);
     active[6]=1;
     ends[6]=1;
     tdone[6]=1;
   }
 
-  public void thread79234(int [] tdone, int [] ends){
-        S64114=1;
-    invertRotateRetract.setPresent();//sysj\liquidDumperController.sysj line: 99, column: 45
+  public void thread117077(int [] tdone, int [] ends){
+        S101957=1;
+    invertRotateRetract.setPresent();//sysj/liquidDumperController.sysj line: 99, column: 45
     currsigs.addElement(invertRotateRetract);
     active[10]=1;
     ends[10]=1;
     tdone[10]=1;
   }
 
-  public void thread79233(int [] tdone, int [] ends){
-        S64109=1;
-    cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 99, column: 8
+  public void thread117076(int [] tdone, int [] ends){
+        S101952=1;
+    cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 99, column: 8
     currsigs.addElement(cylClampBottleExtend);
     active[9]=1;
     ends[9]=1;
     tdone[9]=1;
   }
 
-  public void thread79232(int [] tdone, int [] ends){
-        S78940=1;
-    OK_thread_3 = 0;//sysj\liquidDumperController.sysj line: 62, column: 3
-    BLOCKED_thread_3 = 2;//sysj\liquidDumperController.sysj line: 63, column: 3
-    WARN_thread_3 = 3;//sysj\liquidDumperController.sysj line: 64, column: 3
-    TANK_CAPACITY_thread_3 = 6;//sysj\liquidDumperController.sysj line: 66, column: 3
-    TANK_WARN_thread_3 = 4;//sysj\liquidDumperController.sysj line: 67, column: 3
-    w_thread_3 = null;//sysj\liquidDumperController.sysj line: 69, column: 3
-    level_thread_3 = 0;//sysj\liquidDumperController.sysj line: 70, column: 3
-    code_thread_3 = 0;//sysj\liquidDumperController.sysj line: 71, column: 3
-    S66404=0;
-    if(auto_1.getprestatus()){//sysj\liquidDumperController.sysj line: 74, column: 20
-      S66404=1;
-      if(manual_1.getprestatus()){//sysj\liquidDumperController.sysj line: 76, column: 20
+  public void thread117075(int [] tdone, int [] ends){
+        S116783=1;
+    OK_thread_3 = 0;//sysj/liquidDumperController.sysj line: 62, column: 3
+    BLOCKED_thread_3 = 2;//sysj/liquidDumperController.sysj line: 63, column: 3
+    WARN_thread_3 = 3;//sysj/liquidDumperController.sysj line: 64, column: 3
+    TANK_CAPACITY_thread_3 = 6;//sysj/liquidDumperController.sysj line: 66, column: 3
+    TANK_WARN_thread_3 = 4;//sysj/liquidDumperController.sysj line: 67, column: 3
+    w_thread_3 = null;//sysj/liquidDumperController.sysj line: 69, column: 3
+    level_thread_3 = 0;//sysj/liquidDumperController.sysj line: 70, column: 3
+    code_thread_3 = 0;//sysj/liquidDumperController.sysj line: 71, column: 3
+    S104247=0;
+    if(auto_1.getprestatus()){//sysj/liquidDumperController.sysj line: 74, column: 20
+      S104247=1;
+      if(manual_1.getprestatus()){//sysj/liquidDumperController.sysj line: 76, column: 20
         enable_in.setPreempted();
         status_o.setPreempted();
-        S66404=2;
+        S104247=2;
         active[3]=1;
         ends[3]=1;
         tdone[3]=1;
       }
       else {
-        S63921=0;
-        S63905=0;
-        if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 77, column: 5
-          enable_in.setACK(false);//sysj\liquidDumperController.sysj line: 77, column: 5
-          S63905=1;
+        S101764=0;
+        S101748=0;
+        if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 77, column: 5
+          enable_in.setACK(false);//sysj/liquidDumperController.sysj line: 77, column: 5
+          S101748=1;
           active[3]=1;
           ends[3]=1;
           tdone[3]=1;
         }
         else {
-          S63900=0;
-          if(!enable_in.isREQ()){//sysj\liquidDumperController.sysj line: 77, column: 5
-            enable_in.setACK(true);//sysj\liquidDumperController.sysj line: 77, column: 5
-            S63900=1;
-            if(enable_in.isREQ()){//sysj\liquidDumperController.sysj line: 77, column: 5
-              enable_in.setACK(false);//sysj\liquidDumperController.sysj line: 77, column: 5
+          S101743=0;
+          if(!enable_in.isREQ()){//sysj/liquidDumperController.sysj line: 77, column: 5
+            enable_in.setACK(true);//sysj/liquidDumperController.sysj line: 77, column: 5
+            S101743=1;
+            if(enable_in.isREQ()){//sysj/liquidDumperController.sysj line: 77, column: 5
+              enable_in.setACK(false);//sysj/liquidDumperController.sysj line: 77, column: 5
               ends[3]=2;
-              ;//sysj\liquidDumperController.sysj line: 77, column: 5
-              w_thread_3 = (Workpiece)(enable_in.getVal() == null ? null : ((Workpiece)enable_in.getVal()));//sysj\liquidDumperController.sysj line: 78, column: 5
-              System.out.println("[LD] Draining " + w_thread_3 + " (" + w_thread_3.filledMl() + "ml).");//sysj\liquidDumperController.sysj line: 79, column: 5
-              S63921=1;
-              if(clampClosed.getprestatus()){//sysj\liquidDumperController.sysj line: 82, column: 21
-                S63921=2;
-                if(bottleInverted.getprestatus()){//sysj\liquidDumperController.sysj line: 87, column: 21
-                  S63921=3;
-                  if(bottleDrained.getprestatus()){//sysj\liquidDumperController.sysj line: 93, column: 21
-                    S63921=4;
-                    if(bottleUpright.getprestatus()){//sysj\liquidDumperController.sysj line: 98, column: 21
-                      S63921=5;
-                      if(!clampClosed.getprestatus()){//sysj\liquidDumperController.sysj line: 103, column: 21
-                        w_thread_3.drain();//sysj\liquidDumperController.sysj line: 105, column: 5
-                        System.out.println("[LD] " + w_thread_3 + " drained to the waste sink, now at " + w_thread_3.filledMl() + "ml.");//sysj\liquidDumperController.sysj line: 106, column: 5
-                        level_thread_3 = 0;//sysj\liquidDumperController.sysj line: 109, column: 5
-                        if(wasteTankLevel.getprestatus()){//sysj\liquidDumperController.sysj line: 110, column: 13
-                          level_thread_3 = ((Integer)(wasteTankLevel.getpreval() == null ? null : ((Integer)wasteTankLevel.getpreval()))).intValue();//sysj\liquidDumperController.sysj line: 111, column: 6
-                          code_thread_3 = OK_thread_3;//sysj\liquidDumperController.sysj line: 114, column: 5
-                          if(level_thread_3 >= TANK_WARN_thread_3) {//sysj\liquidDumperController.sysj line: 115, column: 27
-                            System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj\liquidDumperController.sysj line: 116, column: 6
-                            code_thread_3 = WARN_thread_3;//sysj\liquidDumperController.sysj line: 117, column: 6
+              ;//sysj/liquidDumperController.sysj line: 77, column: 5
+              w_thread_3 = (Workpiece)(enable_in.getVal() == null ? null : ((Workpiece)enable_in.getVal()));//sysj/liquidDumperController.sysj line: 78, column: 5
+              System.out.println("[LD] Draining " + w_thread_3 + " (" + w_thread_3.filledMl() + "ml).");//sysj/liquidDumperController.sysj line: 79, column: 5
+              S101764=1;
+              if(clampClosed.getprestatus()){//sysj/liquidDumperController.sysj line: 82, column: 21
+                S101764=2;
+                if(bottleInverted.getprestatus()){//sysj/liquidDumperController.sysj line: 87, column: 21
+                  S101764=3;
+                  if(bottleDrained.getprestatus()){//sysj/liquidDumperController.sysj line: 93, column: 21
+                    S101764=4;
+                    if(bottleUpright.getprestatus()){//sysj/liquidDumperController.sysj line: 98, column: 21
+                      S101764=5;
+                      if(!clampClosed.getprestatus()){//sysj/liquidDumperController.sysj line: 103, column: 21
+                        w_thread_3.drain();//sysj/liquidDumperController.sysj line: 105, column: 5
+                        System.out.println("[LD] " + w_thread_3 + " drained to the waste sink, now at " + w_thread_3.filledMl() + "ml.");//sysj/liquidDumperController.sysj line: 106, column: 5
+                        level_thread_3 = 0;//sysj/liquidDumperController.sysj line: 109, column: 5
+                        if(wasteTankLevel.getprestatus()){//sysj/liquidDumperController.sysj line: 110, column: 13
+                          level_thread_3 = ((Integer)(wasteTankLevel.getpreval() == null ? null : ((Integer)wasteTankLevel.getpreval()))).intValue();//sysj/liquidDumperController.sysj line: 111, column: 6
+                          code_thread_3 = OK_thread_3;//sysj/liquidDumperController.sysj line: 114, column: 5
+                          if(level_thread_3 >= TANK_WARN_thread_3) {//sysj/liquidDumperController.sysj line: 115, column: 27
+                            System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj/liquidDumperController.sysj line: 116, column: 6
+                            code_thread_3 = WARN_thread_3;//sysj/liquidDumperController.sysj line: 117, column: 6
                           }
-                          if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj\liquidDumperController.sysj line: 119, column: 31
-                            System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj\liquidDumperController.sysj line: 120, column: 6
-                            code_thread_3 = BLOCKED_thread_3;//sysj\liquidDumperController.sysj line: 121, column: 6
+                          if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj/liquidDumperController.sysj line: 119, column: 31
+                            System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj/liquidDumperController.sysj line: 120, column: 6
+                            code_thread_3 = BLOCKED_thread_3;//sysj/liquidDumperController.sysj line: 121, column: 6
                           }
-                          S63921=6;
-                          S64233=0;
-                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                            status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
-                            S64233=1;
+                          S101764=6;
+                          S102076=0;
+                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                            status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
+                            S102076=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
                           }
                           else {
-                            S64228=0;
-                            if(status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                              status_o.setVal(new Integer(code_thread_3));//sysj\liquidDumperController.sysj line: 124, column: 5
-                              S64228=1;
-                              if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                            S102071=0;
+                            if(status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                              status_o.setVal(new Integer(code_thread_3));//sysj/liquidDumperController.sysj line: 124, column: 5
+                              S102071=1;
+                              if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                                 ends[3]=2;
-                                ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                                S66404=2;
+                                ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                                S104247=2;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -3570,34 +3570,34 @@ public class LiquidDumperController extends ClockDomain{
                           }
                         }
                         else {
-                          code_thread_3 = OK_thread_3;//sysj\liquidDumperController.sysj line: 114, column: 5
-                          if(level_thread_3 >= TANK_WARN_thread_3) {//sysj\liquidDumperController.sysj line: 115, column: 27
-                            System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj\liquidDumperController.sysj line: 116, column: 6
-                            code_thread_3 = WARN_thread_3;//sysj\liquidDumperController.sysj line: 117, column: 6
+                          code_thread_3 = OK_thread_3;//sysj/liquidDumperController.sysj line: 114, column: 5
+                          if(level_thread_3 >= TANK_WARN_thread_3) {//sysj/liquidDumperController.sysj line: 115, column: 27
+                            System.out.println("[LD] Waste tank near capacity (" + level_thread_3 + " of " + TANK_CAPACITY_thread_3 + ").");//sysj/liquidDumperController.sysj line: 116, column: 6
+                            code_thread_3 = WARN_thread_3;//sysj/liquidDumperController.sysj line: 117, column: 6
                           }
-                          if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj\liquidDumperController.sysj line: 119, column: 31
-                            System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj\liquidDumperController.sysj line: 120, column: 6
-                            code_thread_3 = BLOCKED_thread_3;//sysj\liquidDumperController.sysj line: 121, column: 6
+                          if(level_thread_3 >= TANK_CAPACITY_thread_3) {//sysj/liquidDumperController.sysj line: 119, column: 31
+                            System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");//sysj/liquidDumperController.sysj line: 120, column: 6
+                            code_thread_3 = BLOCKED_thread_3;//sysj/liquidDumperController.sysj line: 121, column: 6
                           }
-                          S63921=6;
-                          S64233=0;
-                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                            status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
-                            S64233=1;
+                          S101764=6;
+                          S102076=0;
+                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                            status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
+                            S102076=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
                           }
                           else {
-                            S64228=0;
-                            if(status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                              status_o.setVal(new Integer(code_thread_3));//sysj\liquidDumperController.sysj line: 124, column: 5
-                              S64228=1;
-                              if(!status_o.isACK()){//sysj\liquidDumperController.sysj line: 124, column: 5
-                                status_o.setREQ(false);//sysj\liquidDumperController.sysj line: 124, column: 5
+                            S102071=0;
+                            if(status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                              status_o.setVal(new Integer(code_thread_3));//sysj/liquidDumperController.sysj line: 124, column: 5
+                              S102071=1;
+                              if(!status_o.isACK()){//sysj/liquidDumperController.sysj line: 124, column: 5
+                                status_o.setREQ(false);//sysj/liquidDumperController.sysj line: 124, column: 5
                                 ends[3]=2;
-                                ;//sysj\liquidDumperController.sysj line: 124, column: 5
-                                S66404=2;
+                                ;//sysj/liquidDumperController.sysj line: 124, column: 5
+                                S104247=2;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -3623,16 +3623,16 @@ public class LiquidDumperController extends ClockDomain{
                       }
                     }
                     else {
-                      thread79233(tdone,ends);
-                      thread79234(tdone,ends);
-                      int biggest79235 = 0;
-                      if(ends[9]>=biggest79235){
-                        biggest79235=ends[9];
+                      thread117076(tdone,ends);
+                      thread117077(tdone,ends);
+                      int biggest117078 = 0;
+                      if(ends[9]>=biggest117078){
+                        biggest117078=ends[9];
                       }
-                      if(ends[10]>=biggest79235){
-                        biggest79235=ends[10];
+                      if(ends[10]>=biggest117078){
+                        biggest117078=ends[10];
                       }
-                      if(biggest79235 == 1){
+                      if(biggest117078 == 1){
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
@@ -3640,20 +3640,20 @@ public class LiquidDumperController extends ClockDomain{
                     }
                   }
                   else {
-                    thread79236(tdone,ends);
-                    thread79237(tdone,ends);
-                    thread79238(tdone,ends);
-                    int biggest79239 = 0;
-                    if(ends[6]>=biggest79239){
-                      biggest79239=ends[6];
+                    thread117079(tdone,ends);
+                    thread117080(tdone,ends);
+                    thread117081(tdone,ends);
+                    int biggest117082 = 0;
+                    if(ends[6]>=biggest117082){
+                      biggest117082=ends[6];
                     }
-                    if(ends[7]>=biggest79239){
-                      biggest79239=ends[7];
+                    if(ends[7]>=biggest117082){
+                      biggest117082=ends[7];
                     }
-                    if(ends[8]>=biggest79239){
-                      biggest79239=ends[8];
+                    if(ends[8]>=biggest117082){
+                      biggest117082=ends[8];
                     }
-                    if(biggest79239 == 1){
+                    if(biggest117082 == 1){
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
@@ -3661,16 +3661,16 @@ public class LiquidDumperController extends ClockDomain{
                   }
                 }
                 else {
-                  thread79240(tdone,ends);
-                  thread79241(tdone,ends);
-                  int biggest79242 = 0;
-                  if(ends[4]>=biggest79242){
-                    biggest79242=ends[4];
+                  thread117083(tdone,ends);
+                  thread117084(tdone,ends);
+                  int biggest117085 = 0;
+                  if(ends[4]>=biggest117085){
+                    biggest117085=ends[4];
                   }
-                  if(ends[5]>=biggest79242){
-                    biggest79242=ends[5];
+                  if(ends[5]>=biggest117085){
+                    biggest117085=ends[5];
                   }
-                  if(biggest79242 == 1){
+                  if(biggest117085 == 1){
                     active[3]=1;
                     ends[3]=1;
                     tdone[3]=1;
@@ -3678,7 +3678,7 @@ public class LiquidDumperController extends ClockDomain{
                 }
               }
               else {
-                cylClampBottleExtend.setPresent();//sysj\liquidDumperController.sysj line: 83, column: 6
+                cylClampBottleExtend.setPresent();//sysj/liquidDumperController.sysj line: 83, column: 6
                 currsigs.addElement(cylClampBottleExtend);
                 active[3]=1;
                 ends[3]=1;
@@ -3706,18 +3706,18 @@ public class LiquidDumperController extends ClockDomain{
     }
   }
 
-  public void thread79231(int [] tdone, int [] ends){
-        S63896=1;
-    if(mode.getprestatus()){//sysj\liquidDumperController.sysj line: 53, column: 12
-      if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\liquidDumperController.sysj line: 54, column: 8
-        auto_1.setPresent();//sysj\liquidDumperController.sysj line: 54, column: 30
+  public void thread117074(int [] tdone, int [] ends){
+        S101739=1;
+    if(mode.getprestatus()){//sysj/liquidDumperController.sysj line: 53, column: 12
+      if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj/liquidDumperController.sysj line: 54, column: 8
+        auto_1.setPresent();//sysj/liquidDumperController.sysj line: 54, column: 30
         currsigs.addElement(auto_1);
         active[2]=1;
         ends[2]=1;
         tdone[2]=1;
       }
       else {
-        manual_1.setPresent();//sysj\liquidDumperController.sysj line: 55, column: 12
+        manual_1.setPresent();//sysj/liquidDumperController.sysj line: 55, column: 12
         currsigs.addElement(manual_1);
         active[2]=1;
         ends[2]=1;
@@ -3738,62 +3738,62 @@ public class LiquidDumperController extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S79229){
+      switch(S117072){
         case 0 : 
-          S79229=0;
+          S117072=0;
           break RUN;
         
         case 1 : 
-          S79229=2;
-          S79229=2;
-          auto_1.setClear();//sysj\liquidDumperController.sysj line: 49, column: 2
-          manual_1.setClear();//sysj\liquidDumperController.sysj line: 49, column: 2
-          thread79231(tdone,ends);
-          thread79232(tdone,ends);
-          thread79243(tdone,ends);
-          int biggest79244 = 0;
-          if(ends[2]>=biggest79244){
-            biggest79244=ends[2];
+          S117072=2;
+          S117072=2;
+          auto_1.setClear();//sysj/liquidDumperController.sysj line: 49, column: 2
+          manual_1.setClear();//sysj/liquidDumperController.sysj line: 49, column: 2
+          thread117074(tdone,ends);
+          thread117075(tdone,ends);
+          thread117086(tdone,ends);
+          int biggest117087 = 0;
+          if(ends[2]>=biggest117087){
+            biggest117087=ends[2];
           }
-          if(ends[3]>=biggest79244){
-            biggest79244=ends[3];
+          if(ends[3]>=biggest117087){
+            biggest117087=ends[3];
           }
-          if(ends[11]>=biggest79244){
-            biggest79244=ends[11];
+          if(ends[11]>=biggest117087){
+            biggest117087=ends[11];
           }
-          if(biggest79244 == 1){
+          if(biggest117087 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
         
         case 2 : 
-          auto_1.setClear();//sysj\liquidDumperController.sysj line: 49, column: 2
-          manual_1.setClear();//sysj\liquidDumperController.sysj line: 49, column: 2
-          thread79245(tdone,ends);
-          thread79246(tdone,ends);
-          thread79337(tdone,ends);
-          int biggest79338 = 0;
-          if(ends[2]>=biggest79338){
-            biggest79338=ends[2];
+          auto_1.setClear();//sysj/liquidDumperController.sysj line: 49, column: 2
+          manual_1.setClear();//sysj/liquidDumperController.sysj line: 49, column: 2
+          thread117088(tdone,ends);
+          thread117089(tdone,ends);
+          thread117180(tdone,ends);
+          int biggest117181 = 0;
+          if(ends[2]>=biggest117181){
+            biggest117181=ends[2];
           }
-          if(ends[3]>=biggest79338){
-            biggest79338=ends[3];
+          if(ends[3]>=biggest117181){
+            biggest117181=ends[3];
           }
-          if(ends[11]>=biggest79338){
-            biggest79338=ends[11];
+          if(ends[11]>=biggest117181){
+            biggest117181=ends[11];
           }
-          if(biggest79338 == 1){
+          if(biggest117181 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest79338 == 0){
-            S79229=0;
+          if(biggest117181 == 0){
+            S117072=0;
             active[1]=0;
             ends[1]=0;
-            S79229=0;
+            S117072=0;
             break RUN;
           }
         
