@@ -57,7 +57,7 @@ ConveyorPlant(
 					admitted = false;
 				}
 
-				// "Workpiece admitted" - held for as long as the controller
+				// "WorkpieceTwin admitted" - held for as long as the controller
 				// holds the command, so the controller has something to
 				// acknowledge against. infeedClear cannot serve: the belt
 				// runs every tick, so the bottle leaves the load point in the

@@ -20,8 +20,8 @@ public class CapperController extends ClockDomain{
   public output_Channel done_o = new output_Channel();
   private Signal auto_1;
   private Signal manual_1;
-  private LidCapperTwin t_thread_3;//sysj/capperController.sysj line: 40, column: 3
-  private WorkpieceTwin w_thread_3;//sysj/capperController.sysj line: 41, column: 3
+  private LidCapperTwin t_thread_3;//sysj\capperController.sysj line: 40, column: 3
+  private WorkpieceTwin w_thread_3;//sysj\capperController.sysj line: 41, column: 3
   private int S24370 = 1;
   private int S15283 = 1;
   private int S24297 = 1;
@@ -48,17 +48,17 @@ public class CapperController extends ClockDomain{
       case 1 : 
         switch(S24320){
           case 0 : 
-            if(manual_1.getprestatus()){//sysj/capperController.sysj line: 77, column: 20
+            if(manual_1.getprestatus()){//sysj\capperController.sysj line: 77, column: 20
               S24320=1;
-              if(auto_1.getprestatus()){//sysj/capperController.sysj line: 78, column: 20
+              if(auto_1.getprestatus()){//sysj\capperController.sysj line: 78, column: 20
                 S24320=2;
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
               }
               else {
-                if(screwOnM.getprestatus()){//sysj/capperController.sysj line: 80, column: 14
-                  screwOn.setPresent();//sysj/capperController.sysj line: 80, column: 25
+                if(screwOnM.getprestatus()){//sysj\capperController.sysj line: 80, column: 14
+                  screwOn.setPresent();//sysj\capperController.sysj line: 80, column: 25
                   currsigs.addElement(screwOn);
                   active[4]=1;
                   ends[4]=1;
@@ -79,15 +79,15 @@ public class CapperController extends ClockDomain{
             break;
           
           case 1 : 
-            if(auto_1.getprestatus()){//sysj/capperController.sysj line: 78, column: 20
+            if(auto_1.getprestatus()){//sysj\capperController.sysj line: 78, column: 20
               S24320=2;
               active[4]=1;
               ends[4]=1;
               tdone[4]=1;
             }
             else {
-              if(screwOnM.getprestatus()){//sysj/capperController.sysj line: 80, column: 14
-                screwOn.setPresent();//sysj/capperController.sysj line: 80, column: 25
+              if(screwOnM.getprestatus()){//sysj\capperController.sysj line: 80, column: 14
+                screwOn.setPresent();//sysj\capperController.sysj line: 80, column: 25
                 currsigs.addElement(screwOn);
                 active[4]=1;
                 ends[4]=1;
@@ -104,17 +104,17 @@ public class CapperController extends ClockDomain{
           case 2 : 
             S24320=2;
             S24320=0;
-            if(manual_1.getprestatus()){//sysj/capperController.sysj line: 77, column: 20
+            if(manual_1.getprestatus()){//sysj\capperController.sysj line: 77, column: 20
               S24320=1;
-              if(auto_1.getprestatus()){//sysj/capperController.sysj line: 78, column: 20
+              if(auto_1.getprestatus()){//sysj\capperController.sysj line: 78, column: 20
                 S24320=2;
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
               }
               else {
-                if(screwOnM.getprestatus()){//sysj/capperController.sysj line: 80, column: 14
-                  screwOn.setPresent();//sysj/capperController.sysj line: 80, column: 25
+                if(screwOnM.getprestatus()){//sysj\capperController.sysj line: 80, column: 14
+                  screwOn.setPresent();//sysj\capperController.sysj line: 80, column: 25
                   currsigs.addElement(screwOn);
                   active[4]=1;
                   ends[4]=1;
@@ -151,9 +151,9 @@ public class CapperController extends ClockDomain{
       case 1 : 
         switch(S16786){
           case 0 : 
-            if(auto_1.getprestatus()){//sysj/capperController.sysj line: 44, column: 20
+            if(auto_1.getprestatus()){//sysj\capperController.sysj line: 44, column: 20
               S16786=1;
-              if(manual_1.getprestatus()){//sysj/capperController.sysj line: 46, column: 20
+              if(manual_1.getprestatus()){//sysj\capperController.sysj line: 46, column: 20
                 start_in.setPreempted();
                 done_o.setPreempted();
                 S16786=2;
@@ -164,8 +164,8 @@ public class CapperController extends ClockDomain{
               else {
                 S15308=0;
                 S15292=0;
-                if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj/capperController.sysj line: 47, column: 5
-                  start_in.setACK(false);//sysj/capperController.sysj line: 47, column: 5
+                if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj\capperController.sysj line: 47, column: 5
+                  start_in.setACK(false);//sysj\capperController.sysj line: 47, column: 5
                   S15292=1;
                   active[3]=1;
                   ends[3]=1;
@@ -173,34 +173,34 @@ public class CapperController extends ClockDomain{
                 }
                 else {
                   S15287=0;
-                  if(!start_in.isREQ()){//sysj/capperController.sysj line: 47, column: 5
-                    start_in.setACK(true);//sysj/capperController.sysj line: 47, column: 5
+                  if(!start_in.isREQ()){//sysj\capperController.sysj line: 47, column: 5
+                    start_in.setACK(true);//sysj\capperController.sysj line: 47, column: 5
                     S15287=1;
-                    if(start_in.isREQ()){//sysj/capperController.sysj line: 47, column: 5
-                      start_in.setACK(false);//sysj/capperController.sysj line: 47, column: 5
+                    if(start_in.isREQ()){//sysj\capperController.sysj line: 47, column: 5
+                      start_in.setACK(false);//sysj\capperController.sysj line: 47, column: 5
                       ends[3]=2;
-                      ;//sysj/capperController.sysj line: 47, column: 5
-                      w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj/capperController.sysj line: 48, column: 5
+                      ;//sysj\capperController.sysj line: 47, column: 5
+                      w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\capperController.sysj line: 48, column: 5
                       S15308=1;
-                      if(w_thread_3 != null){//sysj/capperController.sysj line: 50, column: 8
-                        System.out.println("[CAP] Sealing " + w_thread_3 + ".");//sysj/capperController.sysj line: 51, column: 6
-                        w_thread_3.started(Machine.LID_CAPPER, "screwing cap");//sysj/capperController.sysj line: 52, column: 6
-                        if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "screwOn", "sealing " + w_thread_3.id)){//sysj/capperController.sysj line: 53, column: 6
-                          twin.setPresent();//sysj/capperController.sysj line: 54, column: 7
+                      if(w_thread_3 != null){//sysj\capperController.sysj line: 50, column: 8
+                        System.out.println("[CAP] Sealing " + w_thread_3 + ".");//sysj\capperController.sysj line: 51, column: 6
+                        w_thread_3.started(Machine.LID_CAPPER, "screwing cap");//sysj\capperController.sysj line: 52, column: 6
+                        if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "screwOn", "sealing " + w_thread_3.id)){//sysj\capperController.sysj line: 53, column: 6
+                          twin.setPresent();//sysj\capperController.sysj line: 54, column: 7
                           currsigs.addElement(twin);
-                          twin.setValue(t_thread_3);//sysj/capperController.sysj line: 54, column: 7
-                          if(capSeated.getprestatus()){//sysj/capperController.sysj line: 57, column: 22
-                            w_thread_3.cap();//sysj/capperController.sysj line: 61, column: 6
-                            t_thread_3.setAppliedTurns(12);//sysj/capperController.sysj line: 62, column: 6
-                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj/capperController.sysj line: 63, column: 6
-                              twin.setPresent();//sysj/capperController.sysj line: 64, column: 7
+                          twin.setValue(t_thread_3);//sysj\capperController.sysj line: 54, column: 7
+                          if(capSeated.getprestatus()){//sysj\capperController.sysj line: 57, column: 22
+                            w_thread_3.cap();//sysj\capperController.sysj line: 61, column: 6
+                            t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 62, column: 6
+                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 63, column: 6
+                              twin.setPresent();//sysj\capperController.sysj line: 64, column: 7
                               currsigs.addElement(twin);
-                              twin.setValue(t_thread_3);//sysj/capperController.sysj line: 64, column: 7
-                              System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj/capperController.sysj line: 66, column: 6
+                              twin.setValue(t_thread_3);//sysj\capperController.sysj line: 64, column: 7
+                              System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
                               S15308=2;
                               S15395=0;
-                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                                done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                                done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                 S15395=1;
                                 active[3]=1;
                                 ends[3]=1;
@@ -208,13 +208,13 @@ public class CapperController extends ClockDomain{
                               }
                               else {
                                 S15390=0;
-                                if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                  done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                                if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                  done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                                   S15390=1;
-                                  if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                    done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                  if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                    done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                     ends[3]=2;
-                                    ;//sysj/capperController.sysj line: 69, column: 5
+                                    ;//sysj\capperController.sysj line: 69, column: 5
                                     S16786=2;
                                     active[3]=1;
                                     ends[3]=1;
@@ -234,11 +234,11 @@ public class CapperController extends ClockDomain{
                               }
                             }
                             else {
-                              System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj/capperController.sysj line: 66, column: 6
+                              System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
                               S15308=2;
                               S15395=0;
-                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                                done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                                done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                 S15395=1;
                                 active[3]=1;
                                 ends[3]=1;
@@ -246,13 +246,13 @@ public class CapperController extends ClockDomain{
                               }
                               else {
                                 S15390=0;
-                                if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                  done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                                if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                  done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                                   S15390=1;
-                                  if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                    done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                  if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                    done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                     ends[3]=2;
-                                    ;//sysj/capperController.sysj line: 69, column: 5
+                                    ;//sysj\capperController.sysj line: 69, column: 5
                                     S16786=2;
                                     active[3]=1;
                                     ends[3]=1;
@@ -273,7 +273,7 @@ public class CapperController extends ClockDomain{
                             }
                           }
                           else {
-                            screwOn.setPresent();//sysj/capperController.sysj line: 58, column: 7
+                            screwOn.setPresent();//sysj\capperController.sysj line: 58, column: 7
                             currsigs.addElement(screwOn);
                             active[3]=1;
                             ends[3]=1;
@@ -281,18 +281,18 @@ public class CapperController extends ClockDomain{
                           }
                         }
                         else {
-                          if(capSeated.getprestatus()){//sysj/capperController.sysj line: 57, column: 22
-                            w_thread_3.cap();//sysj/capperController.sysj line: 61, column: 6
-                            t_thread_3.setAppliedTurns(12);//sysj/capperController.sysj line: 62, column: 6
-                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj/capperController.sysj line: 63, column: 6
-                              twin.setPresent();//sysj/capperController.sysj line: 64, column: 7
+                          if(capSeated.getprestatus()){//sysj\capperController.sysj line: 57, column: 22
+                            w_thread_3.cap();//sysj\capperController.sysj line: 61, column: 6
+                            t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 62, column: 6
+                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 63, column: 6
+                              twin.setPresent();//sysj\capperController.sysj line: 64, column: 7
                               currsigs.addElement(twin);
-                              twin.setValue(t_thread_3);//sysj/capperController.sysj line: 64, column: 7
-                              System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj/capperController.sysj line: 66, column: 6
+                              twin.setValue(t_thread_3);//sysj\capperController.sysj line: 64, column: 7
+                              System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
                               S15308=2;
                               S15395=0;
-                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                                done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                                done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                 S15395=1;
                                 active[3]=1;
                                 ends[3]=1;
@@ -300,13 +300,13 @@ public class CapperController extends ClockDomain{
                               }
                               else {
                                 S15390=0;
-                                if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                  done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                                if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                  done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                                   S15390=1;
-                                  if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                    done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                  if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                    done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                     ends[3]=2;
-                                    ;//sysj/capperController.sysj line: 69, column: 5
+                                    ;//sysj\capperController.sysj line: 69, column: 5
                                     S16786=2;
                                     active[3]=1;
                                     ends[3]=1;
@@ -326,11 +326,11 @@ public class CapperController extends ClockDomain{
                               }
                             }
                             else {
-                              System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj/capperController.sysj line: 66, column: 6
+                              System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
                               S15308=2;
                               S15395=0;
-                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                                done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                                done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                 S15395=1;
                                 active[3]=1;
                                 ends[3]=1;
@@ -338,13 +338,13 @@ public class CapperController extends ClockDomain{
                               }
                               else {
                                 S15390=0;
-                                if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                  done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                                if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                  done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                                   S15390=1;
-                                  if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                    done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                  if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                    done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                     ends[3]=2;
-                                    ;//sysj/capperController.sysj line: 69, column: 5
+                                    ;//sysj\capperController.sysj line: 69, column: 5
                                     S16786=2;
                                     active[3]=1;
                                     ends[3]=1;
@@ -365,7 +365,7 @@ public class CapperController extends ClockDomain{
                             }
                           }
                           else {
-                            screwOn.setPresent();//sysj/capperController.sysj line: 58, column: 7
+                            screwOn.setPresent();//sysj\capperController.sysj line: 58, column: 7
                             currsigs.addElement(screwOn);
                             active[3]=1;
                             ends[3]=1;
@@ -376,8 +376,8 @@ public class CapperController extends ClockDomain{
                       else {
                         S15308=2;
                         S15395=0;
-                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                          done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                          done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                           S15395=1;
                           active[3]=1;
                           ends[3]=1;
@@ -385,13 +385,13 @@ public class CapperController extends ClockDomain{
                         }
                         else {
                           S15390=0;
-                          if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                            done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                          if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                            done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                             S15390=1;
-                            if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                              done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                            if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                              done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                               ends[3]=2;
-                              ;//sysj/capperController.sysj line: 69, column: 5
+                              ;//sysj\capperController.sysj line: 69, column: 5
                               S16786=2;
                               active[3]=1;
                               ends[3]=1;
@@ -433,7 +433,7 @@ public class CapperController extends ClockDomain{
             break;
           
           case 1 : 
-            if(manual_1.getprestatus()){//sysj/capperController.sysj line: 46, column: 20
+            if(manual_1.getprestatus()){//sysj\capperController.sysj line: 46, column: 20
               start_in.setPreempted();
               done_o.setPreempted();
               S16786=2;
@@ -446,8 +446,8 @@ public class CapperController extends ClockDomain{
                 case 0 : 
                   switch(S15292){
                     case 0 : 
-                      if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj/capperController.sysj line: 47, column: 5
-                        start_in.setACK(false);//sysj/capperController.sysj line: 47, column: 5
+                      if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj\capperController.sysj line: 47, column: 5
+                        start_in.setACK(false);//sysj\capperController.sysj line: 47, column: 5
                         S15292=1;
                         active[3]=1;
                         ends[3]=1;
@@ -456,34 +456,34 @@ public class CapperController extends ClockDomain{
                       else {
                         switch(S15287){
                           case 0 : 
-                            if(!start_in.isREQ()){//sysj/capperController.sysj line: 47, column: 5
-                              start_in.setACK(true);//sysj/capperController.sysj line: 47, column: 5
+                            if(!start_in.isREQ()){//sysj\capperController.sysj line: 47, column: 5
+                              start_in.setACK(true);//sysj\capperController.sysj line: 47, column: 5
                               S15287=1;
-                              if(start_in.isREQ()){//sysj/capperController.sysj line: 47, column: 5
-                                start_in.setACK(false);//sysj/capperController.sysj line: 47, column: 5
+                              if(start_in.isREQ()){//sysj\capperController.sysj line: 47, column: 5
+                                start_in.setACK(false);//sysj\capperController.sysj line: 47, column: 5
                                 ends[3]=2;
-                                ;//sysj/capperController.sysj line: 47, column: 5
-                                w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj/capperController.sysj line: 48, column: 5
+                                ;//sysj\capperController.sysj line: 47, column: 5
+                                w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\capperController.sysj line: 48, column: 5
                                 S15308=1;
-                                if(w_thread_3 != null){//sysj/capperController.sysj line: 50, column: 8
-                                  System.out.println("[CAP] Sealing " + w_thread_3 + ".");//sysj/capperController.sysj line: 51, column: 6
-                                  w_thread_3.started(Machine.LID_CAPPER, "screwing cap");//sysj/capperController.sysj line: 52, column: 6
-                                  if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "screwOn", "sealing " + w_thread_3.id)){//sysj/capperController.sysj line: 53, column: 6
-                                    twin.setPresent();//sysj/capperController.sysj line: 54, column: 7
+                                if(w_thread_3 != null){//sysj\capperController.sysj line: 50, column: 8
+                                  System.out.println("[CAP] Sealing " + w_thread_3 + ".");//sysj\capperController.sysj line: 51, column: 6
+                                  w_thread_3.started(Machine.LID_CAPPER, "screwing cap");//sysj\capperController.sysj line: 52, column: 6
+                                  if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "screwOn", "sealing " + w_thread_3.id)){//sysj\capperController.sysj line: 53, column: 6
+                                    twin.setPresent();//sysj\capperController.sysj line: 54, column: 7
                                     currsigs.addElement(twin);
-                                    twin.setValue(t_thread_3);//sysj/capperController.sysj line: 54, column: 7
-                                    if(capSeated.getprestatus()){//sysj/capperController.sysj line: 57, column: 22
-                                      w_thread_3.cap();//sysj/capperController.sysj line: 61, column: 6
-                                      t_thread_3.setAppliedTurns(12);//sysj/capperController.sysj line: 62, column: 6
-                                      if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj/capperController.sysj line: 63, column: 6
-                                        twin.setPresent();//sysj/capperController.sysj line: 64, column: 7
+                                    twin.setValue(t_thread_3);//sysj\capperController.sysj line: 54, column: 7
+                                    if(capSeated.getprestatus()){//sysj\capperController.sysj line: 57, column: 22
+                                      w_thread_3.cap();//sysj\capperController.sysj line: 61, column: 6
+                                      t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 62, column: 6
+                                      if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 63, column: 6
+                                        twin.setPresent();//sysj\capperController.sysj line: 64, column: 7
                                         currsigs.addElement(twin);
-                                        twin.setValue(t_thread_3);//sysj/capperController.sysj line: 64, column: 7
-                                        System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj/capperController.sysj line: 66, column: 6
+                                        twin.setValue(t_thread_3);//sysj\capperController.sysj line: 64, column: 7
+                                        System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
                                         S15308=2;
                                         S15395=0;
-                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                                          done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                                          done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                           S15395=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -491,13 +491,13 @@ public class CapperController extends ClockDomain{
                                         }
                                         else {
                                           S15390=0;
-                                          if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                            done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                                          if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                            done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                                             S15390=1;
-                                            if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                              done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                            if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                              done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                               ends[3]=2;
-                                              ;//sysj/capperController.sysj line: 69, column: 5
+                                              ;//sysj\capperController.sysj line: 69, column: 5
                                               S16786=2;
                                               active[3]=1;
                                               ends[3]=1;
@@ -517,11 +517,11 @@ public class CapperController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj/capperController.sysj line: 66, column: 6
+                                        System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
                                         S15308=2;
                                         S15395=0;
-                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                                          done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                                          done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                           S15395=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -529,13 +529,13 @@ public class CapperController extends ClockDomain{
                                         }
                                         else {
                                           S15390=0;
-                                          if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                            done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                                          if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                            done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                                             S15390=1;
-                                            if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                              done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                            if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                              done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                               ends[3]=2;
-                                              ;//sysj/capperController.sysj line: 69, column: 5
+                                              ;//sysj\capperController.sysj line: 69, column: 5
                                               S16786=2;
                                               active[3]=1;
                                               ends[3]=1;
@@ -556,7 +556,7 @@ public class CapperController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      screwOn.setPresent();//sysj/capperController.sysj line: 58, column: 7
+                                      screwOn.setPresent();//sysj\capperController.sysj line: 58, column: 7
                                       currsigs.addElement(screwOn);
                                       active[3]=1;
                                       ends[3]=1;
@@ -564,18 +564,18 @@ public class CapperController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    if(capSeated.getprestatus()){//sysj/capperController.sysj line: 57, column: 22
-                                      w_thread_3.cap();//sysj/capperController.sysj line: 61, column: 6
-                                      t_thread_3.setAppliedTurns(12);//sysj/capperController.sysj line: 62, column: 6
-                                      if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj/capperController.sysj line: 63, column: 6
-                                        twin.setPresent();//sysj/capperController.sysj line: 64, column: 7
+                                    if(capSeated.getprestatus()){//sysj\capperController.sysj line: 57, column: 22
+                                      w_thread_3.cap();//sysj\capperController.sysj line: 61, column: 6
+                                      t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 62, column: 6
+                                      if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 63, column: 6
+                                        twin.setPresent();//sysj\capperController.sysj line: 64, column: 7
                                         currsigs.addElement(twin);
-                                        twin.setValue(t_thread_3);//sysj/capperController.sysj line: 64, column: 7
-                                        System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj/capperController.sysj line: 66, column: 6
+                                        twin.setValue(t_thread_3);//sysj\capperController.sysj line: 64, column: 7
+                                        System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
                                         S15308=2;
                                         S15395=0;
-                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                                          done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                                          done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                           S15395=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -583,13 +583,13 @@ public class CapperController extends ClockDomain{
                                         }
                                         else {
                                           S15390=0;
-                                          if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                            done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                                          if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                            done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                                             S15390=1;
-                                            if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                              done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                            if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                              done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                               ends[3]=2;
-                                              ;//sysj/capperController.sysj line: 69, column: 5
+                                              ;//sysj\capperController.sysj line: 69, column: 5
                                               S16786=2;
                                               active[3]=1;
                                               ends[3]=1;
@@ -609,11 +609,11 @@ public class CapperController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj/capperController.sysj line: 66, column: 6
+                                        System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
                                         S15308=2;
                                         S15395=0;
-                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                                          done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                                          done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                           S15395=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -621,13 +621,13 @@ public class CapperController extends ClockDomain{
                                         }
                                         else {
                                           S15390=0;
-                                          if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                            done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                                          if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                            done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                                             S15390=1;
-                                            if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                              done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                            if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                              done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                               ends[3]=2;
-                                              ;//sysj/capperController.sysj line: 69, column: 5
+                                              ;//sysj\capperController.sysj line: 69, column: 5
                                               S16786=2;
                                               active[3]=1;
                                               ends[3]=1;
@@ -648,7 +648,7 @@ public class CapperController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      screwOn.setPresent();//sysj/capperController.sysj line: 58, column: 7
+                                      screwOn.setPresent();//sysj\capperController.sysj line: 58, column: 7
                                       currsigs.addElement(screwOn);
                                       active[3]=1;
                                       ends[3]=1;
@@ -659,8 +659,8 @@ public class CapperController extends ClockDomain{
                                 else {
                                   S15308=2;
                                   S15395=0;
-                                  if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                                    done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                  if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                                    done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                     S15395=1;
                                     active[3]=1;
                                     ends[3]=1;
@@ -668,13 +668,13 @@ public class CapperController extends ClockDomain{
                                   }
                                   else {
                                     S15390=0;
-                                    if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                      done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                                    if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                      done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                                       S15390=1;
-                                      if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                        done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                      if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                        done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                         ends[3]=2;
-                                        ;//sysj/capperController.sysj line: 69, column: 5
+                                        ;//sysj\capperController.sysj line: 69, column: 5
                                         S16786=2;
                                         active[3]=1;
                                         ends[3]=1;
@@ -708,31 +708,31 @@ public class CapperController extends ClockDomain{
                             break;
                           
                           case 1 : 
-                            if(start_in.isREQ()){//sysj/capperController.sysj line: 47, column: 5
-                              start_in.setACK(false);//sysj/capperController.sysj line: 47, column: 5
+                            if(start_in.isREQ()){//sysj\capperController.sysj line: 47, column: 5
+                              start_in.setACK(false);//sysj\capperController.sysj line: 47, column: 5
                               ends[3]=2;
-                              ;//sysj/capperController.sysj line: 47, column: 5
-                              w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj/capperController.sysj line: 48, column: 5
+                              ;//sysj\capperController.sysj line: 47, column: 5
+                              w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\capperController.sysj line: 48, column: 5
                               S15308=1;
-                              if(w_thread_3 != null){//sysj/capperController.sysj line: 50, column: 8
-                                System.out.println("[CAP] Sealing " + w_thread_3 + ".");//sysj/capperController.sysj line: 51, column: 6
-                                w_thread_3.started(Machine.LID_CAPPER, "screwing cap");//sysj/capperController.sysj line: 52, column: 6
-                                if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "screwOn", "sealing " + w_thread_3.id)){//sysj/capperController.sysj line: 53, column: 6
-                                  twin.setPresent();//sysj/capperController.sysj line: 54, column: 7
+                              if(w_thread_3 != null){//sysj\capperController.sysj line: 50, column: 8
+                                System.out.println("[CAP] Sealing " + w_thread_3 + ".");//sysj\capperController.sysj line: 51, column: 6
+                                w_thread_3.started(Machine.LID_CAPPER, "screwing cap");//sysj\capperController.sysj line: 52, column: 6
+                                if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "screwOn", "sealing " + w_thread_3.id)){//sysj\capperController.sysj line: 53, column: 6
+                                  twin.setPresent();//sysj\capperController.sysj line: 54, column: 7
                                   currsigs.addElement(twin);
-                                  twin.setValue(t_thread_3);//sysj/capperController.sysj line: 54, column: 7
-                                  if(capSeated.getprestatus()){//sysj/capperController.sysj line: 57, column: 22
-                                    w_thread_3.cap();//sysj/capperController.sysj line: 61, column: 6
-                                    t_thread_3.setAppliedTurns(12);//sysj/capperController.sysj line: 62, column: 6
-                                    if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj/capperController.sysj line: 63, column: 6
-                                      twin.setPresent();//sysj/capperController.sysj line: 64, column: 7
+                                  twin.setValue(t_thread_3);//sysj\capperController.sysj line: 54, column: 7
+                                  if(capSeated.getprestatus()){//sysj\capperController.sysj line: 57, column: 22
+                                    w_thread_3.cap();//sysj\capperController.sysj line: 61, column: 6
+                                    t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 62, column: 6
+                                    if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 63, column: 6
+                                      twin.setPresent();//sysj\capperController.sysj line: 64, column: 7
                                       currsigs.addElement(twin);
-                                      twin.setValue(t_thread_3);//sysj/capperController.sysj line: 64, column: 7
-                                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj/capperController.sysj line: 66, column: 6
+                                      twin.setValue(t_thread_3);//sysj\capperController.sysj line: 64, column: 7
+                                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
                                       S15308=2;
                                       S15395=0;
-                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                                        done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                                        done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                         S15395=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -740,13 +740,13 @@ public class CapperController extends ClockDomain{
                                       }
                                       else {
                                         S15390=0;
-                                        if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                          done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                                        if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                          done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                                           S15390=1;
-                                          if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                            done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                          if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                            done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                             ends[3]=2;
-                                            ;//sysj/capperController.sysj line: 69, column: 5
+                                            ;//sysj\capperController.sysj line: 69, column: 5
                                             S16786=2;
                                             active[3]=1;
                                             ends[3]=1;
@@ -766,11 +766,11 @@ public class CapperController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj/capperController.sysj line: 66, column: 6
+                                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
                                       S15308=2;
                                       S15395=0;
-                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                                        done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                                        done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                         S15395=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -778,13 +778,13 @@ public class CapperController extends ClockDomain{
                                       }
                                       else {
                                         S15390=0;
-                                        if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                          done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                                        if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                          done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                                           S15390=1;
-                                          if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                            done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                          if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                            done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                             ends[3]=2;
-                                            ;//sysj/capperController.sysj line: 69, column: 5
+                                            ;//sysj\capperController.sysj line: 69, column: 5
                                             S16786=2;
                                             active[3]=1;
                                             ends[3]=1;
@@ -805,7 +805,7 @@ public class CapperController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    screwOn.setPresent();//sysj/capperController.sysj line: 58, column: 7
+                                    screwOn.setPresent();//sysj\capperController.sysj line: 58, column: 7
                                     currsigs.addElement(screwOn);
                                     active[3]=1;
                                     ends[3]=1;
@@ -813,18 +813,18 @@ public class CapperController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  if(capSeated.getprestatus()){//sysj/capperController.sysj line: 57, column: 22
-                                    w_thread_3.cap();//sysj/capperController.sysj line: 61, column: 6
-                                    t_thread_3.setAppliedTurns(12);//sysj/capperController.sysj line: 62, column: 6
-                                    if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj/capperController.sysj line: 63, column: 6
-                                      twin.setPresent();//sysj/capperController.sysj line: 64, column: 7
+                                  if(capSeated.getprestatus()){//sysj\capperController.sysj line: 57, column: 22
+                                    w_thread_3.cap();//sysj\capperController.sysj line: 61, column: 6
+                                    t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 62, column: 6
+                                    if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 63, column: 6
+                                      twin.setPresent();//sysj\capperController.sysj line: 64, column: 7
                                       currsigs.addElement(twin);
-                                      twin.setValue(t_thread_3);//sysj/capperController.sysj line: 64, column: 7
-                                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj/capperController.sysj line: 66, column: 6
+                                      twin.setValue(t_thread_3);//sysj\capperController.sysj line: 64, column: 7
+                                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
                                       S15308=2;
                                       S15395=0;
-                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                                        done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                                        done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                         S15395=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -832,13 +832,13 @@ public class CapperController extends ClockDomain{
                                       }
                                       else {
                                         S15390=0;
-                                        if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                          done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                                        if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                          done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                                           S15390=1;
-                                          if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                            done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                          if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                            done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                             ends[3]=2;
-                                            ;//sysj/capperController.sysj line: 69, column: 5
+                                            ;//sysj\capperController.sysj line: 69, column: 5
                                             S16786=2;
                                             active[3]=1;
                                             ends[3]=1;
@@ -858,11 +858,11 @@ public class CapperController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj/capperController.sysj line: 66, column: 6
+                                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
                                       S15308=2;
                                       S15395=0;
-                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                                        done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                                        done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                         S15395=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -870,13 +870,13 @@ public class CapperController extends ClockDomain{
                                       }
                                       else {
                                         S15390=0;
-                                        if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                          done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                                        if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                          done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                                           S15390=1;
-                                          if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                            done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                          if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                            done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                             ends[3]=2;
-                                            ;//sysj/capperController.sysj line: 69, column: 5
+                                            ;//sysj\capperController.sysj line: 69, column: 5
                                             S16786=2;
                                             active[3]=1;
                                             ends[3]=1;
@@ -897,7 +897,7 @@ public class CapperController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    screwOn.setPresent();//sysj/capperController.sysj line: 58, column: 7
+                                    screwOn.setPresent();//sysj\capperController.sysj line: 58, column: 7
                                     currsigs.addElement(screwOn);
                                     active[3]=1;
                                     ends[3]=1;
@@ -908,8 +908,8 @@ public class CapperController extends ClockDomain{
                               else {
                                 S15308=2;
                                 S15395=0;
-                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                                  done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                                  done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                   S15395=1;
                                   active[3]=1;
                                   ends[3]=1;
@@ -917,13 +917,13 @@ public class CapperController extends ClockDomain{
                                 }
                                 else {
                                   S15390=0;
-                                  if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                    done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                                  if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                    done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                                     S15390=1;
-                                    if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                      done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                    if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                      done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                       ends[3]=2;
-                                      ;//sysj/capperController.sysj line: 69, column: 5
+                                      ;//sysj\capperController.sysj line: 69, column: 5
                                       S16786=2;
                                       active[3]=1;
                                       ends[3]=1;
@@ -957,8 +957,8 @@ public class CapperController extends ClockDomain{
                     case 1 : 
                       S15292=1;
                       S15292=0;
-                      if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj/capperController.sysj line: 47, column: 5
-                        start_in.setACK(false);//sysj/capperController.sysj line: 47, column: 5
+                      if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj\capperController.sysj line: 47, column: 5
+                        start_in.setACK(false);//sysj\capperController.sysj line: 47, column: 5
                         S15292=1;
                         active[3]=1;
                         ends[3]=1;
@@ -966,34 +966,34 @@ public class CapperController extends ClockDomain{
                       }
                       else {
                         S15287=0;
-                        if(!start_in.isREQ()){//sysj/capperController.sysj line: 47, column: 5
-                          start_in.setACK(true);//sysj/capperController.sysj line: 47, column: 5
+                        if(!start_in.isREQ()){//sysj\capperController.sysj line: 47, column: 5
+                          start_in.setACK(true);//sysj\capperController.sysj line: 47, column: 5
                           S15287=1;
-                          if(start_in.isREQ()){//sysj/capperController.sysj line: 47, column: 5
-                            start_in.setACK(false);//sysj/capperController.sysj line: 47, column: 5
+                          if(start_in.isREQ()){//sysj\capperController.sysj line: 47, column: 5
+                            start_in.setACK(false);//sysj\capperController.sysj line: 47, column: 5
                             ends[3]=2;
-                            ;//sysj/capperController.sysj line: 47, column: 5
-                            w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj/capperController.sysj line: 48, column: 5
+                            ;//sysj\capperController.sysj line: 47, column: 5
+                            w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\capperController.sysj line: 48, column: 5
                             S15308=1;
-                            if(w_thread_3 != null){//sysj/capperController.sysj line: 50, column: 8
-                              System.out.println("[CAP] Sealing " + w_thread_3 + ".");//sysj/capperController.sysj line: 51, column: 6
-                              w_thread_3.started(Machine.LID_CAPPER, "screwing cap");//sysj/capperController.sysj line: 52, column: 6
-                              if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "screwOn", "sealing " + w_thread_3.id)){//sysj/capperController.sysj line: 53, column: 6
-                                twin.setPresent();//sysj/capperController.sysj line: 54, column: 7
+                            if(w_thread_3 != null){//sysj\capperController.sysj line: 50, column: 8
+                              System.out.println("[CAP] Sealing " + w_thread_3 + ".");//sysj\capperController.sysj line: 51, column: 6
+                              w_thread_3.started(Machine.LID_CAPPER, "screwing cap");//sysj\capperController.sysj line: 52, column: 6
+                              if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "screwOn", "sealing " + w_thread_3.id)){//sysj\capperController.sysj line: 53, column: 6
+                                twin.setPresent();//sysj\capperController.sysj line: 54, column: 7
                                 currsigs.addElement(twin);
-                                twin.setValue(t_thread_3);//sysj/capperController.sysj line: 54, column: 7
-                                if(capSeated.getprestatus()){//sysj/capperController.sysj line: 57, column: 22
-                                  w_thread_3.cap();//sysj/capperController.sysj line: 61, column: 6
-                                  t_thread_3.setAppliedTurns(12);//sysj/capperController.sysj line: 62, column: 6
-                                  if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj/capperController.sysj line: 63, column: 6
-                                    twin.setPresent();//sysj/capperController.sysj line: 64, column: 7
+                                twin.setValue(t_thread_3);//sysj\capperController.sysj line: 54, column: 7
+                                if(capSeated.getprestatus()){//sysj\capperController.sysj line: 57, column: 22
+                                  w_thread_3.cap();//sysj\capperController.sysj line: 61, column: 6
+                                  t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 62, column: 6
+                                  if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 63, column: 6
+                                    twin.setPresent();//sysj\capperController.sysj line: 64, column: 7
                                     currsigs.addElement(twin);
-                                    twin.setValue(t_thread_3);//sysj/capperController.sysj line: 64, column: 7
-                                    System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj/capperController.sysj line: 66, column: 6
+                                    twin.setValue(t_thread_3);//sysj\capperController.sysj line: 64, column: 7
+                                    System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
                                     S15308=2;
                                     S15395=0;
-                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                                      done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                                      done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                       S15395=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -1001,13 +1001,13 @@ public class CapperController extends ClockDomain{
                                     }
                                     else {
                                       S15390=0;
-                                      if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                        done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                                      if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                        done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                                         S15390=1;
-                                        if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                          done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                        if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                          done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                           ends[3]=2;
-                                          ;//sysj/capperController.sysj line: 69, column: 5
+                                          ;//sysj\capperController.sysj line: 69, column: 5
                                           S16786=2;
                                           active[3]=1;
                                           ends[3]=1;
@@ -1027,11 +1027,11 @@ public class CapperController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj/capperController.sysj line: 66, column: 6
+                                    System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
                                     S15308=2;
                                     S15395=0;
-                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                                      done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                                      done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                       S15395=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -1039,13 +1039,13 @@ public class CapperController extends ClockDomain{
                                     }
                                     else {
                                       S15390=0;
-                                      if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                        done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                                      if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                        done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                                         S15390=1;
-                                        if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                          done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                        if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                          done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                           ends[3]=2;
-                                          ;//sysj/capperController.sysj line: 69, column: 5
+                                          ;//sysj\capperController.sysj line: 69, column: 5
                                           S16786=2;
                                           active[3]=1;
                                           ends[3]=1;
@@ -1066,7 +1066,7 @@ public class CapperController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  screwOn.setPresent();//sysj/capperController.sysj line: 58, column: 7
+                                  screwOn.setPresent();//sysj\capperController.sysj line: 58, column: 7
                                   currsigs.addElement(screwOn);
                                   active[3]=1;
                                   ends[3]=1;
@@ -1074,18 +1074,18 @@ public class CapperController extends ClockDomain{
                                 }
                               }
                               else {
-                                if(capSeated.getprestatus()){//sysj/capperController.sysj line: 57, column: 22
-                                  w_thread_3.cap();//sysj/capperController.sysj line: 61, column: 6
-                                  t_thread_3.setAppliedTurns(12);//sysj/capperController.sysj line: 62, column: 6
-                                  if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj/capperController.sysj line: 63, column: 6
-                                    twin.setPresent();//sysj/capperController.sysj line: 64, column: 7
+                                if(capSeated.getprestatus()){//sysj\capperController.sysj line: 57, column: 22
+                                  w_thread_3.cap();//sysj\capperController.sysj line: 61, column: 6
+                                  t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 62, column: 6
+                                  if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 63, column: 6
+                                    twin.setPresent();//sysj\capperController.sysj line: 64, column: 7
                                     currsigs.addElement(twin);
-                                    twin.setValue(t_thread_3);//sysj/capperController.sysj line: 64, column: 7
-                                    System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj/capperController.sysj line: 66, column: 6
+                                    twin.setValue(t_thread_3);//sysj\capperController.sysj line: 64, column: 7
+                                    System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
                                     S15308=2;
                                     S15395=0;
-                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                                      done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                                      done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                       S15395=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -1093,13 +1093,13 @@ public class CapperController extends ClockDomain{
                                     }
                                     else {
                                       S15390=0;
-                                      if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                        done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                                      if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                        done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                                         S15390=1;
-                                        if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                          done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                        if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                          done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                           ends[3]=2;
-                                          ;//sysj/capperController.sysj line: 69, column: 5
+                                          ;//sysj\capperController.sysj line: 69, column: 5
                                           S16786=2;
                                           active[3]=1;
                                           ends[3]=1;
@@ -1119,11 +1119,11 @@ public class CapperController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj/capperController.sysj line: 66, column: 6
+                                    System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
                                     S15308=2;
                                     S15395=0;
-                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                                      done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                                      done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                       S15395=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -1131,13 +1131,13 @@ public class CapperController extends ClockDomain{
                                     }
                                     else {
                                       S15390=0;
-                                      if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                        done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                                      if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                        done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                                         S15390=1;
-                                        if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                          done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                        if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                          done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                           ends[3]=2;
-                                          ;//sysj/capperController.sysj line: 69, column: 5
+                                          ;//sysj\capperController.sysj line: 69, column: 5
                                           S16786=2;
                                           active[3]=1;
                                           ends[3]=1;
@@ -1158,7 +1158,7 @@ public class CapperController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  screwOn.setPresent();//sysj/capperController.sysj line: 58, column: 7
+                                  screwOn.setPresent();//sysj\capperController.sysj line: 58, column: 7
                                   currsigs.addElement(screwOn);
                                   active[3]=1;
                                   ends[3]=1;
@@ -1169,8 +1169,8 @@ public class CapperController extends ClockDomain{
                             else {
                               S15308=2;
                               S15395=0;
-                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                                done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                                done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                 S15395=1;
                                 active[3]=1;
                                 ends[3]=1;
@@ -1178,13 +1178,13 @@ public class CapperController extends ClockDomain{
                               }
                               else {
                                 S15390=0;
-                                if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                  done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                                if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                  done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                                   S15390=1;
-                                  if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                    done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                  if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                    done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                     ends[3]=2;
-                                    ;//sysj/capperController.sysj line: 69, column: 5
+                                    ;//sysj\capperController.sysj line: 69, column: 5
                                     S16786=2;
                                     active[3]=1;
                                     ends[3]=1;
@@ -1222,18 +1222,18 @@ public class CapperController extends ClockDomain{
                   break;
                 
                 case 1 : 
-                  if(capSeated.getprestatus()){//sysj/capperController.sysj line: 57, column: 22
-                    w_thread_3.cap();//sysj/capperController.sysj line: 61, column: 6
-                    t_thread_3.setAppliedTurns(12);//sysj/capperController.sysj line: 62, column: 6
-                    if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj/capperController.sysj line: 63, column: 6
-                      twin.setPresent();//sysj/capperController.sysj line: 64, column: 7
+                  if(capSeated.getprestatus()){//sysj\capperController.sysj line: 57, column: 22
+                    w_thread_3.cap();//sysj\capperController.sysj line: 61, column: 6
+                    t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 62, column: 6
+                    if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 63, column: 6
+                      twin.setPresent();//sysj\capperController.sysj line: 64, column: 7
                       currsigs.addElement(twin);
-                      twin.setValue(t_thread_3);//sysj/capperController.sysj line: 64, column: 7
-                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj/capperController.sysj line: 66, column: 6
+                      twin.setValue(t_thread_3);//sysj\capperController.sysj line: 64, column: 7
+                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
                       S15308=2;
                       S15395=0;
-                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                        done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                        done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                         S15395=1;
                         active[3]=1;
                         ends[3]=1;
@@ -1241,13 +1241,13 @@ public class CapperController extends ClockDomain{
                       }
                       else {
                         S15390=0;
-                        if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                          done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                        if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                          done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                           S15390=1;
-                          if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                            done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                          if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                            done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                             ends[3]=2;
-                            ;//sysj/capperController.sysj line: 69, column: 5
+                            ;//sysj\capperController.sysj line: 69, column: 5
                             S16786=2;
                             active[3]=1;
                             ends[3]=1;
@@ -1267,11 +1267,11 @@ public class CapperController extends ClockDomain{
                       }
                     }
                     else {
-                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj/capperController.sysj line: 66, column: 6
+                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
                       S15308=2;
                       S15395=0;
-                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                        done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                        done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                         S15395=1;
                         active[3]=1;
                         ends[3]=1;
@@ -1279,13 +1279,13 @@ public class CapperController extends ClockDomain{
                       }
                       else {
                         S15390=0;
-                        if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                          done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                        if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                          done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                           S15390=1;
-                          if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                            done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                          if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                            done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                             ends[3]=2;
-                            ;//sysj/capperController.sysj line: 69, column: 5
+                            ;//sysj\capperController.sysj line: 69, column: 5
                             S16786=2;
                             active[3]=1;
                             ends[3]=1;
@@ -1306,7 +1306,7 @@ public class CapperController extends ClockDomain{
                     }
                   }
                   else {
-                    screwOn.setPresent();//sysj/capperController.sysj line: 58, column: 7
+                    screwOn.setPresent();//sysj\capperController.sysj line: 58, column: 7
                     currsigs.addElement(screwOn);
                     active[3]=1;
                     ends[3]=1;
@@ -1317,8 +1317,8 @@ public class CapperController extends ClockDomain{
                 case 2 : 
                   switch(S15395){
                     case 0 : 
-                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                        done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                        done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                         S15395=1;
                         active[3]=1;
                         ends[3]=1;
@@ -1327,13 +1327,13 @@ public class CapperController extends ClockDomain{
                       else {
                         switch(S15390){
                           case 0 : 
-                            if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                              done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                            if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                              done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                               S15390=1;
-                              if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                              if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                 ends[3]=2;
-                                ;//sysj/capperController.sysj line: 69, column: 5
+                                ;//sysj\capperController.sysj line: 69, column: 5
                                 S16786=2;
                                 active[3]=1;
                                 ends[3]=1;
@@ -1353,10 +1353,10 @@ public class CapperController extends ClockDomain{
                             break;
                           
                           case 1 : 
-                            if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                              done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                            if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                              done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                               ends[3]=2;
-                              ;//sysj/capperController.sysj line: 69, column: 5
+                              ;//sysj\capperController.sysj line: 69, column: 5
                               S16786=2;
                               active[3]=1;
                               ends[3]=1;
@@ -1376,8 +1376,8 @@ public class CapperController extends ClockDomain{
                     case 1 : 
                       S15395=1;
                       S15395=0;
-                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                        done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                        done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                         S15395=1;
                         active[3]=1;
                         ends[3]=1;
@@ -1385,13 +1385,13 @@ public class CapperController extends ClockDomain{
                       }
                       else {
                         S15390=0;
-                        if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                          done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                        if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                          done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                           S15390=1;
-                          if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                            done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                          if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                            done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                             ends[3]=2;
-                            ;//sysj/capperController.sysj line: 69, column: 5
+                            ;//sysj\capperController.sysj line: 69, column: 5
                             S16786=2;
                             active[3]=1;
                             ends[3]=1;
@@ -1435,9 +1435,9 @@ public class CapperController extends ClockDomain{
           case 2 : 
             S16786=2;
             S16786=0;
-            if(auto_1.getprestatus()){//sysj/capperController.sysj line: 44, column: 20
+            if(auto_1.getprestatus()){//sysj\capperController.sysj line: 44, column: 20
               S16786=1;
-              if(manual_1.getprestatus()){//sysj/capperController.sysj line: 46, column: 20
+              if(manual_1.getprestatus()){//sysj\capperController.sysj line: 46, column: 20
                 start_in.setPreempted();
                 done_o.setPreempted();
                 S16786=2;
@@ -1448,8 +1448,8 @@ public class CapperController extends ClockDomain{
               else {
                 S15308=0;
                 S15292=0;
-                if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj/capperController.sysj line: 47, column: 5
-                  start_in.setACK(false);//sysj/capperController.sysj line: 47, column: 5
+                if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj\capperController.sysj line: 47, column: 5
+                  start_in.setACK(false);//sysj\capperController.sysj line: 47, column: 5
                   S15292=1;
                   active[3]=1;
                   ends[3]=1;
@@ -1457,34 +1457,34 @@ public class CapperController extends ClockDomain{
                 }
                 else {
                   S15287=0;
-                  if(!start_in.isREQ()){//sysj/capperController.sysj line: 47, column: 5
-                    start_in.setACK(true);//sysj/capperController.sysj line: 47, column: 5
+                  if(!start_in.isREQ()){//sysj\capperController.sysj line: 47, column: 5
+                    start_in.setACK(true);//sysj\capperController.sysj line: 47, column: 5
                     S15287=1;
-                    if(start_in.isREQ()){//sysj/capperController.sysj line: 47, column: 5
-                      start_in.setACK(false);//sysj/capperController.sysj line: 47, column: 5
+                    if(start_in.isREQ()){//sysj\capperController.sysj line: 47, column: 5
+                      start_in.setACK(false);//sysj\capperController.sysj line: 47, column: 5
                       ends[3]=2;
-                      ;//sysj/capperController.sysj line: 47, column: 5
-                      w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj/capperController.sysj line: 48, column: 5
+                      ;//sysj\capperController.sysj line: 47, column: 5
+                      w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\capperController.sysj line: 48, column: 5
                       S15308=1;
-                      if(w_thread_3 != null){//sysj/capperController.sysj line: 50, column: 8
-                        System.out.println("[CAP] Sealing " + w_thread_3 + ".");//sysj/capperController.sysj line: 51, column: 6
-                        w_thread_3.started(Machine.LID_CAPPER, "screwing cap");//sysj/capperController.sysj line: 52, column: 6
-                        if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "screwOn", "sealing " + w_thread_3.id)){//sysj/capperController.sysj line: 53, column: 6
-                          twin.setPresent();//sysj/capperController.sysj line: 54, column: 7
+                      if(w_thread_3 != null){//sysj\capperController.sysj line: 50, column: 8
+                        System.out.println("[CAP] Sealing " + w_thread_3 + ".");//sysj\capperController.sysj line: 51, column: 6
+                        w_thread_3.started(Machine.LID_CAPPER, "screwing cap");//sysj\capperController.sysj line: 52, column: 6
+                        if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "screwOn", "sealing " + w_thread_3.id)){//sysj\capperController.sysj line: 53, column: 6
+                          twin.setPresent();//sysj\capperController.sysj line: 54, column: 7
                           currsigs.addElement(twin);
-                          twin.setValue(t_thread_3);//sysj/capperController.sysj line: 54, column: 7
-                          if(capSeated.getprestatus()){//sysj/capperController.sysj line: 57, column: 22
-                            w_thread_3.cap();//sysj/capperController.sysj line: 61, column: 6
-                            t_thread_3.setAppliedTurns(12);//sysj/capperController.sysj line: 62, column: 6
-                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj/capperController.sysj line: 63, column: 6
-                              twin.setPresent();//sysj/capperController.sysj line: 64, column: 7
+                          twin.setValue(t_thread_3);//sysj\capperController.sysj line: 54, column: 7
+                          if(capSeated.getprestatus()){//sysj\capperController.sysj line: 57, column: 22
+                            w_thread_3.cap();//sysj\capperController.sysj line: 61, column: 6
+                            t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 62, column: 6
+                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 63, column: 6
+                              twin.setPresent();//sysj\capperController.sysj line: 64, column: 7
                               currsigs.addElement(twin);
-                              twin.setValue(t_thread_3);//sysj/capperController.sysj line: 64, column: 7
-                              System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj/capperController.sysj line: 66, column: 6
+                              twin.setValue(t_thread_3);//sysj\capperController.sysj line: 64, column: 7
+                              System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
                               S15308=2;
                               S15395=0;
-                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                                done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                                done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                 S15395=1;
                                 active[3]=1;
                                 ends[3]=1;
@@ -1492,13 +1492,13 @@ public class CapperController extends ClockDomain{
                               }
                               else {
                                 S15390=0;
-                                if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                  done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                                if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                  done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                                   S15390=1;
-                                  if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                    done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                  if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                    done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                     ends[3]=2;
-                                    ;//sysj/capperController.sysj line: 69, column: 5
+                                    ;//sysj\capperController.sysj line: 69, column: 5
                                     S16786=2;
                                     active[3]=1;
                                     ends[3]=1;
@@ -1518,11 +1518,11 @@ public class CapperController extends ClockDomain{
                               }
                             }
                             else {
-                              System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj/capperController.sysj line: 66, column: 6
+                              System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
                               S15308=2;
                               S15395=0;
-                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                                done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                                done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                 S15395=1;
                                 active[3]=1;
                                 ends[3]=1;
@@ -1530,13 +1530,13 @@ public class CapperController extends ClockDomain{
                               }
                               else {
                                 S15390=0;
-                                if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                  done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                                if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                  done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                                   S15390=1;
-                                  if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                    done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                  if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                    done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                     ends[3]=2;
-                                    ;//sysj/capperController.sysj line: 69, column: 5
+                                    ;//sysj\capperController.sysj line: 69, column: 5
                                     S16786=2;
                                     active[3]=1;
                                     ends[3]=1;
@@ -1557,7 +1557,7 @@ public class CapperController extends ClockDomain{
                             }
                           }
                           else {
-                            screwOn.setPresent();//sysj/capperController.sysj line: 58, column: 7
+                            screwOn.setPresent();//sysj\capperController.sysj line: 58, column: 7
                             currsigs.addElement(screwOn);
                             active[3]=1;
                             ends[3]=1;
@@ -1565,18 +1565,18 @@ public class CapperController extends ClockDomain{
                           }
                         }
                         else {
-                          if(capSeated.getprestatus()){//sysj/capperController.sysj line: 57, column: 22
-                            w_thread_3.cap();//sysj/capperController.sysj line: 61, column: 6
-                            t_thread_3.setAppliedTurns(12);//sysj/capperController.sysj line: 62, column: 6
-                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj/capperController.sysj line: 63, column: 6
-                              twin.setPresent();//sysj/capperController.sysj line: 64, column: 7
+                          if(capSeated.getprestatus()){//sysj\capperController.sysj line: 57, column: 22
+                            w_thread_3.cap();//sysj\capperController.sysj line: 61, column: 6
+                            t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 62, column: 6
+                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 63, column: 6
+                              twin.setPresent();//sysj\capperController.sysj line: 64, column: 7
                               currsigs.addElement(twin);
-                              twin.setValue(t_thread_3);//sysj/capperController.sysj line: 64, column: 7
-                              System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj/capperController.sysj line: 66, column: 6
+                              twin.setValue(t_thread_3);//sysj\capperController.sysj line: 64, column: 7
+                              System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
                               S15308=2;
                               S15395=0;
-                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                                done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                                done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                 S15395=1;
                                 active[3]=1;
                                 ends[3]=1;
@@ -1584,13 +1584,13 @@ public class CapperController extends ClockDomain{
                               }
                               else {
                                 S15390=0;
-                                if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                  done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                                if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                  done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                                   S15390=1;
-                                  if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                    done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                  if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                    done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                     ends[3]=2;
-                                    ;//sysj/capperController.sysj line: 69, column: 5
+                                    ;//sysj\capperController.sysj line: 69, column: 5
                                     S16786=2;
                                     active[3]=1;
                                     ends[3]=1;
@@ -1610,11 +1610,11 @@ public class CapperController extends ClockDomain{
                               }
                             }
                             else {
-                              System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj/capperController.sysj line: 66, column: 6
+                              System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
                               S15308=2;
                               S15395=0;
-                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                                done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                                done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                 S15395=1;
                                 active[3]=1;
                                 ends[3]=1;
@@ -1622,13 +1622,13 @@ public class CapperController extends ClockDomain{
                               }
                               else {
                                 S15390=0;
-                                if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                  done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                                if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                  done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                                   S15390=1;
-                                  if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                                    done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                                  if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                                    done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                                     ends[3]=2;
-                                    ;//sysj/capperController.sysj line: 69, column: 5
+                                    ;//sysj\capperController.sysj line: 69, column: 5
                                     S16786=2;
                                     active[3]=1;
                                     ends[3]=1;
@@ -1649,7 +1649,7 @@ public class CapperController extends ClockDomain{
                             }
                           }
                           else {
-                            screwOn.setPresent();//sysj/capperController.sysj line: 58, column: 7
+                            screwOn.setPresent();//sysj\capperController.sysj line: 58, column: 7
                             currsigs.addElement(screwOn);
                             active[3]=1;
                             ends[3]=1;
@@ -1660,8 +1660,8 @@ public class CapperController extends ClockDomain{
                       else {
                         S15308=2;
                         S15395=0;
-                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                          done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                          done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                           S15395=1;
                           active[3]=1;
                           ends[3]=1;
@@ -1669,13 +1669,13 @@ public class CapperController extends ClockDomain{
                         }
                         else {
                           S15390=0;
-                          if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                            done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                          if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                            done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                             S15390=1;
-                            if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                              done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                            if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                              done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                               ends[3]=2;
-                              ;//sysj/capperController.sysj line: 69, column: 5
+                              ;//sysj\capperController.sysj line: 69, column: 5
                               S16786=2;
                               active[3]=1;
                               ends[3]=1;
@@ -1731,16 +1731,16 @@ public class CapperController extends ClockDomain{
         break;
       
       case 1 : 
-        if(mode.getprestatus()){//sysj/capperController.sysj line: 31, column: 12
-          if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj/capperController.sysj line: 32, column: 8
-            auto_1.setPresent();//sysj/capperController.sysj line: 32, column: 30
+        if(mode.getprestatus()){//sysj\capperController.sysj line: 31, column: 12
+          if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\capperController.sysj line: 32, column: 8
+            auto_1.setPresent();//sysj\capperController.sysj line: 32, column: 30
             currsigs.addElement(auto_1);
             active[2]=1;
             ends[2]=1;
             tdone[2]=1;
           }
           else {
-            manual_1.setPresent();//sysj/capperController.sysj line: 33, column: 12
+            manual_1.setPresent();//sysj\capperController.sysj line: 33, column: 12
             currsigs.addElement(manual_1);
             active[2]=1;
             ends[2]=1;
@@ -1760,17 +1760,17 @@ public class CapperController extends ClockDomain{
   public void thread24374(int [] tdone, int [] ends){
         S24368=1;
     S24320=0;
-    if(manual_1.getprestatus()){//sysj/capperController.sysj line: 77, column: 20
+    if(manual_1.getprestatus()){//sysj\capperController.sysj line: 77, column: 20
       S24320=1;
-      if(auto_1.getprestatus()){//sysj/capperController.sysj line: 78, column: 20
+      if(auto_1.getprestatus()){//sysj\capperController.sysj line: 78, column: 20
         S24320=2;
         active[4]=1;
         ends[4]=1;
         tdone[4]=1;
       }
       else {
-        if(screwOnM.getprestatus()){//sysj/capperController.sysj line: 80, column: 14
-          screwOn.setPresent();//sysj/capperController.sysj line: 80, column: 25
+        if(screwOnM.getprestatus()){//sysj\capperController.sysj line: 80, column: 14
+          screwOn.setPresent();//sysj\capperController.sysj line: 80, column: 25
           currsigs.addElement(screwOn);
           active[4]=1;
           ends[4]=1;
@@ -1792,12 +1792,12 @@ public class CapperController extends ClockDomain{
 
   public void thread24373(int [] tdone, int [] ends){
         S24297=1;
-    t_thread_3 = new LidCapperTwin();//sysj/capperController.sysj line: 40, column: 3
-    w_thread_3 = null;//sysj/capperController.sysj line: 41, column: 3
+    t_thread_3 = new LidCapperTwin();//sysj\capperController.sysj line: 40, column: 3
+    w_thread_3 = null;//sysj\capperController.sysj line: 41, column: 3
     S16786=0;
-    if(auto_1.getprestatus()){//sysj/capperController.sysj line: 44, column: 20
+    if(auto_1.getprestatus()){//sysj\capperController.sysj line: 44, column: 20
       S16786=1;
-      if(manual_1.getprestatus()){//sysj/capperController.sysj line: 46, column: 20
+      if(manual_1.getprestatus()){//sysj\capperController.sysj line: 46, column: 20
         start_in.setPreempted();
         done_o.setPreempted();
         S16786=2;
@@ -1808,8 +1808,8 @@ public class CapperController extends ClockDomain{
       else {
         S15308=0;
         S15292=0;
-        if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj/capperController.sysj line: 47, column: 5
-          start_in.setACK(false);//sysj/capperController.sysj line: 47, column: 5
+        if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj\capperController.sysj line: 47, column: 5
+          start_in.setACK(false);//sysj\capperController.sysj line: 47, column: 5
           S15292=1;
           active[3]=1;
           ends[3]=1;
@@ -1817,34 +1817,34 @@ public class CapperController extends ClockDomain{
         }
         else {
           S15287=0;
-          if(!start_in.isREQ()){//sysj/capperController.sysj line: 47, column: 5
-            start_in.setACK(true);//sysj/capperController.sysj line: 47, column: 5
+          if(!start_in.isREQ()){//sysj\capperController.sysj line: 47, column: 5
+            start_in.setACK(true);//sysj\capperController.sysj line: 47, column: 5
             S15287=1;
-            if(start_in.isREQ()){//sysj/capperController.sysj line: 47, column: 5
-              start_in.setACK(false);//sysj/capperController.sysj line: 47, column: 5
+            if(start_in.isREQ()){//sysj\capperController.sysj line: 47, column: 5
+              start_in.setACK(false);//sysj\capperController.sysj line: 47, column: 5
               ends[3]=2;
-              ;//sysj/capperController.sysj line: 47, column: 5
-              w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj/capperController.sysj line: 48, column: 5
+              ;//sysj\capperController.sysj line: 47, column: 5
+              w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\capperController.sysj line: 48, column: 5
               S15308=1;
-              if(w_thread_3 != null){//sysj/capperController.sysj line: 50, column: 8
-                System.out.println("[CAP] Sealing " + w_thread_3 + ".");//sysj/capperController.sysj line: 51, column: 6
-                w_thread_3.started(Machine.LID_CAPPER, "screwing cap");//sysj/capperController.sysj line: 52, column: 6
-                if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "screwOn", "sealing " + w_thread_3.id)){//sysj/capperController.sysj line: 53, column: 6
-                  twin.setPresent();//sysj/capperController.sysj line: 54, column: 7
+              if(w_thread_3 != null){//sysj\capperController.sysj line: 50, column: 8
+                System.out.println("[CAP] Sealing " + w_thread_3 + ".");//sysj\capperController.sysj line: 51, column: 6
+                w_thread_3.started(Machine.LID_CAPPER, "screwing cap");//sysj\capperController.sysj line: 52, column: 6
+                if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "screwOn", "sealing " + w_thread_3.id)){//sysj\capperController.sysj line: 53, column: 6
+                  twin.setPresent();//sysj\capperController.sysj line: 54, column: 7
                   currsigs.addElement(twin);
-                  twin.setValue(t_thread_3);//sysj/capperController.sysj line: 54, column: 7
-                  if(capSeated.getprestatus()){//sysj/capperController.sysj line: 57, column: 22
-                    w_thread_3.cap();//sysj/capperController.sysj line: 61, column: 6
-                    t_thread_3.setAppliedTurns(12);//sysj/capperController.sysj line: 62, column: 6
-                    if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj/capperController.sysj line: 63, column: 6
-                      twin.setPresent();//sysj/capperController.sysj line: 64, column: 7
+                  twin.setValue(t_thread_3);//sysj\capperController.sysj line: 54, column: 7
+                  if(capSeated.getprestatus()){//sysj\capperController.sysj line: 57, column: 22
+                    w_thread_3.cap();//sysj\capperController.sysj line: 61, column: 6
+                    t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 62, column: 6
+                    if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 63, column: 6
+                      twin.setPresent();//sysj\capperController.sysj line: 64, column: 7
                       currsigs.addElement(twin);
-                      twin.setValue(t_thread_3);//sysj/capperController.sysj line: 64, column: 7
-                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj/capperController.sysj line: 66, column: 6
+                      twin.setValue(t_thread_3);//sysj\capperController.sysj line: 64, column: 7
+                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
                       S15308=2;
                       S15395=0;
-                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                        done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                        done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                         S15395=1;
                         active[3]=1;
                         ends[3]=1;
@@ -1852,13 +1852,13 @@ public class CapperController extends ClockDomain{
                       }
                       else {
                         S15390=0;
-                        if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                          done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                        if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                          done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                           S15390=1;
-                          if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                            done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                          if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                            done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                             ends[3]=2;
-                            ;//sysj/capperController.sysj line: 69, column: 5
+                            ;//sysj\capperController.sysj line: 69, column: 5
                             S16786=2;
                             active[3]=1;
                             ends[3]=1;
@@ -1878,11 +1878,11 @@ public class CapperController extends ClockDomain{
                       }
                     }
                     else {
-                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj/capperController.sysj line: 66, column: 6
+                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
                       S15308=2;
                       S15395=0;
-                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                        done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                        done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                         S15395=1;
                         active[3]=1;
                         ends[3]=1;
@@ -1890,13 +1890,13 @@ public class CapperController extends ClockDomain{
                       }
                       else {
                         S15390=0;
-                        if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                          done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                        if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                          done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                           S15390=1;
-                          if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                            done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                          if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                            done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                             ends[3]=2;
-                            ;//sysj/capperController.sysj line: 69, column: 5
+                            ;//sysj\capperController.sysj line: 69, column: 5
                             S16786=2;
                             active[3]=1;
                             ends[3]=1;
@@ -1917,7 +1917,7 @@ public class CapperController extends ClockDomain{
                     }
                   }
                   else {
-                    screwOn.setPresent();//sysj/capperController.sysj line: 58, column: 7
+                    screwOn.setPresent();//sysj\capperController.sysj line: 58, column: 7
                     currsigs.addElement(screwOn);
                     active[3]=1;
                     ends[3]=1;
@@ -1925,18 +1925,18 @@ public class CapperController extends ClockDomain{
                   }
                 }
                 else {
-                  if(capSeated.getprestatus()){//sysj/capperController.sysj line: 57, column: 22
-                    w_thread_3.cap();//sysj/capperController.sysj line: 61, column: 6
-                    t_thread_3.setAppliedTurns(12);//sysj/capperController.sysj line: 62, column: 6
-                    if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj/capperController.sysj line: 63, column: 6
-                      twin.setPresent();//sysj/capperController.sysj line: 64, column: 7
+                  if(capSeated.getprestatus()){//sysj\capperController.sysj line: 57, column: 22
+                    w_thread_3.cap();//sysj\capperController.sysj line: 61, column: 6
+                    t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 62, column: 6
+                    if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 63, column: 6
+                      twin.setPresent();//sysj\capperController.sysj line: 64, column: 7
                       currsigs.addElement(twin);
-                      twin.setValue(t_thread_3);//sysj/capperController.sysj line: 64, column: 7
-                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj/capperController.sysj line: 66, column: 6
+                      twin.setValue(t_thread_3);//sysj\capperController.sysj line: 64, column: 7
+                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
                       S15308=2;
                       S15395=0;
-                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                        done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                        done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                         S15395=1;
                         active[3]=1;
                         ends[3]=1;
@@ -1944,13 +1944,13 @@ public class CapperController extends ClockDomain{
                       }
                       else {
                         S15390=0;
-                        if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                          done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                        if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                          done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                           S15390=1;
-                          if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                            done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                          if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                            done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                             ends[3]=2;
-                            ;//sysj/capperController.sysj line: 69, column: 5
+                            ;//sysj\capperController.sysj line: 69, column: 5
                             S16786=2;
                             active[3]=1;
                             ends[3]=1;
@@ -1970,11 +1970,11 @@ public class CapperController extends ClockDomain{
                       }
                     }
                     else {
-                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj/capperController.sysj line: 66, column: 6
+                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
                       S15308=2;
                       S15395=0;
-                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                        done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                        done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                         S15395=1;
                         active[3]=1;
                         ends[3]=1;
@@ -1982,13 +1982,13 @@ public class CapperController extends ClockDomain{
                       }
                       else {
                         S15390=0;
-                        if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                          done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                        if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                          done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                           S15390=1;
-                          if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                            done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                          if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                            done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                             ends[3]=2;
-                            ;//sysj/capperController.sysj line: 69, column: 5
+                            ;//sysj\capperController.sysj line: 69, column: 5
                             S16786=2;
                             active[3]=1;
                             ends[3]=1;
@@ -2009,7 +2009,7 @@ public class CapperController extends ClockDomain{
                     }
                   }
                   else {
-                    screwOn.setPresent();//sysj/capperController.sysj line: 58, column: 7
+                    screwOn.setPresent();//sysj\capperController.sysj line: 58, column: 7
                     currsigs.addElement(screwOn);
                     active[3]=1;
                     ends[3]=1;
@@ -2020,8 +2020,8 @@ public class CapperController extends ClockDomain{
               else {
                 S15308=2;
                 S15395=0;
-                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj/capperController.sysj line: 69, column: 5
-                  done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
+                  done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                   S15395=1;
                   active[3]=1;
                   ends[3]=1;
@@ -2029,13 +2029,13 @@ public class CapperController extends ClockDomain{
                 }
                 else {
                   S15390=0;
-                  if(done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                    done_o.setVal(w_thread_3);//sysj/capperController.sysj line: 69, column: 5
+                  if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                    done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
                     S15390=1;
-                    if(!done_o.isACK()){//sysj/capperController.sysj line: 69, column: 5
-                      done_o.setREQ(false);//sysj/capperController.sysj line: 69, column: 5
+                    if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
+                      done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
                       ends[3]=2;
-                      ;//sysj/capperController.sysj line: 69, column: 5
+                      ;//sysj\capperController.sysj line: 69, column: 5
                       S16786=2;
                       active[3]=1;
                       ends[3]=1;
@@ -2078,16 +2078,16 @@ public class CapperController extends ClockDomain{
 
   public void thread24372(int [] tdone, int [] ends){
         S15283=1;
-    if(mode.getprestatus()){//sysj/capperController.sysj line: 31, column: 12
-      if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj/capperController.sysj line: 32, column: 8
-        auto_1.setPresent();//sysj/capperController.sysj line: 32, column: 30
+    if(mode.getprestatus()){//sysj\capperController.sysj line: 31, column: 12
+      if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\capperController.sysj line: 32, column: 8
+        auto_1.setPresent();//sysj\capperController.sysj line: 32, column: 30
         currsigs.addElement(auto_1);
         active[2]=1;
         ends[2]=1;
         tdone[2]=1;
       }
       else {
-        manual_1.setPresent();//sysj/capperController.sysj line: 33, column: 12
+        manual_1.setPresent();//sysj\capperController.sysj line: 33, column: 12
         currsigs.addElement(manual_1);
         active[2]=1;
         ends[2]=1;
@@ -2116,8 +2116,8 @@ public class CapperController extends ClockDomain{
         case 1 : 
           S24370=2;
           S24370=2;
-          auto_1.setClear();//sysj/capperController.sysj line: 27, column: 2
-          manual_1.setClear();//sysj/capperController.sysj line: 27, column: 2
+          auto_1.setClear();//sysj\capperController.sysj line: 27, column: 2
+          manual_1.setClear();//sysj\capperController.sysj line: 27, column: 2
           thread24372(tdone,ends);
           thread24373(tdone,ends);
           thread24374(tdone,ends);
@@ -2138,8 +2138,8 @@ public class CapperController extends ClockDomain{
           }
         
         case 2 : 
-          auto_1.setClear();//sysj/capperController.sysj line: 27, column: 2
-          manual_1.setClear();//sysj/capperController.sysj line: 27, column: 2
+          auto_1.setClear();//sysj\capperController.sysj line: 27, column: 2
+          manual_1.setClear();//sysj\capperController.sysj line: 27, column: 2
           thread24376(tdone,ends);
           thread24377(tdone,ends);
           thread24378(tdone,ends);

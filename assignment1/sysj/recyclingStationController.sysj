@@ -56,12 +56,12 @@
  */
 RecyclingStationController(
 		// to / from the ABS System Controller
-		input  Workpiece channel bottleRejected;
-		output Workpiece channel bottleRecycled;
+		input  WorkpieceTwin channel bottleRejected;
+		output WorkpieceTwin channel bottleRecycled;
 		output Integer signal recyclingStatus;
 
 		// enable, one per subsystem
-		output Workpiece channel enableSplitter, enableLidRemoval, enableDumper, enableReturn;
+		output WorkpieceTwin channel enableSplitter, enableLidRemoval, enableDumper, enableReturn;
 		output Integer channel enableConveyor;
 
 		// status, one per subsystem
@@ -112,7 +112,7 @@ RecyclingStationController(
 		int TO_RETURN = 3;
 		int DISCHARGE = 4;
 
-		Workpiece w = null;
+		WorkpieceTwin w = null;
 
 		while(true){
 
@@ -121,7 +121,7 @@ RecyclingStationController(
 			// readiness, and the coordinator's send completes only when the
 			// station has actually taken the workpiece.
 			receive bottleRejected;
-			w = (Workpiece)#bottleRejected;
+			w = (WorkpieceTwin)#bottleRejected;
 			m.begin(w);
 			emit stationState(1);
 

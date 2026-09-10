@@ -17,7 +17,7 @@
  */
 BottleReturnController(
 		// from / to the Recycling Station Controller
-		input  Workpiece channel enable;
+		input  WorkpieceTwin channel enable;
 		output Integer channel status;
 
 		// operating mode
@@ -50,7 +50,7 @@ BottleReturnController(
 		int OK = 0;
 		int BLOCKED = 2;
 
-		Workpiece w = null;
+		WorkpieceTwin w = null;
 		int code = 0;
 
 		while(true){
@@ -58,7 +58,7 @@ BottleReturnController(
 
 			abort(immediate manual){
 				receive enable;
-				w = (Workpiece)#enable;
+				w = (WorkpieceTwin)#enable;
 				System.out.println("[BR] Returning " + w + " for reuse.");
 
 				abort(immediate bottleAtCollector){
