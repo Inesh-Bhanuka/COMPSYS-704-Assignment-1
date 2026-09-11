@@ -14,8 +14,8 @@ public class POS extends ClockDomain{
   public Signal productionStatus = new Signal("productionStatus", Signal.INPUT);
   public Signal purchaseOrder = new Signal("purchaseOrder", Signal.OUTPUT);
   private PosOrderRequest order_thread_1;//sysj\pos.sysj line: 9, column: 5
-  private int S139143 = 1;
-  private int S139109 = 1;
+  private int S161349 = 1;
+  private int S161315 = 1;
   
   private int[] ends = new int[2];
   private int[] tdone = new int[2];
@@ -27,31 +27,31 @@ public class POS extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S139143){
+      switch(S161349){
         case 0 : 
-          S139143=0;
+          S161349=0;
           break RUN;
         
         case 1 : 
-          S139143=2;
-          S139143=2;
+          S161349=2;
+          S161349=2;
           order_thread_1 = null;//sysj\pos.sysj line: 9, column: 5
           PosBridge.open();//sysj\pos.sysj line: 10, column: 5
           order_thread_1 = PosBridge.pending();//sysj\pos.sysj line: 12, column: 9
-          S139109=0;
+          S161315=0;
           if(order_thread_1 != null){//sysj\pos.sysj line: 13, column: 12
             purchaseOrder.setPresent();//sysj\pos.sysj line: 13, column: 28
             currsigs.addElement(purchaseOrder);
             purchaseOrder.setValue(order_thread_1);//sysj\pos.sysj line: 13, column: 28
             if(productionStatus.getprestatus()){//sysj\pos.sysj line: 14, column: 17
               PosBridge.acceptFeedback((PosOrderStatus)(productionStatus.getpreval() == null ? null : ((PosOrderStatus)productionStatus.getpreval())));//sysj\pos.sysj line: 14, column: 36
-              S139109=1;
+              S161315=1;
               active[1]=1;
               ends[1]=1;
               break RUN;
             }
             else {
-              S139109=1;
+              S161315=1;
               active[1]=1;
               ends[1]=1;
               break RUN;
@@ -60,13 +60,13 @@ public class POS extends ClockDomain{
           else {
             if(productionStatus.getprestatus()){//sysj\pos.sysj line: 14, column: 17
               PosBridge.acceptFeedback((PosOrderStatus)(productionStatus.getpreval() == null ? null : ((PosOrderStatus)productionStatus.getpreval())));//sysj\pos.sysj line: 14, column: 36
-              S139109=1;
+              S161315=1;
               active[1]=1;
               ends[1]=1;
               break RUN;
             }
             else {
-              S139109=1;
+              S161315=1;
               active[1]=1;
               ends[1]=1;
               break RUN;
@@ -74,23 +74,23 @@ public class POS extends ClockDomain{
           }
         
         case 2 : 
-          switch(S139109){
+          switch(S161315){
             case 0 : 
               order_thread_1 = PosBridge.pending();//sysj\pos.sysj line: 12, column: 9
-              S139109=0;
+              S161315=0;
               if(order_thread_1 != null){//sysj\pos.sysj line: 13, column: 12
                 purchaseOrder.setPresent();//sysj\pos.sysj line: 13, column: 28
                 currsigs.addElement(purchaseOrder);
                 purchaseOrder.setValue(order_thread_1);//sysj\pos.sysj line: 13, column: 28
                 if(productionStatus.getprestatus()){//sysj\pos.sysj line: 14, column: 17
                   PosBridge.acceptFeedback((PosOrderStatus)(productionStatus.getpreval() == null ? null : ((PosOrderStatus)productionStatus.getpreval())));//sysj\pos.sysj line: 14, column: 36
-                  S139109=1;
+                  S161315=1;
                   active[1]=1;
                   ends[1]=1;
                   break RUN;
                 }
                 else {
-                  S139109=1;
+                  S161315=1;
                   active[1]=1;
                   ends[1]=1;
                   break RUN;
@@ -99,13 +99,13 @@ public class POS extends ClockDomain{
               else {
                 if(productionStatus.getprestatus()){//sysj\pos.sysj line: 14, column: 17
                   PosBridge.acceptFeedback((PosOrderStatus)(productionStatus.getpreval() == null ? null : ((PosOrderStatus)productionStatus.getpreval())));//sysj\pos.sysj line: 14, column: 36
-                  S139109=1;
+                  S161315=1;
                   active[1]=1;
                   ends[1]=1;
                   break RUN;
                 }
                 else {
-                  S139109=1;
+                  S161315=1;
                   active[1]=1;
                   ends[1]=1;
                   break RUN;
@@ -113,22 +113,22 @@ public class POS extends ClockDomain{
               }
             
             case 1 : 
-              S139109=1;
+              S161315=1;
               order_thread_1 = PosBridge.pending();//sysj\pos.sysj line: 12, column: 9
-              S139109=0;
+              S161315=0;
               if(order_thread_1 != null){//sysj\pos.sysj line: 13, column: 12
                 purchaseOrder.setPresent();//sysj\pos.sysj line: 13, column: 28
                 currsigs.addElement(purchaseOrder);
                 purchaseOrder.setValue(order_thread_1);//sysj\pos.sysj line: 13, column: 28
                 if(productionStatus.getprestatus()){//sysj\pos.sysj line: 14, column: 17
                   PosBridge.acceptFeedback((PosOrderStatus)(productionStatus.getpreval() == null ? null : ((PosOrderStatus)productionStatus.getpreval())));//sysj\pos.sysj line: 14, column: 36
-                  S139109=1;
+                  S161315=1;
                   active[1]=1;
                   ends[1]=1;
                   break RUN;
                 }
                 else {
-                  S139109=1;
+                  S161315=1;
                   active[1]=1;
                   ends[1]=1;
                   break RUN;
@@ -137,13 +137,13 @@ public class POS extends ClockDomain{
               else {
                 if(productionStatus.getprestatus()){//sysj\pos.sysj line: 14, column: 17
                   PosBridge.acceptFeedback((PosOrderStatus)(productionStatus.getpreval() == null ? null : ((PosOrderStatus)productionStatus.getpreval())));//sysj\pos.sysj line: 14, column: 36
-                  S139109=1;
+                  S161315=1;
                   active[1]=1;
                   ends[1]=1;
                   break RUN;
                 }
                 else {
-                  S139109=1;
+                  S161315=1;
                   active[1]=1;
                   ends[1]=1;
                   break RUN;

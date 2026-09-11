@@ -14,8 +14,8 @@ public class GUIInterface extends ClockDomain{
   public Signal Status = new Signal("Status", Signal.INPUT);
   public Signal Command = new Signal("Command", Signal.OUTPUT);
   private GuiCommand command_thread_1;//sysj\guiInterface.sysj line: 7, column: 5
-  private int S47012 = 1;
-  private int S46983 = 1;
+  private int S47660 = 1;
+  private int S47631 = 1;
   
   private int[] ends = new int[2];
   private int[] tdone = new int[2];
@@ -27,17 +27,17 @@ public class GUIInterface extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S47012){
+      switch(S47660){
         case 0 : 
-          S47012=0;
+          S47660=0;
           break RUN;
         
         case 1 : 
-          S47012=2;
-          S47012=2;
+          S47660=2;
+          S47660=2;
           command_thread_1 = null;//sysj\guiInterface.sysj line: 7, column: 5
           GuiInterfaceBridge.open();//sysj\guiInterface.sysj line: 8, column: 5
-          S46983=0;
+          S47631=0;
           if(Status.getprestatus()){//sysj\guiInterface.sysj line: 10, column: 17
             GuiInterfaceBridge.publish((GuiSnapshot)(Status.getpreval() == null ? null : ((GuiSnapshot)Status.getpreval())));//sysj\guiInterface.sysj line: 10, column: 26
             command_thread_1 = GuiInterfaceBridge.command();//sysj\guiInterface.sysj line: 11, column: 9
@@ -45,13 +45,13 @@ public class GUIInterface extends ClockDomain{
               Command.setPresent();//sysj\guiInterface.sysj line: 12, column: 30
               currsigs.addElement(Command);
               Command.setValue(command_thread_1);//sysj\guiInterface.sysj line: 12, column: 30
-              S46983=1;
+              S47631=1;
               active[1]=1;
               ends[1]=1;
               break RUN;
             }
             else {
-              S46983=1;
+              S47631=1;
               active[1]=1;
               ends[1]=1;
               break RUN;
@@ -63,13 +63,13 @@ public class GUIInterface extends ClockDomain{
               Command.setPresent();//sysj\guiInterface.sysj line: 12, column: 30
               currsigs.addElement(Command);
               Command.setValue(command_thread_1);//sysj\guiInterface.sysj line: 12, column: 30
-              S46983=1;
+              S47631=1;
               active[1]=1;
               ends[1]=1;
               break RUN;
             }
             else {
-              S46983=1;
+              S47631=1;
               active[1]=1;
               ends[1]=1;
               break RUN;
@@ -77,9 +77,9 @@ public class GUIInterface extends ClockDomain{
           }
         
         case 2 : 
-          switch(S46983){
+          switch(S47631){
             case 0 : 
-              S46983=0;
+              S47631=0;
               if(Status.getprestatus()){//sysj\guiInterface.sysj line: 10, column: 17
                 GuiInterfaceBridge.publish((GuiSnapshot)(Status.getpreval() == null ? null : ((GuiSnapshot)Status.getpreval())));//sysj\guiInterface.sysj line: 10, column: 26
                 command_thread_1 = GuiInterfaceBridge.command();//sysj\guiInterface.sysj line: 11, column: 9
@@ -87,13 +87,13 @@ public class GUIInterface extends ClockDomain{
                   Command.setPresent();//sysj\guiInterface.sysj line: 12, column: 30
                   currsigs.addElement(Command);
                   Command.setValue(command_thread_1);//sysj\guiInterface.sysj line: 12, column: 30
-                  S46983=1;
+                  S47631=1;
                   active[1]=1;
                   ends[1]=1;
                   break RUN;
                 }
                 else {
-                  S46983=1;
+                  S47631=1;
                   active[1]=1;
                   ends[1]=1;
                   break RUN;
@@ -105,13 +105,13 @@ public class GUIInterface extends ClockDomain{
                   Command.setPresent();//sysj\guiInterface.sysj line: 12, column: 30
                   currsigs.addElement(Command);
                   Command.setValue(command_thread_1);//sysj\guiInterface.sysj line: 12, column: 30
-                  S46983=1;
+                  S47631=1;
                   active[1]=1;
                   ends[1]=1;
                   break RUN;
                 }
                 else {
-                  S46983=1;
+                  S47631=1;
                   active[1]=1;
                   ends[1]=1;
                   break RUN;
@@ -119,8 +119,8 @@ public class GUIInterface extends ClockDomain{
               }
             
             case 1 : 
-              S46983=1;
-              S46983=0;
+              S47631=1;
+              S47631=0;
               if(Status.getprestatus()){//sysj\guiInterface.sysj line: 10, column: 17
                 GuiInterfaceBridge.publish((GuiSnapshot)(Status.getpreval() == null ? null : ((GuiSnapshot)Status.getpreval())));//sysj\guiInterface.sysj line: 10, column: 26
                 command_thread_1 = GuiInterfaceBridge.command();//sysj\guiInterface.sysj line: 11, column: 9
@@ -128,13 +128,13 @@ public class GUIInterface extends ClockDomain{
                   Command.setPresent();//sysj\guiInterface.sysj line: 12, column: 30
                   currsigs.addElement(Command);
                   Command.setValue(command_thread_1);//sysj\guiInterface.sysj line: 12, column: 30
-                  S46983=1;
+                  S47631=1;
                   active[1]=1;
                   ends[1]=1;
                   break RUN;
                 }
                 else {
-                  S46983=1;
+                  S47631=1;
                   active[1]=1;
                   ends[1]=1;
                   break RUN;
@@ -146,13 +146,13 @@ public class GUIInterface extends ClockDomain{
                   Command.setPresent();//sysj\guiInterface.sysj line: 12, column: 30
                   currsigs.addElement(Command);
                   Command.setValue(command_thread_1);//sysj\guiInterface.sysj line: 12, column: 30
-                  S46983=1;
+                  S47631=1;
                   active[1]=1;
                   ends[1]=1;
                   break RUN;
                 }
                 else {
-                  S46983=1;
+                  S47631=1;
                   active[1]=1;
                   ends[1]=1;
                   break RUN;

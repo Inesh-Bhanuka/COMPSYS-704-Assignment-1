@@ -264,7 +264,7 @@ LidRemovalPlant(
 
 		int BIN_CAPACITY = 3;
 
-		int lids = 0;
+		RecyclingCapacity bin = new RecyclingCapacity("Lid waste bin", BIN_CAPACITY);
 
 
 
@@ -274,13 +274,15 @@ LidRemovalPlant(
 
 				present(lidDropped){
 
-					lids++;
+					bin.add();
 
-					System.out.println("[LRPlant] Lid dropped into the waste bin (" + lids + " of " + BIN_CAPACITY + ").");
+					System.out.println("[LRPlant] Lid dropped into the waste bin (" + bin.level() + " of " + BIN_CAPACITY + ").");
 
 				}
 
-				if(lids >= BIN_CAPACITY){
+				present(zAxisLifted && turnAtHomePos && !lidGripped){ bin.service(true); }
+                else { bin.service(false); }
+				if(bin.full()){
 
 					emit lidBinFull;
 

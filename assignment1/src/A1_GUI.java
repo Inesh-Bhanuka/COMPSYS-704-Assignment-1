@@ -138,6 +138,8 @@ public class A1_GUI extends JFrame {
     };
     private final List<Long> bottleIds = new ArrayList<Long>();
     private long selectedId = -1, selectedBatch = -1;
+    private long lastEventSequence;
+    private GuiSnapshot renderedSnapshot;
     private final javax.swing.JPopupMenu labelPopup = new javax.swing.JPopupMenu();
 
     public A1_GUI() { this(new GuiClient()); }
@@ -172,6 +174,7 @@ public class A1_GUI extends JFrame {
             if (!updating && bottleTable.getSelectedRow() >= 0) {
                 selectedId = bottleIds.get(bottleTable.convertRowIndexToModel(bottleTable.getSelectedRow()));
                 selectedBottle = liveBottles.get(selectedId);
+                renderedSnapshot = null;
                 refreshView();
             }
         });
@@ -201,6 +204,7 @@ public class A1_GUI extends JFrame {
         batchSelector.addActionListener(e -> {
             if (!updating && snapshot != null && batchSelector.getSelectedIndex() >= 0) {
                 selectedBatch = snapshot.batches.get(batchSelector.getSelectedIndex()).id;
+                renderedSnapshot = null;
                 refreshView();
             }
         });
@@ -510,6 +514,8 @@ public class A1_GUI extends JFrame {
             lineStateLabel.setText(connected ? snapshot.state : "DISCONNECTED");
             lineStateLabel.setForeground(!connected ? RED : "RUNNING".equals(snapshot.state) ? GREEN : AMBER.darker());
             if (snapshot == null) return;
+            if (snapshot == renderedSnapshot) return;
+            renderedSnapshot = snapshot;
             faultModeCombo.setSelectedIndex(snapshot.rejectEvery == 5 ? 1 : snapshot.rejectEvery == 3 ? 2 : 0);
             GuiSnapshot.BatchView batch = null;
             boolean batchesChanged = batchSelector.getItemCount() != snapshot.batches.size();
@@ -542,11 +548,19 @@ public class A1_GUI extends JFrame {
                 producedLabel.setText("0 / 0"); acceptedLabel.setText("0"); recycledLabel.setText("0");
                 batchProgressBar.setValue(0); batchProgressBar.setString("No active batch"); batchInfoLabel.setText("Create a purchase order in POS");
             }
-            liveBottles.clear(); bottleIds.clear(); bottleModel.setRowCount(0);
+            liveBottles.clear(); bottleIds.clear();
+            int bottleRow = 0;
             for (GuiSnapshot.Bottle b : snapshot.bottles) {
                 liveBottles.put(b.id, new Bottle(b)); bottleIds.add(b.id);
-                bottleModel.addRow(new Object[]{b.serial, "B" + b.batch, b.product, b.stage, b.quality});
+                Object[] values = {b.serial, "B" + b.batch, b.product, b.stage, b.quality};
+                if (bottleRow >= bottleModel.getRowCount()) bottleModel.addRow(values);
+                else for (int column = 0; column < values.length; column++) {
+                    if (!java.util.Objects.equals(values[column], bottleModel.getValueAt(bottleRow, column)))
+                        bottleModel.setValueAt(values[column], bottleRow, column);
+                }
+                bottleRow++;
             }
+            bottleModel.setRowCount(bottleRow);
             selectedBottle = liveBottles.get(selectedId);
             activeBottleLabel.setText(selectedBottle == null ? "None" : selectedBottle.shortId());
             sensorModel.setRowCount(0); photoEyeActive = false;
@@ -555,12 +569,24 @@ public class A1_GUI extends JFrame {
                 if (e.getKey().endsWith("bottleAtPos1") && "ON".equals(e.getValue())) photoEyeActive = true;
             }
             StringBuilder events = new StringBuilder();
-            for (GuiSnapshot.Event e : client.events()) events.append(eventText(e)).append("\n");
-            if (!eventLog.getText().equals(events.toString())) { eventLog.setText(events.toString()); eventLog.setCaretPosition(eventLog.getDocument().getLength()); }
+            for (GuiSnapshot.Event e : client.events()) if (e.sequence > lastEventSequence) {
+                events.append(eventText(e)).append("\n"); lastEventSequence = e.sequence;
+            }
+            if (events.length() > 0) {
+                eventLog.append(events.toString());
+                // Bound the Swing document as well as the TCP event history.
+                if (eventLog.getDocument().getLength() > 500000) {
+                    try { eventLog.getDocument().remove(0, eventLog.getText().indexOf('\n', 100000) + 1); }
+                    catch (javax.swing.text.BadLocationException e) { throw new IllegalStateException(e); }
+                }
+                eventLog.setCaretPosition(eventLog.getDocument().getLength());
+            }
             StringBuilder alerts = new StringBuilder();
             for (GuiSnapshot.Event e : snapshot.alerts) alerts.append(eventText(e)).append("\n");
-            alertArea.setText(alerts.length() == 0 ? "No active faults" : alerts.toString());
-            batchHistoryArea.setText(String.join("\n", snapshot.history));
+            String alertText = alerts.length() == 0 ? "No active faults" : alerts.toString();
+            if (!alertText.equals(alertArea.getText())) alertArea.setText(alertText);
+            String historyText = String.join("\n", snapshot.history);
+            if (!historyText.equals(batchHistoryArea.getText())) batchHistoryArea.setText(historyText);
             commandLabel.setText("<html>" + html(snapshot.commandMessage) + "</html>");
         } finally { updating = false; repaint(); labelPopup.repaint(); }
     }
@@ -589,7 +615,7 @@ public class A1_GUI extends JFrame {
             g.fillRect(0, 0, w, 26);
             g.setColor(Color.WHITE);
             g.setFont(new Font("SansSerif", Font.BOLD, 11));
-            g.drawString("ADVANTECH PRODUCT LABEL", 10, 18);
+            g.drawString("Product Label", 10, 18);
 
             Bottle bottle = selectedBottle;
             g.setColor(new Color(38, 49, 60));
@@ -634,6 +660,7 @@ public class A1_GUI extends JFrame {
         private double viewScale = 1.0;
         private double viewOffsetX;
         private double viewOffsetY;
+        private final java.util.Map<Long, Rectangle> paintedBottles = new java.util.LinkedHashMap<Long, Rectangle>();
 
         FactoryPanel() {
             setBackground(new Color(235, 241, 246));
@@ -641,7 +668,7 @@ public class A1_GUI extends JFrame {
             setToolTipText("Click a bottle to inspect its digital label.");
             addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
-                public void mouseClicked(java.awt.event.MouseEvent e) {
+                public void mousePressed(java.awt.event.MouseEvent e) {
                     selectBottleAt(e.getX(), e.getY());
                 }
             });
@@ -1000,8 +1027,10 @@ public class A1_GUI extends JFrame {
         }
 
         private void drawBottles(Graphics2D g) {
+            paintedBottles.clear();
             for (Bottle b : liveBottles.values()) {
                 int[] p = position(b); drawBottle(g, b, p[0], p[1], selectedBottle == b);
+                paintedBottles.put(b.data.id, new Rectangle(p[0] - 15, p[1] - 29, 30, 50));
             }
             String[] machines = {"LOADER", "CONVEYOR", "ROTARY_TABLE", "FILLER1", "FILLER2", "LID_LOADER", "LID_CAPPER", "SPLITTER", "RECYCLING", "LABELLER", "BATCH_STORAGE"};
             int[][] lamps = {{167,300},{300,405},{550,345},{440,75},{615,55},{995,65},{875,340},{700,748},{230,675},{967,665},{967,782}};
@@ -1100,13 +1129,15 @@ public class A1_GUI extends JFrame {
 
         private void selectBottleAt(int screenX, int screenY) {
             double x = (screenX - viewOffsetX) / viewScale, y = (screenY - viewOffsetY) / viewScale;
-            double best = 32;
-            for (Bottle b : liveBottles.values()) {
-                int[] p = position(b); double distance = Math.hypot(x - p[0], y - p[1]);
-                if (distance < best) { best = distance; selectedId = b.data.id; }
-            }
-            refreshView();
-            if (selectedBottle != null) labelPopup.show(this, screenX, screenY);
+            selectedId = -1;
+            // Hit-test the last painted frame, not a newer position received after it.
+            for (java.util.Map.Entry<Long, Rectangle> bottle : paintedBottles.entrySet())
+                if (bottle.getValue().contains(x, y)) selectedId = bottle.getKey();
+            selectedBottle = liveBottles.get(selectedId);
+            activeBottleLabel.setText(selectedBottle == null ? "None" : selectedBottle.shortId());
+            labelPopup.setVisible(false);
+            if (selectedBottle != null && isShowing()) labelPopup.show(this, screenX, screenY);
+            repaint();
         }
     }
 

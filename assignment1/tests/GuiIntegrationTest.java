@@ -48,7 +48,7 @@ public final class GuiIntegrationTest {
         try{
             System.setProperty("gui.enabled","true");System.setProperty("gui.headless","true");System.setProperty("pos.headless","true");
             client=new GuiClient();
-            Thread plant=new Thread(()->com.systemj.SystemJRunner.main(new String[]{"sysj/abs.xml"}));plant.setDaemon(true);plant.start();
+            Thread plant=new Thread(()->com.systemj.SystemJRunner.main(new String[]{args.length==0?"sysj/abs.xml":args[0]}));plant.setDaemon(true);plant.start();
             await("live TCP feedback",()->client.connected(),20);
             SwingUtilities.invokeAndWait(()->window=new AbsWindow(client));
             PosOrderRequest first=order("Custom Blend A",6);PosBridge.submit(first);
@@ -61,7 +61,10 @@ public final class GuiIntegrationTest {
             render("abs-overview.png");
             command(new GuiCommand("PAUSE"));
             await("safe paused line",()->client.latest().state.equals("PAUSED"),120);
-            for(GuiSnapshot.Bottle b:client.latest().bottles)check(b.stage.equals("DONE")||b.stage.equals("RECOVERED"),"Pause left a bottle in process");
+            int admittedAtPause=client.latest().bottles.size();
+            Thread.sleep(750);
+            check(client.latest().state.equals("PAUSED"),"Pause resumed by itself");
+            check(client.latest().bottles.size()<=admittedAtPause+1,"Pause continued admitting bottles");
             command(new GuiCommand("START"));
             await("full automatic batch with reject replacement",()->PosBridge.latest()!=null&&PosBridge.latest().isComplete(),180);
             await("GUI completion snapshot",()->client.latest().batches.get(0).accepted==6,12);
@@ -108,7 +111,7 @@ public final class GuiIntegrationTest {
             await("stale feedback disabled",()->!client.connected(),12);
             check(!client.send(new GuiCommand("START")),"Disconnected GUI accepted a control command");
             SwingUtilities.invokeAndWait(()->window.dispose());
-            System.out.println("GUI INTEGRATION TEST PASSED: automatic, quality/recycling, drain pause, manual gating, fault, reset, telemetry and stale connection.");
+            System.out.println("GUI INTEGRATION TEST PASSED: automatic, quality/recycling, resumable pause, manual gating, fault, reset, telemetry and stale connection.");
             System.exit(0);
         }catch(Throwable error){error.printStackTrace();System.exit(1);}
     }

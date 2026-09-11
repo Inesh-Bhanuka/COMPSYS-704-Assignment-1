@@ -40,26 +40,26 @@ public class LabellerController extends ClockDomain{
   private int labels_thread_4;//sysj\labellerController.sysj line: 133, column: 3
   private int glue_thread_4;//sysj\labellerController.sysj line: 134, column: 3
   private boolean permitted_thread_3;//sysj\labellerController.sysj line: 66, column: 1
-  private int S69342 = 1;
-  private int S47026 = 1;
-  private int S69072 = 1;
-  private int S50701 = 1;
-  private int S47051 = 1;
-  private int S47035 = 1;
-  private int S47030 = 1;
-  private int S47052 = 1;
-  private int S47120 = 1;
-  private int S47532 = 1;
-  private int S47527 = 1;
-  private int S69188 = 1;
-  private int S69340 = 1;
-  private int S69238 = 1;
+  private int S69990 = 1;
+  private int S47674 = 1;
+  private int S69720 = 1;
+  private int S51349 = 1;
+  private int S47699 = 1;
+  private int S47683 = 1;
+  private int S47678 = 1;
+  private int S47700 = 1;
+  private int S47768 = 1;
+  private int S48180 = 1;
+  private int S48175 = 1;
+  private int S69836 = 1;
+  private int S69988 = 1;
+  private int S69886 = 1;
   
   private int[] ends = new int[6];
   private int[] tdone = new int[6];
   
-  public void thread69352(int [] tdone, int [] ends){
-        switch(S69340){
+  public void thread70000(int [] tdone, int [] ends){
+        switch(S69988){
       case 0 : 
         active[5]=0;
         ends[5]=0;
@@ -67,12 +67,12 @@ public class LabellerController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S69238){
+        switch(S69886){
           case 0 : 
             if(manual_1.getprestatus()){//sysj\labellerController.sysj line: 152, column: 20
-              S69238=1;
+              S69886=1;
               if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 153, column: 20
-                S69238=2;
+                S69886=2;
                 active[5]=1;
                 ends[5]=1;
                 tdone[5]=1;
@@ -119,7 +119,7 @@ public class LabellerController extends ClockDomain{
           
           case 1 : 
             if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 153, column: 20
-              S69238=2;
+              S69886=2;
               active[5]=1;
               ends[5]=1;
               tdone[5]=1;
@@ -159,12 +159,12 @@ public class LabellerController extends ClockDomain{
             break;
           
           case 2 : 
-            S69238=2;
-            S69238=0;
+            S69886=2;
+            S69886=0;
             if(manual_1.getprestatus()){//sysj\labellerController.sysj line: 152, column: 20
-              S69238=1;
+              S69886=1;
               if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 153, column: 20
-                S69238=2;
+                S69886=2;
                 active[5]=1;
                 ends[5]=1;
                 tdone[5]=1;
@@ -215,8 +215,8 @@ public class LabellerController extends ClockDomain{
     }
   }
 
-  public void thread69351(int [] tdone, int [] ends){
-        switch(S69188){
+  public void thread69999(int [] tdone, int [] ends){
+        switch(S69836){
       case 0 : 
         active[4]=0;
         ends[4]=0;
@@ -352,8 +352,8 @@ public class LabellerController extends ClockDomain{
     }
   }
 
-  public void thread69350(int [] tdone, int [] ends){
-        switch(S69072){
+  public void thread69998(int [] tdone, int [] ends){
+        switch(S69720){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -361,48 +361,48 @@ public class LabellerController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S50701){
+        switch(S51349){
           case 0 : 
             if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 60, column: 20
-              S50701=1;
+              S51349=1;
               if(manual_1.getprestatus()){//sysj\labellerController.sysj line: 62, column: 20
                 labelBottle_in.setPreempted();
                 labelDone_o.setPreempted();
-                S50701=2;
+                S51349=2;
                 active[3]=1;
                 ends[3]=1;
                 tdone[3]=1;
               }
               else {
-                S47051=0;
-                S47035=0;
+                S47699=0;
+                S47683=0;
                 if(!labelBottle_in.isPartnerPresent() || labelBottle_in.isPartnerPreempted()){//sysj\labellerController.sysj line: 63, column: 5
                   labelBottle_in.setACK(false);//sysj\labellerController.sysj line: 63, column: 5
-                  S47035=1;
+                  S47683=1;
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  S47030=0;
+                  S47678=0;
                   if(!labelBottle_in.isREQ()){//sysj\labellerController.sysj line: 63, column: 5
                     labelBottle_in.setACK(true);//sysj\labellerController.sysj line: 63, column: 5
-                    S47030=1;
+                    S47678=1;
                     if(labelBottle_in.isREQ()){//sysj\labellerController.sysj line: 63, column: 5
                       labelBottle_in.setACK(false);//sysj\labellerController.sysj line: 63, column: 5
                       ends[3]=2;
                       ;//sysj\labellerController.sysj line: 63, column: 5
                       w_thread_3 = (WorkpieceTwin)(labelBottle_in.getVal() == null ? null : ((WorkpieceTwin)labelBottle_in.getVal()));//sysj\labellerController.sysj line: 64, column: 5
-                      S47051=1;
+                      S47699=1;
                       if(w_thread_3 != null){//sysj\labellerController.sysj line: 65, column: 4
                         permitted_thread_3 = false;//sysj\labellerController.sysj line: 66, column: 1
-                        S47052=0;
+                        S47700=0;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S47051=2;
+                        S47699=2;
                         if(w_thread_3 != null){//sysj\labellerController.sysj line: 76, column: 8
                           w_thread_3.arrived(Machine.LABELLER);//sysj\labellerController.sysj line: 77, column: 6
                           refusal_thread_3 = w_thread_3.labelRefusalReason();//sysj\labellerController.sysj line: 78, column: 6
@@ -416,25 +416,25 @@ public class LabellerController extends ClockDomain{
                               status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
                               currsigs.addElement(status);
                               status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
-                              S47051=3;
-                              S47532=0;
+                              S47699=3;
+                              S48180=0;
                               if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                 labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                S47532=1;
+                                S48180=1;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
                               else {
-                                S47527=0;
+                                S48175=0;
                                 if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                   labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                  S47527=1;
+                                  S48175=1;
                                   if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                     labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                     ends[3]=2;
                                     ;//sysj\labellerController.sysj line: 125, column: 5
-                                    S50701=2;
+                                    S51349=2;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -456,25 +456,25 @@ public class LabellerController extends ClockDomain{
                               status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
                               currsigs.addElement(status);
                               status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
-                              S47051=3;
-                              S47532=0;
+                              S47699=3;
+                              S48180=0;
                               if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                 labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                S47532=1;
+                                S48180=1;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
                               else {
-                                S47527=0;
+                                S48175=0;
                                 if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                   labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                  S47527=1;
+                                  S48175=1;
                                   if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                     labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                     ends[3]=2;
                                     ;//sysj\labellerController.sysj line: 125, column: 5
-                                    S50701=2;
+                                    S51349=2;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -500,9 +500,9 @@ public class LabellerController extends ClockDomain{
                               twin.setPresent();//sysj\labellerController.sysj line: 93, column: 8
                               currsigs.addElement(twin);
                               twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 93, column: 8
-                              S47120=0;
+                              S47768=0;
                               if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 97, column: 23
-                                S47120=1;
+                                S47768=1;
                                 if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
                                   applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
                                   currsigs.addElement(applyLabelRetract);
@@ -516,25 +516,25 @@ public class LabellerController extends ClockDomain{
                                     status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                                     currsigs.addElement(status);
                                     status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                    S47051=3;
-                                    S47532=0;
+                                    S47699=3;
+                                    S48180=0;
                                     if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                       labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                      S47532=1;
+                                      S48180=1;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
                                     }
                                     else {
-                                      S47527=0;
+                                      S48175=0;
                                       if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                         labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                        S47527=1;
+                                        S48175=1;
                                         if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                           labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                           ends[3]=2;
                                           ;//sysj\labellerController.sysj line: 125, column: 5
-                                          S50701=2;
+                                          S51349=2;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
@@ -556,25 +556,25 @@ public class LabellerController extends ClockDomain{
                                     status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                                     currsigs.addElement(status);
                                     status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                    S47051=3;
-                                    S47532=0;
+                                    S47699=3;
+                                    S48180=0;
                                     if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                       labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                      S47532=1;
+                                      S48180=1;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
                                     }
                                     else {
-                                      S47527=0;
+                                      S48175=0;
                                       if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                         labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                        S47527=1;
+                                        S48175=1;
                                         if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                           labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                           ends[3]=2;
                                           ;//sysj\labellerController.sysj line: 125, column: 5
-                                          S50701=2;
+                                          S51349=2;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
@@ -615,9 +615,9 @@ public class LabellerController extends ClockDomain{
                               }
                             }
                             else {
-                              S47120=0;
+                              S47768=0;
                               if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 97, column: 23
-                                S47120=1;
+                                S47768=1;
                                 if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
                                   applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
                                   currsigs.addElement(applyLabelRetract);
@@ -631,25 +631,25 @@ public class LabellerController extends ClockDomain{
                                     status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                                     currsigs.addElement(status);
                                     status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                    S47051=3;
-                                    S47532=0;
+                                    S47699=3;
+                                    S48180=0;
                                     if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                       labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                      S47532=1;
+                                      S48180=1;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
                                     }
                                     else {
-                                      S47527=0;
+                                      S48175=0;
                                       if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                         labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                        S47527=1;
+                                        S48175=1;
                                         if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                           labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                           ends[3]=2;
                                           ;//sysj\labellerController.sysj line: 125, column: 5
-                                          S50701=2;
+                                          S51349=2;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
@@ -671,25 +671,25 @@ public class LabellerController extends ClockDomain{
                                     status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                                     currsigs.addElement(status);
                                     status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                    S47051=3;
-                                    S47532=0;
+                                    S47699=3;
+                                    S48180=0;
                                     if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                       labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                      S47532=1;
+                                      S48180=1;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
                                     }
                                     else {
-                                      S47527=0;
+                                      S48175=0;
                                       if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                         labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                        S47527=1;
+                                        S48175=1;
                                         if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                           labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                           ends[3]=2;
                                           ;//sysj\labellerController.sysj line: 125, column: 5
-                                          S50701=2;
+                                          S51349=2;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
@@ -732,25 +732,25 @@ public class LabellerController extends ClockDomain{
                           }
                         }
                         else {
-                          S47051=3;
-                          S47532=0;
+                          S47699=3;
+                          S48180=0;
                           if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                             labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                            S47532=1;
+                            S48180=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
                           }
                           else {
-                            S47527=0;
+                            S48175=0;
                             if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                               labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                              S47527=1;
+                              S48175=1;
                               if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                 labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                 ends[3]=2;
                                 ;//sysj\labellerController.sysj line: 125, column: 5
-                                S50701=2;
+                                S51349=2;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -795,44 +795,44 @@ public class LabellerController extends ClockDomain{
             if(manual_1.getprestatus()){//sysj\labellerController.sysj line: 62, column: 20
               labelBottle_in.setPreempted();
               labelDone_o.setPreempted();
-              S50701=2;
+              S51349=2;
               active[3]=1;
               ends[3]=1;
               tdone[3]=1;
             }
             else {
-              switch(S47051){
+              switch(S47699){
                 case 0 : 
-                  switch(S47035){
+                  switch(S47683){
                     case 0 : 
                       if(!labelBottle_in.isPartnerPresent() || labelBottle_in.isPartnerPreempted()){//sysj\labellerController.sysj line: 63, column: 5
                         labelBottle_in.setACK(false);//sysj\labellerController.sysj line: 63, column: 5
-                        S47035=1;
+                        S47683=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        switch(S47030){
+                        switch(S47678){
                           case 0 : 
                             if(!labelBottle_in.isREQ()){//sysj\labellerController.sysj line: 63, column: 5
                               labelBottle_in.setACK(true);//sysj\labellerController.sysj line: 63, column: 5
-                              S47030=1;
+                              S47678=1;
                               if(labelBottle_in.isREQ()){//sysj\labellerController.sysj line: 63, column: 5
                                 labelBottle_in.setACK(false);//sysj\labellerController.sysj line: 63, column: 5
                                 ends[3]=2;
                                 ;//sysj\labellerController.sysj line: 63, column: 5
                                 w_thread_3 = (WorkpieceTwin)(labelBottle_in.getVal() == null ? null : ((WorkpieceTwin)labelBottle_in.getVal()));//sysj\labellerController.sysj line: 64, column: 5
-                                S47051=1;
+                                S47699=1;
                                 if(w_thread_3 != null){//sysj\labellerController.sysj line: 65, column: 4
                                   permitted_thread_3 = false;//sysj\labellerController.sysj line: 66, column: 1
-                                  S47052=0;
+                                  S47700=0;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
                                 }
                                 else {
-                                  S47051=2;
+                                  S47699=2;
                                   if(w_thread_3 != null){//sysj\labellerController.sysj line: 76, column: 8
                                     w_thread_3.arrived(Machine.LABELLER);//sysj\labellerController.sysj line: 77, column: 6
                                     refusal_thread_3 = w_thread_3.labelRefusalReason();//sysj\labellerController.sysj line: 78, column: 6
@@ -846,25 +846,25 @@ public class LabellerController extends ClockDomain{
                                         status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
                                         currsigs.addElement(status);
                                         status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
-                                        S47051=3;
-                                        S47532=0;
+                                        S47699=3;
+                                        S48180=0;
                                         if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                           labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                          S47532=1;
+                                          S48180=1;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
                                         }
                                         else {
-                                          S47527=0;
+                                          S48175=0;
                                           if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                             labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                            S47527=1;
+                                            S48175=1;
                                             if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                               labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                               ends[3]=2;
                                               ;//sysj\labellerController.sysj line: 125, column: 5
-                                              S50701=2;
+                                              S51349=2;
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
@@ -886,25 +886,25 @@ public class LabellerController extends ClockDomain{
                                         status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
                                         currsigs.addElement(status);
                                         status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
-                                        S47051=3;
-                                        S47532=0;
+                                        S47699=3;
+                                        S48180=0;
                                         if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                           labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                          S47532=1;
+                                          S48180=1;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
                                         }
                                         else {
-                                          S47527=0;
+                                          S48175=0;
                                           if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                             labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                            S47527=1;
+                                            S48175=1;
                                             if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                               labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                               ends[3]=2;
                                               ;//sysj\labellerController.sysj line: 125, column: 5
-                                              S50701=2;
+                                              S51349=2;
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
@@ -930,9 +930,9 @@ public class LabellerController extends ClockDomain{
                                         twin.setPresent();//sysj\labellerController.sysj line: 93, column: 8
                                         currsigs.addElement(twin);
                                         twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 93, column: 8
-                                        S47120=0;
+                                        S47768=0;
                                         if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 97, column: 23
-                                          S47120=1;
+                                          S47768=1;
                                           if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
                                             applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
                                             currsigs.addElement(applyLabelRetract);
@@ -946,25 +946,25 @@ public class LabellerController extends ClockDomain{
                                               status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                                               currsigs.addElement(status);
                                               status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                              S47051=3;
-                                              S47532=0;
+                                              S47699=3;
+                                              S48180=0;
                                               if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                                 labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                                S47532=1;
+                                                S48180=1;
                                                 active[3]=1;
                                                 ends[3]=1;
                                                 tdone[3]=1;
                                               }
                                               else {
-                                                S47527=0;
+                                                S48175=0;
                                                 if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                                   labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                                  S47527=1;
+                                                  S48175=1;
                                                   if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                                     labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                                     ends[3]=2;
                                                     ;//sysj\labellerController.sysj line: 125, column: 5
-                                                    S50701=2;
+                                                    S51349=2;
                                                     active[3]=1;
                                                     ends[3]=1;
                                                     tdone[3]=1;
@@ -986,25 +986,25 @@ public class LabellerController extends ClockDomain{
                                               status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                                               currsigs.addElement(status);
                                               status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                              S47051=3;
-                                              S47532=0;
+                                              S47699=3;
+                                              S48180=0;
                                               if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                                 labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                                S47532=1;
+                                                S48180=1;
                                                 active[3]=1;
                                                 ends[3]=1;
                                                 tdone[3]=1;
                                               }
                                               else {
-                                                S47527=0;
+                                                S48175=0;
                                                 if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                                   labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                                  S47527=1;
+                                                  S48175=1;
                                                   if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                                     labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                                     ends[3]=2;
                                                     ;//sysj\labellerController.sysj line: 125, column: 5
-                                                    S50701=2;
+                                                    S51349=2;
                                                     active[3]=1;
                                                     ends[3]=1;
                                                     tdone[3]=1;
@@ -1045,9 +1045,9 @@ public class LabellerController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        S47120=0;
+                                        S47768=0;
                                         if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 97, column: 23
-                                          S47120=1;
+                                          S47768=1;
                                           if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
                                             applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
                                             currsigs.addElement(applyLabelRetract);
@@ -1061,25 +1061,25 @@ public class LabellerController extends ClockDomain{
                                               status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                                               currsigs.addElement(status);
                                               status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                              S47051=3;
-                                              S47532=0;
+                                              S47699=3;
+                                              S48180=0;
                                               if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                                 labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                                S47532=1;
+                                                S48180=1;
                                                 active[3]=1;
                                                 ends[3]=1;
                                                 tdone[3]=1;
                                               }
                                               else {
-                                                S47527=0;
+                                                S48175=0;
                                                 if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                                   labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                                  S47527=1;
+                                                  S48175=1;
                                                   if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                                     labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                                     ends[3]=2;
                                                     ;//sysj\labellerController.sysj line: 125, column: 5
-                                                    S50701=2;
+                                                    S51349=2;
                                                     active[3]=1;
                                                     ends[3]=1;
                                                     tdone[3]=1;
@@ -1101,25 +1101,25 @@ public class LabellerController extends ClockDomain{
                                               status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                                               currsigs.addElement(status);
                                               status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                              S47051=3;
-                                              S47532=0;
+                                              S47699=3;
+                                              S48180=0;
                                               if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                                 labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                                S47532=1;
+                                                S48180=1;
                                                 active[3]=1;
                                                 ends[3]=1;
                                                 tdone[3]=1;
                                               }
                                               else {
-                                                S47527=0;
+                                                S48175=0;
                                                 if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                                   labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                                  S47527=1;
+                                                  S48175=1;
                                                   if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                                     labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                                     ends[3]=2;
                                                     ;//sysj\labellerController.sysj line: 125, column: 5
-                                                    S50701=2;
+                                                    S51349=2;
                                                     active[3]=1;
                                                     ends[3]=1;
                                                     tdone[3]=1;
@@ -1162,25 +1162,25 @@ public class LabellerController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    S47051=3;
-                                    S47532=0;
+                                    S47699=3;
+                                    S48180=0;
                                     if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                       labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                      S47532=1;
+                                      S48180=1;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
                                     }
                                     else {
-                                      S47527=0;
+                                      S48175=0;
                                       if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                         labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                        S47527=1;
+                                        S48175=1;
                                         if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                           labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                           ends[3]=2;
                                           ;//sysj\labellerController.sysj line: 125, column: 5
-                                          S50701=2;
+                                          S51349=2;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
@@ -1219,16 +1219,16 @@ public class LabellerController extends ClockDomain{
                               ends[3]=2;
                               ;//sysj\labellerController.sysj line: 63, column: 5
                               w_thread_3 = (WorkpieceTwin)(labelBottle_in.getVal() == null ? null : ((WorkpieceTwin)labelBottle_in.getVal()));//sysj\labellerController.sysj line: 64, column: 5
-                              S47051=1;
+                              S47699=1;
                               if(w_thread_3 != null){//sysj\labellerController.sysj line: 65, column: 4
                                 permitted_thread_3 = false;//sysj\labellerController.sysj line: 66, column: 1
-                                S47052=0;
+                                S47700=0;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
                               else {
-                                S47051=2;
+                                S47699=2;
                                 if(w_thread_3 != null){//sysj\labellerController.sysj line: 76, column: 8
                                   w_thread_3.arrived(Machine.LABELLER);//sysj\labellerController.sysj line: 77, column: 6
                                   refusal_thread_3 = w_thread_3.labelRefusalReason();//sysj\labellerController.sysj line: 78, column: 6
@@ -1242,25 +1242,25 @@ public class LabellerController extends ClockDomain{
                                       status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
                                       currsigs.addElement(status);
                                       status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
-                                      S47051=3;
-                                      S47532=0;
+                                      S47699=3;
+                                      S48180=0;
                                       if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                         labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                        S47532=1;
+                                        S48180=1;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
                                       }
                                       else {
-                                        S47527=0;
+                                        S48175=0;
                                         if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                           labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                          S47527=1;
+                                          S48175=1;
                                           if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                             labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                             ends[3]=2;
                                             ;//sysj\labellerController.sysj line: 125, column: 5
-                                            S50701=2;
+                                            S51349=2;
                                             active[3]=1;
                                             ends[3]=1;
                                             tdone[3]=1;
@@ -1282,25 +1282,25 @@ public class LabellerController extends ClockDomain{
                                       status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
                                       currsigs.addElement(status);
                                       status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
-                                      S47051=3;
-                                      S47532=0;
+                                      S47699=3;
+                                      S48180=0;
                                       if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                         labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                        S47532=1;
+                                        S48180=1;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
                                       }
                                       else {
-                                        S47527=0;
+                                        S48175=0;
                                         if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                           labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                          S47527=1;
+                                          S48175=1;
                                           if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                             labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                             ends[3]=2;
                                             ;//sysj\labellerController.sysj line: 125, column: 5
-                                            S50701=2;
+                                            S51349=2;
                                             active[3]=1;
                                             ends[3]=1;
                                             tdone[3]=1;
@@ -1326,9 +1326,9 @@ public class LabellerController extends ClockDomain{
                                       twin.setPresent();//sysj\labellerController.sysj line: 93, column: 8
                                       currsigs.addElement(twin);
                                       twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 93, column: 8
-                                      S47120=0;
+                                      S47768=0;
                                       if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 97, column: 23
-                                        S47120=1;
+                                        S47768=1;
                                         if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
                                           applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
                                           currsigs.addElement(applyLabelRetract);
@@ -1342,25 +1342,25 @@ public class LabellerController extends ClockDomain{
                                             status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                                             currsigs.addElement(status);
                                             status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                            S47051=3;
-                                            S47532=0;
+                                            S47699=3;
+                                            S48180=0;
                                             if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                               labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                              S47532=1;
+                                              S48180=1;
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
                                             }
                                             else {
-                                              S47527=0;
+                                              S48175=0;
                                               if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                                 labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                                S47527=1;
+                                                S48175=1;
                                                 if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                                   labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                                   ends[3]=2;
                                                   ;//sysj\labellerController.sysj line: 125, column: 5
-                                                  S50701=2;
+                                                  S51349=2;
                                                   active[3]=1;
                                                   ends[3]=1;
                                                   tdone[3]=1;
@@ -1382,25 +1382,25 @@ public class LabellerController extends ClockDomain{
                                             status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                                             currsigs.addElement(status);
                                             status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                            S47051=3;
-                                            S47532=0;
+                                            S47699=3;
+                                            S48180=0;
                                             if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                               labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                              S47532=1;
+                                              S48180=1;
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
                                             }
                                             else {
-                                              S47527=0;
+                                              S48175=0;
                                               if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                                 labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                                S47527=1;
+                                                S48175=1;
                                                 if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                                   labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                                   ends[3]=2;
                                                   ;//sysj\labellerController.sysj line: 125, column: 5
-                                                  S50701=2;
+                                                  S51349=2;
                                                   active[3]=1;
                                                   ends[3]=1;
                                                   tdone[3]=1;
@@ -1441,9 +1441,9 @@ public class LabellerController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      S47120=0;
+                                      S47768=0;
                                       if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 97, column: 23
-                                        S47120=1;
+                                        S47768=1;
                                         if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
                                           applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
                                           currsigs.addElement(applyLabelRetract);
@@ -1457,25 +1457,25 @@ public class LabellerController extends ClockDomain{
                                             status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                                             currsigs.addElement(status);
                                             status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                            S47051=3;
-                                            S47532=0;
+                                            S47699=3;
+                                            S48180=0;
                                             if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                               labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                              S47532=1;
+                                              S48180=1;
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
                                             }
                                             else {
-                                              S47527=0;
+                                              S48175=0;
                                               if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                                 labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                                S47527=1;
+                                                S48175=1;
                                                 if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                                   labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                                   ends[3]=2;
                                                   ;//sysj\labellerController.sysj line: 125, column: 5
-                                                  S50701=2;
+                                                  S51349=2;
                                                   active[3]=1;
                                                   ends[3]=1;
                                                   tdone[3]=1;
@@ -1497,25 +1497,25 @@ public class LabellerController extends ClockDomain{
                                             status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                                             currsigs.addElement(status);
                                             status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                            S47051=3;
-                                            S47532=0;
+                                            S47699=3;
+                                            S48180=0;
                                             if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                               labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                              S47532=1;
+                                              S48180=1;
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
                                             }
                                             else {
-                                              S47527=0;
+                                              S48175=0;
                                               if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                                 labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                                S47527=1;
+                                                S48175=1;
                                                 if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                                   labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                                   ends[3]=2;
                                                   ;//sysj\labellerController.sysj line: 125, column: 5
-                                                  S50701=2;
+                                                  S51349=2;
                                                   active[3]=1;
                                                   ends[3]=1;
                                                   tdone[3]=1;
@@ -1558,25 +1558,25 @@ public class LabellerController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  S47051=3;
-                                  S47532=0;
+                                  S47699=3;
+                                  S48180=0;
                                   if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                     labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                    S47532=1;
+                                    S48180=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
                                   else {
-                                    S47527=0;
+                                    S48175=0;
                                     if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                       labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                      S47527=1;
+                                      S48175=1;
                                       if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                         labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                         ends[3]=2;
                                         ;//sysj\labellerController.sysj line: 125, column: 5
-                                        S50701=2;
+                                        S51349=2;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -1608,35 +1608,35 @@ public class LabellerController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      S47035=1;
-                      S47035=0;
+                      S47683=1;
+                      S47683=0;
                       if(!labelBottle_in.isPartnerPresent() || labelBottle_in.isPartnerPreempted()){//sysj\labellerController.sysj line: 63, column: 5
                         labelBottle_in.setACK(false);//sysj\labellerController.sysj line: 63, column: 5
-                        S47035=1;
+                        S47683=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S47030=0;
+                        S47678=0;
                         if(!labelBottle_in.isREQ()){//sysj\labellerController.sysj line: 63, column: 5
                           labelBottle_in.setACK(true);//sysj\labellerController.sysj line: 63, column: 5
-                          S47030=1;
+                          S47678=1;
                           if(labelBottle_in.isREQ()){//sysj\labellerController.sysj line: 63, column: 5
                             labelBottle_in.setACK(false);//sysj\labellerController.sysj line: 63, column: 5
                             ends[3]=2;
                             ;//sysj\labellerController.sysj line: 63, column: 5
                             w_thread_3 = (WorkpieceTwin)(labelBottle_in.getVal() == null ? null : ((WorkpieceTwin)labelBottle_in.getVal()));//sysj\labellerController.sysj line: 64, column: 5
-                            S47051=1;
+                            S47699=1;
                             if(w_thread_3 != null){//sysj\labellerController.sysj line: 65, column: 4
                               permitted_thread_3 = false;//sysj\labellerController.sysj line: 66, column: 1
-                              S47052=0;
+                              S47700=0;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
-                              S47051=2;
+                              S47699=2;
                               if(w_thread_3 != null){//sysj\labellerController.sysj line: 76, column: 8
                                 w_thread_3.arrived(Machine.LABELLER);//sysj\labellerController.sysj line: 77, column: 6
                                 refusal_thread_3 = w_thread_3.labelRefusalReason();//sysj\labellerController.sysj line: 78, column: 6
@@ -1650,25 +1650,25 @@ public class LabellerController extends ClockDomain{
                                     status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
                                     currsigs.addElement(status);
                                     status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
-                                    S47051=3;
-                                    S47532=0;
+                                    S47699=3;
+                                    S48180=0;
                                     if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                       labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                      S47532=1;
+                                      S48180=1;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
                                     }
                                     else {
-                                      S47527=0;
+                                      S48175=0;
                                       if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                         labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                        S47527=1;
+                                        S48175=1;
                                         if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                           labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                           ends[3]=2;
                                           ;//sysj\labellerController.sysj line: 125, column: 5
-                                          S50701=2;
+                                          S51349=2;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
@@ -1690,25 +1690,25 @@ public class LabellerController extends ClockDomain{
                                     status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
                                     currsigs.addElement(status);
                                     status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
-                                    S47051=3;
-                                    S47532=0;
+                                    S47699=3;
+                                    S48180=0;
                                     if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                       labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                      S47532=1;
+                                      S48180=1;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
                                     }
                                     else {
-                                      S47527=0;
+                                      S48175=0;
                                       if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                         labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                        S47527=1;
+                                        S48175=1;
                                         if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                           labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                           ends[3]=2;
                                           ;//sysj\labellerController.sysj line: 125, column: 5
-                                          S50701=2;
+                                          S51349=2;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
@@ -1734,9 +1734,9 @@ public class LabellerController extends ClockDomain{
                                     twin.setPresent();//sysj\labellerController.sysj line: 93, column: 8
                                     currsigs.addElement(twin);
                                     twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 93, column: 8
-                                    S47120=0;
+                                    S47768=0;
                                     if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 97, column: 23
-                                      S47120=1;
+                                      S47768=1;
                                       if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
                                         applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
                                         currsigs.addElement(applyLabelRetract);
@@ -1750,25 +1750,25 @@ public class LabellerController extends ClockDomain{
                                           status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                                           currsigs.addElement(status);
                                           status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                          S47051=3;
-                                          S47532=0;
+                                          S47699=3;
+                                          S48180=0;
                                           if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                             labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                            S47532=1;
+                                            S48180=1;
                                             active[3]=1;
                                             ends[3]=1;
                                             tdone[3]=1;
                                           }
                                           else {
-                                            S47527=0;
+                                            S48175=0;
                                             if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                               labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                              S47527=1;
+                                              S48175=1;
                                               if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                                 labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                                 ends[3]=2;
                                                 ;//sysj\labellerController.sysj line: 125, column: 5
-                                                S50701=2;
+                                                S51349=2;
                                                 active[3]=1;
                                                 ends[3]=1;
                                                 tdone[3]=1;
@@ -1790,25 +1790,25 @@ public class LabellerController extends ClockDomain{
                                           status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                                           currsigs.addElement(status);
                                           status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                          S47051=3;
-                                          S47532=0;
+                                          S47699=3;
+                                          S48180=0;
                                           if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                             labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                            S47532=1;
+                                            S48180=1;
                                             active[3]=1;
                                             ends[3]=1;
                                             tdone[3]=1;
                                           }
                                           else {
-                                            S47527=0;
+                                            S48175=0;
                                             if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                               labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                              S47527=1;
+                                              S48175=1;
                                               if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                                 labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                                 ends[3]=2;
                                                 ;//sysj\labellerController.sysj line: 125, column: 5
-                                                S50701=2;
+                                                S51349=2;
                                                 active[3]=1;
                                                 ends[3]=1;
                                                 tdone[3]=1;
@@ -1849,9 +1849,9 @@ public class LabellerController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    S47120=0;
+                                    S47768=0;
                                     if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 97, column: 23
-                                      S47120=1;
+                                      S47768=1;
                                       if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
                                         applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
                                         currsigs.addElement(applyLabelRetract);
@@ -1865,25 +1865,25 @@ public class LabellerController extends ClockDomain{
                                           status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                                           currsigs.addElement(status);
                                           status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                          S47051=3;
-                                          S47532=0;
+                                          S47699=3;
+                                          S48180=0;
                                           if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                             labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                            S47532=1;
+                                            S48180=1;
                                             active[3]=1;
                                             ends[3]=1;
                                             tdone[3]=1;
                                           }
                                           else {
-                                            S47527=0;
+                                            S48175=0;
                                             if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                               labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                              S47527=1;
+                                              S48175=1;
                                               if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                                 labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                                 ends[3]=2;
                                                 ;//sysj\labellerController.sysj line: 125, column: 5
-                                                S50701=2;
+                                                S51349=2;
                                                 active[3]=1;
                                                 ends[3]=1;
                                                 tdone[3]=1;
@@ -1905,25 +1905,25 @@ public class LabellerController extends ClockDomain{
                                           status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                                           currsigs.addElement(status);
                                           status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                          S47051=3;
-                                          S47532=0;
+                                          S47699=3;
+                                          S48180=0;
                                           if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                             labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                            S47532=1;
+                                            S48180=1;
                                             active[3]=1;
                                             ends[3]=1;
                                             tdone[3]=1;
                                           }
                                           else {
-                                            S47527=0;
+                                            S48175=0;
                                             if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                               labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                              S47527=1;
+                                              S48175=1;
                                               if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                                 labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                                 ends[3]=2;
                                                 ;//sysj\labellerController.sysj line: 125, column: 5
-                                                S50701=2;
+                                                S51349=2;
                                                 active[3]=1;
                                                 ends[3]=1;
                                                 tdone[3]=1;
@@ -1966,25 +1966,25 @@ public class LabellerController extends ClockDomain{
                                 }
                               }
                               else {
-                                S47051=3;
-                                S47532=0;
+                                S47699=3;
+                                S48180=0;
                                 if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                   labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                  S47532=1;
+                                  S48180=1;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
                                 }
                                 else {
-                                  S47527=0;
+                                  S48175=0;
                                   if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                     labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                    S47527=1;
+                                    S48175=1;
                                     if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                       labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                       ends[3]=2;
                                       ;//sysj\labellerController.sysj line: 125, column: 5
-                                      S50701=2;
+                                      S51349=2;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
@@ -2022,10 +2022,10 @@ public class LabellerController extends ClockDomain{
                   break;
                 
                 case 1 : 
-                  switch(S47052){
+                  switch(S47700){
                     case 0 : 
-                      S47052=0;
-                      S47052=1;
+                      S47700=0;
+                      S47700=1;
                       if(!permitted_thread_3){//sysj\labellerController.sysj line: 68, column: 19
                         permitted_thread_3 = GuiStep.take("LABEL", (GuiPermit)(operatorPermit.getpreval() == null ? null : ((GuiPermit)operatorPermit.getpreval())));//sysj\labellerController.sysj line: 69, column: 17
                         active[3]=1;
@@ -2035,7 +2035,7 @@ public class LabellerController extends ClockDomain{
                       else {
                         ends[3]=2;
                         ;//sysj\labellerController.sysj line: 68, column: 13
-                        S47052=2;
+                        S47700=2;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
@@ -2052,7 +2052,7 @@ public class LabellerController extends ClockDomain{
                       else {
                         ends[3]=2;
                         ;//sysj\labellerController.sysj line: 68, column: 13
-                        S47052=2;
+                        S47700=2;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
@@ -2060,8 +2060,8 @@ public class LabellerController extends ClockDomain{
                       break;
                     
                     case 2 : 
-                      S47052=2;
-                      S47051=2;
+                      S47700=2;
+                      S47699=2;
                       if(w_thread_3 != null){//sysj\labellerController.sysj line: 76, column: 8
                         w_thread_3.arrived(Machine.LABELLER);//sysj\labellerController.sysj line: 77, column: 6
                         refusal_thread_3 = w_thread_3.labelRefusalReason();//sysj\labellerController.sysj line: 78, column: 6
@@ -2075,25 +2075,25 @@ public class LabellerController extends ClockDomain{
                             status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
                             currsigs.addElement(status);
                             status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
-                            S47051=3;
-                            S47532=0;
+                            S47699=3;
+                            S48180=0;
                             if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                               labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                              S47532=1;
+                              S48180=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
-                              S47527=0;
+                              S48175=0;
                               if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                 labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                S47527=1;
+                                S48175=1;
                                 if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                   labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                   ends[3]=2;
                                   ;//sysj\labellerController.sysj line: 125, column: 5
-                                  S50701=2;
+                                  S51349=2;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -2115,25 +2115,25 @@ public class LabellerController extends ClockDomain{
                             status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
                             currsigs.addElement(status);
                             status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
-                            S47051=3;
-                            S47532=0;
+                            S47699=3;
+                            S48180=0;
                             if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                               labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                              S47532=1;
+                              S48180=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
-                              S47527=0;
+                              S48175=0;
                               if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                 labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                S47527=1;
+                                S48175=1;
                                 if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                   labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                   ends[3]=2;
                                   ;//sysj\labellerController.sysj line: 125, column: 5
-                                  S50701=2;
+                                  S51349=2;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -2159,9 +2159,9 @@ public class LabellerController extends ClockDomain{
                             twin.setPresent();//sysj\labellerController.sysj line: 93, column: 8
                             currsigs.addElement(twin);
                             twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 93, column: 8
-                            S47120=0;
+                            S47768=0;
                             if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 97, column: 23
-                              S47120=1;
+                              S47768=1;
                               if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
                                 applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
                                 currsigs.addElement(applyLabelRetract);
@@ -2175,25 +2175,25 @@ public class LabellerController extends ClockDomain{
                                   status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                                   currsigs.addElement(status);
                                   status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                  S47051=3;
-                                  S47532=0;
+                                  S47699=3;
+                                  S48180=0;
                                   if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                     labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                    S47532=1;
+                                    S48180=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
                                   else {
-                                    S47527=0;
+                                    S48175=0;
                                     if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                       labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                      S47527=1;
+                                      S48175=1;
                                       if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                         labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                         ends[3]=2;
                                         ;//sysj\labellerController.sysj line: 125, column: 5
-                                        S50701=2;
+                                        S51349=2;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -2215,25 +2215,25 @@ public class LabellerController extends ClockDomain{
                                   status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                                   currsigs.addElement(status);
                                   status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                  S47051=3;
-                                  S47532=0;
+                                  S47699=3;
+                                  S48180=0;
                                   if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                     labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                    S47532=1;
+                                    S48180=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
                                   else {
-                                    S47527=0;
+                                    S48175=0;
                                     if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                       labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                      S47527=1;
+                                      S48175=1;
                                       if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                         labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                         ends[3]=2;
                                         ;//sysj\labellerController.sysj line: 125, column: 5
-                                        S50701=2;
+                                        S51349=2;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -2274,9 +2274,9 @@ public class LabellerController extends ClockDomain{
                             }
                           }
                           else {
-                            S47120=0;
+                            S47768=0;
                             if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 97, column: 23
-                              S47120=1;
+                              S47768=1;
                               if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
                                 applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
                                 currsigs.addElement(applyLabelRetract);
@@ -2290,25 +2290,25 @@ public class LabellerController extends ClockDomain{
                                   status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                                   currsigs.addElement(status);
                                   status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                  S47051=3;
-                                  S47532=0;
+                                  S47699=3;
+                                  S48180=0;
                                   if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                     labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                    S47532=1;
+                                    S48180=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
                                   else {
-                                    S47527=0;
+                                    S48175=0;
                                     if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                       labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                      S47527=1;
+                                      S48175=1;
                                       if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                         labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                         ends[3]=2;
                                         ;//sysj\labellerController.sysj line: 125, column: 5
-                                        S50701=2;
+                                        S51349=2;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -2330,25 +2330,25 @@ public class LabellerController extends ClockDomain{
                                   status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                                   currsigs.addElement(status);
                                   status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                  S47051=3;
-                                  S47532=0;
+                                  S47699=3;
+                                  S48180=0;
                                   if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                     labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                    S47532=1;
+                                    S48180=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
                                   else {
-                                    S47527=0;
+                                    S48175=0;
                                     if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                       labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                      S47527=1;
+                                      S48175=1;
                                       if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                         labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                         ends[3]=2;
                                         ;//sysj\labellerController.sysj line: 125, column: 5
-                                        S50701=2;
+                                        S51349=2;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -2391,25 +2391,25 @@ public class LabellerController extends ClockDomain{
                         }
                       }
                       else {
-                        S47051=3;
-                        S47532=0;
+                        S47699=3;
+                        S48180=0;
                         if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                           labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                          S47532=1;
+                          S48180=1;
                           active[3]=1;
                           ends[3]=1;
                           tdone[3]=1;
                         }
                         else {
-                          S47527=0;
+                          S48175=0;
                           if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                             labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                            S47527=1;
+                            S48175=1;
                             if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                               labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                               ends[3]=2;
                               ;//sysj\labellerController.sysj line: 125, column: 5
-                              S50701=2;
+                              S51349=2;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
@@ -2433,10 +2433,10 @@ public class LabellerController extends ClockDomain{
                   break;
                 
                 case 2 : 
-                  switch(S47120){
+                  switch(S47768){
                     case 0 : 
                       if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 97, column: 23
-                        S47120=1;
+                        S47768=1;
                         if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
                           applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
                           currsigs.addElement(applyLabelRetract);
@@ -2450,25 +2450,25 @@ public class LabellerController extends ClockDomain{
                             status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                             currsigs.addElement(status);
                             status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                            S47051=3;
-                            S47532=0;
+                            S47699=3;
+                            S48180=0;
                             if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                               labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                              S47532=1;
+                              S48180=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
-                              S47527=0;
+                              S48175=0;
                               if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                 labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                S47527=1;
+                                S48175=1;
                                 if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                   labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                   ends[3]=2;
                                   ;//sysj\labellerController.sysj line: 125, column: 5
-                                  S50701=2;
+                                  S51349=2;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -2490,25 +2490,25 @@ public class LabellerController extends ClockDomain{
                             status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                             currsigs.addElement(status);
                             status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                            S47051=3;
-                            S47532=0;
+                            S47699=3;
+                            S48180=0;
                             if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                               labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                              S47532=1;
+                              S48180=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
-                              S47527=0;
+                              S48175=0;
                               if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                 labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                S47527=1;
+                                S48175=1;
                                 if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                   labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                   ends[3]=2;
                                   ;//sysj\labellerController.sysj line: 125, column: 5
-                                  S50701=2;
+                                  S51349=2;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -2563,25 +2563,25 @@ public class LabellerController extends ClockDomain{
                           status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                           currsigs.addElement(status);
                           status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                          S47051=3;
-                          S47532=0;
+                          S47699=3;
+                          S48180=0;
                           if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                             labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                            S47532=1;
+                            S48180=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
                           }
                           else {
-                            S47527=0;
+                            S48175=0;
                             if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                               labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                              S47527=1;
+                              S48175=1;
                               if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                 labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                 ends[3]=2;
                                 ;//sysj\labellerController.sysj line: 125, column: 5
-                                S50701=2;
+                                S51349=2;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -2603,25 +2603,25 @@ public class LabellerController extends ClockDomain{
                           status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                           currsigs.addElement(status);
                           status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                          S47051=3;
-                          S47532=0;
+                          S47699=3;
+                          S48180=0;
                           if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                             labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                            S47532=1;
+                            S48180=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
                           }
                           else {
-                            S47527=0;
+                            S48175=0;
                             if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                               labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                              S47527=1;
+                              S48175=1;
                               if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                 labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                 ends[3]=2;
                                 ;//sysj\labellerController.sysj line: 125, column: 5
-                                S50701=2;
+                                S51349=2;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -2655,26 +2655,26 @@ public class LabellerController extends ClockDomain{
                   break;
                 
                 case 3 : 
-                  switch(S47532){
+                  switch(S48180){
                     case 0 : 
                       if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                         labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                        S47532=1;
+                        S48180=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        switch(S47527){
+                        switch(S48175){
                           case 0 : 
                             if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                               labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                              S47527=1;
+                              S48175=1;
                               if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                 labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                 ends[3]=2;
                                 ;//sysj\labellerController.sysj line: 125, column: 5
-                                S50701=2;
+                                S51349=2;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -2697,7 +2697,7 @@ public class LabellerController extends ClockDomain{
                               labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                               ends[3]=2;
                               ;//sysj\labellerController.sysj line: 125, column: 5
-                              S50701=2;
+                              S51349=2;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
@@ -2714,25 +2714,25 @@ public class LabellerController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      S47532=1;
-                      S47532=0;
+                      S48180=1;
+                      S48180=0;
                       if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                         labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                        S47532=1;
+                        S48180=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S47527=0;
+                        S48175=0;
                         if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                           labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                          S47527=1;
+                          S48175=1;
                           if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                             labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                             ends[3]=2;
                             ;//sysj\labellerController.sysj line: 125, column: 5
-                            S50701=2;
+                            S51349=2;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -2755,21 +2755,21 @@ public class LabellerController extends ClockDomain{
                   break;
                 
                 case 4 : 
-                  S50701=2;
+                  S51349=2;
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                   break;
                 
                 case 5 : 
-                  S50701=2;
+                  S51349=2;
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                   break;
                 
                 case 6 : 
-                  S50701=2;
+                  S51349=2;
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
@@ -2780,48 +2780,48 @@ public class LabellerController extends ClockDomain{
             break;
           
           case 2 : 
-            S50701=2;
-            S50701=0;
+            S51349=2;
+            S51349=0;
             if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 60, column: 20
-              S50701=1;
+              S51349=1;
               if(manual_1.getprestatus()){//sysj\labellerController.sysj line: 62, column: 20
                 labelBottle_in.setPreempted();
                 labelDone_o.setPreempted();
-                S50701=2;
+                S51349=2;
                 active[3]=1;
                 ends[3]=1;
                 tdone[3]=1;
               }
               else {
-                S47051=0;
-                S47035=0;
+                S47699=0;
+                S47683=0;
                 if(!labelBottle_in.isPartnerPresent() || labelBottle_in.isPartnerPreempted()){//sysj\labellerController.sysj line: 63, column: 5
                   labelBottle_in.setACK(false);//sysj\labellerController.sysj line: 63, column: 5
-                  S47035=1;
+                  S47683=1;
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  S47030=0;
+                  S47678=0;
                   if(!labelBottle_in.isREQ()){//sysj\labellerController.sysj line: 63, column: 5
                     labelBottle_in.setACK(true);//sysj\labellerController.sysj line: 63, column: 5
-                    S47030=1;
+                    S47678=1;
                     if(labelBottle_in.isREQ()){//sysj\labellerController.sysj line: 63, column: 5
                       labelBottle_in.setACK(false);//sysj\labellerController.sysj line: 63, column: 5
                       ends[3]=2;
                       ;//sysj\labellerController.sysj line: 63, column: 5
                       w_thread_3 = (WorkpieceTwin)(labelBottle_in.getVal() == null ? null : ((WorkpieceTwin)labelBottle_in.getVal()));//sysj\labellerController.sysj line: 64, column: 5
-                      S47051=1;
+                      S47699=1;
                       if(w_thread_3 != null){//sysj\labellerController.sysj line: 65, column: 4
                         permitted_thread_3 = false;//sysj\labellerController.sysj line: 66, column: 1
-                        S47052=0;
+                        S47700=0;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S47051=2;
+                        S47699=2;
                         if(w_thread_3 != null){//sysj\labellerController.sysj line: 76, column: 8
                           w_thread_3.arrived(Machine.LABELLER);//sysj\labellerController.sysj line: 77, column: 6
                           refusal_thread_3 = w_thread_3.labelRefusalReason();//sysj\labellerController.sysj line: 78, column: 6
@@ -2835,25 +2835,25 @@ public class LabellerController extends ClockDomain{
                               status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
                               currsigs.addElement(status);
                               status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
-                              S47051=3;
-                              S47532=0;
+                              S47699=3;
+                              S48180=0;
                               if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                 labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                S47532=1;
+                                S48180=1;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
                               else {
-                                S47527=0;
+                                S48175=0;
                                 if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                   labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                  S47527=1;
+                                  S48175=1;
                                   if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                     labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                     ends[3]=2;
                                     ;//sysj\labellerController.sysj line: 125, column: 5
-                                    S50701=2;
+                                    S51349=2;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -2875,25 +2875,25 @@ public class LabellerController extends ClockDomain{
                               status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
                               currsigs.addElement(status);
                               status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
-                              S47051=3;
-                              S47532=0;
+                              S47699=3;
+                              S48180=0;
                               if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                 labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                S47532=1;
+                                S48180=1;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
                               else {
-                                S47527=0;
+                                S48175=0;
                                 if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                   labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                  S47527=1;
+                                  S48175=1;
                                   if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                     labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                     ends[3]=2;
                                     ;//sysj\labellerController.sysj line: 125, column: 5
-                                    S50701=2;
+                                    S51349=2;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -2919,9 +2919,9 @@ public class LabellerController extends ClockDomain{
                               twin.setPresent();//sysj\labellerController.sysj line: 93, column: 8
                               currsigs.addElement(twin);
                               twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 93, column: 8
-                              S47120=0;
+                              S47768=0;
                               if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 97, column: 23
-                                S47120=1;
+                                S47768=1;
                                 if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
                                   applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
                                   currsigs.addElement(applyLabelRetract);
@@ -2935,25 +2935,25 @@ public class LabellerController extends ClockDomain{
                                     status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                                     currsigs.addElement(status);
                                     status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                    S47051=3;
-                                    S47532=0;
+                                    S47699=3;
+                                    S48180=0;
                                     if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                       labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                      S47532=1;
+                                      S48180=1;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
                                     }
                                     else {
-                                      S47527=0;
+                                      S48175=0;
                                       if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                         labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                        S47527=1;
+                                        S48175=1;
                                         if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                           labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                           ends[3]=2;
                                           ;//sysj\labellerController.sysj line: 125, column: 5
-                                          S50701=2;
+                                          S51349=2;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
@@ -2975,25 +2975,25 @@ public class LabellerController extends ClockDomain{
                                     status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                                     currsigs.addElement(status);
                                     status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                    S47051=3;
-                                    S47532=0;
+                                    S47699=3;
+                                    S48180=0;
                                     if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                       labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                      S47532=1;
+                                      S48180=1;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
                                     }
                                     else {
-                                      S47527=0;
+                                      S48175=0;
                                       if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                         labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                        S47527=1;
+                                        S48175=1;
                                         if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                           labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                           ends[3]=2;
                                           ;//sysj\labellerController.sysj line: 125, column: 5
-                                          S50701=2;
+                                          S51349=2;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
@@ -3034,9 +3034,9 @@ public class LabellerController extends ClockDomain{
                               }
                             }
                             else {
-                              S47120=0;
+                              S47768=0;
                               if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 97, column: 23
-                                S47120=1;
+                                S47768=1;
                                 if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
                                   applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
                                   currsigs.addElement(applyLabelRetract);
@@ -3050,25 +3050,25 @@ public class LabellerController extends ClockDomain{
                                     status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                                     currsigs.addElement(status);
                                     status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                    S47051=3;
-                                    S47532=0;
+                                    S47699=3;
+                                    S48180=0;
                                     if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                       labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                      S47532=1;
+                                      S48180=1;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
                                     }
                                     else {
-                                      S47527=0;
+                                      S48175=0;
                                       if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                         labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                        S47527=1;
+                                        S48175=1;
                                         if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                           labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                           ends[3]=2;
                                           ;//sysj\labellerController.sysj line: 125, column: 5
-                                          S50701=2;
+                                          S51349=2;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
@@ -3090,25 +3090,25 @@ public class LabellerController extends ClockDomain{
                                     status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                                     currsigs.addElement(status);
                                     status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                    S47051=3;
-                                    S47532=0;
+                                    S47699=3;
+                                    S48180=0;
                                     if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                                       labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                      S47532=1;
+                                      S48180=1;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
                                     }
                                     else {
-                                      S47527=0;
+                                      S48175=0;
                                       if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                         labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                        S47527=1;
+                                        S48175=1;
                                         if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                           labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                           ends[3]=2;
                                           ;//sysj\labellerController.sysj line: 125, column: 5
-                                          S50701=2;
+                                          S51349=2;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
@@ -3151,25 +3151,25 @@ public class LabellerController extends ClockDomain{
                           }
                         }
                         else {
-                          S47051=3;
-                          S47532=0;
+                          S47699=3;
+                          S48180=0;
                           if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                             labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                            S47532=1;
+                            S48180=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
                           }
                           else {
-                            S47527=0;
+                            S48175=0;
                             if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                               labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                              S47527=1;
+                              S48175=1;
                               if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                 labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                 ends[3]=2;
                                 ;//sysj\labellerController.sysj line: 125, column: 5
-                                S50701=2;
+                                S51349=2;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -3216,8 +3216,8 @@ public class LabellerController extends ClockDomain{
     }
   }
 
-  public void thread69349(int [] tdone, int [] ends){
-        switch(S47026){
+  public void thread69997(int [] tdone, int [] ends){
+        switch(S47674){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -3251,13 +3251,13 @@ public class LabellerController extends ClockDomain{
     }
   }
 
-  public void thread69347(int [] tdone, int [] ends){
-        S69340=1;
-    S69238=0;
+  public void thread69995(int [] tdone, int [] ends){
+        S69988=1;
+    S69886=0;
     if(manual_1.getprestatus()){//sysj\labellerController.sysj line: 152, column: 20
-      S69238=1;
+      S69886=1;
       if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 153, column: 20
-        S69238=2;
+        S69886=2;
         active[5]=1;
         ends[5]=1;
         tdone[5]=1;
@@ -3302,8 +3302,8 @@ public class LabellerController extends ClockDomain{
     }
   }
 
-  public void thread69346(int [] tdone, int [] ends){
-        S69188=1;
+  public void thread69994(int [] tdone, int [] ends){
+        S69836=1;
     t_thread_4 = new LabellerTwin();//sysj\labellerController.sysj line: 132, column: 3
     labels_thread_4 = 0;//sysj\labellerController.sysj line: 133, column: 3
     glue_thread_4 = 0;//sysj\labellerController.sysj line: 134, column: 3
@@ -3432,53 +3432,53 @@ public class LabellerController extends ClockDomain{
     }
   }
 
-  public void thread69345(int [] tdone, int [] ends){
-        S69072=1;
+  public void thread69993(int [] tdone, int [] ends){
+        S69720=1;
     t_thread_3 = new LabellerTwin();//sysj\labellerController.sysj line: 54, column: 3
     w_thread_3 = null;//sysj\labellerController.sysj line: 55, column: 3
     label_thread_3 = null;//sysj\labellerController.sysj line: 56, column: 3
     refusal_thread_3 = null;//sysj\labellerController.sysj line: 57, column: 3
-    S50701=0;
+    S51349=0;
     if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 60, column: 20
-      S50701=1;
+      S51349=1;
       if(manual_1.getprestatus()){//sysj\labellerController.sysj line: 62, column: 20
         labelBottle_in.setPreempted();
         labelDone_o.setPreempted();
-        S50701=2;
+        S51349=2;
         active[3]=1;
         ends[3]=1;
         tdone[3]=1;
       }
       else {
-        S47051=0;
-        S47035=0;
+        S47699=0;
+        S47683=0;
         if(!labelBottle_in.isPartnerPresent() || labelBottle_in.isPartnerPreempted()){//sysj\labellerController.sysj line: 63, column: 5
           labelBottle_in.setACK(false);//sysj\labellerController.sysj line: 63, column: 5
-          S47035=1;
+          S47683=1;
           active[3]=1;
           ends[3]=1;
           tdone[3]=1;
         }
         else {
-          S47030=0;
+          S47678=0;
           if(!labelBottle_in.isREQ()){//sysj\labellerController.sysj line: 63, column: 5
             labelBottle_in.setACK(true);//sysj\labellerController.sysj line: 63, column: 5
-            S47030=1;
+            S47678=1;
             if(labelBottle_in.isREQ()){//sysj\labellerController.sysj line: 63, column: 5
               labelBottle_in.setACK(false);//sysj\labellerController.sysj line: 63, column: 5
               ends[3]=2;
               ;//sysj\labellerController.sysj line: 63, column: 5
               w_thread_3 = (WorkpieceTwin)(labelBottle_in.getVal() == null ? null : ((WorkpieceTwin)labelBottle_in.getVal()));//sysj\labellerController.sysj line: 64, column: 5
-              S47051=1;
+              S47699=1;
               if(w_thread_3 != null){//sysj\labellerController.sysj line: 65, column: 4
                 permitted_thread_3 = false;//sysj\labellerController.sysj line: 66, column: 1
-                S47052=0;
+                S47700=0;
                 active[3]=1;
                 ends[3]=1;
                 tdone[3]=1;
               }
               else {
-                S47051=2;
+                S47699=2;
                 if(w_thread_3 != null){//sysj\labellerController.sysj line: 76, column: 8
                   w_thread_3.arrived(Machine.LABELLER);//sysj\labellerController.sysj line: 77, column: 6
                   refusal_thread_3 = w_thread_3.labelRefusalReason();//sysj\labellerController.sysj line: 78, column: 6
@@ -3492,25 +3492,25 @@ public class LabellerController extends ClockDomain{
                       status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
                       currsigs.addElement(status);
                       status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
-                      S47051=3;
-                      S47532=0;
+                      S47699=3;
+                      S48180=0;
                       if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                         labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                        S47532=1;
+                        S48180=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S47527=0;
+                        S48175=0;
                         if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                           labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                          S47527=1;
+                          S48175=1;
                           if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                             labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                             ends[3]=2;
                             ;//sysj\labellerController.sysj line: 125, column: 5
-                            S50701=2;
+                            S51349=2;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -3532,25 +3532,25 @@ public class LabellerController extends ClockDomain{
                       status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
                       currsigs.addElement(status);
                       status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
-                      S47051=3;
-                      S47532=0;
+                      S47699=3;
+                      S48180=0;
                       if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                         labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                        S47532=1;
+                        S48180=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S47527=0;
+                        S48175=0;
                         if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                           labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                          S47527=1;
+                          S48175=1;
                           if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                             labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                             ends[3]=2;
                             ;//sysj\labellerController.sysj line: 125, column: 5
-                            S50701=2;
+                            S51349=2;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -3576,9 +3576,9 @@ public class LabellerController extends ClockDomain{
                       twin.setPresent();//sysj\labellerController.sysj line: 93, column: 8
                       currsigs.addElement(twin);
                       twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 93, column: 8
-                      S47120=0;
+                      S47768=0;
                       if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 97, column: 23
-                        S47120=1;
+                        S47768=1;
                         if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
                           applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
                           currsigs.addElement(applyLabelRetract);
@@ -3592,25 +3592,25 @@ public class LabellerController extends ClockDomain{
                             status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                             currsigs.addElement(status);
                             status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                            S47051=3;
-                            S47532=0;
+                            S47699=3;
+                            S48180=0;
                             if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                               labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                              S47532=1;
+                              S48180=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
-                              S47527=0;
+                              S48175=0;
                               if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                 labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                S47527=1;
+                                S48175=1;
                                 if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                   labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                   ends[3]=2;
                                   ;//sysj\labellerController.sysj line: 125, column: 5
-                                  S50701=2;
+                                  S51349=2;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -3632,25 +3632,25 @@ public class LabellerController extends ClockDomain{
                             status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                             currsigs.addElement(status);
                             status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                            S47051=3;
-                            S47532=0;
+                            S47699=3;
+                            S48180=0;
                             if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                               labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                              S47532=1;
+                              S48180=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
-                              S47527=0;
+                              S48175=0;
                               if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                 labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                S47527=1;
+                                S48175=1;
                                 if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                   labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                   ends[3]=2;
                                   ;//sysj\labellerController.sysj line: 125, column: 5
-                                  S50701=2;
+                                  S51349=2;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -3691,9 +3691,9 @@ public class LabellerController extends ClockDomain{
                       }
                     }
                     else {
-                      S47120=0;
+                      S47768=0;
                       if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 97, column: 23
-                        S47120=1;
+                        S47768=1;
                         if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
                           applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
                           currsigs.addElement(applyLabelRetract);
@@ -3707,25 +3707,25 @@ public class LabellerController extends ClockDomain{
                             status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                             currsigs.addElement(status);
                             status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                            S47051=3;
-                            S47532=0;
+                            S47699=3;
+                            S48180=0;
                             if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                               labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                              S47532=1;
+                              S48180=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
-                              S47527=0;
+                              S48175=0;
                               if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                 labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                S47527=1;
+                                S48175=1;
                                 if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                   labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                   ends[3]=2;
                                   ;//sysj\labellerController.sysj line: 125, column: 5
-                                  S50701=2;
+                                  S51349=2;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -3747,25 +3747,25 @@ public class LabellerController extends ClockDomain{
                             status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
                             currsigs.addElement(status);
                             status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                            S47051=3;
-                            S47532=0;
+                            S47699=3;
+                            S48180=0;
                             if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                               labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                              S47532=1;
+                              S48180=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
-                              S47527=0;
+                              S48175=0;
                               if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                 labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                S47527=1;
+                                S48175=1;
                                 if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                                   labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                                   ends[3]=2;
                                   ;//sysj\labellerController.sysj line: 125, column: 5
-                                  S50701=2;
+                                  S51349=2;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -3808,25 +3808,25 @@ public class LabellerController extends ClockDomain{
                   }
                 }
                 else {
-                  S47051=3;
-                  S47532=0;
+                  S47699=3;
+                  S48180=0;
                   if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
                     labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                    S47532=1;
+                    S48180=1;
                     active[3]=1;
                     ends[3]=1;
                     tdone[3]=1;
                   }
                   else {
-                    S47527=0;
+                    S48175=0;
                     if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                       labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                      S47527=1;
+                      S48175=1;
                       if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
                         labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
                         ends[3]=2;
                         ;//sysj\labellerController.sysj line: 125, column: 5
-                        S50701=2;
+                        S51349=2;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
@@ -3867,8 +3867,8 @@ public class LabellerController extends ClockDomain{
     }
   }
 
-  public void thread69344(int [] tdone, int [] ends){
-        S47026=1;
+  public void thread69992(int [] tdone, int [] ends){
+        S47674=1;
     if(mode.getprestatus()){//sysj\labellerController.sysj line: 45, column: 12
       if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\labellerController.sysj line: 46, column: 8
         auto_1.setPresent();//sysj\labellerController.sysj line: 46, column: 30
@@ -3899,34 +3899,34 @@ public class LabellerController extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S69342){
+      switch(S69990){
         case 0 : 
-          S69342=0;
+          S69990=0;
           break RUN;
         
         case 1 : 
-          S69342=2;
-          S69342=2;
+          S69990=2;
+          S69990=2;
           auto_1.setClear();//sysj\labellerController.sysj line: 41, column: 2
           manual_1.setClear();//sysj\labellerController.sysj line: 41, column: 2
-          thread69344(tdone,ends);
-          thread69345(tdone,ends);
-          thread69346(tdone,ends);
-          thread69347(tdone,ends);
-          int biggest69348 = 0;
-          if(ends[2]>=biggest69348){
-            biggest69348=ends[2];
+          thread69992(tdone,ends);
+          thread69993(tdone,ends);
+          thread69994(tdone,ends);
+          thread69995(tdone,ends);
+          int biggest69996 = 0;
+          if(ends[2]>=biggest69996){
+            biggest69996=ends[2];
           }
-          if(ends[3]>=biggest69348){
-            biggest69348=ends[3];
+          if(ends[3]>=biggest69996){
+            biggest69996=ends[3];
           }
-          if(ends[4]>=biggest69348){
-            biggest69348=ends[4];
+          if(ends[4]>=biggest69996){
+            biggest69996=ends[4];
           }
-          if(ends[5]>=biggest69348){
-            biggest69348=ends[5];
+          if(ends[5]>=biggest69996){
+            biggest69996=ends[5];
           }
-          if(biggest69348 == 1){
+          if(biggest69996 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
@@ -3935,34 +3935,34 @@ public class LabellerController extends ClockDomain{
         case 2 : 
           auto_1.setClear();//sysj\labellerController.sysj line: 41, column: 2
           manual_1.setClear();//sysj\labellerController.sysj line: 41, column: 2
-          thread69349(tdone,ends);
-          thread69350(tdone,ends);
-          thread69351(tdone,ends);
-          thread69352(tdone,ends);
-          int biggest69353 = 0;
-          if(ends[2]>=biggest69353){
-            biggest69353=ends[2];
+          thread69997(tdone,ends);
+          thread69998(tdone,ends);
+          thread69999(tdone,ends);
+          thread70000(tdone,ends);
+          int biggest70001 = 0;
+          if(ends[2]>=biggest70001){
+            biggest70001=ends[2];
           }
-          if(ends[3]>=biggest69353){
-            biggest69353=ends[3];
+          if(ends[3]>=biggest70001){
+            biggest70001=ends[3];
           }
-          if(ends[4]>=biggest69353){
-            biggest69353=ends[4];
+          if(ends[4]>=biggest70001){
+            biggest70001=ends[4];
           }
-          if(ends[5]>=biggest69353){
-            biggest69353=ends[5];
+          if(ends[5]>=biggest70001){
+            biggest70001=ends[5];
           }
-          if(biggest69353 == 1){
+          if(biggest70001 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest69353 == 0){
-            S69342=0;
+          if(biggest70001 == 0){
+            S69990=0;
             active[1]=0;
             ends[1]=0;
-            S69342=0;
+            S69990=0;
             break RUN;
           }
         

@@ -240,6 +240,14 @@ LiquidDumperController(
 
 					code = BLOCKED;
 
+                    // Retain the transaction until the upright, released machine's
+                    // simulated waste-tank service has restored actual capacity.
+                    while(level >= TANK_CAPACITY){
+                        pause;
+                        present(wasteTankLevel){ level = ((Integer)#wasteTankLevel).intValue(); }
+                    }
+                    code = OK;
+
 				}
 
 

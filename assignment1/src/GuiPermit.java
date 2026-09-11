@@ -11,4 +11,10 @@ public final class GuiPermit implements Serializable {
         this.automatic = automatic; this.labellerBlocked = labellerBlocked;
         this.tickets = Collections.unmodifiableMap(new HashMap<String, Long>(tickets));
     }
+    @Override public boolean equals(Object other) {
+        if (!(other instanceof GuiPermit)) return false;
+        GuiPermit p=(GuiPermit)other;
+        return automatic==p.automatic && labellerBlocked==p.labellerBlocked && tickets.equals(p.tickets);
+    }
+    @Override public int hashCode() { return Objects.hash(automatic,labellerBlocked,tickets); }
 }

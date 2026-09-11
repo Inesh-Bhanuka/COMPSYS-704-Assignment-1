@@ -29,7 +29,7 @@ public class RecyclingConveyorPlant extends ClockDomain{
   private boolean cleared_thread_1;//sysj\recyclingConveyorPlant.sysj line: 109, column: 2
   private boolean running_thread_1;//sysj\recyclingConveyorPlant.sysj line: 111, column: 2
   private boolean indexing_thread_1;//sysj\recyclingConveyorPlant.sysj line: 113, column: 2
-  private int S178195 = 1;
+  private int S200401 = 1;
   
   private int[] ends = new int[2];
   private int[] tdone = new int[2];
@@ -41,14 +41,14 @@ public class RecyclingConveyorPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S178195){
+      switch(S200401){
         case 0 : 
-          S178195=0;
+          S200401=0;
           break RUN;
         
         case 1 : 
-          S178195=2;
-          S178195=2;
+          S200401=2;
+          S200401=2;
           STEP_thread_1 = 5;//sysj\recyclingConveyorPlant.sysj line: 95, column: 2
           LAST_thread_1 = 3;//sysj\recyclingConveyorPlant.sysj line: 97, column: 2
           pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 101, column: 2

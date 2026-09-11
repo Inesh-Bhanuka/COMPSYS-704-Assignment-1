@@ -64,11 +64,7 @@ LiquidDumperPlant(
 
 	int angle = 0;
 
-	int drain = 0;
-
-	boolean drained = false;
-
-	int tank = 0;
+	DumperDrainCycle drain = new DumperDrainCycle(DRAIN, ROTATE);
 
 
 
@@ -119,28 +115,10 @@ LiquidDumperPlant(
 			// ---- drain ----
 
 			present(drainValveOnOff){
-
-				if(angle == ROTATE && !drained){
-
-					drain++;
-
-					if(drain >= DRAIN){
-
-						drained = true;
-
-						drain = 0;
-
-						tank++;
-
-						System.out.println("[LDPlant] Contents drained to the waste tank (level " + tank + ").");
-
-					}
-
-				}
-
+				drain.openValve(angle);
 			}
 
-			if(drained){ emit bottleDrained; }
+			if(drain.drained()){ emit bottleDrained; }
 
 
 
@@ -148,15 +126,8 @@ LiquidDumperPlant(
 
 			// will be a fresh, full bottle.
 
-			if(clamp == 0){
-
-				drained = false;
-
-			}
-
-
-
-			emit wasteTankLevel(tank);
+			drain.finishTick(clamp, angle);
+			emit wasteTankLevel(drain.level());
 
 		}
 

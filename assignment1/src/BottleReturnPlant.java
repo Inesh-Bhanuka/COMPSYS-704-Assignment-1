@@ -26,8 +26,8 @@ public class BottleReturnPlant extends ClockDomain{
   private int arm_thread_1;//sysj\bottleReturnPlant.sysj line: 55, column: 2
   private boolean running_thread_1;//sysj\bottleReturnPlant.sysj line: 57, column: 2
   private boolean carrying_thread_1;//sysj\bottleReturnPlant.sysj line: 59, column: 2
-  private int bottles_thread_1;//sysj\bottleReturnPlant.sysj line: 61, column: 2
-  private int S15293 = 1;
+  private RecyclingCapacity bin_thread_1;//sysj\bottleReturnPlant.sysj line: 61, column: 2
+  private int S15941 = 1;
   
   private int[] ends = new int[2];
   private int[] tdone = new int[2];
@@ -39,14 +39,14 @@ public class BottleReturnPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S15293){
+      switch(S15941){
         case 0 : 
-          S15293=0;
+          S15941=0;
           break RUN;
         
         case 1 : 
-          S15293=2;
-          S15293=2;
+          S15941=2;
+          S15941=2;
           BELT_thread_1 = 6;//sysj\bottleReturnPlant.sysj line: 45, column: 2
           ARM_thread_1 = 4;//sysj\bottleReturnPlant.sysj line: 47, column: 2
           BIN_CAPACITY_thread_1 = 3;//sysj\bottleReturnPlant.sysj line: 49, column: 2
@@ -54,7 +54,7 @@ public class BottleReturnPlant extends ClockDomain{
           arm_thread_1 = 0;//sysj\bottleReturnPlant.sysj line: 55, column: 2
           running_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 57, column: 2
           carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 59, column: 2
-          bottles_thread_1 = 0;//sysj\bottleReturnPlant.sysj line: 61, column: 2
+          bin_thread_1 = new RecyclingCapacity("Bottle collector", BIN_CAPACITY_thread_1);//sysj\bottleReturnPlant.sysj line: 61, column: 2
           if(enable.getprestatus()){//sysj\bottleReturnPlant.sysj line: 67, column: 11
             if(motorOnOff.getprestatus()){//sysj\bottleReturnPlant.sysj line: 71, column: 12
               if(!running_thread_1) {//sysj\bottleReturnPlant.sysj line: 73, column: 17
@@ -90,14 +90,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -110,8 +111,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -128,8 +130,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -142,8 +145,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -163,14 +167,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -183,8 +188,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -201,8 +207,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -215,8 +222,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -241,14 +249,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -261,8 +270,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -279,8 +289,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -293,8 +304,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -314,14 +326,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -334,8 +347,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -352,8 +366,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -366,8 +381,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -401,14 +417,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -421,8 +438,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -439,8 +457,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -453,8 +472,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -474,14 +494,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -494,8 +515,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -512,8 +534,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -526,8 +549,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -552,14 +576,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -572,8 +597,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -590,8 +616,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -604,8 +631,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -625,14 +653,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -645,8 +674,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -663,8 +693,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -677,8 +708,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -717,14 +749,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -737,8 +770,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -755,8 +789,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -769,8 +804,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -790,14 +826,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -810,8 +847,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -828,8 +866,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -842,8 +881,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -868,14 +908,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -888,8 +929,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -906,8 +948,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -920,8 +963,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -941,14 +985,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -961,8 +1006,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -979,8 +1025,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -993,8 +1040,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1028,14 +1076,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1048,8 +1097,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1066,8 +1116,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1080,8 +1131,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1101,14 +1153,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1121,8 +1174,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1139,8 +1193,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1153,8 +1208,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1179,14 +1235,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1199,8 +1256,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1217,8 +1275,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1231,8 +1290,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1252,14 +1312,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1272,8 +1333,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1290,8 +1352,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1304,8 +1367,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1365,14 +1429,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1385,8 +1450,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1403,8 +1469,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1417,8 +1484,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1438,14 +1506,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1458,8 +1527,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1476,8 +1546,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1490,8 +1561,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1516,14 +1588,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1536,8 +1609,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1554,8 +1628,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1568,8 +1643,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1589,14 +1665,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1609,8 +1686,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1627,8 +1705,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1641,8 +1720,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1676,14 +1756,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1696,8 +1777,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1714,8 +1796,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1728,8 +1811,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1749,14 +1833,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1769,8 +1854,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1787,8 +1873,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1801,8 +1888,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1827,14 +1915,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1847,8 +1936,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1865,8 +1955,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1879,8 +1970,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1900,14 +1992,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1920,8 +2013,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1938,8 +2032,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1952,8 +2047,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -1992,14 +2088,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2012,8 +2109,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2030,8 +2128,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2044,8 +2143,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2065,14 +2165,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2085,8 +2186,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2103,8 +2205,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2117,8 +2220,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2143,14 +2247,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2163,8 +2268,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2181,8 +2287,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2195,8 +2302,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2216,14 +2324,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2236,8 +2345,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2254,8 +2364,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2268,8 +2379,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2303,14 +2415,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2323,8 +2436,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2341,8 +2455,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2355,8 +2470,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2376,14 +2492,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2396,8 +2513,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2414,8 +2532,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2428,8 +2547,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2454,14 +2574,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2474,8 +2595,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2492,8 +2614,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2506,8 +2629,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2527,14 +2651,15 @@ public class BottleReturnPlant extends ClockDomain{
                       currsigs.addElement(armAtLoader);
                       if(carrying_thread_1) {//sysj\bottleReturnPlant.sysj line: 145, column: 17
                         carrying_thread_1 = false;//sysj\bottleReturnPlant.sysj line: 147, column: 6
-                        bottles_thread_1 = bottles_thread_1 + 1;//sysj\bottleReturnPlant.sysj line: 149, column: 6
-                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles_thread_1 + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
+                        bin_thread_1.add();//sysj\bottleReturnPlant.sysj line: 149, column: 6
+                        System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin_thread_1.level() + " of " + BIN_CAPACITY_thread_1 + ").");//sysj\bottleReturnPlant.sysj line: 151, column: 6
                       }
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2547,8 +2672,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2565,8 +2691,9 @@ public class BottleReturnPlant extends ClockDomain{
                       if(arm_thread_1 == 0){//sysj\bottleReturnPlant.sysj line: 157, column: 7
                         armAtHome.setPresent();//sysj\bottleReturnPlant.sysj line: 157, column: 18
                         currsigs.addElement(armAtHome);
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;
@@ -2579,8 +2706,9 @@ public class BottleReturnPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottles_thread_1 >= BIN_CAPACITY_thread_1){//sysj\bottleReturnPlant.sysj line: 161, column: 7
-                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 163, column: 5
+                        bin_thread_1.serviceReturn(arm_thread_1, carrying_thread_1, pos_thread_1);//sysj\bottleReturnPlant.sysj line: 161, column: 4
+                        if(bin_thread_1.full()){//sysj\bottleReturnPlant.sysj line: 162, column: 4
+                          collectorBinFull.setPresent();//sysj\bottleReturnPlant.sysj line: 164, column: 5
                           currsigs.addElement(collectorBinFull);
                           active[1]=1;
                           ends[1]=1;

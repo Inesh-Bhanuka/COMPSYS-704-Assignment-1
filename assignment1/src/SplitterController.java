@@ -32,24 +32,24 @@ public class SplitterController extends ClockDomain{
   private int t_thread_3;//sysj\splitterController.sysj line: 127, column: 3
   private int code_thread_3;//sysj\splitterController.sysj line: 129, column: 3
   private boolean confirmed_thread_3;//sysj\splitterController.sysj line: 131, column: 3
-  private int S225490 = 1;
-  private int S214720 = 1;
-  private int S225336 = 1;
-  private int S216490 = 1;
-  private int S214745 = 1;
-  private int S214729 = 1;
-  private int S214724 = 1;
-  private int S214835 = 1;
-  private int S214987 = 1;
-  private int S214982 = 1;
-  private int S225488 = 1;
-  private int S225386 = 1;
+  private int S247696 = 1;
+  private int S236926 = 1;
+  private int S247542 = 1;
+  private int S238696 = 1;
+  private int S236951 = 1;
+  private int S236935 = 1;
+  private int S236930 = 1;
+  private int S237041 = 1;
+  private int S237193 = 1;
+  private int S237188 = 1;
+  private int S247694 = 1;
+  private int S247592 = 1;
   
   private int[] ends = new int[5];
   private int[] tdone = new int[5];
   
-  public void thread225498(int [] tdone, int [] ends){
-        switch(S225488){
+  public void thread247704(int [] tdone, int [] ends){
+        switch(S247694){
       case 0 : 
         active[4]=0;
         ends[4]=0;
@@ -57,12 +57,12 @@ public class SplitterController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S225386){
+        switch(S247592){
           case 0 : 
             if(manual_1.getprestatus()){//sysj\splitterController.sysj line: 265, column: 20
-              S225386=1;
+              S247592=1;
               if(auto_1.getprestatus()){//sysj\splitterController.sysj line: 267, column: 20
-                S225386=2;
+                S247592=2;
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
@@ -109,7 +109,7 @@ public class SplitterController extends ClockDomain{
           
           case 1 : 
             if(auto_1.getprestatus()){//sysj\splitterController.sysj line: 267, column: 20
-              S225386=2;
+              S247592=2;
               active[4]=1;
               ends[4]=1;
               tdone[4]=1;
@@ -149,12 +149,12 @@ public class SplitterController extends ClockDomain{
             break;
           
           case 2 : 
-            S225386=2;
-            S225386=0;
+            S247592=2;
+            S247592=0;
             if(manual_1.getprestatus()){//sysj\splitterController.sysj line: 265, column: 20
-              S225386=1;
+              S247592=1;
               if(auto_1.getprestatus()){//sysj\splitterController.sysj line: 267, column: 20
-                S225386=2;
+                S247592=2;
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
@@ -205,8 +205,8 @@ public class SplitterController extends ClockDomain{
     }
   }
 
-  public void thread225497(int [] tdone, int [] ends){
-        switch(S225336){
+  public void thread247703(int [] tdone, int [] ends){
+        switch(S247542){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -214,45 +214,45 @@ public class SplitterController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S216490){
+        switch(S238696){
           case 0 : 
             if(auto_1.getprestatus()){//sysj\splitterController.sysj line: 137, column: 20
-              S216490=1;
+              S238696=1;
               if(manual_1.getprestatus()){//sysj\splitterController.sysj line: 141, column: 20
                 enable_in.setPreempted();
                 status_o.setPreempted();
-                S216490=2;
+                S238696=2;
                 active[3]=1;
                 ends[3]=1;
                 tdone[3]=1;
               }
               else {
-                S214745=0;
-                S214729=0;
+                S236951=0;
+                S236935=0;
                 if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\splitterController.sysj line: 143, column: 5
                   enable_in.setACK(false);//sysj\splitterController.sysj line: 143, column: 5
-                  S214729=1;
+                  S236935=1;
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  S214724=0;
+                  S236930=0;
                   if(!enable_in.isREQ()){//sysj\splitterController.sysj line: 143, column: 5
                     enable_in.setACK(true);//sysj\splitterController.sysj line: 143, column: 5
-                    S214724=1;
+                    S236930=1;
                     if(enable_in.isREQ()){//sysj\splitterController.sysj line: 143, column: 5
                       enable_in.setACK(false);//sysj\splitterController.sysj line: 143, column: 5
                       ends[3]=2;
                       ;//sysj\splitterController.sysj line: 143, column: 5
                       w_thread_3 = (WorkpieceTwin)(enable_in.getVal() == null ? null : ((WorkpieceTwin)enable_in.getVal()));//sysj\splitterController.sysj line: 145, column: 5
                       System.out.println("[SP] Armed for " + w_thread_3 + ".");//sysj\splitterController.sysj line: 147, column: 5
-                      S214745=1;
+                      S236951=1;
                       if(bottleAtSplitter.getprestatus()){//sysj\splitterController.sysj line: 157, column: 21
                         System.out.println("[SP] " + w_thread_3 + " at the decision point.");//sysj\splitterController.sysj line: 163, column: 5
                         t_thread_3 = STROKE_TIMEOUT_thread_3;//sysj\splitterController.sysj line: 175, column: 5
                         confirmed_thread_3 = false;//sysj\splitterController.sysj line: 177, column: 5
-                        S214745=2;
+                        S236951=2;
                         if(t_thread_3 > 0 && !confirmed_thread_3){//sysj\splitterController.sysj line: 179, column: 11
                           diverterExtend.setPresent();//sysj\splitterController.sysj line: 181, column: 6
                           currsigs.addElement(diverterExtend);
@@ -274,37 +274,37 @@ public class SplitterController extends ClockDomain{
                           ends[3]=2;
                           ;//sysj\splitterController.sysj line: 179, column: 5
                           code_thread_3 = JAMMED_thread_3;//sysj\splitterController.sysj line: 197, column: 5
-                          S214745=3;
+                          S236951=3;
                           if(confirmed_thread_3){//sysj\splitterController.sysj line: 201, column: 5
                             System.out.println("[SP] Diverter at reject, routing " + w_thread_3 + " to the recycling conveyor.");//sysj\splitterController.sysj line: 203, column: 6
-                            S214835=0;
+                            S237041=0;
                             if(bottleLeftSplitter.getprestatus()){//sysj\splitterController.sysj line: 213, column: 22
-                              S214835=1;
+                              S237041=1;
                               if(divertAtNormal.getprestatus()){//sysj\splitterController.sysj line: 219, column: 22
                                 System.out.println("[SP] " + w_thread_3 + " released, diverter reset to the normal path.");//sysj\splitterController.sysj line: 225, column: 6
                                 code_thread_3 = OK_thread_3;//sysj\splitterController.sysj line: 227, column: 6
                                 if(!confirmed_thread_3) {//sysj\splitterController.sysj line: 233, column: 19
                                   System.out.println("[SP] FAULT: diverter did not reach the reject position for " + w_thread_3 + ".");//sysj\splitterController.sysj line: 235, column: 6
                                 }
-                                S214745=4;
-                                S214987=0;
+                                S236951=4;
+                                S237193=0;
                                 if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\splitterController.sysj line: 249, column: 5
                                   status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
-                                  S214987=1;
+                                  S237193=1;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
                                 }
                                 else {
-                                  S214982=0;
+                                  S237188=0;
                                   if(status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                                     status_o.setVal(new Integer(code_thread_3));//sysj\splitterController.sysj line: 249, column: 5
-                                    S214982=1;
+                                    S237188=1;
                                     if(!status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                                       status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
                                       ends[3]=2;
                                       ;//sysj\splitterController.sysj line: 249, column: 5
-                                      S216490=2;
+                                      S238696=2;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
@@ -342,25 +342,25 @@ public class SplitterController extends ClockDomain{
                             if(!confirmed_thread_3) {//sysj\splitterController.sysj line: 233, column: 19
                               System.out.println("[SP] FAULT: diverter did not reach the reject position for " + w_thread_3 + ".");//sysj\splitterController.sysj line: 235, column: 6
                             }
-                            S214745=4;
-                            S214987=0;
+                            S236951=4;
+                            S237193=0;
                             if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\splitterController.sysj line: 249, column: 5
                               status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
-                              S214987=1;
+                              S237193=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
-                              S214982=0;
+                              S237188=0;
                               if(status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                                 status_o.setVal(new Integer(code_thread_3));//sysj\splitterController.sysj line: 249, column: 5
-                                S214982=1;
+                                S237188=1;
                                 if(!status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                                   status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
                                   ends[3]=2;
                                   ;//sysj\splitterController.sysj line: 249, column: 5
-                                  S216490=2;
+                                  S238696=2;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -413,41 +413,41 @@ public class SplitterController extends ClockDomain{
             if(manual_1.getprestatus()){//sysj\splitterController.sysj line: 141, column: 20
               enable_in.setPreempted();
               status_o.setPreempted();
-              S216490=2;
+              S238696=2;
               active[3]=1;
               ends[3]=1;
               tdone[3]=1;
             }
             else {
-              switch(S214745){
+              switch(S236951){
                 case 0 : 
-                  switch(S214729){
+                  switch(S236935){
                     case 0 : 
                       if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\splitterController.sysj line: 143, column: 5
                         enable_in.setACK(false);//sysj\splitterController.sysj line: 143, column: 5
-                        S214729=1;
+                        S236935=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        switch(S214724){
+                        switch(S236930){
                           case 0 : 
                             if(!enable_in.isREQ()){//sysj\splitterController.sysj line: 143, column: 5
                               enable_in.setACK(true);//sysj\splitterController.sysj line: 143, column: 5
-                              S214724=1;
+                              S236930=1;
                               if(enable_in.isREQ()){//sysj\splitterController.sysj line: 143, column: 5
                                 enable_in.setACK(false);//sysj\splitterController.sysj line: 143, column: 5
                                 ends[3]=2;
                                 ;//sysj\splitterController.sysj line: 143, column: 5
                                 w_thread_3 = (WorkpieceTwin)(enable_in.getVal() == null ? null : ((WorkpieceTwin)enable_in.getVal()));//sysj\splitterController.sysj line: 145, column: 5
                                 System.out.println("[SP] Armed for " + w_thread_3 + ".");//sysj\splitterController.sysj line: 147, column: 5
-                                S214745=1;
+                                S236951=1;
                                 if(bottleAtSplitter.getprestatus()){//sysj\splitterController.sysj line: 157, column: 21
                                   System.out.println("[SP] " + w_thread_3 + " at the decision point.");//sysj\splitterController.sysj line: 163, column: 5
                                   t_thread_3 = STROKE_TIMEOUT_thread_3;//sysj\splitterController.sysj line: 175, column: 5
                                   confirmed_thread_3 = false;//sysj\splitterController.sysj line: 177, column: 5
-                                  S214745=2;
+                                  S236951=2;
                                   if(t_thread_3 > 0 && !confirmed_thread_3){//sysj\splitterController.sysj line: 179, column: 11
                                     diverterExtend.setPresent();//sysj\splitterController.sysj line: 181, column: 6
                                     currsigs.addElement(diverterExtend);
@@ -469,37 +469,37 @@ public class SplitterController extends ClockDomain{
                                     ends[3]=2;
                                     ;//sysj\splitterController.sysj line: 179, column: 5
                                     code_thread_3 = JAMMED_thread_3;//sysj\splitterController.sysj line: 197, column: 5
-                                    S214745=3;
+                                    S236951=3;
                                     if(confirmed_thread_3){//sysj\splitterController.sysj line: 201, column: 5
                                       System.out.println("[SP] Diverter at reject, routing " + w_thread_3 + " to the recycling conveyor.");//sysj\splitterController.sysj line: 203, column: 6
-                                      S214835=0;
+                                      S237041=0;
                                       if(bottleLeftSplitter.getprestatus()){//sysj\splitterController.sysj line: 213, column: 22
-                                        S214835=1;
+                                        S237041=1;
                                         if(divertAtNormal.getprestatus()){//sysj\splitterController.sysj line: 219, column: 22
                                           System.out.println("[SP] " + w_thread_3 + " released, diverter reset to the normal path.");//sysj\splitterController.sysj line: 225, column: 6
                                           code_thread_3 = OK_thread_3;//sysj\splitterController.sysj line: 227, column: 6
                                           if(!confirmed_thread_3) {//sysj\splitterController.sysj line: 233, column: 19
                                             System.out.println("[SP] FAULT: diverter did not reach the reject position for " + w_thread_3 + ".");//sysj\splitterController.sysj line: 235, column: 6
                                           }
-                                          S214745=4;
-                                          S214987=0;
+                                          S236951=4;
+                                          S237193=0;
                                           if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\splitterController.sysj line: 249, column: 5
                                             status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
-                                            S214987=1;
+                                            S237193=1;
                                             active[3]=1;
                                             ends[3]=1;
                                             tdone[3]=1;
                                           }
                                           else {
-                                            S214982=0;
+                                            S237188=0;
                                             if(status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                                               status_o.setVal(new Integer(code_thread_3));//sysj\splitterController.sysj line: 249, column: 5
-                                              S214982=1;
+                                              S237188=1;
                                               if(!status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                                                 status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
                                                 ends[3]=2;
                                                 ;//sysj\splitterController.sysj line: 249, column: 5
-                                                S216490=2;
+                                                S238696=2;
                                                 active[3]=1;
                                                 ends[3]=1;
                                                 tdone[3]=1;
@@ -537,25 +537,25 @@ public class SplitterController extends ClockDomain{
                                       if(!confirmed_thread_3) {//sysj\splitterController.sysj line: 233, column: 19
                                         System.out.println("[SP] FAULT: diverter did not reach the reject position for " + w_thread_3 + ".");//sysj\splitterController.sysj line: 235, column: 6
                                       }
-                                      S214745=4;
-                                      S214987=0;
+                                      S236951=4;
+                                      S237193=0;
                                       if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\splitterController.sysj line: 249, column: 5
                                         status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
-                                        S214987=1;
+                                        S237193=1;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
                                       }
                                       else {
-                                        S214982=0;
+                                        S237188=0;
                                         if(status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                                           status_o.setVal(new Integer(code_thread_3));//sysj\splitterController.sysj line: 249, column: 5
-                                          S214982=1;
+                                          S237188=1;
                                           if(!status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                                             status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
                                             ends[3]=2;
                                             ;//sysj\splitterController.sysj line: 249, column: 5
-                                            S216490=2;
+                                            S238696=2;
                                             active[3]=1;
                                             ends[3]=1;
                                             tdone[3]=1;
@@ -603,12 +603,12 @@ public class SplitterController extends ClockDomain{
                               ;//sysj\splitterController.sysj line: 143, column: 5
                               w_thread_3 = (WorkpieceTwin)(enable_in.getVal() == null ? null : ((WorkpieceTwin)enable_in.getVal()));//sysj\splitterController.sysj line: 145, column: 5
                               System.out.println("[SP] Armed for " + w_thread_3 + ".");//sysj\splitterController.sysj line: 147, column: 5
-                              S214745=1;
+                              S236951=1;
                               if(bottleAtSplitter.getprestatus()){//sysj\splitterController.sysj line: 157, column: 21
                                 System.out.println("[SP] " + w_thread_3 + " at the decision point.");//sysj\splitterController.sysj line: 163, column: 5
                                 t_thread_3 = STROKE_TIMEOUT_thread_3;//sysj\splitterController.sysj line: 175, column: 5
                                 confirmed_thread_3 = false;//sysj\splitterController.sysj line: 177, column: 5
-                                S214745=2;
+                                S236951=2;
                                 if(t_thread_3 > 0 && !confirmed_thread_3){//sysj\splitterController.sysj line: 179, column: 11
                                   diverterExtend.setPresent();//sysj\splitterController.sysj line: 181, column: 6
                                   currsigs.addElement(diverterExtend);
@@ -630,37 +630,37 @@ public class SplitterController extends ClockDomain{
                                   ends[3]=2;
                                   ;//sysj\splitterController.sysj line: 179, column: 5
                                   code_thread_3 = JAMMED_thread_3;//sysj\splitterController.sysj line: 197, column: 5
-                                  S214745=3;
+                                  S236951=3;
                                   if(confirmed_thread_3){//sysj\splitterController.sysj line: 201, column: 5
                                     System.out.println("[SP] Diverter at reject, routing " + w_thread_3 + " to the recycling conveyor.");//sysj\splitterController.sysj line: 203, column: 6
-                                    S214835=0;
+                                    S237041=0;
                                     if(bottleLeftSplitter.getprestatus()){//sysj\splitterController.sysj line: 213, column: 22
-                                      S214835=1;
+                                      S237041=1;
                                       if(divertAtNormal.getprestatus()){//sysj\splitterController.sysj line: 219, column: 22
                                         System.out.println("[SP] " + w_thread_3 + " released, diverter reset to the normal path.");//sysj\splitterController.sysj line: 225, column: 6
                                         code_thread_3 = OK_thread_3;//sysj\splitterController.sysj line: 227, column: 6
                                         if(!confirmed_thread_3) {//sysj\splitterController.sysj line: 233, column: 19
                                           System.out.println("[SP] FAULT: diverter did not reach the reject position for " + w_thread_3 + ".");//sysj\splitterController.sysj line: 235, column: 6
                                         }
-                                        S214745=4;
-                                        S214987=0;
+                                        S236951=4;
+                                        S237193=0;
                                         if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\splitterController.sysj line: 249, column: 5
                                           status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
-                                          S214987=1;
+                                          S237193=1;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
                                         }
                                         else {
-                                          S214982=0;
+                                          S237188=0;
                                           if(status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                                             status_o.setVal(new Integer(code_thread_3));//sysj\splitterController.sysj line: 249, column: 5
-                                            S214982=1;
+                                            S237188=1;
                                             if(!status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                                               status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
                                               ends[3]=2;
                                               ;//sysj\splitterController.sysj line: 249, column: 5
-                                              S216490=2;
+                                              S238696=2;
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
@@ -698,25 +698,25 @@ public class SplitterController extends ClockDomain{
                                     if(!confirmed_thread_3) {//sysj\splitterController.sysj line: 233, column: 19
                                       System.out.println("[SP] FAULT: diverter did not reach the reject position for " + w_thread_3 + ".");//sysj\splitterController.sysj line: 235, column: 6
                                     }
-                                    S214745=4;
-                                    S214987=0;
+                                    S236951=4;
+                                    S237193=0;
                                     if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\splitterController.sysj line: 249, column: 5
                                       status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
-                                      S214987=1;
+                                      S237193=1;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
                                     }
                                     else {
-                                      S214982=0;
+                                      S237188=0;
                                       if(status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                                         status_o.setVal(new Integer(code_thread_3));//sysj\splitterController.sysj line: 249, column: 5
-                                        S214982=1;
+                                        S237188=1;
                                         if(!status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                                           status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
                                           ends[3]=2;
                                           ;//sysj\splitterController.sysj line: 249, column: 5
-                                          S216490=2;
+                                          S238696=2;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
@@ -756,32 +756,32 @@ public class SplitterController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      S214729=1;
-                      S214729=0;
+                      S236935=1;
+                      S236935=0;
                       if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\splitterController.sysj line: 143, column: 5
                         enable_in.setACK(false);//sysj\splitterController.sysj line: 143, column: 5
-                        S214729=1;
+                        S236935=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S214724=0;
+                        S236930=0;
                         if(!enable_in.isREQ()){//sysj\splitterController.sysj line: 143, column: 5
                           enable_in.setACK(true);//sysj\splitterController.sysj line: 143, column: 5
-                          S214724=1;
+                          S236930=1;
                           if(enable_in.isREQ()){//sysj\splitterController.sysj line: 143, column: 5
                             enable_in.setACK(false);//sysj\splitterController.sysj line: 143, column: 5
                             ends[3]=2;
                             ;//sysj\splitterController.sysj line: 143, column: 5
                             w_thread_3 = (WorkpieceTwin)(enable_in.getVal() == null ? null : ((WorkpieceTwin)enable_in.getVal()));//sysj\splitterController.sysj line: 145, column: 5
                             System.out.println("[SP] Armed for " + w_thread_3 + ".");//sysj\splitterController.sysj line: 147, column: 5
-                            S214745=1;
+                            S236951=1;
                             if(bottleAtSplitter.getprestatus()){//sysj\splitterController.sysj line: 157, column: 21
                               System.out.println("[SP] " + w_thread_3 + " at the decision point.");//sysj\splitterController.sysj line: 163, column: 5
                               t_thread_3 = STROKE_TIMEOUT_thread_3;//sysj\splitterController.sysj line: 175, column: 5
                               confirmed_thread_3 = false;//sysj\splitterController.sysj line: 177, column: 5
-                              S214745=2;
+                              S236951=2;
                               if(t_thread_3 > 0 && !confirmed_thread_3){//sysj\splitterController.sysj line: 179, column: 11
                                 diverterExtend.setPresent();//sysj\splitterController.sysj line: 181, column: 6
                                 currsigs.addElement(diverterExtend);
@@ -803,37 +803,37 @@ public class SplitterController extends ClockDomain{
                                 ends[3]=2;
                                 ;//sysj\splitterController.sysj line: 179, column: 5
                                 code_thread_3 = JAMMED_thread_3;//sysj\splitterController.sysj line: 197, column: 5
-                                S214745=3;
+                                S236951=3;
                                 if(confirmed_thread_3){//sysj\splitterController.sysj line: 201, column: 5
                                   System.out.println("[SP] Diverter at reject, routing " + w_thread_3 + " to the recycling conveyor.");//sysj\splitterController.sysj line: 203, column: 6
-                                  S214835=0;
+                                  S237041=0;
                                   if(bottleLeftSplitter.getprestatus()){//sysj\splitterController.sysj line: 213, column: 22
-                                    S214835=1;
+                                    S237041=1;
                                     if(divertAtNormal.getprestatus()){//sysj\splitterController.sysj line: 219, column: 22
                                       System.out.println("[SP] " + w_thread_3 + " released, diverter reset to the normal path.");//sysj\splitterController.sysj line: 225, column: 6
                                       code_thread_3 = OK_thread_3;//sysj\splitterController.sysj line: 227, column: 6
                                       if(!confirmed_thread_3) {//sysj\splitterController.sysj line: 233, column: 19
                                         System.out.println("[SP] FAULT: diverter did not reach the reject position for " + w_thread_3 + ".");//sysj\splitterController.sysj line: 235, column: 6
                                       }
-                                      S214745=4;
-                                      S214987=0;
+                                      S236951=4;
+                                      S237193=0;
                                       if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\splitterController.sysj line: 249, column: 5
                                         status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
-                                        S214987=1;
+                                        S237193=1;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
                                       }
                                       else {
-                                        S214982=0;
+                                        S237188=0;
                                         if(status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                                           status_o.setVal(new Integer(code_thread_3));//sysj\splitterController.sysj line: 249, column: 5
-                                          S214982=1;
+                                          S237188=1;
                                           if(!status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                                             status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
                                             ends[3]=2;
                                             ;//sysj\splitterController.sysj line: 249, column: 5
-                                            S216490=2;
+                                            S238696=2;
                                             active[3]=1;
                                             ends[3]=1;
                                             tdone[3]=1;
@@ -871,25 +871,25 @@ public class SplitterController extends ClockDomain{
                                   if(!confirmed_thread_3) {//sysj\splitterController.sysj line: 233, column: 19
                                     System.out.println("[SP] FAULT: diverter did not reach the reject position for " + w_thread_3 + ".");//sysj\splitterController.sysj line: 235, column: 6
                                   }
-                                  S214745=4;
-                                  S214987=0;
+                                  S236951=4;
+                                  S237193=0;
                                   if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\splitterController.sysj line: 249, column: 5
                                     status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
-                                    S214987=1;
+                                    S237193=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
                                   else {
-                                    S214982=0;
+                                    S237188=0;
                                     if(status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                                       status_o.setVal(new Integer(code_thread_3));//sysj\splitterController.sysj line: 249, column: 5
-                                      S214982=1;
+                                      S237188=1;
                                       if(!status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                                         status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
                                         ends[3]=2;
                                         ;//sysj\splitterController.sysj line: 249, column: 5
-                                        S216490=2;
+                                        S238696=2;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -939,7 +939,7 @@ public class SplitterController extends ClockDomain{
                     System.out.println("[SP] " + w_thread_3 + " at the decision point.");//sysj\splitterController.sysj line: 163, column: 5
                     t_thread_3 = STROKE_TIMEOUT_thread_3;//sysj\splitterController.sysj line: 175, column: 5
                     confirmed_thread_3 = false;//sysj\splitterController.sysj line: 177, column: 5
-                    S214745=2;
+                    S236951=2;
                     if(t_thread_3 > 0 && !confirmed_thread_3){//sysj\splitterController.sysj line: 179, column: 11
                       diverterExtend.setPresent();//sysj\splitterController.sysj line: 181, column: 6
                       currsigs.addElement(diverterExtend);
@@ -961,37 +961,37 @@ public class SplitterController extends ClockDomain{
                       ends[3]=2;
                       ;//sysj\splitterController.sysj line: 179, column: 5
                       code_thread_3 = JAMMED_thread_3;//sysj\splitterController.sysj line: 197, column: 5
-                      S214745=3;
+                      S236951=3;
                       if(confirmed_thread_3){//sysj\splitterController.sysj line: 201, column: 5
                         System.out.println("[SP] Diverter at reject, routing " + w_thread_3 + " to the recycling conveyor.");//sysj\splitterController.sysj line: 203, column: 6
-                        S214835=0;
+                        S237041=0;
                         if(bottleLeftSplitter.getprestatus()){//sysj\splitterController.sysj line: 213, column: 22
-                          S214835=1;
+                          S237041=1;
                           if(divertAtNormal.getprestatus()){//sysj\splitterController.sysj line: 219, column: 22
                             System.out.println("[SP] " + w_thread_3 + " released, diverter reset to the normal path.");//sysj\splitterController.sysj line: 225, column: 6
                             code_thread_3 = OK_thread_3;//sysj\splitterController.sysj line: 227, column: 6
                             if(!confirmed_thread_3) {//sysj\splitterController.sysj line: 233, column: 19
                               System.out.println("[SP] FAULT: diverter did not reach the reject position for " + w_thread_3 + ".");//sysj\splitterController.sysj line: 235, column: 6
                             }
-                            S214745=4;
-                            S214987=0;
+                            S236951=4;
+                            S237193=0;
                             if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\splitterController.sysj line: 249, column: 5
                               status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
-                              S214987=1;
+                              S237193=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
-                              S214982=0;
+                              S237188=0;
                               if(status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                                 status_o.setVal(new Integer(code_thread_3));//sysj\splitterController.sysj line: 249, column: 5
-                                S214982=1;
+                                S237188=1;
                                 if(!status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                                   status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
                                   ends[3]=2;
                                   ;//sysj\splitterController.sysj line: 249, column: 5
-                                  S216490=2;
+                                  S238696=2;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -1029,25 +1029,25 @@ public class SplitterController extends ClockDomain{
                         if(!confirmed_thread_3) {//sysj\splitterController.sysj line: 233, column: 19
                           System.out.println("[SP] FAULT: diverter did not reach the reject position for " + w_thread_3 + ".");//sysj\splitterController.sysj line: 235, column: 6
                         }
-                        S214745=4;
-                        S214987=0;
+                        S236951=4;
+                        S237193=0;
                         if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\splitterController.sysj line: 249, column: 5
                           status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
-                          S214987=1;
+                          S237193=1;
                           active[3]=1;
                           ends[3]=1;
                           tdone[3]=1;
                         }
                         else {
-                          S214982=0;
+                          S237188=0;
                           if(status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                             status_o.setVal(new Integer(code_thread_3));//sysj\splitterController.sysj line: 249, column: 5
-                            S214982=1;
+                            S237188=1;
                             if(!status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                               status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
                               ends[3]=2;
                               ;//sysj\splitterController.sysj line: 249, column: 5
-                              S216490=2;
+                              S238696=2;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
@@ -1098,37 +1098,37 @@ public class SplitterController extends ClockDomain{
                     ends[3]=2;
                     ;//sysj\splitterController.sysj line: 179, column: 5
                     code_thread_3 = JAMMED_thread_3;//sysj\splitterController.sysj line: 197, column: 5
-                    S214745=3;
+                    S236951=3;
                     if(confirmed_thread_3){//sysj\splitterController.sysj line: 201, column: 5
                       System.out.println("[SP] Diverter at reject, routing " + w_thread_3 + " to the recycling conveyor.");//sysj\splitterController.sysj line: 203, column: 6
-                      S214835=0;
+                      S237041=0;
                       if(bottleLeftSplitter.getprestatus()){//sysj\splitterController.sysj line: 213, column: 22
-                        S214835=1;
+                        S237041=1;
                         if(divertAtNormal.getprestatus()){//sysj\splitterController.sysj line: 219, column: 22
                           System.out.println("[SP] " + w_thread_3 + " released, diverter reset to the normal path.");//sysj\splitterController.sysj line: 225, column: 6
                           code_thread_3 = OK_thread_3;//sysj\splitterController.sysj line: 227, column: 6
                           if(!confirmed_thread_3) {//sysj\splitterController.sysj line: 233, column: 19
                             System.out.println("[SP] FAULT: diverter did not reach the reject position for " + w_thread_3 + ".");//sysj\splitterController.sysj line: 235, column: 6
                           }
-                          S214745=4;
-                          S214987=0;
+                          S236951=4;
+                          S237193=0;
                           if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\splitterController.sysj line: 249, column: 5
                             status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
-                            S214987=1;
+                            S237193=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
                           }
                           else {
-                            S214982=0;
+                            S237188=0;
                             if(status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                               status_o.setVal(new Integer(code_thread_3));//sysj\splitterController.sysj line: 249, column: 5
-                              S214982=1;
+                              S237188=1;
                               if(!status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                                 status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
                                 ends[3]=2;
                                 ;//sysj\splitterController.sysj line: 249, column: 5
-                                S216490=2;
+                                S238696=2;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -1166,25 +1166,25 @@ public class SplitterController extends ClockDomain{
                       if(!confirmed_thread_3) {//sysj\splitterController.sysj line: 233, column: 19
                         System.out.println("[SP] FAULT: diverter did not reach the reject position for " + w_thread_3 + ".");//sysj\splitterController.sysj line: 235, column: 6
                       }
-                      S214745=4;
-                      S214987=0;
+                      S236951=4;
+                      S237193=0;
                       if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\splitterController.sysj line: 249, column: 5
                         status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
-                        S214987=1;
+                        S237193=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S214982=0;
+                        S237188=0;
                         if(status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                           status_o.setVal(new Integer(code_thread_3));//sysj\splitterController.sysj line: 249, column: 5
-                          S214982=1;
+                          S237188=1;
                           if(!status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                             status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
                             ends[3]=2;
                             ;//sysj\splitterController.sysj line: 249, column: 5
-                            S216490=2;
+                            S238696=2;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -1206,35 +1206,35 @@ public class SplitterController extends ClockDomain{
                   break;
                 
                 case 3 : 
-                  switch(S214835){
+                  switch(S237041){
                     case 0 : 
                       if(bottleLeftSplitter.getprestatus()){//sysj\splitterController.sysj line: 213, column: 22
-                        S214835=1;
+                        S237041=1;
                         if(divertAtNormal.getprestatus()){//sysj\splitterController.sysj line: 219, column: 22
                           System.out.println("[SP] " + w_thread_3 + " released, diverter reset to the normal path.");//sysj\splitterController.sysj line: 225, column: 6
                           code_thread_3 = OK_thread_3;//sysj\splitterController.sysj line: 227, column: 6
                           if(!confirmed_thread_3) {//sysj\splitterController.sysj line: 233, column: 19
                             System.out.println("[SP] FAULT: diverter did not reach the reject position for " + w_thread_3 + ".");//sysj\splitterController.sysj line: 235, column: 6
                           }
-                          S214745=4;
-                          S214987=0;
+                          S236951=4;
+                          S237193=0;
                           if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\splitterController.sysj line: 249, column: 5
                             status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
-                            S214987=1;
+                            S237193=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
                           }
                           else {
-                            S214982=0;
+                            S237188=0;
                             if(status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                               status_o.setVal(new Integer(code_thread_3));//sysj\splitterController.sysj line: 249, column: 5
-                              S214982=1;
+                              S237188=1;
                               if(!status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                                 status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
                                 ends[3]=2;
                                 ;//sysj\splitterController.sysj line: 249, column: 5
-                                S216490=2;
+                                S238696=2;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -1276,25 +1276,25 @@ public class SplitterController extends ClockDomain{
                         if(!confirmed_thread_3) {//sysj\splitterController.sysj line: 233, column: 19
                           System.out.println("[SP] FAULT: diverter did not reach the reject position for " + w_thread_3 + ".");//sysj\splitterController.sysj line: 235, column: 6
                         }
-                        S214745=4;
-                        S214987=0;
+                        S236951=4;
+                        S237193=0;
                         if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\splitterController.sysj line: 249, column: 5
                           status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
-                          S214987=1;
+                          S237193=1;
                           active[3]=1;
                           ends[3]=1;
                           tdone[3]=1;
                         }
                         else {
-                          S214982=0;
+                          S237188=0;
                           if(status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                             status_o.setVal(new Integer(code_thread_3));//sysj\splitterController.sysj line: 249, column: 5
-                            S214982=1;
+                            S237188=1;
                             if(!status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                               status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
                               ends[3]=2;
                               ;//sysj\splitterController.sysj line: 249, column: 5
-                              S216490=2;
+                              S238696=2;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
@@ -1325,26 +1325,26 @@ public class SplitterController extends ClockDomain{
                   break;
                 
                 case 4 : 
-                  switch(S214987){
+                  switch(S237193){
                     case 0 : 
                       if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\splitterController.sysj line: 249, column: 5
                         status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
-                        S214987=1;
+                        S237193=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        switch(S214982){
+                        switch(S237188){
                           case 0 : 
                             if(status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                               status_o.setVal(new Integer(code_thread_3));//sysj\splitterController.sysj line: 249, column: 5
-                              S214982=1;
+                              S237188=1;
                               if(!status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                                 status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
                                 ends[3]=2;
                                 ;//sysj\splitterController.sysj line: 249, column: 5
-                                S216490=2;
+                                S238696=2;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -1367,7 +1367,7 @@ public class SplitterController extends ClockDomain{
                               status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
                               ends[3]=2;
                               ;//sysj\splitterController.sysj line: 249, column: 5
-                              S216490=2;
+                              S238696=2;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
@@ -1384,25 +1384,25 @@ public class SplitterController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      S214987=1;
-                      S214987=0;
+                      S237193=1;
+                      S237193=0;
                       if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\splitterController.sysj line: 249, column: 5
                         status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
-                        S214987=1;
+                        S237193=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S214982=0;
+                        S237188=0;
                         if(status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                           status_o.setVal(new Integer(code_thread_3));//sysj\splitterController.sysj line: 249, column: 5
-                          S214982=1;
+                          S237188=1;
                           if(!status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                             status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
                             ends[3]=2;
                             ;//sysj\splitterController.sysj line: 249, column: 5
-                            S216490=2;
+                            S238696=2;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -1429,45 +1429,45 @@ public class SplitterController extends ClockDomain{
             break;
           
           case 2 : 
-            S216490=2;
-            S216490=0;
+            S238696=2;
+            S238696=0;
             if(auto_1.getprestatus()){//sysj\splitterController.sysj line: 137, column: 20
-              S216490=1;
+              S238696=1;
               if(manual_1.getprestatus()){//sysj\splitterController.sysj line: 141, column: 20
                 enable_in.setPreempted();
                 status_o.setPreempted();
-                S216490=2;
+                S238696=2;
                 active[3]=1;
                 ends[3]=1;
                 tdone[3]=1;
               }
               else {
-                S214745=0;
-                S214729=0;
+                S236951=0;
+                S236935=0;
                 if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\splitterController.sysj line: 143, column: 5
                   enable_in.setACK(false);//sysj\splitterController.sysj line: 143, column: 5
-                  S214729=1;
+                  S236935=1;
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  S214724=0;
+                  S236930=0;
                   if(!enable_in.isREQ()){//sysj\splitterController.sysj line: 143, column: 5
                     enable_in.setACK(true);//sysj\splitterController.sysj line: 143, column: 5
-                    S214724=1;
+                    S236930=1;
                     if(enable_in.isREQ()){//sysj\splitterController.sysj line: 143, column: 5
                       enable_in.setACK(false);//sysj\splitterController.sysj line: 143, column: 5
                       ends[3]=2;
                       ;//sysj\splitterController.sysj line: 143, column: 5
                       w_thread_3 = (WorkpieceTwin)(enable_in.getVal() == null ? null : ((WorkpieceTwin)enable_in.getVal()));//sysj\splitterController.sysj line: 145, column: 5
                       System.out.println("[SP] Armed for " + w_thread_3 + ".");//sysj\splitterController.sysj line: 147, column: 5
-                      S214745=1;
+                      S236951=1;
                       if(bottleAtSplitter.getprestatus()){//sysj\splitterController.sysj line: 157, column: 21
                         System.out.println("[SP] " + w_thread_3 + " at the decision point.");//sysj\splitterController.sysj line: 163, column: 5
                         t_thread_3 = STROKE_TIMEOUT_thread_3;//sysj\splitterController.sysj line: 175, column: 5
                         confirmed_thread_3 = false;//sysj\splitterController.sysj line: 177, column: 5
-                        S214745=2;
+                        S236951=2;
                         if(t_thread_3 > 0 && !confirmed_thread_3){//sysj\splitterController.sysj line: 179, column: 11
                           diverterExtend.setPresent();//sysj\splitterController.sysj line: 181, column: 6
                           currsigs.addElement(diverterExtend);
@@ -1489,37 +1489,37 @@ public class SplitterController extends ClockDomain{
                           ends[3]=2;
                           ;//sysj\splitterController.sysj line: 179, column: 5
                           code_thread_3 = JAMMED_thread_3;//sysj\splitterController.sysj line: 197, column: 5
-                          S214745=3;
+                          S236951=3;
                           if(confirmed_thread_3){//sysj\splitterController.sysj line: 201, column: 5
                             System.out.println("[SP] Diverter at reject, routing " + w_thread_3 + " to the recycling conveyor.");//sysj\splitterController.sysj line: 203, column: 6
-                            S214835=0;
+                            S237041=0;
                             if(bottleLeftSplitter.getprestatus()){//sysj\splitterController.sysj line: 213, column: 22
-                              S214835=1;
+                              S237041=1;
                               if(divertAtNormal.getprestatus()){//sysj\splitterController.sysj line: 219, column: 22
                                 System.out.println("[SP] " + w_thread_3 + " released, diverter reset to the normal path.");//sysj\splitterController.sysj line: 225, column: 6
                                 code_thread_3 = OK_thread_3;//sysj\splitterController.sysj line: 227, column: 6
                                 if(!confirmed_thread_3) {//sysj\splitterController.sysj line: 233, column: 19
                                   System.out.println("[SP] FAULT: diverter did not reach the reject position for " + w_thread_3 + ".");//sysj\splitterController.sysj line: 235, column: 6
                                 }
-                                S214745=4;
-                                S214987=0;
+                                S236951=4;
+                                S237193=0;
                                 if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\splitterController.sysj line: 249, column: 5
                                   status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
-                                  S214987=1;
+                                  S237193=1;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
                                 }
                                 else {
-                                  S214982=0;
+                                  S237188=0;
                                   if(status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                                     status_o.setVal(new Integer(code_thread_3));//sysj\splitterController.sysj line: 249, column: 5
-                                    S214982=1;
+                                    S237188=1;
                                     if(!status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                                       status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
                                       ends[3]=2;
                                       ;//sysj\splitterController.sysj line: 249, column: 5
-                                      S216490=2;
+                                      S238696=2;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
@@ -1557,25 +1557,25 @@ public class SplitterController extends ClockDomain{
                             if(!confirmed_thread_3) {//sysj\splitterController.sysj line: 233, column: 19
                               System.out.println("[SP] FAULT: diverter did not reach the reject position for " + w_thread_3 + ".");//sysj\splitterController.sysj line: 235, column: 6
                             }
-                            S214745=4;
-                            S214987=0;
+                            S236951=4;
+                            S237193=0;
                             if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\splitterController.sysj line: 249, column: 5
                               status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
-                              S214987=1;
+                              S237193=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
-                              S214982=0;
+                              S237188=0;
                               if(status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                                 status_o.setVal(new Integer(code_thread_3));//sysj\splitterController.sysj line: 249, column: 5
-                                S214982=1;
+                                S237188=1;
                                 if(!status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                                   status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
                                   ends[3]=2;
                                   ;//sysj\splitterController.sysj line: 249, column: 5
-                                  S216490=2;
+                                  S238696=2;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -1630,8 +1630,8 @@ public class SplitterController extends ClockDomain{
     }
   }
 
-  public void thread225496(int [] tdone, int [] ends){
-        switch(S214720){
+  public void thread247702(int [] tdone, int [] ends){
+        switch(S236926){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -1665,13 +1665,13 @@ public class SplitterController extends ClockDomain{
     }
   }
 
-  public void thread225494(int [] tdone, int [] ends){
-        S225488=1;
-    S225386=0;
+  public void thread247700(int [] tdone, int [] ends){
+        S247694=1;
+    S247592=0;
     if(manual_1.getprestatus()){//sysj\splitterController.sysj line: 265, column: 20
-      S225386=1;
+      S247592=1;
       if(auto_1.getprestatus()){//sysj\splitterController.sysj line: 267, column: 20
-        S225386=2;
+        S247592=2;
         active[4]=1;
         ends[4]=1;
         tdone[4]=1;
@@ -1716,8 +1716,8 @@ public class SplitterController extends ClockDomain{
     }
   }
 
-  public void thread225493(int [] tdone, int [] ends){
-        S225336=1;
+  public void thread247699(int [] tdone, int [] ends){
+        S247542=1;
     OK_thread_3 = 0;//sysj\splitterController.sysj line: 111, column: 3
     JAMMED_thread_3 = 1;//sysj\splitterController.sysj line: 113, column: 3
     STROKE_TIMEOUT_thread_3 = 12;//sysj\splitterController.sysj line: 121, column: 3
@@ -1725,44 +1725,44 @@ public class SplitterController extends ClockDomain{
     t_thread_3 = 0;//sysj\splitterController.sysj line: 127, column: 3
     code_thread_3 = 0;//sysj\splitterController.sysj line: 129, column: 3
     confirmed_thread_3 = false;//sysj\splitterController.sysj line: 131, column: 3
-    S216490=0;
+    S238696=0;
     if(auto_1.getprestatus()){//sysj\splitterController.sysj line: 137, column: 20
-      S216490=1;
+      S238696=1;
       if(manual_1.getprestatus()){//sysj\splitterController.sysj line: 141, column: 20
         enable_in.setPreempted();
         status_o.setPreempted();
-        S216490=2;
+        S238696=2;
         active[3]=1;
         ends[3]=1;
         tdone[3]=1;
       }
       else {
-        S214745=0;
-        S214729=0;
+        S236951=0;
+        S236935=0;
         if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\splitterController.sysj line: 143, column: 5
           enable_in.setACK(false);//sysj\splitterController.sysj line: 143, column: 5
-          S214729=1;
+          S236935=1;
           active[3]=1;
           ends[3]=1;
           tdone[3]=1;
         }
         else {
-          S214724=0;
+          S236930=0;
           if(!enable_in.isREQ()){//sysj\splitterController.sysj line: 143, column: 5
             enable_in.setACK(true);//sysj\splitterController.sysj line: 143, column: 5
-            S214724=1;
+            S236930=1;
             if(enable_in.isREQ()){//sysj\splitterController.sysj line: 143, column: 5
               enable_in.setACK(false);//sysj\splitterController.sysj line: 143, column: 5
               ends[3]=2;
               ;//sysj\splitterController.sysj line: 143, column: 5
               w_thread_3 = (WorkpieceTwin)(enable_in.getVal() == null ? null : ((WorkpieceTwin)enable_in.getVal()));//sysj\splitterController.sysj line: 145, column: 5
               System.out.println("[SP] Armed for " + w_thread_3 + ".");//sysj\splitterController.sysj line: 147, column: 5
-              S214745=1;
+              S236951=1;
               if(bottleAtSplitter.getprestatus()){//sysj\splitterController.sysj line: 157, column: 21
                 System.out.println("[SP] " + w_thread_3 + " at the decision point.");//sysj\splitterController.sysj line: 163, column: 5
                 t_thread_3 = STROKE_TIMEOUT_thread_3;//sysj\splitterController.sysj line: 175, column: 5
                 confirmed_thread_3 = false;//sysj\splitterController.sysj line: 177, column: 5
-                S214745=2;
+                S236951=2;
                 if(t_thread_3 > 0 && !confirmed_thread_3){//sysj\splitterController.sysj line: 179, column: 11
                   diverterExtend.setPresent();//sysj\splitterController.sysj line: 181, column: 6
                   currsigs.addElement(diverterExtend);
@@ -1784,37 +1784,37 @@ public class SplitterController extends ClockDomain{
                   ends[3]=2;
                   ;//sysj\splitterController.sysj line: 179, column: 5
                   code_thread_3 = JAMMED_thread_3;//sysj\splitterController.sysj line: 197, column: 5
-                  S214745=3;
+                  S236951=3;
                   if(confirmed_thread_3){//sysj\splitterController.sysj line: 201, column: 5
                     System.out.println("[SP] Diverter at reject, routing " + w_thread_3 + " to the recycling conveyor.");//sysj\splitterController.sysj line: 203, column: 6
-                    S214835=0;
+                    S237041=0;
                     if(bottleLeftSplitter.getprestatus()){//sysj\splitterController.sysj line: 213, column: 22
-                      S214835=1;
+                      S237041=1;
                       if(divertAtNormal.getprestatus()){//sysj\splitterController.sysj line: 219, column: 22
                         System.out.println("[SP] " + w_thread_3 + " released, diverter reset to the normal path.");//sysj\splitterController.sysj line: 225, column: 6
                         code_thread_3 = OK_thread_3;//sysj\splitterController.sysj line: 227, column: 6
                         if(!confirmed_thread_3) {//sysj\splitterController.sysj line: 233, column: 19
                           System.out.println("[SP] FAULT: diverter did not reach the reject position for " + w_thread_3 + ".");//sysj\splitterController.sysj line: 235, column: 6
                         }
-                        S214745=4;
-                        S214987=0;
+                        S236951=4;
+                        S237193=0;
                         if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\splitterController.sysj line: 249, column: 5
                           status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
-                          S214987=1;
+                          S237193=1;
                           active[3]=1;
                           ends[3]=1;
                           tdone[3]=1;
                         }
                         else {
-                          S214982=0;
+                          S237188=0;
                           if(status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                             status_o.setVal(new Integer(code_thread_3));//sysj\splitterController.sysj line: 249, column: 5
-                            S214982=1;
+                            S237188=1;
                             if(!status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                               status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
                               ends[3]=2;
                               ;//sysj\splitterController.sysj line: 249, column: 5
-                              S216490=2;
+                              S238696=2;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
@@ -1852,25 +1852,25 @@ public class SplitterController extends ClockDomain{
                     if(!confirmed_thread_3) {//sysj\splitterController.sysj line: 233, column: 19
                       System.out.println("[SP] FAULT: diverter did not reach the reject position for " + w_thread_3 + ".");//sysj\splitterController.sysj line: 235, column: 6
                     }
-                    S214745=4;
-                    S214987=0;
+                    S236951=4;
+                    S237193=0;
                     if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\splitterController.sysj line: 249, column: 5
                       status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
-                      S214987=1;
+                      S237193=1;
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      S214982=0;
+                      S237188=0;
                       if(status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                         status_o.setVal(new Integer(code_thread_3));//sysj\splitterController.sysj line: 249, column: 5
-                        S214982=1;
+                        S237188=1;
                         if(!status_o.isACK()){//sysj\splitterController.sysj line: 249, column: 5
                           status_o.setREQ(false);//sysj\splitterController.sysj line: 249, column: 5
                           ends[3]=2;
                           ;//sysj\splitterController.sysj line: 249, column: 5
-                          S216490=2;
+                          S238696=2;
                           active[3]=1;
                           ends[3]=1;
                           tdone[3]=1;
@@ -1919,8 +1919,8 @@ public class SplitterController extends ClockDomain{
     }
   }
 
-  public void thread225492(int [] tdone, int [] ends){
-        S214720=1;
+  public void thread247698(int [] tdone, int [] ends){
+        S236926=1;
     if(mode.getprestatus()){//sysj\splitterController.sysj line: 91, column: 12
       if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\splitterController.sysj line: 93, column: 8
         auto_1.setPresent();//sysj\splitterController.sysj line: 93, column: 30
@@ -1951,30 +1951,30 @@ public class SplitterController extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S225490){
+      switch(S247696){
         case 0 : 
-          S225490=0;
+          S247696=0;
           break RUN;
         
         case 1 : 
-          S225490=2;
-          S225490=2;
+          S247696=2;
+          S247696=2;
           auto_1.setClear();//sysj\splitterController.sysj line: 83, column: 2
           manual_1.setClear();//sysj\splitterController.sysj line: 83, column: 2
-          thread225492(tdone,ends);
-          thread225493(tdone,ends);
-          thread225494(tdone,ends);
-          int biggest225495 = 0;
-          if(ends[2]>=biggest225495){
-            biggest225495=ends[2];
+          thread247698(tdone,ends);
+          thread247699(tdone,ends);
+          thread247700(tdone,ends);
+          int biggest247701 = 0;
+          if(ends[2]>=biggest247701){
+            biggest247701=ends[2];
           }
-          if(ends[3]>=biggest225495){
-            biggest225495=ends[3];
+          if(ends[3]>=biggest247701){
+            biggest247701=ends[3];
           }
-          if(ends[4]>=biggest225495){
-            biggest225495=ends[4];
+          if(ends[4]>=biggest247701){
+            biggest247701=ends[4];
           }
-          if(biggest225495 == 1){
+          if(biggest247701 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
@@ -1983,30 +1983,30 @@ public class SplitterController extends ClockDomain{
         case 2 : 
           auto_1.setClear();//sysj\splitterController.sysj line: 83, column: 2
           manual_1.setClear();//sysj\splitterController.sysj line: 83, column: 2
-          thread225496(tdone,ends);
-          thread225497(tdone,ends);
-          thread225498(tdone,ends);
-          int biggest225499 = 0;
-          if(ends[2]>=biggest225499){
-            biggest225499=ends[2];
+          thread247702(tdone,ends);
+          thread247703(tdone,ends);
+          thread247704(tdone,ends);
+          int biggest247705 = 0;
+          if(ends[2]>=biggest247705){
+            biggest247705=ends[2];
           }
-          if(ends[3]>=biggest225499){
-            biggest225499=ends[3];
+          if(ends[3]>=biggest247705){
+            biggest247705=ends[3];
           }
-          if(ends[4]>=biggest225499){
-            biggest225499=ends[4];
+          if(ends[4]>=biggest247705){
+            biggest247705=ends[4];
           }
-          if(biggest225499 == 1){
+          if(biggest247705 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest225499 == 0){
-            S225490=0;
+          if(biggest247705 == 0){
+            S247696=0;
             active[1]=0;
             ends[1]=0;
-            S225490=0;
+            S247696=0;
             break RUN;
           }
         

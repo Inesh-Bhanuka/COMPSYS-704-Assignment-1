@@ -164,6 +164,10 @@ BottleReturnController(
 
 					code = BLOCKED;
 
+                    // The plant exchanges a full bin only with the arm home.
+                    await(immediate !collectorBinFull);
+                    code = OK;
+
 				}
 
 

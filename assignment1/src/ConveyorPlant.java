@@ -33,15 +33,15 @@ public class ConveyorPlant extends ClockDomain{
   private boolean injecting_thread_3;//sysj\conveyorPlant.sysj line: 120, column: 3
   private boolean collecting_thread_3;//sysj\conveyorPlant.sysj line: 121, column: 3
   private int i_thread_2;//sysj\conveyorPlant.sysj line: 77, column: 7
-  private int S30787 = 1;
-  private int S30531 = 1;
-  private int S30785 = 1;
+  private int S31435 = 1;
+  private int S31179 = 1;
+  private int S31433 = 1;
   
   private int[] ends = new int[4];
   private int[] tdone = new int[4];
   
-  public void thread30793(int [] tdone, int [] ends){
-        switch(S30785){
+  public void thread31441(int [] tdone, int [] ends){
+        switch(S31433){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -397,8 +397,8 @@ public class ConveyorPlant extends ClockDomain{
     }
   }
 
-  public void thread30792(int [] tdone, int [] ends){
-        switch(S30531){
+  public void thread31440(int [] tdone, int [] ends){
+        switch(S31179){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -1136,8 +1136,8 @@ public class ConveyorPlant extends ClockDomain{
     }
   }
 
-  public void thread30790(int [] tdone, int [] ends){
-        S30785=1;
+  public void thread31438(int [] tdone, int [] ends){
+        S31433=1;
     LEN_thread_3 = 6;//sysj\conveyorPlant.sysj line: 118, column: 3
     pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 119, column: 3
     injecting_thread_3 = false;//sysj\conveyorPlant.sysj line: 120, column: 3
@@ -1487,8 +1487,8 @@ public class ConveyorPlant extends ClockDomain{
     }
   }
 
-  public void thread30789(int [] tdone, int [] ends){
-        S30531=1;
+  public void thread31437(int [] tdone, int [] ends){
+        S31179=1;
     LEN_thread_2 = 6;//sysj\conveyorPlant.sysj line: 32, column: 3
     slot_thread_2 = new boolean[LEN_thread_2 + 1];//sysj\conveyorPlant.sysj line: 33, column: 3
     injecting_thread_2 = false;//sysj\conveyorPlant.sysj line: 34, column: 3
@@ -2228,50 +2228,50 @@ public class ConveyorPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S30787){
+      switch(S31435){
         case 0 : 
-          S30787=0;
+          S31435=0;
           break RUN;
         
         case 1 : 
-          S30787=2;
-          S30787=2;
-          thread30789(tdone,ends);
-          thread30790(tdone,ends);
-          int biggest30791 = 0;
-          if(ends[2]>=biggest30791){
-            biggest30791=ends[2];
+          S31435=2;
+          S31435=2;
+          thread31437(tdone,ends);
+          thread31438(tdone,ends);
+          int biggest31439 = 0;
+          if(ends[2]>=biggest31439){
+            biggest31439=ends[2];
           }
-          if(ends[3]>=biggest30791){
-            biggest30791=ends[3];
+          if(ends[3]>=biggest31439){
+            biggest31439=ends[3];
           }
-          if(biggest30791 == 1){
+          if(biggest31439 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
         
         case 2 : 
-          thread30792(tdone,ends);
-          thread30793(tdone,ends);
-          int biggest30794 = 0;
-          if(ends[2]>=biggest30794){
-            biggest30794=ends[2];
+          thread31440(tdone,ends);
+          thread31441(tdone,ends);
+          int biggest31442 = 0;
+          if(ends[2]>=biggest31442){
+            biggest31442=ends[2];
           }
-          if(ends[3]>=biggest30794){
-            biggest30794=ends[3];
+          if(ends[3]>=biggest31442){
+            biggest31442=ends[3];
           }
-          if(biggest30794 == 1){
+          if(biggest31442 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest30794 == 0){
-            S30787=0;
+          if(biggest31442 == 0){
+            S31435=0;
             active[1]=0;
             ends[1]=0;
-            S30787=0;
+            S31435=0;
             break RUN;
           }
         

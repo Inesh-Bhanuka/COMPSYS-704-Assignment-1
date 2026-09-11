@@ -28,7 +28,7 @@ public class SplitterPlant extends ClockDomain{
   private int release_thread_1;//sysj\splitterPlant.sysj line: 63, column: 2
   private int stroke_thread_1;//sysj\splitterPlant.sysj line: 65, column: 2
   private boolean admitting_thread_1;//sysj\splitterPlant.sysj line: 67, column: 2
-  private int S226515 = 1;
+  private int S248721 = 1;
   
   private int[] ends = new int[2];
   private int[] tdone = new int[2];
@@ -40,14 +40,14 @@ public class SplitterPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S226515){
+      switch(S248721){
         case 0 : 
-          S226515=0;
+          S248721=0;
           break RUN;
         
         case 1 : 
-          S226515=2;
-          S226515=2;
+          S248721=2;
+          S248721=2;
           TRAVEL_thread_1 = 4;//sysj\splitterPlant.sysj line: 49, column: 2
           STROKE_thread_1 = 3;//sysj\splitterPlant.sysj line: 51, column: 2
           RELEASE_thread_1 = 2;//sysj\splitterPlant.sysj line: 53, column: 2

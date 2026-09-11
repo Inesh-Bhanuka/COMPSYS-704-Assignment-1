@@ -68,6 +68,12 @@ boolean permitted = false;
 					w.reject(Machine.LID_LOADER, "lid already fitted");
 				}
 				else if(w != null){
+                    t = new LidLoaderTwin();
+                    t.setLidsRemaining(lids);
+                    if(t.update(PlantClock.now(), MachineStatus.WORKING, "place", "placing lid on " + w.id)){
+                        emit twin(t);
+                    }
+					pause;
 					// Refill first if the magazine is out
 					present(magazineEmpty){
 						System.out.println("[LID] Magazine empty, refilling.");
@@ -99,6 +105,7 @@ boolean permitted = false;
 					w.lid();
 					lids--;
 					if(lids < 0){ lids = 3; }
+					t = new LidLoaderTwin();
 					t.setLidsRemaining(lids);
 					if(t.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w.id)){
 						emit twin(t);

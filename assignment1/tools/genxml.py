@@ -211,8 +211,11 @@ def main():
         for sg in i["os"]:
             t = target(cd, sg, SIGNALS)
             tcd = t.split(".")[0]
+            client = CLIENT % port[tcd]
+            if cd == "SystemControllerCD" and sg == "guiStatus":
+                client = client.replace("com.systemj.ipc.SimpleClient", "GuiStatusSender")
             L.append('\t\t\t<oSignal Name="%-18s To="%-42s %s />'
-                     % (sg + '"', t + '"', CLIENT % port[tcd]))
+                     % (sg + '"', t + '"', client))
         L.append("\t\t</ClockDomain>")
         blocks[cd] = L
 

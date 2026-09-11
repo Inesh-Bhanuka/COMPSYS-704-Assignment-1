@@ -14,6 +14,17 @@ public final class GuiSupervisor {
     private static final Set<Long> archived = new HashSet<Long>();
     private static long eventSequence;
 
+    /** Operator permission belongs to one order, never to the next customer order. */
+    public static synchronized void orderAccepted() {
+        if (Boolean.getBoolean("gui.enabled")) {
+            running=false;
+            GuiStep.discard(tickets);
+            message=mode.equals("Manual") ? "New order ready. Select operations and press Enable Selected."
+                    : "New order ready. Press Start to begin production.";
+            event("-","SYSTEM",message,"INFO");
+        }
+    }
+
     public static synchronized void command(GuiCommand c) {
         if (c==null || c.id==null || !commands.add(c.id)) return;
         if(c.action==null || c.operations==null) { event("-","SYSTEM","Malformed GUI command rejected.","INFO"); return; }
@@ -25,7 +36,13 @@ public final class GuiSupervisor {
         if (c.action.equals("START")) {
             if (jam || draining) { message="Clear the fault or wait for the line to drain before starting."; }
             else { mode="Automatic"; pendingMode=mode; running=true; message="Automatic production started."; }
-        } else if (c.action.equals("PAUSE") || c.action.equals("RESET") || c.action.equals("MANUAL") || c.action.equals("AUTO")) {
+        } else if (c.action.equals("PAUSE")) {
+            if (resetting || draining) message="Reset/mode transition is draining; wait for admitted bottles to finish.";
+            else {
+                running=false; GuiStep.discard(tickets);
+                message="Paused. Current station actions finish; new operations wait for Start.";
+            }
+        } else if (c.action.equals("RESET") || c.action.equals("MANUAL") || c.action.equals("AUTO")) {
             running=false; draining=true;
             resetting=c.action.equals("RESET");
             pendingMode=c.action.equals("MANUAL")?"Manual":"Automatic";
@@ -96,5 +113,8 @@ public final class GuiSupervisor {
         String severity=e.type==EventType.FLAGGED?"QUALITY":"INFO";
         GuiSnapshot.Event record=event(w.serial,e.machine.toString(),e.type+": "+e.cause+(e.type==EventType.MEASURED?" ("+e.measurement+" mL)":""),severity);
         if(e.type==EventType.FLAGGED) alerts.put(e.machine.toString(),record);
+        if(e.machine==Machine.RECYCLING && e.type==EventType.COMPLETED && "returned".equals(e.cause)) {
+            alerts.entrySet().removeIf(a -> "QUALITY".equals(a.getValue().severity) && w.serial.equals(a.getValue().bottle));
+        }
     }
 }

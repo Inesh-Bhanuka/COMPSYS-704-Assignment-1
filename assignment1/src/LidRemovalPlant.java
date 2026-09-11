@@ -33,18 +33,18 @@ public class LidRemovalPlant extends ClockDomain{
   private boolean held_thread_4;//sysj\lidRemovalPlant.sysj line: 183, column: 3
   private boolean ejecting_thread_4;//sysj\lidRemovalPlant.sysj line: 185, column: 3
   private int BIN_CAPACITY_thread_5;//sysj\lidRemovalPlant.sysj line: 265, column: 3
-  private int lids_thread_5;//sysj\lidRemovalPlant.sysj line: 267, column: 3
-  private int S122046 = 1;
-  private int S121612 = 1;
-  private int S121740 = 1;
-  private int S121994 = 1;
-  private int S122044 = 1;
+  private RecyclingCapacity bin_thread_5;//sysj\lidRemovalPlant.sysj line: 267, column: 3
+  private int S119844 = 1;
+  private int S119380 = 1;
+  private int S119508 = 1;
+  private int S119762 = 1;
+  private int S119842 = 1;
   
   private int[] ends = new int[6];
   private int[] tdone = new int[6];
   
-  public void thread122056(int [] tdone, int [] ends){
-        switch(S122044){
+  public void thread119854(int [] tdone, int [] ends){
+        switch(S119842){
       case 0 : 
         active[5]=0;
         ends[5]=0;
@@ -54,33 +54,69 @@ public class LidRemovalPlant extends ClockDomain{
       case 1 : 
         if(enable.getprestatus()){//sysj\lidRemovalPlant.sysj line: 273, column: 12
           if(lidDropped_1.getprestatus()){//sysj\lidRemovalPlant.sysj line: 275, column: 13
-            lids_thread_5 = lids_thread_5 + 1;//sysj\lidRemovalPlant.sysj line: 277, column: 6
-            System.out.println("[LRPlant] Lid dropped into the waste bin (" + lids_thread_5 + " of " + BIN_CAPACITY_thread_5 + ").");//sysj\lidRemovalPlant.sysj line: 279, column: 6
-            if(lids_thread_5 >= BIN_CAPACITY_thread_5){//sysj\lidRemovalPlant.sysj line: 283, column: 8
-              lidBinFull.setPresent();//sysj\lidRemovalPlant.sysj line: 285, column: 6
-              currsigs.addElement(lidBinFull);
-              active[5]=1;
-              ends[5]=1;
-              tdone[5]=1;
+            bin_thread_5.add();//sysj\lidRemovalPlant.sysj line: 277, column: 6
+            System.out.println("[LRPlant] Lid dropped into the waste bin (" + bin_thread_5.level() + " of " + BIN_CAPACITY_thread_5 + ").");//sysj\lidRemovalPlant.sysj line: 279, column: 6
+            if(zAxisLifted.getprestatus() && turnAtHomePos.getprestatus() && !lidGripped.getprestatus()){//sysj\lidRemovalPlant.sysj line: 283, column: 13
+              bin_thread_5.service(true);//sysj\lidRemovalPlant.sysj line: 283, column: 59
+              if(bin_thread_5.full()){//sysj\lidRemovalPlant.sysj line: 285, column: 5
+                lidBinFull.setPresent();//sysj\lidRemovalPlant.sysj line: 287, column: 6
+                currsigs.addElement(lidBinFull);
+                active[5]=1;
+                ends[5]=1;
+                tdone[5]=1;
+              }
+              else {
+                active[5]=1;
+                ends[5]=1;
+                tdone[5]=1;
+              }
             }
             else {
-              active[5]=1;
-              ends[5]=1;
-              tdone[5]=1;
+              bin_thread_5.service(false);//sysj\lidRemovalPlant.sysj line: 284, column: 24
+              if(bin_thread_5.full()){//sysj\lidRemovalPlant.sysj line: 285, column: 5
+                lidBinFull.setPresent();//sysj\lidRemovalPlant.sysj line: 287, column: 6
+                currsigs.addElement(lidBinFull);
+                active[5]=1;
+                ends[5]=1;
+                tdone[5]=1;
+              }
+              else {
+                active[5]=1;
+                ends[5]=1;
+                tdone[5]=1;
+              }
             }
           }
           else {
-            if(lids_thread_5 >= BIN_CAPACITY_thread_5){//sysj\lidRemovalPlant.sysj line: 283, column: 8
-              lidBinFull.setPresent();//sysj\lidRemovalPlant.sysj line: 285, column: 6
-              currsigs.addElement(lidBinFull);
-              active[5]=1;
-              ends[5]=1;
-              tdone[5]=1;
+            if(zAxisLifted.getprestatus() && turnAtHomePos.getprestatus() && !lidGripped.getprestatus()){//sysj\lidRemovalPlant.sysj line: 283, column: 13
+              bin_thread_5.service(true);//sysj\lidRemovalPlant.sysj line: 283, column: 59
+              if(bin_thread_5.full()){//sysj\lidRemovalPlant.sysj line: 285, column: 5
+                lidBinFull.setPresent();//sysj\lidRemovalPlant.sysj line: 287, column: 6
+                currsigs.addElement(lidBinFull);
+                active[5]=1;
+                ends[5]=1;
+                tdone[5]=1;
+              }
+              else {
+                active[5]=1;
+                ends[5]=1;
+                tdone[5]=1;
+              }
             }
             else {
-              active[5]=1;
-              ends[5]=1;
-              tdone[5]=1;
+              bin_thread_5.service(false);//sysj\lidRemovalPlant.sysj line: 284, column: 24
+              if(bin_thread_5.full()){//sysj\lidRemovalPlant.sysj line: 285, column: 5
+                lidBinFull.setPresent();//sysj\lidRemovalPlant.sysj line: 287, column: 6
+                currsigs.addElement(lidBinFull);
+                active[5]=1;
+                ends[5]=1;
+                tdone[5]=1;
+              }
+              else {
+                active[5]=1;
+                ends[5]=1;
+                tdone[5]=1;
+              }
             }
           }
         }
@@ -94,8 +130,8 @@ public class LidRemovalPlant extends ClockDomain{
     }
   }
 
-  public void thread122055(int [] tdone, int [] ends){
-        switch(S121994){
+  public void thread119853(int [] tdone, int [] ends){
+        switch(S119762){
       case 0 : 
         active[4]=0;
         ends[4]=0;
@@ -255,8 +291,8 @@ public class LidRemovalPlant extends ClockDomain{
     }
   }
 
-  public void thread122054(int [] tdone, int [] ends){
-        switch(S121740){
+  public void thread119852(int [] tdone, int [] ends){
+        switch(S119508){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -417,8 +453,8 @@ public class LidRemovalPlant extends ClockDomain{
     }
   }
 
-  public void thread122053(int [] tdone, int [] ends){
-        switch(S121612){
+  public void thread119851(int [] tdone, int [] ends){
+        switch(S119380){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -508,39 +544,75 @@ public class LidRemovalPlant extends ClockDomain{
     }
   }
 
-  public void thread122051(int [] tdone, int [] ends){
-        S122044=1;
+  public void thread119849(int [] tdone, int [] ends){
+        S119842=1;
     BIN_CAPACITY_thread_5 = 3;//sysj\lidRemovalPlant.sysj line: 265, column: 3
-    lids_thread_5 = 0;//sysj\lidRemovalPlant.sysj line: 267, column: 3
+    bin_thread_5 = new RecyclingCapacity("Lid waste bin", BIN_CAPACITY_thread_5);//sysj\lidRemovalPlant.sysj line: 267, column: 3
     if(enable.getprestatus()){//sysj\lidRemovalPlant.sysj line: 273, column: 12
       if(lidDropped_1.getprestatus()){//sysj\lidRemovalPlant.sysj line: 275, column: 13
-        lids_thread_5 = lids_thread_5 + 1;//sysj\lidRemovalPlant.sysj line: 277, column: 6
-        System.out.println("[LRPlant] Lid dropped into the waste bin (" + lids_thread_5 + " of " + BIN_CAPACITY_thread_5 + ").");//sysj\lidRemovalPlant.sysj line: 279, column: 6
-        if(lids_thread_5 >= BIN_CAPACITY_thread_5){//sysj\lidRemovalPlant.sysj line: 283, column: 8
-          lidBinFull.setPresent();//sysj\lidRemovalPlant.sysj line: 285, column: 6
-          currsigs.addElement(lidBinFull);
-          active[5]=1;
-          ends[5]=1;
-          tdone[5]=1;
+        bin_thread_5.add();//sysj\lidRemovalPlant.sysj line: 277, column: 6
+        System.out.println("[LRPlant] Lid dropped into the waste bin (" + bin_thread_5.level() + " of " + BIN_CAPACITY_thread_5 + ").");//sysj\lidRemovalPlant.sysj line: 279, column: 6
+        if(zAxisLifted.getprestatus() && turnAtHomePos.getprestatus() && !lidGripped.getprestatus()){//sysj\lidRemovalPlant.sysj line: 283, column: 13
+          bin_thread_5.service(true);//sysj\lidRemovalPlant.sysj line: 283, column: 59
+          if(bin_thread_5.full()){//sysj\lidRemovalPlant.sysj line: 285, column: 5
+            lidBinFull.setPresent();//sysj\lidRemovalPlant.sysj line: 287, column: 6
+            currsigs.addElement(lidBinFull);
+            active[5]=1;
+            ends[5]=1;
+            tdone[5]=1;
+          }
+          else {
+            active[5]=1;
+            ends[5]=1;
+            tdone[5]=1;
+          }
         }
         else {
-          active[5]=1;
-          ends[5]=1;
-          tdone[5]=1;
+          bin_thread_5.service(false);//sysj\lidRemovalPlant.sysj line: 284, column: 24
+          if(bin_thread_5.full()){//sysj\lidRemovalPlant.sysj line: 285, column: 5
+            lidBinFull.setPresent();//sysj\lidRemovalPlant.sysj line: 287, column: 6
+            currsigs.addElement(lidBinFull);
+            active[5]=1;
+            ends[5]=1;
+            tdone[5]=1;
+          }
+          else {
+            active[5]=1;
+            ends[5]=1;
+            tdone[5]=1;
+          }
         }
       }
       else {
-        if(lids_thread_5 >= BIN_CAPACITY_thread_5){//sysj\lidRemovalPlant.sysj line: 283, column: 8
-          lidBinFull.setPresent();//sysj\lidRemovalPlant.sysj line: 285, column: 6
-          currsigs.addElement(lidBinFull);
-          active[5]=1;
-          ends[5]=1;
-          tdone[5]=1;
+        if(zAxisLifted.getprestatus() && turnAtHomePos.getprestatus() && !lidGripped.getprestatus()){//sysj\lidRemovalPlant.sysj line: 283, column: 13
+          bin_thread_5.service(true);//sysj\lidRemovalPlant.sysj line: 283, column: 59
+          if(bin_thread_5.full()){//sysj\lidRemovalPlant.sysj line: 285, column: 5
+            lidBinFull.setPresent();//sysj\lidRemovalPlant.sysj line: 287, column: 6
+            currsigs.addElement(lidBinFull);
+            active[5]=1;
+            ends[5]=1;
+            tdone[5]=1;
+          }
+          else {
+            active[5]=1;
+            ends[5]=1;
+            tdone[5]=1;
+          }
         }
         else {
-          active[5]=1;
-          ends[5]=1;
-          tdone[5]=1;
+          bin_thread_5.service(false);//sysj\lidRemovalPlant.sysj line: 284, column: 24
+          if(bin_thread_5.full()){//sysj\lidRemovalPlant.sysj line: 285, column: 5
+            lidBinFull.setPresent();//sysj\lidRemovalPlant.sysj line: 287, column: 6
+            currsigs.addElement(lidBinFull);
+            active[5]=1;
+            ends[5]=1;
+            tdone[5]=1;
+          }
+          else {
+            active[5]=1;
+            ends[5]=1;
+            tdone[5]=1;
+          }
         }
       }
     }
@@ -551,8 +623,8 @@ public class LidRemovalPlant extends ClockDomain{
     }
   }
 
-  public void thread122050(int [] tdone, int [] ends){
-        S121994=1;
+  public void thread119848(int [] tdone, int [] ends){
+        S119762=1;
     GRIP_thread_4 = 3;//sysj\lidRemovalPlant.sysj line: 179, column: 3
     grip_thread_4 = 0;//sysj\lidRemovalPlant.sysj line: 181, column: 3
     held_thread_4 = false;//sysj\lidRemovalPlant.sysj line: 183, column: 3
@@ -706,8 +778,8 @@ public class LidRemovalPlant extends ClockDomain{
     }
   }
 
-  public void thread122049(int [] tdone, int [] ends){
-        S121740=1;
+  public void thread119847(int [] tdone, int [] ends){
+        S119508=1;
     TURN_thread_3 = 6;//sysj\lidRemovalPlant.sysj line: 131, column: 3
     turn_thread_3 = 0;//sysj\lidRemovalPlant.sysj line: 133, column: 3
     if(enable.getprestatus()){//sysj\lidRemovalPlant.sysj line: 139, column: 12
@@ -860,8 +932,8 @@ public class LidRemovalPlant extends ClockDomain{
     }
   }
 
-  public void thread122048(int [] tdone, int [] ends){
-        S121612=1;
+  public void thread119846(int [] tdone, int [] ends){
+        S119380=1;
     ZTRAVEL_thread_2 = 4;//sysj\lidRemovalPlant.sysj line: 93, column: 3
     z_thread_2 = 0;//sysj\lidRemovalPlant.sysj line: 95, column: 3
     if(enable.getprestatus()){//sysj\lidRemovalPlant.sysj line: 101, column: 12
@@ -950,33 +1022,33 @@ public class LidRemovalPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S122046){
+      switch(S119844){
         case 0 : 
-          S122046=0;
+          S119844=0;
           break RUN;
         
         case 1 : 
-          S122046=2;
-          S122046=2;
+          S119844=2;
+          S119844=2;
           lidDropped_1.setClear();//sysj\lidRemovalPlant.sysj line: 79, column: 2
-          thread122048(tdone,ends);
-          thread122049(tdone,ends);
-          thread122050(tdone,ends);
-          thread122051(tdone,ends);
-          int biggest122052 = 0;
-          if(ends[2]>=biggest122052){
-            biggest122052=ends[2];
+          thread119846(tdone,ends);
+          thread119847(tdone,ends);
+          thread119848(tdone,ends);
+          thread119849(tdone,ends);
+          int biggest119850 = 0;
+          if(ends[2]>=biggest119850){
+            biggest119850=ends[2];
           }
-          if(ends[3]>=biggest122052){
-            biggest122052=ends[3];
+          if(ends[3]>=biggest119850){
+            biggest119850=ends[3];
           }
-          if(ends[4]>=biggest122052){
-            biggest122052=ends[4];
+          if(ends[4]>=biggest119850){
+            biggest119850=ends[4];
           }
-          if(ends[5]>=biggest122052){
-            biggest122052=ends[5];
+          if(ends[5]>=biggest119850){
+            biggest119850=ends[5];
           }
-          if(biggest122052 == 1){
+          if(biggest119850 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
@@ -984,34 +1056,34 @@ public class LidRemovalPlant extends ClockDomain{
         
         case 2 : 
           lidDropped_1.setClear();//sysj\lidRemovalPlant.sysj line: 79, column: 2
-          thread122053(tdone,ends);
-          thread122054(tdone,ends);
-          thread122055(tdone,ends);
-          thread122056(tdone,ends);
-          int biggest122057 = 0;
-          if(ends[2]>=biggest122057){
-            biggest122057=ends[2];
+          thread119851(tdone,ends);
+          thread119852(tdone,ends);
+          thread119853(tdone,ends);
+          thread119854(tdone,ends);
+          int biggest119855 = 0;
+          if(ends[2]>=biggest119855){
+            biggest119855=ends[2];
           }
-          if(ends[3]>=biggest122057){
-            biggest122057=ends[3];
+          if(ends[3]>=biggest119855){
+            biggest119855=ends[3];
           }
-          if(ends[4]>=biggest122057){
-            biggest122057=ends[4];
+          if(ends[4]>=biggest119855){
+            biggest119855=ends[4];
           }
-          if(ends[5]>=biggest122057){
-            biggest122057=ends[5];
+          if(ends[5]>=biggest119855){
+            biggest119855=ends[5];
           }
-          if(biggest122057 == 1){
+          if(biggest119855 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest122057 == 0){
-            S122046=0;
+          if(biggest119855 == 0){
+            S119844=0;
             active[1]=0;
             ends[1]=0;
-            S122046=0;
+            S119844=0;
             break RUN;
           }
         

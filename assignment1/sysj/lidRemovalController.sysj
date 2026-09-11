@@ -236,6 +236,10 @@ LidRemovalController(
 
 					code = BLOCKED;
 
+                    // Do not acknowledge readiness until safe servicing clears the sensor.
+                    await(immediate !lidBinFull);
+                    code = OK;
+
 				}
 
 

@@ -58,7 +58,7 @@ BottleReturnPlant(
 
 	boolean carrying = false;
 
-	int bottles = 0;
+	RecyclingCapacity bin = new RecyclingCapacity("Bottle collector", BIN_CAPACITY);
 
 
 
@@ -146,9 +146,9 @@ BottleReturnPlant(
 
 					carrying = false;
 
-					bottles++;
+					bin.add();
 
-					System.out.println("[BRPlant] Bottle placed in the collector bin (" + bottles + " of " + BIN_CAPACITY + ").");
+					System.out.println("[BRPlant] Bottle placed in the collector bin (" + bin.level() + " of " + BIN_CAPACITY + ").");
 
 				}
 
@@ -158,7 +158,8 @@ BottleReturnPlant(
 
 
 
-			if(bottles >= BIN_CAPACITY){
+			bin.serviceReturn(arm, carrying, pos);
+			if(bin.full()){
 
 				emit collectorBinFull;
 

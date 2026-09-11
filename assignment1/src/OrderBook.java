@@ -43,6 +43,7 @@ public final class OrderBook {
         recovered.clear();
         batchIndex = 0;
         active.start();
+        GuiSupervisor.orderAccepted();
         updateFeedback();
         System.out.println("[SC] Accepted " + incoming.orderId + " for " + incoming.customerName
                 + " (" + incoming.totalBatches + " batches).");

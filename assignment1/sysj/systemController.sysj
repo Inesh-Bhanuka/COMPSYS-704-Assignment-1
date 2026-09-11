@@ -191,6 +191,7 @@ SystemController(
 		// than out of step.
 		ABSTwin plant = new ABSTwin();
 		TwinPublisher out = TwinPublisher.shared();
+        GuiSnapshot guiSnapshot = null;
 
 		while(true){
 			PlantClock.advance();
@@ -209,7 +210,8 @@ SystemController(
 			TwinRegistry.shared().fill(plant);
 			out.publish(plant, OrderBook.purchaseOrder());
             GuiSupervisor.observe(plant);
-            emit guiStatus(GuiTelemetry.capture(plant));
+            guiSnapshot = GuiTelemetry.capture(plant);
+            if(guiSnapshot != null){ emit guiStatus(guiSnapshot); }
 			pause;
 		}
 	}

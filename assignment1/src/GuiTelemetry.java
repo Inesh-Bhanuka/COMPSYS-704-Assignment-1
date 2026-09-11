@@ -12,7 +12,9 @@ public final class GuiTelemetry {
     private static final String SENSOR_NAMES="armAtSource armAtDest bottleAtSource WPgripped supplyEmpty bottleAtPos1 bottleAtPos2 bottleAtPos4 bottleAtPos5 infeedClear infeedAdmitted bottleAtOutfeedEnd outfeedClear tableAligned exitCleared filled lidAtPickup pusherExtended pusherRetracted magazineEmpty refilled capperDown capperUp capped labelPrinted labelApplied bottleAtLabeller labelStockLow glueLow labelStock glueLevel recyclingStatus";
     public static String productId(String product) { return "P-"+UUID.nameUUIDFromBytes(product.getBytes(StandardCharsets.UTF_8)).toString().substring(0,8).toUpperCase(); }
     public static GuiSnapshot capture(ABSTwin plant) {
-        if(latest!=null && System.currentTimeMillis()-lastCapture<80) return latest;
+        // Absence means no new telemetry. Publish only fresh samples; socket work
+        // is delegated to GuiStatusSender so backpressure cannot stop the scheduler.
+        if(latest!=null && System.currentTimeMillis()-lastCapture<100) return null;
         lastCapture=System.currentTimeMillis();
         GuiSnapshot s=new GuiSnapshot(); s.tick=plant.tick(); s.capturedAt=lastCapture;
         GuiSupervisor.fill(s);

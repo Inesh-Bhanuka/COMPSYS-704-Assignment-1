@@ -23,7 +23,7 @@
 			<iSignal Name="twinLB"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
 			<iSignal Name="labellerStatus"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
 			<iSignal Name="recyclingStatus"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
-			<oSignal Name="guiStatus"         To="GUIInterfaceCD.Status"                     Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10002" />
+			<oSignal Name="guiStatus"         To="GUIInterfaceCD.Status"                     Class="GuiStatusSender" IP="127.0.0.1" Port="10002" />
 			<oSignal Name="permitRT"          To="RotaryTableControllerCD.operatorPermit"    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13000" />
 			<oSignal Name="permitF1"          To="Filler1ControllerCD.operatorPermit"        Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14000" />
 			<oSignal Name="permitF2"          To="Filler2ControllerCD.operatorPermit"        Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14100" />

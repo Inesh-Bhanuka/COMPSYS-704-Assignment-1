@@ -4,7 +4,8 @@ import java.util.concurrent.*;
 
 /** Nonblocking GUI-side TCP client. Commands remain queued until their controller acknowledgement. */
 public final class GuiClient {
-    public static final int STATUS_PORT=21000, EVENTS_PORT=21001, COMMAND_PORT=21002;
+    private static final int PORT_OFFSET=Integer.getInteger("gui.portOffset",0);
+    public static final int STATUS_PORT=21000+PORT_OFFSET, EVENTS_PORT=21001+PORT_OFFSET, COMMAND_PORT=21002+PORT_OFFSET;
     private volatile GuiSnapshot latest;
     private volatile long lastReceived;
     private final BlockingQueue<GuiCommand> commands=new ArrayBlockingQueue<GuiCommand>(32);

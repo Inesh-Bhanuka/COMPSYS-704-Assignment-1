@@ -34,11 +34,14 @@ from Figures 1-7 of the interim report:
   recipe, size and quantity. Customer specifications remain owned by the POS.
   Apply a quality-test frequency to reject one in every N new bottles; replacements
   are not deliberately rejected.
-- **Line Control:** Start automatic production; Pause stops admission and drains
-  the bottles already admitted. Switching to Manual also drains first. Tick
+- **Line Control:** Start automatic production; Pause stops admission and new
+  station operations, while actions already in progress finish their handshake.
+  Start resumes the same bottles. Switching to Manual drains first. Tick
   operations and press **Enable Selected** to allow one execution of each selected
   operation. Checkbox changes and **Clear Ticks** transmit nothing. Further table
   indexes require further enables. Station handshakes still enforce ordering.
+  Every newly accepted automatic order waits for a fresh **Start**, including
+  orders submitted after a previous order completes.
 - **Live Status:** accepted/target progress, recycled count, actual work in process,
   selected bottle, and current batch. Recycling never fills a customer's quantity.
 - **Event Log / Alerts / Batch History:** timestamped workpiece and line events,
@@ -97,6 +100,12 @@ replacement bottles and never count as deliveries. Zero-percent ingredients and
 250 mL rounding are handled. The simulated bottle tray, label roll and glue supply
 replenish after five enabled ticks when empty, allowing the sample three batches
 of ten and subsequent orders to finish.
+Recycling also services its finite three-cap waste bin, three-bottle collector,
+and six-bottle-equivalent waste tank in the simulation. Servicing runs only with
+the relevant mechanism safely at rest; controllers wait for cleared full sensors
+before continuing. These simulated service events appear in the Event Log.
+Recovered bottles clear their active quality alerts while retaining their rejection
+history and remaining excluded from customer delivery quantities.
 
 This is the trusted, registered-customer simulation described in the assignment:
 the customer field represents an already authenticated session. Account registration,
@@ -114,6 +123,8 @@ java -cp "bin;lib/*" PosModelTest
 java -cp "bin;lib/*" PosIntegrationTest
 java -cp "bin;lib/*" PosUiTest
 java -cp "bin;lib/*" GuiIntegrationTest
+java -cp "bin;lib/*" GuiRepeatOrderTest
+java -cp "bin;lib/*" GuiQualityRecoveryTest
 ```
 
 The model check covers validation, serialization, repeated orders, batch boundaries,
@@ -127,10 +138,17 @@ The Swing check exercises add/remove/submit, progress, completion and New Order,
 and renders the actual form to `bin/pos-preview.png` without showing a window.
 
 `GuiIntegrationTest` verifies automatic production, quality rejection/replacement,
-draining Pause, manual enable gating through a complete bottle, simulated faults,
+resumable Pause, manual enable gating through a complete bottle, simulated faults,
 Reset, real sensor/event feedback and stale-connection handling. It renders the
 actual operator window to `bin/abs-overview.png`, `bin/abs-manual.png`,
 `bin/abs-alert.png` and `bin/abs-history.png`.
+
+`GuiRepeatOrderTest` uses isolated ports and checks 90 deliveries across three
+consecutive orders, Pause/Resume, bottle/empty-space clicks, active-to-idle cap-loader
+feedback, draining Reset with bottles in progress, and a new order after Reset.
+`GuiQualityRecoveryTest` reproduces 10- and 20-bottle batches with every-third and
+every-fifth failures, checks bin/tank servicing and replacement counts, and verifies
+Pause/Resume, Reset during rejected-bottle processing, and Start for each new order.
 
 The current branch contained committed merge-conflict markers and omitted required
 POS/channel-model dependencies. Those were repaired using the repository's
