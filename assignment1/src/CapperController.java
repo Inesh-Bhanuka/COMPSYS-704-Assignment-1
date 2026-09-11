@@ -11,6 +11,7 @@ public class CapperController extends ClockDomain{
   private char [] active;
   private char [] paused;
   private char [] suspended;
+  public Signal operatorPermit = new Signal("operatorPermit", Signal.INPUT);
   public Signal mode = new Signal("mode", Signal.INPUT);
   public Signal capSeated = new Signal("capSeated", Signal.INPUT);
   public Signal screwOnM = new Signal("screwOnM", Signal.INPUT);
@@ -20,25 +21,27 @@ public class CapperController extends ClockDomain{
   public output_Channel done_o = new output_Channel();
   private Signal auto_1;
   private Signal manual_1;
-  private LidCapperTwin t_thread_3;//sysj\capperController.sysj line: 40, column: 3
-  private WorkpieceTwin w_thread_3;//sysj\capperController.sysj line: 41, column: 3
-  private int S24394 = 1;
+  private LidCapperTwin t_thread_3;//sysj\capperController.sysj line: 41, column: 3
+  private WorkpieceTwin w_thread_3;//sysj\capperController.sysj line: 42, column: 3
+  private boolean permitted_thread_3;//sysj\capperController.sysj line: 51, column: 1
+  private int S27886 = 1;
   private int S15307 = 1;
-  private int S24321 = 1;
-  private int S16810 = 1;
+  private int S27813 = 1;
+  private int S17392 = 1;
   private int S15332 = 1;
   private int S15316 = 1;
   private int S15311 = 1;
-  private int S15419 = 1;
-  private int S15414 = 1;
-  private int S24392 = 1;
-  private int S24344 = 1;
+  private int S15333 = 1;
+  private int S15503 = 1;
+  private int S15498 = 1;
+  private int S27884 = 1;
+  private int S27836 = 1;
   
   private int[] ends = new int[5];
   private int[] tdone = new int[5];
   
-  public void thread24402(int [] tdone, int [] ends){
-        switch(S24392){
+  public void thread27894(int [] tdone, int [] ends){
+        switch(S27884){
       case 0 : 
         active[4]=0;
         ends[4]=0;
@@ -46,19 +49,19 @@ public class CapperController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S24344){
+        switch(S27836){
           case 0 : 
-            if(manual_1.getprestatus()){//sysj\capperController.sysj line: 77, column: 20
-              S24344=1;
-              if(auto_1.getprestatus()){//sysj\capperController.sysj line: 78, column: 20
-                S24344=2;
+            if(manual_1.getprestatus()){//sysj\capperController.sysj line: 88, column: 20
+              S27836=1;
+              if(auto_1.getprestatus()){//sysj\capperController.sysj line: 89, column: 20
+                S27836=2;
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
               }
               else {
-                if(screwOnM.getprestatus()){//sysj\capperController.sysj line: 80, column: 14
-                  screwOn.setPresent();//sysj\capperController.sysj line: 80, column: 25
+                if(screwOnM.getprestatus()){//sysj\capperController.sysj line: 91, column: 14
+                  screwOn.setPresent();//sysj\capperController.sysj line: 91, column: 25
                   currsigs.addElement(screwOn);
                   active[4]=1;
                   ends[4]=1;
@@ -79,15 +82,15 @@ public class CapperController extends ClockDomain{
             break;
           
           case 1 : 
-            if(auto_1.getprestatus()){//sysj\capperController.sysj line: 78, column: 20
-              S24344=2;
+            if(auto_1.getprestatus()){//sysj\capperController.sysj line: 89, column: 20
+              S27836=2;
               active[4]=1;
               ends[4]=1;
               tdone[4]=1;
             }
             else {
-              if(screwOnM.getprestatus()){//sysj\capperController.sysj line: 80, column: 14
-                screwOn.setPresent();//sysj\capperController.sysj line: 80, column: 25
+              if(screwOnM.getprestatus()){//sysj\capperController.sysj line: 91, column: 14
+                screwOn.setPresent();//sysj\capperController.sysj line: 91, column: 25
                 currsigs.addElement(screwOn);
                 active[4]=1;
                 ends[4]=1;
@@ -102,19 +105,19 @@ public class CapperController extends ClockDomain{
             break;
           
           case 2 : 
-            S24344=2;
-            S24344=0;
-            if(manual_1.getprestatus()){//sysj\capperController.sysj line: 77, column: 20
-              S24344=1;
-              if(auto_1.getprestatus()){//sysj\capperController.sysj line: 78, column: 20
-                S24344=2;
+            S27836=2;
+            S27836=0;
+            if(manual_1.getprestatus()){//sysj\capperController.sysj line: 88, column: 20
+              S27836=1;
+              if(auto_1.getprestatus()){//sysj\capperController.sysj line: 89, column: 20
+                S27836=2;
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
               }
               else {
-                if(screwOnM.getprestatus()){//sysj\capperController.sysj line: 80, column: 14
-                  screwOn.setPresent();//sysj\capperController.sysj line: 80, column: 25
+                if(screwOnM.getprestatus()){//sysj\capperController.sysj line: 91, column: 14
+                  screwOn.setPresent();//sysj\capperController.sysj line: 91, column: 25
                   currsigs.addElement(screwOn);
                   active[4]=1;
                   ends[4]=1;
@@ -140,8 +143,8 @@ public class CapperController extends ClockDomain{
     }
   }
 
-  public void thread24401(int [] tdone, int [] ends){
-        switch(S24321){
+  public void thread27893(int [] tdone, int [] ends){
+        switch(S27813){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -149,14 +152,14 @@ public class CapperController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S16810){
+        switch(S17392){
           case 0 : 
-            if(auto_1.getprestatus()){//sysj\capperController.sysj line: 44, column: 20
-              S16810=1;
-              if(manual_1.getprestatus()){//sysj\capperController.sysj line: 46, column: 20
+            if(auto_1.getprestatus()){//sysj\capperController.sysj line: 45, column: 20
+              S17392=1;
+              if(manual_1.getprestatus()){//sysj\capperController.sysj line: 47, column: 20
                 start_in.setPreempted();
                 done_o.setPreempted();
-                S16810=2;
+                S17392=2;
                 active[3]=1;
                 ends[3]=1;
                 tdone[3]=1;
@@ -164,8 +167,8 @@ public class CapperController extends ClockDomain{
               else {
                 S15332=0;
                 S15316=0;
-                if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj\capperController.sysj line: 47, column: 5
-                  start_in.setACK(false);//sysj\capperController.sysj line: 47, column: 5
+                if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj\capperController.sysj line: 48, column: 5
+                  start_in.setACK(false);//sysj\capperController.sysj line: 48, column: 5
                   S15316=1;
                   active[3]=1;
                   ends[3]=1;
@@ -173,240 +176,250 @@ public class CapperController extends ClockDomain{
                 }
                 else {
                   S15311=0;
-                  if(!start_in.isREQ()){//sysj\capperController.sysj line: 47, column: 5
-                    start_in.setACK(true);//sysj\capperController.sysj line: 47, column: 5
+                  if(!start_in.isREQ()){//sysj\capperController.sysj line: 48, column: 5
+                    start_in.setACK(true);//sysj\capperController.sysj line: 48, column: 5
                     S15311=1;
-                    if(start_in.isREQ()){//sysj\capperController.sysj line: 47, column: 5
-                      start_in.setACK(false);//sysj\capperController.sysj line: 47, column: 5
+                    if(start_in.isREQ()){//sysj\capperController.sysj line: 48, column: 5
+                      start_in.setACK(false);//sysj\capperController.sysj line: 48, column: 5
                       ends[3]=2;
-                      ;//sysj\capperController.sysj line: 47, column: 5
-                      w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\capperController.sysj line: 48, column: 5
+                      ;//sysj\capperController.sysj line: 48, column: 5
+                      w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\capperController.sysj line: 49, column: 5
                       S15332=1;
-                      if(w_thread_3 != null){//sysj\capperController.sysj line: 50, column: 8
-                        System.out.println("[CAP] Sealing " + w_thread_3 + ".");//sysj\capperController.sysj line: 51, column: 6
-                        w_thread_3.started(Machine.LID_CAPPER, "screwing cap");//sysj\capperController.sysj line: 52, column: 6
-                        if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "screwOn", "sealing " + w_thread_3.id)){//sysj\capperController.sysj line: 53, column: 6
-                          twin.setPresent();//sysj\capperController.sysj line: 54, column: 7
-                          currsigs.addElement(twin);
-                          twin.setValue(t_thread_3);//sysj\capperController.sysj line: 54, column: 7
-                          if(capSeated.getprestatus()){//sysj\capperController.sysj line: 57, column: 22
-                            w_thread_3.cap();//sysj\capperController.sysj line: 61, column: 6
-                            t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 62, column: 6
-                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 63, column: 6
-                              twin.setPresent();//sysj\capperController.sysj line: 64, column: 7
-                              currsigs.addElement(twin);
-                              twin.setValue(t_thread_3);//sysj\capperController.sysj line: 64, column: 7
-                              System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
-                              S15332=2;
-                              S15419=0;
-                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                                done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                S15419=1;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                              else {
-                                S15414=0;
-                                if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                  done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                                  S15414=1;
-                                  if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                    done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                    ends[3]=2;
-                                    ;//sysj\capperController.sysj line: 69, column: 5
-                                    S16810=2;
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                  else {
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                }
-                                else {
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
-                            }
-                            else {
-                              System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
-                              S15332=2;
-                              S15419=0;
-                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                                done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                S15419=1;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                              else {
-                                S15414=0;
-                                if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                  done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                                  S15414=1;
-                                  if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                    done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                    ends[3]=2;
-                                    ;//sysj\capperController.sysj line: 69, column: 5
-                                    S16810=2;
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                  else {
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                }
-                                else {
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
-                            }
-                          }
-                          else {
-                            screwOn.setPresent();//sysj\capperController.sysj line: 58, column: 7
-                            currsigs.addElement(screwOn);
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                        }
-                        else {
-                          if(capSeated.getprestatus()){//sysj\capperController.sysj line: 57, column: 22
-                            w_thread_3.cap();//sysj\capperController.sysj line: 61, column: 6
-                            t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 62, column: 6
-                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 63, column: 6
-                              twin.setPresent();//sysj\capperController.sysj line: 64, column: 7
-                              currsigs.addElement(twin);
-                              twin.setValue(t_thread_3);//sysj\capperController.sysj line: 64, column: 7
-                              System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
-                              S15332=2;
-                              S15419=0;
-                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                                done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                S15419=1;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                              else {
-                                S15414=0;
-                                if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                  done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                                  S15414=1;
-                                  if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                    done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                    ends[3]=2;
-                                    ;//sysj\capperController.sysj line: 69, column: 5
-                                    S16810=2;
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                  else {
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                }
-                                else {
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
-                            }
-                            else {
-                              System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
-                              S15332=2;
-                              S15419=0;
-                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                                done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                S15419=1;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                              else {
-                                S15414=0;
-                                if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                  done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                                  S15414=1;
-                                  if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                    done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                    ends[3]=2;
-                                    ;//sysj\capperController.sysj line: 69, column: 5
-                                    S16810=2;
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                  else {
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                }
-                                else {
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
-                            }
-                          }
-                          else {
-                            screwOn.setPresent();//sysj\capperController.sysj line: 58, column: 7
-                            currsigs.addElement(screwOn);
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                        }
+                      if(w_thread_3 != null){//sysj\capperController.sysj line: 50, column: 4
+                        permitted_thread_3 = false;//sysj\capperController.sysj line: 51, column: 1
+                        S15333=0;
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
                       }
                       else {
                         S15332=2;
-                        S15419=0;
-                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                          done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                          S15419=1;
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                        else {
-                          S15414=0;
-                          if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                            done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                            S15414=1;
-                            if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                              done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                              ends[3]=2;
-                              ;//sysj\capperController.sysj line: 69, column: 5
-                              S16810=2;
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
+                        if(w_thread_3 != null){//sysj\capperController.sysj line: 61, column: 8
+                          System.out.println("[CAP] Sealing " + w_thread_3 + ".");//sysj\capperController.sysj line: 62, column: 6
+                          w_thread_3.started(Machine.LID_CAPPER, "screwing cap");//sysj\capperController.sysj line: 63, column: 6
+                          if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "screwOn", "sealing " + w_thread_3.id)){//sysj\capperController.sysj line: 64, column: 6
+                            twin.setPresent();//sysj\capperController.sysj line: 65, column: 7
+                            currsigs.addElement(twin);
+                            twin.setValue(t_thread_3);//sysj\capperController.sysj line: 65, column: 7
+                            if(capSeated.getprestatus()){//sysj\capperController.sysj line: 68, column: 22
+                              w_thread_3.cap();//sysj\capperController.sysj line: 72, column: 6
+                              t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 73, column: 6
+                              if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 74, column: 6
+                                twin.setPresent();//sysj\capperController.sysj line: 75, column: 7
+                                currsigs.addElement(twin);
+                                twin.setValue(t_thread_3);//sysj\capperController.sysj line: 75, column: 7
+                                System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 77, column: 6
+                                S15332=3;
+                                S15503=0;
+                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                                  done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                  S15503=1;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                                else {
+                                  S15498=0;
+                                  if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                    done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                                    S15498=1;
+                                    if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                      done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                      ends[3]=2;
+                                      ;//sysj\capperController.sysj line: 80, column: 5
+                                      S17392=2;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
+                              else {
+                                System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 77, column: 6
+                                S15332=3;
+                                S15503=0;
+                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                                  done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                  S15503=1;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                                else {
+                                  S15498=0;
+                                  if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                    done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                                    S15498=1;
+                                    if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                      done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                      ends[3]=2;
+                                      ;//sysj\capperController.sysj line: 80, column: 5
+                                      S17392=2;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
                             }
                             else {
+                              screwOn.setPresent();//sysj\capperController.sysj line: 69, column: 7
+                              currsigs.addElement(screwOn);
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                           }
                           else {
+                            if(capSeated.getprestatus()){//sysj\capperController.sysj line: 68, column: 22
+                              w_thread_3.cap();//sysj\capperController.sysj line: 72, column: 6
+                              t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 73, column: 6
+                              if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 74, column: 6
+                                twin.setPresent();//sysj\capperController.sysj line: 75, column: 7
+                                currsigs.addElement(twin);
+                                twin.setValue(t_thread_3);//sysj\capperController.sysj line: 75, column: 7
+                                System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 77, column: 6
+                                S15332=3;
+                                S15503=0;
+                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                                  done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                  S15503=1;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                                else {
+                                  S15498=0;
+                                  if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                    done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                                    S15498=1;
+                                    if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                      done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                      ends[3]=2;
+                                      ;//sysj\capperController.sysj line: 80, column: 5
+                                      S17392=2;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
+                              else {
+                                System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 77, column: 6
+                                S15332=3;
+                                S15503=0;
+                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                                  done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                  S15503=1;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                                else {
+                                  S15498=0;
+                                  if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                    done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                                    S15498=1;
+                                    if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                      done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                      ends[3]=2;
+                                      ;//sysj\capperController.sysj line: 80, column: 5
+                                      S17392=2;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
+                            }
+                            else {
+                              screwOn.setPresent();//sysj\capperController.sysj line: 69, column: 7
+                              currsigs.addElement(screwOn);
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                        }
+                        else {
+                          S15332=3;
+                          S15503=0;
+                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                            done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                            S15503=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
+                          }
+                          else {
+                            S15498=0;
+                            if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                              done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                              S15498=1;
+                              if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                ends[3]=2;
+                                ;//sysj\capperController.sysj line: 80, column: 5
+                                S17392=2;
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                              else {
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                            else {
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
                           }
                         }
                       }
@@ -433,10 +446,10 @@ public class CapperController extends ClockDomain{
             break;
           
           case 1 : 
-            if(manual_1.getprestatus()){//sysj\capperController.sysj line: 46, column: 20
+            if(manual_1.getprestatus()){//sysj\capperController.sysj line: 47, column: 20
               start_in.setPreempted();
               done_o.setPreempted();
-              S16810=2;
+              S17392=2;
               active[3]=1;
               ends[3]=1;
               tdone[3]=1;
@@ -446,8 +459,8 @@ public class CapperController extends ClockDomain{
                 case 0 : 
                   switch(S15316){
                     case 0 : 
-                      if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj\capperController.sysj line: 47, column: 5
-                        start_in.setACK(false);//sysj\capperController.sysj line: 47, column: 5
+                      if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj\capperController.sysj line: 48, column: 5
+                        start_in.setACK(false);//sysj\capperController.sysj line: 48, column: 5
                         S15316=1;
                         active[3]=1;
                         ends[3]=1;
@@ -456,240 +469,250 @@ public class CapperController extends ClockDomain{
                       else {
                         switch(S15311){
                           case 0 : 
-                            if(!start_in.isREQ()){//sysj\capperController.sysj line: 47, column: 5
-                              start_in.setACK(true);//sysj\capperController.sysj line: 47, column: 5
+                            if(!start_in.isREQ()){//sysj\capperController.sysj line: 48, column: 5
+                              start_in.setACK(true);//sysj\capperController.sysj line: 48, column: 5
                               S15311=1;
-                              if(start_in.isREQ()){//sysj\capperController.sysj line: 47, column: 5
-                                start_in.setACK(false);//sysj\capperController.sysj line: 47, column: 5
+                              if(start_in.isREQ()){//sysj\capperController.sysj line: 48, column: 5
+                                start_in.setACK(false);//sysj\capperController.sysj line: 48, column: 5
                                 ends[3]=2;
-                                ;//sysj\capperController.sysj line: 47, column: 5
-                                w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\capperController.sysj line: 48, column: 5
+                                ;//sysj\capperController.sysj line: 48, column: 5
+                                w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\capperController.sysj line: 49, column: 5
                                 S15332=1;
-                                if(w_thread_3 != null){//sysj\capperController.sysj line: 50, column: 8
-                                  System.out.println("[CAP] Sealing " + w_thread_3 + ".");//sysj\capperController.sysj line: 51, column: 6
-                                  w_thread_3.started(Machine.LID_CAPPER, "screwing cap");//sysj\capperController.sysj line: 52, column: 6
-                                  if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "screwOn", "sealing " + w_thread_3.id)){//sysj\capperController.sysj line: 53, column: 6
-                                    twin.setPresent();//sysj\capperController.sysj line: 54, column: 7
-                                    currsigs.addElement(twin);
-                                    twin.setValue(t_thread_3);//sysj\capperController.sysj line: 54, column: 7
-                                    if(capSeated.getprestatus()){//sysj\capperController.sysj line: 57, column: 22
-                                      w_thread_3.cap();//sysj\capperController.sysj line: 61, column: 6
-                                      t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 62, column: 6
-                                      if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 63, column: 6
-                                        twin.setPresent();//sysj\capperController.sysj line: 64, column: 7
-                                        currsigs.addElement(twin);
-                                        twin.setValue(t_thread_3);//sysj\capperController.sysj line: 64, column: 7
-                                        System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
-                                        S15332=2;
-                                        S15419=0;
-                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                                          done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                          S15419=1;
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                        else {
-                                          S15414=0;
-                                          if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                            done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                                            S15414=1;
-                                            if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                              done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                              ends[3]=2;
-                                              ;//sysj\capperController.sysj line: 69, column: 5
-                                              S16810=2;
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                            else {
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                          }
-                                          else {
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                        }
-                                      }
-                                      else {
-                                        System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
-                                        S15332=2;
-                                        S15419=0;
-                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                                          done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                          S15419=1;
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                        else {
-                                          S15414=0;
-                                          if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                            done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                                            S15414=1;
-                                            if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                              done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                              ends[3]=2;
-                                              ;//sysj\capperController.sysj line: 69, column: 5
-                                              S16810=2;
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                            else {
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                          }
-                                          else {
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                        }
-                                      }
-                                    }
-                                    else {
-                                      screwOn.setPresent();//sysj\capperController.sysj line: 58, column: 7
-                                      currsigs.addElement(screwOn);
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                  }
-                                  else {
-                                    if(capSeated.getprestatus()){//sysj\capperController.sysj line: 57, column: 22
-                                      w_thread_3.cap();//sysj\capperController.sysj line: 61, column: 6
-                                      t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 62, column: 6
-                                      if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 63, column: 6
-                                        twin.setPresent();//sysj\capperController.sysj line: 64, column: 7
-                                        currsigs.addElement(twin);
-                                        twin.setValue(t_thread_3);//sysj\capperController.sysj line: 64, column: 7
-                                        System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
-                                        S15332=2;
-                                        S15419=0;
-                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                                          done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                          S15419=1;
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                        else {
-                                          S15414=0;
-                                          if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                            done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                                            S15414=1;
-                                            if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                              done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                              ends[3]=2;
-                                              ;//sysj\capperController.sysj line: 69, column: 5
-                                              S16810=2;
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                            else {
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                          }
-                                          else {
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                        }
-                                      }
-                                      else {
-                                        System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
-                                        S15332=2;
-                                        S15419=0;
-                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                                          done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                          S15419=1;
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                        else {
-                                          S15414=0;
-                                          if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                            done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                                            S15414=1;
-                                            if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                              done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                              ends[3]=2;
-                                              ;//sysj\capperController.sysj line: 69, column: 5
-                                              S16810=2;
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                            else {
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                          }
-                                          else {
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                        }
-                                      }
-                                    }
-                                    else {
-                                      screwOn.setPresent();//sysj\capperController.sysj line: 58, column: 7
-                                      currsigs.addElement(screwOn);
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                  }
+                                if(w_thread_3 != null){//sysj\capperController.sysj line: 50, column: 4
+                                  permitted_thread_3 = false;//sysj\capperController.sysj line: 51, column: 1
+                                  S15333=0;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
                                 }
                                 else {
                                   S15332=2;
-                                  S15419=0;
-                                  if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                                    done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                    S15419=1;
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                  else {
-                                    S15414=0;
-                                    if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                      done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                                      S15414=1;
-                                      if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                        done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                        ends[3]=2;
-                                        ;//sysj\capperController.sysj line: 69, column: 5
-                                        S16810=2;
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
+                                  if(w_thread_3 != null){//sysj\capperController.sysj line: 61, column: 8
+                                    System.out.println("[CAP] Sealing " + w_thread_3 + ".");//sysj\capperController.sysj line: 62, column: 6
+                                    w_thread_3.started(Machine.LID_CAPPER, "screwing cap");//sysj\capperController.sysj line: 63, column: 6
+                                    if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "screwOn", "sealing " + w_thread_3.id)){//sysj\capperController.sysj line: 64, column: 6
+                                      twin.setPresent();//sysj\capperController.sysj line: 65, column: 7
+                                      currsigs.addElement(twin);
+                                      twin.setValue(t_thread_3);//sysj\capperController.sysj line: 65, column: 7
+                                      if(capSeated.getprestatus()){//sysj\capperController.sysj line: 68, column: 22
+                                        w_thread_3.cap();//sysj\capperController.sysj line: 72, column: 6
+                                        t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 73, column: 6
+                                        if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 74, column: 6
+                                          twin.setPresent();//sysj\capperController.sysj line: 75, column: 7
+                                          currsigs.addElement(twin);
+                                          twin.setValue(t_thread_3);//sysj\capperController.sysj line: 75, column: 7
+                                          System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 77, column: 6
+                                          S15332=3;
+                                          S15503=0;
+                                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                                            done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                            S15503=1;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            S15498=0;
+                                            if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                              done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                                              S15498=1;
+                                              if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                                done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                                ends[3]=2;
+                                                ;//sysj\capperController.sysj line: 80, column: 5
+                                                S17392=2;
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                              else {
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                        }
+                                        else {
+                                          System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 77, column: 6
+                                          S15332=3;
+                                          S15503=0;
+                                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                                            done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                            S15503=1;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            S15498=0;
+                                            if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                              done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                                              S15498=1;
+                                              if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                                done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                                ends[3]=2;
+                                                ;//sysj\capperController.sysj line: 80, column: 5
+                                                S17392=2;
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                              else {
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                        }
                                       }
                                       else {
+                                        screwOn.setPresent();//sysj\capperController.sysj line: 69, column: 7
+                                        currsigs.addElement(screwOn);
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
                                       }
                                     }
                                     else {
+                                      if(capSeated.getprestatus()){//sysj\capperController.sysj line: 68, column: 22
+                                        w_thread_3.cap();//sysj\capperController.sysj line: 72, column: 6
+                                        t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 73, column: 6
+                                        if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 74, column: 6
+                                          twin.setPresent();//sysj\capperController.sysj line: 75, column: 7
+                                          currsigs.addElement(twin);
+                                          twin.setValue(t_thread_3);//sysj\capperController.sysj line: 75, column: 7
+                                          System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 77, column: 6
+                                          S15332=3;
+                                          S15503=0;
+                                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                                            done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                            S15503=1;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            S15498=0;
+                                            if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                              done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                                              S15498=1;
+                                              if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                                done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                                ends[3]=2;
+                                                ;//sysj\capperController.sysj line: 80, column: 5
+                                                S17392=2;
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                              else {
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                        }
+                                        else {
+                                          System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 77, column: 6
+                                          S15332=3;
+                                          S15503=0;
+                                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                                            done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                            S15503=1;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            S15498=0;
+                                            if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                              done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                                              S15498=1;
+                                              if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                                done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                                ends[3]=2;
+                                                ;//sysj\capperController.sysj line: 80, column: 5
+                                                S17392=2;
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                              else {
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                        }
+                                      }
+                                      else {
+                                        screwOn.setPresent();//sysj\capperController.sysj line: 69, column: 7
+                                        currsigs.addElement(screwOn);
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                  }
+                                  else {
+                                    S15332=3;
+                                    S15503=0;
+                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                                      done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                      S15503=1;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
+                                    }
+                                    else {
+                                      S15498=0;
+                                      if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                        done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                                        S15498=1;
+                                        if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                          done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                          ends[3]=2;
+                                          ;//sysj\capperController.sysj line: 80, column: 5
+                                          S17392=2;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
                                     }
                                   }
                                 }
@@ -708,237 +731,247 @@ public class CapperController extends ClockDomain{
                             break;
                           
                           case 1 : 
-                            if(start_in.isREQ()){//sysj\capperController.sysj line: 47, column: 5
-                              start_in.setACK(false);//sysj\capperController.sysj line: 47, column: 5
+                            if(start_in.isREQ()){//sysj\capperController.sysj line: 48, column: 5
+                              start_in.setACK(false);//sysj\capperController.sysj line: 48, column: 5
                               ends[3]=2;
-                              ;//sysj\capperController.sysj line: 47, column: 5
-                              w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\capperController.sysj line: 48, column: 5
+                              ;//sysj\capperController.sysj line: 48, column: 5
+                              w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\capperController.sysj line: 49, column: 5
                               S15332=1;
-                              if(w_thread_3 != null){//sysj\capperController.sysj line: 50, column: 8
-                                System.out.println("[CAP] Sealing " + w_thread_3 + ".");//sysj\capperController.sysj line: 51, column: 6
-                                w_thread_3.started(Machine.LID_CAPPER, "screwing cap");//sysj\capperController.sysj line: 52, column: 6
-                                if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "screwOn", "sealing " + w_thread_3.id)){//sysj\capperController.sysj line: 53, column: 6
-                                  twin.setPresent();//sysj\capperController.sysj line: 54, column: 7
-                                  currsigs.addElement(twin);
-                                  twin.setValue(t_thread_3);//sysj\capperController.sysj line: 54, column: 7
-                                  if(capSeated.getprestatus()){//sysj\capperController.sysj line: 57, column: 22
-                                    w_thread_3.cap();//sysj\capperController.sysj line: 61, column: 6
-                                    t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 62, column: 6
-                                    if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 63, column: 6
-                                      twin.setPresent();//sysj\capperController.sysj line: 64, column: 7
-                                      currsigs.addElement(twin);
-                                      twin.setValue(t_thread_3);//sysj\capperController.sysj line: 64, column: 7
-                                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
-                                      S15332=2;
-                                      S15419=0;
-                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                                        done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                        S15419=1;
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                      else {
-                                        S15414=0;
-                                        if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                          done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                                          S15414=1;
-                                          if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                            done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                            ends[3]=2;
-                                            ;//sysj\capperController.sysj line: 69, column: 5
-                                            S16810=2;
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                          else {
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                        }
-                                        else {
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                      }
-                                    }
-                                    else {
-                                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
-                                      S15332=2;
-                                      S15419=0;
-                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                                        done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                        S15419=1;
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                      else {
-                                        S15414=0;
-                                        if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                          done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                                          S15414=1;
-                                          if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                            done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                            ends[3]=2;
-                                            ;//sysj\capperController.sysj line: 69, column: 5
-                                            S16810=2;
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                          else {
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                        }
-                                        else {
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                      }
-                                    }
-                                  }
-                                  else {
-                                    screwOn.setPresent();//sysj\capperController.sysj line: 58, column: 7
-                                    currsigs.addElement(screwOn);
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                }
-                                else {
-                                  if(capSeated.getprestatus()){//sysj\capperController.sysj line: 57, column: 22
-                                    w_thread_3.cap();//sysj\capperController.sysj line: 61, column: 6
-                                    t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 62, column: 6
-                                    if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 63, column: 6
-                                      twin.setPresent();//sysj\capperController.sysj line: 64, column: 7
-                                      currsigs.addElement(twin);
-                                      twin.setValue(t_thread_3);//sysj\capperController.sysj line: 64, column: 7
-                                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
-                                      S15332=2;
-                                      S15419=0;
-                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                                        done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                        S15419=1;
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                      else {
-                                        S15414=0;
-                                        if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                          done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                                          S15414=1;
-                                          if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                            done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                            ends[3]=2;
-                                            ;//sysj\capperController.sysj line: 69, column: 5
-                                            S16810=2;
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                          else {
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                        }
-                                        else {
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                      }
-                                    }
-                                    else {
-                                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
-                                      S15332=2;
-                                      S15419=0;
-                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                                        done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                        S15419=1;
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                      else {
-                                        S15414=0;
-                                        if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                          done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                                          S15414=1;
-                                          if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                            done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                            ends[3]=2;
-                                            ;//sysj\capperController.sysj line: 69, column: 5
-                                            S16810=2;
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                          else {
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                        }
-                                        else {
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                      }
-                                    }
-                                  }
-                                  else {
-                                    screwOn.setPresent();//sysj\capperController.sysj line: 58, column: 7
-                                    currsigs.addElement(screwOn);
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                }
+                              if(w_thread_3 != null){//sysj\capperController.sysj line: 50, column: 4
+                                permitted_thread_3 = false;//sysj\capperController.sysj line: 51, column: 1
+                                S15333=0;
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
                               }
                               else {
                                 S15332=2;
-                                S15419=0;
-                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                                  done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                  S15419=1;
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                                else {
-                                  S15414=0;
-                                  if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                    done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                                    S15414=1;
-                                    if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                      done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                      ends[3]=2;
-                                      ;//sysj\capperController.sysj line: 69, column: 5
-                                      S16810=2;
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
+                                if(w_thread_3 != null){//sysj\capperController.sysj line: 61, column: 8
+                                  System.out.println("[CAP] Sealing " + w_thread_3 + ".");//sysj\capperController.sysj line: 62, column: 6
+                                  w_thread_3.started(Machine.LID_CAPPER, "screwing cap");//sysj\capperController.sysj line: 63, column: 6
+                                  if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "screwOn", "sealing " + w_thread_3.id)){//sysj\capperController.sysj line: 64, column: 6
+                                    twin.setPresent();//sysj\capperController.sysj line: 65, column: 7
+                                    currsigs.addElement(twin);
+                                    twin.setValue(t_thread_3);//sysj\capperController.sysj line: 65, column: 7
+                                    if(capSeated.getprestatus()){//sysj\capperController.sysj line: 68, column: 22
+                                      w_thread_3.cap();//sysj\capperController.sysj line: 72, column: 6
+                                      t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 73, column: 6
+                                      if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 74, column: 6
+                                        twin.setPresent();//sysj\capperController.sysj line: 75, column: 7
+                                        currsigs.addElement(twin);
+                                        twin.setValue(t_thread_3);//sysj\capperController.sysj line: 75, column: 7
+                                        System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 77, column: 6
+                                        S15332=3;
+                                        S15503=0;
+                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                                          done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                          S15503=1;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          S15498=0;
+                                          if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                            done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                                            S15498=1;
+                                            if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                              done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                              ends[3]=2;
+                                              ;//sysj\capperController.sysj line: 80, column: 5
+                                              S17392=2;
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                      }
+                                      else {
+                                        System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 77, column: 6
+                                        S15332=3;
+                                        S15503=0;
+                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                                          done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                          S15503=1;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          S15498=0;
+                                          if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                            done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                                            S15498=1;
+                                            if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                              done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                              ends[3]=2;
+                                              ;//sysj\capperController.sysj line: 80, column: 5
+                                              S17392=2;
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                      }
                                     }
                                     else {
+                                      screwOn.setPresent();//sysj\capperController.sysj line: 69, column: 7
+                                      currsigs.addElement(screwOn);
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
                                     }
                                   }
                                   else {
+                                    if(capSeated.getprestatus()){//sysj\capperController.sysj line: 68, column: 22
+                                      w_thread_3.cap();//sysj\capperController.sysj line: 72, column: 6
+                                      t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 73, column: 6
+                                      if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 74, column: 6
+                                        twin.setPresent();//sysj\capperController.sysj line: 75, column: 7
+                                        currsigs.addElement(twin);
+                                        twin.setValue(t_thread_3);//sysj\capperController.sysj line: 75, column: 7
+                                        System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 77, column: 6
+                                        S15332=3;
+                                        S15503=0;
+                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                                          done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                          S15503=1;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          S15498=0;
+                                          if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                            done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                                            S15498=1;
+                                            if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                              done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                              ends[3]=2;
+                                              ;//sysj\capperController.sysj line: 80, column: 5
+                                              S17392=2;
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                      }
+                                      else {
+                                        System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 77, column: 6
+                                        S15332=3;
+                                        S15503=0;
+                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                                          done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                          S15503=1;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          S15498=0;
+                                          if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                            done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                                            S15498=1;
+                                            if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                              done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                              ends[3]=2;
+                                              ;//sysj\capperController.sysj line: 80, column: 5
+                                              S17392=2;
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                      }
+                                    }
+                                    else {
+                                      screwOn.setPresent();//sysj\capperController.sysj line: 69, column: 7
+                                      currsigs.addElement(screwOn);
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                }
+                                else {
+                                  S15332=3;
+                                  S15503=0;
+                                  if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                                    done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                    S15503=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
+                                  }
+                                  else {
+                                    S15498=0;
+                                    if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                      done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                                      S15498=1;
+                                      if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                        done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                        ends[3]=2;
+                                        ;//sysj\capperController.sysj line: 80, column: 5
+                                        S17392=2;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
                                   }
                                 }
                               }
@@ -957,8 +990,8 @@ public class CapperController extends ClockDomain{
                     case 1 : 
                       S15316=1;
                       S15316=0;
-                      if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj\capperController.sysj line: 47, column: 5
-                        start_in.setACK(false);//sysj\capperController.sysj line: 47, column: 5
+                      if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj\capperController.sysj line: 48, column: 5
+                        start_in.setACK(false);//sysj\capperController.sysj line: 48, column: 5
                         S15316=1;
                         active[3]=1;
                         ends[3]=1;
@@ -966,240 +999,250 @@ public class CapperController extends ClockDomain{
                       }
                       else {
                         S15311=0;
-                        if(!start_in.isREQ()){//sysj\capperController.sysj line: 47, column: 5
-                          start_in.setACK(true);//sysj\capperController.sysj line: 47, column: 5
+                        if(!start_in.isREQ()){//sysj\capperController.sysj line: 48, column: 5
+                          start_in.setACK(true);//sysj\capperController.sysj line: 48, column: 5
                           S15311=1;
-                          if(start_in.isREQ()){//sysj\capperController.sysj line: 47, column: 5
-                            start_in.setACK(false);//sysj\capperController.sysj line: 47, column: 5
+                          if(start_in.isREQ()){//sysj\capperController.sysj line: 48, column: 5
+                            start_in.setACK(false);//sysj\capperController.sysj line: 48, column: 5
                             ends[3]=2;
-                            ;//sysj\capperController.sysj line: 47, column: 5
-                            w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\capperController.sysj line: 48, column: 5
+                            ;//sysj\capperController.sysj line: 48, column: 5
+                            w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\capperController.sysj line: 49, column: 5
                             S15332=1;
-                            if(w_thread_3 != null){//sysj\capperController.sysj line: 50, column: 8
-                              System.out.println("[CAP] Sealing " + w_thread_3 + ".");//sysj\capperController.sysj line: 51, column: 6
-                              w_thread_3.started(Machine.LID_CAPPER, "screwing cap");//sysj\capperController.sysj line: 52, column: 6
-                              if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "screwOn", "sealing " + w_thread_3.id)){//sysj\capperController.sysj line: 53, column: 6
-                                twin.setPresent();//sysj\capperController.sysj line: 54, column: 7
-                                currsigs.addElement(twin);
-                                twin.setValue(t_thread_3);//sysj\capperController.sysj line: 54, column: 7
-                                if(capSeated.getprestatus()){//sysj\capperController.sysj line: 57, column: 22
-                                  w_thread_3.cap();//sysj\capperController.sysj line: 61, column: 6
-                                  t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 62, column: 6
-                                  if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 63, column: 6
-                                    twin.setPresent();//sysj\capperController.sysj line: 64, column: 7
-                                    currsigs.addElement(twin);
-                                    twin.setValue(t_thread_3);//sysj\capperController.sysj line: 64, column: 7
-                                    System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
-                                    S15332=2;
-                                    S15419=0;
-                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                                      done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                      S15419=1;
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                    else {
-                                      S15414=0;
-                                      if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                        done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                                        S15414=1;
-                                        if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                          done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                          ends[3]=2;
-                                          ;//sysj\capperController.sysj line: 69, column: 5
-                                          S16810=2;
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                        else {
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                      }
-                                      else {
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                    }
-                                  }
-                                  else {
-                                    System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
-                                    S15332=2;
-                                    S15419=0;
-                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                                      done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                      S15419=1;
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                    else {
-                                      S15414=0;
-                                      if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                        done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                                        S15414=1;
-                                        if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                          done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                          ends[3]=2;
-                                          ;//sysj\capperController.sysj line: 69, column: 5
-                                          S16810=2;
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                        else {
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                      }
-                                      else {
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                    }
-                                  }
-                                }
-                                else {
-                                  screwOn.setPresent();//sysj\capperController.sysj line: 58, column: 7
-                                  currsigs.addElement(screwOn);
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
-                              else {
-                                if(capSeated.getprestatus()){//sysj\capperController.sysj line: 57, column: 22
-                                  w_thread_3.cap();//sysj\capperController.sysj line: 61, column: 6
-                                  t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 62, column: 6
-                                  if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 63, column: 6
-                                    twin.setPresent();//sysj\capperController.sysj line: 64, column: 7
-                                    currsigs.addElement(twin);
-                                    twin.setValue(t_thread_3);//sysj\capperController.sysj line: 64, column: 7
-                                    System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
-                                    S15332=2;
-                                    S15419=0;
-                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                                      done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                      S15419=1;
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                    else {
-                                      S15414=0;
-                                      if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                        done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                                        S15414=1;
-                                        if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                          done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                          ends[3]=2;
-                                          ;//sysj\capperController.sysj line: 69, column: 5
-                                          S16810=2;
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                        else {
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                      }
-                                      else {
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                    }
-                                  }
-                                  else {
-                                    System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
-                                    S15332=2;
-                                    S15419=0;
-                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                                      done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                      S15419=1;
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                    else {
-                                      S15414=0;
-                                      if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                        done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                                        S15414=1;
-                                        if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                          done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                          ends[3]=2;
-                                          ;//sysj\capperController.sysj line: 69, column: 5
-                                          S16810=2;
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                        else {
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                      }
-                                      else {
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                    }
-                                  }
-                                }
-                                else {
-                                  screwOn.setPresent();//sysj\capperController.sysj line: 58, column: 7
-                                  currsigs.addElement(screwOn);
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
+                            if(w_thread_3 != null){//sysj\capperController.sysj line: 50, column: 4
+                              permitted_thread_3 = false;//sysj\capperController.sysj line: 51, column: 1
+                              S15333=0;
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
                             }
                             else {
                               S15332=2;
-                              S15419=0;
-                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                                done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                S15419=1;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                              else {
-                                S15414=0;
-                                if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                  done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                                  S15414=1;
-                                  if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                    done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                    ends[3]=2;
-                                    ;//sysj\capperController.sysj line: 69, column: 5
-                                    S16810=2;
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
+                              if(w_thread_3 != null){//sysj\capperController.sysj line: 61, column: 8
+                                System.out.println("[CAP] Sealing " + w_thread_3 + ".");//sysj\capperController.sysj line: 62, column: 6
+                                w_thread_3.started(Machine.LID_CAPPER, "screwing cap");//sysj\capperController.sysj line: 63, column: 6
+                                if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "screwOn", "sealing " + w_thread_3.id)){//sysj\capperController.sysj line: 64, column: 6
+                                  twin.setPresent();//sysj\capperController.sysj line: 65, column: 7
+                                  currsigs.addElement(twin);
+                                  twin.setValue(t_thread_3);//sysj\capperController.sysj line: 65, column: 7
+                                  if(capSeated.getprestatus()){//sysj\capperController.sysj line: 68, column: 22
+                                    w_thread_3.cap();//sysj\capperController.sysj line: 72, column: 6
+                                    t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 73, column: 6
+                                    if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 74, column: 6
+                                      twin.setPresent();//sysj\capperController.sysj line: 75, column: 7
+                                      currsigs.addElement(twin);
+                                      twin.setValue(t_thread_3);//sysj\capperController.sysj line: 75, column: 7
+                                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 77, column: 6
+                                      S15332=3;
+                                      S15503=0;
+                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                                        done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                        S15503=1;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        S15498=0;
+                                        if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                          done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                                          S15498=1;
+                                          if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                            done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                            ends[3]=2;
+                                            ;//sysj\capperController.sysj line: 80, column: 5
+                                            S17392=2;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                    }
+                                    else {
+                                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 77, column: 6
+                                      S15332=3;
+                                      S15503=0;
+                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                                        done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                        S15503=1;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        S15498=0;
+                                        if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                          done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                                          S15498=1;
+                                          if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                            done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                            ends[3]=2;
+                                            ;//sysj\capperController.sysj line: 80, column: 5
+                                            S17392=2;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                    }
                                   }
                                   else {
+                                    screwOn.setPresent();//sysj\capperController.sysj line: 69, column: 7
+                                    currsigs.addElement(screwOn);
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
                                 }
                                 else {
+                                  if(capSeated.getprestatus()){//sysj\capperController.sysj line: 68, column: 22
+                                    w_thread_3.cap();//sysj\capperController.sysj line: 72, column: 6
+                                    t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 73, column: 6
+                                    if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 74, column: 6
+                                      twin.setPresent();//sysj\capperController.sysj line: 75, column: 7
+                                      currsigs.addElement(twin);
+                                      twin.setValue(t_thread_3);//sysj\capperController.sysj line: 75, column: 7
+                                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 77, column: 6
+                                      S15332=3;
+                                      S15503=0;
+                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                                        done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                        S15503=1;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        S15498=0;
+                                        if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                          done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                                          S15498=1;
+                                          if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                            done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                            ends[3]=2;
+                                            ;//sysj\capperController.sysj line: 80, column: 5
+                                            S17392=2;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                    }
+                                    else {
+                                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 77, column: 6
+                                      S15332=3;
+                                      S15503=0;
+                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                                        done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                        S15503=1;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        S15498=0;
+                                        if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                          done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                                          S15498=1;
+                                          if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                            done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                            ends[3]=2;
+                                            ;//sysj\capperController.sysj line: 80, column: 5
+                                            S17392=2;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                    }
+                                  }
+                                  else {
+                                    screwOn.setPresent();//sysj\capperController.sysj line: 69, column: 7
+                                    currsigs.addElement(screwOn);
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
+                              else {
+                                S15332=3;
+                                S15503=0;
+                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                                  done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                  S15503=1;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
+                                }
+                                else {
+                                  S15498=0;
+                                  if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                    done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                                    S15498=1;
+                                    if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                      done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                      ends[3]=2;
+                                      ;//sysj\capperController.sysj line: 80, column: 5
+                                      S17392=2;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
                                 }
                               }
                             }
@@ -1222,33 +1265,307 @@ public class CapperController extends ClockDomain{
                   break;
                 
                 case 1 : 
-                  if(capSeated.getprestatus()){//sysj\capperController.sysj line: 57, column: 22
-                    w_thread_3.cap();//sysj\capperController.sysj line: 61, column: 6
-                    t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 62, column: 6
-                    if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 63, column: 6
-                      twin.setPresent();//sysj\capperController.sysj line: 64, column: 7
-                      currsigs.addElement(twin);
-                      twin.setValue(t_thread_3);//sysj\capperController.sysj line: 64, column: 7
-                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
-                      S15332=2;
-                      S15419=0;
-                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                        done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                        S15419=1;
+                  switch(S15333){
+                    case 0 : 
+                      S15333=0;
+                      S15333=1;
+                      if(!permitted_thread_3){//sysj\capperController.sysj line: 53, column: 19
+                        permitted_thread_3 = GuiStep.take("CAP", (GuiPermit)(operatorPermit.getpreval() == null ? null : ((GuiPermit)operatorPermit.getpreval())));//sysj\capperController.sysj line: 54, column: 17
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S15414=0;
-                        if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                          done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                          S15414=1;
-                          if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                            done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
+                        ends[3]=2;
+                        ;//sysj\capperController.sysj line: 53, column: 13
+                        S15333=2;
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      break;
+                    
+                    case 1 : 
+                      if(!permitted_thread_3){//sysj\capperController.sysj line: 53, column: 19
+                        permitted_thread_3 = GuiStep.take("CAP", (GuiPermit)(operatorPermit.getpreval() == null ? null : ((GuiPermit)operatorPermit.getpreval())));//sysj\capperController.sysj line: 54, column: 17
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        ends[3]=2;
+                        ;//sysj\capperController.sysj line: 53, column: 13
+                        S15333=2;
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      break;
+                    
+                    case 2 : 
+                      S15333=2;
+                      S15332=2;
+                      if(w_thread_3 != null){//sysj\capperController.sysj line: 61, column: 8
+                        System.out.println("[CAP] Sealing " + w_thread_3 + ".");//sysj\capperController.sysj line: 62, column: 6
+                        w_thread_3.started(Machine.LID_CAPPER, "screwing cap");//sysj\capperController.sysj line: 63, column: 6
+                        if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "screwOn", "sealing " + w_thread_3.id)){//sysj\capperController.sysj line: 64, column: 6
+                          twin.setPresent();//sysj\capperController.sysj line: 65, column: 7
+                          currsigs.addElement(twin);
+                          twin.setValue(t_thread_3);//sysj\capperController.sysj line: 65, column: 7
+                          if(capSeated.getprestatus()){//sysj\capperController.sysj line: 68, column: 22
+                            w_thread_3.cap();//sysj\capperController.sysj line: 72, column: 6
+                            t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 73, column: 6
+                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 74, column: 6
+                              twin.setPresent();//sysj\capperController.sysj line: 75, column: 7
+                              currsigs.addElement(twin);
+                              twin.setValue(t_thread_3);//sysj\capperController.sysj line: 75, column: 7
+                              System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 77, column: 6
+                              S15332=3;
+                              S15503=0;
+                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                                done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                S15503=1;
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                              else {
+                                S15498=0;
+                                if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                  done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                                  S15498=1;
+                                  if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                    done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                    ends[3]=2;
+                                    ;//sysj\capperController.sysj line: 80, column: 5
+                                    S17392=2;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                                else {
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                            }
+                            else {
+                              System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 77, column: 6
+                              S15332=3;
+                              S15503=0;
+                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                                done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                S15503=1;
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                              else {
+                                S15498=0;
+                                if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                  done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                                  S15498=1;
+                                  if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                    done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                    ends[3]=2;
+                                    ;//sysj\capperController.sysj line: 80, column: 5
+                                    S17392=2;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                                else {
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                            }
+                          }
+                          else {
+                            screwOn.setPresent();//sysj\capperController.sysj line: 69, column: 7
+                            currsigs.addElement(screwOn);
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                        }
+                        else {
+                          if(capSeated.getprestatus()){//sysj\capperController.sysj line: 68, column: 22
+                            w_thread_3.cap();//sysj\capperController.sysj line: 72, column: 6
+                            t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 73, column: 6
+                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 74, column: 6
+                              twin.setPresent();//sysj\capperController.sysj line: 75, column: 7
+                              currsigs.addElement(twin);
+                              twin.setValue(t_thread_3);//sysj\capperController.sysj line: 75, column: 7
+                              System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 77, column: 6
+                              S15332=3;
+                              S15503=0;
+                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                                done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                S15503=1;
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                              else {
+                                S15498=0;
+                                if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                  done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                                  S15498=1;
+                                  if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                    done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                    ends[3]=2;
+                                    ;//sysj\capperController.sysj line: 80, column: 5
+                                    S17392=2;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                                else {
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                            }
+                            else {
+                              System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 77, column: 6
+                              S15332=3;
+                              S15503=0;
+                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                                done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                S15503=1;
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                              else {
+                                S15498=0;
+                                if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                  done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                                  S15498=1;
+                                  if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                    done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                    ends[3]=2;
+                                    ;//sysj\capperController.sysj line: 80, column: 5
+                                    S17392=2;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                                else {
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                            }
+                          }
+                          else {
+                            screwOn.setPresent();//sysj\capperController.sysj line: 69, column: 7
+                            currsigs.addElement(screwOn);
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                        }
+                      }
+                      else {
+                        S15332=3;
+                        S15503=0;
+                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                          done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                          S15503=1;
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                        else {
+                          S15498=0;
+                          if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                            done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                            S15498=1;
+                            if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                              done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                              ends[3]=2;
+                              ;//sysj\capperController.sysj line: 80, column: 5
+                              S17392=2;
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                            else {
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                          else {
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                        }
+                      }
+                      break;
+                    
+                  }
+                  break;
+                
+                case 2 : 
+                  if(capSeated.getprestatus()){//sysj\capperController.sysj line: 68, column: 22
+                    w_thread_3.cap();//sysj\capperController.sysj line: 72, column: 6
+                    t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 73, column: 6
+                    if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 74, column: 6
+                      twin.setPresent();//sysj\capperController.sysj line: 75, column: 7
+                      currsigs.addElement(twin);
+                      twin.setValue(t_thread_3);//sysj\capperController.sysj line: 75, column: 7
+                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 77, column: 6
+                      S15332=3;
+                      S15503=0;
+                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                        done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                        S15503=1;
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        S15498=0;
+                        if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                          done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                          S15498=1;
+                          if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                            done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
                             ends[3]=2;
-                            ;//sysj\capperController.sysj line: 69, column: 5
-                            S16810=2;
+                            ;//sysj\capperController.sysj line: 80, column: 5
+                            S17392=2;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -1267,26 +1584,26 @@ public class CapperController extends ClockDomain{
                       }
                     }
                     else {
-                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
-                      S15332=2;
-                      S15419=0;
-                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                        done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                        S15419=1;
+                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 77, column: 6
+                      S15332=3;
+                      S15503=0;
+                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                        done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                        S15503=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S15414=0;
-                        if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                          done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                          S15414=1;
-                          if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                            done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
+                        S15498=0;
+                        if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                          done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                          S15498=1;
+                          if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                            done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
                             ends[3]=2;
-                            ;//sysj\capperController.sysj line: 69, column: 5
-                            S16810=2;
+                            ;//sysj\capperController.sysj line: 80, column: 5
+                            S17392=2;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -1306,7 +1623,7 @@ public class CapperController extends ClockDomain{
                     }
                   }
                   else {
-                    screwOn.setPresent();//sysj\capperController.sysj line: 58, column: 7
+                    screwOn.setPresent();//sysj\capperController.sysj line: 69, column: 7
                     currsigs.addElement(screwOn);
                     active[3]=1;
                     ends[3]=1;
@@ -1314,27 +1631,27 @@ public class CapperController extends ClockDomain{
                   }
                   break;
                 
-                case 2 : 
-                  switch(S15419){
+                case 3 : 
+                  switch(S15503){
                     case 0 : 
-                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                        done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                        S15419=1;
+                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                        done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                        S15503=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        switch(S15414){
+                        switch(S15498){
                           case 0 : 
-                            if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                              done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                              S15414=1;
-                              if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
+                            if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                              done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                              S15498=1;
+                              if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
                                 ends[3]=2;
-                                ;//sysj\capperController.sysj line: 69, column: 5
-                                S16810=2;
+                                ;//sysj\capperController.sysj line: 80, column: 5
+                                S17392=2;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -1353,11 +1670,11 @@ public class CapperController extends ClockDomain{
                             break;
                           
                           case 1 : 
-                            if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                              done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
+                            if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                              done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
                               ends[3]=2;
-                              ;//sysj\capperController.sysj line: 69, column: 5
-                              S16810=2;
+                              ;//sysj\capperController.sysj line: 80, column: 5
+                              S17392=2;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
@@ -1374,25 +1691,25 @@ public class CapperController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      S15419=1;
-                      S15419=0;
-                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                        done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                        S15419=1;
+                      S15503=1;
+                      S15503=0;
+                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                        done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                        S15503=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S15414=0;
-                        if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                          done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                          S15414=1;
-                          if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                            done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
+                        S15498=0;
+                        if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                          done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                          S15498=1;
+                          if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                            done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
                             ends[3]=2;
-                            ;//sysj\capperController.sysj line: 69, column: 5
-                            S16810=2;
+                            ;//sysj\capperController.sysj line: 80, column: 5
+                            S17392=2;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -1414,15 +1731,15 @@ public class CapperController extends ClockDomain{
                   }
                   break;
                 
-                case 3 : 
-                  S16810=2;
+                case 4 : 
+                  S17392=2;
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                   break;
                 
-                case 4 : 
-                  S16810=2;
+                case 5 : 
+                  S17392=2;
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
@@ -1433,14 +1750,14 @@ public class CapperController extends ClockDomain{
             break;
           
           case 2 : 
-            S16810=2;
-            S16810=0;
-            if(auto_1.getprestatus()){//sysj\capperController.sysj line: 44, column: 20
-              S16810=1;
-              if(manual_1.getprestatus()){//sysj\capperController.sysj line: 46, column: 20
+            S17392=2;
+            S17392=0;
+            if(auto_1.getprestatus()){//sysj\capperController.sysj line: 45, column: 20
+              S17392=1;
+              if(manual_1.getprestatus()){//sysj\capperController.sysj line: 47, column: 20
                 start_in.setPreempted();
                 done_o.setPreempted();
-                S16810=2;
+                S17392=2;
                 active[3]=1;
                 ends[3]=1;
                 tdone[3]=1;
@@ -1448,8 +1765,8 @@ public class CapperController extends ClockDomain{
               else {
                 S15332=0;
                 S15316=0;
-                if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj\capperController.sysj line: 47, column: 5
-                  start_in.setACK(false);//sysj\capperController.sysj line: 47, column: 5
+                if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj\capperController.sysj line: 48, column: 5
+                  start_in.setACK(false);//sysj\capperController.sysj line: 48, column: 5
                   S15316=1;
                   active[3]=1;
                   ends[3]=1;
@@ -1457,240 +1774,250 @@ public class CapperController extends ClockDomain{
                 }
                 else {
                   S15311=0;
-                  if(!start_in.isREQ()){//sysj\capperController.sysj line: 47, column: 5
-                    start_in.setACK(true);//sysj\capperController.sysj line: 47, column: 5
+                  if(!start_in.isREQ()){//sysj\capperController.sysj line: 48, column: 5
+                    start_in.setACK(true);//sysj\capperController.sysj line: 48, column: 5
                     S15311=1;
-                    if(start_in.isREQ()){//sysj\capperController.sysj line: 47, column: 5
-                      start_in.setACK(false);//sysj\capperController.sysj line: 47, column: 5
+                    if(start_in.isREQ()){//sysj\capperController.sysj line: 48, column: 5
+                      start_in.setACK(false);//sysj\capperController.sysj line: 48, column: 5
                       ends[3]=2;
-                      ;//sysj\capperController.sysj line: 47, column: 5
-                      w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\capperController.sysj line: 48, column: 5
+                      ;//sysj\capperController.sysj line: 48, column: 5
+                      w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\capperController.sysj line: 49, column: 5
                       S15332=1;
-                      if(w_thread_3 != null){//sysj\capperController.sysj line: 50, column: 8
-                        System.out.println("[CAP] Sealing " + w_thread_3 + ".");//sysj\capperController.sysj line: 51, column: 6
-                        w_thread_3.started(Machine.LID_CAPPER, "screwing cap");//sysj\capperController.sysj line: 52, column: 6
-                        if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "screwOn", "sealing " + w_thread_3.id)){//sysj\capperController.sysj line: 53, column: 6
-                          twin.setPresent();//sysj\capperController.sysj line: 54, column: 7
-                          currsigs.addElement(twin);
-                          twin.setValue(t_thread_3);//sysj\capperController.sysj line: 54, column: 7
-                          if(capSeated.getprestatus()){//sysj\capperController.sysj line: 57, column: 22
-                            w_thread_3.cap();//sysj\capperController.sysj line: 61, column: 6
-                            t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 62, column: 6
-                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 63, column: 6
-                              twin.setPresent();//sysj\capperController.sysj line: 64, column: 7
-                              currsigs.addElement(twin);
-                              twin.setValue(t_thread_3);//sysj\capperController.sysj line: 64, column: 7
-                              System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
-                              S15332=2;
-                              S15419=0;
-                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                                done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                S15419=1;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                              else {
-                                S15414=0;
-                                if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                  done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                                  S15414=1;
-                                  if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                    done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                    ends[3]=2;
-                                    ;//sysj\capperController.sysj line: 69, column: 5
-                                    S16810=2;
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                  else {
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                }
-                                else {
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
-                            }
-                            else {
-                              System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
-                              S15332=2;
-                              S15419=0;
-                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                                done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                S15419=1;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                              else {
-                                S15414=0;
-                                if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                  done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                                  S15414=1;
-                                  if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                    done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                    ends[3]=2;
-                                    ;//sysj\capperController.sysj line: 69, column: 5
-                                    S16810=2;
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                  else {
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                }
-                                else {
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
-                            }
-                          }
-                          else {
-                            screwOn.setPresent();//sysj\capperController.sysj line: 58, column: 7
-                            currsigs.addElement(screwOn);
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                        }
-                        else {
-                          if(capSeated.getprestatus()){//sysj\capperController.sysj line: 57, column: 22
-                            w_thread_3.cap();//sysj\capperController.sysj line: 61, column: 6
-                            t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 62, column: 6
-                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 63, column: 6
-                              twin.setPresent();//sysj\capperController.sysj line: 64, column: 7
-                              currsigs.addElement(twin);
-                              twin.setValue(t_thread_3);//sysj\capperController.sysj line: 64, column: 7
-                              System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
-                              S15332=2;
-                              S15419=0;
-                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                                done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                S15419=1;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                              else {
-                                S15414=0;
-                                if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                  done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                                  S15414=1;
-                                  if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                    done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                    ends[3]=2;
-                                    ;//sysj\capperController.sysj line: 69, column: 5
-                                    S16810=2;
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                  else {
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                }
-                                else {
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
-                            }
-                            else {
-                              System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
-                              S15332=2;
-                              S15419=0;
-                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                                done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                S15419=1;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                              else {
-                                S15414=0;
-                                if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                  done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                                  S15414=1;
-                                  if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                                    done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                                    ends[3]=2;
-                                    ;//sysj\capperController.sysj line: 69, column: 5
-                                    S16810=2;
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                  else {
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                }
-                                else {
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
-                            }
-                          }
-                          else {
-                            screwOn.setPresent();//sysj\capperController.sysj line: 58, column: 7
-                            currsigs.addElement(screwOn);
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                        }
+                      if(w_thread_3 != null){//sysj\capperController.sysj line: 50, column: 4
+                        permitted_thread_3 = false;//sysj\capperController.sysj line: 51, column: 1
+                        S15333=0;
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
                       }
                       else {
                         S15332=2;
-                        S15419=0;
-                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                          done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                          S15419=1;
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                        else {
-                          S15414=0;
-                          if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                            done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                            S15414=1;
-                            if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                              done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                              ends[3]=2;
-                              ;//sysj\capperController.sysj line: 69, column: 5
-                              S16810=2;
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
+                        if(w_thread_3 != null){//sysj\capperController.sysj line: 61, column: 8
+                          System.out.println("[CAP] Sealing " + w_thread_3 + ".");//sysj\capperController.sysj line: 62, column: 6
+                          w_thread_3.started(Machine.LID_CAPPER, "screwing cap");//sysj\capperController.sysj line: 63, column: 6
+                          if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "screwOn", "sealing " + w_thread_3.id)){//sysj\capperController.sysj line: 64, column: 6
+                            twin.setPresent();//sysj\capperController.sysj line: 65, column: 7
+                            currsigs.addElement(twin);
+                            twin.setValue(t_thread_3);//sysj\capperController.sysj line: 65, column: 7
+                            if(capSeated.getprestatus()){//sysj\capperController.sysj line: 68, column: 22
+                              w_thread_3.cap();//sysj\capperController.sysj line: 72, column: 6
+                              t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 73, column: 6
+                              if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 74, column: 6
+                                twin.setPresent();//sysj\capperController.sysj line: 75, column: 7
+                                currsigs.addElement(twin);
+                                twin.setValue(t_thread_3);//sysj\capperController.sysj line: 75, column: 7
+                                System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 77, column: 6
+                                S15332=3;
+                                S15503=0;
+                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                                  done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                  S15503=1;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                                else {
+                                  S15498=0;
+                                  if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                    done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                                    S15498=1;
+                                    if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                      done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                      ends[3]=2;
+                                      ;//sysj\capperController.sysj line: 80, column: 5
+                                      S17392=2;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
+                              else {
+                                System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 77, column: 6
+                                S15332=3;
+                                S15503=0;
+                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                                  done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                  S15503=1;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                                else {
+                                  S15498=0;
+                                  if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                    done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                                    S15498=1;
+                                    if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                      done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                      ends[3]=2;
+                                      ;//sysj\capperController.sysj line: 80, column: 5
+                                      S17392=2;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
                             }
                             else {
+                              screwOn.setPresent();//sysj\capperController.sysj line: 69, column: 7
+                              currsigs.addElement(screwOn);
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                           }
                           else {
+                            if(capSeated.getprestatus()){//sysj\capperController.sysj line: 68, column: 22
+                              w_thread_3.cap();//sysj\capperController.sysj line: 72, column: 6
+                              t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 73, column: 6
+                              if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 74, column: 6
+                                twin.setPresent();//sysj\capperController.sysj line: 75, column: 7
+                                currsigs.addElement(twin);
+                                twin.setValue(t_thread_3);//sysj\capperController.sysj line: 75, column: 7
+                                System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 77, column: 6
+                                S15332=3;
+                                S15503=0;
+                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                                  done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                  S15503=1;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                                else {
+                                  S15498=0;
+                                  if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                    done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                                    S15498=1;
+                                    if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                      done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                      ends[3]=2;
+                                      ;//sysj\capperController.sysj line: 80, column: 5
+                                      S17392=2;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
+                              else {
+                                System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 77, column: 6
+                                S15332=3;
+                                S15503=0;
+                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                                  done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                  S15503=1;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                                else {
+                                  S15498=0;
+                                  if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                    done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                                    S15498=1;
+                                    if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                      done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                      ends[3]=2;
+                                      ;//sysj\capperController.sysj line: 80, column: 5
+                                      S17392=2;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
+                            }
+                            else {
+                              screwOn.setPresent();//sysj\capperController.sysj line: 69, column: 7
+                              currsigs.addElement(screwOn);
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                        }
+                        else {
+                          S15332=3;
+                          S15503=0;
+                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                            done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                            S15503=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
+                          }
+                          else {
+                            S15498=0;
+                            if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                              done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                              S15498=1;
+                              if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                                done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                                ends[3]=2;
+                                ;//sysj\capperController.sysj line: 80, column: 5
+                                S17392=2;
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                              else {
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                            else {
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
                           }
                         }
                       }
@@ -1722,7 +2049,7 @@ public class CapperController extends ClockDomain{
     }
   }
 
-  public void thread24400(int [] tdone, int [] ends){
+  public void thread27892(int [] tdone, int [] ends){
         switch(S15307){
       case 0 : 
         active[2]=0;
@@ -1731,16 +2058,16 @@ public class CapperController extends ClockDomain{
         break;
       
       case 1 : 
-        if(mode.getprestatus()){//sysj\capperController.sysj line: 31, column: 12
-          if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\capperController.sysj line: 32, column: 8
-            auto_1.setPresent();//sysj\capperController.sysj line: 32, column: 30
+        if(mode.getprestatus()){//sysj\capperController.sysj line: 32, column: 12
+          if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\capperController.sysj line: 33, column: 8
+            auto_1.setPresent();//sysj\capperController.sysj line: 33, column: 30
             currsigs.addElement(auto_1);
             active[2]=1;
             ends[2]=1;
             tdone[2]=1;
           }
           else {
-            manual_1.setPresent();//sysj\capperController.sysj line: 33, column: 12
+            manual_1.setPresent();//sysj\capperController.sysj line: 34, column: 12
             currsigs.addElement(manual_1);
             active[2]=1;
             ends[2]=1;
@@ -1757,20 +2084,20 @@ public class CapperController extends ClockDomain{
     }
   }
 
-  public void thread24398(int [] tdone, int [] ends){
-        S24392=1;
-    S24344=0;
-    if(manual_1.getprestatus()){//sysj\capperController.sysj line: 77, column: 20
-      S24344=1;
-      if(auto_1.getprestatus()){//sysj\capperController.sysj line: 78, column: 20
-        S24344=2;
+  public void thread27890(int [] tdone, int [] ends){
+        S27884=1;
+    S27836=0;
+    if(manual_1.getprestatus()){//sysj\capperController.sysj line: 88, column: 20
+      S27836=1;
+      if(auto_1.getprestatus()){//sysj\capperController.sysj line: 89, column: 20
+        S27836=2;
         active[4]=1;
         ends[4]=1;
         tdone[4]=1;
       }
       else {
-        if(screwOnM.getprestatus()){//sysj\capperController.sysj line: 80, column: 14
-          screwOn.setPresent();//sysj\capperController.sysj line: 80, column: 25
+        if(screwOnM.getprestatus()){//sysj\capperController.sysj line: 91, column: 14
+          screwOn.setPresent();//sysj\capperController.sysj line: 91, column: 25
           currsigs.addElement(screwOn);
           active[4]=1;
           ends[4]=1;
@@ -1790,17 +2117,17 @@ public class CapperController extends ClockDomain{
     }
   }
 
-  public void thread24397(int [] tdone, int [] ends){
-        S24321=1;
-    t_thread_3 = new LidCapperTwin();//sysj\capperController.sysj line: 40, column: 3
-    w_thread_3 = null;//sysj\capperController.sysj line: 41, column: 3
-    S16810=0;
-    if(auto_1.getprestatus()){//sysj\capperController.sysj line: 44, column: 20
-      S16810=1;
-      if(manual_1.getprestatus()){//sysj\capperController.sysj line: 46, column: 20
+  public void thread27889(int [] tdone, int [] ends){
+        S27813=1;
+    t_thread_3 = new LidCapperTwin();//sysj\capperController.sysj line: 41, column: 3
+    w_thread_3 = null;//sysj\capperController.sysj line: 42, column: 3
+    S17392=0;
+    if(auto_1.getprestatus()){//sysj\capperController.sysj line: 45, column: 20
+      S17392=1;
+      if(manual_1.getprestatus()){//sysj\capperController.sysj line: 47, column: 20
         start_in.setPreempted();
         done_o.setPreempted();
-        S16810=2;
+        S17392=2;
         active[3]=1;
         ends[3]=1;
         tdone[3]=1;
@@ -1808,8 +2135,8 @@ public class CapperController extends ClockDomain{
       else {
         S15332=0;
         S15316=0;
-        if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj\capperController.sysj line: 47, column: 5
-          start_in.setACK(false);//sysj\capperController.sysj line: 47, column: 5
+        if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj\capperController.sysj line: 48, column: 5
+          start_in.setACK(false);//sysj\capperController.sysj line: 48, column: 5
           S15316=1;
           active[3]=1;
           ends[3]=1;
@@ -1817,240 +2144,250 @@ public class CapperController extends ClockDomain{
         }
         else {
           S15311=0;
-          if(!start_in.isREQ()){//sysj\capperController.sysj line: 47, column: 5
-            start_in.setACK(true);//sysj\capperController.sysj line: 47, column: 5
+          if(!start_in.isREQ()){//sysj\capperController.sysj line: 48, column: 5
+            start_in.setACK(true);//sysj\capperController.sysj line: 48, column: 5
             S15311=1;
-            if(start_in.isREQ()){//sysj\capperController.sysj line: 47, column: 5
-              start_in.setACK(false);//sysj\capperController.sysj line: 47, column: 5
+            if(start_in.isREQ()){//sysj\capperController.sysj line: 48, column: 5
+              start_in.setACK(false);//sysj\capperController.sysj line: 48, column: 5
               ends[3]=2;
-              ;//sysj\capperController.sysj line: 47, column: 5
-              w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\capperController.sysj line: 48, column: 5
+              ;//sysj\capperController.sysj line: 48, column: 5
+              w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\capperController.sysj line: 49, column: 5
               S15332=1;
-              if(w_thread_3 != null){//sysj\capperController.sysj line: 50, column: 8
-                System.out.println("[CAP] Sealing " + w_thread_3 + ".");//sysj\capperController.sysj line: 51, column: 6
-                w_thread_3.started(Machine.LID_CAPPER, "screwing cap");//sysj\capperController.sysj line: 52, column: 6
-                if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "screwOn", "sealing " + w_thread_3.id)){//sysj\capperController.sysj line: 53, column: 6
-                  twin.setPresent();//sysj\capperController.sysj line: 54, column: 7
-                  currsigs.addElement(twin);
-                  twin.setValue(t_thread_3);//sysj\capperController.sysj line: 54, column: 7
-                  if(capSeated.getprestatus()){//sysj\capperController.sysj line: 57, column: 22
-                    w_thread_3.cap();//sysj\capperController.sysj line: 61, column: 6
-                    t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 62, column: 6
-                    if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 63, column: 6
-                      twin.setPresent();//sysj\capperController.sysj line: 64, column: 7
-                      currsigs.addElement(twin);
-                      twin.setValue(t_thread_3);//sysj\capperController.sysj line: 64, column: 7
-                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
-                      S15332=2;
-                      S15419=0;
-                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                        done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                        S15419=1;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      else {
-                        S15414=0;
-                        if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                          done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                          S15414=1;
-                          if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                            done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                            ends[3]=2;
-                            ;//sysj\capperController.sysj line: 69, column: 5
-                            S16810=2;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                          else {
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                        }
-                        else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                      }
-                    }
-                    else {
-                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
-                      S15332=2;
-                      S15419=0;
-                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                        done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                        S15419=1;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      else {
-                        S15414=0;
-                        if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                          done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                          S15414=1;
-                          if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                            done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                            ends[3]=2;
-                            ;//sysj\capperController.sysj line: 69, column: 5
-                            S16810=2;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                          else {
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                        }
-                        else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                      }
-                    }
-                  }
-                  else {
-                    screwOn.setPresent();//sysj\capperController.sysj line: 58, column: 7
-                    currsigs.addElement(screwOn);
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
-                  }
-                }
-                else {
-                  if(capSeated.getprestatus()){//sysj\capperController.sysj line: 57, column: 22
-                    w_thread_3.cap();//sysj\capperController.sysj line: 61, column: 6
-                    t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 62, column: 6
-                    if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 63, column: 6
-                      twin.setPresent();//sysj\capperController.sysj line: 64, column: 7
-                      currsigs.addElement(twin);
-                      twin.setValue(t_thread_3);//sysj\capperController.sysj line: 64, column: 7
-                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
-                      S15332=2;
-                      S15419=0;
-                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                        done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                        S15419=1;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      else {
-                        S15414=0;
-                        if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                          done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                          S15414=1;
-                          if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                            done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                            ends[3]=2;
-                            ;//sysj\capperController.sysj line: 69, column: 5
-                            S16810=2;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                          else {
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                        }
-                        else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                      }
-                    }
-                    else {
-                      System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 66, column: 6
-                      S15332=2;
-                      S15419=0;
-                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                        done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                        S15419=1;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      else {
-                        S15414=0;
-                        if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                          done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                          S15414=1;
-                          if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                            done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                            ends[3]=2;
-                            ;//sysj\capperController.sysj line: 69, column: 5
-                            S16810=2;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                          else {
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                        }
-                        else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                      }
-                    }
-                  }
-                  else {
-                    screwOn.setPresent();//sysj\capperController.sysj line: 58, column: 7
-                    currsigs.addElement(screwOn);
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
-                  }
-                }
+              if(w_thread_3 != null){//sysj\capperController.sysj line: 50, column: 4
+                permitted_thread_3 = false;//sysj\capperController.sysj line: 51, column: 1
+                S15333=0;
+                active[3]=1;
+                ends[3]=1;
+                tdone[3]=1;
               }
               else {
                 S15332=2;
-                S15419=0;
-                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 69, column: 5
-                  done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                  S15419=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-                else {
-                  S15414=0;
-                  if(done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                    done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 69, column: 5
-                    S15414=1;
-                    if(!done_o.isACK()){//sysj\capperController.sysj line: 69, column: 5
-                      done_o.setREQ(false);//sysj\capperController.sysj line: 69, column: 5
-                      ends[3]=2;
-                      ;//sysj\capperController.sysj line: 69, column: 5
-                      S16810=2;
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
+                if(w_thread_3 != null){//sysj\capperController.sysj line: 61, column: 8
+                  System.out.println("[CAP] Sealing " + w_thread_3 + ".");//sysj\capperController.sysj line: 62, column: 6
+                  w_thread_3.started(Machine.LID_CAPPER, "screwing cap");//sysj\capperController.sysj line: 63, column: 6
+                  if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "screwOn", "sealing " + w_thread_3.id)){//sysj\capperController.sysj line: 64, column: 6
+                    twin.setPresent();//sysj\capperController.sysj line: 65, column: 7
+                    currsigs.addElement(twin);
+                    twin.setValue(t_thread_3);//sysj\capperController.sysj line: 65, column: 7
+                    if(capSeated.getprestatus()){//sysj\capperController.sysj line: 68, column: 22
+                      w_thread_3.cap();//sysj\capperController.sysj line: 72, column: 6
+                      t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 73, column: 6
+                      if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 74, column: 6
+                        twin.setPresent();//sysj\capperController.sysj line: 75, column: 7
+                        currsigs.addElement(twin);
+                        twin.setValue(t_thread_3);//sysj\capperController.sysj line: 75, column: 7
+                        System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 77, column: 6
+                        S15332=3;
+                        S15503=0;
+                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                          done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                          S15503=1;
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                        else {
+                          S15498=0;
+                          if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                            done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                            S15498=1;
+                            if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                              done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                              ends[3]=2;
+                              ;//sysj\capperController.sysj line: 80, column: 5
+                              S17392=2;
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                            else {
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                          else {
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                        }
+                      }
+                      else {
+                        System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 77, column: 6
+                        S15332=3;
+                        S15503=0;
+                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                          done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                          S15503=1;
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                        else {
+                          S15498=0;
+                          if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                            done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                            S15498=1;
+                            if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                              done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                              ends[3]=2;
+                              ;//sysj\capperController.sysj line: 80, column: 5
+                              S17392=2;
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                            else {
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                          else {
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                        }
+                      }
                     }
                     else {
+                      screwOn.setPresent();//sysj\capperController.sysj line: 69, column: 7
+                      currsigs.addElement(screwOn);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                   }
                   else {
+                    if(capSeated.getprestatus()){//sysj\capperController.sysj line: 68, column: 22
+                      w_thread_3.cap();//sysj\capperController.sysj line: 72, column: 6
+                      t_thread_3.setAppliedTurns(12);//sysj\capperController.sysj line: 73, column: 6
+                      if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w_thread_3.id)){//sysj\capperController.sysj line: 74, column: 6
+                        twin.setPresent();//sysj\capperController.sysj line: 75, column: 7
+                        currsigs.addElement(twin);
+                        twin.setValue(t_thread_3);//sysj\capperController.sysj line: 75, column: 7
+                        System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 77, column: 6
+                        S15332=3;
+                        S15503=0;
+                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                          done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                          S15503=1;
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                        else {
+                          S15498=0;
+                          if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                            done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                            S15498=1;
+                            if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                              done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                              ends[3]=2;
+                              ;//sysj\capperController.sysj line: 80, column: 5
+                              S17392=2;
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                            else {
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                          else {
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                        }
+                      }
+                      else {
+                        System.out.println("[CAP] " + w_thread_3 + " sealed.");//sysj\capperController.sysj line: 77, column: 6
+                        S15332=3;
+                        S15503=0;
+                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                          done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                          S15503=1;
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                        else {
+                          S15498=0;
+                          if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                            done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                            S15498=1;
+                            if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                              done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                              ends[3]=2;
+                              ;//sysj\capperController.sysj line: 80, column: 5
+                              S17392=2;
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                            else {
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                          else {
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                        }
+                      }
+                    }
+                    else {
+                      screwOn.setPresent();//sysj\capperController.sysj line: 69, column: 7
+                      currsigs.addElement(screwOn);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                  }
+                }
+                else {
+                  S15332=3;
+                  S15503=0;
+                  if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\capperController.sysj line: 80, column: 5
+                    done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                    S15503=1;
                     active[3]=1;
                     ends[3]=1;
                     tdone[3]=1;
+                  }
+                  else {
+                    S15498=0;
+                    if(done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                      done_o.setVal(w_thread_3);//sysj\capperController.sysj line: 80, column: 5
+                      S15498=1;
+                      if(!done_o.isACK()){//sysj\capperController.sysj line: 80, column: 5
+                        done_o.setREQ(false);//sysj\capperController.sysj line: 80, column: 5
+                        ends[3]=2;
+                        ;//sysj\capperController.sysj line: 80, column: 5
+                        S17392=2;
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                    else {
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
                   }
                 }
               }
@@ -2076,18 +2413,18 @@ public class CapperController extends ClockDomain{
     }
   }
 
-  public void thread24396(int [] tdone, int [] ends){
+  public void thread27888(int [] tdone, int [] ends){
         S15307=1;
-    if(mode.getprestatus()){//sysj\capperController.sysj line: 31, column: 12
-      if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\capperController.sysj line: 32, column: 8
-        auto_1.setPresent();//sysj\capperController.sysj line: 32, column: 30
+    if(mode.getprestatus()){//sysj\capperController.sysj line: 32, column: 12
+      if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\capperController.sysj line: 33, column: 8
+        auto_1.setPresent();//sysj\capperController.sysj line: 33, column: 30
         currsigs.addElement(auto_1);
         active[2]=1;
         ends[2]=1;
         tdone[2]=1;
       }
       else {
-        manual_1.setPresent();//sysj\capperController.sysj line: 33, column: 12
+        manual_1.setPresent();//sysj\capperController.sysj line: 34, column: 12
         currsigs.addElement(manual_1);
         active[2]=1;
         ends[2]=1;
@@ -2108,62 +2445,62 @@ public class CapperController extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S24394){
+      switch(S27886){
         case 0 : 
-          S24394=0;
+          S27886=0;
           break RUN;
         
         case 1 : 
-          S24394=2;
-          S24394=2;
-          auto_1.setClear();//sysj\capperController.sysj line: 27, column: 2
-          manual_1.setClear();//sysj\capperController.sysj line: 27, column: 2
-          thread24396(tdone,ends);
-          thread24397(tdone,ends);
-          thread24398(tdone,ends);
-          int biggest24399 = 0;
-          if(ends[2]>=biggest24399){
-            biggest24399=ends[2];
+          S27886=2;
+          S27886=2;
+          auto_1.setClear();//sysj\capperController.sysj line: 28, column: 2
+          manual_1.setClear();//sysj\capperController.sysj line: 28, column: 2
+          thread27888(tdone,ends);
+          thread27889(tdone,ends);
+          thread27890(tdone,ends);
+          int biggest27891 = 0;
+          if(ends[2]>=biggest27891){
+            biggest27891=ends[2];
           }
-          if(ends[3]>=biggest24399){
-            biggest24399=ends[3];
+          if(ends[3]>=biggest27891){
+            biggest27891=ends[3];
           }
-          if(ends[4]>=biggest24399){
-            biggest24399=ends[4];
+          if(ends[4]>=biggest27891){
+            biggest27891=ends[4];
           }
-          if(biggest24399 == 1){
+          if(biggest27891 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
         
         case 2 : 
-          auto_1.setClear();//sysj\capperController.sysj line: 27, column: 2
-          manual_1.setClear();//sysj\capperController.sysj line: 27, column: 2
-          thread24400(tdone,ends);
-          thread24401(tdone,ends);
-          thread24402(tdone,ends);
-          int biggest24403 = 0;
-          if(ends[2]>=biggest24403){
-            biggest24403=ends[2];
+          auto_1.setClear();//sysj\capperController.sysj line: 28, column: 2
+          manual_1.setClear();//sysj\capperController.sysj line: 28, column: 2
+          thread27892(tdone,ends);
+          thread27893(tdone,ends);
+          thread27894(tdone,ends);
+          int biggest27895 = 0;
+          if(ends[2]>=biggest27895){
+            biggest27895=ends[2];
           }
-          if(ends[3]>=biggest24403){
-            biggest24403=ends[3];
+          if(ends[3]>=biggest27895){
+            biggest27895=ends[3];
           }
-          if(ends[4]>=biggest24403){
-            biggest24403=ends[4];
+          if(ends[4]>=biggest27895){
+            biggest27895=ends[4];
           }
-          if(biggest24403 == 1){
+          if(biggest27895 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest24403 == 0){
-            S24394=0;
+          if(biggest27895 == 0){
+            S27886=0;
             active[1]=0;
             ends[1]=0;
-            S24394=0;
+            S27886=0;
             break RUN;
           }
         
@@ -2197,6 +2534,7 @@ public class CapperController extends ClockDomain{
         if(!df){
           start_in.gethook();
           done_o.gethook();
+          operatorPermit.gethook();
           mode.gethook();
           capSeated.gethook();
           screwOnM.gethook();
@@ -2204,6 +2542,7 @@ public class CapperController extends ClockDomain{
         }
         runClockDomain();
       }
+      operatorPermit.setpreclear();
       mode.setpreclear();
       capSeated.setpreclear();
       screwOnM.setpreclear();
@@ -2217,6 +2556,9 @@ public class CapperController extends ClockDomain{
         ((Signal)currsigs.elementAt(qw)).setpreval(((Signal)currsigs.elementAt(qw)).getValue());
       }
       currsigs.removeAllElements();
+      dummyint = operatorPermit.getStatus() ? operatorPermit.setprepresent() : operatorPermit.setpreclear();
+      operatorPermit.setpreval(operatorPermit.getValue());
+      operatorPermit.setClear();
       dummyint = mode.getStatus() ? mode.setprepresent() : mode.setpreclear();
       mode.setpreval(mode.getValue());
       mode.setClear();
@@ -2238,6 +2580,7 @@ public class CapperController extends ClockDomain{
       else{
         start_in.gethook();
         done_o.gethook();
+        operatorPermit.gethook();
         mode.gethook();
         capSeated.gethook();
         screwOnM.gethook();

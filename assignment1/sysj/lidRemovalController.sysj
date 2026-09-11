@@ -1,0 +1,286 @@
+/*
+
+ * Lid Removal Controller.
+
+ *
+
+ * Deliberately the inverse of the ABS capper, and it reuses that machine's
+
+ * signal structure so the two are recognisably related. One cycle is:
+
+ *
+
+ *   1. lower the head onto the bottle    cylZaxisExtend     -> zAxisLowered
+
+ *   2. grip the cap                      lidGripperExtend   -> lidGripped
+
+ *   3. untwist                           unscrewTurnExtend  -> turnAtFinalPos
+
+ *   4. lift clear, carrying the cap      (release)          -> zAxisLifted
+
+ *   5. reset the rotary cylinder         unscrewTurnRetract -> turnAtHomePos
+
+ *   6. drop the cap in the waste bin     lidEjectExtend     -> !lidGripped
+
+ *
+
+ * Every phase is closed by the plant sensor that corresponds to it, so the
+
+ * sequence is driven by acknowledgement rather than by fixed delays. Phases
+
+ * that must not let an earlier cylinder fall back sustain that cylinder in
+
+ * parallel - a pneumatic command is a level, so releasing it retracts.
+
+ *
+
+ * The workpiece is stripped as well as the plant driven: removeLid() clears
+
+ * the lidded and capped flags the lid loader and capper set, so a recovered
+
+ * bottle really is an unsealed container rather than a sealed one with a flag
+
+ * on it.
+
+ *
+
+ * lidBinFull is the subsystem's back-pressure, and it is tested after the
+
+ * cycle rather than before it. The design suspends the admission of further
+
+ * bottles when a bin fills; it does not abandon the bottle already in the
+
+ * machine, which would leave a capped bottle standing on the conveyor. So the
+
+ * cap is always removed, and a bin that has reached capacity is reported to
+
+ * the RSC as a blocked status - "done, but do not send me another".
+
+ */
+
+LidRemovalController(
+
+		// from / to the Recycling Station Controller
+
+		input  WorkpieceTwin channel enable;
+
+		output Integer channel status;
+
+
+
+		// operating mode
+
+		input Integer signal mode;
+
+
+
+		// from the Unscrew Arm, Lid Disposal Plant
+
+		input signal zAxisLowered, zAxisLifted, turnAtHomePos, turnAtFinalPos;
+
+		input signal lidGripped, lidBinFull;
+
+
+
+		// to the Unscrew Arm, Lid Disposal Plant
+
+		output signal cylZaxisExtend, unscrewTurnExtend, unscrewTurnRetract;
+
+		output signal lidGripperExtend, lidEjectExtend;
+
+
+
+		// manual overrides - the operator panel attaches here
+
+		input signal cylZaxisExtendM, unscrewTurnExtendM, lidGripperExtendM, lidEjectExtendM;
+
+		)
+
+->
+
+{
+
+	signal auto, manual;
+
+
+
+	{ // Mode select
+
+		while(true){
+
+			present(mode){
+
+				if((Integer)#mode == 0){ emit auto; }
+
+				else { emit manual; }
+
+			}
+
+			pause;
+
+		}
+
+	}
+
+	||
+
+	{ // Auto
+
+		int OK = 0;
+
+		int BLOCKED = 2;
+
+
+
+		WorkpieceTwin w = null;
+
+		int code = 0;
+
+
+
+		while(true){
+
+			await(immediate auto);
+
+
+
+			abort(immediate manual){
+
+				receive enable;
+
+				w = (WorkpieceTwin)#enable;
+
+				System.out.println("[LR] Removing the lid from " + w + ".");
+
+
+
+				// 1. lower the head
+
+				abort(immediate zAxisLowered){
+
+					sustain cylZaxisExtend;
+
+				}
+
+
+
+				// 2. close the gripper on the cap, head held down
+
+				abort(immediate lidGripped){
+
+					{ sustain cylZaxisExtend; } || { sustain lidGripperExtend; }
+
+				}
+
+				System.out.println("[LR] Cap gripped on " + w + ".");
+
+
+
+				// 3. untwist, head still held down
+
+				abort(immediate turnAtFinalPos){
+
+					{ sustain cylZaxisExtend; } || { sustain unscrewTurnExtend; }
+
+				}
+
+
+
+				// 4. release the z axis; the head lifts and carries the cap
+
+				//    clear. The gripper has latched onto the cap, so nothing
+
+				//    needs to be held here.
+
+				await(immediate zAxisLifted);
+
+
+
+				// 5. reset the rotary cylinder for the next bottle
+
+				abort(immediate turnAtHomePos){
+
+					sustain unscrewTurnRetract;
+
+				}
+
+
+
+				// 6. eject into the waste bin, confirmed by the grip letting go
+
+				abort(immediate !lidGripped){
+
+					sustain lidEjectExtend;
+
+				}
+
+
+
+				// The container is now unsealed, on the workpiece as well as
+
+				// in the plant.
+
+				w.removeLid();
+
+				System.out.println("[LR] Lid off " + w + ", sealed=" + w.isSealed() + ".");
+
+
+
+				// Back-pressure, evaluated now that the bin holds one more lid.
+
+				code = OK;
+
+				present(lidBinFull){
+
+					System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");
+
+					code = BLOCKED;
+
+				}
+
+
+
+				send status(new Integer(code));
+
+			}
+
+			pause;
+
+		}
+
+	}
+
+	||
+
+	{ // Manual
+
+		while(true){
+
+			await(immediate manual);
+
+			abort(immediate auto){
+
+				while(true){
+
+					present(cylZaxisExtendM){ emit cylZaxisExtend; }
+
+					present(unscrewTurnExtendM){ emit unscrewTurnExtend; }
+
+					present(lidGripperExtendM){ emit lidGripperExtend; }
+
+					present(lidEjectExtendM){ emit lidEjectExtend; }
+
+					pause;
+
+				}
+
+			}
+
+			pause;
+
+		}
+
+	}
+
+}
+

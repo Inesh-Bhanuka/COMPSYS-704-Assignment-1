@@ -3,6 +3,11 @@
 <System xmlns="http://systemjtechnology.com">
 	<SubSystem Name="ABS" Local="true">
 
+		<ClockDomain Name="GUIInterfaceCD" Class="GUIInterface">
+			<iSignal Name="Status"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10002" />
+			<oSignal Name="Command"           To="SystemControllerCD.guiCommand"             Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+		</ClockDomain>
+
 		<ClockDomain Name="POSCD" Class="POS">
 			<iSignal Name="productionStatus"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
 			<oSignal Name="purchaseOrder"     To="SystemControllerCD.purchaseOrder"          Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
@@ -18,6 +23,7 @@
 			<oChannel Name="bottleRejected"  To="RecyclingStationControllerCD.bottleRejected" />
 
 			<iSignal Name="purchaseOrder"     Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="guiCommand"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
 			<iSignal Name="twinBL"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
 			<iSignal Name="twinCV"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
 			<iSignal Name="twinRT"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
@@ -28,6 +34,15 @@
 			<iSignal Name="twinLB"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
 			<iSignal Name="labellerStatus"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
 			<iSignal Name="recyclingStatus"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="guiStatus"         To="GUIInterfaceCD.Status"                     Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10002" />
+			<oSignal Name="permitRT"          To="RotaryTableControllerCD.operatorPermit"    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13000" />
+			<oSignal Name="permitF1"          To="Filler1ControllerCD.operatorPermit"        Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14000" />
+			<oSignal Name="permitF2"          To="Filler2ControllerCD.operatorPermit"        Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14100" />
+			<oSignal Name="permitLL"          To="LidLoaderControllerCD.operatorPermit"      Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14200" />
+			<oSignal Name="permitCP"          To="CapperControllerCD.operatorPermit"         Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14300" />
+			<oSignal Name="permitCV"          To="ConveyorControllerCD.operatorPermit"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
+			<oSignal Name="permitLB"          To="LabellerControllerCD.operatorPermit"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14400" />
+			<oSignal Name="permitRC"          To="RecyclingStationControllerCD.operatorPermit" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15000" />
 			<oSignal Name="productionStatus"  To="POSCD.productionStatus"                    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
 			<oSignal Name="modeBL"            To="BottleLoaderControllerCD.mode"             Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11000" />
 			<oSignal Name="modeF1"            To="Filler1ControllerCD.mode"                  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14000" />
@@ -95,6 +110,7 @@
 			<oChannel Name="tableInfeed"     To="RotaryTableControllerCD.tableInfeed" />
 			<oChannel Name="bottleDone"      To="SystemControllerCD.bottleDone" />
 
+			<iSignal Name="operatorPermit"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
 			<iSignal Name="bottleAtPos1"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
 			<iSignal Name="infeedClear"       Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
 			<iSignal Name="infeedAdmitted"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
@@ -136,6 +152,7 @@
 			<oChannel Name="startLid"        To="LidLoaderControllerCD.start" />
 			<oChannel Name="startCapper"     To="CapperControllerCD.start" />
 
+			<iSignal Name="operatorPermit"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
 			<iSignal Name="tableAligned"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
 			<iSignal Name="bottleAtPos1"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
 			<iSignal Name="bottleAtPos2"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
@@ -165,6 +182,7 @@
 			<iChannel Name="start"           From="RotaryTableControllerCD.startFiller1" />
 			<oChannel Name="done"            To="RotaryTableControllerCD.doneFiller1" />
 
+			<iSignal Name="operatorPermit"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
 			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
 			<iSignal Name="filled"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
 			<iSignal Name="valveOpenM"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
@@ -184,6 +202,7 @@
 			<iChannel Name="start"           From="RotaryTableControllerCD.startFiller2" />
 			<oChannel Name="done"            To="RotaryTableControllerCD.doneFiller2" />
 
+			<iSignal Name="operatorPermit"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14100" />
 			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14100" />
 			<iSignal Name="filled"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14100" />
 			<iSignal Name="valveOpenM"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14100" />
@@ -203,6 +222,7 @@
 			<iChannel Name="start"           From="RotaryTableControllerCD.startLid" />
 			<oChannel Name="done"            To="RotaryTableControllerCD.doneLid" />
 
+			<iSignal Name="operatorPermit"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
 			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
 			<iSignal Name="pusherExtended"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
 			<iSignal Name="pusherRetracted"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
@@ -245,6 +265,7 @@
 			<iChannel Name="start"           From="RotaryTableControllerCD.startCapper" />
 			<oChannel Name="done"            To="RotaryTableControllerCD.doneCapper" />
 
+			<iSignal Name="operatorPermit"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14300" />
 			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14300" />
 			<iSignal Name="capSeated"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14300" />
 			<iSignal Name="screwOnM"          Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14300" />
@@ -262,6 +283,7 @@
 			<iChannel Name="labelBottle"     From="SystemControllerCD.labelBottle" />
 			<oChannel Name="labelDone"       To="SystemControllerCD.labelDone" />
 
+			<iSignal Name="operatorPermit"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14400" />
 			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14400" />
 			<iSignal Name="bottleAtLabeller"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14400" />
 			<iSignal Name="labelPrinted"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14400" />
@@ -309,6 +331,7 @@
 			<oChannel Name="enableReturn"    To="BottleReturnControllerCD.enable" />
 			<oChannel Name="enableConveyor"  To="RecyclingConveyorControllerCD.enable" />
 
+			<iSignal Name="operatorPermit"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15000" />
 			<oSignal Name="recyclingStatus"   To="SystemControllerCD.recyclingStatus"        Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
 		</ClockDomain>
 

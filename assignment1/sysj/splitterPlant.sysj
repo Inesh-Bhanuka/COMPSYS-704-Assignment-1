@@ -1,0 +1,218 @@
+/*
+
+ * Diverter Plant - the physical quality splitter.
+
+ *
+
+ * Models three things: a workpiece travelling from the point at which the
+
+ * outfeed releases it to the diverter, the diverter's own two-position
+
+ * stroke, and which path the bottle takes when it gets there.
+
+ *
+
+ * The diverter is modelled as a stroke of several ticks rather than an
+
+ * instant flip, precisely so the controller's "sense, do not assume" check
+
+ * has something to sense: divertAtReject only appears once the mechanism has
+
+ * actually crossed, and neither end stop reads true mid-stroke.
+
+ */
+
+SplitterPlant(
+
+		// from the System Controller
+
+		input signal enable;
+
+
+
+		// from the Splitter Controller
+
+		input signal admitBottle, diverterExtend, diverterRetract;
+
+
+
+		// to the Splitter Controller
+
+		output signal bottleAtSplitter, divertAtNormal, divertAtReject, bottleLeftSplitter;
+
+		)
+
+->
+
+{
+
+	int TRAVEL = 4;    // ticks from the outfeed claim point to the diverter
+
+	int STROKE = 3;    // ticks for the diverter to cross between end stops
+
+	int RELEASE = 2;   // ticks for a diverted bottle to clear the diverter
+
+
+
+	int travel = -1;          // counts down while a bottle is approaching
+
+	boolean atPoint = false;  // a bottle is standing at the decision point
+
+	boolean departed = false; // a bottle has passed since the last arming
+
+	int release = 0;
+
+	int stroke = 0;           // 0 = normal path, STROKE = reject path
+
+	boolean admitting = false;
+
+
+
+	while(true){
+
+		present(enable){
+
+
+
+			// ---- workpiece arrival ----
+
+			//
+
+			// Edge triggered. The controller holds admitBottle until the
+
+			// arrival sensor answers, so a level test would admit a fresh
+
+			// bottle on every one of those ticks.
+
+			present(admitBottle){
+
+				if(!admitting){
+
+					admitting = true;
+
+					if(!atPoint && travel < 0){
+
+						travel = TRAVEL;
+
+						departed = false;
+
+						System.out.println("[SPPlant] Bottle claimed from the outfeed.");
+
+					}
+
+				}
+
+			}
+
+			else {
+
+				admitting = false;
+
+			}
+
+
+
+			if(travel > 0){
+
+				travel--;
+
+			}
+
+			if(travel == 0){
+
+				travel = -1;
+
+				atPoint = true;
+
+				System.out.println("[SPPlant] Bottle at the quality splitter.");
+
+			}
+
+
+
+			// ---- diverter stroke ----
+
+			present(diverterExtend){
+
+				if(stroke < STROKE){ stroke++; }
+
+			}
+
+			present(diverterRetract){
+
+				if(stroke > 0){ stroke--; }
+
+			}
+
+
+
+			// End-of-travel sensors. Neither is present mid-stroke, which is
+
+			// what lets the controller detect a jam.
+
+			if(stroke == 0){
+
+				emit divertAtNormal;
+
+			}
+
+			if(stroke == STROKE){
+
+				emit divertAtReject;
+
+			}
+
+
+
+			// ---- the bottle takes whichever path is selected ----
+
+			if(atPoint){
+
+				emit bottleAtSplitter;
+
+				if(stroke == STROKE){
+
+					release++;
+
+					if(release >= RELEASE){
+
+						atPoint = false;
+
+						departed = true;
+
+						release = 0;
+
+						System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");
+
+					}
+
+				}
+
+				else {
+
+					release = 0;
+
+				}
+
+			}
+
+
+
+			// A level, not a pulse: "the decision point is clear and a bottle
+
+			// has been through since arming".
+
+			if(departed){
+
+				emit bottleLeftSplitter;
+
+			}
+
+		}
+
+		pause;
+
+	}
+
+}
+

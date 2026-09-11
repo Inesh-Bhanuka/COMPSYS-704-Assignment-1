@@ -7,6 +7,7 @@
  * a 100ml one at the same percentage.
  */
 FillerController(
+        input GuiPermit signal operatorPermit;
 		// from / to the Rotary Table
 		input  WorkpieceTwin channel start;
 		output WorkpieceTwin channel done;
@@ -51,6 +52,16 @@ FillerController(
 			abort(immediate manual){
 				receive start;
 				w = (WorkpieceTwin)#start;
+if(w != null){
+boolean permitted = false;
+            pause;
+            while(!permitted){
+                permitted = GuiStep.take(w.nextLiquid() == 0 ? "FILL1" : "FILL2", (GuiPermit)#operatorPermit);
+                pause;
+            }
+            pause;
+}
+
 				ml = (w == null) ? 0 : w.nextVolumeMl();
 				asked = ml;
 

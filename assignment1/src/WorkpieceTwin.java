@@ -61,6 +61,7 @@ public class WorkpieceTwin implements Serializable {
 
 	public void record(WorkpieceEvent e) {
 		history.add(e);
+        GuiSupervisor.workpieceEvent(this, e);
 		fold(e);
 	}
 

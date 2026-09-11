@@ -22,31 +22,18 @@ public class BottleLoaderPlant extends ClockDomain{
   public Signal armAtDest = new Signal("armAtDest", Signal.OUTPUT);
   public Signal supplyEmpty = new Signal("supplyEmpty", Signal.OUTPUT);
   private int supply_thread_3;//sysj\bottleLoaderPlant.sysj line: 32, column: 3
-<<<<<<< Updated upstream
-  private boolean holding_thread_3;//sysj\bottleLoaderPlant.sysj line: 33, column: 3
-  private int S1333 = 1;
-  private int S1203 = 1;
-  private int S1175 = 1;
-  private int S1331 = 1;
-=======
   private int refillTicks_thread_3;//sysj\bottleLoaderPlant.sysj line: 33, column: 3
   private boolean holding_thread_3;//sysj\bottleLoaderPlant.sysj line: 34, column: 3
   private int S7123 = 1;
   private int S6969 = 1;
   private int S6941 = 1;
   private int S7121 = 1;
->>>>>>> Stashed changes
   
   private int[] ends = new int[4];
   private int[] tdone = new int[4];
   
-<<<<<<< Updated upstream
-  public void thread1339(int [] tdone, int [] ends){
-        switch(S1331){
-=======
   public void thread7129(int [] tdone, int [] ends){
         switch(S7121){
->>>>>>> Stashed changes
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -232,13 +219,8 @@ public class BottleLoaderPlant extends ClockDomain{
     }
   }
 
-<<<<<<< Updated upstream
-  public void thread1338(int [] tdone, int [] ends){
-        switch(S1203){
-=======
   public void thread7128(int [] tdone, int [] ends){
         switch(S6969){
->>>>>>> Stashed changes
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -246,10 +228,10 @@ public class BottleLoaderPlant extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S1175){
+        switch(S6941){
           case 0 : 
             if(armSource.getprestatus() && enable.getprestatus()){//sysj\bottleLoaderPlant.sysj line: 22, column: 10
-              S1175=1;
+              S6941=1;
               armAtSource.setPresent();//sysj\bottleLoaderPlant.sysj line: 26, column: 5
               currsigs.addElement(armAtSource);
               active[2]=1;
@@ -267,7 +249,7 @@ public class BottleLoaderPlant extends ClockDomain{
           
           case 1 : 
             if(armDest.getprestatus() && enable.getprestatus()){//sysj\bottleLoaderPlant.sysj line: 25, column: 10
-              S1175=0;
+              S6941=0;
               armAtDest.setPresent();//sysj\bottleLoaderPlant.sysj line: 23, column: 5
               currsigs.addElement(armAtDest);
               active[2]=1;
@@ -289,13 +271,8 @@ public class BottleLoaderPlant extends ClockDomain{
     }
   }
 
-<<<<<<< Updated upstream
-  public void thread1336(int [] tdone, int [] ends){
-        S1331=1;
-=======
   public void thread7126(int [] tdone, int [] ends){
         S7121=1;
->>>>>>> Stashed changes
     supply_thread_3 = 20;//sysj\bottleLoaderPlant.sysj line: 32, column: 3
     refillTicks_thread_3 = 0;//sysj\bottleLoaderPlant.sysj line: 33, column: 3
     holding_thread_3 = false;//sysj\bottleLoaderPlant.sysj line: 34, column: 3
@@ -474,15 +451,9 @@ public class BottleLoaderPlant extends ClockDomain{
     }
   }
 
-<<<<<<< Updated upstream
-  public void thread1335(int [] tdone, int [] ends){
-        S1203=1;
-    S1175=0;
-=======
   public void thread7125(int [] tdone, int [] ends){
         S6969=1;
     S6941=0;
->>>>>>> Stashed changes
     armAtDest.setPresent();//sysj\bottleLoaderPlant.sysj line: 23, column: 5
     currsigs.addElement(armAtDest);
     active[2]=1;
@@ -497,26 +468,6 @@ public class BottleLoaderPlant extends ClockDomain{
     }
     
     RUN: while(true){
-<<<<<<< Updated upstream
-      switch(S1333){
-        case 0 : 
-          S1333=0;
-          break RUN;
-        
-        case 1 : 
-          S1333=2;
-          S1333=2;
-          thread1335(tdone,ends);
-          thread1336(tdone,ends);
-          int biggest1337 = 0;
-          if(ends[2]>=biggest1337){
-            biggest1337=ends[2];
-          }
-          if(ends[3]>=biggest1337){
-            biggest1337=ends[3];
-          }
-          if(biggest1337 == 1){
-=======
       switch(S7123){
         case 0 : 
           S7123=0;
@@ -535,25 +486,12 @@ public class BottleLoaderPlant extends ClockDomain{
             biggest7127=ends[3];
           }
           if(biggest7127 == 1){
->>>>>>> Stashed changes
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
         
         case 2 : 
-<<<<<<< Updated upstream
-          thread1338(tdone,ends);
-          thread1339(tdone,ends);
-          int biggest1340 = 0;
-          if(ends[2]>=biggest1340){
-            biggest1340=ends[2];
-          }
-          if(ends[3]>=biggest1340){
-            biggest1340=ends[3];
-          }
-          if(biggest1340 == 1){
-=======
           thread7128(tdone,ends);
           thread7129(tdone,ends);
           int biggest7130 = 0;
@@ -564,25 +502,16 @@ public class BottleLoaderPlant extends ClockDomain{
             biggest7130=ends[3];
           }
           if(biggest7130 == 1){
->>>>>>> Stashed changes
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-<<<<<<< Updated upstream
-          if(biggest1340 == 0){
-            S1333=0;
-            active[1]=0;
-            ends[1]=0;
-            S1333=0;
-=======
           if(biggest7130 == 0){
             S7123=0;
             active[1]=0;
             ends[1]=0;
             S7123=0;
->>>>>>> Stashed changes
             break RUN;
           }
         

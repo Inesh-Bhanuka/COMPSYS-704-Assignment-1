@@ -1,0 +1,121 @@
+/*
+ * Plant model for the rotary index table.
+ *
+ * Six positions, indexed 0..5 in the array and referred to as positions 1..6
+ * in the prints. A rotation takes ROT ticks, during which the table is not
+ * aligned with the sensors; when it settles, every bottle has advanced one
+ * position.
+ *
+ *   position 1 - load from the infeed conveyor
+ *   position 2 - liquid filler 1
+ *   position 3 - liquid filler 2
+ *   position 4 - lid placement
+ *   position 5 - capper
+ *   position 6 - unload to the outfeed conveyor
+ *
+ * Per Appendix 4 there are presence sensors at positions 1, 2, 4 and 5 only.
+ * Position 3 has none, so the controller's own occupancy model is the only
+ * record of a bottle there.
+ */
+RotaryTablePlant(
+		// from the System Controller
+		input signal enable;
+
+		// from the Rotary Table Controller
+		input signal rotaryTrigger, loadPos1, unloadExit;
+
+		// to the Rotary Table Controller
+		output signal tableAligned;
+		// Presence sensors. Per Appendix 4 there are sensors at positions 1,
+		// 2, 4 and 5 only - there is none at position 6, so the unload is
+		// acknowledged by exitCleared, an actuator-complete output, rather
+		// than by a workpiece disappearing.
+		output signal bottleAtPos1, bottleAtPos2, bottleAtPos4, bottleAtPos5;
+		output signal exitCleared;
+		)
+->
+{
+	int ROT = 6;              // ticks per 60 degree rotation
+	int rotating = 0;
+	boolean[] occ = new boolean[6];
+
+	// Held commands must act once, on their rising edge, not on every tick
+	// they are present for.
+	boolean loading = false;
+	boolean unloading = false;
+	boolean exited = false;
+	boolean triggered = false;
+
+	while(true){
+		present(enable){
+
+			if(rotating > 0){
+				rotating--;
+				if(rotating == 0){
+					// settle: every bottle advances one position
+					boolean last = occ[5];
+					int i = 5;
+					while(i > 0){
+						occ[i] = occ[i-1];
+						i--;
+					}
+					occ[0] = last;
+					System.out.println("[RTPlant] Rotation complete.");
+				}
+			}
+			else {
+				emit tableAligned;
+
+				present(rotaryTrigger){
+					if(!triggered){
+						triggered = true;
+						rotating = ROT;
+						System.out.println("[RTPlant] Rotating.");
+					}
+				}
+				else {
+					triggered = false;
+				}
+
+				present(loadPos1){
+					if(!loading){
+						loading = true;
+						if(!occ[0]){
+							occ[0] = true;
+							System.out.println("[RTPlant] Bottle loaded at position 1.");
+						}
+					}
+				}
+				else {
+					loading = false;
+				}
+
+				present(unloadExit){
+					if(!unloading){
+						unloading = true;
+						if(occ[5]){
+							occ[5] = false;
+							exited = true;
+							System.out.println("[RTPlant] Bottle unloaded from position 6.");
+						}
+					}
+				}
+				else {
+					unloading = false;
+					exited = false;
+				}
+
+				// presence sensors
+				if(occ[0]){ emit bottleAtPos1; }
+				if(occ[1]){ emit bottleAtPos2; }
+				if(occ[3]){ emit bottleAtPos4; }
+				if(occ[4]){ emit bottleAtPos5; }
+
+				// Held for as long as the controller holds unloadExit, so the
+				// controller has something to acknowledge against.
+				if(exited){ emit exitCleared; }
+			}
+		}
+		pause;
+	}
+}

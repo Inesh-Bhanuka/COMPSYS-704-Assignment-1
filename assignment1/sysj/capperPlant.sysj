@@ -1,0 +1,26 @@
+/*
+ * Capper plant: a screwing head that takes TURNS ticks to seat a cap and
+ * holds capSeated until the controller lets go.
+ */
+CapperPlant(
+		input signal enable, screwOn;
+		output signal capSeated;
+		)
+->
+{
+	int TURNS = 12;
+	int turned = 0;
+
+	while(true){
+		present(enable){
+			present(screwOn){
+				if(turned < TURNS){ turned++; }
+				if(turned >= TURNS){ emit capSeated; }
+			}
+			else {
+				turned = 0;
+			}
+		}
+		pause;
+	}
+}

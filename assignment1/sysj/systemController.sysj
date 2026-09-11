@@ -1,66 +1,121 @@
+/*
+ * Plant coordinator.
+ *
+ * Takes orders from the POS, turns each into a load command, and reports
+ * completions back. Commands and acknowledgements are channels because they
+ * carry a workpiece; mode and plant power are signals because they are levels
+ * every machine tests each tick.
+ *
+ * One reaction per channel, so a slow machine cannot stall the others.
+ *
+ * ---- Recycling Station ----
+ *
+ * The coordinator keeps overall responsibility for the production plan and
+ * for the identity of every workpiece, but it does not sequence the internal
+ * operations of the recycling process. It delegates the whole recovery of a
+ * rejected bottle to the Recycling Station Controller and waits for a single
+ * completion notification. Its view of a rejected bottle is only three
+ * states: in production, in recycling, and recovered.
+ *
+ * The quality decision is made here, at the end of the outfeed, because this
+ * is where the workpiece and its quality record arrive together. The
+ * conveyor's bottleDone link is untouched, so the labeller can still be
+ * inserted between the outfeed end and this reaction without disturbing the
+ * recycling path.
+ */
 SystemController(
-<<<<<<< Updated upstream
-		// To BottleLoaderControllerCD
-		output Integer signal mode;
-		output signal bottleLoad;
-=======
 		// from / to the POS
 		input PosOrderRequest signal purchaseOrder;
+        input GuiCommand signal guiCommand;
+        output GuiSnapshot signal guiStatus;
+        output GuiPermit signal permitRT, permitF1, permitF2, permitLL, permitCP, permitCV, permitLB, permitRC;
 		output PosOrderStatus signal productionStatus;
->>>>>>> Stashed changes
 
-		// One enable per plant: an oSignal has a single destination
-		output signal enableBL;   // -> BottleLoaderPlantCD
-		output signal enableCV;   // -> ConveyorPlantCD
-		output signal enableRT;   // -> RotaryTablePlantCD
-		output signal enableST;   // -> StationStubsCD
+		// to / from the Bottle Loader
+		output WorkpieceTwin channel loadOrder;
+		input  WorkpieceTwin channel loadAck;
 
-		// From the machines
-		input signal bottleLoaded;
-		input signal bottleAtLabeller;
+		// from the end of the line
+		input WorkpieceTwin channel bottleDone;
+
+		// to / from the Labeller
+		output WorkpieceTwin channel labelBottle;
+		input  WorkpieceTwin channel labelDone;
+
+		// machine twins in, one per subsystem controller. Each machine writes
+		// its own; the coordinator only collects them.
+		input LoaderTwin      signal twinBL;
+		input ConveyorTwin    signal twinCV;
+		input RotaryTableTwin signal twinRT;
+		input FillerTwin      signal twinF1;
+		input FillerTwin      signal twinF2;
+		input LidLoaderTwin   signal twinLL;
+		input LidCapperTwin   signal twinCP;
+		input LabellerTwin    signal twinLB;
+		input Integer         signal labellerStatus;
+
+		// to / from the Recycling Station Controller
+		output WorkpieceTwin channel bottleRejected;
+		input  WorkpieceTwin channel bottleRecycled;
+		input  Integer signal recyclingStatus;
+
+		// operating mode, one output per machine controller
+		output Integer signal modeBL, modeF1, modeF2, modeLL, modeCP, modeLB;
+		output Integer signal modeSP, modeRC, modeLR, modeLD, modeBR;
+
+		// plant power, one output per plant
+		output signal enableBL, enableCV, enableRT;
+		output signal enableF1, enableF2, enableLL, enableCP, enableLB;
+		output signal enableSP, enableRC, enableLR, enableLD, enableBR;
 		)
 ->
 {
-	{ // ---- Operating mode ----
+	{ // Operating mode: 0 = auto, 1 = manual
 		while(true){
-			emit mode(0);
+			emit modeBL(0); emit modeF1(0); emit modeF2(0);
+			emit modeLL(0); emit modeCP(0); emit modeLB(0);
+			emit modeSP(0); emit modeRC(0); emit modeLR(0);
+			emit modeLD(0); emit modeBR(0);
 			pause;
 		}
 	}
 	||
-	{ // ---- Plant power ----
+	{ // Plant power
 		while(true){
-			emit enableBL;
-			emit enableCV;
-			emit enableRT;
-			emit enableST;
+			emit enableBL; emit enableCV; emit enableRT;
+			emit enableF1; emit enableF2; emit enableLL; emit enableCP; emit enableLB;
+			emit enableSP; emit enableRC; emit enableLR;
+			emit enableLD; emit enableBR;
 			pause;
 		}
 	}
 	||
-<<<<<<< Updated upstream
-	{ // ---- Drive bottle load cycles ----
-		pause; pause; pause; pause; pause;
-=======
-	{ // Accept complete customer orders and continuously publish feedback.
-		PosOrderStatus status = null;
-		while(true){
-			present(purchaseOrder){ OrderBook.accept((PosOrderRequest)#purchaseOrder); }
-			status = OrderBook.feedback();
-			if(status != null){ emit productionStatus(status); }
-			pause;
-		}
-	}
-	||
-	{ // Batch scheduler, independent of signal reception and feedback.
+	{ // Complete purchase orders and persistent status feedback
+        GuiPermit permits = null;
+        PosOrderStatus feedback = null;
+        while(true){
+            present(guiCommand){ GuiSupervisor.command((GuiCommand)#guiCommand); }
+            permits = GuiSupervisor.permits();
+            emit permitRT(permits); emit permitF1(permits); emit permitF2(permits);
+            emit permitLL(permits); emit permitCP(permits); emit permitCV(permits);
+            emit permitLB(permits); emit permitRC(permits);
+            present(purchaseOrder){ OrderBook.accept((PosOrderRequest)#purchaseOrder); }
+            feedback = OrderBook.feedback();
+            if(feedback != null){ emit productionStatus(feedback); }
+            pause;
+        }
+    }
+    ||
+    { // Batch scheduling
 		WorkpieceTwin w = null;
 		while(true){
-			w = OrderBook.nextBottle();
-			if(w != null){
-				System.out.println("[SC] Loading " + w + ".");
-				TwinRegistry.shared().admit(w);
-				send loadOrder(w);
-			}
+			w = null;
+            if(GuiSupervisor.canLoad()){ w = OrderBook.nextBottle(); }
+            if(w != null){
+			System.out.println("[SC] Loading " + w + ".");
+			TwinRegistry.shared().admit(w);
+			send loadOrder(w);
+            }
 			pause;
 		}
 	}
@@ -83,44 +138,35 @@ SystemController(
 		while(true){
 			receive bottleDone;
 			w = (WorkpieceTwin)#bottleDone;
->>>>>>> Stashed changes
+            while(!GuiSupervisor.qualityAllowed()){ pause; }
 
-		int cycles = 4;
-		int i = 0;
-
-		while(i < cycles){
-			System.out.println("[SC] Requesting bottle load " + (i + 1) + " of " + cycles + "...");
-
-			abort(bottleLoaded){
-				sustain bottleLoad;
-			}
-
-			i++;
-			System.out.println("[SC] Bottle " + i + " loaded onto conveyor.");
-
-			pause; pause; pause;
+			// Everything goes to the labeller, flagged or not. The labeller
+			// refuses anything its own record does not justify, so it is the
+			// single gate at the end of the line rather than one of two - a
+			// diverted bottle cannot be labelled even if a diverter failed.
+			send labelBottle(w);
+			pause;
 		}
-
-		System.out.println("[SC] All " + cycles + " load requests issued.");
-		while(true){ pause; }
 	}
 	||
-	{ // ---- End of line reporting ----
-		int delivered = 0;
-		boolean seen = false;
-
+	{ // Labelled bottles come back from the Labeller
+		//
+		// The labeller can refuse, so this is also where a bottle that failed
+		// its own record check is diverted. A refusal is a quality flag like
+		// any other and is already in the twin's history by the time it
+		// arrives here.
+		WorkpieceTwin w = null;
+		int done = 0;
 		while(true){
-			present(bottleAtLabeller){
-				if(!seen){
-					delivered++;
-					seen = true;
-					System.out.println("[SC] Bottle " + delivered + " reached the labeller.");
-				}
+			receive labelDone;
+			w = (WorkpieceTwin)#labelDone;
+
+			if(w.isRejected()){
+				System.out.println("[SC] " + w + " refused a label (" + w.defect()
+						+ "); handing it to the Recycling Station.");
+				send bottleRejected(w);
 			}
 			else {
-<<<<<<< Updated upstream
-				seen = false;
-=======
 				// The outfeed sets it down in the storage for its batch, which
 				// is where the line ends. The twin retires with it.
 				w.arrived(Machine.BATCH_STORAGE);
@@ -152,8 +198,8 @@ SystemController(
 			present(twinBL){ plant.put((LoaderTwin)#twinBL); }
 			present(twinCV){ plant.put((ConveyorTwin)#twinCV); }
 			present(twinRT){ plant.put((RotaryTableTwin)#twinRT); }
-			present(twinF1){ plant.put((FillerTwin)#twinF1); }
-			present(twinF2){ plant.put((FillerTwin)#twinF2); }
+			present(twinF1){ plant.put((FillerTwin)#twinF1); GuiTelemetry.noteMachine("FILLER1", (FillerTwin)#twinF1); }
+			present(twinF2){ plant.put((FillerTwin)#twinF2); GuiTelemetry.noteMachine("FILLER2", (FillerTwin)#twinF2); }
 			present(twinLL){ plant.put((LidLoaderTwin)#twinLL); }
 			present(twinCP){ plant.put((LidCapperTwin)#twinCP); }
 			present(twinLB){ plant.put((LabellerTwin)#twinLB); }
@@ -162,6 +208,8 @@ SystemController(
 			plant.setMode(LineMode.AUTO);
 			TwinRegistry.shared().fill(plant);
 			out.publish(plant, OrderBook.purchaseOrder());
+            GuiSupervisor.observe(plant);
+            emit guiStatus(GuiTelemetry.capture(plant));
 			pause;
 		}
 	}
@@ -200,7 +248,6 @@ SystemController(
 					if(v == 3){ System.out.println("[SC] Recycling Station: running, bin or tank near capacity."); }
 					last = v;
 				}
->>>>>>> Stashed changes
 			}
 			pause;
 		}

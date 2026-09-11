@@ -18,6 +18,8 @@ public final class PosOrderStatus implements Serializable {
         this.batches = Collections.unmodifiableList(new ArrayList<BatchProgress>(batches));
     }
 
+    public boolean isTerminal() { return isComplete() || "Reset".equals(status); }
+
     public boolean isComplete() { return "Completed".equals(status); }
 
     public static final class BatchProgress implements Serializable {

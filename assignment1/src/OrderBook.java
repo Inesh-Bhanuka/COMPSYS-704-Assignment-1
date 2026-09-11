@@ -60,6 +60,7 @@ public final class OrderBook {
         // Recovered rejects free a slot for a replacement, never a delivered count.
         if (b.workpieces().size() - b.recovered() >= b.target) return null;
         WorkpieceTwin w = new WorkpieceTwin(nextBottle++, b.id, b.productName, b.sizeMl, b.recipe);
+        GuiSupervisor.prepare(w, b.recovered() > 0 && b.workpieces().size() >= b.target);
         b.add(w);
         issued.put(w.id, w);
         updateFeedback();
@@ -76,6 +77,13 @@ public final class OrderBook {
     public static synchronized void recycled(WorkpieceTwin w) {
         if (w == null || issued.get(w.id) != w || !w.isRecovered() || !recovered.add(w.id)) return;
         updateFeedback();
+    }
+
+    public static synchronized void resetAfterDrain() {
+        if (request != null && feedback != null) feedback = new PosOrderStatus(request.orderId, ++revision,
+                "Reset", "Production reset after admitted bottles finished. Create a new purchase order.", feedback.batches);
+        active = null;
+        issued.clear(); delivered.clear(); recovered.clear();
     }
 
     public static synchronized PurchaseOrder purchaseOrder() { return active; }

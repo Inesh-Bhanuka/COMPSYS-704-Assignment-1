@@ -1,0 +1,98 @@
+/*
+ * Capper. Screws the lid down once the lid loader has placed it.
+ *
+ * Slowest station on the table by design, so it is what the index barrier
+ * ends up waiting for.
+ */
+CapperController(
+        input GuiPermit signal operatorPermit;
+		// from / to the Rotary Table
+		input  WorkpieceTwin channel start;
+		output WorkpieceTwin channel done;
+
+		// the machine's own summary, out to the coordinator
+		output LidCapperTwin signal twin;
+
+		// operating mode
+		input Integer signal mode;
+
+		// to / from the plant
+		output signal screwOn;
+		input  signal capSeated;
+
+		// manual override - the operator panel attaches here
+		input signal screwOnM;
+		)
+->
+{
+	signal auto, manual;
+
+	{ // Mode select
+		while(true){
+			present(mode){
+				if((Integer)#mode == 0){ emit auto; }
+				else { emit manual; }
+			}
+			pause;
+		}
+	}
+	||
+	{ // Auto
+		LidCapperTwin t = new LidCapperTwin();
+		WorkpieceTwin w = null;
+
+		while(true){
+			await(immediate auto);
+
+			abort(immediate manual){
+				receive start;
+				w = (WorkpieceTwin)#start;
+if(w != null){
+boolean permitted = false;
+            pause;
+            while(!permitted){
+                permitted = GuiStep.take("CAP", (GuiPermit)#operatorPermit);
+                pause;
+            }
+            pause;
+}
+
+
+				if(w != null){
+					System.out.println("[CAP] Sealing " + w + ".");
+					w.started(Machine.LID_CAPPER, "screwing cap");
+					if(t.update(PlantClock.now(), MachineStatus.WORKING, "screwOn", "sealing " + w.id)){
+						emit twin(t);
+					}
+
+					abort(immediate capSeated){
+						sustain screwOn;
+					}
+
+					w.cap();
+					t.setAppliedTurns(12);
+					if(t.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w.id)){
+						emit twin(t);
+					}
+					System.out.println("[CAP] " + w + " sealed.");
+				}
+
+				send done(w);
+			}
+			pause;
+		}
+	}
+	||
+	{ // Manual
+		while(true){
+			await(immediate manual);
+			abort(immediate auto){
+				while(true){
+					present(screwOnM){ emit screwOn; }
+					pause;
+				}
+			}
+			pause;
+		}
+	}
+}

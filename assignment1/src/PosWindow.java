@@ -195,6 +195,7 @@ public final class PosWindow extends JFrame {
         for (int i = 0; i < Math.min(rows.getRowCount(), feedback.batches.size()); i++) {
             rows.setValueAt(feedback.batches.get(i).status, i, 6);
         }
+        if ("Reset".equals(feedback.status)) { notified = true; updateButtons(); }
         if (feedback.isComplete() && !notified) {
             notified = true; updateButtons();
             java.awt.Toolkit.getDefaultToolkit().beep();

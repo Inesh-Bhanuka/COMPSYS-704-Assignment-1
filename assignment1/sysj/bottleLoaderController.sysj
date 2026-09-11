@@ -1,27 +1,37 @@
 /*
  * Controller for the Bottle Loader.
  *
- * The loader transports bottles from a bottle storage to the conveyor belt.
- * It waits to make sure that the conveyor is ready for a new bottle both when
- * picking up a bottle and before placing it. 
+ * Coordination is by channel: an order arrives from the coordinator carrying
+ * the workpiece identity, the bottle is handed to the conveyor by rendezvous,
+ * and an acknowledgement goes back. The old conveyorReady level is gone -
+ * readiness is now expressed by the conveyor being at its receive, so the
+ * loader simply blocks at the send until the belt can take the bottle.
+ *
+ * One behavioural change comes with that. The loader used to check the
+ * conveyor before starting a cycle and again at the release point. A channel
+ * cannot be tested without committing to it, so the arm now picks the bottle,
+ * carries it over, and waits there holding it. That is the more faithful
+ * behaviour anyway - the bottle leaves the magazine once, not twice.
  */
 BottleLoaderController(
-		// from the System Controller
-		input Integer signal mode;
-		input signal bottleLoad;
+		// from / to the System Controller
+		input  WorkpieceTwin channel loadOrder;
+		output WorkpieceTwin channel loadAck;
 
-		// to the System Controller
-		output signal bottleLoaded;
+		// to the conveyor
+		output WorkpieceTwin channel bottleHandoff;
+
+		// the machine's own summary, out to the coordinator
+		output LoaderTwin signal twin;
+
+		// operating mode is a level, so it stays a signal
+		input Integer signal mode;
 
 		// from the plant
 		input signal bottleAtSource, WPgripped, armAtSource, armAtDest, supplyEmpty;
 
 		// to the plant
 		output signal vacOn, release, armSource, armDest;
-
-		// from / to the conveyor
-		input  signal conveyorReady;
-		output signal bottlePlaced;
 
 		// manual overrides
 		input signal vacOnM, armSourceM, armDestM;
@@ -45,29 +55,29 @@ BottleLoaderController(
 	}
 	||
 	{ // Auto mode
+		LoaderTwin t = new LoaderTwin();
+		int remaining = 20;
+		WorkpieceTwin w = null;
+
 		while(true){
 			await(immediate auto);
 
 			abort(immediate manual){
 
-				await(immediate bottleLoad);
-				System.out.println("[BL] Load request received.");
+				receive loadOrder;
+				w = (WorkpieceTwin)#loadOrder;
+				System.out.println("[BL] Order received for " + w + ".");
+				w.arrived(Machine.LOADER);
+				w.started(Machine.LOADER, "pick and place");
+				if(t.update(PlantClock.now(), MachineStatus.WORKING, "load", "order " + w.id)){
+					emit twin(t);
+				}
 
 				present(bottleAtSource){
 					// a bottle is waiting
 				}
 				else {
 					System.out.println("[BL] Warning: no bottle at source.");
-				}
-
-				// Wait for conveyor to be ready
-				present(conveyorReady){
-					// clear to start
-				}
-				else {
-					System.out.println("[BL] Conveyor busy - holding request.");
-					await(immediate conveyorReady);
-					System.out.println("[BL] Conveyor clear - starting cycle.");
 				}
 
 				// Go to bottle storage
@@ -79,31 +89,30 @@ BottleLoaderController(
 				abort(WPgripped){
 					sustain vacOn;
 				}
-				System.out.println("[BL] Bottle gripped.");
+				System.out.println("[BL] " + w + " gripped.");
 
 				// Move bottle to conveyor
 				abort(armAtDest){
 					sustain armDest;
 				}
 
-				// Wait for conveyor to be ready
-				present(conveyorReady){
-					// clear to release
-				}
-				else {
-					System.out.println("[BL] At conveyor - waiting for ready.");
-					await(immediate conveyorReady);
-				}
-				System.out.println("[BL] Conveyor ready - releasing.");
+				// Offer it. Blocks until the conveyor takes it.
+				System.out.println("[BL] Offering " + w + " to the conveyor.");
+				send bottleHandoff(w);
 
-				// Release and tell conveyor bottle has been placed
-				emit release; emit bottlePlaced; pause;
-				emit release; emit bottlePlaced; pause;
-				emit release; emit bottlePlaced; pause;
+				// Release, holding the actuator until the plant confirms it
+				// let go. No fixed pulse width.
+				abort(immediate !WPgripped){
+					sustain release;
+				}
 
-				emit bottleLoaded;
-				System.out.println("[BL] Cycle complete.");
-				await(immediate !bottleLoad); // Immediately start checking for new load cmd
+				w.completed(Machine.LOADER, "placed on conveyor");
+				remaining--;
+				t.setBottlesRemaining(remaining);
+				if(t.update(PlantClock.now(), MachineStatus.IDLE, "idle", "loaded " + w.id)){
+					emit twin(t);
+				}
+				send loadAck(w);
 			}
 			pause;
 		}
@@ -138,6 +147,5 @@ BottleLoaderController(
 			}
 			pause;
 		}
-
 	}
 }

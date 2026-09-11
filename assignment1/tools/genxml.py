@@ -8,6 +8,7 @@ import re, os
 
 # clock domain -> (class, .sysj file, port it listens on)
 CDS = [
+    ("GUIInterfaceCD", "GUIInterface", "guiInterface", 10002),
     ("POSCD",                         "POS",                         "pos",                         10000),
     ("SystemControllerCD",            "SystemController",            "systemController",            10001),
 
@@ -45,6 +46,7 @@ CDS = [
 # Where each output signal goes. "*" sends every remaining output of that CD to
 # one place under the same name; a named entry overrides it and may rename.
 SIGNALS = {
+    "GUIInterfaceCD": {"Command": "SystemControllerCD.guiCommand"},
     "POSCD": {"purchaseOrder": "SystemControllerCD.purchaseOrder"},
     "BottleLoaderPlantCD":      {"*": "BottleLoaderControllerCD"},
     "ConveyorPlantCD":          {"*": "ConveyorControllerCD"},
@@ -80,6 +82,15 @@ SIGNALS = {
     "RecyclingStationControllerCD": {"recyclingStatus": "SystemControllerCD.recyclingStatus"},
 
     "SystemControllerCD": {
+        "guiStatus": "GUIInterfaceCD.Status",
+        "permitRT": "RotaryTableControllerCD.operatorPermit",
+        "permitF1": "Filler1ControllerCD.operatorPermit",
+        "permitF2": "Filler2ControllerCD.operatorPermit",
+        "permitLL": "LidLoaderControllerCD.operatorPermit",
+        "permitCP": "CapperControllerCD.operatorPermit",
+        "permitCV": "ConveyorControllerCD.operatorPermit",
+        "permitLB": "LabellerControllerCD.operatorPermit",
+        "permitRC": "RecyclingStationControllerCD.operatorPermit",
         "productionStatus": "POSCD.productionStatus",
         "modeBL": "BottleLoaderControllerCD.mode",
         "modeF1": "Filler1ControllerCD.mode",

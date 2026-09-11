@@ -12,6 +12,7 @@
 			<oChannel Name="bottleRejected"  To="RecyclingStationControllerCD.bottleRejected" />
 
 			<iSignal Name="purchaseOrder"     Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="guiCommand"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
 			<iSignal Name="twinBL"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
 			<iSignal Name="twinCV"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
 			<iSignal Name="twinRT"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
@@ -22,6 +23,15 @@
 			<iSignal Name="twinLB"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
 			<iSignal Name="labellerStatus"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
 			<iSignal Name="recyclingStatus"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="guiStatus"         To="GUIInterfaceCD.Status"                     Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10002" />
+			<oSignal Name="permitRT"          To="RotaryTableControllerCD.operatorPermit"    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13000" />
+			<oSignal Name="permitF1"          To="Filler1ControllerCD.operatorPermit"        Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14000" />
+			<oSignal Name="permitF2"          To="Filler2ControllerCD.operatorPermit"        Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14100" />
+			<oSignal Name="permitLL"          To="LidLoaderControllerCD.operatorPermit"      Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14200" />
+			<oSignal Name="permitCP"          To="CapperControllerCD.operatorPermit"         Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14300" />
+			<oSignal Name="permitCV"          To="ConveyorControllerCD.operatorPermit"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
+			<oSignal Name="permitLB"          To="LabellerControllerCD.operatorPermit"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14400" />
+			<oSignal Name="permitRC"          To="RecyclingStationControllerCD.operatorPermit" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15000" />
 			<oSignal Name="productionStatus"  To="POSCD.productionStatus"                    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
 			<oSignal Name="modeBL"            To="BottleLoaderControllerCD.mode"             Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11000" />
 			<oSignal Name="modeF1"            To="Filler1ControllerCD.mode"                  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14000" />

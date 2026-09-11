@@ -19,7 +19,7 @@ public final class PosBridge {
 
     public static synchronized void submit(PosOrderRequest request) {
         request.validate();
-        if (pending != null && (latest == null || !latest.isComplete())) {
+        if (pending != null && (latest == null || !latest.isTerminal())) {
             throw new IllegalStateException("Wait for the current purchase order to complete.");
         }
         latest = null;

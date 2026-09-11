@@ -1,0 +1,221 @@
+/*
+ * Recycling Station Controller (RSC).
+ *
+ * The RSC is the only machine in the Recycling Station that the ABS System
+ * Controller talks to, and it is a subordinate coordinator rather than a peer
+ * machine: the System Controller delegates the entire recovery of a rejected
+ * bottle to it and waits for a single completion notification. Like the
+ * System Controller and the rotary table, it coordinates rather than drives a
+ * plant, so it has no operating mode of its own - the five machines beneath
+ * it each carry their own.
+ *
+ * ---- Interface upward, three links ----
+ *
+ *   bottleRejected    channel, SC -> RSC. Carries the workpiece whose quality
+ *                     record contains at least one flag. A channel rather
+ *                     than a pure signal because it must transport the bottle
+ *                     and its record, not merely the fact that a rejection
+ *                     happened; and because the rendezvous gives a useful
+ *                     guarantee - the coordinator cannot hand off a second
+ *                     rejected bottle until this station has actually taken
+ *                     the first, which removes any need for the System
+ *                     Controller to model the recycling conveyor's capacity.
+ *   bottleRecycled    channel, RSC -> SC. One per completed transaction,
+ *                     closing the transaction bottleRejected opened, and
+ *                     carrying back a workpiece that is now empty, unsealed
+ *                     and in the collector bin.
+ *   recyclingStatus   valued signal, RSC -> SC. A level rather than an event,
+ *                     so the coordinator may sample it at any point in its
+ *                     own reaction: 0 idle, 1 busy, 2 fault or suspended,
+ *                     3 running with a bin or tank warning.
+ *
+ * ---- Interface downward, one enable / status pair per subsystem ----
+ *
+ * The interim report draws these as two signals per subsystem. Here they are
+ * two channels, for the same reason the rest of the ABS moved its
+ * machine-to-machine links to channels: the two clock domains are
+ * asynchronous, a rendezvous cannot be missed and needs no acknowledgement
+ * padding, and enable can carry the workpiece itself - or, for the conveyor,
+ * the station to index to - instead of the subsystem having to be told
+ * separately. Each subsystem sees exactly one channel in and one out, named
+ * enable and status, in the same way every station on the rotary table sees
+ * only start and done. The boundary stays as narrow as the design intends and
+ * every sensor and actuator stays local to its own controller-plant pair.
+ *
+ * ---- Sequencing ----
+ *
+ * Recycling is a strictly sequential process, so the sequencer is a single
+ * reaction: one stage is enabled, its status is awaited, and only then is the
+ * next enabled. Nothing in the station runs concurrently. That is also what
+ * makes the station safe to suspend - it is always between two stages, so a
+ * suspension can never leave an opened bottle mid-cycle.
+ *
+ * The conveyor is enabled between every processing stage, because position
+ * sensing is centralised in the conveyor rather than distributed to the
+ * workstations; the RSC is what decides which station to index to next.
+ */
+RecyclingStationController(
+        input GuiPermit signal operatorPermit;
+		// to / from the ABS System Controller
+		input  WorkpieceTwin channel bottleRejected;
+		output WorkpieceTwin channel bottleRecycled;
+		output Integer signal recyclingStatus;
+
+		// enable, one per subsystem
+		output WorkpieceTwin channel enableSplitter, enableLidRemoval, enableDumper, enableReturn;
+		output Integer channel enableConveyor;
+
+		// status, one per subsystem
+		input  Integer channel statusSplitter, statusConveyor, statusLidRemoval;
+		input  Integer channel statusDumper, statusReturn;
+		)
+->
+{
+	// The sequencer blocks inside rendezvous, so it cannot also drive a level
+	// out every tick. It posts the station's state on this local valued
+	// signal and a second reaction holds it out to the System Controller.
+	int signal stationState;
+
+	{ // ---- Station status, held out as a level ----
+		int cur = 0;
+		while(true){
+			present(stationState){
+				cur = ((Integer)#stationState).intValue();
+			}
+			emit recyclingStatus(cur);
+			pause;
+		}
+	}
+	||
+	{ // ---- Sequencer ----
+		//
+		// One straight line of sends and receives. The status codes are
+		// folded into the transaction's outcome by RecyclingRecord rather
+		// than by conditionals between the stages: SystemJ generates a
+		// separate control path for every branch that encloses a rendezvous,
+		// and guarding the eight stages individually produced a
+		// runClockDomain method far past the JVM's 64 KB limit. The rotary
+		// table's barrier is unconditional for the same reason.
+		//
+		// The pause that closes each stage is there for the same reason. The
+		// compiler inlines everything that follows a rendezvous into that
+		// rendezvous's "the partner is ready now" branch, so seventeen of
+		// them in a row nest seventeen deep and the generated method grows
+		// exponentially. A pause is a state boundary: the reaction returns to
+		// its top-level switch and the next stage starts from a fresh case.
+		// The cost is one tick between stages, which is nothing next to the
+		// travel and cycle times of the machines being sequenced.
+		RecyclingRecord m = RecyclingRecord.shared();
+
+		// Recycling conveyor destinations
+		int TO_LID = 1;
+		int TO_DUMP = 2;
+		int TO_RETURN = 3;
+		int DISCHARGE = 4;
+
+		WorkpieceTwin w = null;
+
+		while(true){
+
+			// Blocks until the System Controller has a rejected bottle. The
+			// station advertises no readiness level: being parked here IS the
+			// readiness, and the coordinator's send completes only when the
+			// station has actually taken the workpiece.
+			receive bottleRejected;
+			w = (WorkpieceTwin)#bottleRejected;
+boolean permitted = false;
+            pause;
+            while(!permitted){
+                permitted = GuiStep.take("RECYCLE", (GuiPermit)#operatorPermit);
+                pause;
+            }
+            pause;
+
+			m.begin(w);
+			emit stationState(1);
+
+			// ---- 1. Splitter: claim the bottle and divert it ----
+			send enableSplitter(w);
+			receive statusSplitter;
+			m.record(((Integer)#statusSplitter).intValue());
+
+			// The one failure the sequencer branches on, because a jammed
+			// diverter leaves nothing on the conveyor for the stages below to
+			// move. It branches by halting: this block never returns, so the
+			// rest of the transaction still has a single predecessor.
+			if(m.jammed()){
+				m.reportJam();
+				while(true){
+					emit stationState(2);
+					pause;
+				}
+			}
+			pause;
+
+			// ---- 2. Index to lid removal ----
+			send enableConveyor(new Integer(TO_LID));
+			receive statusConveyor;
+			m.record(((Integer)#statusConveyor).intValue());
+			pause;
+
+			// ---- 3. Lid removal ----
+			send enableLidRemoval(w);
+			receive statusLidRemoval;
+			m.record(((Integer)#statusLidRemoval).intValue());
+			pause;
+
+			// ---- 4. Index to the liquid dumper ----
+			send enableConveyor(new Integer(TO_DUMP));
+			receive statusConveyor;
+			m.record(((Integer)#statusConveyor).intValue());
+			pause;
+
+			// ---- 5. Liquid dumping ----
+			send enableDumper(w);
+			receive statusDumper;
+			m.record(((Integer)#statusDumper).intValue());
+			pause;
+
+			// ---- 6. Index to the bottle return ----
+			send enableConveyor(new Integer(TO_RETURN));
+			receive statusConveyor;
+			m.record(((Integer)#statusConveyor).intValue());
+			pause;
+
+			// ---- 7. Hand the bottle off the recycling conveyor ----
+			send enableConveyor(new Integer(DISCHARGE));
+			receive statusConveyor;
+			m.record(((Integer)#statusConveyor).intValue());
+			pause;
+
+			// ---- 8. Bottle return ----
+			send enableReturn(w);
+			receive statusReturn;
+			m.record(((Integer)#statusReturn).intValue());
+			pause;
+
+			// ---- 9. Close the transaction ----
+			m.reportRecovered();
+			send bottleRecycled(w);
+			pause;
+
+			// The station's resting level: idle, or idle with a bin or tank
+			// warning, or suspended.
+			emit stationState(m.restingState());
+
+			// A full bin is not something this station can clear on its own.
+			// It holds the condition out as a level and stops taking work;
+			// the System Controller's next send then simply does not
+			// complete, so the back-pressure propagates on its own and no
+			// further rejected bottle is admitted.
+			if(m.suspended()){
+				m.reportSuspension();
+				while(true){
+					emit stationState(2);
+					pause;
+				}
+			}
+			pause;
+		}
+	}
+}

@@ -1,0 +1,168 @@
+/*
+ * Controller for the rotary index table.
+ *
+ * One index cycle is still:
+ *   A. unload position 6 to the outfeed conveyor, if occupied
+ *   B. place an accepted bottle at position 1, if the load point is free
+ *   C. run every occupied station and wait for ALL of them to finish
+ *   D. rotate 60 degrees
+ *
+ * What changed is how the table talks to its neighbours. Every link is now a
+ * channel, and SystemJ has no way to test a channel without committing to it,
+ * so the reactions are arranged around that:
+ *
+ *   - the intake reaction blocks on the conveyor's offer, so it is not the
+ *     sequencer that waits for a bottle;
+ *   - the barrier became four sends followed by four receives. A station is
+ *     parked at its receive whenever it is idle, so starting them costs no
+ *     time and they run concurrently; the receives then wait for the slowest.
+ *
+ * The one semantic consequence worth stating in the report: a rendezvous
+ * completes at whatever instant both parties are ready, which is not
+ * necessarily an instant at which the table is aligned. An accepted bottle
+ * therefore waits in a one-deep intake buffer and is physically placed at the
+ * next alignment. Nothing is lost or duplicated; the transfer and the
+ * placement are simply separate events.
+ *
+ * Occupancy and identity live in TableModel rather than in the reactions, so
+ * the generated state machine stays well inside the JVM's 64 KB method limit.
+ */
+RotaryTableController(
+        input GuiPermit signal operatorPermit;
+		// from / to the conveyor
+		input  WorkpieceTwin channel tableInfeed;
+		output WorkpieceTwin channel tableOutfeed;
+
+		// to / from the stations
+		output WorkpieceTwin channel startFiller1, startFiller2, startLid, startCapper;
+		input  WorkpieceTwin channel doneFiller1, doneFiller2, doneLid, doneCapper;
+
+		// the machine's own summary, out to the coordinator
+		output RotaryTableTwin signal twin;
+
+		// from the plant
+		// Presence sensors exist at positions 1, 2, 4 and 5 only. There is
+		// none at position 6, so exitCleared - an actuator-complete output
+		// from the plant - closes the unload handshake instead.
+		input signal tableAligned, bottleAtPos1, bottleAtPos2, bottleAtPos4, bottleAtPos5;
+		input signal exitCleared;
+
+		// to the plant
+		output signal rotaryTrigger, loadPos1, unloadExit;
+		)
+->
+{
+	// Local signal: the sequencer tells the intake reaction that the bottle
+	// it accepted has been placed, so it may accept another.
+	signal placed;
+
+	{ // ---- Sequencer ----
+		RotaryTableTwin t = new RotaryTableTwin();
+		int step = 0;
+		TableModel m = TableModel.shared();
+		WorkpieceTwin exiting = null;
+
+		while(true){
+
+			await(immediate tableAligned);
+
+			// ---- A. Unload the exit position ----
+			//
+			// The send blocks until the outfeed belt can take the bottle, so
+			// a busy outfeed holds up the table. That is correct backpressure
+			// and it replaces the old assumption that the collector was
+			// always available.
+			if(m.exitOccupied()){
+				exiting = m.exitWorkpiece();
+				m.sayUnloading();
+				send tableOutfeed(exiting);
+				abort(immediate exitCleared){
+					sustain unloadExit;
+				}
+				m.clearExit();
+			}
+
+			// ---- B. Place an accepted bottle at position 1 ----
+			// Nothing on the table and nothing accepted: idle here rather
+			// than rotate an empty carousel.
+			if(m.idle()){
+				while(!m.hasPending()){ pause; }
+			}
+			if(m.readyToPlace()){
+				abort(immediate bottleAtPos1){
+					sustain loadPos1;
+				}
+				m.commitPending();
+				emit placed;
+				pause;
+			}
+
+			// ---- C. Run the stations, then wait for all of them ----
+			//
+			// Every station is started every cycle, whether or not its
+			// position holds a bottle: a station handed null has no
+			// workpiece and returns straight away. Keeping this unconditional
+			// matters - four optional rendezvous is sixteen control paths
+			// through the reaction, and the generated state machine grows
+			// with every one of them.
+			//
+			// The sends do not serialise the stations. A station sits at its
+			// receive whenever it is idle, so each send completes as soon as
+			// it is issued and work begins immediately; by the time the
+			// fourth is started the first three are already running. The
+			// receives then block until every station has reported back, so
+			// the table waits for the slowest. That sequence of receives IS
+			// the barrier - no enable levels to hold or drop, and no
+			// acknowledgement padding.
+			send startFiller1(m.at(1));
+			send startFiller2(m.at(2));
+			send startLid(m.at(3));
+			send startCapper(m.at(4));
+
+			receive doneFiller1;
+			receive doneFiller2;
+			receive doneLid;
+			receive doneCapper;
+
+			// ---- D. Index one position ----
+boolean permitted = false;
+            pause;
+            while(!permitted){
+                permitted = GuiStep.take("INDEX", (GuiPermit)#operatorPermit);
+                pause;
+            }
+            pause;
+
+			//
+			// Hold the trigger until the plant reports it has left alignment,
+			// instead of guessing a pulse width.
+			abort(immediate !tableAligned){
+				sustain rotaryTrigger;
+			}
+			await(immediate tableAligned);
+
+			m.index();
+			m.report();
+			step = (step % 6) + 1;
+			t.setPosition(step);
+			t.setRotating(false);
+			if(t.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step)){
+				emit twin(t);
+			}
+			pause;
+		}
+	}
+	||
+	{ // ---- Intake ----
+		TableModel m = TableModel.shared();
+		WorkpieceTwin w = null;
+		while(true){
+			receive tableInfeed;
+			w = (WorkpieceTwin)#tableInfeed;
+			m.setPending(w);
+			System.out.println("[RT] Accepted " + w + " from the conveyor.");
+			await(immediate placed);
+			pause;
+		}
+	}
+}

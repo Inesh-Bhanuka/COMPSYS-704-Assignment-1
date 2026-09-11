@@ -1,75 +1,112 @@
 /**
- * The rotary table's occupancy model, held outside the clock domain.
+ * Where every workpiece on the rotary table is.
  *
- * Two reasons for this class. First, the SystemJ compiler inlines Java
- * statements into the generated state machine, so keeping logic here rather
- * than in the reaction keeps the generated method well under the JVM's 64 KB
- * limit. Second, this is the controller's record of where every workpiece is,
- * which is the natural place to attach workpiece identity later.
+ * Kept out of the clock domain for two reasons: the compiler inlines Java
+ * into the generated state machine, so this keeps it under the JVM's 64 KB
+ * method limit, and the reactions that share it need one accessor.
  *
- * Index 0..5 corresponds to table positions 1..6:
- *   0 - load from the infeed conveyor
- *   1 - liquid filler 1
- *   2 - liquid filler 2
- *   3 - lid placement
- *   4 - capper
- *   5 - unload to the outfeed conveyor
+ * Index 0..5 is table position 1..6: load, filler A, filler B, lid, capper,
+ * unload.
  */
 public class TableModel {
 
-	private final boolean[] occ = new boolean[6];
+	private static TableModel SHARED;
 
-	public boolean at(int i) {
-		return occ[i];
+	/** Reactions get their own scope, so they share the model through this. */
+	public static TableModel shared() {
+		if (SHARED == null) {
+			SHARED = new TableModel();
+		}
+		return SHARED;
 	}
 
-	public boolean loadPointFree() {
-		return !occ[0];
+	private final WorkpieceTwin[] pos = new WorkpieceTwin[6];
+
+	/**
+	 * A rendezvous completes whenever both sides are ready, which is not
+	 * necessarily an aligned instant, so an accepted bottle waits here and is
+	 * placed at the next alignment.
+	 */
+	private WorkpieceTwin pending;
+
+	public boolean hasPending() {
+		return pending != null;
+	}
+
+	public void setPending(WorkpieceTwin w) {
+		pending = w;
+	}
+
+	public void commitPending() {
+		pos[0] = pending;
+		System.out.println("[RT] " + pending + " placed at position 1.");
+		pending = null;
+	}
+
+	/** The workpiece at a position, or null. */
+	public WorkpieceTwin at(int i) {
+		return pos[i];
+	}
+
+	public boolean occupied(int i) {
+		return pos[i] != null;
+	}
+
+	public WorkpieceTwin exitWorkpiece() {
+		return pos[5];
 	}
 
 	public boolean exitOccupied() {
-		return occ[5];
+		return pos[5] != null;
+	}
+
+	public boolean loadPointFree() {
+		return pos[0] == null;
 	}
 
 	public boolean anyOccupied() {
 		for (int i = 0; i < 6; i++) {
-			if (occ[i]) {
+			if (pos[i] != null) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	public void load() {
-		occ[0] = true;
-		System.out.println("[RT] Bottle accepted at position 1.");
+	/** Load point free, nothing accepted, nothing on the table. */
+	public boolean idle() {
+		return pos[0] == null && pending == null && !anyOccupied();
+	}
+
+	public boolean readyToPlace() {
+		return pos[0] == null && pending != null;
 	}
 
 	public void clearExit() {
-		occ[5] = false;
+		pos[5] = null;
 	}
 
 	/** Advance every workpiece one position. */
 	public void index() {
-		boolean last = occ[5];
+		WorkpieceTwin last = pos[5];
 		for (int i = 5; i > 0; i--) {
-			occ[i] = occ[i - 1];
+			pos[i] = pos[i - 1];
 		}
-		occ[0] = last;
+		pos[0] = last;
 	}
 
 	public void sayUnloading() {
-		System.out.println("[RT] Unloading position 6 to outfeed.");
+		System.out.println("[RT] Unloading " + pos[5] + " from position 6.");
 	}
 
-	/** Prints the occupancy line, but only when the table is carrying work. */
+	/** Occupancy line, only when the table is carrying something. */
 	public void report() {
 		if (!anyOccupied()) {
 			return;
 		}
-		StringBuilder sb = new StringBuilder("[RT] Indexed. Occupancy 1-6: ");
+		StringBuilder sb = new StringBuilder("[RT] Indexed. Positions 1-6:");
 		for (int i = 0; i < 6; i++) {
-			sb.append(occ[i] ? 'X' : '.');
+			sb.append(' ').append(pos[i] == null ? "." : Long.toString(pos[i].id));
 		}
 		System.out.println(sb.toString());
 	}

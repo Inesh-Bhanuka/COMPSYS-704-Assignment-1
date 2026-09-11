@@ -1,0 +1,15 @@
+GUIInterface(
+    input GuiSnapshot signal Status;
+    output GuiCommand signal Command;
+)
+->
+{
+    GuiCommand command = null;
+    GuiInterfaceBridge.open();
+    while(true){
+        present(Status){ GuiInterfaceBridge.publish((GuiSnapshot)#Status); }
+        command = GuiInterfaceBridge.command();
+        if(command != null){ emit Command(command); }
+        pause;
+    }
+}

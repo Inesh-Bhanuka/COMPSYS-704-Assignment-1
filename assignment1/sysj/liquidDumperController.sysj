@@ -1,0 +1,288 @@
+/*
+
+ * Liquid Dumper Controller.
+
+ *
+
+ * Reclaims the bottle's contents to the waste sink:
+
+ *
+
+ *   1. clamp the bottle     cylClampBottleExtend -> clampClosed
+
+ *   2. invert it            invertRotateExtend   -> bottleInverted
+
+ *   3. open the drain path  drainValveOnOff      -> bottleDrained
+
+ *   4. return it upright    invertRotateRetract  -> bottleUpright
+
+ *   5. release the clamp    (release)            -> !clampClosed
+
+ *
+
+ * The clamp is closed before any rotation happens and held for every phase
+
+ * that moves the bottle, so the workpiece is secured the whole time it is off
+
+ * vertical. Draining is the one phase that is timed rather than sensed: the
+
+ * plant uses the maximum time a full bottle takes to empty, which is what the
+
+ * design specifies, and reports it back as bottleDrained. That is also why
+
+ * the dump takes the same time whatever the recipe - the station cannot know
+
+ * how full the bottle was, so it always waits for the worst case.
+
+ *
+
+ * The distinguishing input of this subsystem is wasteTankLevel, which is
+
+ * valued rather than pure. That lets the controller report a graded status
+
+ * once the bottle is done - normal, near capacity, or full - so the RSC can
+
+ * carry on recycling while warning the operator, and only halts the station
+
+ * once the tank can no longer accept a full bottle's contents. As with the
+
+ * lid bin, the level is judged after the cycle, so a bottle already in the
+
+ * machine is never left inverted and undrained.
+
+ */
+
+LiquidDumperController(
+
+		// from / to the Recycling Station Controller
+
+		input  WorkpieceTwin channel enable;
+
+		output Integer channel status;
+
+
+
+		// operating mode
+
+		input Integer signal mode;
+
+
+
+		// from the Inverter, Waste Tank Plant
+
+		input signal clampClosed, bottleInverted, bottleUpright, bottleDrained;
+
+		input Integer signal wasteTankLevel;
+
+
+
+		// to the Inverter, Waste Tank Plant
+
+		output signal cylClampBottleExtend, invertRotateExtend, invertRotateRetract;
+
+		output signal drainValveOnOff;
+
+
+
+		// manual overrides - the operator panel attaches here
+
+		input signal cylClampBottleExtendM, invertRotateExtendM, drainValveOnOffM;
+
+		)
+
+->
+
+{
+
+	signal auto, manual;
+
+
+
+	{ // Mode select
+
+		while(true){
+
+			present(mode){
+
+				if((Integer)#mode == 0){ emit auto; }
+
+				else { emit manual; }
+
+			}
+
+			pause;
+
+		}
+
+	}
+
+	||
+
+	{ // Auto
+
+		int OK = 0;
+
+		int BLOCKED = 2;
+
+		int WARN = 3;
+
+
+
+		int TANK_CAPACITY = 6;
+
+		int TANK_WARN = 4;
+
+
+
+		WorkpieceTwin w = null;
+
+		int level = 0;
+
+		int code = 0;
+
+
+
+		while(true){
+
+			await(immediate auto);
+
+
+
+			abort(immediate manual){
+
+				receive enable;
+
+				w = (WorkpieceTwin)#enable;
+
+				System.out.println("[LD] Draining " + w + " (" + w.filledMl() + "ml).");
+
+
+
+				// 1. secure the bottle before anything rotates
+
+				abort(immediate clampClosed){
+
+					sustain cylClampBottleExtend;
+
+				}
+
+
+
+				// 2. invert, clamp held
+
+				abort(immediate bottleInverted){
+
+					{ sustain cylClampBottleExtend; } || { sustain invertRotateExtend; }
+
+				}
+
+
+
+				// 3. open the drain; the plant answers when the timed drain
+
+				//    for a full bottle has elapsed
+
+				abort(immediate bottleDrained){
+
+					{ sustain cylClampBottleExtend; } || { sustain invertRotateExtend; } || { sustain drainValveOnOff; }
+
+				}
+
+
+
+				// 4. back upright, clamp still held
+
+				abort(immediate bottleUpright){
+
+					{ sustain cylClampBottleExtend; } || { sustain invertRotateRetract; }
+
+				}
+
+
+
+				// 5. release the clamp
+
+				await(immediate !clampClosed);
+
+
+
+				w.drain();
+
+				System.out.println("[LD] " + w + " drained to the waste sink, now at " + w.filledMl() + "ml.");
+
+
+
+				// Graded back-pressure on the waste tank.
+
+				level = 0;
+
+				present(wasteTankLevel){
+
+					level = ((Integer)#wasteTankLevel).intValue();
+
+				}
+
+
+
+				code = OK;
+
+				if(level >= TANK_WARN){
+
+					System.out.println("[LD] Waste tank near capacity (" + level + " of " + TANK_CAPACITY + ").");
+
+					code = WARN;
+
+				}
+
+				if(level >= TANK_CAPACITY){
+
+					System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");
+
+					code = BLOCKED;
+
+				}
+
+
+
+				send status(new Integer(code));
+
+			}
+
+			pause;
+
+		}
+
+	}
+
+	||
+
+	{ // Manual
+
+		while(true){
+
+			await(immediate manual);
+
+			abort(immediate auto){
+
+				while(true){
+
+					present(cylClampBottleExtendM){ emit cylClampBottleExtend; }
+
+					present(invertRotateExtendM){ emit invertRotateExtend; }
+
+					present(drainValveOnOffM){ emit drainValveOnOff; }
+
+					pause;
+
+				}
+
+			}
+
+			pause;
+
+		}
+
+	}
+
+}
+
