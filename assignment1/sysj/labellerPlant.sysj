@@ -1,0 +1,123 @@
+/*
+ * Labeller plant: a printer, an applicator arm and a glue roller.
+ *
+ * Printing takes PRINT ticks and applying takes APPLY ticks. Label stock and
+ * glue are consumed per bottle and reported as levels, so the controller can
+ * warn before either runs out.
+ */
+LabellerPlant(
+		input signal enable;
+		input signal applyLabelExtend, applyLabelRetract, rollerOnOff;
+		input LabelData signal printLabel;
+
+		output signal bottleAtLabeller, labelPrinted, labelApplied;
+		output signal labelStockLow, glueLow;
+		output Integer signal labelStock, glueLevel;
+		)
+->
+{
+	{ // Printer
+		int PRINT = 4;
+		int labels = 8;
+		int refillTicks = 0;
+		int printing = 0;
+		boolean armed = false;
+
+		while(true){
+			present(enable){
+				// Simulate replacing an empty label roll between print jobs.
+				if(labels == 0 && !armed){
+					refillTicks++;
+					if(refillTicks >= 5){
+						labels = 8;
+						refillTicks = 0;
+						System.out.println("[LABPlant] Label stock replenished.");
+					}
+				}
+				present(printLabel){
+					if(!armed && labels > 0){
+						armed = true;
+						printing = PRINT;
+						labels--;
+						System.out.println("[LABPlant] Printing: " + (LabelData)#printLabel);
+					}
+				}
+				else {
+					armed = false;
+				}
+
+				if(printing > 0){
+					printing--;
+				}
+				if(armed && printing == 0){
+					emit labelPrinted;
+				}
+
+				emit labelStock(labels);
+				if(labels <= 2){
+					emit labelStockLow;
+				}
+			}
+			pause;
+		}
+	}
+	||
+	{ // Applicator and glue roller
+		int APPLY = 3;
+		int glue = 10;
+		int refillTicks = 0;
+		int extending = 0;
+		boolean out = false;
+
+		while(true){
+			present(enable){
+				// Refill with the applicator retracted; never apply without glue.
+				if(glue == 0 && !out){
+					refillTicks++;
+					if(refillTicks >= 5){
+						glue = 10;
+						refillTicks = 0;
+						System.out.println("[LABPlant] Glue replenished.");
+					}
+				}
+				present(applyLabelExtend){
+					if(!out){
+						if(extending < APPLY){
+							extending++;
+						}
+						if(extending >= APPLY && glue > 0){
+							out = true;
+							if(glue > 0){ glue--; }
+							System.out.println("[LABPlant] Label applied.");
+						}
+					}
+				}
+				present(applyLabelRetract){
+					out = false;
+					extending = 0;
+				}
+
+				if(out){
+					emit labelApplied;
+				}
+
+				emit glueLevel(glue);
+				if(glue <= 2){
+					emit glueLow;
+				}
+			}
+			pause;
+		}
+	}
+	||
+	{ // Presence at the labelling point, held while a bottle is being worked
+		while(true){
+			present(enable){
+				present(rollerOnOff){
+					emit bottleAtLabeller;
+				}
+			}
+			pause;
+		}
+	}
+}

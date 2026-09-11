@@ -25,6 +25,7 @@ public class ConveyorPlant extends ClockDomain{
   private int LEN_thread_2;//sysj\conveyorPlant.sysj line: 32, column: 3
   private boolean[] slot_thread_2;//sysj\conveyorPlant.sysj line: 33, column: 3
   private boolean injecting_thread_2;//sysj\conveyorPlant.sysj line: 34, column: 3
+<<<<<<< Updated upstream
   private boolean taking_thread_2;//sysj\conveyorPlant.sysj line: 35, column: 3
   private int LEN_thread_3;//sysj\conveyorPlant.sysj line: 105, column: 3
   private int pos_thread_3;//sysj\conveyorPlant.sysj line: 106, column: 3
@@ -34,12 +35,29 @@ public class ConveyorPlant extends ClockDomain{
   private int S2139 = 1;
   private int S1883 = 1;
   private int S2137 = 1;
+=======
+  private boolean admitted_thread_2;//sysj\conveyorPlant.sysj line: 35, column: 3
+  private boolean taking_thread_2;//sysj\conveyorPlant.sysj line: 36, column: 3
+  private int LEN_thread_3;//sysj\conveyorPlant.sysj line: 118, column: 3
+  private int pos_thread_3;//sysj\conveyorPlant.sysj line: 119, column: 3
+  private boolean injecting_thread_3;//sysj\conveyorPlant.sysj line: 120, column: 3
+  private boolean collecting_thread_3;//sysj\conveyorPlant.sysj line: 121, column: 3
+  private int i_thread_2;//sysj\conveyorPlant.sysj line: 77, column: 7
+  private int S27343 = 1;
+  private int S27087 = 1;
+  private int S27341 = 1;
+>>>>>>> Stashed changes
   
   private int[] ends = new int[4];
   private int[] tdone = new int[4];
   
+<<<<<<< Updated upstream
   public void thread2145(int [] tdone, int [] ends){
         switch(S2137){
+=======
+  public void thread27349(int [] tdone, int [] ends){
+        switch(S27341){
+>>>>>>> Stashed changes
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -395,8 +413,13 @@ public class ConveyorPlant extends ClockDomain{
     }
   }
 
+<<<<<<< Updated upstream
   public void thread2144(int [] tdone, int [] ends){
         switch(S1883){
+=======
+  public void thread27348(int [] tdone, int [] ends){
+        switch(S27087){
+>>>>>>> Stashed changes
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -774,6 +797,7 @@ public class ConveyorPlant extends ClockDomain{
     }
   }
 
+<<<<<<< Updated upstream
   public void thread2142(int [] tdone, int [] ends){
         S2137=1;
     LEN_thread_3 = 6;//sysj\conveyorPlant.sysj line: 105, column: 3
@@ -787,6 +811,21 @@ public class ConveyorPlant extends ClockDomain{
           if(pos_thread_3 < 0) {//sysj\conveyorPlant.sysj line: 116, column: 18
             pos_thread_3 = 0;//sysj\conveyorPlant.sysj line: 117, column: 8
             System.out.println("[CVPlant] Bottle entered outfeed.");//sysj\conveyorPlant.sysj line: 118, column: 8
+=======
+  public void thread27346(int [] tdone, int [] ends){
+        S27341=1;
+    LEN_thread_3 = 6;//sysj\conveyorPlant.sysj line: 118, column: 3
+    pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 119, column: 3
+    injecting_thread_3 = false;//sysj\conveyorPlant.sysj line: 120, column: 3
+    collecting_thread_3 = false;//sysj\conveyorPlant.sysj line: 121, column: 3
+    if(enable.getprestatus()){//sysj\conveyorPlant.sysj line: 124, column: 12
+      if(injectOutfeed.getprestatus()){//sysj\conveyorPlant.sysj line: 126, column: 13
+        if(!injecting_thread_3) {//sysj\conveyorPlant.sysj line: 127, column: 20
+          injecting_thread_3 = true;//sysj\conveyorPlant.sysj line: 128, column: 7
+          if(pos_thread_3 < 0) {//sysj\conveyorPlant.sysj line: 129, column: 18
+            pos_thread_3 = 0;//sysj\conveyorPlant.sysj line: 130, column: 8
+            System.out.println("[CVPlant] Bottle entered outfeed.");//sysj\conveyorPlant.sysj line: 131, column: 8
+>>>>>>> Stashed changes
           }
         }
         if(pos_thread_3 >= 0){//sysj\conveyorPlant.sysj line: 126, column: 8
@@ -1125,8 +1164,13 @@ public class ConveyorPlant extends ClockDomain{
     }
   }
 
+<<<<<<< Updated upstream
   public void thread2141(int [] tdone, int [] ends){
         S1883=1;
+=======
+  public void thread27345(int [] tdone, int [] ends){
+        S27087=1;
+>>>>>>> Stashed changes
     LEN_thread_2 = 6;//sysj\conveyorPlant.sysj line: 32, column: 3
     slot_thread_2 = new boolean[LEN_thread_2 + 1];//sysj\conveyorPlant.sysj line: 33, column: 3
     injecting_thread_2 = false;//sysj\conveyorPlant.sysj line: 34, column: 3
@@ -1505,6 +1549,7 @@ public class ConveyorPlant extends ClockDomain{
     }
     
     RUN: while(true){
+<<<<<<< Updated upstream
       switch(S2139){
         case 0 : 
           S2139=0;
@@ -1523,12 +1568,33 @@ public class ConveyorPlant extends ClockDomain{
             biggest2143=ends[3];
           }
           if(biggest2143 == 1){
+=======
+      switch(S27343){
+        case 0 : 
+          S27343=0;
+          break RUN;
+        
+        case 1 : 
+          S27343=2;
+          S27343=2;
+          thread27345(tdone,ends);
+          thread27346(tdone,ends);
+          int biggest27347 = 0;
+          if(ends[2]>=biggest27347){
+            biggest27347=ends[2];
+          }
+          if(ends[3]>=biggest27347){
+            biggest27347=ends[3];
+          }
+          if(biggest27347 == 1){
+>>>>>>> Stashed changes
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
         
         case 2 : 
+<<<<<<< Updated upstream
           thread2144(tdone,ends);
           thread2145(tdone,ends);
           int biggest2146 = 0;
@@ -1539,16 +1605,36 @@ public class ConveyorPlant extends ClockDomain{
             biggest2146=ends[3];
           }
           if(biggest2146 == 1){
+=======
+          thread27348(tdone,ends);
+          thread27349(tdone,ends);
+          int biggest27350 = 0;
+          if(ends[2]>=biggest27350){
+            biggest27350=ends[2];
+          }
+          if(ends[3]>=biggest27350){
+            biggest27350=ends[3];
+          }
+          if(biggest27350 == 1){
+>>>>>>> Stashed changes
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
+<<<<<<< Updated upstream
           if(biggest2146 == 0){
             S2139=0;
             active[1]=0;
             ends[1]=0;
             S2139=0;
+=======
+          if(biggest27350 == 0){
+            S27343=0;
+            active[1]=0;
+            ends[1]=0;
+            S27343=0;
+>>>>>>> Stashed changes
             break RUN;
           }
         

@@ -24,6 +24,7 @@ public class LidLoaderPlant extends ClockDomain{
   public Signal armAtDest = new Signal("armAtDest", Signal.OUTPUT);
   public Signal empty = new Signal("empty", Signal.OUTPUT);
   public Signal refilled = new Signal("refilled", Signal.OUTPUT);
+<<<<<<< Updated upstream
   public Signal pusherRetractedE = new Signal("pusherRetractedE", Signal.OUTPUT);
   public Signal pusherExtendedE = new Signal("pusherExtendedE", Signal.OUTPUT);
   public Signal WPgrippedE = new Signal("WPgrippedE", Signal.OUTPUT);
@@ -52,10 +53,22 @@ public class LidLoaderPlant extends ClockDomain{
   private int S3454 = 1;
   private int S3462 = 1;
   private int S3470 = 1;
+=======
+  private int STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 26, column: 3
+  private int lids_thread_3;//sysj\lidLoaderPlant.sysj line: 27, column: 3
+  private boolean extended_thread_3;//sysj\lidLoaderPlant.sysj line: 28, column: 3
+  private boolean lidReady_thread_3;//sysj\lidLoaderPlant.sysj line: 29, column: 3
+  private boolean holding_thread_3;//sysj\lidLoaderPlant.sysj line: 30, column: 3
+  private int S86303 = 1;
+  private int S85441 = 1;
+  private int S85413 = 1;
+  private int S86301 = 1;
+>>>>>>> Stashed changes
   
   private int[] ends = new int[14];
   private int[] tdone = new int[14];
   
+<<<<<<< Updated upstream
   public void thread3813(int [] tdone, int [] ends){
         switch(S3470){
       case 0 : 
@@ -546,6 +559,10 @@ public class LidLoaderPlant extends ClockDomain{
 
   public void thread3803(int [] tdone, int [] ends){
         switch(S3242){
+=======
+  public void thread86309(int [] tdone, int [] ends){
+        switch(S86301){
+>>>>>>> Stashed changes
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -596,8 +613,13 @@ public class LidLoaderPlant extends ClockDomain{
     }
   }
 
+<<<<<<< Updated upstream
   public void thread3802(int [] tdone, int [] ends){
         switch(S3201){
+=======
+  public void thread86308(int [] tdone, int [] ends){
+        switch(S85441){
+>>>>>>> Stashed changes
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -605,11 +627,19 @@ public class LidLoaderPlant extends ClockDomain{
         break;
       
       case 1 : 
+<<<<<<< Updated upstream
         switch(S3173){
           case 0 : 
             if(armSource.getprestatus() && enable.getprestatus()){//sysj\lidLoaderPlant.sysj line: 15, column: 10
               S3173=1;
               armAtSource.setPresent();//sysj\lidLoaderPlant.sysj line: 19, column: 5
+=======
+        switch(S85413){
+          case 0 : 
+            if(armSource.getprestatus() && enable.getprestatus()){//sysj\lidLoaderPlant.sysj line: 16, column: 10
+              S85413=1;
+              armAtSource.setPresent();//sysj\lidLoaderPlant.sysj line: 20, column: 5
+>>>>>>> Stashed changes
               currsigs.addElement(armAtSource);
               active[2]=1;
               ends[2]=1;
@@ -625,9 +655,15 @@ public class LidLoaderPlant extends ClockDomain{
             break;
           
           case 1 : 
+<<<<<<< Updated upstream
             if(armDest.getprestatus() && enable.getprestatus()){//sysj\lidLoaderPlant.sysj line: 18, column: 10
               S3173=0;
               armAtDest.setPresent();//sysj\lidLoaderPlant.sysj line: 16, column: 5
+=======
+            if(armDest.getprestatus() && enable.getprestatus()){//sysj\lidLoaderPlant.sysj line: 19, column: 10
+              S85413=0;
+              armAtDest.setPresent();//sysj\lidLoaderPlant.sysj line: 17, column: 5
+>>>>>>> Stashed changes
               currsigs.addElement(armAtDest);
               active[2]=1;
               ends[2]=1;
@@ -648,6 +684,7 @@ public class LidLoaderPlant extends ClockDomain{
     }
   }
 
+<<<<<<< Updated upstream
   public void thread3799(int [] tdone, int [] ends){
         S3470=1;
     if(empty.getprestatus()){//sysj\lidLoaderPlant.sysj line: 103, column: 24
@@ -794,6 +831,246 @@ public class LidLoaderPlant extends ClockDomain{
           active[6]=1;
           ends[6]=1;
           tdone[6]=1;
+=======
+  public void thread86306(int [] tdone, int [] ends){
+        S86301=1;
+    STOCK_thread_3 = 3;//sysj\lidLoaderPlant.sysj line: 26, column: 3
+    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 27, column: 3
+    extended_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 28, column: 3
+    lidReady_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 29, column: 3
+    holding_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 30, column: 3
+    if(enable.getprestatus()){//sysj\lidLoaderPlant.sysj line: 33, column: 12
+      if(pusherExtend.getprestatus()){//sysj\lidLoaderPlant.sysj line: 36, column: 13
+        if(!extended_thread_3) {//sysj\lidLoaderPlant.sysj line: 37, column: 19
+          extended_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 38, column: 7
+          if(lids_thread_3 > 0 && !lidReady_thread_3) {//sysj\lidLoaderPlant.sysj line: 39, column: 32
+            lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderPlant.sysj line: 40, column: 8
+            lidReady_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 41, column: 8
+            System.out.println("[LIDPlant] Lid pushed out, " + lids_thread_3 + " left.");//sysj\lidLoaderPlant.sysj line: 42, column: 8
+          }
+        }
+        pusherExtended.setPresent();//sysj\lidLoaderPlant.sysj line: 45, column: 6
+        currsigs.addElement(pusherExtended);
+        if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 53, column: 5
+          if(vacOn.getprestatus()){//sysj\lidLoaderPlant.sysj line: 54, column: 14
+            if(lidReady_thread_3){//sysj\lidLoaderPlant.sysj line: 71, column: 5
+              lidAtPickup.setPresent();//sysj\lidLoaderPlant.sysj line: 71, column: 19
+              currsigs.addElement(lidAtPickup);
+              if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 72, column: 5
+                WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 72, column: 18
+                currsigs.addElement(WPgripped);
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+              else {
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+            }
+            else {
+              if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 72, column: 5
+                WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 72, column: 18
+                currsigs.addElement(WPgripped);
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+              else {
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+            }
+          }
+          else {
+            holding_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 58, column: 7
+            System.out.println("[LIDPlant] Lid released.");//sysj\lidLoaderPlant.sysj line: 59, column: 7
+            if(lidReady_thread_3){//sysj\lidLoaderPlant.sysj line: 71, column: 5
+              lidAtPickup.setPresent();//sysj\lidLoaderPlant.sysj line: 71, column: 19
+              currsigs.addElement(lidAtPickup);
+              if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 72, column: 5
+                WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 72, column: 18
+                currsigs.addElement(WPgripped);
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+              else {
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+            }
+            else {
+              if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 72, column: 5
+                WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 72, column: 18
+                currsigs.addElement(WPgripped);
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+              else {
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 74, column: 13
+                  lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 75, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 76, column: 6
+                  currsigs.addElement(refilled);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 78, column: 13
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 79, column: 6
+                    currsigs.addElement(magazineEmpty);
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+              }
+            }
+          }
+>>>>>>> Stashed changes
         }
         else {
           active[6]=1;
@@ -849,6 +1126,7 @@ public class LidLoaderPlant extends ClockDomain{
     }
   }
 
+<<<<<<< Updated upstream
   public void thread3791(int [] tdone, int [] ends){
         S3354=1;
     S3308=0;
@@ -902,6 +1180,12 @@ public class LidLoaderPlant extends ClockDomain{
         S3201=1;
     S3173=0;
     armAtDest.setPresent();//sysj\lidLoaderPlant.sysj line: 16, column: 5
+=======
+  public void thread86305(int [] tdone, int [] ends){
+        S85441=1;
+    S85413=0;
+    armAtDest.setPresent();//sysj\lidLoaderPlant.sysj line: 17, column: 5
+>>>>>>> Stashed changes
     currsigs.addElement(armAtDest);
     active[2]=1;
     ends[2]=1;
@@ -915,6 +1199,7 @@ public class LidLoaderPlant extends ClockDomain{
     }
     
     RUN: while(true){
+<<<<<<< Updated upstream
       switch(S3786){
         case 0 : 
           S3786=0;
@@ -954,12 +1239,33 @@ public class LidLoaderPlant extends ClockDomain{
             biggest3801=ends[7];
           }
           if(biggest3801 == 1){
+=======
+      switch(S86303){
+        case 0 : 
+          S86303=0;
+          break RUN;
+        
+        case 1 : 
+          S86303=2;
+          S86303=2;
+          thread86305(tdone,ends);
+          thread86306(tdone,ends);
+          int biggest86307 = 0;
+          if(ends[2]>=biggest86307){
+            biggest86307=ends[2];
+          }
+          if(ends[3]>=biggest86307){
+            biggest86307=ends[3];
+          }
+          if(biggest86307 == 1){
+>>>>>>> Stashed changes
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
         
         case 2 : 
+<<<<<<< Updated upstream
           capDec_1.setClear();//sysj\lidLoaderPlant.sysj line: 10, column: 2
           capPos_1.setClear();//sysj\lidLoaderPlant.sysj line: 11, column: 2
           thread3802(tdone,ends);
@@ -988,16 +1294,36 @@ public class LidLoaderPlant extends ClockDomain{
             biggest3815=ends[7];
           }
           if(biggest3815 == 1){
+=======
+          thread86308(tdone,ends);
+          thread86309(tdone,ends);
+          int biggest86310 = 0;
+          if(ends[2]>=biggest86310){
+            biggest86310=ends[2];
+          }
+          if(ends[3]>=biggest86310){
+            biggest86310=ends[3];
+          }
+          if(biggest86310 == 1){
+>>>>>>> Stashed changes
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
+<<<<<<< Updated upstream
           if(biggest3815 == 0){
             S3786=0;
             active[1]=0;
             ends[1]=0;
             S3786=0;
+=======
+          if(biggest86310 == 0){
+            S86303=0;
+            active[1]=0;
+            ends[1]=0;
+            S86303=0;
+>>>>>>> Stashed changes
             break RUN;
           }
         

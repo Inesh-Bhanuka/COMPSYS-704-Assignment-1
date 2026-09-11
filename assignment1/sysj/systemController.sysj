@@ -1,7 +1,13 @@
 SystemController(
+<<<<<<< Updated upstream
 		// To BottleLoaderControllerCD
 		output Integer signal mode;
 		output signal bottleLoad;
+=======
+		// from / to the POS
+		input PosOrderRequest signal purchaseOrder;
+		output PosOrderStatus signal productionStatus;
+>>>>>>> Stashed changes
 
 		// One enable per plant: an oSignal has a single destination
 		output signal enableBL;   // -> BottleLoaderPlantCD
@@ -32,8 +38,52 @@ SystemController(
 		}
 	}
 	||
+<<<<<<< Updated upstream
 	{ // ---- Drive bottle load cycles ----
 		pause; pause; pause; pause; pause;
+=======
+	{ // Accept complete customer orders and continuously publish feedback.
+		PosOrderStatus status = null;
+		while(true){
+			present(purchaseOrder){ OrderBook.accept((PosOrderRequest)#purchaseOrder); }
+			status = OrderBook.feedback();
+			if(status != null){ emit productionStatus(status); }
+			pause;
+		}
+	}
+	||
+	{ // Batch scheduler, independent of signal reception and feedback.
+		WorkpieceTwin w = null;
+		while(true){
+			w = OrderBook.nextBottle();
+			if(w != null){
+				System.out.println("[SC] Loading " + w + ".");
+				TwinRegistry.shared().admit(w);
+				send loadOrder(w);
+			}
+			pause;
+		}
+	}
+	||
+	{ // Loader acknowledgements
+		while(true){
+			receive loadAck;
+			System.out.println("[SC] " + (WorkpieceTwin)#loadAck + " is on the conveyor.");
+			pause;
+		}
+	}
+	||
+	{ // End of line: the quality splitter decides where the bottle goes
+		//
+		// Bottles leave the outfeed here and go to the labeller. The quality
+		// decision is made after labelling rather than before, because the
+		// labeller is the station that checks a bottle against its own
+		// history.
+		WorkpieceTwin w = null;
+		while(true){
+			receive bottleDone;
+			w = (WorkpieceTwin)#bottleDone;
+>>>>>>> Stashed changes
 
 		int cycles = 4;
 		int i = 0;
@@ -68,7 +118,89 @@ SystemController(
 				}
 			}
 			else {
+<<<<<<< Updated upstream
 				seen = false;
+=======
+				// The outfeed sets it down in the storage for its batch, which
+				// is where the line ends. The twin retires with it.
+				w.arrived(Machine.BATCH_STORAGE);
+				w.seal();
+				BatchStore.shared().store(w);
+				done++;
+				System.out.println("[SC] " + w + " labelled " + w.serial + " and stored in batch "
+						+ w.batchId + " (" + BatchStore.shared().held(w.batchId) + " on the shelf). "
+						+ done + " complete.");
+				OrderBook.delivered(w);
+			}
+			pause;
+		}
+	}
+	||
+	{ // The plant twin
+		//
+		// One writer, one job: collect the machine twins as they arrive,
+		// track every workpiece admitted, advance the plant clock and publish
+		// the whole thing. A complete snapshot every tick rather than a
+		// differential, so a display that misses one is a tick behind rather
+		// than out of step.
+		ABSTwin plant = new ABSTwin();
+		TwinPublisher out = TwinPublisher.shared();
+
+		while(true){
+			PlantClock.advance();
+
+			present(twinBL){ plant.put((LoaderTwin)#twinBL); }
+			present(twinCV){ plant.put((ConveyorTwin)#twinCV); }
+			present(twinRT){ plant.put((RotaryTableTwin)#twinRT); }
+			present(twinF1){ plant.put((FillerTwin)#twinF1); }
+			present(twinF2){ plant.put((FillerTwin)#twinF2); }
+			present(twinLL){ plant.put((LidLoaderTwin)#twinLL); }
+			present(twinCP){ plant.put((LidCapperTwin)#twinCP); }
+			present(twinLB){ plant.put((LabellerTwin)#twinLB); }
+
+			plant.setTick(PlantClock.now());
+			plant.setMode(LineMode.AUTO);
+			TwinRegistry.shared().fill(plant);
+			out.publish(plant, OrderBook.purchaseOrder());
+			pause;
+		}
+	}
+	||
+	{ // Recovered bottles
+		//
+		// The transaction bottleRejected opened closes here. The POS is told
+		// the order line failed and the container was reclaimed, so its
+		// accounting stays honest - one order in, no bottle out, one
+		// container back in circulation.
+		WorkpieceTwin w = null;
+		int recovered = 0;
+		while(true){
+			receive bottleRecycled;
+			w = (WorkpieceTwin)#bottleRecycled;
+			recovered++;
+			System.out.println("[SC] " + w + " recovered by the Recycling Station at "
+					+ w.filledMl() + "ml, sealed=" + w.isSealed() + ". " + recovered + " recycled.");
+			OrderBook.recycled(w);
+			pause;
+		}
+	}
+	||
+	{ // Recycling Station status
+		//
+		// A level, sampled every tick and reported only when it changes.
+		int last = -1;
+		int v = 0;
+		while(true){
+			present(recyclingStatus){
+				v = ((Integer)#recyclingStatus).intValue();
+				if(v != last){
+					if(v == 0){ System.out.println("[SC] Recycling Station: idle."); }
+					if(v == 1){ System.out.println("[SC] Recycling Station: busy."); }
+					if(v == 2){ System.out.println("[SC] Recycling Station: FAULT - no further rejects accepted."); }
+					if(v == 3){ System.out.println("[SC] Recycling Station: running, bin or tank near capacity."); }
+					last = v;
+				}
+>>>>>>> Stashed changes
 			}
 			pause;
 		}

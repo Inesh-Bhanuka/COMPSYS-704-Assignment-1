@@ -1,0 +1,17 @@
+/* Customer GUI boundary. Both payloads are held/repeated so asynchronous ticks
+ * cannot lose an order or its final completion. Order ID and revision deduplicate. */
+POS(
+        output PosOrderRequest signal purchaseOrder;
+        input PosOrderStatus signal productionStatus;
+        )
+->
+{
+    PosOrderRequest order = null;
+    PosBridge.open();
+    while(true){
+        order = PosBridge.pending();
+        if(order != null){ emit purchaseOrder(order); }
+        present(productionStatus){ PosBridge.acceptFeedback((PosOrderStatus)#productionStatus); }
+        pause;
+    }
+}

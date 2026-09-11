@@ -1,0 +1,127 @@
+/*
+ * Liquid filler. Two of these run on the line - one at table position 2 for
+ * liquid A, one at position 3 for liquid B - so the code asks the bottle what
+ * it needs next rather than being told which liquid it is.
+ *
+ * Fill time comes out of the volume, so a 200ml bottle takes twice as long as
+ * a 100ml one at the same percentage.
+ */
+FillerController(
+		// from / to the Rotary Table
+		input  WorkpieceTwin channel start;
+		output WorkpieceTwin channel done;
+
+		// the machine's own summary, out to the coordinator
+		output FillerTwin signal twin;
+
+		// operating mode
+		input Integer signal mode;
+
+		// to / from the plant
+		output Integer signal fillTarget;
+		output signal valveOpen;
+		input  signal filled;
+
+		// manual override - the operator panel attaches here
+		input signal valveOpenM;
+		)
+->
+{
+	signal auto, manual;
+
+	{ // Mode select
+		while(true){
+			present(mode){
+				if((Integer)#mode == 0){ emit auto; }
+				else { emit manual; }
+			}
+			pause;
+		}
+	}
+	||
+	{ // Auto
+		FillerTwin t = new FillerTwin();
+		WorkpieceTwin w = null;
+		int ml = 0;
+		int asked = 0;
+
+		while(true){
+			await(immediate auto);
+
+			abort(immediate manual){
+				receive start;
+				w = (WorkpieceTwin)#start;
+				ml = (w == null) ? 0 : w.nextVolumeMl();
+				asked = ml;
+
+				if(ml == 0){
+					// Record a zero-percent ingredient so the next station advances
+					// to Liquid 2 and the label has both measurements.
+					if(w != null){
+						w.dispensed(0);
+						w.completed(Machine.FILLER, "zero-percent ingredient");
+					}
+				}
+				else if(!w.fits(ml)){
+					// Overflow interlock: refuse rather than dispense.
+					System.out.println("[FILL] Refusing " + ml + "ml into " + w + " - would overflow.");
+					w.reject(Machine.FILLER, "would overflow");
+					if(t.update(PlantClock.now(), MachineStatus.FAULT, "refuse", "overflow")){
+						emit twin(t);
+					}
+				}
+				else {
+					// An armed misfill makes the plant dispense short. The
+					// filler still measures what actually went in.
+					if(w.catchFault("misfill")){
+						ml = ml - 30;
+						System.out.println("[FILL] Metering fault on " + w + ".");
+					}
+					System.out.println("[FILL] Liquid " + w.nextLiquidName() + ", " + ml + "ml into " + w + ".");
+					w.started(Machine.FILLER, "liquid " + w.nextLiquidName());
+					if(t.update(PlantClock.now(), MachineStatus.WORKING, "valveOpen", ml + "ml")){
+						emit twin(t);
+					}
+					// Both are held for the whole fill. fillTarget used to be a
+					// single emit, which the plant can miss entirely - it is
+					// on the far side of a link, same as any other signal.
+					abort(immediate filled){
+						while(true){
+							emit valveOpen;
+							emit fillTarget(ml);
+							pause;
+						}
+					}
+
+					w.dispensed(ml);
+					if(!w.lastFillInTolerance(asked)){
+						System.out.println("[FILL] Out of tolerance: asked " + asked + "ml, metered " + ml + "ml.");
+						w.reject(Machine.FILLER, "fill out of tolerance");
+					}
+					w.completed(Machine.FILLER, "fill complete");
+					t.setDispensed(ml, ml / 20);
+					if(t.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml + "ml dispensed")){
+						emit twin(t);
+					}
+					System.out.println("[FILL] " + w + " now at " + w.filledMl() + "ml.");
+				}
+
+				send done(w);
+			}
+			pause;
+		}
+	}
+	||
+	{ // Manual
+		while(true){
+			await(immediate manual);
+			abort(immediate auto){
+				while(true){
+					present(valveOpenM){ emit valveOpen; }
+					pause;
+				}
+			}
+			pause;
+		}
+	}
+}

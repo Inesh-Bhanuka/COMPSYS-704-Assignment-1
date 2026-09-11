@@ -19,6 +19,7 @@ public class RotaryTablePlant extends ClockDomain{
   public Signal bottleAtPos1 = new Signal("bottleAtPos1", Signal.OUTPUT);
   public Signal bottleAtPos2 = new Signal("bottleAtPos2", Signal.OUTPUT);
   public Signal bottleAtPos4 = new Signal("bottleAtPos4", Signal.OUTPUT);
+<<<<<<< Updated upstream
   public Signal bottleAtPos6 = new Signal("bottleAtPos6", Signal.OUTPUT);
   private int ROT_thread_1;//sysj\turntablePlant.sysj line: 33, column: 2
   private int rotating_thread_1;//sysj\turntablePlant.sysj line: 34, column: 2
@@ -29,6 +30,20 @@ public class RotaryTablePlant extends ClockDomain{
   private boolean last_thread_1;//sysj\turntablePlant.sysj line: 50, column: 6
   private int i_thread_1;//sysj\turntablePlant.sysj line: 51, column: 6
   private int S57272 = 1;
+=======
+  public Signal bottleAtPos5 = new Signal("bottleAtPos5", Signal.OUTPUT);
+  public Signal exitCleared = new Signal("exitCleared", Signal.OUTPUT);
+  private int ROT_thread_1;//sysj\rotaryTablePlant.sysj line: 38, column: 2
+  private int rotating_thread_1;//sysj\rotaryTablePlant.sysj line: 39, column: 2
+  private boolean[] occ_thread_1;//sysj\rotaryTablePlant.sysj line: 40, column: 2
+  private boolean loading_thread_1;//sysj\rotaryTablePlant.sysj line: 44, column: 2
+  private boolean unloading_thread_1;//sysj\rotaryTablePlant.sysj line: 45, column: 2
+  private boolean exited_thread_1;//sysj\rotaryTablePlant.sysj line: 46, column: 2
+  private boolean triggered_thread_1;//sysj\rotaryTablePlant.sysj line: 47, column: 2
+  private boolean last_thread_1;//sysj\rotaryTablePlant.sysj line: 56, column: 6
+  private int i_thread_1;//sysj\rotaryTablePlant.sysj line: 57, column: 6
+  private int S195983 = 1;
+>>>>>>> Stashed changes
   
   private int[] ends = new int[2];
   private int[] tdone = new int[2];
@@ -40,6 +55,7 @@ public class RotaryTablePlant extends ClockDomain{
     }
     
     RUN: while(true){
+<<<<<<< Updated upstream
       switch(S57272){
         case 0 : 
           S57272=0;
@@ -63,6 +79,32 @@ public class RotaryTablePlant extends ClockDomain{
                 while(i_thread_1 > 0) {//sysj\turntablePlant.sysj line: 52, column: 18
                   occ_thread_1[i_thread_1] = occ_thread_1[i_thread_1 - 1];//sysj\turntablePlant.sysj line: 53, column: 7
                   i_thread_1 = i_thread_1 - 1;//sysj\turntablePlant.sysj line: 54, column: 7
+=======
+      switch(S195983){
+        case 0 : 
+          S195983=0;
+          break RUN;
+        
+        case 1 : 
+          S195983=2;
+          S195983=2;
+          ROT_thread_1 = 6;//sysj\rotaryTablePlant.sysj line: 38, column: 2
+          rotating_thread_1 = 0;//sysj\rotaryTablePlant.sysj line: 39, column: 2
+          occ_thread_1 = new boolean[6];//sysj\rotaryTablePlant.sysj line: 40, column: 2
+          loading_thread_1 = false;//sysj\rotaryTablePlant.sysj line: 44, column: 2
+          unloading_thread_1 = false;//sysj\rotaryTablePlant.sysj line: 45, column: 2
+          exited_thread_1 = false;//sysj\rotaryTablePlant.sysj line: 46, column: 2
+          triggered_thread_1 = false;//sysj\rotaryTablePlant.sysj line: 47, column: 2
+          if(enable.getprestatus()){//sysj\rotaryTablePlant.sysj line: 50, column: 11
+            if(rotating_thread_1 > 0){//sysj\rotaryTablePlant.sysj line: 52, column: 7
+              rotating_thread_1 = rotating_thread_1 - 1;//sysj\rotaryTablePlant.sysj line: 53, column: 5
+              if(rotating_thread_1 == 0) {//sysj\rotaryTablePlant.sysj line: 54, column: 22
+                last_thread_1 = occ_thread_1[5];//sysj\rotaryTablePlant.sysj line: 56, column: 6
+                i_thread_1 = 5;//sysj\rotaryTablePlant.sysj line: 57, column: 6
+                while(i_thread_1 > 0) {//sysj\rotaryTablePlant.sysj line: 58, column: 18
+                  occ_thread_1[i_thread_1] = occ_thread_1[i_thread_1 - 1];//sysj\rotaryTablePlant.sysj line: 59, column: 7
+                  i_thread_1 = i_thread_1 - 1;//sysj\rotaryTablePlant.sysj line: 60, column: 7
+>>>>>>> Stashed changes
                 }
                 occ_thread_1[0] = last_thread_1;//sysj\turntablePlant.sysj line: 56, column: 6
                 System.out.println("[RTPlant] Rotation complete.");//sysj\turntablePlant.sysj line: 57, column: 6
