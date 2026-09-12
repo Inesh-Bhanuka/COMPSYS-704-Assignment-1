@@ -16,9 +16,11 @@
 		<ClockDomain Name="SystemControllerCD" Class="SystemController">
 			<iChannel Name="loadAck"         From="BottleLoaderControllerCD.loadAck" />
 			<iChannel Name="bottleDone"      From="ConveyorControllerCD.bottleDone" />
+			<iChannel Name="splitterRoute"   From="SplitterControllerCD.status" />
 			<iChannel Name="labelDone"       From="LabellerControllerCD.labelDone" />
 			<iChannel Name="bottleRecycled"  From="RecyclingStationControllerCD.bottleRecycled" />
 			<oChannel Name="loadOrder"       To="BottleLoaderControllerCD.loadOrder" />
+			<oChannel Name="toSplitter"      To="SplitterControllerCD.enable" />
 			<oChannel Name="labelBottle"     To="LabellerControllerCD.labelBottle" />
 			<oChannel Name="bottleRejected"  To="RecyclingStationControllerCD.bottleRejected" />
 
@@ -319,13 +321,11 @@
 
 		<ClockDomain Name="RecyclingStationControllerCD" Class="RecyclingStationController">
 			<iChannel Name="bottleRejected"  From="SystemControllerCD.bottleRejected" />
-			<iChannel Name="statusSplitter"  From="SplitterControllerCD.status" />
 			<iChannel Name="statusConveyor"  From="RecyclingConveyorControllerCD.status" />
 			<iChannel Name="statusLidRemoval" From="LidRemovalControllerCD.status" />
 			<iChannel Name="statusDumper"    From="LiquidDumperControllerCD.status" />
 			<iChannel Name="statusReturn"    From="BottleReturnControllerCD.status" />
 			<oChannel Name="bottleRecycled"  To="SystemControllerCD.bottleRecycled" />
-			<oChannel Name="enableSplitter"  To="SplitterControllerCD.enable" />
 			<oChannel Name="enableLidRemoval" To="LidRemovalControllerCD.enable" />
 			<oChannel Name="enableDumper"    To="LiquidDumperControllerCD.enable" />
 			<oChannel Name="enableReturn"    To="BottleReturnControllerCD.enable" />
@@ -336,8 +336,8 @@
 		</ClockDomain>
 
 		<ClockDomain Name="SplitterControllerCD" Class="SplitterController">
-			<iChannel Name="enable"          From="RecyclingStationControllerCD.enableSplitter" />
-			<oChannel Name="status"          To="RecyclingStationControllerCD.statusSplitter" />
+			<iChannel Name="enable"          From="SystemControllerCD.toSplitter" />
+			<oChannel Name="status"          To="SystemControllerCD.splitterRoute" />
 
 			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15100" />
 			<iSignal Name="bottleAtSplitter"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15100" />

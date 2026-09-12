@@ -21,13 +21,13 @@ public class LiquidDumperPlant extends ClockDomain{
   public Signal bottleUpright = new Signal("bottleUpright", Signal.OUTPUT);
   public Signal bottleDrained = new Signal("bottleDrained", Signal.OUTPUT);
   public Signal wasteTankLevel = new Signal("wasteTankLevel", Signal.OUTPUT);
-  private int CLAMP_thread_1;//sysj\liquidDumperPlant.sysj line: 55, column: 2
-  private int ROTATE_thread_1;//sysj\liquidDumperPlant.sysj line: 57, column: 2
-  private int DRAIN_thread_1;//sysj\liquidDumperPlant.sysj line: 59, column: 2
-  private int clamp_thread_1;//sysj\liquidDumperPlant.sysj line: 63, column: 2
-  private int angle_thread_1;//sysj\liquidDumperPlant.sysj line: 65, column: 2
-  private DumperDrainCycle drain_thread_1;//sysj\liquidDumperPlant.sysj line: 67, column: 2
-  private int S161310 = 1;
+  private int CLAMP_thread_1;//sysj\liquidDumperPlant.sysj line: 28, column: 2
+  private int ROTATE_thread_1;//sysj\liquidDumperPlant.sysj line: 29, column: 2
+  private int DRAIN_thread_1;//sysj\liquidDumperPlant.sysj line: 30, column: 2
+  private int clamp_thread_1;//sysj\liquidDumperPlant.sysj line: 32, column: 2
+  private int angle_thread_1;//sysj\liquidDumperPlant.sysj line: 33, column: 2
+  private DumperDrainCycle drain_thread_1;//sysj\liquidDumperPlant.sysj line: 34, column: 2
+  private int S225447 = 1;
   
   private int[] ends = new int[2];
   private int[] tdone = new int[2];
@@ -39,82 +39,82 @@ public class LiquidDumperPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S161310){
+      switch(S225447){
         case 0 : 
-          S161310=0;
+          S225447=0;
           break RUN;
         
         case 1 : 
-          S161310=2;
-          S161310=2;
-          CLAMP_thread_1 = 3;//sysj\liquidDumperPlant.sysj line: 55, column: 2
-          ROTATE_thread_1 = 5;//sysj\liquidDumperPlant.sysj line: 57, column: 2
-          DRAIN_thread_1 = 8;//sysj\liquidDumperPlant.sysj line: 59, column: 2
-          clamp_thread_1 = 0;//sysj\liquidDumperPlant.sysj line: 63, column: 2
-          angle_thread_1 = 0;//sysj\liquidDumperPlant.sysj line: 65, column: 2
-          drain_thread_1 = new DumperDrainCycle(DRAIN_thread_1, ROTATE_thread_1);//sysj\liquidDumperPlant.sysj line: 67, column: 2
-          if(enable.getprestatus()){//sysj\liquidDumperPlant.sysj line: 73, column: 11
-            if(cylClampBottleExtend.getprestatus()){//sysj\liquidDumperPlant.sysj line: 79, column: 12
-              if(clamp_thread_1 < CLAMP_thread_1) {//sysj\liquidDumperPlant.sysj line: 81, column: 22
-                clamp_thread_1 = clamp_thread_1 + 1;//sysj\liquidDumperPlant.sysj line: 81, column: 24
+          S225447=2;
+          S225447=2;
+          CLAMP_thread_1 = PlantTiming.ticks(3);//sysj\liquidDumperPlant.sysj line: 28, column: 2
+          ROTATE_thread_1 = PlantTiming.ticks(5);//sysj\liquidDumperPlant.sysj line: 29, column: 2
+          DRAIN_thread_1 = PlantTiming.ticks(8);//sysj\liquidDumperPlant.sysj line: 30, column: 2
+          clamp_thread_1 = 0;//sysj\liquidDumperPlant.sysj line: 32, column: 2
+          angle_thread_1 = 0;//sysj\liquidDumperPlant.sysj line: 33, column: 2
+          drain_thread_1 = new DumperDrainCycle(DRAIN_thread_1, ROTATE_thread_1);//sysj\liquidDumperPlant.sysj line: 34, column: 2
+          if(enable.getprestatus()){//sysj\liquidDumperPlant.sysj line: 37, column: 11
+            if(cylClampBottleExtend.getprestatus()){//sysj\liquidDumperPlant.sysj line: 40, column: 12
+              if(clamp_thread_1 < CLAMP_thread_1) {//sysj\liquidDumperPlant.sysj line: 41, column: 22
+                clamp_thread_1 = clamp_thread_1 + 1;//sysj\liquidDumperPlant.sysj line: 41, column: 24
               }
-              if(clamp_thread_1 == CLAMP_thread_1){//sysj\liquidDumperPlant.sysj line: 91, column: 7
-                clampClosed.setPresent();//sysj\liquidDumperPlant.sysj line: 91, column: 24
+              if(clamp_thread_1 == CLAMP_thread_1){//sysj\liquidDumperPlant.sysj line: 46, column: 7
+                clampClosed.setPresent();//sysj\liquidDumperPlant.sysj line: 46, column: 24
                 currsigs.addElement(clampClosed);
-                if(invertRotateExtend.getprestatus()){//sysj\liquidDumperPlant.sysj line: 97, column: 12
-                  if(angle_thread_1 < ROTATE_thread_1) {//sysj\liquidDumperPlant.sysj line: 99, column: 23
-                    angle_thread_1 = angle_thread_1 + 1;//sysj\liquidDumperPlant.sysj line: 99, column: 25
+                if(invertRotateExtend.getprestatus()){//sysj\liquidDumperPlant.sysj line: 49, column: 12
+                  if(angle_thread_1 < ROTATE_thread_1) {//sysj\liquidDumperPlant.sysj line: 50, column: 23
+                    angle_thread_1 = angle_thread_1 + 1;//sysj\liquidDumperPlant.sysj line: 50, column: 25
                   }
-                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 103, column: 12
-                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 105, column: 18
-                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 105, column: 20
+                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 52, column: 12
+                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 53, column: 18
+                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 53, column: 20
                     }
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -122,46 +122,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -170,49 +170,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -220,46 +220,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -269,52 +269,52 @@ public class LiquidDumperPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -322,46 +322,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -370,49 +370,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -420,46 +420,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -470,56 +470,56 @@ public class LiquidDumperPlant extends ClockDomain{
                   }
                 }
                 else {
-                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 103, column: 12
-                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 105, column: 18
-                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 105, column: 20
+                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 52, column: 12
+                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 53, column: 18
+                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 53, column: 20
                     }
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -527,46 +527,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -575,49 +575,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -625,46 +625,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -674,52 +674,52 @@ public class LiquidDumperPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -727,46 +727,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -775,49 +775,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -825,46 +825,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -876,60 +876,60 @@ public class LiquidDumperPlant extends ClockDomain{
                 }
               }
               else {
-                if(invertRotateExtend.getprestatus()){//sysj\liquidDumperPlant.sysj line: 97, column: 12
-                  if(angle_thread_1 < ROTATE_thread_1) {//sysj\liquidDumperPlant.sysj line: 99, column: 23
-                    angle_thread_1 = angle_thread_1 + 1;//sysj\liquidDumperPlant.sysj line: 99, column: 25
+                if(invertRotateExtend.getprestatus()){//sysj\liquidDumperPlant.sysj line: 49, column: 12
+                  if(angle_thread_1 < ROTATE_thread_1) {//sysj\liquidDumperPlant.sysj line: 50, column: 23
+                    angle_thread_1 = angle_thread_1 + 1;//sysj\liquidDumperPlant.sysj line: 50, column: 25
                   }
-                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 103, column: 12
-                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 105, column: 18
-                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 105, column: 20
+                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 52, column: 12
+                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 53, column: 18
+                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 53, column: 20
                     }
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -937,46 +937,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -985,49 +985,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -1035,46 +1035,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -1084,52 +1084,52 @@ public class LiquidDumperPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -1137,46 +1137,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -1185,49 +1185,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -1235,46 +1235,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -1285,56 +1285,56 @@ public class LiquidDumperPlant extends ClockDomain{
                   }
                 }
                 else {
-                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 103, column: 12
-                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 105, column: 18
-                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 105, column: 20
+                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 52, column: 12
+                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 53, column: 18
+                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 53, column: 20
                     }
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -1342,46 +1342,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -1390,49 +1390,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -1440,46 +1440,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -1489,52 +1489,52 @@ public class LiquidDumperPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -1542,46 +1542,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -1590,49 +1590,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -1640,46 +1640,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -1692,66 +1692,66 @@ public class LiquidDumperPlant extends ClockDomain{
               }
             }
             else {
-              if(clamp_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 87, column: 18
-                clamp_thread_1 = clamp_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 87, column: 20
+              if(clamp_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 44, column: 18
+                clamp_thread_1 = clamp_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 44, column: 20
               }
-              if(clamp_thread_1 == CLAMP_thread_1){//sysj\liquidDumperPlant.sysj line: 91, column: 7
-                clampClosed.setPresent();//sysj\liquidDumperPlant.sysj line: 91, column: 24
+              if(clamp_thread_1 == CLAMP_thread_1){//sysj\liquidDumperPlant.sysj line: 46, column: 7
+                clampClosed.setPresent();//sysj\liquidDumperPlant.sysj line: 46, column: 24
                 currsigs.addElement(clampClosed);
-                if(invertRotateExtend.getprestatus()){//sysj\liquidDumperPlant.sysj line: 97, column: 12
-                  if(angle_thread_1 < ROTATE_thread_1) {//sysj\liquidDumperPlant.sysj line: 99, column: 23
-                    angle_thread_1 = angle_thread_1 + 1;//sysj\liquidDumperPlant.sysj line: 99, column: 25
+                if(invertRotateExtend.getprestatus()){//sysj\liquidDumperPlant.sysj line: 49, column: 12
+                  if(angle_thread_1 < ROTATE_thread_1) {//sysj\liquidDumperPlant.sysj line: 50, column: 23
+                    angle_thread_1 = angle_thread_1 + 1;//sysj\liquidDumperPlant.sysj line: 50, column: 25
                   }
-                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 103, column: 12
-                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 105, column: 18
-                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 105, column: 20
+                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 52, column: 12
+                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 53, column: 18
+                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 53, column: 20
                     }
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -1759,46 +1759,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -1807,49 +1807,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -1857,46 +1857,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -1906,52 +1906,52 @@ public class LiquidDumperPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -1959,46 +1959,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -2007,49 +2007,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -2057,46 +2057,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -2107,56 +2107,56 @@ public class LiquidDumperPlant extends ClockDomain{
                   }
                 }
                 else {
-                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 103, column: 12
-                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 105, column: 18
-                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 105, column: 20
+                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 52, column: 12
+                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 53, column: 18
+                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 53, column: 20
                     }
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -2164,46 +2164,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -2212,49 +2212,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -2262,46 +2262,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -2311,52 +2311,52 @@ public class LiquidDumperPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -2364,46 +2364,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -2412,49 +2412,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -2462,46 +2462,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -2513,60 +2513,60 @@ public class LiquidDumperPlant extends ClockDomain{
                 }
               }
               else {
-                if(invertRotateExtend.getprestatus()){//sysj\liquidDumperPlant.sysj line: 97, column: 12
-                  if(angle_thread_1 < ROTATE_thread_1) {//sysj\liquidDumperPlant.sysj line: 99, column: 23
-                    angle_thread_1 = angle_thread_1 + 1;//sysj\liquidDumperPlant.sysj line: 99, column: 25
+                if(invertRotateExtend.getprestatus()){//sysj\liquidDumperPlant.sysj line: 49, column: 12
+                  if(angle_thread_1 < ROTATE_thread_1) {//sysj\liquidDumperPlant.sysj line: 50, column: 23
+                    angle_thread_1 = angle_thread_1 + 1;//sysj\liquidDumperPlant.sysj line: 50, column: 25
                   }
-                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 103, column: 12
-                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 105, column: 18
-                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 105, column: 20
+                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 52, column: 12
+                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 53, column: 18
+                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 53, column: 20
                     }
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -2574,46 +2574,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -2622,49 +2622,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -2672,46 +2672,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -2721,52 +2721,52 @@ public class LiquidDumperPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -2774,46 +2774,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -2822,49 +2822,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -2872,46 +2872,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -2922,56 +2922,56 @@ public class LiquidDumperPlant extends ClockDomain{
                   }
                 }
                 else {
-                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 103, column: 12
-                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 105, column: 18
-                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 105, column: 20
+                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 52, column: 12
+                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 53, column: 18
+                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 53, column: 20
                     }
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -2979,46 +2979,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -3027,49 +3027,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -3077,46 +3077,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -3126,52 +3126,52 @@ public class LiquidDumperPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -3179,46 +3179,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -3227,49 +3227,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -3277,46 +3277,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -3336,68 +3336,68 @@ public class LiquidDumperPlant extends ClockDomain{
           }
         
         case 2 : 
-          if(enable.getprestatus()){//sysj\liquidDumperPlant.sysj line: 73, column: 11
-            if(cylClampBottleExtend.getprestatus()){//sysj\liquidDumperPlant.sysj line: 79, column: 12
-              if(clamp_thread_1 < CLAMP_thread_1) {//sysj\liquidDumperPlant.sysj line: 81, column: 22
-                clamp_thread_1 = clamp_thread_1 + 1;//sysj\liquidDumperPlant.sysj line: 81, column: 24
+          if(enable.getprestatus()){//sysj\liquidDumperPlant.sysj line: 37, column: 11
+            if(cylClampBottleExtend.getprestatus()){//sysj\liquidDumperPlant.sysj line: 40, column: 12
+              if(clamp_thread_1 < CLAMP_thread_1) {//sysj\liquidDumperPlant.sysj line: 41, column: 22
+                clamp_thread_1 = clamp_thread_1 + 1;//sysj\liquidDumperPlant.sysj line: 41, column: 24
               }
-              if(clamp_thread_1 == CLAMP_thread_1){//sysj\liquidDumperPlant.sysj line: 91, column: 7
-                clampClosed.setPresent();//sysj\liquidDumperPlant.sysj line: 91, column: 24
+              if(clamp_thread_1 == CLAMP_thread_1){//sysj\liquidDumperPlant.sysj line: 46, column: 7
+                clampClosed.setPresent();//sysj\liquidDumperPlant.sysj line: 46, column: 24
                 currsigs.addElement(clampClosed);
-                if(invertRotateExtend.getprestatus()){//sysj\liquidDumperPlant.sysj line: 97, column: 12
-                  if(angle_thread_1 < ROTATE_thread_1) {//sysj\liquidDumperPlant.sysj line: 99, column: 23
-                    angle_thread_1 = angle_thread_1 + 1;//sysj\liquidDumperPlant.sysj line: 99, column: 25
+                if(invertRotateExtend.getprestatus()){//sysj\liquidDumperPlant.sysj line: 49, column: 12
+                  if(angle_thread_1 < ROTATE_thread_1) {//sysj\liquidDumperPlant.sysj line: 50, column: 23
+                    angle_thread_1 = angle_thread_1 + 1;//sysj\liquidDumperPlant.sysj line: 50, column: 25
                   }
-                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 103, column: 12
-                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 105, column: 18
-                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 105, column: 20
+                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 52, column: 12
+                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 53, column: 18
+                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 53, column: 20
                     }
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -3405,46 +3405,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -3453,49 +3453,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -3503,46 +3503,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -3552,52 +3552,52 @@ public class LiquidDumperPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -3605,46 +3605,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -3653,49 +3653,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -3703,46 +3703,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -3753,56 +3753,56 @@ public class LiquidDumperPlant extends ClockDomain{
                   }
                 }
                 else {
-                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 103, column: 12
-                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 105, column: 18
-                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 105, column: 20
+                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 52, column: 12
+                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 53, column: 18
+                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 53, column: 20
                     }
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -3810,46 +3810,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -3858,49 +3858,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -3908,46 +3908,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -3957,52 +3957,52 @@ public class LiquidDumperPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -4010,46 +4010,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -4058,49 +4058,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -4108,46 +4108,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -4159,60 +4159,60 @@ public class LiquidDumperPlant extends ClockDomain{
                 }
               }
               else {
-                if(invertRotateExtend.getprestatus()){//sysj\liquidDumperPlant.sysj line: 97, column: 12
-                  if(angle_thread_1 < ROTATE_thread_1) {//sysj\liquidDumperPlant.sysj line: 99, column: 23
-                    angle_thread_1 = angle_thread_1 + 1;//sysj\liquidDumperPlant.sysj line: 99, column: 25
+                if(invertRotateExtend.getprestatus()){//sysj\liquidDumperPlant.sysj line: 49, column: 12
+                  if(angle_thread_1 < ROTATE_thread_1) {//sysj\liquidDumperPlant.sysj line: 50, column: 23
+                    angle_thread_1 = angle_thread_1 + 1;//sysj\liquidDumperPlant.sysj line: 50, column: 25
                   }
-                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 103, column: 12
-                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 105, column: 18
-                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 105, column: 20
+                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 52, column: 12
+                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 53, column: 18
+                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 53, column: 20
                     }
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -4220,46 +4220,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -4268,49 +4268,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -4318,46 +4318,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -4367,52 +4367,52 @@ public class LiquidDumperPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -4420,46 +4420,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -4468,49 +4468,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -4518,46 +4518,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -4568,56 +4568,56 @@ public class LiquidDumperPlant extends ClockDomain{
                   }
                 }
                 else {
-                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 103, column: 12
-                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 105, column: 18
-                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 105, column: 20
+                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 52, column: 12
+                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 53, column: 18
+                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 53, column: 20
                     }
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -4625,46 +4625,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -4673,49 +4673,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -4723,46 +4723,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -4772,52 +4772,52 @@ public class LiquidDumperPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -4825,46 +4825,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -4873,49 +4873,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -4923,46 +4923,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -4975,66 +4975,66 @@ public class LiquidDumperPlant extends ClockDomain{
               }
             }
             else {
-              if(clamp_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 87, column: 18
-                clamp_thread_1 = clamp_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 87, column: 20
+              if(clamp_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 44, column: 18
+                clamp_thread_1 = clamp_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 44, column: 20
               }
-              if(clamp_thread_1 == CLAMP_thread_1){//sysj\liquidDumperPlant.sysj line: 91, column: 7
-                clampClosed.setPresent();//sysj\liquidDumperPlant.sysj line: 91, column: 24
+              if(clamp_thread_1 == CLAMP_thread_1){//sysj\liquidDumperPlant.sysj line: 46, column: 7
+                clampClosed.setPresent();//sysj\liquidDumperPlant.sysj line: 46, column: 24
                 currsigs.addElement(clampClosed);
-                if(invertRotateExtend.getprestatus()){//sysj\liquidDumperPlant.sysj line: 97, column: 12
-                  if(angle_thread_1 < ROTATE_thread_1) {//sysj\liquidDumperPlant.sysj line: 99, column: 23
-                    angle_thread_1 = angle_thread_1 + 1;//sysj\liquidDumperPlant.sysj line: 99, column: 25
+                if(invertRotateExtend.getprestatus()){//sysj\liquidDumperPlant.sysj line: 49, column: 12
+                  if(angle_thread_1 < ROTATE_thread_1) {//sysj\liquidDumperPlant.sysj line: 50, column: 23
+                    angle_thread_1 = angle_thread_1 + 1;//sysj\liquidDumperPlant.sysj line: 50, column: 25
                   }
-                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 103, column: 12
-                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 105, column: 18
-                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 105, column: 20
+                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 52, column: 12
+                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 53, column: 18
+                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 53, column: 20
                     }
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -5042,46 +5042,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -5090,49 +5090,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -5140,46 +5140,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -5189,52 +5189,52 @@ public class LiquidDumperPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -5242,46 +5242,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -5290,49 +5290,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -5340,46 +5340,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -5390,56 +5390,56 @@ public class LiquidDumperPlant extends ClockDomain{
                   }
                 }
                 else {
-                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 103, column: 12
-                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 105, column: 18
-                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 105, column: 20
+                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 52, column: 12
+                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 53, column: 18
+                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 53, column: 20
                     }
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -5447,46 +5447,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -5495,49 +5495,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -5545,46 +5545,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -5594,52 +5594,52 @@ public class LiquidDumperPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -5647,46 +5647,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -5695,49 +5695,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -5745,46 +5745,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -5796,60 +5796,60 @@ public class LiquidDumperPlant extends ClockDomain{
                 }
               }
               else {
-                if(invertRotateExtend.getprestatus()){//sysj\liquidDumperPlant.sysj line: 97, column: 12
-                  if(angle_thread_1 < ROTATE_thread_1) {//sysj\liquidDumperPlant.sysj line: 99, column: 23
-                    angle_thread_1 = angle_thread_1 + 1;//sysj\liquidDumperPlant.sysj line: 99, column: 25
+                if(invertRotateExtend.getprestatus()){//sysj\liquidDumperPlant.sysj line: 49, column: 12
+                  if(angle_thread_1 < ROTATE_thread_1) {//sysj\liquidDumperPlant.sysj line: 50, column: 23
+                    angle_thread_1 = angle_thread_1 + 1;//sysj\liquidDumperPlant.sysj line: 50, column: 25
                   }
-                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 103, column: 12
-                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 105, column: 18
-                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 105, column: 20
+                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 52, column: 12
+                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 53, column: 18
+                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 53, column: 20
                     }
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -5857,46 +5857,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -5905,49 +5905,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -5955,46 +5955,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -6004,52 +6004,52 @@ public class LiquidDumperPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -6057,46 +6057,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -6105,49 +6105,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -6155,46 +6155,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -6205,56 +6205,56 @@ public class LiquidDumperPlant extends ClockDomain{
                   }
                 }
                 else {
-                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 103, column: 12
-                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 105, column: 18
-                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 105, column: 20
+                  if(invertRotateRetract.getprestatus()){//sysj\liquidDumperPlant.sysj line: 52, column: 12
+                    if(angle_thread_1 > 0) {//sysj\liquidDumperPlant.sysj line: 53, column: 18
+                      angle_thread_1 = angle_thread_1 - 1;//sysj\liquidDumperPlant.sysj line: 53, column: 20
                     }
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -6262,46 +6262,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -6310,49 +6310,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -6360,46 +6360,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -6409,52 +6409,52 @@ public class LiquidDumperPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 109, column: 7
-                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 109, column: 25
+                    if(angle_thread_1 == ROTATE_thread_1){//sysj\liquidDumperPlant.sysj line: 55, column: 7
+                      bottleInverted.setPresent();//sysj\liquidDumperPlant.sysj line: 55, column: 25
                       currsigs.addElement(bottleInverted);
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -6462,46 +6462,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -6510,49 +6510,49 @@ public class LiquidDumperPlant extends ClockDomain{
                       }
                     }
                     else {
-                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 111, column: 7
-                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 111, column: 20
+                      if(angle_thread_1 == 0){//sysj\liquidDumperPlant.sysj line: 56, column: 7
+                        bottleUpright.setPresent();//sysj\liquidDumperPlant.sysj line: 56, column: 20
                         currsigs.addElement(bottleUpright);
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
@@ -6560,46 +6560,46 @@ public class LiquidDumperPlant extends ClockDomain{
                         }
                       }
                       else {
-                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 117, column: 12
-                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 118, column: 5
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                        if(drainValveOnOff.getprestatus()){//sysj\liquidDumperPlant.sysj line: 59, column: 12
+                          drain_thread_1.openValve(angle_thread_1);//sysj\liquidDumperPlant.sysj line: 60, column: 5
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                         }
                         else {
-                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 121, column: 4
-                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 121, column: 25
+                          if(drain_thread_1.drained()){//sysj\liquidDumperPlant.sysj line: 62, column: 4
+                            bottleDrained.setPresent();//sysj\liquidDumperPlant.sysj line: 62, column: 25
                             currsigs.addElement(bottleDrained);
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;
                           }
                           else {
-                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 129, column: 4
-                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            drain_thread_1.finishTick(clamp_thread_1, angle_thread_1);//sysj\liquidDumperPlant.sysj line: 66, column: 4
+                            wasteTankLevel.setPresent();//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             currsigs.addElement(wasteTankLevel);
-                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 130, column: 4
+                            wasteTankLevel.setValue(drain_thread_1.level());//sysj\liquidDumperPlant.sysj line: 67, column: 4
                             active[1]=1;
                             ends[1]=1;
                             break RUN;

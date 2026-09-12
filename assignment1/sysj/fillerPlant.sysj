@@ -12,7 +12,7 @@ FillerPlant(
 		)
 ->
 {
-	int RATE = 20;          // ml per tick
+	int RATE = PlantTiming.rate(20);          // ml per tick
 
 	int target = 0;
 	int poured = 0;

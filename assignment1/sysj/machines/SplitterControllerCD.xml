@@ -3,8 +3,8 @@
 <System xmlns="http://systemjtechnology.com">
 	<SubSystem Name="SplitterControllerCD" Local="true">
 		<ClockDomain Name="SplitterControllerCD" Class="SplitterController">
-			<iChannel Name="enable"          From="RecyclingStationControllerCD.enableSplitter" />
-			<oChannel Name="status"          To="RecyclingStationControllerCD.statusSplitter" />
+			<iChannel Name="enable"          From="SystemControllerCD.toSplitter" />
+			<oChannel Name="status"          To="SystemControllerCD.splitterRoute" />
 
 			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15100" />
 			<iSignal Name="bottleAtSplitter"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15100" />

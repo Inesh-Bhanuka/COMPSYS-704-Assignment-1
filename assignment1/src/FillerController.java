@@ -27,24 +27,24 @@ public class FillerController extends ClockDomain{
   private int ml_thread_3;//sysj\fillerController.sysj line: 46, column: 3
   private int asked_thread_3;//sysj\fillerController.sysj line: 47, column: 3
   private boolean permitted_thread_3;//sysj\fillerController.sysj line: 56, column: 1
-  private int S47562 = 1;
-  private int S31455 = 1;
-  private int S47489 = 1;
-  private int S34128 = 1;
-  private int S31480 = 1;
-  private int S31464 = 1;
-  private int S31459 = 1;
-  private int S31481 = 1;
-  private int S31671 = 1;
-  private int S31666 = 1;
-  private int S47560 = 1;
-  private int S47512 = 1;
+  private int S51342 = 1;
+  private int S35235 = 1;
+  private int S51269 = 1;
+  private int S37908 = 1;
+  private int S35260 = 1;
+  private int S35244 = 1;
+  private int S35239 = 1;
+  private int S35261 = 1;
+  private int S35451 = 1;
+  private int S35446 = 1;
+  private int S51340 = 1;
+  private int S51292 = 1;
   
   private int[] ends = new int[5];
   private int[] tdone = new int[5];
   
-  public void thread47570(int [] tdone, int [] ends){
-        switch(S47560){
+  public void thread51350(int [] tdone, int [] ends){
+        switch(S51340){
       case 0 : 
         active[4]=0;
         ends[4]=0;
@@ -52,12 +52,12 @@ public class FillerController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S47512){
+        switch(S51292){
           case 0 : 
             if(manual_1.getprestatus()){//sysj\fillerController.sysj line: 128, column: 20
-              S47512=1;
+              S51292=1;
               if(auto_1.getprestatus()){//sysj\fillerController.sysj line: 129, column: 20
-                S47512=2;
+                S51292=2;
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
@@ -86,7 +86,7 @@ public class FillerController extends ClockDomain{
           
           case 1 : 
             if(auto_1.getprestatus()){//sysj\fillerController.sysj line: 129, column: 20
-              S47512=2;
+              S51292=2;
               active[4]=1;
               ends[4]=1;
               tdone[4]=1;
@@ -108,12 +108,12 @@ public class FillerController extends ClockDomain{
             break;
           
           case 2 : 
-            S47512=2;
-            S47512=0;
+            S51292=2;
+            S51292=0;
             if(manual_1.getprestatus()){//sysj\fillerController.sysj line: 128, column: 20
-              S47512=1;
+              S51292=1;
               if(auto_1.getprestatus()){//sysj\fillerController.sysj line: 129, column: 20
-                S47512=2;
+                S51292=2;
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
@@ -146,8 +146,8 @@ public class FillerController extends ClockDomain{
     }
   }
 
-  public void thread47569(int [] tdone, int [] ends){
-        switch(S47489){
+  public void thread51349(int [] tdone, int [] ends){
+        switch(S51269){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -155,42 +155,42 @@ public class FillerController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S34128){
+        switch(S37908){
           case 0 : 
             if(auto_1.getprestatus()){//sysj\fillerController.sysj line: 50, column: 20
-              S34128=1;
+              S37908=1;
               if(manual_1.getprestatus()){//sysj\fillerController.sysj line: 52, column: 20
                 start_in.setPreempted();
                 done_o.setPreempted();
-                S34128=2;
+                S37908=2;
                 active[3]=1;
                 ends[3]=1;
                 tdone[3]=1;
               }
               else {
-                S31480=0;
-                S31464=0;
+                S35260=0;
+                S35244=0;
                 if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj\fillerController.sysj line: 53, column: 5
                   start_in.setACK(false);//sysj\fillerController.sysj line: 53, column: 5
-                  S31464=1;
+                  S35244=1;
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  S31459=0;
+                  S35239=0;
                   if(!start_in.isREQ()){//sysj\fillerController.sysj line: 53, column: 5
                     start_in.setACK(true);//sysj\fillerController.sysj line: 53, column: 5
-                    S31459=1;
+                    S35239=1;
                     if(start_in.isREQ()){//sysj\fillerController.sysj line: 53, column: 5
                       start_in.setACK(false);//sysj\fillerController.sysj line: 53, column: 5
                       ends[3]=2;
                       ;//sysj\fillerController.sysj line: 53, column: 5
                       w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\fillerController.sysj line: 54, column: 5
-                      S31480=1;
+                      S35260=1;
                       if(w_thread_3 != null){//sysj\fillerController.sysj line: 55, column: 4
                         permitted_thread_3 = false;//sysj\fillerController.sysj line: 56, column: 1
-                        S31481=0;
+                        S35261=0;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
@@ -198,31 +198,31 @@ public class FillerController extends ClockDomain{
                       else {
                         ml_thread_3 = (w_thread_3 == null) ? 0 : w_thread_3.nextVolumeMl();//sysj\fillerController.sysj line: 65, column: 5
                         asked_thread_3 = ml_thread_3;//sysj\fillerController.sysj line: 66, column: 5
-                        S31480=2;
+                        S35260=2;
                         if(ml_thread_3 == 0){//sysj\fillerController.sysj line: 68, column: 8
                           if(w_thread_3 != null) {//sysj\fillerController.sysj line: 71, column: 19
                             w_thread_3.dispensed(0);//sysj\fillerController.sysj line: 72, column: 7
                             w_thread_3.completed(Machine.FILLER, "zero-percent ingredient");//sysj\fillerController.sysj line: 73, column: 7
                           }
-                          S31480=3;
-                          S31671=0;
+                          S35260=3;
+                          S35451=0;
                           if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                             done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                            S31671=1;
+                            S35451=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
                           }
                           else {
-                            S31666=0;
+                            S35446=0;
                             if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                               done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                              S31666=1;
+                              S35446=1;
                               if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                 done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                 ends[3]=2;
                                 ;//sysj\fillerController.sysj line: 120, column: 5
-                                S34128=2;
+                                S37908=2;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -248,25 +248,25 @@ public class FillerController extends ClockDomain{
                               twin.setPresent();//sysj\fillerController.sysj line: 81, column: 7
                               currsigs.addElement(twin);
                               twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 81, column: 7
-                              S31480=3;
-                              S31671=0;
+                              S35260=3;
+                              S35451=0;
                               if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                 done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                S31671=1;
+                                S35451=1;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
                               else {
-                                S31666=0;
+                                S35446=0;
                                 if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                   done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                  S31666=1;
+                                  S35446=1;
                                   if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                     done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                     ends[3]=2;
                                     ;//sysj\fillerController.sysj line: 120, column: 5
-                                    S34128=2;
+                                    S37908=2;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -285,25 +285,25 @@ public class FillerController extends ClockDomain{
                               }
                             }
                             else {
-                              S31480=3;
-                              S31671=0;
+                              S35260=3;
+                              S35451=0;
                               if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                 done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                S31671=1;
+                                S35451=1;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
                               else {
-                                S31666=0;
+                                S35446=0;
                                 if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                   done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                  S31666=1;
+                                  S35446=1;
                                   if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                     done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                     ends[3]=2;
                                     ;//sysj\fillerController.sysj line: 120, column: 5
-                                    S34128=2;
+                                    S37908=2;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -346,25 +346,25 @@ public class FillerController extends ClockDomain{
                                   currsigs.addElement(twin);
                                   twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 115, column: 7
                                   System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 117, column: 6
-                                  S31480=3;
-                                  S31671=0;
+                                  S35260=3;
+                                  S35451=0;
                                   if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                     done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                    S31671=1;
+                                    S35451=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
                                   else {
-                                    S31666=0;
+                                    S35446=0;
                                     if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                       done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                      S31666=1;
+                                      S35446=1;
                                       if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                         done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                         ends[3]=2;
                                         ;//sysj\fillerController.sysj line: 120, column: 5
-                                        S34128=2;
+                                        S37908=2;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -384,25 +384,25 @@ public class FillerController extends ClockDomain{
                                 }
                                 else {
                                   System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 117, column: 6
-                                  S31480=3;
-                                  S31671=0;
+                                  S35260=3;
+                                  S35451=0;
                                   if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                     done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                    S31671=1;
+                                    S35451=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
                                   else {
-                                    S31666=0;
+                                    S35446=0;
                                     if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                       done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                      S31666=1;
+                                      S35446=1;
                                       if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                         done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                         ends[3]=2;
                                         ;//sysj\fillerController.sysj line: 120, column: 5
-                                        S34128=2;
+                                        S37908=2;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -446,25 +446,25 @@ public class FillerController extends ClockDomain{
                                   currsigs.addElement(twin);
                                   twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 115, column: 7
                                   System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 117, column: 6
-                                  S31480=3;
-                                  S31671=0;
+                                  S35260=3;
+                                  S35451=0;
                                   if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                     done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                    S31671=1;
+                                    S35451=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
                                   else {
-                                    S31666=0;
+                                    S35446=0;
                                     if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                       done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                      S31666=1;
+                                      S35446=1;
                                       if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                         done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                         ends[3]=2;
                                         ;//sysj\fillerController.sysj line: 120, column: 5
-                                        S34128=2;
+                                        S37908=2;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -484,25 +484,25 @@ public class FillerController extends ClockDomain{
                                 }
                                 else {
                                   System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 117, column: 6
-                                  S31480=3;
-                                  S31671=0;
+                                  S35260=3;
+                                  S35451=0;
                                   if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                     done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                    S31671=1;
+                                    S35451=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
                                   else {
-                                    S31666=0;
+                                    S35446=0;
                                     if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                       done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                      S31666=1;
+                                      S35446=1;
                                       if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                         done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                         ends[3]=2;
                                         ;//sysj\fillerController.sysj line: 120, column: 5
-                                        S34128=2;
+                                        S37908=2;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -561,38 +561,38 @@ public class FillerController extends ClockDomain{
             if(manual_1.getprestatus()){//sysj\fillerController.sysj line: 52, column: 20
               start_in.setPreempted();
               done_o.setPreempted();
-              S34128=2;
+              S37908=2;
               active[3]=1;
               ends[3]=1;
               tdone[3]=1;
             }
             else {
-              switch(S31480){
+              switch(S35260){
                 case 0 : 
-                  switch(S31464){
+                  switch(S35244){
                     case 0 : 
                       if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj\fillerController.sysj line: 53, column: 5
                         start_in.setACK(false);//sysj\fillerController.sysj line: 53, column: 5
-                        S31464=1;
+                        S35244=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        switch(S31459){
+                        switch(S35239){
                           case 0 : 
                             if(!start_in.isREQ()){//sysj\fillerController.sysj line: 53, column: 5
                               start_in.setACK(true);//sysj\fillerController.sysj line: 53, column: 5
-                              S31459=1;
+                              S35239=1;
                               if(start_in.isREQ()){//sysj\fillerController.sysj line: 53, column: 5
                                 start_in.setACK(false);//sysj\fillerController.sysj line: 53, column: 5
                                 ends[3]=2;
                                 ;//sysj\fillerController.sysj line: 53, column: 5
                                 w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\fillerController.sysj line: 54, column: 5
-                                S31480=1;
+                                S35260=1;
                                 if(w_thread_3 != null){//sysj\fillerController.sysj line: 55, column: 4
                                   permitted_thread_3 = false;//sysj\fillerController.sysj line: 56, column: 1
-                                  S31481=0;
+                                  S35261=0;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -600,31 +600,31 @@ public class FillerController extends ClockDomain{
                                 else {
                                   ml_thread_3 = (w_thread_3 == null) ? 0 : w_thread_3.nextVolumeMl();//sysj\fillerController.sysj line: 65, column: 5
                                   asked_thread_3 = ml_thread_3;//sysj\fillerController.sysj line: 66, column: 5
-                                  S31480=2;
+                                  S35260=2;
                                   if(ml_thread_3 == 0){//sysj\fillerController.sysj line: 68, column: 8
                                     if(w_thread_3 != null) {//sysj\fillerController.sysj line: 71, column: 19
                                       w_thread_3.dispensed(0);//sysj\fillerController.sysj line: 72, column: 7
                                       w_thread_3.completed(Machine.FILLER, "zero-percent ingredient");//sysj\fillerController.sysj line: 73, column: 7
                                     }
-                                    S31480=3;
-                                    S31671=0;
+                                    S35260=3;
+                                    S35451=0;
                                     if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                       done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                      S31671=1;
+                                      S35451=1;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
                                     }
                                     else {
-                                      S31666=0;
+                                      S35446=0;
                                       if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                         done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                        S31666=1;
+                                        S35446=1;
                                         if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                           done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                           ends[3]=2;
                                           ;//sysj\fillerController.sysj line: 120, column: 5
-                                          S34128=2;
+                                          S37908=2;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
@@ -650,25 +650,25 @@ public class FillerController extends ClockDomain{
                                         twin.setPresent();//sysj\fillerController.sysj line: 81, column: 7
                                         currsigs.addElement(twin);
                                         twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 81, column: 7
-                                        S31480=3;
-                                        S31671=0;
+                                        S35260=3;
+                                        S35451=0;
                                         if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                           done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                          S31671=1;
+                                          S35451=1;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
                                         }
                                         else {
-                                          S31666=0;
+                                          S35446=0;
                                           if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                             done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                            S31666=1;
+                                            S35446=1;
                                             if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                               done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                               ends[3]=2;
                                               ;//sysj\fillerController.sysj line: 120, column: 5
-                                              S34128=2;
+                                              S37908=2;
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
@@ -687,25 +687,25 @@ public class FillerController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        S31480=3;
-                                        S31671=0;
+                                        S35260=3;
+                                        S35451=0;
                                         if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                           done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                          S31671=1;
+                                          S35451=1;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
                                         }
                                         else {
-                                          S31666=0;
+                                          S35446=0;
                                           if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                             done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                            S31666=1;
+                                            S35446=1;
                                             if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                               done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                               ends[3]=2;
                                               ;//sysj\fillerController.sysj line: 120, column: 5
-                                              S34128=2;
+                                              S37908=2;
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
@@ -748,25 +748,25 @@ public class FillerController extends ClockDomain{
                                             currsigs.addElement(twin);
                                             twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 115, column: 7
                                             System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 117, column: 6
-                                            S31480=3;
-                                            S31671=0;
+                                            S35260=3;
+                                            S35451=0;
                                             if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                               done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                              S31671=1;
+                                              S35451=1;
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
                                             }
                                             else {
-                                              S31666=0;
+                                              S35446=0;
                                               if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                                 done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                                S31666=1;
+                                                S35446=1;
                                                 if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                                   done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                                   ends[3]=2;
                                                   ;//sysj\fillerController.sysj line: 120, column: 5
-                                                  S34128=2;
+                                                  S37908=2;
                                                   active[3]=1;
                                                   ends[3]=1;
                                                   tdone[3]=1;
@@ -786,25 +786,25 @@ public class FillerController extends ClockDomain{
                                           }
                                           else {
                                             System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 117, column: 6
-                                            S31480=3;
-                                            S31671=0;
+                                            S35260=3;
+                                            S35451=0;
                                             if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                               done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                              S31671=1;
+                                              S35451=1;
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
                                             }
                                             else {
-                                              S31666=0;
+                                              S35446=0;
                                               if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                                 done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                                S31666=1;
+                                                S35446=1;
                                                 if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                                   done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                                   ends[3]=2;
                                                   ;//sysj\fillerController.sysj line: 120, column: 5
-                                                  S34128=2;
+                                                  S37908=2;
                                                   active[3]=1;
                                                   ends[3]=1;
                                                   tdone[3]=1;
@@ -848,25 +848,25 @@ public class FillerController extends ClockDomain{
                                             currsigs.addElement(twin);
                                             twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 115, column: 7
                                             System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 117, column: 6
-                                            S31480=3;
-                                            S31671=0;
+                                            S35260=3;
+                                            S35451=0;
                                             if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                               done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                              S31671=1;
+                                              S35451=1;
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
                                             }
                                             else {
-                                              S31666=0;
+                                              S35446=0;
                                               if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                                 done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                                S31666=1;
+                                                S35446=1;
                                                 if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                                   done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                                   ends[3]=2;
                                                   ;//sysj\fillerController.sysj line: 120, column: 5
-                                                  S34128=2;
+                                                  S37908=2;
                                                   active[3]=1;
                                                   ends[3]=1;
                                                   tdone[3]=1;
@@ -886,25 +886,25 @@ public class FillerController extends ClockDomain{
                                           }
                                           else {
                                             System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 117, column: 6
-                                            S31480=3;
-                                            S31671=0;
+                                            S35260=3;
+                                            S35451=0;
                                             if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                               done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                              S31671=1;
+                                              S35451=1;
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
                                             }
                                             else {
-                                              S31666=0;
+                                              S35446=0;
                                               if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                                 done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                                S31666=1;
+                                                S35446=1;
                                                 if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                                   done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                                   ends[3]=2;
                                                   ;//sysj\fillerController.sysj line: 120, column: 5
-                                                  S34128=2;
+                                                  S37908=2;
                                                   active[3]=1;
                                                   ends[3]=1;
                                                   tdone[3]=1;
@@ -957,10 +957,10 @@ public class FillerController extends ClockDomain{
                               ends[3]=2;
                               ;//sysj\fillerController.sysj line: 53, column: 5
                               w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\fillerController.sysj line: 54, column: 5
-                              S31480=1;
+                              S35260=1;
                               if(w_thread_3 != null){//sysj\fillerController.sysj line: 55, column: 4
                                 permitted_thread_3 = false;//sysj\fillerController.sysj line: 56, column: 1
-                                S31481=0;
+                                S35261=0;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -968,31 +968,31 @@ public class FillerController extends ClockDomain{
                               else {
                                 ml_thread_3 = (w_thread_3 == null) ? 0 : w_thread_3.nextVolumeMl();//sysj\fillerController.sysj line: 65, column: 5
                                 asked_thread_3 = ml_thread_3;//sysj\fillerController.sysj line: 66, column: 5
-                                S31480=2;
+                                S35260=2;
                                 if(ml_thread_3 == 0){//sysj\fillerController.sysj line: 68, column: 8
                                   if(w_thread_3 != null) {//sysj\fillerController.sysj line: 71, column: 19
                                     w_thread_3.dispensed(0);//sysj\fillerController.sysj line: 72, column: 7
                                     w_thread_3.completed(Machine.FILLER, "zero-percent ingredient");//sysj\fillerController.sysj line: 73, column: 7
                                   }
-                                  S31480=3;
-                                  S31671=0;
+                                  S35260=3;
+                                  S35451=0;
                                   if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                     done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                    S31671=1;
+                                    S35451=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
                                   else {
-                                    S31666=0;
+                                    S35446=0;
                                     if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                       done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                      S31666=1;
+                                      S35446=1;
                                       if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                         done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                         ends[3]=2;
                                         ;//sysj\fillerController.sysj line: 120, column: 5
-                                        S34128=2;
+                                        S37908=2;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -1018,25 +1018,25 @@ public class FillerController extends ClockDomain{
                                       twin.setPresent();//sysj\fillerController.sysj line: 81, column: 7
                                       currsigs.addElement(twin);
                                       twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 81, column: 7
-                                      S31480=3;
-                                      S31671=0;
+                                      S35260=3;
+                                      S35451=0;
                                       if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                         done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                        S31671=1;
+                                        S35451=1;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
                                       }
                                       else {
-                                        S31666=0;
+                                        S35446=0;
                                         if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                           done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                          S31666=1;
+                                          S35446=1;
                                           if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                             done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                             ends[3]=2;
                                             ;//sysj\fillerController.sysj line: 120, column: 5
-                                            S34128=2;
+                                            S37908=2;
                                             active[3]=1;
                                             ends[3]=1;
                                             tdone[3]=1;
@@ -1055,25 +1055,25 @@ public class FillerController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      S31480=3;
-                                      S31671=0;
+                                      S35260=3;
+                                      S35451=0;
                                       if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                         done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                        S31671=1;
+                                        S35451=1;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
                                       }
                                       else {
-                                        S31666=0;
+                                        S35446=0;
                                         if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                           done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                          S31666=1;
+                                          S35446=1;
                                           if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                             done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                             ends[3]=2;
                                             ;//sysj\fillerController.sysj line: 120, column: 5
-                                            S34128=2;
+                                            S37908=2;
                                             active[3]=1;
                                             ends[3]=1;
                                             tdone[3]=1;
@@ -1116,25 +1116,25 @@ public class FillerController extends ClockDomain{
                                           currsigs.addElement(twin);
                                           twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 115, column: 7
                                           System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 117, column: 6
-                                          S31480=3;
-                                          S31671=0;
+                                          S35260=3;
+                                          S35451=0;
                                           if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                             done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                            S31671=1;
+                                            S35451=1;
                                             active[3]=1;
                                             ends[3]=1;
                                             tdone[3]=1;
                                           }
                                           else {
-                                            S31666=0;
+                                            S35446=0;
                                             if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                               done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                              S31666=1;
+                                              S35446=1;
                                               if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                                 done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                                 ends[3]=2;
                                                 ;//sysj\fillerController.sysj line: 120, column: 5
-                                                S34128=2;
+                                                S37908=2;
                                                 active[3]=1;
                                                 ends[3]=1;
                                                 tdone[3]=1;
@@ -1154,25 +1154,25 @@ public class FillerController extends ClockDomain{
                                         }
                                         else {
                                           System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 117, column: 6
-                                          S31480=3;
-                                          S31671=0;
+                                          S35260=3;
+                                          S35451=0;
                                           if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                             done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                            S31671=1;
+                                            S35451=1;
                                             active[3]=1;
                                             ends[3]=1;
                                             tdone[3]=1;
                                           }
                                           else {
-                                            S31666=0;
+                                            S35446=0;
                                             if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                               done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                              S31666=1;
+                                              S35446=1;
                                               if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                                 done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                                 ends[3]=2;
                                                 ;//sysj\fillerController.sysj line: 120, column: 5
-                                                S34128=2;
+                                                S37908=2;
                                                 active[3]=1;
                                                 ends[3]=1;
                                                 tdone[3]=1;
@@ -1216,25 +1216,25 @@ public class FillerController extends ClockDomain{
                                           currsigs.addElement(twin);
                                           twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 115, column: 7
                                           System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 117, column: 6
-                                          S31480=3;
-                                          S31671=0;
+                                          S35260=3;
+                                          S35451=0;
                                           if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                             done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                            S31671=1;
+                                            S35451=1;
                                             active[3]=1;
                                             ends[3]=1;
                                             tdone[3]=1;
                                           }
                                           else {
-                                            S31666=0;
+                                            S35446=0;
                                             if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                               done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                              S31666=1;
+                                              S35446=1;
                                               if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                                 done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                                 ends[3]=2;
                                                 ;//sysj\fillerController.sysj line: 120, column: 5
-                                                S34128=2;
+                                                S37908=2;
                                                 active[3]=1;
                                                 ends[3]=1;
                                                 tdone[3]=1;
@@ -1254,25 +1254,25 @@ public class FillerController extends ClockDomain{
                                         }
                                         else {
                                           System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 117, column: 6
-                                          S31480=3;
-                                          S31671=0;
+                                          S35260=3;
+                                          S35451=0;
                                           if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                             done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                            S31671=1;
+                                            S35451=1;
                                             active[3]=1;
                                             ends[3]=1;
                                             tdone[3]=1;
                                           }
                                           else {
-                                            S31666=0;
+                                            S35446=0;
                                             if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                               done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                              S31666=1;
+                                              S35446=1;
                                               if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                                 done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                                 ends[3]=2;
                                                 ;//sysj\fillerController.sysj line: 120, column: 5
-                                                S34128=2;
+                                                S37908=2;
                                                 active[3]=1;
                                                 ends[3]=1;
                                                 tdone[3]=1;
@@ -1318,29 +1318,29 @@ public class FillerController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      S31464=1;
-                      S31464=0;
+                      S35244=1;
+                      S35244=0;
                       if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj\fillerController.sysj line: 53, column: 5
                         start_in.setACK(false);//sysj\fillerController.sysj line: 53, column: 5
-                        S31464=1;
+                        S35244=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S31459=0;
+                        S35239=0;
                         if(!start_in.isREQ()){//sysj\fillerController.sysj line: 53, column: 5
                           start_in.setACK(true);//sysj\fillerController.sysj line: 53, column: 5
-                          S31459=1;
+                          S35239=1;
                           if(start_in.isREQ()){//sysj\fillerController.sysj line: 53, column: 5
                             start_in.setACK(false);//sysj\fillerController.sysj line: 53, column: 5
                             ends[3]=2;
                             ;//sysj\fillerController.sysj line: 53, column: 5
                             w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\fillerController.sysj line: 54, column: 5
-                            S31480=1;
+                            S35260=1;
                             if(w_thread_3 != null){//sysj\fillerController.sysj line: 55, column: 4
                               permitted_thread_3 = false;//sysj\fillerController.sysj line: 56, column: 1
-                              S31481=0;
+                              S35261=0;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
@@ -1348,31 +1348,31 @@ public class FillerController extends ClockDomain{
                             else {
                               ml_thread_3 = (w_thread_3 == null) ? 0 : w_thread_3.nextVolumeMl();//sysj\fillerController.sysj line: 65, column: 5
                               asked_thread_3 = ml_thread_3;//sysj\fillerController.sysj line: 66, column: 5
-                              S31480=2;
+                              S35260=2;
                               if(ml_thread_3 == 0){//sysj\fillerController.sysj line: 68, column: 8
                                 if(w_thread_3 != null) {//sysj\fillerController.sysj line: 71, column: 19
                                   w_thread_3.dispensed(0);//sysj\fillerController.sysj line: 72, column: 7
                                   w_thread_3.completed(Machine.FILLER, "zero-percent ingredient");//sysj\fillerController.sysj line: 73, column: 7
                                 }
-                                S31480=3;
-                                S31671=0;
+                                S35260=3;
+                                S35451=0;
                                 if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                   done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                  S31671=1;
+                                  S35451=1;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
                                 }
                                 else {
-                                  S31666=0;
+                                  S35446=0;
                                   if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                     done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                    S31666=1;
+                                    S35446=1;
                                     if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                       done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                       ends[3]=2;
                                       ;//sysj\fillerController.sysj line: 120, column: 5
-                                      S34128=2;
+                                      S37908=2;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
@@ -1398,25 +1398,25 @@ public class FillerController extends ClockDomain{
                                     twin.setPresent();//sysj\fillerController.sysj line: 81, column: 7
                                     currsigs.addElement(twin);
                                     twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 81, column: 7
-                                    S31480=3;
-                                    S31671=0;
+                                    S35260=3;
+                                    S35451=0;
                                     if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                       done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                      S31671=1;
+                                      S35451=1;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
                                     }
                                     else {
-                                      S31666=0;
+                                      S35446=0;
                                       if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                         done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                        S31666=1;
+                                        S35446=1;
                                         if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                           done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                           ends[3]=2;
                                           ;//sysj\fillerController.sysj line: 120, column: 5
-                                          S34128=2;
+                                          S37908=2;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
@@ -1435,25 +1435,25 @@ public class FillerController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    S31480=3;
-                                    S31671=0;
+                                    S35260=3;
+                                    S35451=0;
                                     if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                       done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                      S31671=1;
+                                      S35451=1;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
                                     }
                                     else {
-                                      S31666=0;
+                                      S35446=0;
                                       if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                         done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                        S31666=1;
+                                        S35446=1;
                                         if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                           done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                           ends[3]=2;
                                           ;//sysj\fillerController.sysj line: 120, column: 5
-                                          S34128=2;
+                                          S37908=2;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
@@ -1496,25 +1496,25 @@ public class FillerController extends ClockDomain{
                                         currsigs.addElement(twin);
                                         twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 115, column: 7
                                         System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 117, column: 6
-                                        S31480=3;
-                                        S31671=0;
+                                        S35260=3;
+                                        S35451=0;
                                         if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                           done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                          S31671=1;
+                                          S35451=1;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
                                         }
                                         else {
-                                          S31666=0;
+                                          S35446=0;
                                           if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                             done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                            S31666=1;
+                                            S35446=1;
                                             if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                               done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                               ends[3]=2;
                                               ;//sysj\fillerController.sysj line: 120, column: 5
-                                              S34128=2;
+                                              S37908=2;
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
@@ -1534,25 +1534,25 @@ public class FillerController extends ClockDomain{
                                       }
                                       else {
                                         System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 117, column: 6
-                                        S31480=3;
-                                        S31671=0;
+                                        S35260=3;
+                                        S35451=0;
                                         if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                           done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                          S31671=1;
+                                          S35451=1;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
                                         }
                                         else {
-                                          S31666=0;
+                                          S35446=0;
                                           if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                             done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                            S31666=1;
+                                            S35446=1;
                                             if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                               done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                               ends[3]=2;
                                               ;//sysj\fillerController.sysj line: 120, column: 5
-                                              S34128=2;
+                                              S37908=2;
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
@@ -1596,25 +1596,25 @@ public class FillerController extends ClockDomain{
                                         currsigs.addElement(twin);
                                         twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 115, column: 7
                                         System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 117, column: 6
-                                        S31480=3;
-                                        S31671=0;
+                                        S35260=3;
+                                        S35451=0;
                                         if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                           done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                          S31671=1;
+                                          S35451=1;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
                                         }
                                         else {
-                                          S31666=0;
+                                          S35446=0;
                                           if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                             done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                            S31666=1;
+                                            S35446=1;
                                             if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                               done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                               ends[3]=2;
                                               ;//sysj\fillerController.sysj line: 120, column: 5
-                                              S34128=2;
+                                              S37908=2;
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
@@ -1634,25 +1634,25 @@ public class FillerController extends ClockDomain{
                                       }
                                       else {
                                         System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 117, column: 6
-                                        S31480=3;
-                                        S31671=0;
+                                        S35260=3;
+                                        S35451=0;
                                         if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                           done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                          S31671=1;
+                                          S35451=1;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
                                         }
                                         else {
-                                          S31666=0;
+                                          S35446=0;
                                           if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                             done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                            S31666=1;
+                                            S35446=1;
                                             if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                               done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                               ends[3]=2;
                                               ;//sysj\fillerController.sysj line: 120, column: 5
-                                              S34128=2;
+                                              S37908=2;
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
@@ -1704,10 +1704,10 @@ public class FillerController extends ClockDomain{
                   break;
                 
                 case 1 : 
-                  switch(S31481){
+                  switch(S35261){
                     case 0 : 
-                      S31481=0;
-                      S31481=1;
+                      S35261=0;
+                      S35261=1;
                       if(!permitted_thread_3){//sysj\fillerController.sysj line: 58, column: 19
                         permitted_thread_3 = GuiStep.take(w_thread_3.nextLiquid() == 0 ? "FILL1" : "FILL2", (GuiPermit)(operatorPermit.getpreval() == null ? null : ((GuiPermit)operatorPermit.getpreval())));//sysj\fillerController.sysj line: 59, column: 17
                         active[3]=1;
@@ -1717,7 +1717,7 @@ public class FillerController extends ClockDomain{
                       else {
                         ends[3]=2;
                         ;//sysj\fillerController.sysj line: 58, column: 13
-                        S31481=2;
+                        S35261=2;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
@@ -1734,7 +1734,7 @@ public class FillerController extends ClockDomain{
                       else {
                         ends[3]=2;
                         ;//sysj\fillerController.sysj line: 58, column: 13
-                        S31481=2;
+                        S35261=2;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
@@ -1742,34 +1742,34 @@ public class FillerController extends ClockDomain{
                       break;
                     
                     case 2 : 
-                      S31481=2;
+                      S35261=2;
                       ml_thread_3 = (w_thread_3 == null) ? 0 : w_thread_3.nextVolumeMl();//sysj\fillerController.sysj line: 65, column: 5
                       asked_thread_3 = ml_thread_3;//sysj\fillerController.sysj line: 66, column: 5
-                      S31480=2;
+                      S35260=2;
                       if(ml_thread_3 == 0){//sysj\fillerController.sysj line: 68, column: 8
                         if(w_thread_3 != null) {//sysj\fillerController.sysj line: 71, column: 19
                           w_thread_3.dispensed(0);//sysj\fillerController.sysj line: 72, column: 7
                           w_thread_3.completed(Machine.FILLER, "zero-percent ingredient");//sysj\fillerController.sysj line: 73, column: 7
                         }
-                        S31480=3;
-                        S31671=0;
+                        S35260=3;
+                        S35451=0;
                         if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                           done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                          S31671=1;
+                          S35451=1;
                           active[3]=1;
                           ends[3]=1;
                           tdone[3]=1;
                         }
                         else {
-                          S31666=0;
+                          S35446=0;
                           if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                             done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                            S31666=1;
+                            S35446=1;
                             if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                               done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                               ends[3]=2;
                               ;//sysj\fillerController.sysj line: 120, column: 5
-                              S34128=2;
+                              S37908=2;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
@@ -1795,25 +1795,25 @@ public class FillerController extends ClockDomain{
                             twin.setPresent();//sysj\fillerController.sysj line: 81, column: 7
                             currsigs.addElement(twin);
                             twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 81, column: 7
-                            S31480=3;
-                            S31671=0;
+                            S35260=3;
+                            S35451=0;
                             if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                               done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                              S31671=1;
+                              S35451=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
-                              S31666=0;
+                              S35446=0;
                               if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                 done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                S31666=1;
+                                S35446=1;
                                 if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                   done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                   ends[3]=2;
                                   ;//sysj\fillerController.sysj line: 120, column: 5
-                                  S34128=2;
+                                  S37908=2;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -1832,25 +1832,25 @@ public class FillerController extends ClockDomain{
                             }
                           }
                           else {
-                            S31480=3;
-                            S31671=0;
+                            S35260=3;
+                            S35451=0;
                             if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                               done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                              S31671=1;
+                              S35451=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
-                              S31666=0;
+                              S35446=0;
                               if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                 done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                S31666=1;
+                                S35446=1;
                                 if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                   done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                   ends[3]=2;
                                   ;//sysj\fillerController.sysj line: 120, column: 5
-                                  S34128=2;
+                                  S37908=2;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -1893,25 +1893,25 @@ public class FillerController extends ClockDomain{
                                 currsigs.addElement(twin);
                                 twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 115, column: 7
                                 System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 117, column: 6
-                                S31480=3;
-                                S31671=0;
+                                S35260=3;
+                                S35451=0;
                                 if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                   done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                  S31671=1;
+                                  S35451=1;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
                                 }
                                 else {
-                                  S31666=0;
+                                  S35446=0;
                                   if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                     done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                    S31666=1;
+                                    S35446=1;
                                     if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                       done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                       ends[3]=2;
                                       ;//sysj\fillerController.sysj line: 120, column: 5
-                                      S34128=2;
+                                      S37908=2;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
@@ -1931,25 +1931,25 @@ public class FillerController extends ClockDomain{
                               }
                               else {
                                 System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 117, column: 6
-                                S31480=3;
-                                S31671=0;
+                                S35260=3;
+                                S35451=0;
                                 if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                   done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                  S31671=1;
+                                  S35451=1;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
                                 }
                                 else {
-                                  S31666=0;
+                                  S35446=0;
                                   if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                     done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                    S31666=1;
+                                    S35446=1;
                                     if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                       done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                       ends[3]=2;
                                       ;//sysj\fillerController.sysj line: 120, column: 5
-                                      S34128=2;
+                                      S37908=2;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
@@ -1993,25 +1993,25 @@ public class FillerController extends ClockDomain{
                                 currsigs.addElement(twin);
                                 twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 115, column: 7
                                 System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 117, column: 6
-                                S31480=3;
-                                S31671=0;
+                                S35260=3;
+                                S35451=0;
                                 if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                   done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                  S31671=1;
+                                  S35451=1;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
                                 }
                                 else {
-                                  S31666=0;
+                                  S35446=0;
                                   if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                     done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                    S31666=1;
+                                    S35446=1;
                                     if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                       done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                       ends[3]=2;
                                       ;//sysj\fillerController.sysj line: 120, column: 5
-                                      S34128=2;
+                                      S37908=2;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
@@ -2031,25 +2031,25 @@ public class FillerController extends ClockDomain{
                               }
                               else {
                                 System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 117, column: 6
-                                S31480=3;
-                                S31671=0;
+                                S35260=3;
+                                S35451=0;
                                 if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                   done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                  S31671=1;
+                                  S35451=1;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
                                 }
                                 else {
-                                  S31666=0;
+                                  S35446=0;
                                   if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                     done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                    S31666=1;
+                                    S35446=1;
                                     if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                       done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                       ends[3]=2;
                                       ;//sysj\fillerController.sysj line: 120, column: 5
-                                      S34128=2;
+                                      S37908=2;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
@@ -2100,25 +2100,25 @@ public class FillerController extends ClockDomain{
                       currsigs.addElement(twin);
                       twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 115, column: 7
                       System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 117, column: 6
-                      S31480=3;
-                      S31671=0;
+                      S35260=3;
+                      S35451=0;
                       if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                         done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                        S31671=1;
+                        S35451=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S31666=0;
+                        S35446=0;
                         if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                           done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                          S31666=1;
+                          S35446=1;
                           if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                             done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                             ends[3]=2;
                             ;//sysj\fillerController.sysj line: 120, column: 5
-                            S34128=2;
+                            S37908=2;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -2138,25 +2138,25 @@ public class FillerController extends ClockDomain{
                     }
                     else {
                       System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 117, column: 6
-                      S31480=3;
-                      S31671=0;
+                      S35260=3;
+                      S35451=0;
                       if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                         done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                        S31671=1;
+                        S35451=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S31666=0;
+                        S35446=0;
                         if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                           done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                          S31666=1;
+                          S35446=1;
                           if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                             done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                             ends[3]=2;
                             ;//sysj\fillerController.sysj line: 120, column: 5
-                            S34128=2;
+                            S37908=2;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -2188,26 +2188,26 @@ public class FillerController extends ClockDomain{
                   break;
                 
                 case 3 : 
-                  switch(S31671){
+                  switch(S35451){
                     case 0 : 
                       if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                         done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                        S31671=1;
+                        S35451=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        switch(S31666){
+                        switch(S35446){
                           case 0 : 
                             if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                               done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                              S31666=1;
+                              S35446=1;
                               if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                 done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                 ends[3]=2;
                                 ;//sysj\fillerController.sysj line: 120, column: 5
-                                S34128=2;
+                                S37908=2;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -2230,7 +2230,7 @@ public class FillerController extends ClockDomain{
                               done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                               ends[3]=2;
                               ;//sysj\fillerController.sysj line: 120, column: 5
-                              S34128=2;
+                              S37908=2;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
@@ -2247,25 +2247,25 @@ public class FillerController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      S31671=1;
-                      S31671=0;
+                      S35451=1;
+                      S35451=0;
                       if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                         done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                        S31671=1;
+                        S35451=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S31666=0;
+                        S35446=0;
                         if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                           done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                          S31666=1;
+                          S35446=1;
                           if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                             done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                             ends[3]=2;
                             ;//sysj\fillerController.sysj line: 120, column: 5
-                            S34128=2;
+                            S37908=2;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -2288,21 +2288,21 @@ public class FillerController extends ClockDomain{
                   break;
                 
                 case 4 : 
-                  S34128=2;
+                  S37908=2;
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                   break;
                 
                 case 5 : 
-                  S34128=2;
+                  S37908=2;
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                   break;
                 
                 case 6 : 
-                  S34128=2;
+                  S37908=2;
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
@@ -2313,42 +2313,42 @@ public class FillerController extends ClockDomain{
             break;
           
           case 2 : 
-            S34128=2;
-            S34128=0;
+            S37908=2;
+            S37908=0;
             if(auto_1.getprestatus()){//sysj\fillerController.sysj line: 50, column: 20
-              S34128=1;
+              S37908=1;
               if(manual_1.getprestatus()){//sysj\fillerController.sysj line: 52, column: 20
                 start_in.setPreempted();
                 done_o.setPreempted();
-                S34128=2;
+                S37908=2;
                 active[3]=1;
                 ends[3]=1;
                 tdone[3]=1;
               }
               else {
-                S31480=0;
-                S31464=0;
+                S35260=0;
+                S35244=0;
                 if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj\fillerController.sysj line: 53, column: 5
                   start_in.setACK(false);//sysj\fillerController.sysj line: 53, column: 5
-                  S31464=1;
+                  S35244=1;
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  S31459=0;
+                  S35239=0;
                   if(!start_in.isREQ()){//sysj\fillerController.sysj line: 53, column: 5
                     start_in.setACK(true);//sysj\fillerController.sysj line: 53, column: 5
-                    S31459=1;
+                    S35239=1;
                     if(start_in.isREQ()){//sysj\fillerController.sysj line: 53, column: 5
                       start_in.setACK(false);//sysj\fillerController.sysj line: 53, column: 5
                       ends[3]=2;
                       ;//sysj\fillerController.sysj line: 53, column: 5
                       w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\fillerController.sysj line: 54, column: 5
-                      S31480=1;
+                      S35260=1;
                       if(w_thread_3 != null){//sysj\fillerController.sysj line: 55, column: 4
                         permitted_thread_3 = false;//sysj\fillerController.sysj line: 56, column: 1
-                        S31481=0;
+                        S35261=0;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
@@ -2356,31 +2356,31 @@ public class FillerController extends ClockDomain{
                       else {
                         ml_thread_3 = (w_thread_3 == null) ? 0 : w_thread_3.nextVolumeMl();//sysj\fillerController.sysj line: 65, column: 5
                         asked_thread_3 = ml_thread_3;//sysj\fillerController.sysj line: 66, column: 5
-                        S31480=2;
+                        S35260=2;
                         if(ml_thread_3 == 0){//sysj\fillerController.sysj line: 68, column: 8
                           if(w_thread_3 != null) {//sysj\fillerController.sysj line: 71, column: 19
                             w_thread_3.dispensed(0);//sysj\fillerController.sysj line: 72, column: 7
                             w_thread_3.completed(Machine.FILLER, "zero-percent ingredient");//sysj\fillerController.sysj line: 73, column: 7
                           }
-                          S31480=3;
-                          S31671=0;
+                          S35260=3;
+                          S35451=0;
                           if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                             done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                            S31671=1;
+                            S35451=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
                           }
                           else {
-                            S31666=0;
+                            S35446=0;
                             if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                               done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                              S31666=1;
+                              S35446=1;
                               if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                 done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                 ends[3]=2;
                                 ;//sysj\fillerController.sysj line: 120, column: 5
-                                S34128=2;
+                                S37908=2;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -2406,25 +2406,25 @@ public class FillerController extends ClockDomain{
                               twin.setPresent();//sysj\fillerController.sysj line: 81, column: 7
                               currsigs.addElement(twin);
                               twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 81, column: 7
-                              S31480=3;
-                              S31671=0;
+                              S35260=3;
+                              S35451=0;
                               if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                 done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                S31671=1;
+                                S35451=1;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
                               else {
-                                S31666=0;
+                                S35446=0;
                                 if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                   done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                  S31666=1;
+                                  S35446=1;
                                   if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                     done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                     ends[3]=2;
                                     ;//sysj\fillerController.sysj line: 120, column: 5
-                                    S34128=2;
+                                    S37908=2;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -2443,25 +2443,25 @@ public class FillerController extends ClockDomain{
                               }
                             }
                             else {
-                              S31480=3;
-                              S31671=0;
+                              S35260=3;
+                              S35451=0;
                               if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                 done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                S31671=1;
+                                S35451=1;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
                               else {
-                                S31666=0;
+                                S35446=0;
                                 if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                   done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                  S31666=1;
+                                  S35446=1;
                                   if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                     done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                     ends[3]=2;
                                     ;//sysj\fillerController.sysj line: 120, column: 5
-                                    S34128=2;
+                                    S37908=2;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -2504,25 +2504,25 @@ public class FillerController extends ClockDomain{
                                   currsigs.addElement(twin);
                                   twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 115, column: 7
                                   System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 117, column: 6
-                                  S31480=3;
-                                  S31671=0;
+                                  S35260=3;
+                                  S35451=0;
                                   if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                     done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                    S31671=1;
+                                    S35451=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
                                   else {
-                                    S31666=0;
+                                    S35446=0;
                                     if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                       done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                      S31666=1;
+                                      S35446=1;
                                       if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                         done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                         ends[3]=2;
                                         ;//sysj\fillerController.sysj line: 120, column: 5
-                                        S34128=2;
+                                        S37908=2;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -2542,25 +2542,25 @@ public class FillerController extends ClockDomain{
                                 }
                                 else {
                                   System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 117, column: 6
-                                  S31480=3;
-                                  S31671=0;
+                                  S35260=3;
+                                  S35451=0;
                                   if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                     done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                    S31671=1;
+                                    S35451=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
                                   else {
-                                    S31666=0;
+                                    S35446=0;
                                     if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                       done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                      S31666=1;
+                                      S35446=1;
                                       if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                         done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                         ends[3]=2;
                                         ;//sysj\fillerController.sysj line: 120, column: 5
-                                        S34128=2;
+                                        S37908=2;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -2604,25 +2604,25 @@ public class FillerController extends ClockDomain{
                                   currsigs.addElement(twin);
                                   twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 115, column: 7
                                   System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 117, column: 6
-                                  S31480=3;
-                                  S31671=0;
+                                  S35260=3;
+                                  S35451=0;
                                   if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                     done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                    S31671=1;
+                                    S35451=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
                                   else {
-                                    S31666=0;
+                                    S35446=0;
                                     if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                       done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                      S31666=1;
+                                      S35446=1;
                                       if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                         done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                         ends[3]=2;
                                         ;//sysj\fillerController.sysj line: 120, column: 5
-                                        S34128=2;
+                                        S37908=2;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -2642,25 +2642,25 @@ public class FillerController extends ClockDomain{
                                 }
                                 else {
                                   System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 117, column: 6
-                                  S31480=3;
-                                  S31671=0;
+                                  S35260=3;
+                                  S35451=0;
                                   if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                                     done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                                    S31671=1;
+                                    S35451=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
                                   else {
-                                    S31666=0;
+                                    S35446=0;
                                     if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                       done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                                      S31666=1;
+                                      S35446=1;
                                       if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                         done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                         ends[3]=2;
                                         ;//sysj\fillerController.sysj line: 120, column: 5
-                                        S34128=2;
+                                        S37908=2;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -2721,8 +2721,8 @@ public class FillerController extends ClockDomain{
     }
   }
 
-  public void thread47568(int [] tdone, int [] ends){
-        switch(S31455){
+  public void thread51348(int [] tdone, int [] ends){
+        switch(S35235){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -2756,13 +2756,13 @@ public class FillerController extends ClockDomain{
     }
   }
 
-  public void thread47566(int [] tdone, int [] ends){
-        S47560=1;
-    S47512=0;
+  public void thread51346(int [] tdone, int [] ends){
+        S51340=1;
+    S51292=0;
     if(manual_1.getprestatus()){//sysj\fillerController.sysj line: 128, column: 20
-      S47512=1;
+      S51292=1;
       if(auto_1.getprestatus()){//sysj\fillerController.sysj line: 129, column: 20
-        S47512=2;
+        S51292=2;
         active[4]=1;
         ends[4]=1;
         tdone[4]=1;
@@ -2789,47 +2789,47 @@ public class FillerController extends ClockDomain{
     }
   }
 
-  public void thread47565(int [] tdone, int [] ends){
-        S47489=1;
+  public void thread51345(int [] tdone, int [] ends){
+        S51269=1;
     t_thread_3 = new FillerTwin();//sysj\fillerController.sysj line: 44, column: 3
     w_thread_3 = null;//sysj\fillerController.sysj line: 45, column: 3
     ml_thread_3 = 0;//sysj\fillerController.sysj line: 46, column: 3
     asked_thread_3 = 0;//sysj\fillerController.sysj line: 47, column: 3
-    S34128=0;
+    S37908=0;
     if(auto_1.getprestatus()){//sysj\fillerController.sysj line: 50, column: 20
-      S34128=1;
+      S37908=1;
       if(manual_1.getprestatus()){//sysj\fillerController.sysj line: 52, column: 20
         start_in.setPreempted();
         done_o.setPreempted();
-        S34128=2;
+        S37908=2;
         active[3]=1;
         ends[3]=1;
         tdone[3]=1;
       }
       else {
-        S31480=0;
-        S31464=0;
+        S35260=0;
+        S35244=0;
         if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj\fillerController.sysj line: 53, column: 5
           start_in.setACK(false);//sysj\fillerController.sysj line: 53, column: 5
-          S31464=1;
+          S35244=1;
           active[3]=1;
           ends[3]=1;
           tdone[3]=1;
         }
         else {
-          S31459=0;
+          S35239=0;
           if(!start_in.isREQ()){//sysj\fillerController.sysj line: 53, column: 5
             start_in.setACK(true);//sysj\fillerController.sysj line: 53, column: 5
-            S31459=1;
+            S35239=1;
             if(start_in.isREQ()){//sysj\fillerController.sysj line: 53, column: 5
               start_in.setACK(false);//sysj\fillerController.sysj line: 53, column: 5
               ends[3]=2;
               ;//sysj\fillerController.sysj line: 53, column: 5
               w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\fillerController.sysj line: 54, column: 5
-              S31480=1;
+              S35260=1;
               if(w_thread_3 != null){//sysj\fillerController.sysj line: 55, column: 4
                 permitted_thread_3 = false;//sysj\fillerController.sysj line: 56, column: 1
-                S31481=0;
+                S35261=0;
                 active[3]=1;
                 ends[3]=1;
                 tdone[3]=1;
@@ -2837,31 +2837,31 @@ public class FillerController extends ClockDomain{
               else {
                 ml_thread_3 = (w_thread_3 == null) ? 0 : w_thread_3.nextVolumeMl();//sysj\fillerController.sysj line: 65, column: 5
                 asked_thread_3 = ml_thread_3;//sysj\fillerController.sysj line: 66, column: 5
-                S31480=2;
+                S35260=2;
                 if(ml_thread_3 == 0){//sysj\fillerController.sysj line: 68, column: 8
                   if(w_thread_3 != null) {//sysj\fillerController.sysj line: 71, column: 19
                     w_thread_3.dispensed(0);//sysj\fillerController.sysj line: 72, column: 7
                     w_thread_3.completed(Machine.FILLER, "zero-percent ingredient");//sysj\fillerController.sysj line: 73, column: 7
                   }
-                  S31480=3;
-                  S31671=0;
+                  S35260=3;
+                  S35451=0;
                   if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                     done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                    S31671=1;
+                    S35451=1;
                     active[3]=1;
                     ends[3]=1;
                     tdone[3]=1;
                   }
                   else {
-                    S31666=0;
+                    S35446=0;
                     if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                       done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                      S31666=1;
+                      S35446=1;
                       if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                         done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                         ends[3]=2;
                         ;//sysj\fillerController.sysj line: 120, column: 5
-                        S34128=2;
+                        S37908=2;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
@@ -2887,25 +2887,25 @@ public class FillerController extends ClockDomain{
                       twin.setPresent();//sysj\fillerController.sysj line: 81, column: 7
                       currsigs.addElement(twin);
                       twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 81, column: 7
-                      S31480=3;
-                      S31671=0;
+                      S35260=3;
+                      S35451=0;
                       if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                         done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                        S31671=1;
+                        S35451=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S31666=0;
+                        S35446=0;
                         if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                           done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                          S31666=1;
+                          S35446=1;
                           if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                             done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                             ends[3]=2;
                             ;//sysj\fillerController.sysj line: 120, column: 5
-                            S34128=2;
+                            S37908=2;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -2924,25 +2924,25 @@ public class FillerController extends ClockDomain{
                       }
                     }
                     else {
-                      S31480=3;
-                      S31671=0;
+                      S35260=3;
+                      S35451=0;
                       if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                         done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                        S31671=1;
+                        S35451=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S31666=0;
+                        S35446=0;
                         if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                           done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                          S31666=1;
+                          S35446=1;
                           if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                             done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                             ends[3]=2;
                             ;//sysj\fillerController.sysj line: 120, column: 5
-                            S34128=2;
+                            S37908=2;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -2985,25 +2985,25 @@ public class FillerController extends ClockDomain{
                           currsigs.addElement(twin);
                           twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 115, column: 7
                           System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 117, column: 6
-                          S31480=3;
-                          S31671=0;
+                          S35260=3;
+                          S35451=0;
                           if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                             done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                            S31671=1;
+                            S35451=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
                           }
                           else {
-                            S31666=0;
+                            S35446=0;
                             if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                               done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                              S31666=1;
+                              S35446=1;
                               if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                 done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                 ends[3]=2;
                                 ;//sysj\fillerController.sysj line: 120, column: 5
-                                S34128=2;
+                                S37908=2;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -3023,25 +3023,25 @@ public class FillerController extends ClockDomain{
                         }
                         else {
                           System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 117, column: 6
-                          S31480=3;
-                          S31671=0;
+                          S35260=3;
+                          S35451=0;
                           if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                             done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                            S31671=1;
+                            S35451=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
                           }
                           else {
-                            S31666=0;
+                            S35446=0;
                             if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                               done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                              S31666=1;
+                              S35446=1;
                               if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                 done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                 ends[3]=2;
                                 ;//sysj\fillerController.sysj line: 120, column: 5
-                                S34128=2;
+                                S37908=2;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -3085,25 +3085,25 @@ public class FillerController extends ClockDomain{
                           currsigs.addElement(twin);
                           twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 115, column: 7
                           System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 117, column: 6
-                          S31480=3;
-                          S31671=0;
+                          S35260=3;
+                          S35451=0;
                           if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                             done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                            S31671=1;
+                            S35451=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
                           }
                           else {
-                            S31666=0;
+                            S35446=0;
                             if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                               done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                              S31666=1;
+                              S35446=1;
                               if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                 done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                 ends[3]=2;
                                 ;//sysj\fillerController.sysj line: 120, column: 5
-                                S34128=2;
+                                S37908=2;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -3123,25 +3123,25 @@ public class FillerController extends ClockDomain{
                         }
                         else {
                           System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 117, column: 6
-                          S31480=3;
-                          S31671=0;
+                          S35260=3;
+                          S35451=0;
                           if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 120, column: 5
                             done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
-                            S31671=1;
+                            S35451=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
                           }
                           else {
-                            S31666=0;
+                            S35446=0;
                             if(done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                               done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 120, column: 5
-                              S31666=1;
+                              S35446=1;
                               if(!done_o.isACK()){//sysj\fillerController.sysj line: 120, column: 5
                                 done_o.setREQ(false);//sysj\fillerController.sysj line: 120, column: 5
                                 ends[3]=2;
                                 ;//sysj\fillerController.sysj line: 120, column: 5
-                                S34128=2;
+                                S37908=2;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -3196,8 +3196,8 @@ public class FillerController extends ClockDomain{
     }
   }
 
-  public void thread47564(int [] tdone, int [] ends){
-        S31455=1;
+  public void thread51344(int [] tdone, int [] ends){
+        S35235=1;
     if(mode.getprestatus()){//sysj\fillerController.sysj line: 35, column: 12
       if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\fillerController.sysj line: 36, column: 8
         auto_1.setPresent();//sysj\fillerController.sysj line: 36, column: 30
@@ -3228,30 +3228,30 @@ public class FillerController extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S47562){
+      switch(S51342){
         case 0 : 
-          S47562=0;
+          S51342=0;
           break RUN;
         
         case 1 : 
-          S47562=2;
-          S47562=2;
+          S51342=2;
+          S51342=2;
           auto_1.setClear();//sysj\fillerController.sysj line: 31, column: 2
           manual_1.setClear();//sysj\fillerController.sysj line: 31, column: 2
-          thread47564(tdone,ends);
-          thread47565(tdone,ends);
-          thread47566(tdone,ends);
-          int biggest47567 = 0;
-          if(ends[2]>=biggest47567){
-            biggest47567=ends[2];
+          thread51344(tdone,ends);
+          thread51345(tdone,ends);
+          thread51346(tdone,ends);
+          int biggest51347 = 0;
+          if(ends[2]>=biggest51347){
+            biggest51347=ends[2];
           }
-          if(ends[3]>=biggest47567){
-            biggest47567=ends[3];
+          if(ends[3]>=biggest51347){
+            biggest51347=ends[3];
           }
-          if(ends[4]>=biggest47567){
-            biggest47567=ends[4];
+          if(ends[4]>=biggest51347){
+            biggest51347=ends[4];
           }
-          if(biggest47567 == 1){
+          if(biggest51347 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
@@ -3260,30 +3260,30 @@ public class FillerController extends ClockDomain{
         case 2 : 
           auto_1.setClear();//sysj\fillerController.sysj line: 31, column: 2
           manual_1.setClear();//sysj\fillerController.sysj line: 31, column: 2
-          thread47568(tdone,ends);
-          thread47569(tdone,ends);
-          thread47570(tdone,ends);
-          int biggest47571 = 0;
-          if(ends[2]>=biggest47571){
-            biggest47571=ends[2];
+          thread51348(tdone,ends);
+          thread51349(tdone,ends);
+          thread51350(tdone,ends);
+          int biggest51351 = 0;
+          if(ends[2]>=biggest51351){
+            biggest51351=ends[2];
           }
-          if(ends[3]>=biggest47571){
-            biggest47571=ends[3];
+          if(ends[3]>=biggest51351){
+            biggest51351=ends[3];
           }
-          if(ends[4]>=biggest47571){
-            biggest47571=ends[4];
+          if(ends[4]>=biggest51351){
+            biggest51351=ends[4];
           }
-          if(biggest47571 == 1){
+          if(biggest51351 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest47571 == 0){
-            S47562=0;
+          if(biggest51351 == 0){
+            S51342=0;
             active[1]=0;
             ends[1]=0;
-            S47562=0;
+            S51342=0;
             break RUN;
           }
         

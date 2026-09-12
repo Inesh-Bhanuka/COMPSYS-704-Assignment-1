@@ -1,274 +1,137 @@
 /*
-
  * Recycling Conveyor Plant.
-
  *
-
  * A single actuator, recyclingConveyorMotor, drives the belt; a bottle
-
  * advances one station per index command. Station indices:
-
  *
-
  *   0  splitter exit (where a diverted bottle lands)
-
  *   1  lid removal
-
  *   2  liquid dumper
-
  *   3  bottle return
-
  *
-
  * ---- Why an index command rather than a running belt ----
-
  *
-
  * This is an indexing conveyor with a stop at each station, modelled the same
-
  * way the rotary table models rotaryTrigger: one rising edge of the motor
-
  * command moves the bottle to the next station and no further, and it then
-
  * stands there until the controller commands the next index.
-
  *
-
  * Modelling it as a free-running belt that advances on every tick the motor
-
  * signal is present is wrong, and not as a matter of taste. The motor command
-
  * and the station photo-eyes cross a clock-domain boundary, so they are
-
  * asynchronous: between the plant raising bottleAtLidRemoval and the
-
  * controller's release of the motor arriving back, the plant keeps counting.
-
  * With a free-running belt those few ticks were enough to carry the bottle a
-
  * whole station further, and it reached the liquid dumper before the lid
-
  * removal cycle had even started. One command meaning one station removes the
-
  * race outright rather than trying to tune the latency away, and a stop at
-
  * each station is what the real machine has anyway.
-
  *
-
  * injectAtEntry and collectAtReturn are the two transfer commands, edge
-
  * triggered for the same reason and in the same way the ABS ConveyorPlant
-
  * treats injectInfeed and collectFromEnd: the controller holds each command
-
  * until the plant's sensor answers, and exactly one transfer must happen.
-
  */
-
 RecyclingConveyorPlant(
-
 		// from the System Controller
-
 		input signal enable;
 
-
-
 		// from the Recycling Conveyor Controller
-
 		input signal recyclingConveyorMotor, injectAtEntry, collectAtReturn;
 
-
-
 		// to the Recycling Conveyor Controller
-
 		output signal bottleAtSplitterExit, bottleAtLidRemoval, bottleAtDumper;
-
 		output signal bottleAtReturn, bottleLeftReturn;
-
 		)
-
 ->
-
 {
-
-	int STEP = 5;   // ticks of travel between two stations
-
+	int STEP = PlantTiming.ticks(5);   // ticks of travel between two stations
 	int LAST = 3;   // station index of the bottle return
 
-
-
 	int pos = -1;   // -1 = belt empty
-
 	int travel = 0;
-
 	boolean injecting = false;
-
 	boolean collecting = false;
-
 	boolean cleared = false;
-
 	boolean running = false;   // the motor command as the plant last saw it
-
 	boolean indexing = false;  // this bottle is between two stations
 
-
-
 	while(true){
-
 		present(enable){
 
-
-
 			present(injectAtEntry){
-
 				if(!injecting){
-
 					injecting = true;
-
 					if(pos < 0){
-
 						pos = 0;
-
 						travel = 0;
-
 						indexing = false;
-
 						cleared = false;
-
 						System.out.println("[RCPlant] Bottle entered the recycling conveyor.");
-
 					}
-
 				}
-
 			}
-
 			else {
-
 				injecting = false;
-
 			}
-
-
 
 			present(recyclingConveyorMotor){
 
-
-
 				// Rising edge: one index command grants one station of
-
 				// travel. Every later tick of the same command does nothing,
-
 				// so the bottle cannot run on past its station while the
-
 				// controller's release is still in flight.
-
 				if(!running){
-
 					running = true;
-
 					if(pos >= 0 && pos < LAST){
-
 						indexing = true;
-
 					}
-
 				}
-
-
 
 				if(indexing){
-
 					travel++;
-
 					if(travel >= STEP){
-
 						travel = 0;
-
 						indexing = false;
-
 						pos++;
-
 						if(pos == 1){ System.out.println("[RCPlant] Bottle arrived at lid removal."); }
-
 						if(pos == 2){ System.out.println("[RCPlant] Bottle arrived at the liquid dumper."); }
-
 						if(pos == 3){ System.out.println("[RCPlant] Bottle arrived at the bottle return."); }
-
 					}
-
 				}
-
 			}
-
 			else {
-
 				running = false;
-
 			}
-
-
 
 			// One photo-eye per station. A bottle in transit is at none of
-
 			// them, which is what makes each arrival an event the controller
-
 			// can wait for.
-
 			if(!indexing){
-
 				if(pos == 0){ emit bottleAtSplitterExit; }
-
 				if(pos == 1){ emit bottleAtLidRemoval; }
-
 				if(pos == 2){ emit bottleAtDumper; }
-
 				if(pos == 3){ emit bottleAtReturn; }
-
 			}
-
-
 
 			present(collectAtReturn){
-
 				if(!collecting){
-
 					collecting = true;
-
 					if(pos == LAST){
-
 						pos = -1;
-
 						cleared = true;
-
 						System.out.println("[RCPlant] Bottle removed at the return station.");
-
 					}
-
 				}
-
 			}
-
 			else {
-
 				collecting = false;
-
 			}
-
-
 
 			if(cleared){
-
 				emit bottleLeftReturn;
-
 			}
-
 		}
-
 		pause;
-
 	}
-
 }
-

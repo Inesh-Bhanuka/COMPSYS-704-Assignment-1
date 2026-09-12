@@ -29,7 +29,7 @@ ConveyorPlant(
 		// Modelled as a queue of slots rather than a single bottle, so a
 		// bottle can wait at position 1 while others are still travelling.
 		// Without this the table can only ever hold one bottle at a time.
-		int LEN = 6;
+		int LEN = PlantTiming.ticks(6);
 		boolean[] slot = new boolean[LEN + 1];   // slot[LEN] is position 1
 		boolean injecting = false;
 		boolean admitted = false;
@@ -115,7 +115,7 @@ ConveyorPlant(
 	}
 	||
 	{ // ---- Outfeed belt ----
-		int LEN = 6;
+		int LEN = PlantTiming.ticks(6);
 		int pos = -1;
 		boolean injecting = false;
 		boolean collecting = false;

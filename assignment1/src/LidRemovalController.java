@@ -31,31 +31,32 @@ public class LidRemovalController extends ClockDomain{
   public output_Channel status_o = new output_Channel();
   private Signal auto_1;
   private Signal manual_1;
-  private int OK_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 3
-  private int BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 131, column: 3
-  private WorkpieceTwin w_thread_3;//sysj\lidRemovalController.sysj line: 135, column: 3
-  private int code_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 3
-  private int S119242 = 1;
-  private int S103558 = 1;
-  private int S118710 = 1;
-  private int S106084 = 1;
-  private int S103583 = 1;
-  private int S103567 = 1;
-  private int S103562 = 1;
-  private int S103604 = 1;
-  private int S103609 = 1;
-  private int S103659 = 1;
-  private int S103664 = 1;
-  private int S103879 = 1;
-  private int S103874 = 1;
-  private int S119240 = 1;
-  private int S118886 = 1;
+  private int OK_thread_3;//sysj\lidRemovalController.sysj line: 65, column: 3
+  private int BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 66, column: 3
+  private WorkpieceTwin w_thread_3;//sysj\lidRemovalController.sysj line: 68, column: 3
+  private int code_thread_3;//sysj\lidRemovalController.sysj line: 69, column: 3
+  private int S137569 = 1;
+  private int S110563 = 1;
+  private int S137037 = 1;
+  private int S114976 = 1;
+  private int S110588 = 1;
+  private int S110572 = 1;
+  private int S110567 = 1;
+  private int S110597 = 1;
+  private int S110602 = 1;
+  private int S110607 = 1;
+  private int S110635 = 1;
+  private int S110640 = 1;
+  private int S111447 = 1;
+  private int S111442 = 1;
+  private int S137567 = 1;
+  private int S137213 = 1;
   
   private int[] ends = new int[9];
   private int[] tdone = new int[9];
   
-  public void thread119304(int [] tdone, int [] ends){
-        switch(S119240){
+  public void thread137631(int [] tdone, int [] ends){
+        switch(S137567){
       case 0 : 
         active[8]=0;
         ends[8]=0;
@@ -63,28 +64,28 @@ public class LidRemovalController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S118886){
+        switch(S137213){
           case 0 : 
-            if(manual_1.getprestatus()){//sysj\lidRemovalController.sysj line: 263, column: 20
-              S118886=1;
-              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 265, column: 20
-                S118886=2;
+            if(manual_1.getprestatus()){//sysj\lidRemovalController.sysj line: 144, column: 20
+              S137213=1;
+              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 145, column: 20
+                S137213=2;
                 active[8]=1;
                 ends[8]=1;
                 tdone[8]=1;
               }
               else {
-                if(cylZaxisExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 269, column: 14
-                  cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 269, column: 32
+                if(cylZaxisExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 147, column: 14
+                  cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 147, column: 32
                   currsigs.addElement(cylZaxisExtend);
-                  if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 271, column: 14
-                    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 271, column: 35
+                  if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 148, column: 14
+                    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 148, column: 35
                     currsigs.addElement(unscrewTurnExtend);
-                    if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 273, column: 14
-                      lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 273, column: 34
+                    if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 149, column: 14
+                      lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 149, column: 34
                       currsigs.addElement(lidGripperExtend);
-                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                         currsigs.addElement(lidEjectExtend);
                         active[8]=1;
                         ends[8]=1;
@@ -97,8 +98,8 @@ public class LidRemovalController extends ClockDomain{
                       }
                     }
                     else {
-                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                         currsigs.addElement(lidEjectExtend);
                         active[8]=1;
                         ends[8]=1;
@@ -112,11 +113,11 @@ public class LidRemovalController extends ClockDomain{
                     }
                   }
                   else {
-                    if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 273, column: 14
-                      lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 273, column: 34
+                    if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 149, column: 14
+                      lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 149, column: 34
                       currsigs.addElement(lidGripperExtend);
-                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                         currsigs.addElement(lidEjectExtend);
                         active[8]=1;
                         ends[8]=1;
@@ -129,8 +130,8 @@ public class LidRemovalController extends ClockDomain{
                       }
                     }
                     else {
-                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                         currsigs.addElement(lidEjectExtend);
                         active[8]=1;
                         ends[8]=1;
@@ -145,14 +146,14 @@ public class LidRemovalController extends ClockDomain{
                   }
                 }
                 else {
-                  if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 271, column: 14
-                    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 271, column: 35
+                  if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 148, column: 14
+                    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 148, column: 35
                     currsigs.addElement(unscrewTurnExtend);
-                    if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 273, column: 14
-                      lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 273, column: 34
+                    if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 149, column: 14
+                      lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 149, column: 34
                       currsigs.addElement(lidGripperExtend);
-                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                         currsigs.addElement(lidEjectExtend);
                         active[8]=1;
                         ends[8]=1;
@@ -165,8 +166,8 @@ public class LidRemovalController extends ClockDomain{
                       }
                     }
                     else {
-                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                         currsigs.addElement(lidEjectExtend);
                         active[8]=1;
                         ends[8]=1;
@@ -180,11 +181,11 @@ public class LidRemovalController extends ClockDomain{
                     }
                   }
                   else {
-                    if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 273, column: 14
-                      lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 273, column: 34
+                    if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 149, column: 14
+                      lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 149, column: 34
                       currsigs.addElement(lidGripperExtend);
-                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                         currsigs.addElement(lidEjectExtend);
                         active[8]=1;
                         ends[8]=1;
@@ -197,8 +198,8 @@ public class LidRemovalController extends ClockDomain{
                       }
                     }
                     else {
-                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                         currsigs.addElement(lidEjectExtend);
                         active[8]=1;
                         ends[8]=1;
@@ -222,24 +223,24 @@ public class LidRemovalController extends ClockDomain{
             break;
           
           case 1 : 
-            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 265, column: 20
-              S118886=2;
+            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 145, column: 20
+              S137213=2;
               active[8]=1;
               ends[8]=1;
               tdone[8]=1;
             }
             else {
-              if(cylZaxisExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 269, column: 14
-                cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 269, column: 32
+              if(cylZaxisExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 147, column: 14
+                cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 147, column: 32
                 currsigs.addElement(cylZaxisExtend);
-                if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 271, column: 14
-                  unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 271, column: 35
+                if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 148, column: 14
+                  unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 148, column: 35
                   currsigs.addElement(unscrewTurnExtend);
-                  if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 273, column: 14
-                    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 273, column: 34
+                  if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 149, column: 14
+                    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 149, column: 34
                     currsigs.addElement(lidGripperExtend);
-                    if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+                    if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                       currsigs.addElement(lidEjectExtend);
                       active[8]=1;
                       ends[8]=1;
@@ -252,8 +253,8 @@ public class LidRemovalController extends ClockDomain{
                     }
                   }
                   else {
-                    if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+                    if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                       currsigs.addElement(lidEjectExtend);
                       active[8]=1;
                       ends[8]=1;
@@ -267,11 +268,11 @@ public class LidRemovalController extends ClockDomain{
                   }
                 }
                 else {
-                  if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 273, column: 14
-                    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 273, column: 34
+                  if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 149, column: 14
+                    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 149, column: 34
                     currsigs.addElement(lidGripperExtend);
-                    if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+                    if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                       currsigs.addElement(lidEjectExtend);
                       active[8]=1;
                       ends[8]=1;
@@ -284,8 +285,8 @@ public class LidRemovalController extends ClockDomain{
                     }
                   }
                   else {
-                    if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+                    if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                       currsigs.addElement(lidEjectExtend);
                       active[8]=1;
                       ends[8]=1;
@@ -300,14 +301,14 @@ public class LidRemovalController extends ClockDomain{
                 }
               }
               else {
-                if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 271, column: 14
-                  unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 271, column: 35
+                if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 148, column: 14
+                  unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 148, column: 35
                   currsigs.addElement(unscrewTurnExtend);
-                  if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 273, column: 14
-                    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 273, column: 34
+                  if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 149, column: 14
+                    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 149, column: 34
                     currsigs.addElement(lidGripperExtend);
-                    if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+                    if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                       currsigs.addElement(lidEjectExtend);
                       active[8]=1;
                       ends[8]=1;
@@ -320,8 +321,8 @@ public class LidRemovalController extends ClockDomain{
                     }
                   }
                   else {
-                    if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+                    if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                       currsigs.addElement(lidEjectExtend);
                       active[8]=1;
                       ends[8]=1;
@@ -335,11 +336,11 @@ public class LidRemovalController extends ClockDomain{
                   }
                 }
                 else {
-                  if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 273, column: 14
-                    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 273, column: 34
+                  if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 149, column: 14
+                    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 149, column: 34
                     currsigs.addElement(lidGripperExtend);
-                    if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+                    if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                       currsigs.addElement(lidEjectExtend);
                       active[8]=1;
                       ends[8]=1;
@@ -352,8 +353,8 @@ public class LidRemovalController extends ClockDomain{
                     }
                   }
                   else {
-                    if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+                    if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                       currsigs.addElement(lidEjectExtend);
                       active[8]=1;
                       ends[8]=1;
@@ -371,28 +372,28 @@ public class LidRemovalController extends ClockDomain{
             break;
           
           case 2 : 
-            S118886=2;
-            S118886=0;
-            if(manual_1.getprestatus()){//sysj\lidRemovalController.sysj line: 263, column: 20
-              S118886=1;
-              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 265, column: 20
-                S118886=2;
+            S137213=2;
+            S137213=0;
+            if(manual_1.getprestatus()){//sysj\lidRemovalController.sysj line: 144, column: 20
+              S137213=1;
+              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 145, column: 20
+                S137213=2;
                 active[8]=1;
                 ends[8]=1;
                 tdone[8]=1;
               }
               else {
-                if(cylZaxisExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 269, column: 14
-                  cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 269, column: 32
+                if(cylZaxisExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 147, column: 14
+                  cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 147, column: 32
                   currsigs.addElement(cylZaxisExtend);
-                  if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 271, column: 14
-                    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 271, column: 35
+                  if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 148, column: 14
+                    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 148, column: 35
                     currsigs.addElement(unscrewTurnExtend);
-                    if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 273, column: 14
-                      lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 273, column: 34
+                    if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 149, column: 14
+                      lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 149, column: 34
                       currsigs.addElement(lidGripperExtend);
-                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                         currsigs.addElement(lidEjectExtend);
                         active[8]=1;
                         ends[8]=1;
@@ -405,8 +406,8 @@ public class LidRemovalController extends ClockDomain{
                       }
                     }
                     else {
-                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                         currsigs.addElement(lidEjectExtend);
                         active[8]=1;
                         ends[8]=1;
@@ -420,11 +421,11 @@ public class LidRemovalController extends ClockDomain{
                     }
                   }
                   else {
-                    if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 273, column: 14
-                      lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 273, column: 34
+                    if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 149, column: 14
+                      lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 149, column: 34
                       currsigs.addElement(lidGripperExtend);
-                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                         currsigs.addElement(lidEjectExtend);
                         active[8]=1;
                         ends[8]=1;
@@ -437,8 +438,8 @@ public class LidRemovalController extends ClockDomain{
                       }
                     }
                     else {
-                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                         currsigs.addElement(lidEjectExtend);
                         active[8]=1;
                         ends[8]=1;
@@ -453,14 +454,14 @@ public class LidRemovalController extends ClockDomain{
                   }
                 }
                 else {
-                  if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 271, column: 14
-                    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 271, column: 35
+                  if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 148, column: 14
+                    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 148, column: 35
                     currsigs.addElement(unscrewTurnExtend);
-                    if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 273, column: 14
-                      lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 273, column: 34
+                    if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 149, column: 14
+                      lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 149, column: 34
                       currsigs.addElement(lidGripperExtend);
-                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                         currsigs.addElement(lidEjectExtend);
                         active[8]=1;
                         ends[8]=1;
@@ -473,8 +474,8 @@ public class LidRemovalController extends ClockDomain{
                       }
                     }
                     else {
-                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                         currsigs.addElement(lidEjectExtend);
                         active[8]=1;
                         ends[8]=1;
@@ -488,11 +489,11 @@ public class LidRemovalController extends ClockDomain{
                     }
                   }
                   else {
-                    if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 273, column: 14
-                      lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 273, column: 34
+                    if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 149, column: 14
+                      lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 149, column: 34
                       currsigs.addElement(lidGripperExtend);
-                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                         currsigs.addElement(lidEjectExtend);
                         active[8]=1;
                         ends[8]=1;
@@ -505,8 +506,8 @@ public class LidRemovalController extends ClockDomain{
                       }
                     }
                     else {
-                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                         currsigs.addElement(lidEjectExtend);
                         active[8]=1;
                         ends[8]=1;
@@ -535,44 +536,44 @@ public class LidRemovalController extends ClockDomain{
     }
   }
 
-  public void thread119302(int [] tdone, int [] ends){
-        S103609=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 171, column: 39
+  public void thread137629(int [] tdone, int [] ends){
+        S110607=1;
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 96, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
     tdone[5]=1;
   }
 
-  public void thread119301(int [] tdone, int [] ends){
-        S103604=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 171, column: 8
+  public void thread137628(int [] tdone, int [] ends){
+        S110602=1;
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 96, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
     tdone[4]=1;
   }
 
-  public void thread119299(int [] tdone, int [] ends){
-        S103664=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 183, column: 39
+  public void thread137626(int [] tdone, int [] ends){
+        S110640=1;
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 102, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
     tdone[7]=1;
   }
 
-  public void thread119298(int [] tdone, int [] ends){
-        S103659=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 183, column: 8
+  public void thread137625(int [] tdone, int [] ends){
+        S110635=1;
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 102, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
     tdone[6]=1;
   }
 
-  public void thread119296(int [] tdone, int [] ends){
-        switch(S103664){
+  public void thread137623(int [] tdone, int [] ends){
+        switch(S110640){
       case 0 : 
         active[7]=0;
         ends[7]=0;
@@ -580,7 +581,7 @@ public class LidRemovalController extends ClockDomain{
         break;
       
       case 1 : 
-        unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 183, column: 39
+        unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 102, column: 40
         currsigs.addElement(unscrewTurnExtend);
         active[7]=1;
         ends[7]=1;
@@ -590,8 +591,8 @@ public class LidRemovalController extends ClockDomain{
     }
   }
 
-  public void thread119295(int [] tdone, int [] ends){
-        switch(S103659){
+  public void thread137622(int [] tdone, int [] ends){
+        switch(S110635){
       case 0 : 
         active[6]=0;
         ends[6]=0;
@@ -599,7 +600,7 @@ public class LidRemovalController extends ClockDomain{
         break;
       
       case 1 : 
-        cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 183, column: 8
+        cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 102, column: 9
         currsigs.addElement(cylZaxisExtend);
         active[6]=1;
         ends[6]=1;
@@ -609,26 +610,26 @@ public class LidRemovalController extends ClockDomain{
     }
   }
 
-  public void thread119293(int [] tdone, int [] ends){
-        S103664=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 183, column: 39
+  public void thread137620(int [] tdone, int [] ends){
+        S110640=1;
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 102, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
     tdone[7]=1;
   }
 
-  public void thread119292(int [] tdone, int [] ends){
-        S103659=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 183, column: 8
+  public void thread137619(int [] tdone, int [] ends){
+        S110635=1;
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 102, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
     tdone[6]=1;
   }
 
-  public void thread119290(int [] tdone, int [] ends){
-        switch(S103609){
+  public void thread137617(int [] tdone, int [] ends){
+        switch(S110607){
       case 0 : 
         active[5]=0;
         ends[5]=0;
@@ -636,7 +637,7 @@ public class LidRemovalController extends ClockDomain{
         break;
       
       case 1 : 
-        lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 171, column: 39
+        lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 96, column: 40
         currsigs.addElement(lidGripperExtend);
         active[5]=1;
         ends[5]=1;
@@ -646,8 +647,8 @@ public class LidRemovalController extends ClockDomain{
     }
   }
 
-  public void thread119289(int [] tdone, int [] ends){
-        switch(S103604){
+  public void thread137616(int [] tdone, int [] ends){
+        switch(S110602){
       case 0 : 
         active[4]=0;
         ends[4]=0;
@@ -655,7 +656,7 @@ public class LidRemovalController extends ClockDomain{
         break;
       
       case 1 : 
-        cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 171, column: 8
+        cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 96, column: 9
         currsigs.addElement(cylZaxisExtend);
         active[4]=1;
         ends[4]=1;
@@ -665,206 +666,206 @@ public class LidRemovalController extends ClockDomain{
     }
   }
 
-  public void thread119287(int [] tdone, int [] ends){
-        S103664=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 183, column: 39
+  public void thread137614(int [] tdone, int [] ends){
+        S110640=1;
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 102, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
     tdone[7]=1;
   }
 
-  public void thread119286(int [] tdone, int [] ends){
-        S103659=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 183, column: 8
+  public void thread137613(int [] tdone, int [] ends){
+        S110635=1;
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 102, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
     tdone[6]=1;
   }
 
-  public void thread119284(int [] tdone, int [] ends){
-        S103609=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 171, column: 39
+  public void thread137611(int [] tdone, int [] ends){
+        S110607=1;
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 96, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
     tdone[5]=1;
   }
 
-  public void thread119283(int [] tdone, int [] ends){
-        S103604=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 171, column: 8
+  public void thread137610(int [] tdone, int [] ends){
+        S110602=1;
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 96, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
     tdone[4]=1;
   }
 
-  public void thread119281(int [] tdone, int [] ends){
-        S103664=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 183, column: 39
+  public void thread137608(int [] tdone, int [] ends){
+        S110640=1;
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 102, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
     tdone[7]=1;
   }
 
-  public void thread119280(int [] tdone, int [] ends){
-        S103659=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 183, column: 8
+  public void thread137607(int [] tdone, int [] ends){
+        S110635=1;
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 102, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
     tdone[6]=1;
   }
 
-  public void thread119278(int [] tdone, int [] ends){
-        S103609=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 171, column: 39
+  public void thread137605(int [] tdone, int [] ends){
+        S110607=1;
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 96, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
     tdone[5]=1;
   }
 
-  public void thread119277(int [] tdone, int [] ends){
-        S103604=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 171, column: 8
+  public void thread137604(int [] tdone, int [] ends){
+        S110602=1;
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 96, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
     tdone[4]=1;
   }
 
-  public void thread119275(int [] tdone, int [] ends){
-        S103664=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 183, column: 39
+  public void thread137602(int [] tdone, int [] ends){
+        S110640=1;
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 102, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
     tdone[7]=1;
   }
 
-  public void thread119274(int [] tdone, int [] ends){
-        S103659=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 183, column: 8
+  public void thread137601(int [] tdone, int [] ends){
+        S110635=1;
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 102, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
     tdone[6]=1;
   }
 
-  public void thread119272(int [] tdone, int [] ends){
-        S103609=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 171, column: 39
+  public void thread137599(int [] tdone, int [] ends){
+        S110607=1;
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 96, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
     tdone[5]=1;
   }
 
-  public void thread119271(int [] tdone, int [] ends){
-        S103604=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 171, column: 8
+  public void thread137598(int [] tdone, int [] ends){
+        S110602=1;
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 96, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
     tdone[4]=1;
   }
 
-  public void thread119269(int [] tdone, int [] ends){
-        S103664=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 183, column: 39
+  public void thread137596(int [] tdone, int [] ends){
+        S110640=1;
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 102, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
     tdone[7]=1;
   }
 
-  public void thread119268(int [] tdone, int [] ends){
-        S103659=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 183, column: 8
+  public void thread137595(int [] tdone, int [] ends){
+        S110635=1;
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 102, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
     tdone[6]=1;
   }
 
-  public void thread119266(int [] tdone, int [] ends){
-        S103609=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 171, column: 39
+  public void thread137593(int [] tdone, int [] ends){
+        S110607=1;
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 96, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
     tdone[5]=1;
   }
 
-  public void thread119265(int [] tdone, int [] ends){
-        S103604=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 171, column: 8
+  public void thread137592(int [] tdone, int [] ends){
+        S110602=1;
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 96, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
     tdone[4]=1;
   }
 
-  public void thread119263(int [] tdone, int [] ends){
-        S103664=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 183, column: 39
+  public void thread137590(int [] tdone, int [] ends){
+        S110640=1;
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 102, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
     tdone[7]=1;
   }
 
-  public void thread119262(int [] tdone, int [] ends){
-        S103659=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 183, column: 8
+  public void thread137589(int [] tdone, int [] ends){
+        S110635=1;
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 102, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
     tdone[6]=1;
   }
 
-  public void thread119260(int [] tdone, int [] ends){
-        S103609=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 171, column: 39
+  public void thread137587(int [] tdone, int [] ends){
+        S110607=1;
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 96, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
     tdone[5]=1;
   }
 
-  public void thread119259(int [] tdone, int [] ends){
-        S103604=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 171, column: 8
+  public void thread137586(int [] tdone, int [] ends){
+        S110602=1;
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 96, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
     tdone[4]=1;
   }
 
-  public void thread119257(int [] tdone, int [] ends){
-        S103664=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 183, column: 39
+  public void thread137584(int [] tdone, int [] ends){
+        S110640=1;
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 102, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
     tdone[7]=1;
   }
 
-  public void thread119256(int [] tdone, int [] ends){
-        S103659=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 183, column: 8
+  public void thread137583(int [] tdone, int [] ends){
+        S110635=1;
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 102, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
     tdone[6]=1;
   }
 
-  public void thread119255(int [] tdone, int [] ends){
-        switch(S118710){
+  public void thread137582(int [] tdone, int [] ends){
+        switch(S137037){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -872,80 +873,126 @@ public class LidRemovalController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S106084){
+        switch(S114976){
           case 0 : 
-            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 143, column: 20
-              S106084=1;
-              if(manual_1.getprestatus()){//sysj\lidRemovalController.sysj line: 147, column: 20
+            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 72, column: 20
+              S114976=1;
+              if(manual_1.getprestatus()){//sysj\lidRemovalController.sysj line: 74, column: 20
                 enable_in.setPreempted();
                 status_o.setPreempted();
-                S106084=2;
+                S114976=2;
                 active[3]=1;
                 ends[3]=1;
                 tdone[3]=1;
               }
               else {
-                S103583=0;
-                S103567=0;
-                if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 149, column: 5
-                  enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 149, column: 5
-                  S103567=1;
+                S110588=0;
+                S110572=0;
+                if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 75, column: 5
+                  enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 75, column: 5
+                  S110572=1;
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  S103562=0;
-                  if(!enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 149, column: 5
-                    enable_in.setACK(true);//sysj\lidRemovalController.sysj line: 149, column: 5
-                    S103562=1;
-                    if(enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 149, column: 5
-                      enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 149, column: 5
+                  S110567=0;
+                  if(!enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 75, column: 5
+                    enable_in.setACK(true);//sysj\lidRemovalController.sysj line: 75, column: 5
+                    S110567=1;
+                    if(enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 75, column: 5
+                      enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 75, column: 5
                       ends[3]=2;
-                      ;//sysj\lidRemovalController.sysj line: 149, column: 5
-                      w_thread_3 = (WorkpieceTwin)(enable_in.getVal() == null ? null : ((WorkpieceTwin)enable_in.getVal()));//sysj\lidRemovalController.sysj line: 151, column: 5
-                      System.out.println("[LR] Removing the lid from " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 153, column: 5
-                      S103583=1;
-                      if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 159, column: 21
-                        S103583=2;
-                        if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 169, column: 21
-                          System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 175, column: 5
-                          S103583=3;
-                          if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 181, column: 21
-                            S103583=4;
-                            if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 195, column: 21
-                              S103583=5;
-                              if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 201, column: 21
-                                S103583=6;
-                                if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 211, column: 21
-                                  w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 223, column: 5
-                                  System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 225, column: 5
-                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 231, column: 5
-                                  S103583=7;
-                                  if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 233, column: 13
-                                    System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 235, column: 6
-                                    code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 237, column: 6
-                                    if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 240, column: 37
-                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 241, column: 21
-                                      S103583=8;
-                                      S103879=0;
-                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                        S103879=1;
+                      ;//sysj\lidRemovalController.sysj line: 75, column: 5
+                      w_thread_3 = (WorkpieceTwin)(enable_in.getVal() == null ? null : ((WorkpieceTwin)enable_in.getVal()));//sysj\lidRemovalController.sysj line: 76, column: 5
+                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 84, column: 5
+                      S110588=1;
+                      if(w_thread_3 != null){//sysj\lidRemovalController.sysj line: 86, column: 8
+                        System.out.println("[LR] Removing the lid from " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 87, column: 6
+                        S110597=0;
+                        if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 90, column: 22
+                          S110597=1;
+                          if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 95, column: 22
+                            System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 98, column: 6
+                            S110597=2;
+                            if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 101, column: 22
+                              S110597=3;
+                              if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 108, column: 22
+                                S110597=4;
+                                if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 111, column: 22
+                                  S110597=5;
+                                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
+                                    S110597=6;
+                                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
+                                        S110588=2;
+                                        S111447=0;
+                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          S111447=1;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          S111442=0;
+                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            S111442=1;
+                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              ends[3]=2;
+                                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              S114976=2;
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                    else {
+                                      S110588=2;
+                                      S111447=0;
+                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        S111447=1;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
                                       }
                                       else {
-                                        S103874=0;
-                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                                          S103874=1;
-                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
+                                        S111442=0;
+                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          S111442=1;
+                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                             ends[3]=2;
-                                            ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                                            S106084=2;
+                                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            S114976=2;
                                             active[3]=1;
                                             ends[3]=1;
                                             tdone[3]=1;
@@ -963,65 +1010,94 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                       }
                                     }
-                                    else {
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
                                   }
                                   else {
-                                    S103583=8;
-                                    S103879=0;
-                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                      S103879=1;
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                    else {
-                                      S103874=0;
-                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                                        S103874=1;
-                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                          ends[3]=2;
-                                          ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                                          S106084=2;
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                        else {
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                      }
-                                      else {
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                    }
+                                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
+                                    currsigs.addElement(lidEjectExtend);
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
                                   }
                                 }
                                 else {
-                                  lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 213, column: 6
-                                  currsigs.addElement(lidEjectExtend);
+                                  unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 112, column: 7
+                                  currsigs.addElement(unscrewTurnRetract);
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
                                 }
                               }
                               else {
-                                unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 203, column: 6
-                                currsigs.addElement(unscrewTurnRetract);
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
+                            }
+                            else {
+                              thread137583(tdone,ends);
+                              thread137584(tdone,ends);
+                              int biggest137585 = 0;
+                              if(ends[6]>=biggest137585){
+                                biggest137585=ends[6];
+                              }
+                              if(ends[7]>=biggest137585){
+                                biggest137585=ends[7];
+                              }
+                              if(biggest137585 == 1){
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                          }
+                          else {
+                            thread137586(tdone,ends);
+                            thread137587(tdone,ends);
+                            int biggest137588 = 0;
+                            if(ends[4]>=biggest137588){
+                              biggest137588=ends[4];
+                            }
+                            if(ends[5]>=biggest137588){
+                              biggest137588=ends[5];
+                            }
+                            if(biggest137588 == 1){
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                        }
+                        else {
+                          cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 91, column: 7
+                          currsigs.addElement(cylZaxisExtend);
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                      }
+                      else {
+                        S110588=2;
+                        S111447=0;
+                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                          S111447=1;
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                        else {
+                          S111442=0;
+                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                            S111442=1;
+                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                              ends[3]=2;
+                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                              S114976=2;
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
                             }
                             else {
                               active[3]=1;
@@ -1030,45 +1106,11 @@ public class LidRemovalController extends ClockDomain{
                             }
                           }
                           else {
-                            thread119256(tdone,ends);
-                            thread119257(tdone,ends);
-                            int biggest119258 = 0;
-                            if(ends[6]>=biggest119258){
-                              biggest119258=ends[6];
-                            }
-                            if(ends[7]>=biggest119258){
-                              biggest119258=ends[7];
-                            }
-                            if(biggest119258 == 1){
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                          }
-                        }
-                        else {
-                          thread119259(tdone,ends);
-                          thread119260(tdone,ends);
-                          int biggest119261 = 0;
-                          if(ends[4]>=biggest119261){
-                            biggest119261=ends[4];
-                          }
-                          if(ends[5]>=biggest119261){
-                            biggest119261=ends[5];
-                          }
-                          if(biggest119261 == 1){
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
                           }
                         }
-                      }
-                      else {
-                        cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 161, column: 6
-                        currsigs.addElement(cylZaxisExtend);
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
                       }
                     }
                     else {
@@ -1093,79 +1135,309 @@ public class LidRemovalController extends ClockDomain{
             break;
           
           case 1 : 
-            if(manual_1.getprestatus()){//sysj\lidRemovalController.sysj line: 147, column: 20
+            if(manual_1.getprestatus()){//sysj\lidRemovalController.sysj line: 74, column: 20
               enable_in.setPreempted();
               status_o.setPreempted();
-              S106084=2;
+              S114976=2;
               active[3]=1;
               ends[3]=1;
               tdone[3]=1;
             }
             else {
-              switch(S103583){
+              switch(S110588){
                 case 0 : 
-                  switch(S103567){
+                  switch(S110572){
                     case 0 : 
-                      if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 149, column: 5
-                        enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 149, column: 5
-                        S103567=1;
+                      if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 75, column: 5
+                        enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 75, column: 5
+                        S110572=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        switch(S103562){
+                        switch(S110567){
                           case 0 : 
-                            if(!enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 149, column: 5
-                              enable_in.setACK(true);//sysj\lidRemovalController.sysj line: 149, column: 5
-                              S103562=1;
-                              if(enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 149, column: 5
-                                enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 149, column: 5
+                            if(!enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 75, column: 5
+                              enable_in.setACK(true);//sysj\lidRemovalController.sysj line: 75, column: 5
+                              S110567=1;
+                              if(enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 75, column: 5
+                                enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 75, column: 5
                                 ends[3]=2;
-                                ;//sysj\lidRemovalController.sysj line: 149, column: 5
-                                w_thread_3 = (WorkpieceTwin)(enable_in.getVal() == null ? null : ((WorkpieceTwin)enable_in.getVal()));//sysj\lidRemovalController.sysj line: 151, column: 5
-                                System.out.println("[LR] Removing the lid from " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 153, column: 5
-                                S103583=1;
-                                if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 159, column: 21
-                                  S103583=2;
-                                  if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 169, column: 21
-                                    System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 175, column: 5
-                                    S103583=3;
-                                    if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 181, column: 21
-                                      S103583=4;
-                                      if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 195, column: 21
-                                        S103583=5;
-                                        if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 201, column: 21
-                                          S103583=6;
-                                          if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 211, column: 21
-                                            w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 223, column: 5
-                                            System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 225, column: 5
-                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 231, column: 5
-                                            S103583=7;
-                                            if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 233, column: 13
-                                              System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 235, column: 6
-                                              code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 237, column: 6
-                                              if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 240, column: 37
-                                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 241, column: 21
-                                                S103583=8;
-                                                S103879=0;
-                                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                  S103879=1;
+                                ;//sysj\lidRemovalController.sysj line: 75, column: 5
+                                w_thread_3 = (WorkpieceTwin)(enable_in.getVal() == null ? null : ((WorkpieceTwin)enable_in.getVal()));//sysj\lidRemovalController.sysj line: 76, column: 5
+                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 84, column: 5
+                                S110588=1;
+                                if(w_thread_3 != null){//sysj\lidRemovalController.sysj line: 86, column: 8
+                                  System.out.println("[LR] Removing the lid from " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 87, column: 6
+                                  S110597=0;
+                                  if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 90, column: 22
+                                    S110597=1;
+                                    if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 95, column: 22
+                                      System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 98, column: 6
+                                      S110597=2;
+                                      if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 101, column: 22
+                                        S110597=3;
+                                        if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 108, column: 22
+                                          S110597=4;
+                                          if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 111, column: 22
+                                            S110597=5;
+                                            if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                              w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                              System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
+                                              S110597=6;
+                                              if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                                System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                                if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
+                                                  S110588=2;
+                                                  S111447=0;
+                                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    S111447=1;
+                                                    active[3]=1;
+                                                    ends[3]=1;
+                                                    tdone[3]=1;
+                                                  }
+                                                  else {
+                                                    S111442=0;
+                                                    if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                      status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                      S111442=1;
+                                                      if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                        ends[3]=2;
+                                                        ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                        S114976=2;
+                                                        active[3]=1;
+                                                        ends[3]=1;
+                                                        tdone[3]=1;
+                                                      }
+                                                      else {
+                                                        active[3]=1;
+                                                        ends[3]=1;
+                                                        tdone[3]=1;
+                                                      }
+                                                    }
+                                                    else {
+                                                      active[3]=1;
+                                                      ends[3]=1;
+                                                      tdone[3]=1;
+                                                    }
+                                                  }
+                                                }
+                                                else {
+                                                  active[3]=1;
+                                                  ends[3]=1;
+                                                  tdone[3]=1;
+                                                }
+                                              }
+                                              else {
+                                                S110588=2;
+                                                S111447=0;
+                                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  S111447=1;
                                                   active[3]=1;
                                                   ends[3]=1;
                                                   tdone[3]=1;
                                                 }
                                                 else {
-                                                  S103874=0;
-                                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                    S103874=1;
-                                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
+                                                  S111442=0;
+                                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    S111442=1;
+                                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       ends[3]=2;
-                                                      ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                      S106084=2;
+                                                      ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                      S114976=2;
+                                                      active[3]=1;
+                                                      ends[3]=1;
+                                                      tdone[3]=1;
+                                                    }
+                                                    else {
+                                                      active[3]=1;
+                                                      ends[3]=1;
+                                                      tdone[3]=1;
+                                                    }
+                                                  }
+                                                  else {
+                                                    active[3]=1;
+                                                    ends[3]=1;
+                                                    tdone[3]=1;
+                                                  }
+                                                }
+                                              }
+                                            }
+                                            else {
+                                              lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
+                                              currsigs.addElement(lidEjectExtend);
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                          else {
+                                            unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 112, column: 7
+                                            currsigs.addElement(unscrewTurnRetract);
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                      else {
+                                        thread137589(tdone,ends);
+                                        thread137590(tdone,ends);
+                                        int biggest137591 = 0;
+                                        if(ends[6]>=biggest137591){
+                                          biggest137591=ends[6];
+                                        }
+                                        if(ends[7]>=biggest137591){
+                                          biggest137591=ends[7];
+                                        }
+                                        if(biggest137591 == 1){
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                    }
+                                    else {
+                                      thread137592(tdone,ends);
+                                      thread137593(tdone,ends);
+                                      int biggest137594 = 0;
+                                      if(ends[4]>=biggest137594){
+                                        biggest137594=ends[4];
+                                      }
+                                      if(ends[5]>=biggest137594){
+                                        biggest137594=ends[5];
+                                      }
+                                      if(biggest137594 == 1){
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                  }
+                                  else {
+                                    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 91, column: 7
+                                    currsigs.addElement(cylZaxisExtend);
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                                else {
+                                  S110588=2;
+                                  S111447=0;
+                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    S111447=1;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                  else {
+                                    S111442=0;
+                                    if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      S111442=1;
+                                      if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        ends[3]=2;
+                                        ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        S114976=2;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                }
+                              }
+                              else {
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                            else {
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                            break;
+                          
+                          case 1 : 
+                            if(enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 75, column: 5
+                              enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 75, column: 5
+                              ends[3]=2;
+                              ;//sysj\lidRemovalController.sysj line: 75, column: 5
+                              w_thread_3 = (WorkpieceTwin)(enable_in.getVal() == null ? null : ((WorkpieceTwin)enable_in.getVal()));//sysj\lidRemovalController.sysj line: 76, column: 5
+                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 84, column: 5
+                              S110588=1;
+                              if(w_thread_3 != null){//sysj\lidRemovalController.sysj line: 86, column: 8
+                                System.out.println("[LR] Removing the lid from " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 87, column: 6
+                                S110597=0;
+                                if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 90, column: 22
+                                  S110597=1;
+                                  if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 95, column: 22
+                                    System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 98, column: 6
+                                    S110597=2;
+                                    if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 101, column: 22
+                                      S110597=3;
+                                      if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 108, column: 22
+                                        S110597=4;
+                                        if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 111, column: 22
+                                          S110597=5;
+                                          if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                            w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                            System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
+                                            S110597=6;
+                                            if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                              System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                              code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                              if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
+                                                S110588=2;
+                                                S111447=0;
+                                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  S111447=1;
+                                                  active[3]=1;
+                                                  ends[3]=1;
+                                                  tdone[3]=1;
+                                                }
+                                                else {
+                                                  S111442=0;
+                                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    S111442=1;
+                                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                      ends[3]=2;
+                                                      ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                      S114976=2;
                                                       active[3]=1;
                                                       ends[3]=1;
                                                       tdone[3]=1;
@@ -1190,25 +1462,25 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                             }
                                             else {
-                                              S103583=8;
-                                              S103879=0;
-                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                S103879=1;
+                                              S110588=2;
+                                              S111447=0;
+                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                S111447=1;
                                                 active[3]=1;
                                                 ends[3]=1;
                                                 tdone[3]=1;
                                               }
                                               else {
-                                                S103874=0;
-                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                  S103874=1;
-                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
+                                                S111442=0;
+                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  S111442=1;
+                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     ends[3]=2;
-                                                    ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                    S106084=2;
+                                                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    S114976=2;
                                                     active[3]=1;
                                                     ends[3]=1;
                                                     tdone[3]=1;
@@ -1228,7 +1500,7 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                           }
                                           else {
-                                            lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 213, column: 6
+                                            lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                             currsigs.addElement(lidEjectExtend);
                                             active[3]=1;
                                             ends[3]=1;
@@ -1236,7 +1508,7 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                         }
                                         else {
-                                          unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 203, column: 6
+                                          unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 112, column: 7
                                           currsigs.addElement(unscrewTurnRetract);
                                           active[3]=1;
                                           ends[3]=1;
@@ -1250,16 +1522,16 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      thread119262(tdone,ends);
-                                      thread119263(tdone,ends);
-                                      int biggest119264 = 0;
-                                      if(ends[6]>=biggest119264){
-                                        biggest119264=ends[6];
+                                      thread137595(tdone,ends);
+                                      thread137596(tdone,ends);
+                                      int biggest137597 = 0;
+                                      if(ends[6]>=biggest137597){
+                                        biggest137597=ends[6];
                                       }
-                                      if(ends[7]>=biggest119264){
-                                        biggest119264=ends[7];
+                                      if(ends[7]>=biggest137597){
+                                        biggest137597=ends[7];
                                       }
-                                      if(biggest119264 == 1){
+                                      if(biggest137597 == 1){
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -1267,16 +1539,16 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    thread119265(tdone,ends);
-                                    thread119266(tdone,ends);
-                                    int biggest119267 = 0;
-                                    if(ends[4]>=biggest119267){
-                                      biggest119267=ends[4];
+                                    thread137598(tdone,ends);
+                                    thread137599(tdone,ends);
+                                    int biggest137600 = 0;
+                                    if(ends[4]>=biggest137600){
+                                      biggest137600=ends[4];
                                     }
-                                    if(ends[5]>=biggest119267){
-                                      biggest119267=ends[5];
+                                    if(ends[5]>=biggest137600){
+                                      biggest137600=ends[5];
                                     }
-                                    if(biggest119267 == 1){
+                                    if(biggest137600 == 1){
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
@@ -1284,7 +1556,7 @@ public class LidRemovalController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 161, column: 6
+                                  cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 91, column: 7
                                   currsigs.addElement(cylZaxisExtend);
                                   active[3]=1;
                                   ends[3]=1;
@@ -1292,142 +1564,28 @@ public class LidRemovalController extends ClockDomain{
                                 }
                               }
                               else {
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                            }
-                            else {
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                            break;
-                          
-                          case 1 : 
-                            if(enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 149, column: 5
-                              enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 149, column: 5
-                              ends[3]=2;
-                              ;//sysj\lidRemovalController.sysj line: 149, column: 5
-                              w_thread_3 = (WorkpieceTwin)(enable_in.getVal() == null ? null : ((WorkpieceTwin)enable_in.getVal()));//sysj\lidRemovalController.sysj line: 151, column: 5
-                              System.out.println("[LR] Removing the lid from " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 153, column: 5
-                              S103583=1;
-                              if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 159, column: 21
-                                S103583=2;
-                                if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 169, column: 21
-                                  System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 175, column: 5
-                                  S103583=3;
-                                  if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 181, column: 21
-                                    S103583=4;
-                                    if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 195, column: 21
-                                      S103583=5;
-                                      if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 201, column: 21
-                                        S103583=6;
-                                        if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 211, column: 21
-                                          w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 223, column: 5
-                                          System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 225, column: 5
-                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 231, column: 5
-                                          S103583=7;
-                                          if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 233, column: 13
-                                            System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 235, column: 6
-                                            code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 237, column: 6
-                                            if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 240, column: 37
-                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 241, column: 21
-                                              S103583=8;
-                                              S103879=0;
-                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                S103879=1;
-                                                active[3]=1;
-                                                ends[3]=1;
-                                                tdone[3]=1;
-                                              }
-                                              else {
-                                                S103874=0;
-                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                  S103874=1;
-                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                    ends[3]=2;
-                                                    ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                    S106084=2;
-                                                    active[3]=1;
-                                                    ends[3]=1;
-                                                    tdone[3]=1;
-                                                  }
-                                                  else {
-                                                    active[3]=1;
-                                                    ends[3]=1;
-                                                    tdone[3]=1;
-                                                  }
-                                                }
-                                                else {
-                                                  active[3]=1;
-                                                  ends[3]=1;
-                                                  tdone[3]=1;
-                                                }
-                                              }
-                                            }
-                                            else {
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                          }
-                                          else {
-                                            S103583=8;
-                                            S103879=0;
-                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                              S103879=1;
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                            else {
-                                              S103874=0;
-                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                S103874=1;
-                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                  ends[3]=2;
-                                                  ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                  S106084=2;
-                                                  active[3]=1;
-                                                  ends[3]=1;
-                                                  tdone[3]=1;
-                                                }
-                                                else {
-                                                  active[3]=1;
-                                                  ends[3]=1;
-                                                  tdone[3]=1;
-                                                }
-                                              }
-                                              else {
-                                                active[3]=1;
-                                                ends[3]=1;
-                                                tdone[3]=1;
-                                              }
-                                            }
-                                          }
-                                        }
-                                        else {
-                                          lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 213, column: 6
-                                          currsigs.addElement(lidEjectExtend);
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                      }
-                                      else {
-                                        unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 203, column: 6
-                                        currsigs.addElement(unscrewTurnRetract);
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
+                                S110588=2;
+                                S111447=0;
+                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  S111447=1;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                                else {
+                                  S111442=0;
+                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    S111442=1;
+                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      ends[3]=2;
+                                      ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      S114976=2;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
                                     }
                                     else {
                                       active[3]=1;
@@ -1436,45 +1594,11 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    thread119268(tdone,ends);
-                                    thread119269(tdone,ends);
-                                    int biggest119270 = 0;
-                                    if(ends[6]>=biggest119270){
-                                      biggest119270=ends[6];
-                                    }
-                                    if(ends[7]>=biggest119270){
-                                      biggest119270=ends[7];
-                                    }
-                                    if(biggest119270 == 1){
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                  }
-                                }
-                                else {
-                                  thread119271(tdone,ends);
-                                  thread119272(tdone,ends);
-                                  int biggest119273 = 0;
-                                  if(ends[4]>=biggest119273){
-                                    biggest119273=ends[4];
-                                  }
-                                  if(ends[5]>=biggest119273){
-                                    biggest119273=ends[5];
-                                  }
-                                  if(biggest119273 == 1){
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
                                 }
-                              }
-                              else {
-                                cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 161, column: 6
-                                currsigs.addElement(cylZaxisExtend);
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
                               }
                             }
                             else {
@@ -1489,67 +1613,113 @@ public class LidRemovalController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      S103567=1;
-                      S103567=0;
-                      if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 149, column: 5
-                        enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 149, column: 5
-                        S103567=1;
+                      S110572=1;
+                      S110572=0;
+                      if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 75, column: 5
+                        enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 75, column: 5
+                        S110572=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S103562=0;
-                        if(!enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 149, column: 5
-                          enable_in.setACK(true);//sysj\lidRemovalController.sysj line: 149, column: 5
-                          S103562=1;
-                          if(enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 149, column: 5
-                            enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 149, column: 5
+                        S110567=0;
+                        if(!enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 75, column: 5
+                          enable_in.setACK(true);//sysj\lidRemovalController.sysj line: 75, column: 5
+                          S110567=1;
+                          if(enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 75, column: 5
+                            enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 75, column: 5
                             ends[3]=2;
-                            ;//sysj\lidRemovalController.sysj line: 149, column: 5
-                            w_thread_3 = (WorkpieceTwin)(enable_in.getVal() == null ? null : ((WorkpieceTwin)enable_in.getVal()));//sysj\lidRemovalController.sysj line: 151, column: 5
-                            System.out.println("[LR] Removing the lid from " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 153, column: 5
-                            S103583=1;
-                            if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 159, column: 21
-                              S103583=2;
-                              if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 169, column: 21
-                                System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 175, column: 5
-                                S103583=3;
-                                if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 181, column: 21
-                                  S103583=4;
-                                  if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 195, column: 21
-                                    S103583=5;
-                                    if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 201, column: 21
-                                      S103583=6;
-                                      if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 211, column: 21
-                                        w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 223, column: 5
-                                        System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 225, column: 5
-                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 231, column: 5
-                                        S103583=7;
-                                        if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 233, column: 13
-                                          System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 235, column: 6
-                                          code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 237, column: 6
-                                          if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 240, column: 37
-                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 241, column: 21
-                                            S103583=8;
-                                            S103879=0;
-                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                              S103879=1;
+                            ;//sysj\lidRemovalController.sysj line: 75, column: 5
+                            w_thread_3 = (WorkpieceTwin)(enable_in.getVal() == null ? null : ((WorkpieceTwin)enable_in.getVal()));//sysj\lidRemovalController.sysj line: 76, column: 5
+                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 84, column: 5
+                            S110588=1;
+                            if(w_thread_3 != null){//sysj\lidRemovalController.sysj line: 86, column: 8
+                              System.out.println("[LR] Removing the lid from " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 87, column: 6
+                              S110597=0;
+                              if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 90, column: 22
+                                S110597=1;
+                                if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 95, column: 22
+                                  System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 98, column: 6
+                                  S110597=2;
+                                  if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 101, column: 22
+                                    S110597=3;
+                                    if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 108, column: 22
+                                      S110597=4;
+                                      if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 111, column: 22
+                                        S110597=5;
+                                        if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                          w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                          System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
+                                          S110597=6;
+                                          if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                            System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                            code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                            if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
+                                              S110588=2;
+                                              S111447=0;
+                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                S111447=1;
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                              else {
+                                                S111442=0;
+                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  S111442=1;
+                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    ends[3]=2;
+                                                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    S114976=2;
+                                                    active[3]=1;
+                                                    ends[3]=1;
+                                                    tdone[3]=1;
+                                                  }
+                                                  else {
+                                                    active[3]=1;
+                                                    ends[3]=1;
+                                                    tdone[3]=1;
+                                                  }
+                                                }
+                                                else {
+                                                  active[3]=1;
+                                                  ends[3]=1;
+                                                  tdone[3]=1;
+                                                }
+                                              }
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                          else {
+                                            S110588=2;
+                                            S111447=0;
+                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              S111447=1;
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
                                             }
                                             else {
-                                              S103874=0;
-                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                S103874=1;
-                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
+                                              S111442=0;
+                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                S111442=1;
+                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   ends[3]=2;
-                                                  ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                  S106084=2;
+                                                  ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  S114976=2;
                                                   active[3]=1;
                                                   ends[3]=1;
                                                   tdone[3]=1;
@@ -1567,65 +1737,94 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                             }
                                           }
-                                          else {
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
                                         }
                                         else {
-                                          S103583=8;
-                                          S103879=0;
-                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                            S103879=1;
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                          else {
-                                            S103874=0;
-                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                                              S103874=1;
-                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                ends[3]=2;
-                                                ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                                                S106084=2;
-                                                active[3]=1;
-                                                ends[3]=1;
-                                                tdone[3]=1;
-                                              }
-                                              else {
-                                                active[3]=1;
-                                                ends[3]=1;
-                                                tdone[3]=1;
-                                              }
-                                            }
-                                            else {
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                          }
+                                          lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
+                                          currsigs.addElement(lidEjectExtend);
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
                                         }
                                       }
                                       else {
-                                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 213, column: 6
-                                        currsigs.addElement(lidEjectExtend);
+                                        unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 112, column: 7
+                                        currsigs.addElement(unscrewTurnRetract);
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
                                       }
                                     }
                                     else {
-                                      unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 203, column: 6
-                                      currsigs.addElement(unscrewTurnRetract);
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
                                     }
+                                  }
+                                  else {
+                                    thread137601(tdone,ends);
+                                    thread137602(tdone,ends);
+                                    int biggest137603 = 0;
+                                    if(ends[6]>=biggest137603){
+                                      biggest137603=ends[6];
+                                    }
+                                    if(ends[7]>=biggest137603){
+                                      biggest137603=ends[7];
+                                    }
+                                    if(biggest137603 == 1){
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                }
+                                else {
+                                  thread137604(tdone,ends);
+                                  thread137605(tdone,ends);
+                                  int biggest137606 = 0;
+                                  if(ends[4]>=biggest137606){
+                                    biggest137606=ends[4];
+                                  }
+                                  if(ends[5]>=biggest137606){
+                                    biggest137606=ends[5];
+                                  }
+                                  if(biggest137606 == 1){
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
+                              else {
+                                cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 91, column: 7
+                                currsigs.addElement(cylZaxisExtend);
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                            else {
+                              S110588=2;
+                              S111447=0;
+                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                S111447=1;
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                              else {
+                                S111442=0;
+                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  S111442=1;
+                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    ends[3]=2;
+                                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    S114976=2;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
                                   }
                                   else {
                                     active[3]=1;
@@ -1634,45 +1833,11 @@ public class LidRemovalController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  thread119274(tdone,ends);
-                                  thread119275(tdone,ends);
-                                  int biggest119276 = 0;
-                                  if(ends[6]>=biggest119276){
-                                    biggest119276=ends[6];
-                                  }
-                                  if(ends[7]>=biggest119276){
-                                    biggest119276=ends[7];
-                                  }
-                                  if(biggest119276 == 1){
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                }
-                              }
-                              else {
-                                thread119277(tdone,ends);
-                                thread119278(tdone,ends);
-                                int biggest119279 = 0;
-                                if(ends[4]>=biggest119279){
-                                  biggest119279=ends[4];
-                                }
-                                if(ends[5]>=biggest119279){
-                                  biggest119279=ends[5];
-                                }
-                                if(biggest119279 == 1){
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
                                 }
                               }
-                            }
-                            else {
-                              cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 161, column: 6
-                              currsigs.addElement(cylZaxisExtend);
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
                             }
                           }
                           else {
@@ -1693,46 +1858,506 @@ public class LidRemovalController extends ClockDomain{
                   break;
                 
                 case 1 : 
-                  if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 159, column: 21
-                    S103583=2;
-                    if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 169, column: 21
-                      System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 175, column: 5
-                      S103583=3;
-                      if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 181, column: 21
-                        S103583=4;
-                        if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 195, column: 21
-                          S103583=5;
-                          if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 201, column: 21
-                            S103583=6;
-                            if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 211, column: 21
-                              w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 223, column: 5
-                              System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 225, column: 5
-                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 231, column: 5
-                              S103583=7;
-                              if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 233, column: 13
-                                System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 235, column: 6
-                                code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 237, column: 6
-                                if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 240, column: 37
-                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 241, column: 21
-                                  S103583=8;
-                                  S103879=0;
-                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                    S103879=1;
+                  switch(S110597){
+                    case 0 : 
+                      if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 90, column: 22
+                        S110597=1;
+                        if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 95, column: 22
+                          System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 98, column: 6
+                          S110597=2;
+                          if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 101, column: 22
+                            S110597=3;
+                            if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 108, column: 22
+                              S110597=4;
+                              if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 111, column: 22
+                                S110597=5;
+                                if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                  w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                  System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
+                                  S110597=6;
+                                  if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                    System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                    code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                    if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
+                                      S110588=2;
+                                      S111447=0;
+                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        S111447=1;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        S111442=0;
+                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          S111442=1;
+                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            ends[3]=2;
+                                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            S114976=2;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    S110588=2;
+                                    S111447=0;
+                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      S111447=1;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      S111442=0;
+                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        S111442=1;
+                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          ends[3]=2;
+                                          ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          S114976=2;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                  }
+                                }
+                                else {
+                                  lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
+                                  currsigs.addElement(lidEjectExtend);
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                              else {
+                                unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 112, column: 7
+                                currsigs.addElement(unscrewTurnRetract);
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                            else {
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                          else {
+                            thread137607(tdone,ends);
+                            thread137608(tdone,ends);
+                            int biggest137609 = 0;
+                            if(ends[6]>=biggest137609){
+                              biggest137609=ends[6];
+                            }
+                            if(ends[7]>=biggest137609){
+                              biggest137609=ends[7];
+                            }
+                            if(biggest137609 == 1){
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                        }
+                        else {
+                          thread137610(tdone,ends);
+                          thread137611(tdone,ends);
+                          int biggest137612 = 0;
+                          if(ends[4]>=biggest137612){
+                            biggest137612=ends[4];
+                          }
+                          if(ends[5]>=biggest137612){
+                            biggest137612=ends[5];
+                          }
+                          if(biggest137612 == 1){
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                        }
+                      }
+                      else {
+                        cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 91, column: 7
+                        currsigs.addElement(cylZaxisExtend);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      break;
+                    
+                    case 1 : 
+                      if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 95, column: 22
+                        System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 98, column: 6
+                        S110597=2;
+                        if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 101, column: 22
+                          S110597=3;
+                          if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 108, column: 22
+                            S110597=4;
+                            if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 111, column: 22
+                              S110597=5;
+                              if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
+                                S110597=6;
+                                if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                  System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                  code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                  if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
+                                    S110588=2;
+                                    S111447=0;
+                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      S111447=1;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      S111442=0;
+                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        S111442=1;
+                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          ends[3]=2;
+                                          ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          S114976=2;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                                else {
+                                  S110588=2;
+                                  S111447=0;
+                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    S111447=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
                                   else {
-                                    S103874=0;
-                                    if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                      status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                                      S103874=1;
-                                      if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
+                                    S111442=0;
+                                    if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      S111442=1;
+                                      if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                         ends[3]=2;
-                                        ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                                        S106084=2;
+                                        ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        S114976=2;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                }
+                              }
+                              else {
+                                lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
+                                currsigs.addElement(lidEjectExtend);
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                            else {
+                              unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 112, column: 7
+                              currsigs.addElement(unscrewTurnRetract);
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                          else {
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                        }
+                        else {
+                          thread137613(tdone,ends);
+                          thread137614(tdone,ends);
+                          int biggest137615 = 0;
+                          if(ends[6]>=biggest137615){
+                            biggest137615=ends[6];
+                          }
+                          if(ends[7]>=biggest137615){
+                            biggest137615=ends[7];
+                          }
+                          if(biggest137615 == 1){
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                        }
+                      }
+                      else {
+                        thread137616(tdone,ends);
+                        thread137617(tdone,ends);
+                        int biggest137618 = 0;
+                        if(ends[4]>=biggest137618){
+                          biggest137618=ends[4];
+                        }
+                        if(ends[5]>=biggest137618){
+                          biggest137618=ends[5];
+                        }
+                        if(biggest137618 == 1){
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                        //FINXME code
+                        if(biggest137618 == 0){
+                          System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 98, column: 6
+                          S110597=2;
+                          if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 101, column: 22
+                            S110597=3;
+                            if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 108, column: 22
+                              S110597=4;
+                              if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 111, column: 22
+                                S110597=5;
+                                if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                  w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                  System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
+                                  S110597=6;
+                                  if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                    System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                    code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                    if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
+                                      S110588=2;
+                                      S111447=0;
+                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        S111447=1;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        S111442=0;
+                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          S111442=1;
+                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            ends[3]=2;
+                                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            S114976=2;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    S110588=2;
+                                    S111447=0;
+                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      S111447=1;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      S111442=0;
+                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        S111442=1;
+                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          ends[3]=2;
+                                          ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          S114976=2;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                  }
+                                }
+                                else {
+                                  lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
+                                  currsigs.addElement(lidEjectExtend);
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                              else {
+                                unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 112, column: 7
+                                currsigs.addElement(unscrewTurnRetract);
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                            else {
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                          else {
+                            thread137619(tdone,ends);
+                            thread137620(tdone,ends);
+                            int biggest137621 = 0;
+                            if(ends[6]>=biggest137621){
+                              biggest137621=ends[6];
+                            }
+                            if(ends[7]>=biggest137621){
+                              biggest137621=ends[7];
+                            }
+                            if(biggest137621 == 1){
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                        }
+                      }
+                      break;
+                    
+                    case 2 : 
+                      if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 101, column: 22
+                        S110597=3;
+                        if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 108, column: 22
+                          S110597=4;
+                          if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 111, column: 22
+                            S110597=5;
+                            if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                              w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                              System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
+                              S110597=6;
+                              if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
+                                  S110588=2;
+                                  S111447=0;
+                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    S111447=1;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                  else {
+                                    S111442=0;
+                                    if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      S111442=1;
+                                      if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        ends[3]=2;
+                                        ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        S114976=2;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -1757,25 +2382,25 @@ public class LidRemovalController extends ClockDomain{
                                 }
                               }
                               else {
-                                S103583=8;
-                                S103879=0;
-                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                  S103879=1;
+                                S110588=2;
+                                S111447=0;
+                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  S111447=1;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
                                 }
                                 else {
-                                  S103874=0;
-                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                                    S103874=1;
-                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
+                                  S111442=0;
+                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    S111442=1;
+                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                       ends[3]=2;
-                                      ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                                      S106084=2;
+                                      ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      S114976=2;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
@@ -1795,7 +2420,7 @@ public class LidRemovalController extends ClockDomain{
                               }
                             }
                             else {
-                              lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 213, column: 6
+                              lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                               currsigs.addElement(lidEjectExtend);
                               active[3]=1;
                               ends[3]=1;
@@ -1803,7 +2428,7 @@ public class LidRemovalController extends ClockDomain{
                             }
                           }
                           else {
-                            unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 203, column: 6
+                            unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 112, column: 7
                             currsigs.addElement(unscrewTurnRetract);
                             active[3]=1;
                             ends[3]=1;
@@ -1817,87 +2442,176 @@ public class LidRemovalController extends ClockDomain{
                         }
                       }
                       else {
-                        thread119280(tdone,ends);
-                        thread119281(tdone,ends);
-                        int biggest119282 = 0;
-                        if(ends[6]>=biggest119282){
-                          biggest119282=ends[6];
+                        thread137622(tdone,ends);
+                        thread137623(tdone,ends);
+                        int biggest137624 = 0;
+                        if(ends[6]>=biggest137624){
+                          biggest137624=ends[6];
                         }
-                        if(ends[7]>=biggest119282){
-                          biggest119282=ends[7];
+                        if(ends[7]>=biggest137624){
+                          biggest137624=ends[7];
                         }
-                        if(biggest119282 == 1){
+                        if(biggest137624 == 1){
                           active[3]=1;
                           ends[3]=1;
                           tdone[3]=1;
                         }
+                        //FINXME code
+                        if(biggest137624 == 0){
+                          S110597=3;
+                          if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 108, column: 22
+                            S110597=4;
+                            if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 111, column: 22
+                              S110597=5;
+                              if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
+                                S110597=6;
+                                if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                  System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                  code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                  if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
+                                    S110588=2;
+                                    S111447=0;
+                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      S111447=1;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      S111442=0;
+                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        S111442=1;
+                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          ends[3]=2;
+                                          ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          S114976=2;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                                else {
+                                  S110588=2;
+                                  S111447=0;
+                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    S111447=1;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                  else {
+                                    S111442=0;
+                                    if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      S111442=1;
+                                      if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        ends[3]=2;
+                                        ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        S114976=2;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                }
+                              }
+                              else {
+                                lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
+                                currsigs.addElement(lidEjectExtend);
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                            else {
+                              unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 112, column: 7
+                              currsigs.addElement(unscrewTurnRetract);
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                          else {
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                        }
                       }
-                    }
-                    else {
-                      thread119283(tdone,ends);
-                      thread119284(tdone,ends);
-                      int biggest119285 = 0;
-                      if(ends[4]>=biggest119285){
-                        biggest119285=ends[4];
-                      }
-                      if(ends[5]>=biggest119285){
-                        biggest119285=ends[5];
-                      }
-                      if(biggest119285 == 1){
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                    }
-                  }
-                  else {
-                    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 161, column: 6
-                    currsigs.addElement(cylZaxisExtend);
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
-                  }
-                  break;
-                
-                case 2 : 
-                  if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 169, column: 21
-                    System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 175, column: 5
-                    S103583=3;
-                    if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 181, column: 21
-                      S103583=4;
-                      if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 195, column: 21
-                        S103583=5;
-                        if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 201, column: 21
-                          S103583=6;
-                          if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 211, column: 21
-                            w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 223, column: 5
-                            System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 225, column: 5
-                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 231, column: 5
-                            S103583=7;
-                            if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 233, column: 13
-                              System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 235, column: 6
-                              code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 237, column: 6
-                              if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 240, column: 37
-                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 241, column: 21
-                                S103583=8;
-                                S103879=0;
-                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                  S103879=1;
+                      break;
+                    
+                    case 3 : 
+                      if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 108, column: 22
+                        S110597=4;
+                        if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 111, column: 22
+                          S110597=5;
+                          if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                            w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                            System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
+                            S110597=6;
+                            if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                              System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                              code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                              if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
+                                S110588=2;
+                                S111447=0;
+                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  S111447=1;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
                                 }
                                 else {
-                                  S103874=0;
-                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                                    S103874=1;
-                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
+                                  S111442=0;
+                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    S111442=1;
+                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                       ends[3]=2;
-                                      ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                                      S106084=2;
+                                      ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      S114976=2;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
@@ -1922,25 +2636,25 @@ public class LidRemovalController extends ClockDomain{
                               }
                             }
                             else {
-                              S103583=8;
-                              S103879=0;
-                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                S103879=1;
+                              S110588=2;
+                              S111447=0;
+                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                S111447=1;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
                               else {
-                                S103874=0;
-                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                                  S103874=1;
-                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
+                                S111442=0;
+                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  S111442=1;
+                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                     ends[3]=2;
-                                    ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                                    S106084=2;
+                                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    S114976=2;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -1960,7 +2674,7 @@ public class LidRemovalController extends ClockDomain{
                             }
                           }
                           else {
-                            lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 213, column: 6
+                            lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                             currsigs.addElement(lidEjectExtend);
                             active[3]=1;
                             ends[3]=1;
@@ -1968,7 +2682,7 @@ public class LidRemovalController extends ClockDomain{
                           }
                         }
                         else {
-                          unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 203, column: 6
+                          unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 112, column: 7
                           currsigs.addElement(unscrewTurnRetract);
                           active[3]=1;
                           ends[3]=1;
@@ -1980,217 +2694,40 @@ public class LidRemovalController extends ClockDomain{
                         ends[3]=1;
                         tdone[3]=1;
                       }
-                    }
-                    else {
-                      thread119286(tdone,ends);
-                      thread119287(tdone,ends);
-                      int biggest119288 = 0;
-                      if(ends[6]>=biggest119288){
-                        biggest119288=ends[6];
-                      }
-                      if(ends[7]>=biggest119288){
-                        biggest119288=ends[7];
-                      }
-                      if(biggest119288 == 1){
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                    }
-                  }
-                  else {
-                    thread119289(tdone,ends);
-                    thread119290(tdone,ends);
-                    int biggest119291 = 0;
-                    if(ends[4]>=biggest119291){
-                      biggest119291=ends[4];
-                    }
-                    if(ends[5]>=biggest119291){
-                      biggest119291=ends[5];
-                    }
-                    if(biggest119291 == 1){
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
-                    //FINXME code
-                    if(biggest119291 == 0){
-                      System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 175, column: 5
-                      S103583=3;
-                      if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 181, column: 21
-                        S103583=4;
-                        if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 195, column: 21
-                          S103583=5;
-                          if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 201, column: 21
-                            S103583=6;
-                            if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 211, column: 21
-                              w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 223, column: 5
-                              System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 225, column: 5
-                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 231, column: 5
-                              S103583=7;
-                              if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 233, column: 13
-                                System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 235, column: 6
-                                code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 237, column: 6
-                                if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 240, column: 37
-                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 241, column: 21
-                                  S103583=8;
-                                  S103879=0;
-                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                    S103879=1;
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                  else {
-                                    S103874=0;
-                                    if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                      status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                                      S103874=1;
-                                      if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                        ends[3]=2;
-                                        ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                                        S106084=2;
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                      else {
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                    }
-                                    else {
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                  }
-                                }
-                                else {
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
-                              else {
-                                S103583=8;
-                                S103879=0;
-                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                  S103879=1;
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                                else {
-                                  S103874=0;
-                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                                    S103874=1;
-                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                      ends[3]=2;
-                                      ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                                      S106084=2;
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                    else {
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                  }
-                                  else {
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                }
-                              }
-                            }
-                            else {
-                              lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 213, column: 6
-                              currsigs.addElement(lidEjectExtend);
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                          }
-                          else {
-                            unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 203, column: 6
-                            currsigs.addElement(unscrewTurnRetract);
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                        }
-                        else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                      }
-                      else {
-                        thread119292(tdone,ends);
-                        thread119293(tdone,ends);
-                        int biggest119294 = 0;
-                        if(ends[6]>=biggest119294){
-                          biggest119294=ends[6];
-                        }
-                        if(ends[7]>=biggest119294){
-                          biggest119294=ends[7];
-                        }
-                        if(biggest119294 == 1){
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                      }
-                    }
-                  }
-                  break;
-                
-                case 3 : 
-                  if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 181, column: 21
-                    S103583=4;
-                    if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 195, column: 21
-                      S103583=5;
-                      if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 201, column: 21
-                        S103583=6;
-                        if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 211, column: 21
-                          w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 223, column: 5
-                          System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 225, column: 5
-                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 231, column: 5
-                          S103583=7;
-                          if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 233, column: 13
-                            System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 235, column: 6
-                            code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 237, column: 6
-                            if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 240, column: 37
-                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 241, column: 21
-                              S103583=8;
-                              S103879=0;
-                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                S103879=1;
+                      break;
+                    
+                    case 4 : 
+                      if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 111, column: 22
+                        S110597=5;
+                        if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                          w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                          System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
+                          S110597=6;
+                          if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                            System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                            code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                            if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
+                              S110588=2;
+                              S111447=0;
+                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                S111447=1;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
                               else {
-                                S103874=0;
-                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                                  S103874=1;
-                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
+                                S111442=0;
+                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  S111442=1;
+                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                     ends[3]=2;
-                                    ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                                    S106084=2;
+                                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    S114976=2;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -2215,25 +2752,25 @@ public class LidRemovalController extends ClockDomain{
                             }
                           }
                           else {
-                            S103583=8;
-                            S103879=0;
-                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                              S103879=1;
+                            S110588=2;
+                            S111447=0;
+                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                              S111447=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
-                              S103874=0;
-                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                                S103874=1;
-                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
+                              S111442=0;
+                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                                S111442=1;
+                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                   ends[3]=2;
-                                  ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                                  S106084=2;
+                                  ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  S114976=2;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -2253,7 +2790,7 @@ public class LidRemovalController extends ClockDomain{
                           }
                         }
                         else {
-                          lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 213, column: 6
+                          lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                           currsigs.addElement(lidEjectExtend);
                           active[3]=1;
                           ends[3]=1;
@@ -2261,190 +2798,44 @@ public class LidRemovalController extends ClockDomain{
                         }
                       }
                       else {
-                        unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 203, column: 6
+                        unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 112, column: 7
                         currsigs.addElement(unscrewTurnRetract);
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
-                    }
-                    else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
-                  }
-                  else {
-                    thread119295(tdone,ends);
-                    thread119296(tdone,ends);
-                    int biggest119297 = 0;
-                    if(ends[6]>=biggest119297){
-                      biggest119297=ends[6];
-                    }
-                    if(ends[7]>=biggest119297){
-                      biggest119297=ends[7];
-                    }
-                    if(biggest119297 == 1){
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
-                    //FINXME code
-                    if(biggest119297 == 0){
-                      S103583=4;
-                      if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 195, column: 21
-                        S103583=5;
-                        if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 201, column: 21
-                          S103583=6;
-                          if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 211, column: 21
-                            w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 223, column: 5
-                            System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 225, column: 5
-                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 231, column: 5
-                            S103583=7;
-                            if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 233, column: 13
-                              System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 235, column: 6
-                              code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 237, column: 6
-                              if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 240, column: 37
-                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 241, column: 21
-                                S103583=8;
-                                S103879=0;
-                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                  S103879=1;
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                                else {
-                                  S103874=0;
-                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                                    S103874=1;
-                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                      ends[3]=2;
-                                      ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                                      S106084=2;
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                    else {
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                  }
-                                  else {
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                }
-                              }
-                              else {
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                            }
-                            else {
-                              S103583=8;
-                              S103879=0;
-                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                S103879=1;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                              else {
-                                S103874=0;
-                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                                  S103874=1;
-                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                    ends[3]=2;
-                                    ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                                    S106084=2;
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                  else {
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                }
-                                else {
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
-                            }
-                          }
-                          else {
-                            lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 213, column: 6
-                            currsigs.addElement(lidEjectExtend);
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                        }
-                        else {
-                          unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 203, column: 6
-                          currsigs.addElement(unscrewTurnRetract);
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                      }
-                      else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                    }
-                  }
-                  break;
-                
-                case 4 : 
-                  if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 195, column: 21
-                    S103583=5;
-                    if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 201, column: 21
-                      S103583=6;
-                      if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 211, column: 21
-                        w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 223, column: 5
-                        System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 225, column: 5
-                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 231, column: 5
-                        S103583=7;
-                        if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 233, column: 13
-                          System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 235, column: 6
-                          code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 237, column: 6
-                          if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 240, column: 37
-                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 241, column: 21
-                            S103583=8;
-                            S103879=0;
-                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                              S103879=1;
+                      break;
+                    
+                    case 5 : 
+                      if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                        w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                        System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
+                        S110597=6;
+                        if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                          System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                          code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                          if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
+                            S110588=2;
+                            S111447=0;
+                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                              S111447=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
-                              S103874=0;
-                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                                S103874=1;
-                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
+                              S111442=0;
+                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                                S111442=1;
+                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                   ends[3]=2;
-                                  ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                                  S106084=2;
+                                  ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  S114976=2;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -2469,25 +2860,25 @@ public class LidRemovalController extends ClockDomain{
                           }
                         }
                         else {
-                          S103583=8;
-                          S103879=0;
-                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                            S103879=1;
+                          S110588=2;
+                          S111447=0;
+                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                            S111447=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
                           }
                           else {
-                            S103874=0;
-                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                              S103874=1;
-                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
+                            S111442=0;
+                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                              S111442=1;
+                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                 ends[3]=2;
-                                ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                                S106084=2;
+                                ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                S114976=2;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -2507,168 +2898,36 @@ public class LidRemovalController extends ClockDomain{
                         }
                       }
                       else {
-                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 213, column: 6
+                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                         currsigs.addElement(lidEjectExtend);
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
-                    }
-                    else {
-                      unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 203, column: 6
-                      currsigs.addElement(unscrewTurnRetract);
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
-                  }
-                  else {
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
-                  }
-                  break;
-                
-                case 5 : 
-                  if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 201, column: 21
-                    S103583=6;
-                    if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 211, column: 21
-                      w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 223, column: 5
-                      System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 225, column: 5
-                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 231, column: 5
-                      S103583=7;
-                      if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 233, column: 13
-                        System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 235, column: 6
-                        code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 237, column: 6
-                        if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 240, column: 37
-                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 241, column: 21
-                          S103583=8;
-                          S103879=0;
-                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                            S103879=1;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                          else {
-                            S103874=0;
-                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                              S103874=1;
-                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                ends[3]=2;
-                                ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                                S106084=2;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                              else {
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                            }
-                            else {
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                          }
-                        }
-                        else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                      }
-                      else {
-                        S103583=8;
-                        S103879=0;
-                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                          S103879=1;
+                      break;
+                    
+                    case 6 : 
+                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
+                        S110588=2;
+                        S111447=0;
+                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                          S111447=1;
                           active[3]=1;
                           ends[3]=1;
                           tdone[3]=1;
                         }
                         else {
-                          S103874=0;
-                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                            S103874=1;
-                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
+                          S111442=0;
+                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                            S111442=1;
+                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                               ends[3]=2;
-                              ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                              S106084=2;
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                            else {
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                          }
-                          else {
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                        }
-                      }
-                    }
-                    else {
-                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 213, column: 6
-                      currsigs.addElement(lidEjectExtend);
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
-                  }
-                  else {
-                    unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 203, column: 6
-                    currsigs.addElement(unscrewTurnRetract);
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
-                  }
-                  break;
-                
-                case 6 : 
-                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 211, column: 21
-                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 223, column: 5
-                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 225, column: 5
-                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 231, column: 5
-                    S103583=7;
-                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 233, column: 13
-                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 235, column: 6
-                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 237, column: 6
-                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 240, column: 37
-                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 241, column: 21
-                        S103583=8;
-                        S103879=0;
-                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                          S103879=1;
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                        else {
-                          S103874=0;
-                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                            S103874=1;
-                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                              ends[3]=2;
-                              ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                              S106084=2;
+                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                              S114976=2;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
@@ -2691,121 +2950,32 @@ public class LidRemovalController extends ClockDomain{
                         ends[3]=1;
                         tdone[3]=1;
                       }
-                    }
-                    else {
-                      S103583=8;
-                      S103879=0;
-                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                        S103879=1;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      else {
-                        S103874=0;
-                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                          S103874=1;
-                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                            ends[3]=2;
-                            ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                            S106084=2;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                          else {
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                        }
-                        else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                      }
-                    }
-                  }
-                  else {
-                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 213, column: 6
-                    currsigs.addElement(lidEjectExtend);
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
+                      break;
+                    
                   }
                   break;
                 
-                case 7 : 
-                  if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 240, column: 37
-                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 241, column: 21
-                    S103583=8;
-                    S103879=0;
-                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                      S103879=1;
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
-                    else {
-                      S103874=0;
-                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                        S103874=1;
-                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                          ends[3]=2;
-                          ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                          S106084=2;
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                        else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                      }
-                      else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                    }
-                  }
-                  else {
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
-                  }
-                  break;
-                
-                case 8 : 
-                  switch(S103879){
+                case 2 : 
+                  switch(S111447){
                     case 0 : 
-                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                        S103879=1;
+                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                        S111447=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        switch(S103874){
+                        switch(S111442){
                           case 0 : 
-                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                              S103874=1;
-                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
+                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                              S111442=1;
+                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                 ends[3]=2;
-                                ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                                S106084=2;
+                                ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                S114976=2;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -2824,11 +2994,11 @@ public class LidRemovalController extends ClockDomain{
                             break;
                           
                           case 1 : 
-                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
+                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                               ends[3]=2;
-                              ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                              S106084=2;
+                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                              S114976=2;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
@@ -2845,25 +3015,25 @@ public class LidRemovalController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      S103879=1;
-                      S103879=0;
-                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                        S103879=1;
+                      S111447=1;
+                      S111447=0;
+                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                        S111447=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S103874=0;
-                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                          S103874=1;
-                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
+                        S111442=0;
+                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                          S111442=1;
+                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                             ends[3]=2;
-                            ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                            S106084=2;
+                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                            S114976=2;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -2890,80 +3060,126 @@ public class LidRemovalController extends ClockDomain{
             break;
           
           case 2 : 
-            S106084=2;
-            S106084=0;
-            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 143, column: 20
-              S106084=1;
-              if(manual_1.getprestatus()){//sysj\lidRemovalController.sysj line: 147, column: 20
+            S114976=2;
+            S114976=0;
+            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 72, column: 20
+              S114976=1;
+              if(manual_1.getprestatus()){//sysj\lidRemovalController.sysj line: 74, column: 20
                 enable_in.setPreempted();
                 status_o.setPreempted();
-                S106084=2;
+                S114976=2;
                 active[3]=1;
                 ends[3]=1;
                 tdone[3]=1;
               }
               else {
-                S103583=0;
-                S103567=0;
-                if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 149, column: 5
-                  enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 149, column: 5
-                  S103567=1;
+                S110588=0;
+                S110572=0;
+                if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 75, column: 5
+                  enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 75, column: 5
+                  S110572=1;
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  S103562=0;
-                  if(!enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 149, column: 5
-                    enable_in.setACK(true);//sysj\lidRemovalController.sysj line: 149, column: 5
-                    S103562=1;
-                    if(enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 149, column: 5
-                      enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 149, column: 5
+                  S110567=0;
+                  if(!enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 75, column: 5
+                    enable_in.setACK(true);//sysj\lidRemovalController.sysj line: 75, column: 5
+                    S110567=1;
+                    if(enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 75, column: 5
+                      enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 75, column: 5
                       ends[3]=2;
-                      ;//sysj\lidRemovalController.sysj line: 149, column: 5
-                      w_thread_3 = (WorkpieceTwin)(enable_in.getVal() == null ? null : ((WorkpieceTwin)enable_in.getVal()));//sysj\lidRemovalController.sysj line: 151, column: 5
-                      System.out.println("[LR] Removing the lid from " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 153, column: 5
-                      S103583=1;
-                      if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 159, column: 21
-                        S103583=2;
-                        if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 169, column: 21
-                          System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 175, column: 5
-                          S103583=3;
-                          if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 181, column: 21
-                            S103583=4;
-                            if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 195, column: 21
-                              S103583=5;
-                              if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 201, column: 21
-                                S103583=6;
-                                if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 211, column: 21
-                                  w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 223, column: 5
-                                  System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 225, column: 5
-                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 231, column: 5
-                                  S103583=7;
-                                  if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 233, column: 13
-                                    System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 235, column: 6
-                                    code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 237, column: 6
-                                    if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 240, column: 37
-                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 241, column: 21
-                                      S103583=8;
-                                      S103879=0;
-                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                        S103879=1;
+                      ;//sysj\lidRemovalController.sysj line: 75, column: 5
+                      w_thread_3 = (WorkpieceTwin)(enable_in.getVal() == null ? null : ((WorkpieceTwin)enable_in.getVal()));//sysj\lidRemovalController.sysj line: 76, column: 5
+                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 84, column: 5
+                      S110588=1;
+                      if(w_thread_3 != null){//sysj\lidRemovalController.sysj line: 86, column: 8
+                        System.out.println("[LR] Removing the lid from " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 87, column: 6
+                        S110597=0;
+                        if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 90, column: 22
+                          S110597=1;
+                          if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 95, column: 22
+                            System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 98, column: 6
+                            S110597=2;
+                            if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 101, column: 22
+                              S110597=3;
+                              if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 108, column: 22
+                                S110597=4;
+                                if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 111, column: 22
+                                  S110597=5;
+                                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
+                                    S110597=6;
+                                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
+                                        S110588=2;
+                                        S111447=0;
+                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          S111447=1;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          S111442=0;
+                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            S111442=1;
+                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              ends[3]=2;
+                                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              S114976=2;
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                    else {
+                                      S110588=2;
+                                      S111447=0;
+                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        S111447=1;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
                                       }
                                       else {
-                                        S103874=0;
-                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                                          S103874=1;
-                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
+                                        S111442=0;
+                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          S111442=1;
+                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                             ends[3]=2;
-                                            ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                                            S106084=2;
+                                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            S114976=2;
                                             active[3]=1;
                                             ends[3]=1;
                                             tdone[3]=1;
@@ -2981,65 +3197,94 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                       }
                                     }
-                                    else {
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
                                   }
                                   else {
-                                    S103583=8;
-                                    S103879=0;
-                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                      S103879=1;
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                    else {
-                                      S103874=0;
-                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                                        S103874=1;
-                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                          ends[3]=2;
-                                          ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                                          S106084=2;
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                        else {
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                      }
-                                      else {
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                    }
+                                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
+                                    currsigs.addElement(lidEjectExtend);
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
                                   }
                                 }
                                 else {
-                                  lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 213, column: 6
-                                  currsigs.addElement(lidEjectExtend);
+                                  unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 112, column: 7
+                                  currsigs.addElement(unscrewTurnRetract);
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
                                 }
                               }
                               else {
-                                unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 203, column: 6
-                                currsigs.addElement(unscrewTurnRetract);
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
+                            }
+                            else {
+                              thread137625(tdone,ends);
+                              thread137626(tdone,ends);
+                              int biggest137627 = 0;
+                              if(ends[6]>=biggest137627){
+                                biggest137627=ends[6];
+                              }
+                              if(ends[7]>=biggest137627){
+                                biggest137627=ends[7];
+                              }
+                              if(biggest137627 == 1){
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                          }
+                          else {
+                            thread137628(tdone,ends);
+                            thread137629(tdone,ends);
+                            int biggest137630 = 0;
+                            if(ends[4]>=biggest137630){
+                              biggest137630=ends[4];
+                            }
+                            if(ends[5]>=biggest137630){
+                              biggest137630=ends[5];
+                            }
+                            if(biggest137630 == 1){
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                        }
+                        else {
+                          cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 91, column: 7
+                          currsigs.addElement(cylZaxisExtend);
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                      }
+                      else {
+                        S110588=2;
+                        S111447=0;
+                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                          S111447=1;
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                        else {
+                          S111442=0;
+                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                            S111442=1;
+                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                              ends[3]=2;
+                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                              S114976=2;
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
                             }
                             else {
                               active[3]=1;
@@ -3048,45 +3293,11 @@ public class LidRemovalController extends ClockDomain{
                             }
                           }
                           else {
-                            thread119298(tdone,ends);
-                            thread119299(tdone,ends);
-                            int biggest119300 = 0;
-                            if(ends[6]>=biggest119300){
-                              biggest119300=ends[6];
-                            }
-                            if(ends[7]>=biggest119300){
-                              biggest119300=ends[7];
-                            }
-                            if(biggest119300 == 1){
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                          }
-                        }
-                        else {
-                          thread119301(tdone,ends);
-                          thread119302(tdone,ends);
-                          int biggest119303 = 0;
-                          if(ends[4]>=biggest119303){
-                            biggest119303=ends[4];
-                          }
-                          if(ends[5]>=biggest119303){
-                            biggest119303=ends[5];
-                          }
-                          if(biggest119303 == 1){
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
                           }
                         }
-                      }
-                      else {
-                        cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 161, column: 6
-                        currsigs.addElement(cylZaxisExtend);
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
                       }
                     }
                     else {
@@ -3116,8 +3327,8 @@ public class LidRemovalController extends ClockDomain{
     }
   }
 
-  public void thread119254(int [] tdone, int [] ends){
-        switch(S103558){
+  public void thread137581(int [] tdone, int [] ends){
+        switch(S110563){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -3125,16 +3336,16 @@ public class LidRemovalController extends ClockDomain{
         break;
       
       case 1 : 
-        if(mode.getprestatus()){//sysj\lidRemovalController.sysj line: 111, column: 12
-          if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\lidRemovalController.sysj line: 113, column: 8
-            auto_1.setPresent();//sysj\lidRemovalController.sysj line: 113, column: 30
+        if(mode.getprestatus()){//sysj\lidRemovalController.sysj line: 56, column: 12
+          if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\lidRemovalController.sysj line: 57, column: 8
+            auto_1.setPresent();//sysj\lidRemovalController.sysj line: 57, column: 30
             currsigs.addElement(auto_1);
             active[2]=1;
             ends[2]=1;
             tdone[2]=1;
           }
           else {
-            manual_1.setPresent();//sysj\lidRemovalController.sysj line: 115, column: 12
+            manual_1.setPresent();//sysj\lidRemovalController.sysj line: 58, column: 12
             currsigs.addElement(manual_1);
             active[2]=1;
             ends[2]=1;
@@ -3151,29 +3362,29 @@ public class LidRemovalController extends ClockDomain{
     }
   }
 
-  public void thread119252(int [] tdone, int [] ends){
-        S119240=1;
-    S118886=0;
-    if(manual_1.getprestatus()){//sysj\lidRemovalController.sysj line: 263, column: 20
-      S118886=1;
-      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 265, column: 20
-        S118886=2;
+  public void thread137579(int [] tdone, int [] ends){
+        S137567=1;
+    S137213=0;
+    if(manual_1.getprestatus()){//sysj\lidRemovalController.sysj line: 144, column: 20
+      S137213=1;
+      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 145, column: 20
+        S137213=2;
         active[8]=1;
         ends[8]=1;
         tdone[8]=1;
       }
       else {
-        if(cylZaxisExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 269, column: 14
-          cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 269, column: 32
+        if(cylZaxisExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 147, column: 14
+          cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 147, column: 32
           currsigs.addElement(cylZaxisExtend);
-          if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 271, column: 14
-            unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 271, column: 35
+          if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 148, column: 14
+            unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 148, column: 35
             currsigs.addElement(unscrewTurnExtend);
-            if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 273, column: 14
-              lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 273, column: 34
+            if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 149, column: 14
+              lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 149, column: 34
               currsigs.addElement(lidGripperExtend);
-              if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+              if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                 currsigs.addElement(lidEjectExtend);
                 active[8]=1;
                 ends[8]=1;
@@ -3186,8 +3397,8 @@ public class LidRemovalController extends ClockDomain{
               }
             }
             else {
-              if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+              if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                 currsigs.addElement(lidEjectExtend);
                 active[8]=1;
                 ends[8]=1;
@@ -3201,11 +3412,11 @@ public class LidRemovalController extends ClockDomain{
             }
           }
           else {
-            if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 273, column: 14
-              lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 273, column: 34
+            if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 149, column: 14
+              lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 149, column: 34
               currsigs.addElement(lidGripperExtend);
-              if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+              if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                 currsigs.addElement(lidEjectExtend);
                 active[8]=1;
                 ends[8]=1;
@@ -3218,8 +3429,8 @@ public class LidRemovalController extends ClockDomain{
               }
             }
             else {
-              if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+              if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                 currsigs.addElement(lidEjectExtend);
                 active[8]=1;
                 ends[8]=1;
@@ -3234,14 +3445,14 @@ public class LidRemovalController extends ClockDomain{
           }
         }
         else {
-          if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 271, column: 14
-            unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 271, column: 35
+          if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 148, column: 14
+            unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 148, column: 35
             currsigs.addElement(unscrewTurnExtend);
-            if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 273, column: 14
-              lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 273, column: 34
+            if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 149, column: 14
+              lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 149, column: 34
               currsigs.addElement(lidGripperExtend);
-              if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+              if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                 currsigs.addElement(lidEjectExtend);
                 active[8]=1;
                 ends[8]=1;
@@ -3254,8 +3465,8 @@ public class LidRemovalController extends ClockDomain{
               }
             }
             else {
-              if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+              if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                 currsigs.addElement(lidEjectExtend);
                 active[8]=1;
                 ends[8]=1;
@@ -3269,11 +3480,11 @@ public class LidRemovalController extends ClockDomain{
             }
           }
           else {
-            if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 273, column: 14
-              lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 273, column: 34
+            if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 149, column: 14
+              lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 149, column: 34
               currsigs.addElement(lidGripperExtend);
-              if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+              if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                 currsigs.addElement(lidEjectExtend);
                 active[8]=1;
                 ends[8]=1;
@@ -3286,8 +3497,8 @@ public class LidRemovalController extends ClockDomain{
               }
             }
             else {
-              if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 275, column: 14
-                lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 275, column: 32
+              if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 150, column: 14
+                lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 150, column: 32
                 currsigs.addElement(lidEjectExtend);
                 active[8]=1;
                 ends[8]=1;
@@ -3310,121 +3521,167 @@ public class LidRemovalController extends ClockDomain{
     }
   }
 
-  public void thread119250(int [] tdone, int [] ends){
-        S103609=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 171, column: 39
+  public void thread137577(int [] tdone, int [] ends){
+        S110607=1;
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 96, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
     tdone[5]=1;
   }
 
-  public void thread119249(int [] tdone, int [] ends){
-        S103604=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 171, column: 8
+  public void thread137576(int [] tdone, int [] ends){
+        S110602=1;
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 96, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
     tdone[4]=1;
   }
 
-  public void thread119247(int [] tdone, int [] ends){
-        S103664=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 183, column: 39
+  public void thread137574(int [] tdone, int [] ends){
+        S110640=1;
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 102, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
     tdone[7]=1;
   }
 
-  public void thread119246(int [] tdone, int [] ends){
-        S103659=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 183, column: 8
+  public void thread137573(int [] tdone, int [] ends){
+        S110635=1;
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 102, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
     tdone[6]=1;
   }
 
-  public void thread119245(int [] tdone, int [] ends){
-        S118710=1;
-    OK_thread_3 = 0;//sysj\lidRemovalController.sysj line: 129, column: 3
-    BLOCKED_thread_3 = 2;//sysj\lidRemovalController.sysj line: 131, column: 3
-    w_thread_3 = null;//sysj\lidRemovalController.sysj line: 135, column: 3
-    code_thread_3 = 0;//sysj\lidRemovalController.sysj line: 137, column: 3
-    S106084=0;
-    if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 143, column: 20
-      S106084=1;
-      if(manual_1.getprestatus()){//sysj\lidRemovalController.sysj line: 147, column: 20
+  public void thread137572(int [] tdone, int [] ends){
+        S137037=1;
+    OK_thread_3 = 0;//sysj\lidRemovalController.sysj line: 65, column: 3
+    BLOCKED_thread_3 = 2;//sysj\lidRemovalController.sysj line: 66, column: 3
+    w_thread_3 = null;//sysj\lidRemovalController.sysj line: 68, column: 3
+    code_thread_3 = 0;//sysj\lidRemovalController.sysj line: 69, column: 3
+    S114976=0;
+    if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 72, column: 20
+      S114976=1;
+      if(manual_1.getprestatus()){//sysj\lidRemovalController.sysj line: 74, column: 20
         enable_in.setPreempted();
         status_o.setPreempted();
-        S106084=2;
+        S114976=2;
         active[3]=1;
         ends[3]=1;
         tdone[3]=1;
       }
       else {
-        S103583=0;
-        S103567=0;
-        if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 149, column: 5
-          enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 149, column: 5
-          S103567=1;
+        S110588=0;
+        S110572=0;
+        if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 75, column: 5
+          enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 75, column: 5
+          S110572=1;
           active[3]=1;
           ends[3]=1;
           tdone[3]=1;
         }
         else {
-          S103562=0;
-          if(!enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 149, column: 5
-            enable_in.setACK(true);//sysj\lidRemovalController.sysj line: 149, column: 5
-            S103562=1;
-            if(enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 149, column: 5
-              enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 149, column: 5
+          S110567=0;
+          if(!enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 75, column: 5
+            enable_in.setACK(true);//sysj\lidRemovalController.sysj line: 75, column: 5
+            S110567=1;
+            if(enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 75, column: 5
+              enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 75, column: 5
               ends[3]=2;
-              ;//sysj\lidRemovalController.sysj line: 149, column: 5
-              w_thread_3 = (WorkpieceTwin)(enable_in.getVal() == null ? null : ((WorkpieceTwin)enable_in.getVal()));//sysj\lidRemovalController.sysj line: 151, column: 5
-              System.out.println("[LR] Removing the lid from " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 153, column: 5
-              S103583=1;
-              if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 159, column: 21
-                S103583=2;
-                if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 169, column: 21
-                  System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 175, column: 5
-                  S103583=3;
-                  if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 181, column: 21
-                    S103583=4;
-                    if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 195, column: 21
-                      S103583=5;
-                      if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 201, column: 21
-                        S103583=6;
-                        if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 211, column: 21
-                          w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 223, column: 5
-                          System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 225, column: 5
-                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 231, column: 5
-                          S103583=7;
-                          if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 233, column: 13
-                            System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 235, column: 6
-                            code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 237, column: 6
-                            if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 240, column: 37
-                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 241, column: 21
-                              S103583=8;
-                              S103879=0;
-                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                S103879=1;
+              ;//sysj\lidRemovalController.sysj line: 75, column: 5
+              w_thread_3 = (WorkpieceTwin)(enable_in.getVal() == null ? null : ((WorkpieceTwin)enable_in.getVal()));//sysj\lidRemovalController.sysj line: 76, column: 5
+              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 84, column: 5
+              S110588=1;
+              if(w_thread_3 != null){//sysj\lidRemovalController.sysj line: 86, column: 8
+                System.out.println("[LR] Removing the lid from " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 87, column: 6
+                S110597=0;
+                if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 90, column: 22
+                  S110597=1;
+                  if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 95, column: 22
+                    System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 98, column: 6
+                    S110597=2;
+                    if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 101, column: 22
+                      S110597=3;
+                      if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 108, column: 22
+                        S110597=4;
+                        if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 111, column: 22
+                          S110597=5;
+                          if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                            w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                            System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
+                            S110597=6;
+                            if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                              System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                              code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                              if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
+                                S110588=2;
+                                S111447=0;
+                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  S111447=1;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                                else {
+                                  S111442=0;
+                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    S111442=1;
+                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      ends[3]=2;
+                                      ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      S114976=2;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
+                              else {
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                            else {
+                              S110588=2;
+                              S111447=0;
+                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                                S111447=1;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
                               else {
-                                S103874=0;
-                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                                  S103874=1;
-                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
+                                S111442=0;
+                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  S111442=1;
+                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                     ends[3]=2;
-                                    ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                                    S106084=2;
+                                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    S114976=2;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -3442,65 +3699,94 @@ public class LidRemovalController extends ClockDomain{
                                 }
                               }
                             }
-                            else {
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
                           }
                           else {
-                            S103583=8;
-                            S103879=0;
-                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                              S103879=1;
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                            else {
-                              S103874=0;
-                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 247, column: 5
-                                S103874=1;
-                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 247, column: 5
-                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 247, column: 5
-                                  ends[3]=2;
-                                  ;//sysj\lidRemovalController.sysj line: 247, column: 5
-                                  S106084=2;
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                                else {
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
-                              else {
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                            }
+                            lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
+                            currsigs.addElement(lidEjectExtend);
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
                           }
                         }
                         else {
-                          lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 213, column: 6
-                          currsigs.addElement(lidEjectExtend);
+                          unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 112, column: 7
+                          currsigs.addElement(unscrewTurnRetract);
                           active[3]=1;
                           ends[3]=1;
                           tdone[3]=1;
                         }
                       }
                       else {
-                        unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 203, column: 6
-                        currsigs.addElement(unscrewTurnRetract);
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
+                    }
+                    else {
+                      thread137573(tdone,ends);
+                      thread137574(tdone,ends);
+                      int biggest137575 = 0;
+                      if(ends[6]>=biggest137575){
+                        biggest137575=ends[6];
+                      }
+                      if(ends[7]>=biggest137575){
+                        biggest137575=ends[7];
+                      }
+                      if(biggest137575 == 1){
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                  }
+                  else {
+                    thread137576(tdone,ends);
+                    thread137577(tdone,ends);
+                    int biggest137578 = 0;
+                    if(ends[4]>=biggest137578){
+                      biggest137578=ends[4];
+                    }
+                    if(ends[5]>=biggest137578){
+                      biggest137578=ends[5];
+                    }
+                    if(biggest137578 == 1){
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                  }
+                }
+                else {
+                  cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 91, column: 7
+                  currsigs.addElement(cylZaxisExtend);
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+              }
+              else {
+                S110588=2;
+                S111447=0;
+                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                  S111447=1;
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  S111442=0;
+                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
+                    S111442=1;
+                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
+                      ends[3]=2;
+                      ;//sysj\lidRemovalController.sysj line: 136, column: 5
+                      S114976=2;
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
                     }
                     else {
                       active[3]=1;
@@ -3509,45 +3795,11 @@ public class LidRemovalController extends ClockDomain{
                     }
                   }
                   else {
-                    thread119246(tdone,ends);
-                    thread119247(tdone,ends);
-                    int biggest119248 = 0;
-                    if(ends[6]>=biggest119248){
-                      biggest119248=ends[6];
-                    }
-                    if(ends[7]>=biggest119248){
-                      biggest119248=ends[7];
-                    }
-                    if(biggest119248 == 1){
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
-                  }
-                }
-                else {
-                  thread119249(tdone,ends);
-                  thread119250(tdone,ends);
-                  int biggest119251 = 0;
-                  if(ends[4]>=biggest119251){
-                    biggest119251=ends[4];
-                  }
-                  if(ends[5]>=biggest119251){
-                    biggest119251=ends[5];
-                  }
-                  if(biggest119251 == 1){
                     active[3]=1;
                     ends[3]=1;
                     tdone[3]=1;
                   }
                 }
-              }
-              else {
-                cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 161, column: 6
-                currsigs.addElement(cylZaxisExtend);
-                active[3]=1;
-                ends[3]=1;
-                tdone[3]=1;
               }
             }
             else {
@@ -3571,18 +3823,18 @@ public class LidRemovalController extends ClockDomain{
     }
   }
 
-  public void thread119244(int [] tdone, int [] ends){
-        S103558=1;
-    if(mode.getprestatus()){//sysj\lidRemovalController.sysj line: 111, column: 12
-      if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\lidRemovalController.sysj line: 113, column: 8
-        auto_1.setPresent();//sysj\lidRemovalController.sysj line: 113, column: 30
+  public void thread137571(int [] tdone, int [] ends){
+        S110563=1;
+    if(mode.getprestatus()){//sysj\lidRemovalController.sysj line: 56, column: 12
+      if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\lidRemovalController.sysj line: 57, column: 8
+        auto_1.setPresent();//sysj\lidRemovalController.sysj line: 57, column: 30
         currsigs.addElement(auto_1);
         active[2]=1;
         ends[2]=1;
         tdone[2]=1;
       }
       else {
-        manual_1.setPresent();//sysj\lidRemovalController.sysj line: 115, column: 12
+        manual_1.setPresent();//sysj\lidRemovalController.sysj line: 58, column: 12
         currsigs.addElement(manual_1);
         active[2]=1;
         ends[2]=1;
@@ -3603,62 +3855,62 @@ public class LidRemovalController extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S119242){
+      switch(S137569){
         case 0 : 
-          S119242=0;
+          S137569=0;
           break RUN;
         
         case 1 : 
-          S119242=2;
-          S119242=2;
-          auto_1.setClear();//sysj\lidRemovalController.sysj line: 103, column: 2
-          manual_1.setClear();//sysj\lidRemovalController.sysj line: 103, column: 2
-          thread119244(tdone,ends);
-          thread119245(tdone,ends);
-          thread119252(tdone,ends);
-          int biggest119253 = 0;
-          if(ends[2]>=biggest119253){
-            biggest119253=ends[2];
+          S137569=2;
+          S137569=2;
+          auto_1.setClear();//sysj\lidRemovalController.sysj line: 52, column: 2
+          manual_1.setClear();//sysj\lidRemovalController.sysj line: 52, column: 2
+          thread137571(tdone,ends);
+          thread137572(tdone,ends);
+          thread137579(tdone,ends);
+          int biggest137580 = 0;
+          if(ends[2]>=biggest137580){
+            biggest137580=ends[2];
           }
-          if(ends[3]>=biggest119253){
-            biggest119253=ends[3];
+          if(ends[3]>=biggest137580){
+            biggest137580=ends[3];
           }
-          if(ends[8]>=biggest119253){
-            biggest119253=ends[8];
+          if(ends[8]>=biggest137580){
+            biggest137580=ends[8];
           }
-          if(biggest119253 == 1){
+          if(biggest137580 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
         
         case 2 : 
-          auto_1.setClear();//sysj\lidRemovalController.sysj line: 103, column: 2
-          manual_1.setClear();//sysj\lidRemovalController.sysj line: 103, column: 2
-          thread119254(tdone,ends);
-          thread119255(tdone,ends);
-          thread119304(tdone,ends);
-          int biggest119305 = 0;
-          if(ends[2]>=biggest119305){
-            biggest119305=ends[2];
+          auto_1.setClear();//sysj\lidRemovalController.sysj line: 52, column: 2
+          manual_1.setClear();//sysj\lidRemovalController.sysj line: 52, column: 2
+          thread137581(tdone,ends);
+          thread137582(tdone,ends);
+          thread137631(tdone,ends);
+          int biggest137632 = 0;
+          if(ends[2]>=biggest137632){
+            biggest137632=ends[2];
           }
-          if(ends[3]>=biggest119305){
-            biggest119305=ends[3];
+          if(ends[3]>=biggest137632){
+            biggest137632=ends[3];
           }
-          if(ends[8]>=biggest119305){
-            biggest119305=ends[8];
+          if(ends[8]>=biggest137632){
+            biggest137632=ends[8];
           }
-          if(biggest119305 == 1){
+          if(biggest137632 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest119305 == 0){
-            S119242=0;
+          if(biggest137632 == 0){
+            S137569=0;
             active[1]=0;
             ends[1]=0;
-            S119242=0;
+            S137569=0;
             break RUN;
           }
         

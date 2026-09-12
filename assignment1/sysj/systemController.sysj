@@ -17,11 +17,13 @@
  * completion notification. Its view of a rejected bottle is only three
  * states: in production, in recycling, and recovered.
  *
- * The quality decision is made here, at the end of the outfeed, because this
- * is where the workpiece and its quality record arrive together. The
- * conveyor's bottleDone link is untouched, so the labeller can still be
- * inserted between the outfeed end and this reaction without disturbing the
- * recycling path.
+ * The quality decision is made on the outfeed, by the splitter, which is
+ * where the mechanism that acts on it actually is. The coordinator hands the
+ * bottle to the splitter, the splitter reads the record off the twin and
+ * drives the diverter it senses, and the route it reports is the route the
+ * bottle physically took. The labeller still refuses anything its own history
+ * does not justify, so a jammed diverter is caught rather than shipped: two
+ * independent mechanisms, not one.
  */
 SystemController(
 		// from / to the POS
@@ -37,6 +39,11 @@ SystemController(
 
 		// from the end of the line
 		input WorkpieceTwin channel bottleDone;
+
+		// to / from the quality splitter, which sits on the outfeed ahead of
+		// the labeller and routes the bottle physically
+		output WorkpieceTwin channel toSplitter;
+		input  Integer channel splitterRoute;
 
 		// to / from the Labeller
 		output WorkpieceTwin channel labelBottle;
@@ -128,45 +135,51 @@ SystemController(
 		}
 	}
 	||
-	{ // End of line: the quality splitter decides where the bottle goes
+	{ // End of line: the splitter routes, the labeller is the backstop
 		//
-		// Bottles leave the outfeed here and go to the labeller. The quality
-		// decision is made after labelling rather than before, because the
-		// labeller is the station that checks a bottle against its own
-		// history.
+		// One reaction owns the whole tail of the line, because there is
+		// exactly one sender on bottleRejected and a bottle can reach it two
+		// ways: diverted by the splitter, or refused by the labeller after a
+		// diverter fault let it through. The outfeed carries one bottle at a
+		// time, so there is nothing here to overlap anyway.
+		int DIVERTED = 1;
+
 		WorkpieceTwin w = null;
+		int route = 0;
+		boolean divert = false;
+		int done = 0;
+
 		while(true){
 			receive bottleDone;
 			w = (WorkpieceTwin)#bottleDone;
-            while(!GuiSupervisor.qualityAllowed()){ pause; }
+			while(!GuiSupervisor.qualityAllowed()){ pause; }
 
-			// Everything goes to the labeller, flagged or not. The labeller
-			// refuses anything its own record does not justify, so it is the
-			// single gate at the end of the line rather than one of two - a
-			// diverted bottle cannot be labelled even if a diverter failed.
-			send labelBottle(w);
+			// The splitter reads the quality record and throws the diverter.
+			// What comes back is the route the bottle actually took, not the
+			// route that was asked for.
+			send toSplitter(w);
+			receive splitterRoute;
+			route = ((Integer)#splitterRoute).intValue();
+			divert = (route == DIVERTED);
 			pause;
-		}
-	}
-	||
-	{ // Labelled bottles come back from the Labeller
-		//
-		// The labeller can refuse, so this is also where a bottle that failed
-		// its own record check is diverted. A refusal is a quality flag like
-		// any other and is already in the twin's history by the time it
-		// arrives here.
-		WorkpieceTwin w = null;
-		int done = 0;
-		while(true){
-			receive labelDone;
-			w = (WorkpieceTwin)#labelDone;
 
-			if(w.isRejected()){
-				System.out.println("[SC] " + w + " refused a label (" + w.defect()
-						+ "); handing it to the Recycling Station.");
+			// Anything still on the normal path goes to the labeller, which
+			// checks it against its own history. A refusal here is the
+			// backstop for a diverter that did not throw.
+			if(!divert){
+				send labelBottle(w);
+				receive labelDone;
+				w = (WorkpieceTwin)#labelDone;
+				divert = w.isRejected();
+			}
+			pause;
+
+			if(divert){
+				System.out.println("[SC] " + w + " goes to the Recycling Station (" + w.defect() + ").");
 				send bottleRejected(w);
 			}
-			else {
+
+			if(!divert){
 				// The outfeed sets it down in the storage for its batch, which
 				// is where the line ends. The twin retires with it.
 				w.arrived(Machine.BATCH_STORAGE);
@@ -192,6 +205,12 @@ SystemController(
 		ABSTwin plant = new ABSTwin();
 		TwinPublisher out = TwinPublisher.shared();
         GuiSnapshot guiSnapshot = null;
+
+		// Hold every clock domain to a watchable rate. Done from here rather
+		// than from a launcher because the program can be started several
+		// ways - the GUI launcher, the runtime's own main, a test harness -
+		// and the System Controller is in all of them.
+		PlantPace.install();
 
 		while(true){
 			PlantClock.advance();
@@ -231,6 +250,27 @@ SystemController(
 			System.out.println("[SC] " + w + " recovered by the Recycling Station at "
 					+ w.filledMl() + "ml, sealed=" + w.isSealed() + ". " + recovered + " recycled.");
 			OrderBook.recycled(w);
+			pause;
+		}
+	}
+	||
+	{ // Labeller status
+		//
+		// A level like the recycling station's, sampled every tick and
+		// reported only when it changes.
+		int last = -1;
+		int v = 0;
+		while(true){
+			present(labellerStatus){
+				v = ((Integer)#labellerStatus).intValue();
+				if(v != last){
+					if(v == 0){ System.out.println("[SC] Labeller: idle."); }
+					if(v == 1){ System.out.println("[SC] Labeller: printing."); }
+					if(v == 2){ System.out.println("[SC] Labeller: FAULT."); }
+					if(v == 3){ System.out.println("[SC] Labeller: refusing - record not justified."); }
+					last = v;
+				}
+			}
 			pause;
 		}
 	}

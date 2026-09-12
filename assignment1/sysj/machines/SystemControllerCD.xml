@@ -5,9 +5,11 @@
 		<ClockDomain Name="SystemControllerCD" Class="SystemController">
 			<iChannel Name="loadAck"         From="BottleLoaderControllerCD.loadAck" />
 			<iChannel Name="bottleDone"      From="ConveyorControllerCD.bottleDone" />
+			<iChannel Name="splitterRoute"   From="SplitterControllerCD.status" />
 			<iChannel Name="labelDone"       From="LabellerControllerCD.labelDone" />
 			<iChannel Name="bottleRecycled"  From="RecyclingStationControllerCD.bottleRecycled" />
 			<oChannel Name="loadOrder"       To="BottleLoaderControllerCD.loadOrder" />
+			<oChannel Name="toSplitter"      To="SplitterControllerCD.enable" />
 			<oChannel Name="labelBottle"     To="LabellerControllerCD.labelBottle" />
 			<oChannel Name="bottleRejected"  To="RecyclingStationControllerCD.bottleRejected" />
 

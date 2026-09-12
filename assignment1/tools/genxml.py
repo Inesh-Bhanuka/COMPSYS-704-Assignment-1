@@ -122,6 +122,7 @@ SIGNALS = {
 # Where each output channel goes, as "CD.channelName".
 CHANNELS = {
     "SystemControllerCD":       {"loadOrder": "BottleLoaderControllerCD.loadOrder",
+                                 "toSplitter": "SplitterControllerCD.enable",
                                  "labelBottle": "LabellerControllerCD.labelBottle",
                                  "bottleRejected": "RecyclingStationControllerCD.bottleRejected"},
     "BottleLoaderControllerCD": {"loadAck": "SystemControllerCD.loadAck",
@@ -140,12 +141,11 @@ CHANNELS = {
     "LabellerControllerCD":     {"labelDone": "SystemControllerCD.labelDone"},
 
     "RecyclingStationControllerCD": {"bottleRecycled": "SystemControllerCD.bottleRecycled",
-                                     "enableSplitter": "SplitterControllerCD.enable",
                                      "enableLidRemoval": "LidRemovalControllerCD.enable",
                                      "enableDumper": "LiquidDumperControllerCD.enable",
                                      "enableReturn": "BottleReturnControllerCD.enable",
                                      "enableConveyor": "RecyclingConveyorControllerCD.enable"},
-    "SplitterControllerCD":          {"status": "RecyclingStationControllerCD.statusSplitter"},
+    "SplitterControllerCD":          {"status": "SystemControllerCD.splitterRoute"},
     "RecyclingConveyorControllerCD": {"status": "RecyclingStationControllerCD.statusConveyor"},
     "LidRemovalControllerCD":        {"status": "RecyclingStationControllerCD.statusLidRemoval"},
     "LiquidDumperControllerCD":      {"status": "RecyclingStationControllerCD.statusDumper"},

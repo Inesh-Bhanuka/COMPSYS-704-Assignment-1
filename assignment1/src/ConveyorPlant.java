@@ -33,15 +33,15 @@ public class ConveyorPlant extends ClockDomain{
   private boolean injecting_thread_3;//sysj\conveyorPlant.sysj line: 120, column: 3
   private boolean collecting_thread_3;//sysj\conveyorPlant.sysj line: 121, column: 3
   private int i_thread_2;//sysj\conveyorPlant.sysj line: 77, column: 7
-  private int S31435 = 1;
-  private int S31179 = 1;
-  private int S31433 = 1;
+  private int S35215 = 1;
+  private int S34959 = 1;
+  private int S35213 = 1;
   
   private int[] ends = new int[4];
   private int[] tdone = new int[4];
   
-  public void thread31441(int [] tdone, int [] ends){
-        switch(S31433){
+  public void thread35221(int [] tdone, int [] ends){
+        switch(S35213){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -397,8 +397,8 @@ public class ConveyorPlant extends ClockDomain{
     }
   }
 
-  public void thread31440(int [] tdone, int [] ends){
-        switch(S31179){
+  public void thread35220(int [] tdone, int [] ends){
+        switch(S34959){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -1136,9 +1136,9 @@ public class ConveyorPlant extends ClockDomain{
     }
   }
 
-  public void thread31438(int [] tdone, int [] ends){
-        S31433=1;
-    LEN_thread_3 = 6;//sysj\conveyorPlant.sysj line: 118, column: 3
+  public void thread35218(int [] tdone, int [] ends){
+        S35213=1;
+    LEN_thread_3 = PlantTiming.ticks(6);//sysj\conveyorPlant.sysj line: 118, column: 3
     pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 119, column: 3
     injecting_thread_3 = false;//sysj\conveyorPlant.sysj line: 120, column: 3
     collecting_thread_3 = false;//sysj\conveyorPlant.sysj line: 121, column: 3
@@ -1487,9 +1487,9 @@ public class ConveyorPlant extends ClockDomain{
     }
   }
 
-  public void thread31437(int [] tdone, int [] ends){
-        S31179=1;
-    LEN_thread_2 = 6;//sysj\conveyorPlant.sysj line: 32, column: 3
+  public void thread35217(int [] tdone, int [] ends){
+        S34959=1;
+    LEN_thread_2 = PlantTiming.ticks(6);//sysj\conveyorPlant.sysj line: 32, column: 3
     slot_thread_2 = new boolean[LEN_thread_2 + 1];//sysj\conveyorPlant.sysj line: 33, column: 3
     injecting_thread_2 = false;//sysj\conveyorPlant.sysj line: 34, column: 3
     admitted_thread_2 = false;//sysj\conveyorPlant.sysj line: 35, column: 3
@@ -2228,50 +2228,50 @@ public class ConveyorPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S31435){
+      switch(S35215){
         case 0 : 
-          S31435=0;
+          S35215=0;
           break RUN;
         
         case 1 : 
-          S31435=2;
-          S31435=2;
-          thread31437(tdone,ends);
-          thread31438(tdone,ends);
-          int biggest31439 = 0;
-          if(ends[2]>=biggest31439){
-            biggest31439=ends[2];
+          S35215=2;
+          S35215=2;
+          thread35217(tdone,ends);
+          thread35218(tdone,ends);
+          int biggest35219 = 0;
+          if(ends[2]>=biggest35219){
+            biggest35219=ends[2];
           }
-          if(ends[3]>=biggest31439){
-            biggest31439=ends[3];
+          if(ends[3]>=biggest35219){
+            biggest35219=ends[3];
           }
-          if(biggest31439 == 1){
+          if(biggest35219 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
         
         case 2 : 
-          thread31440(tdone,ends);
-          thread31441(tdone,ends);
-          int biggest31442 = 0;
-          if(ends[2]>=biggest31442){
-            biggest31442=ends[2];
+          thread35220(tdone,ends);
+          thread35221(tdone,ends);
+          int biggest35222 = 0;
+          if(ends[2]>=biggest35222){
+            biggest35222=ends[2];
           }
-          if(ends[3]>=biggest31442){
-            biggest31442=ends[3];
+          if(ends[3]>=biggest35222){
+            biggest35222=ends[3];
           }
-          if(biggest31442 == 1){
+          if(biggest35222 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest31442 == 0){
-            S31435=0;
+          if(biggest35222 == 0){
+            S35215=0;
             active[1]=0;
             ends[1]=0;
-            S31435=0;
+            S35215=0;
             break RUN;
           }
         

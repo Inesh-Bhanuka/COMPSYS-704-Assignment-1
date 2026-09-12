@@ -8,7 +8,7 @@ CapperPlant(
 		)
 ->
 {
-	int TURNS = 12;
+	int TURNS = PlantTiming.ticks(12);
 	int turned = 0;
 
 	while(true){

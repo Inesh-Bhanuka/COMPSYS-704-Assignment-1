@@ -35,7 +35,7 @@ RotaryTablePlant(
 		)
 ->
 {
-	int ROT = 6;              // ticks per 60 degree rotation
+	int ROT = PlantTiming.ticks(6);              // ticks per 60 degree rotation
 	int rotating = 0;
 	boolean[] occ = new boolean[6];
 

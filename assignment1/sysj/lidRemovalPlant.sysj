@@ -1,300 +1,151 @@
 /*
-
  * Unscrew Arm and Lid Disposal Plant.
-
  *
-
  * The z axis and the rotary cylinder are modelled as travel counters between
-
  * two end stops, so neither end-of-travel sensor is present mid-stroke and
-
  * the controller cannot mistake a moving cylinder for an arrived one.
-
  *
-
  * The grip is latched rather than levelled: once the cap is held it stays
-
  * held until it is ejected, which is what lets the controller release
-
  * lidGripperExtend while it unscrews and lifts.
-
  *
-
  * The four mechanisms are four parallel reactions rather than one sequential
-
  * block, and that is a compilation constraint as much as a modelling choice.
-
  * Written as one reaction the five present/else tests combine: SystemJ
-
  * enumerates their control paths and generates a single runClockDomain method
-
  * that exceeds the JVM's 64 KB limit. Split, each mechanism is its own small
-
  * state machine and the sizes add instead of multiplying. It is also the more
-
  * faithful model - the cylinders really do move independently - and it
-
  * follows the same shape as ConveyorPlant.
-
  *
-
  * Reactions communicate through the plant's own output signals: the gripper
-
  * tests zAxisLowered rather than keeping a second copy of the z position, and
-
  * the bin counts the local lidDropped signal.
-
  */
-
 LidRemovalPlant(
-
 		// from the System Controller
-
 		input signal enable;
 
-
-
 		// from the Lid Removal Controller
-
 		input signal cylZaxisExtend, unscrewTurnExtend, unscrewTurnRetract;
-
 		input signal lidGripperExtend, lidEjectExtend;
 
-
-
 		// to the Lid Removal Controller
-
 		output signal zAxisLowered, zAxisLifted, turnAtHomePos, turnAtFinalPos;
-
 		output signal lidGripped, lidBinFull;
-
 		)
-
 ->
-
 {
-
 	// a cap has just left the gripper
-
 	signal lidDropped;
 
-
-
 	{ // ---- z axis ----
-
 		//
-
 		// A pneumatic cylinder: it extends while commanded and retracts as
-
 		// soon as the command is released, so the else branch is the return
-
 		// stroke rather than a hold.
-
-		int ZTRAVEL = 4;
-
+		int ZTRAVEL = PlantTiming.ticks(4);
 		int z = 0;              // 0 = lifted, ZTRAVEL = lowered
 
-
-
 		while(true){
-
 			present(enable){
-
 				present(cylZaxisExtend){
-
 					if(z < ZTRAVEL){ z++; }
-
 				}
-
 				else {
-
 					if(z > 0){ z--; }
-
 				}
-
 				if(z == ZTRAVEL){ emit zAxisLowered; }
-
 				if(z == 0){ emit zAxisLifted; }
-
 			}
-
 			pause;
-
 		}
-
 	}
-
 	||
-
 	{ // ---- rotary unscrew cylinder ----
-
-		int TURN = 6;
-
+		int TURN = PlantTiming.ticks(6);
 		int turn = 0;           // 0 = home, TURN = final
 
-
-
 		while(true){
-
 			present(enable){
-
 				present(unscrewTurnExtend){
-
 					if(turn < TURN){ turn++; }
-
 				}
-
 				present(unscrewTurnRetract){
-
 					if(turn > 0){ turn--; }
-
 				}
-
 				if(turn == TURN){ emit turnAtFinalPos; }
-
 				if(turn == 0){ emit turnAtHomePos; }
-
 			}
-
 			pause;
-
 		}
-
 	}
-
 	||
-
 	{ // ---- gripper ----
-
 		//
-
 		// The cap can only be taken with the head down, so this reaction
-
 		// tests the z axis reaction's own sensor output rather than keeping a
-
 		// second copy of the position. Once taken the grip is latched: it is
-
 		// released by the ejector, not by dropping the gripper command.
-
-		int GRIP = 3;
-
+		int GRIP = PlantTiming.ticks(3);
 		int grip = 0;
-
 		boolean held = false;
-
 		boolean ejecting = false;
 
-
-
 		while(true){
-
 			present(enable){
 
-
-
 				present(lidGripperExtend && zAxisLowered){
-
 					if(!held){
-
 						grip++;
-
 						if(grip >= GRIP){
-
 							held = true;
-
 							System.out.println("[LRPlant] Cap gripped.");
-
 						}
-
 					}
-
 				}
-
 				else {
-
 					grip = 0;
-
 				}
-
-
 
 				if(held){ emit lidGripped; }
 
-
-
 				// Edge triggered: the controller holds lidEjectExtend until
-
 				// the grip reads open, and exactly one cap must be released.
-
 				present(lidEjectExtend){
-
 					if(!ejecting){
-
 						ejecting = true;
-
 						if(held){
-
 							held = false;
-
 							emit lidDropped;
-
 						}
-
 					}
-
 				}
-
 				else {
-
 					ejecting = false;
-
 				}
-
 			}
-
 			pause;
-
 		}
-
 	}
-
 	||
-
 	{ // ---- lid waste bin ----
-
-		int BIN_CAPACITY = 3;
-
+		int BIN_CAPACITY = RecyclingCapacity.LID_BIN;
 		RecyclingCapacity bin = new RecyclingCapacity("Lid waste bin", BIN_CAPACITY);
 
-
-
 		while(true){
-
 			present(enable){
-
 				present(lidDropped){
-
 					bin.add();
-
 					System.out.println("[LRPlant] Lid dropped into the waste bin (" + bin.level() + " of " + BIN_CAPACITY + ").");
-
 				}
-
 				present(zAxisLifted && turnAtHomePos && !lidGripped){ bin.service(true); }
                 else { bin.service(false); }
 				if(bin.full()){
-
 					emit lidBinFull;
-
 				}
-
 			}
-
 			pause;
-
 		}
-
 	}
-
 }
-

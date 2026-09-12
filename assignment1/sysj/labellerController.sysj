@@ -129,19 +129,41 @@ boolean permitted = false;
 	}
 	||
 	{ // Consumables, reported through the twin
+		//
+		// labelStockLow and glueLow are levels, not events: once the stock is
+		// down they are present on every tick for the rest of the run. Both
+		// warnings are therefore reported on the transition only, the same
+		// way the bottle loader reports an empty supply. Printed on the level
+		// this reaction emitted a quarter of a million identical lines in a
+		// single run and buried everything else in the log.
 		LabellerTwin t = new LabellerTwin();
 		int labels = 0;
 		int glue = 0;
+		boolean labelsReported = false;
+		boolean glueReported = false;
 
 		while(true){
 			present(labelStock){ labels = (Integer)#labelStock; }
 			present(glueLevel){ glue = (Integer)#glueLevel; }
 
 			present(labelStockLow){
-				System.out.println("[LAB] Label stock low: " + labels + " left.");
+				if(!labelsReported){
+					System.out.println("[LAB] Label stock low: " + labels + " left.");
+					labelsReported = true;
+				}
 			}
+			else {
+				labelsReported = false;
+			}
+
 			present(glueLow){
-				System.out.println("[LAB] Glue low: " + glue + " left.");
+				if(!glueReported){
+					System.out.println("[LAB] Glue low: " + glue + " left.");
+					glueReported = true;
+				}
+			}
+			else {
+				glueReported = false;
 			}
 			pause;
 		}

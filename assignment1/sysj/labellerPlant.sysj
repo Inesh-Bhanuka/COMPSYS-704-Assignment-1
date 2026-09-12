@@ -17,7 +17,7 @@ LabellerPlant(
 ->
 {
 	{ // Printer
-		int PRINT = 4;
+		int PRINT = PlantTiming.ticks(4);
 		int labels = 8;
 		int refillTicks = 0;
 		int printing = 0;
@@ -63,7 +63,7 @@ LabellerPlant(
 	}
 	||
 	{ // Applicator and glue roller
-		int APPLY = 3;
+		int APPLY = PlantTiming.ticks(3);
 		int glue = 10;
 		int refillTicks = 0;
 		int extending = 0;

@@ -1,7 +1,7 @@
 /** Timed drain and tank bookkeeping for the liquid-dumper plant reaction. */
 public final class DumperDrainCycle {
     private final int drainTime, invertedPosition;
-    private final RecyclingCapacity tank=new RecyclingCapacity("Waste tank",6);
+    private final RecyclingCapacity tank=new RecyclingCapacity("Waste tank",RecyclingCapacity.WASTE_TANK);
     private int elapsed;
     private boolean drained;
     public DumperDrainCycle(int drainTime,int invertedPosition) { this.drainTime=drainTime; this.invertedPosition=invertedPosition; }

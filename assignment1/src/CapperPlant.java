@@ -16,7 +16,7 @@ public class CapperPlant extends ClockDomain{
   public Signal capSeated = new Signal("capSeated", Signal.OUTPUT);
   private int TURNS_thread_1;//sysj\capperPlant.sysj line: 11, column: 2
   private int turned_thread_1;//sysj\capperPlant.sysj line: 12, column: 2
-  private int S28581 = 1;
+  private int S32361 = 1;
   
   private int[] ends = new int[2];
   private int[] tdone = new int[2];
@@ -28,15 +28,15 @@ public class CapperPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S28581){
+      switch(S32361){
         case 0 : 
-          S28581=0;
+          S32361=0;
           break RUN;
         
         case 1 : 
-          S28581=2;
-          S28581=2;
-          TURNS_thread_1 = 12;//sysj\capperPlant.sysj line: 11, column: 2
+          S32361=2;
+          S32361=2;
+          TURNS_thread_1 = PlantTiming.ticks(12);//sysj\capperPlant.sysj line: 11, column: 2
           turned_thread_1 = 0;//sysj\capperPlant.sysj line: 12, column: 2
           if(enable.getprestatus()){//sysj\capperPlant.sysj line: 15, column: 11
             if(screwOn.getprestatus()){//sysj\capperPlant.sysj line: 16, column: 12

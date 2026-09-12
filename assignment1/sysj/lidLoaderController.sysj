@@ -82,11 +82,21 @@ boolean permitted = false;
 						}
 					}
 
-					// Push a lid to the pick-up point, then retract
+					// Push a lid to the pick-up point, then retract.
+					//
+					// pusherExtended only says the cylinder moved - the plant
+					// raises it whether or not a lid actually came out of the
+					// magazine. lidAtPickup is the sensor that answers the
+					// question the controller is really asking, so the fetch
+					// waits on that. Without it, an empty magazine that the
+					// refill check missed by a tick sends the arm to collect
+					// nothing and the machine blocks forever on WPgripped,
+					// taking the table's barrier down with it.
 					abort(immediate pusherExtended){
 						sustain pusherExtend;
 					}
 					await(immediate pusherRetracted);
+					await(immediate lidAtPickup);
 
 					// Fetch it
 					abort(immediate armAtSource){

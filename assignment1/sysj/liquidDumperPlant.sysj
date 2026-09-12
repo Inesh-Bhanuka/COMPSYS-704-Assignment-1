@@ -1,139 +1,71 @@
 /*
-
  * Inverter and Waste Tank Plant.
-
  *
-
  * The clamp and the rotation are travel counters between two end stops, so a
-
  * partially closed clamp reads neither open nor closed and the controller
-
  * cannot start rotating early.
-
  *
-
  * Draining is timed, not sensed. DRAIN is the maximum time a full bottle
-
  * takes to empty; the plant raises bottleDrained once it has elapsed with the
-
  * bottle inverted and the valve open, and the level in the waste tank rises
-
  * by one bottle. wasteTankLevel is a valued output emitted every tick, so the
-
  * controller can sample it at any point in its own reaction.
-
  */
-
 LiquidDumperPlant(
-
 		// from the System Controller
-
 		input signal enable;
 
-
-
 		// from the Liquid Dumper Controller
-
 		input signal cylClampBottleExtend, invertRotateExtend, invertRotateRetract;
-
 		input signal drainValveOnOff;
 
-
-
 		// to the Liquid Dumper Controller
-
 		output signal clampClosed, bottleInverted, bottleUpright, bottleDrained;
-
 		output Integer signal wasteTankLevel;
-
 		)
-
 ->
-
 {
-
-	int CLAMP = 3;
-
-	int ROTATE = 5;
-
-	int DRAIN = 8;    // maximum time for a full bottle to drain
-
-
+	int CLAMP = PlantTiming.ticks(3);
+	int ROTATE = PlantTiming.ticks(5);
+	int DRAIN = PlantTiming.ticks(8);    // maximum time for a full bottle to drain
 
 	int clamp = 0;
-
 	int angle = 0;
-
 	DumperDrainCycle drain = new DumperDrainCycle(DRAIN, ROTATE);
 
-
-
 	while(true){
-
 		present(enable){
 
-
-
 			// ---- clamp ----
-
 			present(cylClampBottleExtend){
-
 				if(clamp < CLAMP){ clamp++; }
-
 			}
-
 			else {
-
 				if(clamp > 0){ clamp--; }
-
 			}
-
 			if(clamp == CLAMP){ emit clampClosed; }
 
-
-
 			// ---- inversion ----
-
 			present(invertRotateExtend){
-
 				if(angle < ROTATE){ angle++; }
-
 			}
-
 			present(invertRotateRetract){
-
 				if(angle > 0){ angle--; }
-
 			}
-
 			if(angle == ROTATE){ emit bottleInverted; }
-
 			if(angle == 0){ emit bottleUpright; }
 
-
-
 			// ---- drain ----
-
 			present(drainValveOnOff){
 				drain.openValve(angle);
 			}
-
 			if(drain.drained()){ emit bottleDrained; }
 
-
-
 			// The clamp opening means this bottle has left and the next one
-
 			// will be a fresh, full bottle.
-
 			drain.finishTick(clamp, angle);
 			emit wasteTankLevel(drain.level());
-
 		}
-
 		pause;
-
 	}
-
 }
-

@@ -14,449 +14,325 @@ public class RecyclingStationController extends ClockDomain{
   public Signal operatorPermit = new Signal("operatorPermit", Signal.INPUT);
   public Signal recyclingStatus = new Signal("recyclingStatus", Signal.OUTPUT);
   public input_Channel bottleRejected_in = new input_Channel();
-  public input_Channel statusSplitter_in = new input_Channel();
   public input_Channel statusConveyor_in = new input_Channel();
   public input_Channel statusLidRemoval_in = new input_Channel();
   public input_Channel statusDumper_in = new input_Channel();
   public input_Channel statusReturn_in = new input_Channel();
   public output_Channel bottleRecycled_o = new output_Channel();
-  public output_Channel enableSplitter_o = new output_Channel();
   public output_Channel enableLidRemoval_o = new output_Channel();
   public output_Channel enableDumper_o = new output_Channel();
   public output_Channel enableReturn_o = new output_Channel();
   public output_Channel enableConveyor_o = new output_Channel();
   private Signal stationState_1;
-  private int cur_thread_2;//sysj\recyclingStationController.sysj line: 80, column: 3
-  private RecyclingRecord m_thread_3;//sysj\recyclingStationController.sysj line: 108, column: 3
-  private int TO_LID_thread_3;//sysj\recyclingStationController.sysj line: 111, column: 3
-  private int TO_DUMP_thread_3;//sysj\recyclingStationController.sysj line: 112, column: 3
-  private int TO_RETURN_thread_3;//sysj\recyclingStationController.sysj line: 113, column: 3
-  private int DISCHARGE_thread_3;//sysj\recyclingStationController.sysj line: 114, column: 3
-  private WorkpieceTwin w_thread_3;//sysj\recyclingStationController.sysj line: 116, column: 3
-  private boolean permitted_thread_3;//sysj\recyclingStationController.sysj line: 126, column: 1
-  private int S207627 = 1;
-  private int S200417 = 1;
-  private int S207625 = 1;
-  private int S200441 = 1;
-  private int S200425 = 1;
-  private int S200420 = 1;
-  private int S200462 = 1;
-  private int S200457 = 1;
-  private int S200506 = 1;
-  private int S200501 = 1;
-  private int S200642 = 1;
-  private int S200637 = 1;
-  private int S200686 = 1;
-  private int S200681 = 1;
-  private int S200774 = 1;
-  private int S200769 = 1;
-  private int S200818 = 1;
-  private int S200813 = 1;
-  private int S200906 = 1;
-  private int S200901 = 1;
-  private int S200950 = 1;
-  private int S200945 = 1;
-  private int S201038 = 1;
-  private int S201033 = 1;
-  private int S201082 = 1;
-  private int S201077 = 1;
-  private int S201170 = 1;
-  private int S201165 = 1;
-  private int S201214 = 1;
-  private int S201209 = 1;
-  private int S201302 = 1;
-  private int S201297 = 1;
-  private int S201346 = 1;
-  private int S201341 = 1;
-  private int S201434 = 1;
-  private int S201429 = 1;
-  private int S201478 = 1;
-  private int S201473 = 1;
-  private int S201566 = 1;
-  private int S201561 = 1;
+  private int cur_thread_2;//sysj\recyclingStationController.sysj line: 101, column: 3
+  private RecyclingQueue q_thread_3;//sysj\recyclingStationController.sysj line: 118, column: 3
+  private RecyclingRecord m_thread_3;//sysj\recyclingStationController.sysj line: 119, column: 3
+  private WorkpieceTwin w_thread_3;//sysj\recyclingStationController.sysj line: 120, column: 3
+  private RecyclingQueue q_thread_4;//sysj\recyclingStationController.sysj line: 135, column: 3
+  private RecyclingRecord m_thread_4;//sysj\recyclingStationController.sysj line: 136, column: 3
+  private int TO_LID_thread_4;//sysj\recyclingStationController.sysj line: 139, column: 3
+  private int TO_DUMP_thread_4;//sysj\recyclingStationController.sysj line: 140, column: 3
+  private int TO_RETURN_thread_4;//sysj\recyclingStationController.sysj line: 141, column: 3
+  private int DISCHARGE_thread_4;//sysj\recyclingStationController.sysj line: 142, column: 3
+  private WorkpieceTwin w_thread_4;//sysj\recyclingStationController.sysj line: 144, column: 3
+  private boolean permitted_thread_4;//sysj\recyclingStationController.sysj line: 145, column: 3
+  private int S271004 = 1;
+  private int S264554 = 1;
+  private int S264982 = 1;
+  private int S264626 = 1;
+  private int S264566 = 1;
+  private int S264561 = 1;
+  private int S271002 = 1;
+  private int S264988 = 1;
+  private int S265009 = 1;
+  private int S265004 = 1;
+  private int S265053 = 1;
+  private int S265048 = 1;
+  private int S265141 = 1;
+  private int S265136 = 1;
+  private int S265185 = 1;
+  private int S265180 = 1;
+  private int S265273 = 1;
+  private int S265268 = 1;
+  private int S265317 = 1;
+  private int S265312 = 1;
+  private int S265405 = 1;
+  private int S265400 = 1;
+  private int S265449 = 1;
+  private int S265444 = 1;
+  private int S265537 = 1;
+  private int S265532 = 1;
+  private int S265581 = 1;
+  private int S265576 = 1;
+  private int S265669 = 1;
+  private int S265664 = 1;
+  private int S265713 = 1;
+  private int S265708 = 1;
+  private int S265801 = 1;
+  private int S265796 = 1;
+  private int S265845 = 1;
+  private int S265840 = 1;
+  private int S265933 = 1;
+  private int S265928 = 1;
   
-  private int[] ends = new int[4];
-  private int[] tdone = new int[4];
+  private int[] ends = new int[5];
+  private int[] tdone = new int[5];
   
-  public void thread207633(int [] tdone, int [] ends){
-        switch(S207625){
+  public void thread271012(int [] tdone, int [] ends){
+        switch(S271002){
       case 0 : 
-        active[3]=0;
-        ends[3]=0;
-        tdone[3]=1;
+        active[4]=0;
+        ends[4]=0;
+        tdone[4]=1;
         break;
       
       case 1 : 
-        switch(S200441){
+        switch(S264988){
           case 0 : 
-            switch(S200425){
-              case 0 : 
-                if(!bottleRejected_in.isPartnerPresent() || bottleRejected_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 124, column: 4
-                  bottleRejected_in.setACK(false);//sysj\recyclingStationController.sysj line: 124, column: 4
-                  S200425=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-                else {
-                  switch(S200420){
-                    case 0 : 
-                      if(!bottleRejected_in.isREQ()){//sysj\recyclingStationController.sysj line: 124, column: 4
-                        bottleRejected_in.setACK(true);//sysj\recyclingStationController.sysj line: 124, column: 4
-                        S200420=1;
-                        if(bottleRejected_in.isREQ()){//sysj\recyclingStationController.sysj line: 124, column: 4
-                          bottleRejected_in.setACK(false);//sysj\recyclingStationController.sysj line: 124, column: 4
-                          ends[3]=2;
-                          ;//sysj\recyclingStationController.sysj line: 124, column: 4
-                          w_thread_3 = (WorkpieceTwin)(bottleRejected_in.getVal() == null ? null : ((WorkpieceTwin)bottleRejected_in.getVal()));//sysj\recyclingStationController.sysj line: 125, column: 4
-                          permitted_thread_3 = false;//sysj\recyclingStationController.sysj line: 126, column: 1
-                          S200441=1;
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                        else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                      }
-                      else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      break;
-                    
-                    case 1 : 
-                      if(bottleRejected_in.isREQ()){//sysj\recyclingStationController.sysj line: 124, column: 4
-                        bottleRejected_in.setACK(false);//sysj\recyclingStationController.sysj line: 124, column: 4
-                        ends[3]=2;
-                        ;//sysj\recyclingStationController.sysj line: 124, column: 4
-                        w_thread_3 = (WorkpieceTwin)(bottleRejected_in.getVal() == null ? null : ((WorkpieceTwin)bottleRejected_in.getVal()));//sysj\recyclingStationController.sysj line: 125, column: 4
-                        permitted_thread_3 = false;//sysj\recyclingStationController.sysj line: 126, column: 1
-                        S200441=1;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      break;
-                    
-                  }
-                }
-                break;
-              
-              case 1 : 
-                S200425=1;
-                S200425=0;
-                if(!bottleRejected_in.isPartnerPresent() || bottleRejected_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 124, column: 4
-                  bottleRejected_in.setACK(false);//sysj\recyclingStationController.sysj line: 124, column: 4
-                  S200425=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-                else {
-                  S200420=0;
-                  if(!bottleRejected_in.isREQ()){//sysj\recyclingStationController.sysj line: 124, column: 4
-                    bottleRejected_in.setACK(true);//sysj\recyclingStationController.sysj line: 124, column: 4
-                    S200420=1;
-                    if(bottleRejected_in.isREQ()){//sysj\recyclingStationController.sysj line: 124, column: 4
-                      bottleRejected_in.setACK(false);//sysj\recyclingStationController.sysj line: 124, column: 4
-                      ends[3]=2;
-                      ;//sysj\recyclingStationController.sysj line: 124, column: 4
-                      w_thread_3 = (WorkpieceTwin)(bottleRejected_in.getVal() == null ? null : ((WorkpieceTwin)bottleRejected_in.getVal()));//sysj\recyclingStationController.sysj line: 125, column: 4
-                      permitted_thread_3 = false;//sysj\recyclingStationController.sysj line: 126, column: 1
-                      S200441=1;
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
-                    else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
-                  }
-                  else {
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
-                  }
-                }
-                break;
-              
+            if(!q_thread_4.hasWork()){//sysj\recyclingStationController.sysj line: 150, column: 10
+              active[4]=1;
+              ends[4]=1;
+              tdone[4]=1;
+            }
+            else {
+              ends[4]=2;
+              ;//sysj\recyclingStationController.sysj line: 150, column: 4
+              w_thread_4 = q_thread_4.take();//sysj\recyclingStationController.sysj line: 154, column: 4
+              m_thread_4.beginCycle(w_thread_4);//sysj\recyclingStationController.sysj line: 155, column: 4
+              stationState_1.setPresent();//sysj\recyclingStationController.sysj line: 156, column: 4
+              currsigs.addElement(stationState_1);
+              stationState_1.setValue(1);//sysj\recyclingStationController.sysj line: 156, column: 4
+              permitted_thread_4 = false;//sysj\recyclingStationController.sysj line: 161, column: 4
+              S264988=1;
+              active[4]=1;
+              ends[4]=1;
+              tdone[4]=1;
             }
             break;
           
           case 1 : 
-            S200441=1;
-            S200441=2;
-            if(!permitted_thread_3){//sysj\recyclingStationController.sysj line: 128, column: 19
-              permitted_thread_3 = GuiStep.take("RECYCLE", (GuiPermit)(operatorPermit.getpreval() == null ? null : ((GuiPermit)operatorPermit.getpreval())));//sysj\recyclingStationController.sysj line: 129, column: 17
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
+            S264988=1;
+            S264988=2;
+            if(!permitted_thread_4){//sysj\recyclingStationController.sysj line: 163, column: 10
+              permitted_thread_4 = GuiStep.take("RECYCLE", (GuiPermit)(operatorPermit.getpreval() == null ? null : ((GuiPermit)operatorPermit.getpreval())));//sysj\recyclingStationController.sysj line: 164, column: 5
+              active[4]=1;
+              ends[4]=1;
+              tdone[4]=1;
             }
             else {
-              ends[3]=2;
-              ;//sysj\recyclingStationController.sysj line: 128, column: 13
-              S200441=3;
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
+              ends[4]=2;
+              ;//sysj\recyclingStationController.sysj line: 163, column: 4
+              S264988=3;
+              active[4]=1;
+              ends[4]=1;
+              tdone[4]=1;
             }
             break;
           
           case 2 : 
-            if(!permitted_thread_3){//sysj\recyclingStationController.sysj line: 128, column: 19
-              permitted_thread_3 = GuiStep.take("RECYCLE", (GuiPermit)(operatorPermit.getpreval() == null ? null : ((GuiPermit)operatorPermit.getpreval())));//sysj\recyclingStationController.sysj line: 129, column: 17
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
+            if(!permitted_thread_4){//sysj\recyclingStationController.sysj line: 163, column: 10
+              permitted_thread_4 = GuiStep.take("RECYCLE", (GuiPermit)(operatorPermit.getpreval() == null ? null : ((GuiPermit)operatorPermit.getpreval())));//sysj\recyclingStationController.sysj line: 164, column: 5
+              active[4]=1;
+              ends[4]=1;
+              tdone[4]=1;
             }
             else {
-              ends[3]=2;
-              ;//sysj\recyclingStationController.sysj line: 128, column: 13
-              S200441=3;
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
+              ends[4]=2;
+              ;//sysj\recyclingStationController.sysj line: 163, column: 4
+              S264988=3;
+              active[4]=1;
+              ends[4]=1;
+              tdone[4]=1;
             }
             break;
           
           case 3 : 
-            S200441=3;
-            m_thread_3.begin(w_thread_3);//sysj\recyclingStationController.sysj line: 134, column: 4
-            stationState_1.setPresent();//sysj\recyclingStationController.sysj line: 135, column: 4
-            currsigs.addElement(stationState_1);
-            stationState_1.setValue(1);//sysj\recyclingStationController.sysj line: 135, column: 4
-            S200441=4;
-            S200462=0;
-            if(!enableSplitter_o.isPartnerPresent() || enableSplitter_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 138, column: 4
-              enableSplitter_o.setREQ(false);//sysj\recyclingStationController.sysj line: 138, column: 4
-              S200462=1;
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
+            S264988=3;
+            S264988=4;
+            S265009=0;
+            if(!enableConveyor_o.isPartnerPresent() || enableConveyor_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 170, column: 4
+              enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 170, column: 4
+              S265009=1;
+              active[4]=1;
+              ends[4]=1;
+              tdone[4]=1;
             }
             else {
-              S200457=0;
-              if(enableSplitter_o.isACK()){//sysj\recyclingStationController.sysj line: 138, column: 4
-                enableSplitter_o.setVal(w_thread_3);//sysj\recyclingStationController.sysj line: 138, column: 4
-                S200457=1;
-                if(!enableSplitter_o.isACK()){//sysj\recyclingStationController.sysj line: 138, column: 4
-                  enableSplitter_o.setREQ(false);//sysj\recyclingStationController.sysj line: 138, column: 4
-                  ends[3]=2;
-                  ;//sysj\recyclingStationController.sysj line: 138, column: 4
-                  S200441=5;
-                  S200506=0;
-                  if(!statusSplitter_in.isPartnerPresent() || statusSplitter_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 139, column: 4
-                    statusSplitter_in.setACK(false);//sysj\recyclingStationController.sysj line: 139, column: 4
-                    S200506=1;
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
+              S265004=0;
+              if(enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 170, column: 4
+                enableConveyor_o.setVal(new Integer(TO_LID_thread_4));//sysj\recyclingStationController.sysj line: 170, column: 4
+                S265004=1;
+                if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 170, column: 4
+                  enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 170, column: 4
+                  ends[4]=2;
+                  ;//sysj\recyclingStationController.sysj line: 170, column: 4
+                  S264988=5;
+                  S265053=0;
+                  if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 171, column: 4
+                    statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 171, column: 4
+                    S265053=1;
+                    active[4]=1;
+                    ends[4]=1;
+                    tdone[4]=1;
                   }
                   else {
-                    S200501=0;
-                    if(!statusSplitter_in.isREQ()){//sysj\recyclingStationController.sysj line: 139, column: 4
-                      statusSplitter_in.setACK(true);//sysj\recyclingStationController.sysj line: 139, column: 4
-                      S200501=1;
-                      if(statusSplitter_in.isREQ()){//sysj\recyclingStationController.sysj line: 139, column: 4
-                        statusSplitter_in.setACK(false);//sysj\recyclingStationController.sysj line: 139, column: 4
-                        ends[3]=2;
-                        ;//sysj\recyclingStationController.sysj line: 139, column: 4
-                        m_thread_3.record(((Integer)(statusSplitter_in.getVal() == null ? null : ((Integer)statusSplitter_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 140, column: 4
-                        S200441=6;
-                        if(m_thread_3.jammed()){//sysj\recyclingStationController.sysj line: 146, column: 4
-                          m_thread_3.reportJam();//sysj\recyclingStationController.sysj line: 147, column: 5
-                          stationState_1.setPresent();//sysj\recyclingStationController.sysj line: 149, column: 6
-                          currsigs.addElement(stationState_1);
-                          stationState_1.setValue(2);//sysj\recyclingStationController.sysj line: 149, column: 6
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                        else {
-                          S200441=7;
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
+                    S265048=0;
+                    if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 171, column: 4
+                      statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 171, column: 4
+                      S265048=1;
+                      if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 171, column: 4
+                        statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 171, column: 4
+                        ends[4]=2;
+                        ;//sysj\recyclingStationController.sysj line: 171, column: 4
+                        m_thread_4.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 172, column: 4
+                        S264988=6;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
                       }
                       else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
                       }
                     }
                     else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
                     }
                   }
                 }
                 else {
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
                 }
               }
               else {
-                active[3]=1;
-                ends[3]=1;
-                tdone[3]=1;
+                active[4]=1;
+                ends[4]=1;
+                tdone[4]=1;
               }
             }
             break;
           
           case 4 : 
-            switch(S200462){
+            switch(S265009){
               case 0 : 
-                if(!enableSplitter_o.isPartnerPresent() || enableSplitter_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 138, column: 4
-                  enableSplitter_o.setREQ(false);//sysj\recyclingStationController.sysj line: 138, column: 4
-                  S200462=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
+                if(!enableConveyor_o.isPartnerPresent() || enableConveyor_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 170, column: 4
+                  enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 170, column: 4
+                  S265009=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
                 }
                 else {
-                  switch(S200457){
+                  switch(S265004){
                     case 0 : 
-                      if(enableSplitter_o.isACK()){//sysj\recyclingStationController.sysj line: 138, column: 4
-                        enableSplitter_o.setVal(w_thread_3);//sysj\recyclingStationController.sysj line: 138, column: 4
-                        S200457=1;
-                        if(!enableSplitter_o.isACK()){//sysj\recyclingStationController.sysj line: 138, column: 4
-                          enableSplitter_o.setREQ(false);//sysj\recyclingStationController.sysj line: 138, column: 4
-                          ends[3]=2;
-                          ;//sysj\recyclingStationController.sysj line: 138, column: 4
-                          S200441=5;
-                          S200506=0;
-                          if(!statusSplitter_in.isPartnerPresent() || statusSplitter_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 139, column: 4
-                            statusSplitter_in.setACK(false);//sysj\recyclingStationController.sysj line: 139, column: 4
-                            S200506=1;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
+                      if(enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 170, column: 4
+                        enableConveyor_o.setVal(new Integer(TO_LID_thread_4));//sysj\recyclingStationController.sysj line: 170, column: 4
+                        S265004=1;
+                        if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 170, column: 4
+                          enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 170, column: 4
+                          ends[4]=2;
+                          ;//sysj\recyclingStationController.sysj line: 170, column: 4
+                          S264988=5;
+                          S265053=0;
+                          if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 171, column: 4
+                            statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 171, column: 4
+                            S265053=1;
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
                           }
                           else {
-                            S200501=0;
-                            if(!statusSplitter_in.isREQ()){//sysj\recyclingStationController.sysj line: 139, column: 4
-                              statusSplitter_in.setACK(true);//sysj\recyclingStationController.sysj line: 139, column: 4
-                              S200501=1;
-                              if(statusSplitter_in.isREQ()){//sysj\recyclingStationController.sysj line: 139, column: 4
-                                statusSplitter_in.setACK(false);//sysj\recyclingStationController.sysj line: 139, column: 4
-                                ends[3]=2;
-                                ;//sysj\recyclingStationController.sysj line: 139, column: 4
-                                m_thread_3.record(((Integer)(statusSplitter_in.getVal() == null ? null : ((Integer)statusSplitter_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 140, column: 4
-                                S200441=6;
-                                if(m_thread_3.jammed()){//sysj\recyclingStationController.sysj line: 146, column: 4
-                                  m_thread_3.reportJam();//sysj\recyclingStationController.sysj line: 147, column: 5
-                                  stationState_1.setPresent();//sysj\recyclingStationController.sysj line: 149, column: 6
-                                  currsigs.addElement(stationState_1);
-                                  stationState_1.setValue(2);//sysj\recyclingStationController.sysj line: 149, column: 6
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                                else {
-                                  S200441=7;
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
+                            S265048=0;
+                            if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 171, column: 4
+                              statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 171, column: 4
+                              S265048=1;
+                              if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 171, column: 4
+                                statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 171, column: 4
+                                ends[4]=2;
+                                ;//sysj\recyclingStationController.sysj line: 171, column: 4
+                                m_thread_4.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 172, column: 4
+                                S264988=6;
+                                active[4]=1;
+                                ends[4]=1;
+                                tdone[4]=1;
                               }
                               else {
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
+                                active[4]=1;
+                                ends[4]=1;
+                                tdone[4]=1;
                               }
                             }
                             else {
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
+                              active[4]=1;
+                              ends[4]=1;
+                              tdone[4]=1;
                             }
                           }
                         }
                         else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
                         }
                       }
                       else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
                       }
                       break;
                     
                     case 1 : 
-                      if(!enableSplitter_o.isACK()){//sysj\recyclingStationController.sysj line: 138, column: 4
-                        enableSplitter_o.setREQ(false);//sysj\recyclingStationController.sysj line: 138, column: 4
-                        ends[3]=2;
-                        ;//sysj\recyclingStationController.sysj line: 138, column: 4
-                        S200441=5;
-                        S200506=0;
-                        if(!statusSplitter_in.isPartnerPresent() || statusSplitter_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 139, column: 4
-                          statusSplitter_in.setACK(false);//sysj\recyclingStationController.sysj line: 139, column: 4
-                          S200506=1;
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
+                      if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 170, column: 4
+                        enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 170, column: 4
+                        ends[4]=2;
+                        ;//sysj\recyclingStationController.sysj line: 170, column: 4
+                        S264988=5;
+                        S265053=0;
+                        if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 171, column: 4
+                          statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 171, column: 4
+                          S265053=1;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
                         }
                         else {
-                          S200501=0;
-                          if(!statusSplitter_in.isREQ()){//sysj\recyclingStationController.sysj line: 139, column: 4
-                            statusSplitter_in.setACK(true);//sysj\recyclingStationController.sysj line: 139, column: 4
-                            S200501=1;
-                            if(statusSplitter_in.isREQ()){//sysj\recyclingStationController.sysj line: 139, column: 4
-                              statusSplitter_in.setACK(false);//sysj\recyclingStationController.sysj line: 139, column: 4
-                              ends[3]=2;
-                              ;//sysj\recyclingStationController.sysj line: 139, column: 4
-                              m_thread_3.record(((Integer)(statusSplitter_in.getVal() == null ? null : ((Integer)statusSplitter_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 140, column: 4
-                              S200441=6;
-                              if(m_thread_3.jammed()){//sysj\recyclingStationController.sysj line: 146, column: 4
-                                m_thread_3.reportJam();//sysj\recyclingStationController.sysj line: 147, column: 5
-                                stationState_1.setPresent();//sysj\recyclingStationController.sysj line: 149, column: 6
-                                currsigs.addElement(stationState_1);
-                                stationState_1.setValue(2);//sysj\recyclingStationController.sysj line: 149, column: 6
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                              else {
-                                S200441=7;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
+                          S265048=0;
+                          if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 171, column: 4
+                            statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 171, column: 4
+                            S265048=1;
+                            if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 171, column: 4
+                              statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 171, column: 4
+                              ends[4]=2;
+                              ;//sysj\recyclingStationController.sysj line: 171, column: 4
+                              m_thread_4.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 172, column: 4
+                              S264988=6;
+                              active[4]=1;
+                              ends[4]=1;
+                              tdone[4]=1;
                             }
                             else {
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
+                              active[4]=1;
+                              ends[4]=1;
+                              tdone[4]=1;
                             }
                           }
                           else {
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
                           }
                         }
                       }
                       else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
                       }
                       break;
                     
@@ -465,83 +341,71 @@ public class RecyclingStationController extends ClockDomain{
                 break;
               
               case 1 : 
-                S200462=1;
-                S200462=0;
-                if(!enableSplitter_o.isPartnerPresent() || enableSplitter_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 138, column: 4
-                  enableSplitter_o.setREQ(false);//sysj\recyclingStationController.sysj line: 138, column: 4
-                  S200462=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
+                S265009=1;
+                S265009=0;
+                if(!enableConveyor_o.isPartnerPresent() || enableConveyor_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 170, column: 4
+                  enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 170, column: 4
+                  S265009=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
                 }
                 else {
-                  S200457=0;
-                  if(enableSplitter_o.isACK()){//sysj\recyclingStationController.sysj line: 138, column: 4
-                    enableSplitter_o.setVal(w_thread_3);//sysj\recyclingStationController.sysj line: 138, column: 4
-                    S200457=1;
-                    if(!enableSplitter_o.isACK()){//sysj\recyclingStationController.sysj line: 138, column: 4
-                      enableSplitter_o.setREQ(false);//sysj\recyclingStationController.sysj line: 138, column: 4
-                      ends[3]=2;
-                      ;//sysj\recyclingStationController.sysj line: 138, column: 4
-                      S200441=5;
-                      S200506=0;
-                      if(!statusSplitter_in.isPartnerPresent() || statusSplitter_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 139, column: 4
-                        statusSplitter_in.setACK(false);//sysj\recyclingStationController.sysj line: 139, column: 4
-                        S200506=1;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
+                  S265004=0;
+                  if(enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 170, column: 4
+                    enableConveyor_o.setVal(new Integer(TO_LID_thread_4));//sysj\recyclingStationController.sysj line: 170, column: 4
+                    S265004=1;
+                    if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 170, column: 4
+                      enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 170, column: 4
+                      ends[4]=2;
+                      ;//sysj\recyclingStationController.sysj line: 170, column: 4
+                      S264988=5;
+                      S265053=0;
+                      if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 171, column: 4
+                        statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 171, column: 4
+                        S265053=1;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
                       }
                       else {
-                        S200501=0;
-                        if(!statusSplitter_in.isREQ()){//sysj\recyclingStationController.sysj line: 139, column: 4
-                          statusSplitter_in.setACK(true);//sysj\recyclingStationController.sysj line: 139, column: 4
-                          S200501=1;
-                          if(statusSplitter_in.isREQ()){//sysj\recyclingStationController.sysj line: 139, column: 4
-                            statusSplitter_in.setACK(false);//sysj\recyclingStationController.sysj line: 139, column: 4
-                            ends[3]=2;
-                            ;//sysj\recyclingStationController.sysj line: 139, column: 4
-                            m_thread_3.record(((Integer)(statusSplitter_in.getVal() == null ? null : ((Integer)statusSplitter_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 140, column: 4
-                            S200441=6;
-                            if(m_thread_3.jammed()){//sysj\recyclingStationController.sysj line: 146, column: 4
-                              m_thread_3.reportJam();//sysj\recyclingStationController.sysj line: 147, column: 5
-                              stationState_1.setPresent();//sysj\recyclingStationController.sysj line: 149, column: 6
-                              currsigs.addElement(stationState_1);
-                              stationState_1.setValue(2);//sysj\recyclingStationController.sysj line: 149, column: 6
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                            else {
-                              S200441=7;
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
+                        S265048=0;
+                        if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 171, column: 4
+                          statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 171, column: 4
+                          S265048=1;
+                          if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 171, column: 4
+                            statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 171, column: 4
+                            ends[4]=2;
+                            ;//sysj\recyclingStationController.sysj line: 171, column: 4
+                            m_thread_4.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 172, column: 4
+                            S264988=6;
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
                           }
                           else {
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
                           }
                         }
                         else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
                         }
                       }
                     }
                     else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
                     }
                   }
                   else {
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
+                    active[4]=1;
+                    ends[4]=1;
+                    tdone[4]=1;
                   }
                 }
                 break;
@@ -550,83 +414,59 @@ public class RecyclingStationController extends ClockDomain{
             break;
           
           case 5 : 
-            switch(S200506){
+            switch(S265053){
               case 0 : 
-                if(!statusSplitter_in.isPartnerPresent() || statusSplitter_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 139, column: 4
-                  statusSplitter_in.setACK(false);//sysj\recyclingStationController.sysj line: 139, column: 4
-                  S200506=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
+                if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 171, column: 4
+                  statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 171, column: 4
+                  S265053=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
                 }
                 else {
-                  switch(S200501){
+                  switch(S265048){
                     case 0 : 
-                      if(!statusSplitter_in.isREQ()){//sysj\recyclingStationController.sysj line: 139, column: 4
-                        statusSplitter_in.setACK(true);//sysj\recyclingStationController.sysj line: 139, column: 4
-                        S200501=1;
-                        if(statusSplitter_in.isREQ()){//sysj\recyclingStationController.sysj line: 139, column: 4
-                          statusSplitter_in.setACK(false);//sysj\recyclingStationController.sysj line: 139, column: 4
-                          ends[3]=2;
-                          ;//sysj\recyclingStationController.sysj line: 139, column: 4
-                          m_thread_3.record(((Integer)(statusSplitter_in.getVal() == null ? null : ((Integer)statusSplitter_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 140, column: 4
-                          S200441=6;
-                          if(m_thread_3.jammed()){//sysj\recyclingStationController.sysj line: 146, column: 4
-                            m_thread_3.reportJam();//sysj\recyclingStationController.sysj line: 147, column: 5
-                            stationState_1.setPresent();//sysj\recyclingStationController.sysj line: 149, column: 6
-                            currsigs.addElement(stationState_1);
-                            stationState_1.setValue(2);//sysj\recyclingStationController.sysj line: 149, column: 6
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                          else {
-                            S200441=7;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
+                      if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 171, column: 4
+                        statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 171, column: 4
+                        S265048=1;
+                        if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 171, column: 4
+                          statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 171, column: 4
+                          ends[4]=2;
+                          ;//sysj\recyclingStationController.sysj line: 171, column: 4
+                          m_thread_4.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 172, column: 4
+                          S264988=6;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
                         }
                         else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
                         }
                       }
                       else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
                       }
                       break;
                     
                     case 1 : 
-                      if(statusSplitter_in.isREQ()){//sysj\recyclingStationController.sysj line: 139, column: 4
-                        statusSplitter_in.setACK(false);//sysj\recyclingStationController.sysj line: 139, column: 4
-                        ends[3]=2;
-                        ;//sysj\recyclingStationController.sysj line: 139, column: 4
-                        m_thread_3.record(((Integer)(statusSplitter_in.getVal() == null ? null : ((Integer)statusSplitter_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 140, column: 4
-                        S200441=6;
-                        if(m_thread_3.jammed()){//sysj\recyclingStationController.sysj line: 146, column: 4
-                          m_thread_3.reportJam();//sysj\recyclingStationController.sysj line: 147, column: 5
-                          stationState_1.setPresent();//sysj\recyclingStationController.sysj line: 149, column: 6
-                          currsigs.addElement(stationState_1);
-                          stationState_1.setValue(2);//sysj\recyclingStationController.sysj line: 149, column: 6
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                        else {
-                          S200441=7;
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
+                      if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 171, column: 4
+                        statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 171, column: 4
+                        ends[4]=2;
+                        ;//sysj\recyclingStationController.sysj line: 171, column: 4
+                        m_thread_4.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 172, column: 4
+                        S264988=6;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
                       }
                       else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
                       }
                       break;
                     
@@ -635,52 +475,40 @@ public class RecyclingStationController extends ClockDomain{
                 break;
               
               case 1 : 
-                S200506=1;
-                S200506=0;
-                if(!statusSplitter_in.isPartnerPresent() || statusSplitter_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 139, column: 4
-                  statusSplitter_in.setACK(false);//sysj\recyclingStationController.sysj line: 139, column: 4
-                  S200506=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
+                S265053=1;
+                S265053=0;
+                if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 171, column: 4
+                  statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 171, column: 4
+                  S265053=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
                 }
                 else {
-                  S200501=0;
-                  if(!statusSplitter_in.isREQ()){//sysj\recyclingStationController.sysj line: 139, column: 4
-                    statusSplitter_in.setACK(true);//sysj\recyclingStationController.sysj line: 139, column: 4
-                    S200501=1;
-                    if(statusSplitter_in.isREQ()){//sysj\recyclingStationController.sysj line: 139, column: 4
-                      statusSplitter_in.setACK(false);//sysj\recyclingStationController.sysj line: 139, column: 4
-                      ends[3]=2;
-                      ;//sysj\recyclingStationController.sysj line: 139, column: 4
-                      m_thread_3.record(((Integer)(statusSplitter_in.getVal() == null ? null : ((Integer)statusSplitter_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 140, column: 4
-                      S200441=6;
-                      if(m_thread_3.jammed()){//sysj\recyclingStationController.sysj line: 146, column: 4
-                        m_thread_3.reportJam();//sysj\recyclingStationController.sysj line: 147, column: 5
-                        stationState_1.setPresent();//sysj\recyclingStationController.sysj line: 149, column: 6
-                        currsigs.addElement(stationState_1);
-                        stationState_1.setValue(2);//sysj\recyclingStationController.sysj line: 149, column: 6
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      else {
-                        S200441=7;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
+                  S265048=0;
+                  if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 171, column: 4
+                    statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 171, column: 4
+                    S265048=1;
+                    if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 171, column: 4
+                      statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 171, column: 4
+                      ends[4]=2;
+                      ;//sysj\recyclingStationController.sysj line: 171, column: 4
+                      m_thread_4.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 172, column: 4
+                      S264988=6;
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
                     }
                     else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
                     }
                   }
                   else {
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
+                    active[4]=1;
+                    ends[4]=1;
+                    tdone[4]=1;
                   }
                 }
                 break;
@@ -689,201 +517,192 @@ public class RecyclingStationController extends ClockDomain{
             break;
           
           case 6 : 
-            stationState_1.setPresent();//sysj\recyclingStationController.sysj line: 149, column: 6
-            currsigs.addElement(stationState_1);
-            stationState_1.setValue(2);//sysj\recyclingStationController.sysj line: 149, column: 6
-            active[3]=1;
-            ends[3]=1;
-            tdone[3]=1;
-            break;
-          
-          case 7 : 
-            S200441=7;
-            S200441=8;
-            S200642=0;
-            if(!enableConveyor_o.isPartnerPresent() || enableConveyor_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 156, column: 4
-              enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 156, column: 4
-              S200642=1;
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
+            S264988=6;
+            S264988=7;
+            S265141=0;
+            if(!enableLidRemoval_o.isPartnerPresent() || enableLidRemoval_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 176, column: 4
+              enableLidRemoval_o.setREQ(false);//sysj\recyclingStationController.sysj line: 176, column: 4
+              S265141=1;
+              active[4]=1;
+              ends[4]=1;
+              tdone[4]=1;
             }
             else {
-              S200637=0;
-              if(enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 156, column: 4
-                enableConveyor_o.setVal(new Integer(TO_LID_thread_3));//sysj\recyclingStationController.sysj line: 156, column: 4
-                S200637=1;
-                if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 156, column: 4
-                  enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 156, column: 4
-                  ends[3]=2;
-                  ;//sysj\recyclingStationController.sysj line: 156, column: 4
-                  S200441=9;
-                  S200686=0;
-                  if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 157, column: 4
-                    statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 157, column: 4
-                    S200686=1;
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
+              S265136=0;
+              if(enableLidRemoval_o.isACK()){//sysj\recyclingStationController.sysj line: 176, column: 4
+                enableLidRemoval_o.setVal(w_thread_4);//sysj\recyclingStationController.sysj line: 176, column: 4
+                S265136=1;
+                if(!enableLidRemoval_o.isACK()){//sysj\recyclingStationController.sysj line: 176, column: 4
+                  enableLidRemoval_o.setREQ(false);//sysj\recyclingStationController.sysj line: 176, column: 4
+                  ends[4]=2;
+                  ;//sysj\recyclingStationController.sysj line: 176, column: 4
+                  S264988=8;
+                  S265185=0;
+                  if(!statusLidRemoval_in.isPartnerPresent() || statusLidRemoval_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 177, column: 4
+                    statusLidRemoval_in.setACK(false);//sysj\recyclingStationController.sysj line: 177, column: 4
+                    S265185=1;
+                    active[4]=1;
+                    ends[4]=1;
+                    tdone[4]=1;
                   }
                   else {
-                    S200681=0;
-                    if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 157, column: 4
-                      statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 157, column: 4
-                      S200681=1;
-                      if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 157, column: 4
-                        statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 157, column: 4
-                        ends[3]=2;
-                        ;//sysj\recyclingStationController.sysj line: 157, column: 4
-                        m_thread_3.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 158, column: 4
-                        S200441=10;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
+                    S265180=0;
+                    if(!statusLidRemoval_in.isREQ()){//sysj\recyclingStationController.sysj line: 177, column: 4
+                      statusLidRemoval_in.setACK(true);//sysj\recyclingStationController.sysj line: 177, column: 4
+                      S265180=1;
+                      if(statusLidRemoval_in.isREQ()){//sysj\recyclingStationController.sysj line: 177, column: 4
+                        statusLidRemoval_in.setACK(false);//sysj\recyclingStationController.sysj line: 177, column: 4
+                        ends[4]=2;
+                        ;//sysj\recyclingStationController.sysj line: 177, column: 4
+                        m_thread_4.record(((Integer)(statusLidRemoval_in.getVal() == null ? null : ((Integer)statusLidRemoval_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 178, column: 4
+                        S264988=9;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
                       }
                       else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
                       }
                     }
                     else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
                     }
                   }
                 }
                 else {
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
                 }
               }
               else {
-                active[3]=1;
-                ends[3]=1;
-                tdone[3]=1;
+                active[4]=1;
+                ends[4]=1;
+                tdone[4]=1;
               }
             }
             break;
           
-          case 8 : 
-            switch(S200642){
+          case 7 : 
+            switch(S265141){
               case 0 : 
-                if(!enableConveyor_o.isPartnerPresent() || enableConveyor_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 156, column: 4
-                  enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 156, column: 4
-                  S200642=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
+                if(!enableLidRemoval_o.isPartnerPresent() || enableLidRemoval_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 176, column: 4
+                  enableLidRemoval_o.setREQ(false);//sysj\recyclingStationController.sysj line: 176, column: 4
+                  S265141=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
                 }
                 else {
-                  switch(S200637){
+                  switch(S265136){
                     case 0 : 
-                      if(enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 156, column: 4
-                        enableConveyor_o.setVal(new Integer(TO_LID_thread_3));//sysj\recyclingStationController.sysj line: 156, column: 4
-                        S200637=1;
-                        if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 156, column: 4
-                          enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 156, column: 4
-                          ends[3]=2;
-                          ;//sysj\recyclingStationController.sysj line: 156, column: 4
-                          S200441=9;
-                          S200686=0;
-                          if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 157, column: 4
-                            statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 157, column: 4
-                            S200686=1;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
+                      if(enableLidRemoval_o.isACK()){//sysj\recyclingStationController.sysj line: 176, column: 4
+                        enableLidRemoval_o.setVal(w_thread_4);//sysj\recyclingStationController.sysj line: 176, column: 4
+                        S265136=1;
+                        if(!enableLidRemoval_o.isACK()){//sysj\recyclingStationController.sysj line: 176, column: 4
+                          enableLidRemoval_o.setREQ(false);//sysj\recyclingStationController.sysj line: 176, column: 4
+                          ends[4]=2;
+                          ;//sysj\recyclingStationController.sysj line: 176, column: 4
+                          S264988=8;
+                          S265185=0;
+                          if(!statusLidRemoval_in.isPartnerPresent() || statusLidRemoval_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 177, column: 4
+                            statusLidRemoval_in.setACK(false);//sysj\recyclingStationController.sysj line: 177, column: 4
+                            S265185=1;
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
                           }
                           else {
-                            S200681=0;
-                            if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 157, column: 4
-                              statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 157, column: 4
-                              S200681=1;
-                              if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 157, column: 4
-                                statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 157, column: 4
-                                ends[3]=2;
-                                ;//sysj\recyclingStationController.sysj line: 157, column: 4
-                                m_thread_3.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 158, column: 4
-                                S200441=10;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
+                            S265180=0;
+                            if(!statusLidRemoval_in.isREQ()){//sysj\recyclingStationController.sysj line: 177, column: 4
+                              statusLidRemoval_in.setACK(true);//sysj\recyclingStationController.sysj line: 177, column: 4
+                              S265180=1;
+                              if(statusLidRemoval_in.isREQ()){//sysj\recyclingStationController.sysj line: 177, column: 4
+                                statusLidRemoval_in.setACK(false);//sysj\recyclingStationController.sysj line: 177, column: 4
+                                ends[4]=2;
+                                ;//sysj\recyclingStationController.sysj line: 177, column: 4
+                                m_thread_4.record(((Integer)(statusLidRemoval_in.getVal() == null ? null : ((Integer)statusLidRemoval_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 178, column: 4
+                                S264988=9;
+                                active[4]=1;
+                                ends[4]=1;
+                                tdone[4]=1;
                               }
                               else {
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
+                                active[4]=1;
+                                ends[4]=1;
+                                tdone[4]=1;
                               }
                             }
                             else {
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
+                              active[4]=1;
+                              ends[4]=1;
+                              tdone[4]=1;
                             }
                           }
                         }
                         else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
                         }
                       }
                       else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
                       }
                       break;
                     
                     case 1 : 
-                      if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 156, column: 4
-                        enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 156, column: 4
-                        ends[3]=2;
-                        ;//sysj\recyclingStationController.sysj line: 156, column: 4
-                        S200441=9;
-                        S200686=0;
-                        if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 157, column: 4
-                          statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 157, column: 4
-                          S200686=1;
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
+                      if(!enableLidRemoval_o.isACK()){//sysj\recyclingStationController.sysj line: 176, column: 4
+                        enableLidRemoval_o.setREQ(false);//sysj\recyclingStationController.sysj line: 176, column: 4
+                        ends[4]=2;
+                        ;//sysj\recyclingStationController.sysj line: 176, column: 4
+                        S264988=8;
+                        S265185=0;
+                        if(!statusLidRemoval_in.isPartnerPresent() || statusLidRemoval_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 177, column: 4
+                          statusLidRemoval_in.setACK(false);//sysj\recyclingStationController.sysj line: 177, column: 4
+                          S265185=1;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
                         }
                         else {
-                          S200681=0;
-                          if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 157, column: 4
-                            statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 157, column: 4
-                            S200681=1;
-                            if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 157, column: 4
-                              statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 157, column: 4
-                              ends[3]=2;
-                              ;//sysj\recyclingStationController.sysj line: 157, column: 4
-                              m_thread_3.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 158, column: 4
-                              S200441=10;
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
+                          S265180=0;
+                          if(!statusLidRemoval_in.isREQ()){//sysj\recyclingStationController.sysj line: 177, column: 4
+                            statusLidRemoval_in.setACK(true);//sysj\recyclingStationController.sysj line: 177, column: 4
+                            S265180=1;
+                            if(statusLidRemoval_in.isREQ()){//sysj\recyclingStationController.sysj line: 177, column: 4
+                              statusLidRemoval_in.setACK(false);//sysj\recyclingStationController.sysj line: 177, column: 4
+                              ends[4]=2;
+                              ;//sysj\recyclingStationController.sysj line: 177, column: 4
+                              m_thread_4.record(((Integer)(statusLidRemoval_in.getVal() == null ? null : ((Integer)statusLidRemoval_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 178, column: 4
+                              S264988=9;
+                              active[4]=1;
+                              ends[4]=1;
+                              tdone[4]=1;
                             }
                             else {
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
+                              active[4]=1;
+                              ends[4]=1;
+                              tdone[4]=1;
                             }
                           }
                           else {
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
                           }
                         }
                       }
                       else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
                       }
                       break;
                     
@@ -892,71 +711,174 @@ public class RecyclingStationController extends ClockDomain{
                 break;
               
               case 1 : 
-                S200642=1;
-                S200642=0;
-                if(!enableConveyor_o.isPartnerPresent() || enableConveyor_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 156, column: 4
-                  enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 156, column: 4
-                  S200642=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
+                S265141=1;
+                S265141=0;
+                if(!enableLidRemoval_o.isPartnerPresent() || enableLidRemoval_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 176, column: 4
+                  enableLidRemoval_o.setREQ(false);//sysj\recyclingStationController.sysj line: 176, column: 4
+                  S265141=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
                 }
                 else {
-                  S200637=0;
-                  if(enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 156, column: 4
-                    enableConveyor_o.setVal(new Integer(TO_LID_thread_3));//sysj\recyclingStationController.sysj line: 156, column: 4
-                    S200637=1;
-                    if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 156, column: 4
-                      enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 156, column: 4
-                      ends[3]=2;
-                      ;//sysj\recyclingStationController.sysj line: 156, column: 4
-                      S200441=9;
-                      S200686=0;
-                      if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 157, column: 4
-                        statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 157, column: 4
-                        S200686=1;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
+                  S265136=0;
+                  if(enableLidRemoval_o.isACK()){//sysj\recyclingStationController.sysj line: 176, column: 4
+                    enableLidRemoval_o.setVal(w_thread_4);//sysj\recyclingStationController.sysj line: 176, column: 4
+                    S265136=1;
+                    if(!enableLidRemoval_o.isACK()){//sysj\recyclingStationController.sysj line: 176, column: 4
+                      enableLidRemoval_o.setREQ(false);//sysj\recyclingStationController.sysj line: 176, column: 4
+                      ends[4]=2;
+                      ;//sysj\recyclingStationController.sysj line: 176, column: 4
+                      S264988=8;
+                      S265185=0;
+                      if(!statusLidRemoval_in.isPartnerPresent() || statusLidRemoval_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 177, column: 4
+                        statusLidRemoval_in.setACK(false);//sysj\recyclingStationController.sysj line: 177, column: 4
+                        S265185=1;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
                       }
                       else {
-                        S200681=0;
-                        if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 157, column: 4
-                          statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 157, column: 4
-                          S200681=1;
-                          if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 157, column: 4
-                            statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 157, column: 4
-                            ends[3]=2;
-                            ;//sysj\recyclingStationController.sysj line: 157, column: 4
-                            m_thread_3.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 158, column: 4
-                            S200441=10;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
+                        S265180=0;
+                        if(!statusLidRemoval_in.isREQ()){//sysj\recyclingStationController.sysj line: 177, column: 4
+                          statusLidRemoval_in.setACK(true);//sysj\recyclingStationController.sysj line: 177, column: 4
+                          S265180=1;
+                          if(statusLidRemoval_in.isREQ()){//sysj\recyclingStationController.sysj line: 177, column: 4
+                            statusLidRemoval_in.setACK(false);//sysj\recyclingStationController.sysj line: 177, column: 4
+                            ends[4]=2;
+                            ;//sysj\recyclingStationController.sysj line: 177, column: 4
+                            m_thread_4.record(((Integer)(statusLidRemoval_in.getVal() == null ? null : ((Integer)statusLidRemoval_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 178, column: 4
+                            S264988=9;
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
                           }
                           else {
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
                           }
                         }
                         else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
                         }
                       }
                     }
                     else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
                     }
                   }
                   else {
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
+                    active[4]=1;
+                    ends[4]=1;
+                    tdone[4]=1;
+                  }
+                }
+                break;
+              
+            }
+            break;
+          
+          case 8 : 
+            switch(S265185){
+              case 0 : 
+                if(!statusLidRemoval_in.isPartnerPresent() || statusLidRemoval_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 177, column: 4
+                  statusLidRemoval_in.setACK(false);//sysj\recyclingStationController.sysj line: 177, column: 4
+                  S265185=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
+                }
+                else {
+                  switch(S265180){
+                    case 0 : 
+                      if(!statusLidRemoval_in.isREQ()){//sysj\recyclingStationController.sysj line: 177, column: 4
+                        statusLidRemoval_in.setACK(true);//sysj\recyclingStationController.sysj line: 177, column: 4
+                        S265180=1;
+                        if(statusLidRemoval_in.isREQ()){//sysj\recyclingStationController.sysj line: 177, column: 4
+                          statusLidRemoval_in.setACK(false);//sysj\recyclingStationController.sysj line: 177, column: 4
+                          ends[4]=2;
+                          ;//sysj\recyclingStationController.sysj line: 177, column: 4
+                          m_thread_4.record(((Integer)(statusLidRemoval_in.getVal() == null ? null : ((Integer)statusLidRemoval_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 178, column: 4
+                          S264988=9;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
+                        }
+                        else {
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
+                        }
+                      }
+                      else {
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      break;
+                    
+                    case 1 : 
+                      if(statusLidRemoval_in.isREQ()){//sysj\recyclingStationController.sysj line: 177, column: 4
+                        statusLidRemoval_in.setACK(false);//sysj\recyclingStationController.sysj line: 177, column: 4
+                        ends[4]=2;
+                        ;//sysj\recyclingStationController.sysj line: 177, column: 4
+                        m_thread_4.record(((Integer)(statusLidRemoval_in.getVal() == null ? null : ((Integer)statusLidRemoval_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 178, column: 4
+                        S264988=9;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      else {
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      break;
+                    
+                  }
+                }
+                break;
+              
+              case 1 : 
+                S265185=1;
+                S265185=0;
+                if(!statusLidRemoval_in.isPartnerPresent() || statusLidRemoval_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 177, column: 4
+                  statusLidRemoval_in.setACK(false);//sysj\recyclingStationController.sysj line: 177, column: 4
+                  S265185=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
+                }
+                else {
+                  S265180=0;
+                  if(!statusLidRemoval_in.isREQ()){//sysj\recyclingStationController.sysj line: 177, column: 4
+                    statusLidRemoval_in.setACK(true);//sysj\recyclingStationController.sysj line: 177, column: 4
+                    S265180=1;
+                    if(statusLidRemoval_in.isREQ()){//sysj\recyclingStationController.sysj line: 177, column: 4
+                      statusLidRemoval_in.setACK(false);//sysj\recyclingStationController.sysj line: 177, column: 4
+                      ends[4]=2;
+                      ;//sysj\recyclingStationController.sysj line: 177, column: 4
+                      m_thread_4.record(((Integer)(statusLidRemoval_in.getVal() == null ? null : ((Integer)statusLidRemoval_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 178, column: 4
+                      S264988=9;
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
+                    }
+                    else {
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
+                    }
+                  }
+                  else {
+                    active[4]=1;
+                    ends[4]=1;
+                    tdone[4]=1;
                   }
                 }
                 break;
@@ -965,295 +887,192 @@ public class RecyclingStationController extends ClockDomain{
             break;
           
           case 9 : 
-            switch(S200686){
-              case 0 : 
-                if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 157, column: 4
-                  statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 157, column: 4
-                  S200686=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-                else {
-                  switch(S200681){
-                    case 0 : 
-                      if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 157, column: 4
-                        statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 157, column: 4
-                        S200681=1;
-                        if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 157, column: 4
-                          statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 157, column: 4
-                          ends[3]=2;
-                          ;//sysj\recyclingStationController.sysj line: 157, column: 4
-                          m_thread_3.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 158, column: 4
-                          S200441=10;
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                        else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                      }
-                      else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      break;
-                    
-                    case 1 : 
-                      if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 157, column: 4
-                        statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 157, column: 4
-                        ends[3]=2;
-                        ;//sysj\recyclingStationController.sysj line: 157, column: 4
-                        m_thread_3.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 158, column: 4
-                        S200441=10;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      break;
-                    
-                  }
-                }
-                break;
-              
-              case 1 : 
-                S200686=1;
-                S200686=0;
-                if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 157, column: 4
-                  statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 157, column: 4
-                  S200686=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-                else {
-                  S200681=0;
-                  if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 157, column: 4
-                    statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 157, column: 4
-                    S200681=1;
-                    if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 157, column: 4
-                      statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 157, column: 4
-                      ends[3]=2;
-                      ;//sysj\recyclingStationController.sysj line: 157, column: 4
-                      m_thread_3.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 158, column: 4
-                      S200441=10;
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
-                    else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
+            S264988=9;
+            S264988=10;
+            S265273=0;
+            if(!enableConveyor_o.isPartnerPresent() || enableConveyor_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 182, column: 4
+              enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 182, column: 4
+              S265273=1;
+              active[4]=1;
+              ends[4]=1;
+              tdone[4]=1;
+            }
+            else {
+              S265268=0;
+              if(enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 182, column: 4
+                enableConveyor_o.setVal(new Integer(TO_DUMP_thread_4));//sysj\recyclingStationController.sysj line: 182, column: 4
+                S265268=1;
+                if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 182, column: 4
+                  enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 182, column: 4
+                  ends[4]=2;
+                  ;//sysj\recyclingStationController.sysj line: 182, column: 4
+                  S264988=11;
+                  S265317=0;
+                  if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 183, column: 4
+                    statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 183, column: 4
+                    S265317=1;
+                    active[4]=1;
+                    ends[4]=1;
+                    tdone[4]=1;
                   }
                   else {
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
+                    S265312=0;
+                    if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 183, column: 4
+                      statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 183, column: 4
+                      S265312=1;
+                      if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 183, column: 4
+                        statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 183, column: 4
+                        ends[4]=2;
+                        ;//sysj\recyclingStationController.sysj line: 183, column: 4
+                        m_thread_4.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 184, column: 4
+                        S264988=12;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      else {
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                    }
+                    else {
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
+                    }
                   }
                 }
-                break;
-              
+                else {
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
+                }
+              }
+              else {
+                active[4]=1;
+                ends[4]=1;
+                tdone[4]=1;
+              }
             }
             break;
           
           case 10 : 
-            S200441=10;
-            S200441=11;
-            S200774=0;
-            if(!enableLidRemoval_o.isPartnerPresent() || enableLidRemoval_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 162, column: 4
-              enableLidRemoval_o.setREQ(false);//sysj\recyclingStationController.sysj line: 162, column: 4
-              S200774=1;
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
-            }
-            else {
-              S200769=0;
-              if(enableLidRemoval_o.isACK()){//sysj\recyclingStationController.sysj line: 162, column: 4
-                enableLidRemoval_o.setVal(w_thread_3);//sysj\recyclingStationController.sysj line: 162, column: 4
-                S200769=1;
-                if(!enableLidRemoval_o.isACK()){//sysj\recyclingStationController.sysj line: 162, column: 4
-                  enableLidRemoval_o.setREQ(false);//sysj\recyclingStationController.sysj line: 162, column: 4
-                  ends[3]=2;
-                  ;//sysj\recyclingStationController.sysj line: 162, column: 4
-                  S200441=12;
-                  S200818=0;
-                  if(!statusLidRemoval_in.isPartnerPresent() || statusLidRemoval_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 163, column: 4
-                    statusLidRemoval_in.setACK(false);//sysj\recyclingStationController.sysj line: 163, column: 4
-                    S200818=1;
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
-                  }
-                  else {
-                    S200813=0;
-                    if(!statusLidRemoval_in.isREQ()){//sysj\recyclingStationController.sysj line: 163, column: 4
-                      statusLidRemoval_in.setACK(true);//sysj\recyclingStationController.sysj line: 163, column: 4
-                      S200813=1;
-                      if(statusLidRemoval_in.isREQ()){//sysj\recyclingStationController.sysj line: 163, column: 4
-                        statusLidRemoval_in.setACK(false);//sysj\recyclingStationController.sysj line: 163, column: 4
-                        ends[3]=2;
-                        ;//sysj\recyclingStationController.sysj line: 163, column: 4
-                        m_thread_3.record(((Integer)(statusLidRemoval_in.getVal() == null ? null : ((Integer)statusLidRemoval_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 164, column: 4
-                        S200441=13;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                    }
-                    else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
-                  }
-                }
-                else {
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-              }
-              else {
-                active[3]=1;
-                ends[3]=1;
-                tdone[3]=1;
-              }
-            }
-            break;
-          
-          case 11 : 
-            switch(S200774){
+            switch(S265273){
               case 0 : 
-                if(!enableLidRemoval_o.isPartnerPresent() || enableLidRemoval_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 162, column: 4
-                  enableLidRemoval_o.setREQ(false);//sysj\recyclingStationController.sysj line: 162, column: 4
-                  S200774=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
+                if(!enableConveyor_o.isPartnerPresent() || enableConveyor_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 182, column: 4
+                  enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 182, column: 4
+                  S265273=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
                 }
                 else {
-                  switch(S200769){
+                  switch(S265268){
                     case 0 : 
-                      if(enableLidRemoval_o.isACK()){//sysj\recyclingStationController.sysj line: 162, column: 4
-                        enableLidRemoval_o.setVal(w_thread_3);//sysj\recyclingStationController.sysj line: 162, column: 4
-                        S200769=1;
-                        if(!enableLidRemoval_o.isACK()){//sysj\recyclingStationController.sysj line: 162, column: 4
-                          enableLidRemoval_o.setREQ(false);//sysj\recyclingStationController.sysj line: 162, column: 4
-                          ends[3]=2;
-                          ;//sysj\recyclingStationController.sysj line: 162, column: 4
-                          S200441=12;
-                          S200818=0;
-                          if(!statusLidRemoval_in.isPartnerPresent() || statusLidRemoval_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 163, column: 4
-                            statusLidRemoval_in.setACK(false);//sysj\recyclingStationController.sysj line: 163, column: 4
-                            S200818=1;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
+                      if(enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 182, column: 4
+                        enableConveyor_o.setVal(new Integer(TO_DUMP_thread_4));//sysj\recyclingStationController.sysj line: 182, column: 4
+                        S265268=1;
+                        if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 182, column: 4
+                          enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 182, column: 4
+                          ends[4]=2;
+                          ;//sysj\recyclingStationController.sysj line: 182, column: 4
+                          S264988=11;
+                          S265317=0;
+                          if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 183, column: 4
+                            statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 183, column: 4
+                            S265317=1;
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
                           }
                           else {
-                            S200813=0;
-                            if(!statusLidRemoval_in.isREQ()){//sysj\recyclingStationController.sysj line: 163, column: 4
-                              statusLidRemoval_in.setACK(true);//sysj\recyclingStationController.sysj line: 163, column: 4
-                              S200813=1;
-                              if(statusLidRemoval_in.isREQ()){//sysj\recyclingStationController.sysj line: 163, column: 4
-                                statusLidRemoval_in.setACK(false);//sysj\recyclingStationController.sysj line: 163, column: 4
-                                ends[3]=2;
-                                ;//sysj\recyclingStationController.sysj line: 163, column: 4
-                                m_thread_3.record(((Integer)(statusLidRemoval_in.getVal() == null ? null : ((Integer)statusLidRemoval_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 164, column: 4
-                                S200441=13;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
+                            S265312=0;
+                            if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 183, column: 4
+                              statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 183, column: 4
+                              S265312=1;
+                              if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 183, column: 4
+                                statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 183, column: 4
+                                ends[4]=2;
+                                ;//sysj\recyclingStationController.sysj line: 183, column: 4
+                                m_thread_4.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 184, column: 4
+                                S264988=12;
+                                active[4]=1;
+                                ends[4]=1;
+                                tdone[4]=1;
                               }
                               else {
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
+                                active[4]=1;
+                                ends[4]=1;
+                                tdone[4]=1;
                               }
                             }
                             else {
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
+                              active[4]=1;
+                              ends[4]=1;
+                              tdone[4]=1;
                             }
                           }
                         }
                         else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
                         }
                       }
                       else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
                       }
                       break;
                     
                     case 1 : 
-                      if(!enableLidRemoval_o.isACK()){//sysj\recyclingStationController.sysj line: 162, column: 4
-                        enableLidRemoval_o.setREQ(false);//sysj\recyclingStationController.sysj line: 162, column: 4
-                        ends[3]=2;
-                        ;//sysj\recyclingStationController.sysj line: 162, column: 4
-                        S200441=12;
-                        S200818=0;
-                        if(!statusLidRemoval_in.isPartnerPresent() || statusLidRemoval_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 163, column: 4
-                          statusLidRemoval_in.setACK(false);//sysj\recyclingStationController.sysj line: 163, column: 4
-                          S200818=1;
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
+                      if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 182, column: 4
+                        enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 182, column: 4
+                        ends[4]=2;
+                        ;//sysj\recyclingStationController.sysj line: 182, column: 4
+                        S264988=11;
+                        S265317=0;
+                        if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 183, column: 4
+                          statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 183, column: 4
+                          S265317=1;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
                         }
                         else {
-                          S200813=0;
-                          if(!statusLidRemoval_in.isREQ()){//sysj\recyclingStationController.sysj line: 163, column: 4
-                            statusLidRemoval_in.setACK(true);//sysj\recyclingStationController.sysj line: 163, column: 4
-                            S200813=1;
-                            if(statusLidRemoval_in.isREQ()){//sysj\recyclingStationController.sysj line: 163, column: 4
-                              statusLidRemoval_in.setACK(false);//sysj\recyclingStationController.sysj line: 163, column: 4
-                              ends[3]=2;
-                              ;//sysj\recyclingStationController.sysj line: 163, column: 4
-                              m_thread_3.record(((Integer)(statusLidRemoval_in.getVal() == null ? null : ((Integer)statusLidRemoval_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 164, column: 4
-                              S200441=13;
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
+                          S265312=0;
+                          if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 183, column: 4
+                            statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 183, column: 4
+                            S265312=1;
+                            if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 183, column: 4
+                              statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 183, column: 4
+                              ends[4]=2;
+                              ;//sysj\recyclingStationController.sysj line: 183, column: 4
+                              m_thread_4.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 184, column: 4
+                              S264988=12;
+                              active[4]=1;
+                              ends[4]=1;
+                              tdone[4]=1;
                             }
                             else {
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
+                              active[4]=1;
+                              ends[4]=1;
+                              tdone[4]=1;
                             }
                           }
                           else {
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
                           }
                         }
                       }
                       else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
                       }
                       break;
                     
@@ -1262,71 +1081,174 @@ public class RecyclingStationController extends ClockDomain{
                 break;
               
               case 1 : 
-                S200774=1;
-                S200774=0;
-                if(!enableLidRemoval_o.isPartnerPresent() || enableLidRemoval_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 162, column: 4
-                  enableLidRemoval_o.setREQ(false);//sysj\recyclingStationController.sysj line: 162, column: 4
-                  S200774=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
+                S265273=1;
+                S265273=0;
+                if(!enableConveyor_o.isPartnerPresent() || enableConveyor_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 182, column: 4
+                  enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 182, column: 4
+                  S265273=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
                 }
                 else {
-                  S200769=0;
-                  if(enableLidRemoval_o.isACK()){//sysj\recyclingStationController.sysj line: 162, column: 4
-                    enableLidRemoval_o.setVal(w_thread_3);//sysj\recyclingStationController.sysj line: 162, column: 4
-                    S200769=1;
-                    if(!enableLidRemoval_o.isACK()){//sysj\recyclingStationController.sysj line: 162, column: 4
-                      enableLidRemoval_o.setREQ(false);//sysj\recyclingStationController.sysj line: 162, column: 4
-                      ends[3]=2;
-                      ;//sysj\recyclingStationController.sysj line: 162, column: 4
-                      S200441=12;
-                      S200818=0;
-                      if(!statusLidRemoval_in.isPartnerPresent() || statusLidRemoval_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 163, column: 4
-                        statusLidRemoval_in.setACK(false);//sysj\recyclingStationController.sysj line: 163, column: 4
-                        S200818=1;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
+                  S265268=0;
+                  if(enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 182, column: 4
+                    enableConveyor_o.setVal(new Integer(TO_DUMP_thread_4));//sysj\recyclingStationController.sysj line: 182, column: 4
+                    S265268=1;
+                    if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 182, column: 4
+                      enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 182, column: 4
+                      ends[4]=2;
+                      ;//sysj\recyclingStationController.sysj line: 182, column: 4
+                      S264988=11;
+                      S265317=0;
+                      if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 183, column: 4
+                        statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 183, column: 4
+                        S265317=1;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
                       }
                       else {
-                        S200813=0;
-                        if(!statusLidRemoval_in.isREQ()){//sysj\recyclingStationController.sysj line: 163, column: 4
-                          statusLidRemoval_in.setACK(true);//sysj\recyclingStationController.sysj line: 163, column: 4
-                          S200813=1;
-                          if(statusLidRemoval_in.isREQ()){//sysj\recyclingStationController.sysj line: 163, column: 4
-                            statusLidRemoval_in.setACK(false);//sysj\recyclingStationController.sysj line: 163, column: 4
-                            ends[3]=2;
-                            ;//sysj\recyclingStationController.sysj line: 163, column: 4
-                            m_thread_3.record(((Integer)(statusLidRemoval_in.getVal() == null ? null : ((Integer)statusLidRemoval_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 164, column: 4
-                            S200441=13;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
+                        S265312=0;
+                        if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 183, column: 4
+                          statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 183, column: 4
+                          S265312=1;
+                          if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 183, column: 4
+                            statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 183, column: 4
+                            ends[4]=2;
+                            ;//sysj\recyclingStationController.sysj line: 183, column: 4
+                            m_thread_4.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 184, column: 4
+                            S264988=12;
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
                           }
                           else {
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
                           }
                         }
                         else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
                         }
                       }
                     }
                     else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
                     }
                   }
                   else {
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
+                    active[4]=1;
+                    ends[4]=1;
+                    tdone[4]=1;
+                  }
+                }
+                break;
+              
+            }
+            break;
+          
+          case 11 : 
+            switch(S265317){
+              case 0 : 
+                if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 183, column: 4
+                  statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 183, column: 4
+                  S265317=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
+                }
+                else {
+                  switch(S265312){
+                    case 0 : 
+                      if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 183, column: 4
+                        statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 183, column: 4
+                        S265312=1;
+                        if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 183, column: 4
+                          statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 183, column: 4
+                          ends[4]=2;
+                          ;//sysj\recyclingStationController.sysj line: 183, column: 4
+                          m_thread_4.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 184, column: 4
+                          S264988=12;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
+                        }
+                        else {
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
+                        }
+                      }
+                      else {
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      break;
+                    
+                    case 1 : 
+                      if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 183, column: 4
+                        statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 183, column: 4
+                        ends[4]=2;
+                        ;//sysj\recyclingStationController.sysj line: 183, column: 4
+                        m_thread_4.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 184, column: 4
+                        S264988=12;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      else {
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      break;
+                    
+                  }
+                }
+                break;
+              
+              case 1 : 
+                S265317=1;
+                S265317=0;
+                if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 183, column: 4
+                  statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 183, column: 4
+                  S265317=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
+                }
+                else {
+                  S265312=0;
+                  if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 183, column: 4
+                    statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 183, column: 4
+                    S265312=1;
+                    if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 183, column: 4
+                      statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 183, column: 4
+                      ends[4]=2;
+                      ;//sysj\recyclingStationController.sysj line: 183, column: 4
+                      m_thread_4.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 184, column: 4
+                      S264988=12;
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
+                    }
+                    else {
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
+                    }
+                  }
+                  else {
+                    active[4]=1;
+                    ends[4]=1;
+                    tdone[4]=1;
                   }
                 }
                 break;
@@ -1335,295 +1257,192 @@ public class RecyclingStationController extends ClockDomain{
             break;
           
           case 12 : 
-            switch(S200818){
-              case 0 : 
-                if(!statusLidRemoval_in.isPartnerPresent() || statusLidRemoval_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 163, column: 4
-                  statusLidRemoval_in.setACK(false);//sysj\recyclingStationController.sysj line: 163, column: 4
-                  S200818=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-                else {
-                  switch(S200813){
-                    case 0 : 
-                      if(!statusLidRemoval_in.isREQ()){//sysj\recyclingStationController.sysj line: 163, column: 4
-                        statusLidRemoval_in.setACK(true);//sysj\recyclingStationController.sysj line: 163, column: 4
-                        S200813=1;
-                        if(statusLidRemoval_in.isREQ()){//sysj\recyclingStationController.sysj line: 163, column: 4
-                          statusLidRemoval_in.setACK(false);//sysj\recyclingStationController.sysj line: 163, column: 4
-                          ends[3]=2;
-                          ;//sysj\recyclingStationController.sysj line: 163, column: 4
-                          m_thread_3.record(((Integer)(statusLidRemoval_in.getVal() == null ? null : ((Integer)statusLidRemoval_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 164, column: 4
-                          S200441=13;
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                        else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                      }
-                      else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      break;
-                    
-                    case 1 : 
-                      if(statusLidRemoval_in.isREQ()){//sysj\recyclingStationController.sysj line: 163, column: 4
-                        statusLidRemoval_in.setACK(false);//sysj\recyclingStationController.sysj line: 163, column: 4
-                        ends[3]=2;
-                        ;//sysj\recyclingStationController.sysj line: 163, column: 4
-                        m_thread_3.record(((Integer)(statusLidRemoval_in.getVal() == null ? null : ((Integer)statusLidRemoval_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 164, column: 4
-                        S200441=13;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      break;
-                    
-                  }
-                }
-                break;
-              
-              case 1 : 
-                S200818=1;
-                S200818=0;
-                if(!statusLidRemoval_in.isPartnerPresent() || statusLidRemoval_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 163, column: 4
-                  statusLidRemoval_in.setACK(false);//sysj\recyclingStationController.sysj line: 163, column: 4
-                  S200818=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-                else {
-                  S200813=0;
-                  if(!statusLidRemoval_in.isREQ()){//sysj\recyclingStationController.sysj line: 163, column: 4
-                    statusLidRemoval_in.setACK(true);//sysj\recyclingStationController.sysj line: 163, column: 4
-                    S200813=1;
-                    if(statusLidRemoval_in.isREQ()){//sysj\recyclingStationController.sysj line: 163, column: 4
-                      statusLidRemoval_in.setACK(false);//sysj\recyclingStationController.sysj line: 163, column: 4
-                      ends[3]=2;
-                      ;//sysj\recyclingStationController.sysj line: 163, column: 4
-                      m_thread_3.record(((Integer)(statusLidRemoval_in.getVal() == null ? null : ((Integer)statusLidRemoval_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 164, column: 4
-                      S200441=13;
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
-                    else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
+            S264988=12;
+            S264988=13;
+            S265405=0;
+            if(!enableDumper_o.isPartnerPresent() || enableDumper_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 188, column: 4
+              enableDumper_o.setREQ(false);//sysj\recyclingStationController.sysj line: 188, column: 4
+              S265405=1;
+              active[4]=1;
+              ends[4]=1;
+              tdone[4]=1;
+            }
+            else {
+              S265400=0;
+              if(enableDumper_o.isACK()){//sysj\recyclingStationController.sysj line: 188, column: 4
+                enableDumper_o.setVal(w_thread_4);//sysj\recyclingStationController.sysj line: 188, column: 4
+                S265400=1;
+                if(!enableDumper_o.isACK()){//sysj\recyclingStationController.sysj line: 188, column: 4
+                  enableDumper_o.setREQ(false);//sysj\recyclingStationController.sysj line: 188, column: 4
+                  ends[4]=2;
+                  ;//sysj\recyclingStationController.sysj line: 188, column: 4
+                  S264988=14;
+                  S265449=0;
+                  if(!statusDumper_in.isPartnerPresent() || statusDumper_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 189, column: 4
+                    statusDumper_in.setACK(false);//sysj\recyclingStationController.sysj line: 189, column: 4
+                    S265449=1;
+                    active[4]=1;
+                    ends[4]=1;
+                    tdone[4]=1;
                   }
                   else {
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
+                    S265444=0;
+                    if(!statusDumper_in.isREQ()){//sysj\recyclingStationController.sysj line: 189, column: 4
+                      statusDumper_in.setACK(true);//sysj\recyclingStationController.sysj line: 189, column: 4
+                      S265444=1;
+                      if(statusDumper_in.isREQ()){//sysj\recyclingStationController.sysj line: 189, column: 4
+                        statusDumper_in.setACK(false);//sysj\recyclingStationController.sysj line: 189, column: 4
+                        ends[4]=2;
+                        ;//sysj\recyclingStationController.sysj line: 189, column: 4
+                        m_thread_4.record(((Integer)(statusDumper_in.getVal() == null ? null : ((Integer)statusDumper_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 190, column: 4
+                        S264988=15;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      else {
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                    }
+                    else {
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
+                    }
                   }
                 }
-                break;
-              
+                else {
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
+                }
+              }
+              else {
+                active[4]=1;
+                ends[4]=1;
+                tdone[4]=1;
+              }
             }
             break;
           
           case 13 : 
-            S200441=13;
-            S200441=14;
-            S200906=0;
-            if(!enableConveyor_o.isPartnerPresent() || enableConveyor_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 168, column: 4
-              enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 168, column: 4
-              S200906=1;
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
-            }
-            else {
-              S200901=0;
-              if(enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 168, column: 4
-                enableConveyor_o.setVal(new Integer(TO_DUMP_thread_3));//sysj\recyclingStationController.sysj line: 168, column: 4
-                S200901=1;
-                if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 168, column: 4
-                  enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 168, column: 4
-                  ends[3]=2;
-                  ;//sysj\recyclingStationController.sysj line: 168, column: 4
-                  S200441=15;
-                  S200950=0;
-                  if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 169, column: 4
-                    statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 169, column: 4
-                    S200950=1;
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
-                  }
-                  else {
-                    S200945=0;
-                    if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 169, column: 4
-                      statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 169, column: 4
-                      S200945=1;
-                      if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 169, column: 4
-                        statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 169, column: 4
-                        ends[3]=2;
-                        ;//sysj\recyclingStationController.sysj line: 169, column: 4
-                        m_thread_3.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 170, column: 4
-                        S200441=16;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                    }
-                    else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
-                  }
-                }
-                else {
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-              }
-              else {
-                active[3]=1;
-                ends[3]=1;
-                tdone[3]=1;
-              }
-            }
-            break;
-          
-          case 14 : 
-            switch(S200906){
+            switch(S265405){
               case 0 : 
-                if(!enableConveyor_o.isPartnerPresent() || enableConveyor_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 168, column: 4
-                  enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 168, column: 4
-                  S200906=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
+                if(!enableDumper_o.isPartnerPresent() || enableDumper_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 188, column: 4
+                  enableDumper_o.setREQ(false);//sysj\recyclingStationController.sysj line: 188, column: 4
+                  S265405=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
                 }
                 else {
-                  switch(S200901){
+                  switch(S265400){
                     case 0 : 
-                      if(enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 168, column: 4
-                        enableConveyor_o.setVal(new Integer(TO_DUMP_thread_3));//sysj\recyclingStationController.sysj line: 168, column: 4
-                        S200901=1;
-                        if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 168, column: 4
-                          enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 168, column: 4
-                          ends[3]=2;
-                          ;//sysj\recyclingStationController.sysj line: 168, column: 4
-                          S200441=15;
-                          S200950=0;
-                          if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 169, column: 4
-                            statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 169, column: 4
-                            S200950=1;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
+                      if(enableDumper_o.isACK()){//sysj\recyclingStationController.sysj line: 188, column: 4
+                        enableDumper_o.setVal(w_thread_4);//sysj\recyclingStationController.sysj line: 188, column: 4
+                        S265400=1;
+                        if(!enableDumper_o.isACK()){//sysj\recyclingStationController.sysj line: 188, column: 4
+                          enableDumper_o.setREQ(false);//sysj\recyclingStationController.sysj line: 188, column: 4
+                          ends[4]=2;
+                          ;//sysj\recyclingStationController.sysj line: 188, column: 4
+                          S264988=14;
+                          S265449=0;
+                          if(!statusDumper_in.isPartnerPresent() || statusDumper_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 189, column: 4
+                            statusDumper_in.setACK(false);//sysj\recyclingStationController.sysj line: 189, column: 4
+                            S265449=1;
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
                           }
                           else {
-                            S200945=0;
-                            if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 169, column: 4
-                              statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 169, column: 4
-                              S200945=1;
-                              if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 169, column: 4
-                                statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 169, column: 4
-                                ends[3]=2;
-                                ;//sysj\recyclingStationController.sysj line: 169, column: 4
-                                m_thread_3.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 170, column: 4
-                                S200441=16;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
+                            S265444=0;
+                            if(!statusDumper_in.isREQ()){//sysj\recyclingStationController.sysj line: 189, column: 4
+                              statusDumper_in.setACK(true);//sysj\recyclingStationController.sysj line: 189, column: 4
+                              S265444=1;
+                              if(statusDumper_in.isREQ()){//sysj\recyclingStationController.sysj line: 189, column: 4
+                                statusDumper_in.setACK(false);//sysj\recyclingStationController.sysj line: 189, column: 4
+                                ends[4]=2;
+                                ;//sysj\recyclingStationController.sysj line: 189, column: 4
+                                m_thread_4.record(((Integer)(statusDumper_in.getVal() == null ? null : ((Integer)statusDumper_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 190, column: 4
+                                S264988=15;
+                                active[4]=1;
+                                ends[4]=1;
+                                tdone[4]=1;
                               }
                               else {
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
+                                active[4]=1;
+                                ends[4]=1;
+                                tdone[4]=1;
                               }
                             }
                             else {
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
+                              active[4]=1;
+                              ends[4]=1;
+                              tdone[4]=1;
                             }
                           }
                         }
                         else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
                         }
                       }
                       else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
                       }
                       break;
                     
                     case 1 : 
-                      if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 168, column: 4
-                        enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 168, column: 4
-                        ends[3]=2;
-                        ;//sysj\recyclingStationController.sysj line: 168, column: 4
-                        S200441=15;
-                        S200950=0;
-                        if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 169, column: 4
-                          statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 169, column: 4
-                          S200950=1;
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
+                      if(!enableDumper_o.isACK()){//sysj\recyclingStationController.sysj line: 188, column: 4
+                        enableDumper_o.setREQ(false);//sysj\recyclingStationController.sysj line: 188, column: 4
+                        ends[4]=2;
+                        ;//sysj\recyclingStationController.sysj line: 188, column: 4
+                        S264988=14;
+                        S265449=0;
+                        if(!statusDumper_in.isPartnerPresent() || statusDumper_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 189, column: 4
+                          statusDumper_in.setACK(false);//sysj\recyclingStationController.sysj line: 189, column: 4
+                          S265449=1;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
                         }
                         else {
-                          S200945=0;
-                          if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 169, column: 4
-                            statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 169, column: 4
-                            S200945=1;
-                            if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 169, column: 4
-                              statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 169, column: 4
-                              ends[3]=2;
-                              ;//sysj\recyclingStationController.sysj line: 169, column: 4
-                              m_thread_3.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 170, column: 4
-                              S200441=16;
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
+                          S265444=0;
+                          if(!statusDumper_in.isREQ()){//sysj\recyclingStationController.sysj line: 189, column: 4
+                            statusDumper_in.setACK(true);//sysj\recyclingStationController.sysj line: 189, column: 4
+                            S265444=1;
+                            if(statusDumper_in.isREQ()){//sysj\recyclingStationController.sysj line: 189, column: 4
+                              statusDumper_in.setACK(false);//sysj\recyclingStationController.sysj line: 189, column: 4
+                              ends[4]=2;
+                              ;//sysj\recyclingStationController.sysj line: 189, column: 4
+                              m_thread_4.record(((Integer)(statusDumper_in.getVal() == null ? null : ((Integer)statusDumper_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 190, column: 4
+                              S264988=15;
+                              active[4]=1;
+                              ends[4]=1;
+                              tdone[4]=1;
                             }
                             else {
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
+                              active[4]=1;
+                              ends[4]=1;
+                              tdone[4]=1;
                             }
                           }
                           else {
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
                           }
                         }
                       }
                       else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
                       }
                       break;
                     
@@ -1632,71 +1451,174 @@ public class RecyclingStationController extends ClockDomain{
                 break;
               
               case 1 : 
-                S200906=1;
-                S200906=0;
-                if(!enableConveyor_o.isPartnerPresent() || enableConveyor_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 168, column: 4
-                  enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 168, column: 4
-                  S200906=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
+                S265405=1;
+                S265405=0;
+                if(!enableDumper_o.isPartnerPresent() || enableDumper_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 188, column: 4
+                  enableDumper_o.setREQ(false);//sysj\recyclingStationController.sysj line: 188, column: 4
+                  S265405=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
                 }
                 else {
-                  S200901=0;
-                  if(enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 168, column: 4
-                    enableConveyor_o.setVal(new Integer(TO_DUMP_thread_3));//sysj\recyclingStationController.sysj line: 168, column: 4
-                    S200901=1;
-                    if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 168, column: 4
-                      enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 168, column: 4
-                      ends[3]=2;
-                      ;//sysj\recyclingStationController.sysj line: 168, column: 4
-                      S200441=15;
-                      S200950=0;
-                      if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 169, column: 4
-                        statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 169, column: 4
-                        S200950=1;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
+                  S265400=0;
+                  if(enableDumper_o.isACK()){//sysj\recyclingStationController.sysj line: 188, column: 4
+                    enableDumper_o.setVal(w_thread_4);//sysj\recyclingStationController.sysj line: 188, column: 4
+                    S265400=1;
+                    if(!enableDumper_o.isACK()){//sysj\recyclingStationController.sysj line: 188, column: 4
+                      enableDumper_o.setREQ(false);//sysj\recyclingStationController.sysj line: 188, column: 4
+                      ends[4]=2;
+                      ;//sysj\recyclingStationController.sysj line: 188, column: 4
+                      S264988=14;
+                      S265449=0;
+                      if(!statusDumper_in.isPartnerPresent() || statusDumper_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 189, column: 4
+                        statusDumper_in.setACK(false);//sysj\recyclingStationController.sysj line: 189, column: 4
+                        S265449=1;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
                       }
                       else {
-                        S200945=0;
-                        if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 169, column: 4
-                          statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 169, column: 4
-                          S200945=1;
-                          if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 169, column: 4
-                            statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 169, column: 4
-                            ends[3]=2;
-                            ;//sysj\recyclingStationController.sysj line: 169, column: 4
-                            m_thread_3.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 170, column: 4
-                            S200441=16;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
+                        S265444=0;
+                        if(!statusDumper_in.isREQ()){//sysj\recyclingStationController.sysj line: 189, column: 4
+                          statusDumper_in.setACK(true);//sysj\recyclingStationController.sysj line: 189, column: 4
+                          S265444=1;
+                          if(statusDumper_in.isREQ()){//sysj\recyclingStationController.sysj line: 189, column: 4
+                            statusDumper_in.setACK(false);//sysj\recyclingStationController.sysj line: 189, column: 4
+                            ends[4]=2;
+                            ;//sysj\recyclingStationController.sysj line: 189, column: 4
+                            m_thread_4.record(((Integer)(statusDumper_in.getVal() == null ? null : ((Integer)statusDumper_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 190, column: 4
+                            S264988=15;
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
                           }
                           else {
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
                           }
                         }
                         else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
                         }
                       }
                     }
                     else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
                     }
                   }
                   else {
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
+                    active[4]=1;
+                    ends[4]=1;
+                    tdone[4]=1;
+                  }
+                }
+                break;
+              
+            }
+            break;
+          
+          case 14 : 
+            switch(S265449){
+              case 0 : 
+                if(!statusDumper_in.isPartnerPresent() || statusDumper_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 189, column: 4
+                  statusDumper_in.setACK(false);//sysj\recyclingStationController.sysj line: 189, column: 4
+                  S265449=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
+                }
+                else {
+                  switch(S265444){
+                    case 0 : 
+                      if(!statusDumper_in.isREQ()){//sysj\recyclingStationController.sysj line: 189, column: 4
+                        statusDumper_in.setACK(true);//sysj\recyclingStationController.sysj line: 189, column: 4
+                        S265444=1;
+                        if(statusDumper_in.isREQ()){//sysj\recyclingStationController.sysj line: 189, column: 4
+                          statusDumper_in.setACK(false);//sysj\recyclingStationController.sysj line: 189, column: 4
+                          ends[4]=2;
+                          ;//sysj\recyclingStationController.sysj line: 189, column: 4
+                          m_thread_4.record(((Integer)(statusDumper_in.getVal() == null ? null : ((Integer)statusDumper_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 190, column: 4
+                          S264988=15;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
+                        }
+                        else {
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
+                        }
+                      }
+                      else {
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      break;
+                    
+                    case 1 : 
+                      if(statusDumper_in.isREQ()){//sysj\recyclingStationController.sysj line: 189, column: 4
+                        statusDumper_in.setACK(false);//sysj\recyclingStationController.sysj line: 189, column: 4
+                        ends[4]=2;
+                        ;//sysj\recyclingStationController.sysj line: 189, column: 4
+                        m_thread_4.record(((Integer)(statusDumper_in.getVal() == null ? null : ((Integer)statusDumper_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 190, column: 4
+                        S264988=15;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      else {
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      break;
+                    
+                  }
+                }
+                break;
+              
+              case 1 : 
+                S265449=1;
+                S265449=0;
+                if(!statusDumper_in.isPartnerPresent() || statusDumper_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 189, column: 4
+                  statusDumper_in.setACK(false);//sysj\recyclingStationController.sysj line: 189, column: 4
+                  S265449=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
+                }
+                else {
+                  S265444=0;
+                  if(!statusDumper_in.isREQ()){//sysj\recyclingStationController.sysj line: 189, column: 4
+                    statusDumper_in.setACK(true);//sysj\recyclingStationController.sysj line: 189, column: 4
+                    S265444=1;
+                    if(statusDumper_in.isREQ()){//sysj\recyclingStationController.sysj line: 189, column: 4
+                      statusDumper_in.setACK(false);//sysj\recyclingStationController.sysj line: 189, column: 4
+                      ends[4]=2;
+                      ;//sysj\recyclingStationController.sysj line: 189, column: 4
+                      m_thread_4.record(((Integer)(statusDumper_in.getVal() == null ? null : ((Integer)statusDumper_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 190, column: 4
+                      S264988=15;
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
+                    }
+                    else {
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
+                    }
+                  }
+                  else {
+                    active[4]=1;
+                    ends[4]=1;
+                    tdone[4]=1;
                   }
                 }
                 break;
@@ -1705,295 +1627,192 @@ public class RecyclingStationController extends ClockDomain{
             break;
           
           case 15 : 
-            switch(S200950){
-              case 0 : 
-                if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 169, column: 4
-                  statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 169, column: 4
-                  S200950=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-                else {
-                  switch(S200945){
-                    case 0 : 
-                      if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 169, column: 4
-                        statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 169, column: 4
-                        S200945=1;
-                        if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 169, column: 4
-                          statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 169, column: 4
-                          ends[3]=2;
-                          ;//sysj\recyclingStationController.sysj line: 169, column: 4
-                          m_thread_3.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 170, column: 4
-                          S200441=16;
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                        else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                      }
-                      else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      break;
-                    
-                    case 1 : 
-                      if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 169, column: 4
-                        statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 169, column: 4
-                        ends[3]=2;
-                        ;//sysj\recyclingStationController.sysj line: 169, column: 4
-                        m_thread_3.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 170, column: 4
-                        S200441=16;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      break;
-                    
-                  }
-                }
-                break;
-              
-              case 1 : 
-                S200950=1;
-                S200950=0;
-                if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 169, column: 4
-                  statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 169, column: 4
-                  S200950=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-                else {
-                  S200945=0;
-                  if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 169, column: 4
-                    statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 169, column: 4
-                    S200945=1;
-                    if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 169, column: 4
-                      statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 169, column: 4
-                      ends[3]=2;
-                      ;//sysj\recyclingStationController.sysj line: 169, column: 4
-                      m_thread_3.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 170, column: 4
-                      S200441=16;
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
-                    else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
+            S264988=15;
+            S264988=16;
+            S265537=0;
+            if(!enableConveyor_o.isPartnerPresent() || enableConveyor_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 194, column: 4
+              enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 194, column: 4
+              S265537=1;
+              active[4]=1;
+              ends[4]=1;
+              tdone[4]=1;
+            }
+            else {
+              S265532=0;
+              if(enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 194, column: 4
+                enableConveyor_o.setVal(new Integer(TO_RETURN_thread_4));//sysj\recyclingStationController.sysj line: 194, column: 4
+                S265532=1;
+                if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 194, column: 4
+                  enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 194, column: 4
+                  ends[4]=2;
+                  ;//sysj\recyclingStationController.sysj line: 194, column: 4
+                  S264988=17;
+                  S265581=0;
+                  if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 195, column: 4
+                    statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 195, column: 4
+                    S265581=1;
+                    active[4]=1;
+                    ends[4]=1;
+                    tdone[4]=1;
                   }
                   else {
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
+                    S265576=0;
+                    if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 195, column: 4
+                      statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 195, column: 4
+                      S265576=1;
+                      if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 195, column: 4
+                        statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 195, column: 4
+                        ends[4]=2;
+                        ;//sysj\recyclingStationController.sysj line: 195, column: 4
+                        m_thread_4.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 196, column: 4
+                        S264988=18;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      else {
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                    }
+                    else {
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
+                    }
                   }
                 }
-                break;
-              
+                else {
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
+                }
+              }
+              else {
+                active[4]=1;
+                ends[4]=1;
+                tdone[4]=1;
+              }
             }
             break;
           
           case 16 : 
-            S200441=16;
-            S200441=17;
-            S201038=0;
-            if(!enableDumper_o.isPartnerPresent() || enableDumper_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 174, column: 4
-              enableDumper_o.setREQ(false);//sysj\recyclingStationController.sysj line: 174, column: 4
-              S201038=1;
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
-            }
-            else {
-              S201033=0;
-              if(enableDumper_o.isACK()){//sysj\recyclingStationController.sysj line: 174, column: 4
-                enableDumper_o.setVal(w_thread_3);//sysj\recyclingStationController.sysj line: 174, column: 4
-                S201033=1;
-                if(!enableDumper_o.isACK()){//sysj\recyclingStationController.sysj line: 174, column: 4
-                  enableDumper_o.setREQ(false);//sysj\recyclingStationController.sysj line: 174, column: 4
-                  ends[3]=2;
-                  ;//sysj\recyclingStationController.sysj line: 174, column: 4
-                  S200441=18;
-                  S201082=0;
-                  if(!statusDumper_in.isPartnerPresent() || statusDumper_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 175, column: 4
-                    statusDumper_in.setACK(false);//sysj\recyclingStationController.sysj line: 175, column: 4
-                    S201082=1;
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
-                  }
-                  else {
-                    S201077=0;
-                    if(!statusDumper_in.isREQ()){//sysj\recyclingStationController.sysj line: 175, column: 4
-                      statusDumper_in.setACK(true);//sysj\recyclingStationController.sysj line: 175, column: 4
-                      S201077=1;
-                      if(statusDumper_in.isREQ()){//sysj\recyclingStationController.sysj line: 175, column: 4
-                        statusDumper_in.setACK(false);//sysj\recyclingStationController.sysj line: 175, column: 4
-                        ends[3]=2;
-                        ;//sysj\recyclingStationController.sysj line: 175, column: 4
-                        m_thread_3.record(((Integer)(statusDumper_in.getVal() == null ? null : ((Integer)statusDumper_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 176, column: 4
-                        S200441=19;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                    }
-                    else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
-                  }
-                }
-                else {
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-              }
-              else {
-                active[3]=1;
-                ends[3]=1;
-                tdone[3]=1;
-              }
-            }
-            break;
-          
-          case 17 : 
-            switch(S201038){
+            switch(S265537){
               case 0 : 
-                if(!enableDumper_o.isPartnerPresent() || enableDumper_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 174, column: 4
-                  enableDumper_o.setREQ(false);//sysj\recyclingStationController.sysj line: 174, column: 4
-                  S201038=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
+                if(!enableConveyor_o.isPartnerPresent() || enableConveyor_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 194, column: 4
+                  enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 194, column: 4
+                  S265537=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
                 }
                 else {
-                  switch(S201033){
+                  switch(S265532){
                     case 0 : 
-                      if(enableDumper_o.isACK()){//sysj\recyclingStationController.sysj line: 174, column: 4
-                        enableDumper_o.setVal(w_thread_3);//sysj\recyclingStationController.sysj line: 174, column: 4
-                        S201033=1;
-                        if(!enableDumper_o.isACK()){//sysj\recyclingStationController.sysj line: 174, column: 4
-                          enableDumper_o.setREQ(false);//sysj\recyclingStationController.sysj line: 174, column: 4
-                          ends[3]=2;
-                          ;//sysj\recyclingStationController.sysj line: 174, column: 4
-                          S200441=18;
-                          S201082=0;
-                          if(!statusDumper_in.isPartnerPresent() || statusDumper_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 175, column: 4
-                            statusDumper_in.setACK(false);//sysj\recyclingStationController.sysj line: 175, column: 4
-                            S201082=1;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
+                      if(enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 194, column: 4
+                        enableConveyor_o.setVal(new Integer(TO_RETURN_thread_4));//sysj\recyclingStationController.sysj line: 194, column: 4
+                        S265532=1;
+                        if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 194, column: 4
+                          enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 194, column: 4
+                          ends[4]=2;
+                          ;//sysj\recyclingStationController.sysj line: 194, column: 4
+                          S264988=17;
+                          S265581=0;
+                          if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 195, column: 4
+                            statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 195, column: 4
+                            S265581=1;
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
                           }
                           else {
-                            S201077=0;
-                            if(!statusDumper_in.isREQ()){//sysj\recyclingStationController.sysj line: 175, column: 4
-                              statusDumper_in.setACK(true);//sysj\recyclingStationController.sysj line: 175, column: 4
-                              S201077=1;
-                              if(statusDumper_in.isREQ()){//sysj\recyclingStationController.sysj line: 175, column: 4
-                                statusDumper_in.setACK(false);//sysj\recyclingStationController.sysj line: 175, column: 4
-                                ends[3]=2;
-                                ;//sysj\recyclingStationController.sysj line: 175, column: 4
-                                m_thread_3.record(((Integer)(statusDumper_in.getVal() == null ? null : ((Integer)statusDumper_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 176, column: 4
-                                S200441=19;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
+                            S265576=0;
+                            if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 195, column: 4
+                              statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 195, column: 4
+                              S265576=1;
+                              if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 195, column: 4
+                                statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 195, column: 4
+                                ends[4]=2;
+                                ;//sysj\recyclingStationController.sysj line: 195, column: 4
+                                m_thread_4.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 196, column: 4
+                                S264988=18;
+                                active[4]=1;
+                                ends[4]=1;
+                                tdone[4]=1;
                               }
                               else {
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
+                                active[4]=1;
+                                ends[4]=1;
+                                tdone[4]=1;
                               }
                             }
                             else {
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
+                              active[4]=1;
+                              ends[4]=1;
+                              tdone[4]=1;
                             }
                           }
                         }
                         else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
                         }
                       }
                       else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
                       }
                       break;
                     
                     case 1 : 
-                      if(!enableDumper_o.isACK()){//sysj\recyclingStationController.sysj line: 174, column: 4
-                        enableDumper_o.setREQ(false);//sysj\recyclingStationController.sysj line: 174, column: 4
-                        ends[3]=2;
-                        ;//sysj\recyclingStationController.sysj line: 174, column: 4
-                        S200441=18;
-                        S201082=0;
-                        if(!statusDumper_in.isPartnerPresent() || statusDumper_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 175, column: 4
-                          statusDumper_in.setACK(false);//sysj\recyclingStationController.sysj line: 175, column: 4
-                          S201082=1;
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
+                      if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 194, column: 4
+                        enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 194, column: 4
+                        ends[4]=2;
+                        ;//sysj\recyclingStationController.sysj line: 194, column: 4
+                        S264988=17;
+                        S265581=0;
+                        if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 195, column: 4
+                          statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 195, column: 4
+                          S265581=1;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
                         }
                         else {
-                          S201077=0;
-                          if(!statusDumper_in.isREQ()){//sysj\recyclingStationController.sysj line: 175, column: 4
-                            statusDumper_in.setACK(true);//sysj\recyclingStationController.sysj line: 175, column: 4
-                            S201077=1;
-                            if(statusDumper_in.isREQ()){//sysj\recyclingStationController.sysj line: 175, column: 4
-                              statusDumper_in.setACK(false);//sysj\recyclingStationController.sysj line: 175, column: 4
-                              ends[3]=2;
-                              ;//sysj\recyclingStationController.sysj line: 175, column: 4
-                              m_thread_3.record(((Integer)(statusDumper_in.getVal() == null ? null : ((Integer)statusDumper_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 176, column: 4
-                              S200441=19;
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
+                          S265576=0;
+                          if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 195, column: 4
+                            statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 195, column: 4
+                            S265576=1;
+                            if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 195, column: 4
+                              statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 195, column: 4
+                              ends[4]=2;
+                              ;//sysj\recyclingStationController.sysj line: 195, column: 4
+                              m_thread_4.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 196, column: 4
+                              S264988=18;
+                              active[4]=1;
+                              ends[4]=1;
+                              tdone[4]=1;
                             }
                             else {
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
+                              active[4]=1;
+                              ends[4]=1;
+                              tdone[4]=1;
                             }
                           }
                           else {
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
                           }
                         }
                       }
                       else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
                       }
                       break;
                     
@@ -2002,71 +1821,174 @@ public class RecyclingStationController extends ClockDomain{
                 break;
               
               case 1 : 
-                S201038=1;
-                S201038=0;
-                if(!enableDumper_o.isPartnerPresent() || enableDumper_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 174, column: 4
-                  enableDumper_o.setREQ(false);//sysj\recyclingStationController.sysj line: 174, column: 4
-                  S201038=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
+                S265537=1;
+                S265537=0;
+                if(!enableConveyor_o.isPartnerPresent() || enableConveyor_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 194, column: 4
+                  enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 194, column: 4
+                  S265537=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
                 }
                 else {
-                  S201033=0;
-                  if(enableDumper_o.isACK()){//sysj\recyclingStationController.sysj line: 174, column: 4
-                    enableDumper_o.setVal(w_thread_3);//sysj\recyclingStationController.sysj line: 174, column: 4
-                    S201033=1;
-                    if(!enableDumper_o.isACK()){//sysj\recyclingStationController.sysj line: 174, column: 4
-                      enableDumper_o.setREQ(false);//sysj\recyclingStationController.sysj line: 174, column: 4
-                      ends[3]=2;
-                      ;//sysj\recyclingStationController.sysj line: 174, column: 4
-                      S200441=18;
-                      S201082=0;
-                      if(!statusDumper_in.isPartnerPresent() || statusDumper_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 175, column: 4
-                        statusDumper_in.setACK(false);//sysj\recyclingStationController.sysj line: 175, column: 4
-                        S201082=1;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
+                  S265532=0;
+                  if(enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 194, column: 4
+                    enableConveyor_o.setVal(new Integer(TO_RETURN_thread_4));//sysj\recyclingStationController.sysj line: 194, column: 4
+                    S265532=1;
+                    if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 194, column: 4
+                      enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 194, column: 4
+                      ends[4]=2;
+                      ;//sysj\recyclingStationController.sysj line: 194, column: 4
+                      S264988=17;
+                      S265581=0;
+                      if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 195, column: 4
+                        statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 195, column: 4
+                        S265581=1;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
                       }
                       else {
-                        S201077=0;
-                        if(!statusDumper_in.isREQ()){//sysj\recyclingStationController.sysj line: 175, column: 4
-                          statusDumper_in.setACK(true);//sysj\recyclingStationController.sysj line: 175, column: 4
-                          S201077=1;
-                          if(statusDumper_in.isREQ()){//sysj\recyclingStationController.sysj line: 175, column: 4
-                            statusDumper_in.setACK(false);//sysj\recyclingStationController.sysj line: 175, column: 4
-                            ends[3]=2;
-                            ;//sysj\recyclingStationController.sysj line: 175, column: 4
-                            m_thread_3.record(((Integer)(statusDumper_in.getVal() == null ? null : ((Integer)statusDumper_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 176, column: 4
-                            S200441=19;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
+                        S265576=0;
+                        if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 195, column: 4
+                          statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 195, column: 4
+                          S265576=1;
+                          if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 195, column: 4
+                            statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 195, column: 4
+                            ends[4]=2;
+                            ;//sysj\recyclingStationController.sysj line: 195, column: 4
+                            m_thread_4.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 196, column: 4
+                            S264988=18;
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
                           }
                           else {
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
                           }
                         }
                         else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
                         }
                       }
                     }
                     else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
                     }
                   }
                   else {
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
+                    active[4]=1;
+                    ends[4]=1;
+                    tdone[4]=1;
+                  }
+                }
+                break;
+              
+            }
+            break;
+          
+          case 17 : 
+            switch(S265581){
+              case 0 : 
+                if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 195, column: 4
+                  statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 195, column: 4
+                  S265581=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
+                }
+                else {
+                  switch(S265576){
+                    case 0 : 
+                      if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 195, column: 4
+                        statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 195, column: 4
+                        S265576=1;
+                        if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 195, column: 4
+                          statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 195, column: 4
+                          ends[4]=2;
+                          ;//sysj\recyclingStationController.sysj line: 195, column: 4
+                          m_thread_4.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 196, column: 4
+                          S264988=18;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
+                        }
+                        else {
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
+                        }
+                      }
+                      else {
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      break;
+                    
+                    case 1 : 
+                      if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 195, column: 4
+                        statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 195, column: 4
+                        ends[4]=2;
+                        ;//sysj\recyclingStationController.sysj line: 195, column: 4
+                        m_thread_4.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 196, column: 4
+                        S264988=18;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      else {
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      break;
+                    
+                  }
+                }
+                break;
+              
+              case 1 : 
+                S265581=1;
+                S265581=0;
+                if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 195, column: 4
+                  statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 195, column: 4
+                  S265581=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
+                }
+                else {
+                  S265576=0;
+                  if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 195, column: 4
+                    statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 195, column: 4
+                    S265576=1;
+                    if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 195, column: 4
+                      statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 195, column: 4
+                      ends[4]=2;
+                      ;//sysj\recyclingStationController.sysj line: 195, column: 4
+                      m_thread_4.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 196, column: 4
+                      S264988=18;
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
+                    }
+                    else {
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
+                    }
+                  }
+                  else {
+                    active[4]=1;
+                    ends[4]=1;
+                    tdone[4]=1;
                   }
                 }
                 break;
@@ -2075,295 +1997,192 @@ public class RecyclingStationController extends ClockDomain{
             break;
           
           case 18 : 
-            switch(S201082){
-              case 0 : 
-                if(!statusDumper_in.isPartnerPresent() || statusDumper_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 175, column: 4
-                  statusDumper_in.setACK(false);//sysj\recyclingStationController.sysj line: 175, column: 4
-                  S201082=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-                else {
-                  switch(S201077){
-                    case 0 : 
-                      if(!statusDumper_in.isREQ()){//sysj\recyclingStationController.sysj line: 175, column: 4
-                        statusDumper_in.setACK(true);//sysj\recyclingStationController.sysj line: 175, column: 4
-                        S201077=1;
-                        if(statusDumper_in.isREQ()){//sysj\recyclingStationController.sysj line: 175, column: 4
-                          statusDumper_in.setACK(false);//sysj\recyclingStationController.sysj line: 175, column: 4
-                          ends[3]=2;
-                          ;//sysj\recyclingStationController.sysj line: 175, column: 4
-                          m_thread_3.record(((Integer)(statusDumper_in.getVal() == null ? null : ((Integer)statusDumper_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 176, column: 4
-                          S200441=19;
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                        else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                      }
-                      else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      break;
-                    
-                    case 1 : 
-                      if(statusDumper_in.isREQ()){//sysj\recyclingStationController.sysj line: 175, column: 4
-                        statusDumper_in.setACK(false);//sysj\recyclingStationController.sysj line: 175, column: 4
-                        ends[3]=2;
-                        ;//sysj\recyclingStationController.sysj line: 175, column: 4
-                        m_thread_3.record(((Integer)(statusDumper_in.getVal() == null ? null : ((Integer)statusDumper_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 176, column: 4
-                        S200441=19;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      break;
-                    
-                  }
-                }
-                break;
-              
-              case 1 : 
-                S201082=1;
-                S201082=0;
-                if(!statusDumper_in.isPartnerPresent() || statusDumper_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 175, column: 4
-                  statusDumper_in.setACK(false);//sysj\recyclingStationController.sysj line: 175, column: 4
-                  S201082=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-                else {
-                  S201077=0;
-                  if(!statusDumper_in.isREQ()){//sysj\recyclingStationController.sysj line: 175, column: 4
-                    statusDumper_in.setACK(true);//sysj\recyclingStationController.sysj line: 175, column: 4
-                    S201077=1;
-                    if(statusDumper_in.isREQ()){//sysj\recyclingStationController.sysj line: 175, column: 4
-                      statusDumper_in.setACK(false);//sysj\recyclingStationController.sysj line: 175, column: 4
-                      ends[3]=2;
-                      ;//sysj\recyclingStationController.sysj line: 175, column: 4
-                      m_thread_3.record(((Integer)(statusDumper_in.getVal() == null ? null : ((Integer)statusDumper_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 176, column: 4
-                      S200441=19;
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
-                    else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
+            S264988=18;
+            S264988=19;
+            S265669=0;
+            if(!enableConveyor_o.isPartnerPresent() || enableConveyor_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 200, column: 4
+              enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 200, column: 4
+              S265669=1;
+              active[4]=1;
+              ends[4]=1;
+              tdone[4]=1;
+            }
+            else {
+              S265664=0;
+              if(enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 200, column: 4
+                enableConveyor_o.setVal(new Integer(DISCHARGE_thread_4));//sysj\recyclingStationController.sysj line: 200, column: 4
+                S265664=1;
+                if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 200, column: 4
+                  enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 200, column: 4
+                  ends[4]=2;
+                  ;//sysj\recyclingStationController.sysj line: 200, column: 4
+                  S264988=20;
+                  S265713=0;
+                  if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 201, column: 4
+                    statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 201, column: 4
+                    S265713=1;
+                    active[4]=1;
+                    ends[4]=1;
+                    tdone[4]=1;
                   }
                   else {
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
+                    S265708=0;
+                    if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 201, column: 4
+                      statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 201, column: 4
+                      S265708=1;
+                      if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 201, column: 4
+                        statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 201, column: 4
+                        ends[4]=2;
+                        ;//sysj\recyclingStationController.sysj line: 201, column: 4
+                        m_thread_4.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 202, column: 4
+                        S264988=21;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      else {
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                    }
+                    else {
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
+                    }
                   }
                 }
-                break;
-              
+                else {
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
+                }
+              }
+              else {
+                active[4]=1;
+                ends[4]=1;
+                tdone[4]=1;
+              }
             }
             break;
           
           case 19 : 
-            S200441=19;
-            S200441=20;
-            S201170=0;
-            if(!enableConveyor_o.isPartnerPresent() || enableConveyor_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 180, column: 4
-              enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 180, column: 4
-              S201170=1;
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
-            }
-            else {
-              S201165=0;
-              if(enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 180, column: 4
-                enableConveyor_o.setVal(new Integer(TO_RETURN_thread_3));//sysj\recyclingStationController.sysj line: 180, column: 4
-                S201165=1;
-                if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 180, column: 4
-                  enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 180, column: 4
-                  ends[3]=2;
-                  ;//sysj\recyclingStationController.sysj line: 180, column: 4
-                  S200441=21;
-                  S201214=0;
-                  if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 181, column: 4
-                    statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 181, column: 4
-                    S201214=1;
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
-                  }
-                  else {
-                    S201209=0;
-                    if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 181, column: 4
-                      statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 181, column: 4
-                      S201209=1;
-                      if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 181, column: 4
-                        statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 181, column: 4
-                        ends[3]=2;
-                        ;//sysj\recyclingStationController.sysj line: 181, column: 4
-                        m_thread_3.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 182, column: 4
-                        S200441=22;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                    }
-                    else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
-                  }
-                }
-                else {
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-              }
-              else {
-                active[3]=1;
-                ends[3]=1;
-                tdone[3]=1;
-              }
-            }
-            break;
-          
-          case 20 : 
-            switch(S201170){
+            switch(S265669){
               case 0 : 
-                if(!enableConveyor_o.isPartnerPresent() || enableConveyor_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 180, column: 4
-                  enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 180, column: 4
-                  S201170=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
+                if(!enableConveyor_o.isPartnerPresent() || enableConveyor_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 200, column: 4
+                  enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 200, column: 4
+                  S265669=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
                 }
                 else {
-                  switch(S201165){
+                  switch(S265664){
                     case 0 : 
-                      if(enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 180, column: 4
-                        enableConveyor_o.setVal(new Integer(TO_RETURN_thread_3));//sysj\recyclingStationController.sysj line: 180, column: 4
-                        S201165=1;
-                        if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 180, column: 4
-                          enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 180, column: 4
-                          ends[3]=2;
-                          ;//sysj\recyclingStationController.sysj line: 180, column: 4
-                          S200441=21;
-                          S201214=0;
-                          if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 181, column: 4
-                            statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 181, column: 4
-                            S201214=1;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
+                      if(enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 200, column: 4
+                        enableConveyor_o.setVal(new Integer(DISCHARGE_thread_4));//sysj\recyclingStationController.sysj line: 200, column: 4
+                        S265664=1;
+                        if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 200, column: 4
+                          enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 200, column: 4
+                          ends[4]=2;
+                          ;//sysj\recyclingStationController.sysj line: 200, column: 4
+                          S264988=20;
+                          S265713=0;
+                          if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 201, column: 4
+                            statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 201, column: 4
+                            S265713=1;
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
                           }
                           else {
-                            S201209=0;
-                            if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 181, column: 4
-                              statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 181, column: 4
-                              S201209=1;
-                              if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 181, column: 4
-                                statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 181, column: 4
-                                ends[3]=2;
-                                ;//sysj\recyclingStationController.sysj line: 181, column: 4
-                                m_thread_3.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 182, column: 4
-                                S200441=22;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
+                            S265708=0;
+                            if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 201, column: 4
+                              statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 201, column: 4
+                              S265708=1;
+                              if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 201, column: 4
+                                statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 201, column: 4
+                                ends[4]=2;
+                                ;//sysj\recyclingStationController.sysj line: 201, column: 4
+                                m_thread_4.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 202, column: 4
+                                S264988=21;
+                                active[4]=1;
+                                ends[4]=1;
+                                tdone[4]=1;
                               }
                               else {
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
+                                active[4]=1;
+                                ends[4]=1;
+                                tdone[4]=1;
                               }
                             }
                             else {
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
+                              active[4]=1;
+                              ends[4]=1;
+                              tdone[4]=1;
                             }
                           }
                         }
                         else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
                         }
                       }
                       else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
                       }
                       break;
                     
                     case 1 : 
-                      if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 180, column: 4
-                        enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 180, column: 4
-                        ends[3]=2;
-                        ;//sysj\recyclingStationController.sysj line: 180, column: 4
-                        S200441=21;
-                        S201214=0;
-                        if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 181, column: 4
-                          statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 181, column: 4
-                          S201214=1;
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
+                      if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 200, column: 4
+                        enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 200, column: 4
+                        ends[4]=2;
+                        ;//sysj\recyclingStationController.sysj line: 200, column: 4
+                        S264988=20;
+                        S265713=0;
+                        if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 201, column: 4
+                          statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 201, column: 4
+                          S265713=1;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
                         }
                         else {
-                          S201209=0;
-                          if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 181, column: 4
-                            statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 181, column: 4
-                            S201209=1;
-                            if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 181, column: 4
-                              statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 181, column: 4
-                              ends[3]=2;
-                              ;//sysj\recyclingStationController.sysj line: 181, column: 4
-                              m_thread_3.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 182, column: 4
-                              S200441=22;
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
+                          S265708=0;
+                          if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 201, column: 4
+                            statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 201, column: 4
+                            S265708=1;
+                            if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 201, column: 4
+                              statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 201, column: 4
+                              ends[4]=2;
+                              ;//sysj\recyclingStationController.sysj line: 201, column: 4
+                              m_thread_4.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 202, column: 4
+                              S264988=21;
+                              active[4]=1;
+                              ends[4]=1;
+                              tdone[4]=1;
                             }
                             else {
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
+                              active[4]=1;
+                              ends[4]=1;
+                              tdone[4]=1;
                             }
                           }
                           else {
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
                           }
                         }
                       }
                       else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
                       }
                       break;
                     
@@ -2372,71 +2191,174 @@ public class RecyclingStationController extends ClockDomain{
                 break;
               
               case 1 : 
-                S201170=1;
-                S201170=0;
-                if(!enableConveyor_o.isPartnerPresent() || enableConveyor_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 180, column: 4
-                  enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 180, column: 4
-                  S201170=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
+                S265669=1;
+                S265669=0;
+                if(!enableConveyor_o.isPartnerPresent() || enableConveyor_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 200, column: 4
+                  enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 200, column: 4
+                  S265669=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
                 }
                 else {
-                  S201165=0;
-                  if(enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 180, column: 4
-                    enableConveyor_o.setVal(new Integer(TO_RETURN_thread_3));//sysj\recyclingStationController.sysj line: 180, column: 4
-                    S201165=1;
-                    if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 180, column: 4
-                      enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 180, column: 4
-                      ends[3]=2;
-                      ;//sysj\recyclingStationController.sysj line: 180, column: 4
-                      S200441=21;
-                      S201214=0;
-                      if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 181, column: 4
-                        statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 181, column: 4
-                        S201214=1;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
+                  S265664=0;
+                  if(enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 200, column: 4
+                    enableConveyor_o.setVal(new Integer(DISCHARGE_thread_4));//sysj\recyclingStationController.sysj line: 200, column: 4
+                    S265664=1;
+                    if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 200, column: 4
+                      enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 200, column: 4
+                      ends[4]=2;
+                      ;//sysj\recyclingStationController.sysj line: 200, column: 4
+                      S264988=20;
+                      S265713=0;
+                      if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 201, column: 4
+                        statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 201, column: 4
+                        S265713=1;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
                       }
                       else {
-                        S201209=0;
-                        if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 181, column: 4
-                          statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 181, column: 4
-                          S201209=1;
-                          if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 181, column: 4
-                            statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 181, column: 4
-                            ends[3]=2;
-                            ;//sysj\recyclingStationController.sysj line: 181, column: 4
-                            m_thread_3.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 182, column: 4
-                            S200441=22;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
+                        S265708=0;
+                        if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 201, column: 4
+                          statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 201, column: 4
+                          S265708=1;
+                          if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 201, column: 4
+                            statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 201, column: 4
+                            ends[4]=2;
+                            ;//sysj\recyclingStationController.sysj line: 201, column: 4
+                            m_thread_4.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 202, column: 4
+                            S264988=21;
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
                           }
                           else {
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
                           }
                         }
                         else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
                         }
                       }
                     }
                     else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
                     }
                   }
                   else {
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
+                    active[4]=1;
+                    ends[4]=1;
+                    tdone[4]=1;
+                  }
+                }
+                break;
+              
+            }
+            break;
+          
+          case 20 : 
+            switch(S265713){
+              case 0 : 
+                if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 201, column: 4
+                  statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 201, column: 4
+                  S265713=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
+                }
+                else {
+                  switch(S265708){
+                    case 0 : 
+                      if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 201, column: 4
+                        statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 201, column: 4
+                        S265708=1;
+                        if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 201, column: 4
+                          statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 201, column: 4
+                          ends[4]=2;
+                          ;//sysj\recyclingStationController.sysj line: 201, column: 4
+                          m_thread_4.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 202, column: 4
+                          S264988=21;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
+                        }
+                        else {
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
+                        }
+                      }
+                      else {
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      break;
+                    
+                    case 1 : 
+                      if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 201, column: 4
+                        statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 201, column: 4
+                        ends[4]=2;
+                        ;//sysj\recyclingStationController.sysj line: 201, column: 4
+                        m_thread_4.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 202, column: 4
+                        S264988=21;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      else {
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      break;
+                    
+                  }
+                }
+                break;
+              
+              case 1 : 
+                S265713=1;
+                S265713=0;
+                if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 201, column: 4
+                  statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 201, column: 4
+                  S265713=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
+                }
+                else {
+                  S265708=0;
+                  if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 201, column: 4
+                    statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 201, column: 4
+                    S265708=1;
+                    if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 201, column: 4
+                      statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 201, column: 4
+                      ends[4]=2;
+                      ;//sysj\recyclingStationController.sysj line: 201, column: 4
+                      m_thread_4.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 202, column: 4
+                      S264988=21;
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
+                    }
+                    else {
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
+                    }
+                  }
+                  else {
+                    active[4]=1;
+                    ends[4]=1;
+                    tdone[4]=1;
                   }
                 }
                 break;
@@ -2445,295 +2367,192 @@ public class RecyclingStationController extends ClockDomain{
             break;
           
           case 21 : 
-            switch(S201214){
-              case 0 : 
-                if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 181, column: 4
-                  statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 181, column: 4
-                  S201214=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-                else {
-                  switch(S201209){
-                    case 0 : 
-                      if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 181, column: 4
-                        statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 181, column: 4
-                        S201209=1;
-                        if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 181, column: 4
-                          statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 181, column: 4
-                          ends[3]=2;
-                          ;//sysj\recyclingStationController.sysj line: 181, column: 4
-                          m_thread_3.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 182, column: 4
-                          S200441=22;
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                        else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                      }
-                      else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      break;
-                    
-                    case 1 : 
-                      if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 181, column: 4
-                        statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 181, column: 4
-                        ends[3]=2;
-                        ;//sysj\recyclingStationController.sysj line: 181, column: 4
-                        m_thread_3.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 182, column: 4
-                        S200441=22;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      break;
-                    
-                  }
-                }
-                break;
-              
-              case 1 : 
-                S201214=1;
-                S201214=0;
-                if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 181, column: 4
-                  statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 181, column: 4
-                  S201214=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-                else {
-                  S201209=0;
-                  if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 181, column: 4
-                    statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 181, column: 4
-                    S201209=1;
-                    if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 181, column: 4
-                      statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 181, column: 4
-                      ends[3]=2;
-                      ;//sysj\recyclingStationController.sysj line: 181, column: 4
-                      m_thread_3.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 182, column: 4
-                      S200441=22;
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
-                    else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
+            S264988=21;
+            S264988=22;
+            S265801=0;
+            if(!enableReturn_o.isPartnerPresent() || enableReturn_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 206, column: 4
+              enableReturn_o.setREQ(false);//sysj\recyclingStationController.sysj line: 206, column: 4
+              S265801=1;
+              active[4]=1;
+              ends[4]=1;
+              tdone[4]=1;
+            }
+            else {
+              S265796=0;
+              if(enableReturn_o.isACK()){//sysj\recyclingStationController.sysj line: 206, column: 4
+                enableReturn_o.setVal(w_thread_4);//sysj\recyclingStationController.sysj line: 206, column: 4
+                S265796=1;
+                if(!enableReturn_o.isACK()){//sysj\recyclingStationController.sysj line: 206, column: 4
+                  enableReturn_o.setREQ(false);//sysj\recyclingStationController.sysj line: 206, column: 4
+                  ends[4]=2;
+                  ;//sysj\recyclingStationController.sysj line: 206, column: 4
+                  S264988=23;
+                  S265845=0;
+                  if(!statusReturn_in.isPartnerPresent() || statusReturn_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 207, column: 4
+                    statusReturn_in.setACK(false);//sysj\recyclingStationController.sysj line: 207, column: 4
+                    S265845=1;
+                    active[4]=1;
+                    ends[4]=1;
+                    tdone[4]=1;
                   }
                   else {
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
+                    S265840=0;
+                    if(!statusReturn_in.isREQ()){//sysj\recyclingStationController.sysj line: 207, column: 4
+                      statusReturn_in.setACK(true);//sysj\recyclingStationController.sysj line: 207, column: 4
+                      S265840=1;
+                      if(statusReturn_in.isREQ()){//sysj\recyclingStationController.sysj line: 207, column: 4
+                        statusReturn_in.setACK(false);//sysj\recyclingStationController.sysj line: 207, column: 4
+                        ends[4]=2;
+                        ;//sysj\recyclingStationController.sysj line: 207, column: 4
+                        m_thread_4.record(((Integer)(statusReturn_in.getVal() == null ? null : ((Integer)statusReturn_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 208, column: 4
+                        S264988=24;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      else {
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                    }
+                    else {
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
+                    }
                   }
                 }
-                break;
-              
+                else {
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
+                }
+              }
+              else {
+                active[4]=1;
+                ends[4]=1;
+                tdone[4]=1;
+              }
             }
             break;
           
           case 22 : 
-            S200441=22;
-            S200441=23;
-            S201302=0;
-            if(!enableConveyor_o.isPartnerPresent() || enableConveyor_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 186, column: 4
-              enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 186, column: 4
-              S201302=1;
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
-            }
-            else {
-              S201297=0;
-              if(enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 186, column: 4
-                enableConveyor_o.setVal(new Integer(DISCHARGE_thread_3));//sysj\recyclingStationController.sysj line: 186, column: 4
-                S201297=1;
-                if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 186, column: 4
-                  enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 186, column: 4
-                  ends[3]=2;
-                  ;//sysj\recyclingStationController.sysj line: 186, column: 4
-                  S200441=24;
-                  S201346=0;
-                  if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 187, column: 4
-                    statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 187, column: 4
-                    S201346=1;
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
-                  }
-                  else {
-                    S201341=0;
-                    if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 187, column: 4
-                      statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 187, column: 4
-                      S201341=1;
-                      if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 187, column: 4
-                        statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 187, column: 4
-                        ends[3]=2;
-                        ;//sysj\recyclingStationController.sysj line: 187, column: 4
-                        m_thread_3.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 188, column: 4
-                        S200441=25;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                    }
-                    else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
-                  }
-                }
-                else {
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-              }
-              else {
-                active[3]=1;
-                ends[3]=1;
-                tdone[3]=1;
-              }
-            }
-            break;
-          
-          case 23 : 
-            switch(S201302){
+            switch(S265801){
               case 0 : 
-                if(!enableConveyor_o.isPartnerPresent() || enableConveyor_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 186, column: 4
-                  enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 186, column: 4
-                  S201302=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
+                if(!enableReturn_o.isPartnerPresent() || enableReturn_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 206, column: 4
+                  enableReturn_o.setREQ(false);//sysj\recyclingStationController.sysj line: 206, column: 4
+                  S265801=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
                 }
                 else {
-                  switch(S201297){
+                  switch(S265796){
                     case 0 : 
-                      if(enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 186, column: 4
-                        enableConveyor_o.setVal(new Integer(DISCHARGE_thread_3));//sysj\recyclingStationController.sysj line: 186, column: 4
-                        S201297=1;
-                        if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 186, column: 4
-                          enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 186, column: 4
-                          ends[3]=2;
-                          ;//sysj\recyclingStationController.sysj line: 186, column: 4
-                          S200441=24;
-                          S201346=0;
-                          if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 187, column: 4
-                            statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 187, column: 4
-                            S201346=1;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
+                      if(enableReturn_o.isACK()){//sysj\recyclingStationController.sysj line: 206, column: 4
+                        enableReturn_o.setVal(w_thread_4);//sysj\recyclingStationController.sysj line: 206, column: 4
+                        S265796=1;
+                        if(!enableReturn_o.isACK()){//sysj\recyclingStationController.sysj line: 206, column: 4
+                          enableReturn_o.setREQ(false);//sysj\recyclingStationController.sysj line: 206, column: 4
+                          ends[4]=2;
+                          ;//sysj\recyclingStationController.sysj line: 206, column: 4
+                          S264988=23;
+                          S265845=0;
+                          if(!statusReturn_in.isPartnerPresent() || statusReturn_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 207, column: 4
+                            statusReturn_in.setACK(false);//sysj\recyclingStationController.sysj line: 207, column: 4
+                            S265845=1;
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
                           }
                           else {
-                            S201341=0;
-                            if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 187, column: 4
-                              statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 187, column: 4
-                              S201341=1;
-                              if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 187, column: 4
-                                statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 187, column: 4
-                                ends[3]=2;
-                                ;//sysj\recyclingStationController.sysj line: 187, column: 4
-                                m_thread_3.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 188, column: 4
-                                S200441=25;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
+                            S265840=0;
+                            if(!statusReturn_in.isREQ()){//sysj\recyclingStationController.sysj line: 207, column: 4
+                              statusReturn_in.setACK(true);//sysj\recyclingStationController.sysj line: 207, column: 4
+                              S265840=1;
+                              if(statusReturn_in.isREQ()){//sysj\recyclingStationController.sysj line: 207, column: 4
+                                statusReturn_in.setACK(false);//sysj\recyclingStationController.sysj line: 207, column: 4
+                                ends[4]=2;
+                                ;//sysj\recyclingStationController.sysj line: 207, column: 4
+                                m_thread_4.record(((Integer)(statusReturn_in.getVal() == null ? null : ((Integer)statusReturn_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 208, column: 4
+                                S264988=24;
+                                active[4]=1;
+                                ends[4]=1;
+                                tdone[4]=1;
                               }
                               else {
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
+                                active[4]=1;
+                                ends[4]=1;
+                                tdone[4]=1;
                               }
                             }
                             else {
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
+                              active[4]=1;
+                              ends[4]=1;
+                              tdone[4]=1;
                             }
                           }
                         }
                         else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
                         }
                       }
                       else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
                       }
                       break;
                     
                     case 1 : 
-                      if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 186, column: 4
-                        enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 186, column: 4
-                        ends[3]=2;
-                        ;//sysj\recyclingStationController.sysj line: 186, column: 4
-                        S200441=24;
-                        S201346=0;
-                        if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 187, column: 4
-                          statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 187, column: 4
-                          S201346=1;
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
+                      if(!enableReturn_o.isACK()){//sysj\recyclingStationController.sysj line: 206, column: 4
+                        enableReturn_o.setREQ(false);//sysj\recyclingStationController.sysj line: 206, column: 4
+                        ends[4]=2;
+                        ;//sysj\recyclingStationController.sysj line: 206, column: 4
+                        S264988=23;
+                        S265845=0;
+                        if(!statusReturn_in.isPartnerPresent() || statusReturn_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 207, column: 4
+                          statusReturn_in.setACK(false);//sysj\recyclingStationController.sysj line: 207, column: 4
+                          S265845=1;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
                         }
                         else {
-                          S201341=0;
-                          if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 187, column: 4
-                            statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 187, column: 4
-                            S201341=1;
-                            if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 187, column: 4
-                              statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 187, column: 4
-                              ends[3]=2;
-                              ;//sysj\recyclingStationController.sysj line: 187, column: 4
-                              m_thread_3.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 188, column: 4
-                              S200441=25;
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
+                          S265840=0;
+                          if(!statusReturn_in.isREQ()){//sysj\recyclingStationController.sysj line: 207, column: 4
+                            statusReturn_in.setACK(true);//sysj\recyclingStationController.sysj line: 207, column: 4
+                            S265840=1;
+                            if(statusReturn_in.isREQ()){//sysj\recyclingStationController.sysj line: 207, column: 4
+                              statusReturn_in.setACK(false);//sysj\recyclingStationController.sysj line: 207, column: 4
+                              ends[4]=2;
+                              ;//sysj\recyclingStationController.sysj line: 207, column: 4
+                              m_thread_4.record(((Integer)(statusReturn_in.getVal() == null ? null : ((Integer)statusReturn_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 208, column: 4
+                              S264988=24;
+                              active[4]=1;
+                              ends[4]=1;
+                              tdone[4]=1;
                             }
                             else {
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
+                              active[4]=1;
+                              ends[4]=1;
+                              tdone[4]=1;
                             }
                           }
                           else {
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
                           }
                         }
                       }
                       else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
                       }
                       break;
                     
@@ -2742,71 +2561,174 @@ public class RecyclingStationController extends ClockDomain{
                 break;
               
               case 1 : 
-                S201302=1;
-                S201302=0;
-                if(!enableConveyor_o.isPartnerPresent() || enableConveyor_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 186, column: 4
-                  enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 186, column: 4
-                  S201302=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
+                S265801=1;
+                S265801=0;
+                if(!enableReturn_o.isPartnerPresent() || enableReturn_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 206, column: 4
+                  enableReturn_o.setREQ(false);//sysj\recyclingStationController.sysj line: 206, column: 4
+                  S265801=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
                 }
                 else {
-                  S201297=0;
-                  if(enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 186, column: 4
-                    enableConveyor_o.setVal(new Integer(DISCHARGE_thread_3));//sysj\recyclingStationController.sysj line: 186, column: 4
-                    S201297=1;
-                    if(!enableConveyor_o.isACK()){//sysj\recyclingStationController.sysj line: 186, column: 4
-                      enableConveyor_o.setREQ(false);//sysj\recyclingStationController.sysj line: 186, column: 4
-                      ends[3]=2;
-                      ;//sysj\recyclingStationController.sysj line: 186, column: 4
-                      S200441=24;
-                      S201346=0;
-                      if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 187, column: 4
-                        statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 187, column: 4
-                        S201346=1;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
+                  S265796=0;
+                  if(enableReturn_o.isACK()){//sysj\recyclingStationController.sysj line: 206, column: 4
+                    enableReturn_o.setVal(w_thread_4);//sysj\recyclingStationController.sysj line: 206, column: 4
+                    S265796=1;
+                    if(!enableReturn_o.isACK()){//sysj\recyclingStationController.sysj line: 206, column: 4
+                      enableReturn_o.setREQ(false);//sysj\recyclingStationController.sysj line: 206, column: 4
+                      ends[4]=2;
+                      ;//sysj\recyclingStationController.sysj line: 206, column: 4
+                      S264988=23;
+                      S265845=0;
+                      if(!statusReturn_in.isPartnerPresent() || statusReturn_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 207, column: 4
+                        statusReturn_in.setACK(false);//sysj\recyclingStationController.sysj line: 207, column: 4
+                        S265845=1;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
                       }
                       else {
-                        S201341=0;
-                        if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 187, column: 4
-                          statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 187, column: 4
-                          S201341=1;
-                          if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 187, column: 4
-                            statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 187, column: 4
-                            ends[3]=2;
-                            ;//sysj\recyclingStationController.sysj line: 187, column: 4
-                            m_thread_3.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 188, column: 4
-                            S200441=25;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
+                        S265840=0;
+                        if(!statusReturn_in.isREQ()){//sysj\recyclingStationController.sysj line: 207, column: 4
+                          statusReturn_in.setACK(true);//sysj\recyclingStationController.sysj line: 207, column: 4
+                          S265840=1;
+                          if(statusReturn_in.isREQ()){//sysj\recyclingStationController.sysj line: 207, column: 4
+                            statusReturn_in.setACK(false);//sysj\recyclingStationController.sysj line: 207, column: 4
+                            ends[4]=2;
+                            ;//sysj\recyclingStationController.sysj line: 207, column: 4
+                            m_thread_4.record(((Integer)(statusReturn_in.getVal() == null ? null : ((Integer)statusReturn_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 208, column: 4
+                            S264988=24;
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
                           }
                           else {
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
+                            active[4]=1;
+                            ends[4]=1;
+                            tdone[4]=1;
                           }
                         }
                         else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
                         }
                       }
                     }
                     else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
                     }
                   }
                   else {
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
+                    active[4]=1;
+                    ends[4]=1;
+                    tdone[4]=1;
+                  }
+                }
+                break;
+              
+            }
+            break;
+          
+          case 23 : 
+            switch(S265845){
+              case 0 : 
+                if(!statusReturn_in.isPartnerPresent() || statusReturn_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 207, column: 4
+                  statusReturn_in.setACK(false);//sysj\recyclingStationController.sysj line: 207, column: 4
+                  S265845=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
+                }
+                else {
+                  switch(S265840){
+                    case 0 : 
+                      if(!statusReturn_in.isREQ()){//sysj\recyclingStationController.sysj line: 207, column: 4
+                        statusReturn_in.setACK(true);//sysj\recyclingStationController.sysj line: 207, column: 4
+                        S265840=1;
+                        if(statusReturn_in.isREQ()){//sysj\recyclingStationController.sysj line: 207, column: 4
+                          statusReturn_in.setACK(false);//sysj\recyclingStationController.sysj line: 207, column: 4
+                          ends[4]=2;
+                          ;//sysj\recyclingStationController.sysj line: 207, column: 4
+                          m_thread_4.record(((Integer)(statusReturn_in.getVal() == null ? null : ((Integer)statusReturn_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 208, column: 4
+                          S264988=24;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
+                        }
+                        else {
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
+                        }
+                      }
+                      else {
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      break;
+                    
+                    case 1 : 
+                      if(statusReturn_in.isREQ()){//sysj\recyclingStationController.sysj line: 207, column: 4
+                        statusReturn_in.setACK(false);//sysj\recyclingStationController.sysj line: 207, column: 4
+                        ends[4]=2;
+                        ;//sysj\recyclingStationController.sysj line: 207, column: 4
+                        m_thread_4.record(((Integer)(statusReturn_in.getVal() == null ? null : ((Integer)statusReturn_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 208, column: 4
+                        S264988=24;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      else {
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      break;
+                    
+                  }
+                }
+                break;
+              
+              case 1 : 
+                S265845=1;
+                S265845=0;
+                if(!statusReturn_in.isPartnerPresent() || statusReturn_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 207, column: 4
+                  statusReturn_in.setACK(false);//sysj\recyclingStationController.sysj line: 207, column: 4
+                  S265845=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
+                }
+                else {
+                  S265840=0;
+                  if(!statusReturn_in.isREQ()){//sysj\recyclingStationController.sysj line: 207, column: 4
+                    statusReturn_in.setACK(true);//sysj\recyclingStationController.sysj line: 207, column: 4
+                    S265840=1;
+                    if(statusReturn_in.isREQ()){//sysj\recyclingStationController.sysj line: 207, column: 4
+                      statusReturn_in.setACK(false);//sysj\recyclingStationController.sysj line: 207, column: 4
+                      ends[4]=2;
+                      ;//sysj\recyclingStationController.sysj line: 207, column: 4
+                      m_thread_4.record(((Integer)(statusReturn_in.getVal() == null ? null : ((Integer)statusReturn_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 208, column: 4
+                      S264988=24;
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
+                    }
+                    else {
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
+                    }
+                  }
+                  else {
+                    active[4]=1;
+                    ends[4]=1;
+                    tdone[4]=1;
                   }
                 }
                 break;
@@ -2815,539 +2737,291 @@ public class RecyclingStationController extends ClockDomain{
             break;
           
           case 24 : 
-            switch(S201346){
-              case 0 : 
-                if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 187, column: 4
-                  statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 187, column: 4
-                  S201346=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
+            S264988=24;
+            m_thread_4.recovered(w_thread_4);//sysj\recyclingStationController.sysj line: 212, column: 4
+            S264988=25;
+            S265933=0;
+            if(!bottleRecycled_o.isPartnerPresent() || bottleRecycled_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 213, column: 4
+              bottleRecycled_o.setREQ(false);//sysj\recyclingStationController.sysj line: 213, column: 4
+              S265933=1;
+              active[4]=1;
+              ends[4]=1;
+              tdone[4]=1;
+            }
+            else {
+              S265928=0;
+              if(bottleRecycled_o.isACK()){//sysj\recyclingStationController.sysj line: 213, column: 4
+                bottleRecycled_o.setVal(w_thread_4);//sysj\recyclingStationController.sysj line: 213, column: 4
+                S265928=1;
+                if(!bottleRecycled_o.isACK()){//sysj\recyclingStationController.sysj line: 213, column: 4
+                  bottleRecycled_o.setREQ(false);//sysj\recyclingStationController.sysj line: 213, column: 4
+                  ends[4]=2;
+                  ;//sysj\recyclingStationController.sysj line: 213, column: 4
+                  S264988=26;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
                 }
                 else {
-                  switch(S201341){
-                    case 0 : 
-                      if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 187, column: 4
-                        statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 187, column: 4
-                        S201341=1;
-                        if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 187, column: 4
-                          statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 187, column: 4
-                          ends[3]=2;
-                          ;//sysj\recyclingStationController.sysj line: 187, column: 4
-                          m_thread_3.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 188, column: 4
-                          S200441=25;
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                        else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                      }
-                      else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      break;
-                    
-                    case 1 : 
-                      if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 187, column: 4
-                        statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 187, column: 4
-                        ends[3]=2;
-                        ;//sysj\recyclingStationController.sysj line: 187, column: 4
-                        m_thread_3.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 188, column: 4
-                        S200441=25;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      break;
-                    
-                  }
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
                 }
-                break;
-              
-              case 1 : 
-                S201346=1;
-                S201346=0;
-                if(!statusConveyor_in.isPartnerPresent() || statusConveyor_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 187, column: 4
-                  statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 187, column: 4
-                  S201346=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-                else {
-                  S201341=0;
-                  if(!statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 187, column: 4
-                    statusConveyor_in.setACK(true);//sysj\recyclingStationController.sysj line: 187, column: 4
-                    S201341=1;
-                    if(statusConveyor_in.isREQ()){//sysj\recyclingStationController.sysj line: 187, column: 4
-                      statusConveyor_in.setACK(false);//sysj\recyclingStationController.sysj line: 187, column: 4
-                      ends[3]=2;
-                      ;//sysj\recyclingStationController.sysj line: 187, column: 4
-                      m_thread_3.record(((Integer)(statusConveyor_in.getVal() == null ? null : ((Integer)statusConveyor_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 188, column: 4
-                      S200441=25;
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
-                    else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
-                  }
-                  else {
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
-                  }
-                }
-                break;
-              
+              }
+              else {
+                active[4]=1;
+                ends[4]=1;
+                tdone[4]=1;
+              }
             }
             break;
           
           case 25 : 
-            S200441=25;
-            S200441=26;
-            S201434=0;
-            if(!enableReturn_o.isPartnerPresent() || enableReturn_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 192, column: 4
-              enableReturn_o.setREQ(false);//sysj\recyclingStationController.sysj line: 192, column: 4
-              S201434=1;
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
-            }
-            else {
-              S201429=0;
-              if(enableReturn_o.isACK()){//sysj\recyclingStationController.sysj line: 192, column: 4
-                enableReturn_o.setVal(w_thread_3);//sysj\recyclingStationController.sysj line: 192, column: 4
-                S201429=1;
-                if(!enableReturn_o.isACK()){//sysj\recyclingStationController.sysj line: 192, column: 4
-                  enableReturn_o.setREQ(false);//sysj\recyclingStationController.sysj line: 192, column: 4
-                  ends[3]=2;
-                  ;//sysj\recyclingStationController.sysj line: 192, column: 4
-                  S200441=27;
-                  S201478=0;
-                  if(!statusReturn_in.isPartnerPresent() || statusReturn_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 193, column: 4
-                    statusReturn_in.setACK(false);//sysj\recyclingStationController.sysj line: 193, column: 4
-                    S201478=1;
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
-                  }
-                  else {
-                    S201473=0;
-                    if(!statusReturn_in.isREQ()){//sysj\recyclingStationController.sysj line: 193, column: 4
-                      statusReturn_in.setACK(true);//sysj\recyclingStationController.sysj line: 193, column: 4
-                      S201473=1;
-                      if(statusReturn_in.isREQ()){//sysj\recyclingStationController.sysj line: 193, column: 4
-                        statusReturn_in.setACK(false);//sysj\recyclingStationController.sysj line: 193, column: 4
-                        ends[3]=2;
-                        ;//sysj\recyclingStationController.sysj line: 193, column: 4
-                        m_thread_3.record(((Integer)(statusReturn_in.getVal() == null ? null : ((Integer)statusReturn_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 194, column: 4
-                        S200441=28;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                    }
-                    else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
-                  }
+            switch(S265933){
+              case 0 : 
+                if(!bottleRecycled_o.isPartnerPresent() || bottleRecycled_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 213, column: 4
+                  bottleRecycled_o.setREQ(false);//sysj\recyclingStationController.sysj line: 213, column: 4
+                  S265933=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
                 }
                 else {
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
+                  switch(S265928){
+                    case 0 : 
+                      if(bottleRecycled_o.isACK()){//sysj\recyclingStationController.sysj line: 213, column: 4
+                        bottleRecycled_o.setVal(w_thread_4);//sysj\recyclingStationController.sysj line: 213, column: 4
+                        S265928=1;
+                        if(!bottleRecycled_o.isACK()){//sysj\recyclingStationController.sysj line: 213, column: 4
+                          bottleRecycled_o.setREQ(false);//sysj\recyclingStationController.sysj line: 213, column: 4
+                          ends[4]=2;
+                          ;//sysj\recyclingStationController.sysj line: 213, column: 4
+                          S264988=26;
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
+                        }
+                        else {
+                          active[4]=1;
+                          ends[4]=1;
+                          tdone[4]=1;
+                        }
+                      }
+                      else {
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      break;
+                    
+                    case 1 : 
+                      if(!bottleRecycled_o.isACK()){//sysj\recyclingStationController.sysj line: 213, column: 4
+                        bottleRecycled_o.setREQ(false);//sysj\recyclingStationController.sysj line: 213, column: 4
+                        ends[4]=2;
+                        ;//sysj\recyclingStationController.sysj line: 213, column: 4
+                        S264988=26;
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      else {
+                        active[4]=1;
+                        ends[4]=1;
+                        tdone[4]=1;
+                      }
+                      break;
+                    
+                  }
                 }
-              }
-              else {
-                active[3]=1;
-                ends[3]=1;
-                tdone[3]=1;
-              }
+                break;
+              
+              case 1 : 
+                S265933=1;
+                S265933=0;
+                if(!bottleRecycled_o.isPartnerPresent() || bottleRecycled_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 213, column: 4
+                  bottleRecycled_o.setREQ(false);//sysj\recyclingStationController.sysj line: 213, column: 4
+                  S265933=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
+                }
+                else {
+                  S265928=0;
+                  if(bottleRecycled_o.isACK()){//sysj\recyclingStationController.sysj line: 213, column: 4
+                    bottleRecycled_o.setVal(w_thread_4);//sysj\recyclingStationController.sysj line: 213, column: 4
+                    S265928=1;
+                    if(!bottleRecycled_o.isACK()){//sysj\recyclingStationController.sysj line: 213, column: 4
+                      bottleRecycled_o.setREQ(false);//sysj\recyclingStationController.sysj line: 213, column: 4
+                      ends[4]=2;
+                      ;//sysj\recyclingStationController.sysj line: 213, column: 4
+                      S264988=26;
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
+                    }
+                    else {
+                      active[4]=1;
+                      ends[4]=1;
+                      tdone[4]=1;
+                    }
+                  }
+                  else {
+                    active[4]=1;
+                    ends[4]=1;
+                    tdone[4]=1;
+                  }
+                }
+                break;
+              
             }
             break;
           
           case 26 : 
-            switch(S201434){
-              case 0 : 
-                if(!enableReturn_o.isPartnerPresent() || enableReturn_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 192, column: 4
-                  enableReturn_o.setREQ(false);//sysj\recyclingStationController.sysj line: 192, column: 4
-                  S201434=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-                else {
-                  switch(S201429){
-                    case 0 : 
-                      if(enableReturn_o.isACK()){//sysj\recyclingStationController.sysj line: 192, column: 4
-                        enableReturn_o.setVal(w_thread_3);//sysj\recyclingStationController.sysj line: 192, column: 4
-                        S201429=1;
-                        if(!enableReturn_o.isACK()){//sysj\recyclingStationController.sysj line: 192, column: 4
-                          enableReturn_o.setREQ(false);//sysj\recyclingStationController.sysj line: 192, column: 4
-                          ends[3]=2;
-                          ;//sysj\recyclingStationController.sysj line: 192, column: 4
-                          S200441=27;
-                          S201478=0;
-                          if(!statusReturn_in.isPartnerPresent() || statusReturn_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 193, column: 4
-                            statusReturn_in.setACK(false);//sysj\recyclingStationController.sysj line: 193, column: 4
-                            S201478=1;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                          else {
-                            S201473=0;
-                            if(!statusReturn_in.isREQ()){//sysj\recyclingStationController.sysj line: 193, column: 4
-                              statusReturn_in.setACK(true);//sysj\recyclingStationController.sysj line: 193, column: 4
-                              S201473=1;
-                              if(statusReturn_in.isREQ()){//sysj\recyclingStationController.sysj line: 193, column: 4
-                                statusReturn_in.setACK(false);//sysj\recyclingStationController.sysj line: 193, column: 4
-                                ends[3]=2;
-                                ;//sysj\recyclingStationController.sysj line: 193, column: 4
-                                m_thread_3.record(((Integer)(statusReturn_in.getVal() == null ? null : ((Integer)statusReturn_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 194, column: 4
-                                S200441=28;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                              else {
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                            }
-                            else {
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                          }
-                        }
-                        else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                      }
-                      else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      break;
-                    
-                    case 1 : 
-                      if(!enableReturn_o.isACK()){//sysj\recyclingStationController.sysj line: 192, column: 4
-                        enableReturn_o.setREQ(false);//sysj\recyclingStationController.sysj line: 192, column: 4
-                        ends[3]=2;
-                        ;//sysj\recyclingStationController.sysj line: 192, column: 4
-                        S200441=27;
-                        S201478=0;
-                        if(!statusReturn_in.isPartnerPresent() || statusReturn_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 193, column: 4
-                          statusReturn_in.setACK(false);//sysj\recyclingStationController.sysj line: 193, column: 4
-                          S201478=1;
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                        else {
-                          S201473=0;
-                          if(!statusReturn_in.isREQ()){//sysj\recyclingStationController.sysj line: 193, column: 4
-                            statusReturn_in.setACK(true);//sysj\recyclingStationController.sysj line: 193, column: 4
-                            S201473=1;
-                            if(statusReturn_in.isREQ()){//sysj\recyclingStationController.sysj line: 193, column: 4
-                              statusReturn_in.setACK(false);//sysj\recyclingStationController.sysj line: 193, column: 4
-                              ends[3]=2;
-                              ;//sysj\recyclingStationController.sysj line: 193, column: 4
-                              m_thread_3.record(((Integer)(statusReturn_in.getVal() == null ? null : ((Integer)statusReturn_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 194, column: 4
-                              S200441=28;
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                            else {
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                          }
-                          else {
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                        }
-                      }
-                      else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      break;
-                    
-                  }
-                }
-                break;
-              
-              case 1 : 
-                S201434=1;
-                S201434=0;
-                if(!enableReturn_o.isPartnerPresent() || enableReturn_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 192, column: 4
-                  enableReturn_o.setREQ(false);//sysj\recyclingStationController.sysj line: 192, column: 4
-                  S201434=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-                else {
-                  S201429=0;
-                  if(enableReturn_o.isACK()){//sysj\recyclingStationController.sysj line: 192, column: 4
-                    enableReturn_o.setVal(w_thread_3);//sysj\recyclingStationController.sysj line: 192, column: 4
-                    S201429=1;
-                    if(!enableReturn_o.isACK()){//sysj\recyclingStationController.sysj line: 192, column: 4
-                      enableReturn_o.setREQ(false);//sysj\recyclingStationController.sysj line: 192, column: 4
-                      ends[3]=2;
-                      ;//sysj\recyclingStationController.sysj line: 192, column: 4
-                      S200441=27;
-                      S201478=0;
-                      if(!statusReturn_in.isPartnerPresent() || statusReturn_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 193, column: 4
-                        statusReturn_in.setACK(false);//sysj\recyclingStationController.sysj line: 193, column: 4
-                        S201478=1;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      else {
-                        S201473=0;
-                        if(!statusReturn_in.isREQ()){//sysj\recyclingStationController.sysj line: 193, column: 4
-                          statusReturn_in.setACK(true);//sysj\recyclingStationController.sysj line: 193, column: 4
-                          S201473=1;
-                          if(statusReturn_in.isREQ()){//sysj\recyclingStationController.sysj line: 193, column: 4
-                            statusReturn_in.setACK(false);//sysj\recyclingStationController.sysj line: 193, column: 4
-                            ends[3]=2;
-                            ;//sysj\recyclingStationController.sysj line: 193, column: 4
-                            m_thread_3.record(((Integer)(statusReturn_in.getVal() == null ? null : ((Integer)statusReturn_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 194, column: 4
-                            S200441=28;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                          else {
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                        }
-                        else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                      }
-                    }
-                    else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
-                  }
-                  else {
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
-                  }
-                }
-                break;
-              
+            S264988=26;
+            stationState_1.setPresent();//sysj\recyclingStationController.sysj line: 218, column: 4
+            currsigs.addElement(stationState_1);
+            stationState_1.setValue(m_thread_4.levelFor(q_thread_4.hasWork()));//sysj\recyclingStationController.sysj line: 218, column: 4
+            S264988=27;
+            if(m_thread_4.suspended()){//sysj\recyclingStationController.sysj line: 226, column: 4
+              m_thread_4.reportSuspension();//sysj\recyclingStationController.sysj line: 227, column: 5
+              stationState_1.setPresent();//sysj\recyclingStationController.sysj line: 229, column: 6
+              currsigs.addElement(stationState_1);
+              stationState_1.setValue(2);//sysj\recyclingStationController.sysj line: 229, column: 6
+              active[4]=1;
+              ends[4]=1;
+              tdone[4]=1;
+            }
+            else {
+              S264988=28;
+              active[4]=1;
+              ends[4]=1;
+              tdone[4]=1;
             }
             break;
           
           case 27 : 
-            switch(S201478){
-              case 0 : 
-                if(!statusReturn_in.isPartnerPresent() || statusReturn_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 193, column: 4
-                  statusReturn_in.setACK(false);//sysj\recyclingStationController.sysj line: 193, column: 4
-                  S201478=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-                else {
-                  switch(S201473){
-                    case 0 : 
-                      if(!statusReturn_in.isREQ()){//sysj\recyclingStationController.sysj line: 193, column: 4
-                        statusReturn_in.setACK(true);//sysj\recyclingStationController.sysj line: 193, column: 4
-                        S201473=1;
-                        if(statusReturn_in.isREQ()){//sysj\recyclingStationController.sysj line: 193, column: 4
-                          statusReturn_in.setACK(false);//sysj\recyclingStationController.sysj line: 193, column: 4
-                          ends[3]=2;
-                          ;//sysj\recyclingStationController.sysj line: 193, column: 4
-                          m_thread_3.record(((Integer)(statusReturn_in.getVal() == null ? null : ((Integer)statusReturn_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 194, column: 4
-                          S200441=28;
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                        else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                      }
-                      else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      break;
-                    
-                    case 1 : 
-                      if(statusReturn_in.isREQ()){//sysj\recyclingStationController.sysj line: 193, column: 4
-                        statusReturn_in.setACK(false);//sysj\recyclingStationController.sysj line: 193, column: 4
-                        ends[3]=2;
-                        ;//sysj\recyclingStationController.sysj line: 193, column: 4
-                        m_thread_3.record(((Integer)(statusReturn_in.getVal() == null ? null : ((Integer)statusReturn_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 194, column: 4
-                        S200441=28;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      break;
-                    
-                  }
-                }
-                break;
-              
-              case 1 : 
-                S201478=1;
-                S201478=0;
-                if(!statusReturn_in.isPartnerPresent() || statusReturn_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 193, column: 4
-                  statusReturn_in.setACK(false);//sysj\recyclingStationController.sysj line: 193, column: 4
-                  S201478=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-                else {
-                  S201473=0;
-                  if(!statusReturn_in.isREQ()){//sysj\recyclingStationController.sysj line: 193, column: 4
-                    statusReturn_in.setACK(true);//sysj\recyclingStationController.sysj line: 193, column: 4
-                    S201473=1;
-                    if(statusReturn_in.isREQ()){//sysj\recyclingStationController.sysj line: 193, column: 4
-                      statusReturn_in.setACK(false);//sysj\recyclingStationController.sysj line: 193, column: 4
-                      ends[3]=2;
-                      ;//sysj\recyclingStationController.sysj line: 193, column: 4
-                      m_thread_3.record(((Integer)(statusReturn_in.getVal() == null ? null : ((Integer)statusReturn_in.getVal()))).intValue());//sysj\recyclingStationController.sysj line: 194, column: 4
-                      S200441=28;
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
-                    else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
-                  }
-                  else {
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
-                  }
-                }
-                break;
-              
-            }
+            stationState_1.setPresent();//sysj\recyclingStationController.sysj line: 229, column: 6
+            currsigs.addElement(stationState_1);
+            stationState_1.setValue(2);//sysj\recyclingStationController.sysj line: 229, column: 6
+            active[4]=1;
+            ends[4]=1;
+            tdone[4]=1;
             break;
           
           case 28 : 
-            S200441=28;
-            m_thread_3.reportRecovered();//sysj\recyclingStationController.sysj line: 198, column: 4
-            S200441=29;
-            S201566=0;
-            if(!bottleRecycled_o.isPartnerPresent() || bottleRecycled_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 199, column: 4
-              bottleRecycled_o.setREQ(false);//sysj\recyclingStationController.sysj line: 199, column: 4
-              S201566=1;
+            S264988=28;
+            S264988=0;
+            if(!q_thread_4.hasWork()){//sysj\recyclingStationController.sysj line: 150, column: 10
+              active[4]=1;
+              ends[4]=1;
+              tdone[4]=1;
+            }
+            else {
+              ends[4]=2;
+              ;//sysj\recyclingStationController.sysj line: 150, column: 4
+              w_thread_4 = q_thread_4.take();//sysj\recyclingStationController.sysj line: 154, column: 4
+              m_thread_4.beginCycle(w_thread_4);//sysj\recyclingStationController.sysj line: 155, column: 4
+              stationState_1.setPresent();//sysj\recyclingStationController.sysj line: 156, column: 4
+              currsigs.addElement(stationState_1);
+              stationState_1.setValue(1);//sysj\recyclingStationController.sysj line: 156, column: 4
+              permitted_thread_4 = false;//sysj\recyclingStationController.sysj line: 161, column: 4
+              S264988=1;
+              active[4]=1;
+              ends[4]=1;
+              tdone[4]=1;
+            }
+            break;
+          
+        }
+        break;
+      
+    }
+  }
+
+  public void thread271011(int [] tdone, int [] ends){
+        switch(S264982){
+      case 0 : 
+        active[3]=0;
+        ends[3]=0;
+        tdone[3]=1;
+        break;
+      
+      case 1 : 
+        switch(S264626){
+          case 0 : 
+            if(!q_thread_3.hasRoom()){//sysj\recyclingStationController.sysj line: 123, column: 10
               active[3]=1;
               ends[3]=1;
               tdone[3]=1;
             }
             else {
-              S201561=0;
-              if(bottleRecycled_o.isACK()){//sysj\recyclingStationController.sysj line: 199, column: 4
-                bottleRecycled_o.setVal(w_thread_3);//sysj\recyclingStationController.sysj line: 199, column: 4
-                S201561=1;
-                if(!bottleRecycled_o.isACK()){//sysj\recyclingStationController.sysj line: 199, column: 4
-                  bottleRecycled_o.setREQ(false);//sysj\recyclingStationController.sysj line: 199, column: 4
-                  ends[3]=2;
-                  ;//sysj\recyclingStationController.sysj line: 199, column: 4
-                  S200441=30;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-                else {
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-              }
-              else {
+              ends[3]=2;
+              ;//sysj\recyclingStationController.sysj line: 123, column: 4
+              S264626=1;
+              S264566=0;
+              if(!bottleRejected_in.isPartnerPresent() || bottleRejected_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 126, column: 4
+                bottleRejected_in.setACK(false);//sysj\recyclingStationController.sysj line: 126, column: 4
+                S264566=1;
                 active[3]=1;
                 ends[3]=1;
                 tdone[3]=1;
               }
+              else {
+                S264561=0;
+                if(!bottleRejected_in.isREQ()){//sysj\recyclingStationController.sysj line: 126, column: 4
+                  bottleRejected_in.setACK(true);//sysj\recyclingStationController.sysj line: 126, column: 4
+                  S264561=1;
+                  if(bottleRejected_in.isREQ()){//sysj\recyclingStationController.sysj line: 126, column: 4
+                    bottleRejected_in.setACK(false);//sysj\recyclingStationController.sysj line: 126, column: 4
+                    ends[3]=2;
+                    ;//sysj\recyclingStationController.sysj line: 126, column: 4
+                    w_thread_3 = (WorkpieceTwin)(bottleRejected_in.getVal() == null ? null : ((WorkpieceTwin)bottleRejected_in.getVal()));//sysj\recyclingStationController.sysj line: 127, column: 4
+                    m_thread_3.accepted(w_thread_3);//sysj\recyclingStationController.sysj line: 128, column: 4
+                    q_thread_3.push(w_thread_3);//sysj\recyclingStationController.sysj line: 129, column: 4
+                    S264626=2;
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+                else {
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+              }
             }
             break;
           
-          case 29 : 
-            switch(S201566){
+          case 1 : 
+            switch(S264566){
               case 0 : 
-                if(!bottleRecycled_o.isPartnerPresent() || bottleRecycled_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 199, column: 4
-                  bottleRecycled_o.setREQ(false);//sysj\recyclingStationController.sysj line: 199, column: 4
-                  S201566=1;
+                if(!bottleRejected_in.isPartnerPresent() || bottleRejected_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 126, column: 4
+                  bottleRejected_in.setACK(false);//sysj\recyclingStationController.sysj line: 126, column: 4
+                  S264566=1;
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  switch(S201561){
+                  switch(S264561){
                     case 0 : 
-                      if(bottleRecycled_o.isACK()){//sysj\recyclingStationController.sysj line: 199, column: 4
-                        bottleRecycled_o.setVal(w_thread_3);//sysj\recyclingStationController.sysj line: 199, column: 4
-                        S201561=1;
-                        if(!bottleRecycled_o.isACK()){//sysj\recyclingStationController.sysj line: 199, column: 4
-                          bottleRecycled_o.setREQ(false);//sysj\recyclingStationController.sysj line: 199, column: 4
+                      if(!bottleRejected_in.isREQ()){//sysj\recyclingStationController.sysj line: 126, column: 4
+                        bottleRejected_in.setACK(true);//sysj\recyclingStationController.sysj line: 126, column: 4
+                        S264561=1;
+                        if(bottleRejected_in.isREQ()){//sysj\recyclingStationController.sysj line: 126, column: 4
+                          bottleRejected_in.setACK(false);//sysj\recyclingStationController.sysj line: 126, column: 4
                           ends[3]=2;
-                          ;//sysj\recyclingStationController.sysj line: 199, column: 4
-                          S200441=30;
+                          ;//sysj\recyclingStationController.sysj line: 126, column: 4
+                          w_thread_3 = (WorkpieceTwin)(bottleRejected_in.getVal() == null ? null : ((WorkpieceTwin)bottleRejected_in.getVal()));//sysj\recyclingStationController.sysj line: 127, column: 4
+                          m_thread_3.accepted(w_thread_3);//sysj\recyclingStationController.sysj line: 128, column: 4
+                          q_thread_3.push(w_thread_3);//sysj\recyclingStationController.sysj line: 129, column: 4
+                          S264626=2;
                           active[3]=1;
                           ends[3]=1;
                           tdone[3]=1;
@@ -3366,11 +3040,14 @@ public class RecyclingStationController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      if(!bottleRecycled_o.isACK()){//sysj\recyclingStationController.sysj line: 199, column: 4
-                        bottleRecycled_o.setREQ(false);//sysj\recyclingStationController.sysj line: 199, column: 4
+                      if(bottleRejected_in.isREQ()){//sysj\recyclingStationController.sysj line: 126, column: 4
+                        bottleRejected_in.setACK(false);//sysj\recyclingStationController.sysj line: 126, column: 4
                         ends[3]=2;
-                        ;//sysj\recyclingStationController.sysj line: 199, column: 4
-                        S200441=30;
+                        ;//sysj\recyclingStationController.sysj line: 126, column: 4
+                        w_thread_3 = (WorkpieceTwin)(bottleRejected_in.getVal() == null ? null : ((WorkpieceTwin)bottleRejected_in.getVal()));//sysj\recyclingStationController.sysj line: 127, column: 4
+                        m_thread_3.accepted(w_thread_3);//sysj\recyclingStationController.sysj line: 128, column: 4
+                        q_thread_3.push(w_thread_3);//sysj\recyclingStationController.sysj line: 129, column: 4
+                        S264626=2;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
@@ -3387,25 +3064,28 @@ public class RecyclingStationController extends ClockDomain{
                 break;
               
               case 1 : 
-                S201566=1;
-                S201566=0;
-                if(!bottleRecycled_o.isPartnerPresent() || bottleRecycled_o.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 199, column: 4
-                  bottleRecycled_o.setREQ(false);//sysj\recyclingStationController.sysj line: 199, column: 4
-                  S201566=1;
+                S264566=1;
+                S264566=0;
+                if(!bottleRejected_in.isPartnerPresent() || bottleRejected_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 126, column: 4
+                  bottleRejected_in.setACK(false);//sysj\recyclingStationController.sysj line: 126, column: 4
+                  S264566=1;
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  S201561=0;
-                  if(bottleRecycled_o.isACK()){//sysj\recyclingStationController.sysj line: 199, column: 4
-                    bottleRecycled_o.setVal(w_thread_3);//sysj\recyclingStationController.sysj line: 199, column: 4
-                    S201561=1;
-                    if(!bottleRecycled_o.isACK()){//sysj\recyclingStationController.sysj line: 199, column: 4
-                      bottleRecycled_o.setREQ(false);//sysj\recyclingStationController.sysj line: 199, column: 4
+                  S264561=0;
+                  if(!bottleRejected_in.isREQ()){//sysj\recyclingStationController.sysj line: 126, column: 4
+                    bottleRejected_in.setACK(true);//sysj\recyclingStationController.sysj line: 126, column: 4
+                    S264561=1;
+                    if(bottleRejected_in.isREQ()){//sysj\recyclingStationController.sysj line: 126, column: 4
+                      bottleRejected_in.setACK(false);//sysj\recyclingStationController.sysj line: 126, column: 4
                       ends[3]=2;
-                      ;//sysj\recyclingStationController.sysj line: 199, column: 4
-                      S200441=30;
+                      ;//sysj\recyclingStationController.sysj line: 126, column: 4
+                      w_thread_3 = (WorkpieceTwin)(bottleRejected_in.getVal() == null ? null : ((WorkpieceTwin)bottleRejected_in.getVal()));//sysj\recyclingStationController.sysj line: 127, column: 4
+                      m_thread_3.accepted(w_thread_3);//sysj\recyclingStationController.sysj line: 128, column: 4
+                      q_thread_3.push(w_thread_3);//sysj\recyclingStationController.sysj line: 129, column: 4
+                      S264626=2;
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
@@ -3427,75 +3107,54 @@ public class RecyclingStationController extends ClockDomain{
             }
             break;
           
-          case 30 : 
-            S200441=30;
-            stationState_1.setPresent();//sysj\recyclingStationController.sysj line: 204, column: 4
-            currsigs.addElement(stationState_1);
-            stationState_1.setValue(m_thread_3.restingState());//sysj\recyclingStationController.sysj line: 204, column: 4
-            S200441=31;
-            if(m_thread_3.suspended()){//sysj\recyclingStationController.sysj line: 211, column: 4
-              m_thread_3.reportSuspension();//sysj\recyclingStationController.sysj line: 212, column: 5
-              stationState_1.setPresent();//sysj\recyclingStationController.sysj line: 214, column: 6
-              currsigs.addElement(stationState_1);
-              stationState_1.setValue(2);//sysj\recyclingStationController.sysj line: 214, column: 6
+          case 2 : 
+            S264626=2;
+            S264626=0;
+            if(!q_thread_3.hasRoom()){//sysj\recyclingStationController.sysj line: 123, column: 10
               active[3]=1;
               ends[3]=1;
               tdone[3]=1;
             }
             else {
-              S200441=32;
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
-            }
-            break;
-          
-          case 31 : 
-            stationState_1.setPresent();//sysj\recyclingStationController.sysj line: 214, column: 6
-            currsigs.addElement(stationState_1);
-            stationState_1.setValue(2);//sysj\recyclingStationController.sysj line: 214, column: 6
-            active[3]=1;
-            ends[3]=1;
-            tdone[3]=1;
-            break;
-          
-          case 32 : 
-            S200441=32;
-            S200441=0;
-            S200425=0;
-            if(!bottleRejected_in.isPartnerPresent() || bottleRejected_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 124, column: 4
-              bottleRejected_in.setACK(false);//sysj\recyclingStationController.sysj line: 124, column: 4
-              S200425=1;
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
-            }
-            else {
-              S200420=0;
-              if(!bottleRejected_in.isREQ()){//sysj\recyclingStationController.sysj line: 124, column: 4
-                bottleRejected_in.setACK(true);//sysj\recyclingStationController.sysj line: 124, column: 4
-                S200420=1;
-                if(bottleRejected_in.isREQ()){//sysj\recyclingStationController.sysj line: 124, column: 4
-                  bottleRejected_in.setACK(false);//sysj\recyclingStationController.sysj line: 124, column: 4
-                  ends[3]=2;
-                  ;//sysj\recyclingStationController.sysj line: 124, column: 4
-                  w_thread_3 = (WorkpieceTwin)(bottleRejected_in.getVal() == null ? null : ((WorkpieceTwin)bottleRejected_in.getVal()));//sysj\recyclingStationController.sysj line: 125, column: 4
-                  permitted_thread_3 = false;//sysj\recyclingStationController.sysj line: 126, column: 1
-                  S200441=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
+              ends[3]=2;
+              ;//sysj\recyclingStationController.sysj line: 123, column: 4
+              S264626=1;
+              S264566=0;
+              if(!bottleRejected_in.isPartnerPresent() || bottleRejected_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 126, column: 4
+                bottleRejected_in.setACK(false);//sysj\recyclingStationController.sysj line: 126, column: 4
+                S264566=1;
+                active[3]=1;
+                ends[3]=1;
+                tdone[3]=1;
+              }
+              else {
+                S264561=0;
+                if(!bottleRejected_in.isREQ()){//sysj\recyclingStationController.sysj line: 126, column: 4
+                  bottleRejected_in.setACK(true);//sysj\recyclingStationController.sysj line: 126, column: 4
+                  S264561=1;
+                  if(bottleRejected_in.isREQ()){//sysj\recyclingStationController.sysj line: 126, column: 4
+                    bottleRejected_in.setACK(false);//sysj\recyclingStationController.sysj line: 126, column: 4
+                    ends[3]=2;
+                    ;//sysj\recyclingStationController.sysj line: 126, column: 4
+                    w_thread_3 = (WorkpieceTwin)(bottleRejected_in.getVal() == null ? null : ((WorkpieceTwin)bottleRejected_in.getVal()));//sysj\recyclingStationController.sysj line: 127, column: 4
+                    m_thread_3.accepted(w_thread_3);//sysj\recyclingStationController.sysj line: 128, column: 4
+                    q_thread_3.push(w_thread_3);//sysj\recyclingStationController.sysj line: 129, column: 4
+                    S264626=2;
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
                 }
                 else {
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
-              }
-              else {
-                active[3]=1;
-                ends[3]=1;
-                tdone[3]=1;
               }
             }
             break;
@@ -3506,8 +3165,8 @@ public class RecyclingStationController extends ClockDomain{
     }
   }
 
-  public void thread207632(int [] tdone, int [] ends){
-        switch(S200417){
+  public void thread271010(int [] tdone, int [] ends){
+        switch(S264554){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -3515,19 +3174,19 @@ public class RecyclingStationController extends ClockDomain{
         break;
       
       case 1 : 
-        if(stationState_1.getprestatus()){//sysj\recyclingStationController.sysj line: 82, column: 12
-          cur_thread_2 = ((Integer)(stationState_1.getpreval() == null ? 0 : ((Integer)stationState_1.getpreval()).intValue())).intValue();//sysj\recyclingStationController.sysj line: 83, column: 5
-          recyclingStatus.setPresent();//sysj\recyclingStationController.sysj line: 85, column: 4
+        if(stationState_1.getprestatus()){//sysj\recyclingStationController.sysj line: 103, column: 12
+          cur_thread_2 = ((Integer)(stationState_1.getpreval() == null ? 0 : ((Integer)stationState_1.getpreval()).intValue())).intValue();//sysj\recyclingStationController.sysj line: 104, column: 5
+          recyclingStatus.setPresent();//sysj\recyclingStationController.sysj line: 106, column: 4
           currsigs.addElement(recyclingStatus);
-          recyclingStatus.setValue(cur_thread_2);//sysj\recyclingStationController.sysj line: 85, column: 4
+          recyclingStatus.setValue(cur_thread_2);//sysj\recyclingStationController.sysj line: 106, column: 4
           active[2]=1;
           ends[2]=1;
           tdone[2]=1;
         }
         else {
-          recyclingStatus.setPresent();//sysj\recyclingStationController.sysj line: 85, column: 4
+          recyclingStatus.setPresent();//sysj\recyclingStationController.sysj line: 106, column: 4
           currsigs.addElement(recyclingStatus);
-          recyclingStatus.setValue(cur_thread_2);//sysj\recyclingStationController.sysj line: 85, column: 4
+          recyclingStatus.setValue(cur_thread_2);//sysj\recyclingStationController.sysj line: 106, column: 4
           active[2]=1;
           ends[2]=1;
           tdone[2]=1;
@@ -3537,38 +3196,83 @@ public class RecyclingStationController extends ClockDomain{
     }
   }
 
-  public void thread207630(int [] tdone, int [] ends){
-        S207625=1;
-    m_thread_3 = RecyclingRecord.shared();//sysj\recyclingStationController.sysj line: 108, column: 3
-    TO_LID_thread_3 = 1;//sysj\recyclingStationController.sysj line: 111, column: 3
-    TO_DUMP_thread_3 = 2;//sysj\recyclingStationController.sysj line: 112, column: 3
-    TO_RETURN_thread_3 = 3;//sysj\recyclingStationController.sysj line: 113, column: 3
-    DISCHARGE_thread_3 = 4;//sysj\recyclingStationController.sysj line: 114, column: 3
-    w_thread_3 = null;//sysj\recyclingStationController.sysj line: 116, column: 3
-    S200441=0;
-    S200425=0;
-    if(!bottleRejected_in.isPartnerPresent() || bottleRejected_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 124, column: 4
-      bottleRejected_in.setACK(false);//sysj\recyclingStationController.sysj line: 124, column: 4
-      S200425=1;
+  public void thread271008(int [] tdone, int [] ends){
+        S271002=1;
+    q_thread_4 = RecyclingQueue.shared();//sysj\recyclingStationController.sysj line: 135, column: 3
+    m_thread_4 = RecyclingRecord.shared();//sysj\recyclingStationController.sysj line: 136, column: 3
+    TO_LID_thread_4 = 1;//sysj\recyclingStationController.sysj line: 139, column: 3
+    TO_DUMP_thread_4 = 2;//sysj\recyclingStationController.sysj line: 140, column: 3
+    TO_RETURN_thread_4 = 3;//sysj\recyclingStationController.sysj line: 141, column: 3
+    DISCHARGE_thread_4 = 4;//sysj\recyclingStationController.sysj line: 142, column: 3
+    w_thread_4 = null;//sysj\recyclingStationController.sysj line: 144, column: 3
+    permitted_thread_4 = false;//sysj\recyclingStationController.sysj line: 145, column: 3
+    S264988=0;
+    if(!q_thread_4.hasWork()){//sysj\recyclingStationController.sysj line: 150, column: 10
+      active[4]=1;
+      ends[4]=1;
+      tdone[4]=1;
+    }
+    else {
+      ends[4]=2;
+      ;//sysj\recyclingStationController.sysj line: 150, column: 4
+      w_thread_4 = q_thread_4.take();//sysj\recyclingStationController.sysj line: 154, column: 4
+      m_thread_4.beginCycle(w_thread_4);//sysj\recyclingStationController.sysj line: 155, column: 4
+      stationState_1.setPresent();//sysj\recyclingStationController.sysj line: 156, column: 4
+      currsigs.addElement(stationState_1);
+      stationState_1.setValue(1);//sysj\recyclingStationController.sysj line: 156, column: 4
+      permitted_thread_4 = false;//sysj\recyclingStationController.sysj line: 161, column: 4
+      S264988=1;
+      active[4]=1;
+      ends[4]=1;
+      tdone[4]=1;
+    }
+  }
+
+  public void thread271007(int [] tdone, int [] ends){
+        S264982=1;
+    q_thread_3 = RecyclingQueue.shared();//sysj\recyclingStationController.sysj line: 118, column: 3
+    m_thread_3 = RecyclingRecord.shared();//sysj\recyclingStationController.sysj line: 119, column: 3
+    w_thread_3 = null;//sysj\recyclingStationController.sysj line: 120, column: 3
+    S264626=0;
+    if(!q_thread_3.hasRoom()){//sysj\recyclingStationController.sysj line: 123, column: 10
       active[3]=1;
       ends[3]=1;
       tdone[3]=1;
     }
     else {
-      S200420=0;
-      if(!bottleRejected_in.isREQ()){//sysj\recyclingStationController.sysj line: 124, column: 4
-        bottleRejected_in.setACK(true);//sysj\recyclingStationController.sysj line: 124, column: 4
-        S200420=1;
-        if(bottleRejected_in.isREQ()){//sysj\recyclingStationController.sysj line: 124, column: 4
-          bottleRejected_in.setACK(false);//sysj\recyclingStationController.sysj line: 124, column: 4
-          ends[3]=2;
-          ;//sysj\recyclingStationController.sysj line: 124, column: 4
-          w_thread_3 = (WorkpieceTwin)(bottleRejected_in.getVal() == null ? null : ((WorkpieceTwin)bottleRejected_in.getVal()));//sysj\recyclingStationController.sysj line: 125, column: 4
-          permitted_thread_3 = false;//sysj\recyclingStationController.sysj line: 126, column: 1
-          S200441=1;
-          active[3]=1;
-          ends[3]=1;
-          tdone[3]=1;
+      ends[3]=2;
+      ;//sysj\recyclingStationController.sysj line: 123, column: 4
+      S264626=1;
+      S264566=0;
+      if(!bottleRejected_in.isPartnerPresent() || bottleRejected_in.isPartnerPreempted()){//sysj\recyclingStationController.sysj line: 126, column: 4
+        bottleRejected_in.setACK(false);//sysj\recyclingStationController.sysj line: 126, column: 4
+        S264566=1;
+        active[3]=1;
+        ends[3]=1;
+        tdone[3]=1;
+      }
+      else {
+        S264561=0;
+        if(!bottleRejected_in.isREQ()){//sysj\recyclingStationController.sysj line: 126, column: 4
+          bottleRejected_in.setACK(true);//sysj\recyclingStationController.sysj line: 126, column: 4
+          S264561=1;
+          if(bottleRejected_in.isREQ()){//sysj\recyclingStationController.sysj line: 126, column: 4
+            bottleRejected_in.setACK(false);//sysj\recyclingStationController.sysj line: 126, column: 4
+            ends[3]=2;
+            ;//sysj\recyclingStationController.sysj line: 126, column: 4
+            w_thread_3 = (WorkpieceTwin)(bottleRejected_in.getVal() == null ? null : ((WorkpieceTwin)bottleRejected_in.getVal()));//sysj\recyclingStationController.sysj line: 127, column: 4
+            m_thread_3.accepted(w_thread_3);//sysj\recyclingStationController.sysj line: 128, column: 4
+            q_thread_3.push(w_thread_3);//sysj\recyclingStationController.sysj line: 129, column: 4
+            S264626=2;
+            active[3]=1;
+            ends[3]=1;
+            tdone[3]=1;
+          }
+          else {
+            active[3]=1;
+            ends[3]=1;
+            tdone[3]=1;
+          }
         }
         else {
           active[3]=1;
@@ -3576,30 +3280,25 @@ public class RecyclingStationController extends ClockDomain{
           tdone[3]=1;
         }
       }
-      else {
-        active[3]=1;
-        ends[3]=1;
-        tdone[3]=1;
-      }
     }
   }
 
-  public void thread207629(int [] tdone, int [] ends){
-        S200417=1;
-    cur_thread_2 = 0;//sysj\recyclingStationController.sysj line: 80, column: 3
-    if(stationState_1.getprestatus()){//sysj\recyclingStationController.sysj line: 82, column: 12
-      cur_thread_2 = ((Integer)(stationState_1.getpreval() == null ? 0 : ((Integer)stationState_1.getpreval()).intValue())).intValue();//sysj\recyclingStationController.sysj line: 83, column: 5
-      recyclingStatus.setPresent();//sysj\recyclingStationController.sysj line: 85, column: 4
+  public void thread271006(int [] tdone, int [] ends){
+        S264554=1;
+    cur_thread_2 = 0;//sysj\recyclingStationController.sysj line: 101, column: 3
+    if(stationState_1.getprestatus()){//sysj\recyclingStationController.sysj line: 103, column: 12
+      cur_thread_2 = ((Integer)(stationState_1.getpreval() == null ? 0 : ((Integer)stationState_1.getpreval()).intValue())).intValue();//sysj\recyclingStationController.sysj line: 104, column: 5
+      recyclingStatus.setPresent();//sysj\recyclingStationController.sysj line: 106, column: 4
       currsigs.addElement(recyclingStatus);
-      recyclingStatus.setValue(cur_thread_2);//sysj\recyclingStationController.sysj line: 85, column: 4
+      recyclingStatus.setValue(cur_thread_2);//sysj\recyclingStationController.sysj line: 106, column: 4
       active[2]=1;
       ends[2]=1;
       tdone[2]=1;
     }
     else {
-      recyclingStatus.setPresent();//sysj\recyclingStationController.sysj line: 85, column: 4
+      recyclingStatus.setPresent();//sysj\recyclingStationController.sysj line: 106, column: 4
       currsigs.addElement(recyclingStatus);
-      recyclingStatus.setValue(cur_thread_2);//sysj\recyclingStationController.sysj line: 85, column: 4
+      recyclingStatus.setValue(cur_thread_2);//sysj\recyclingStationController.sysj line: 106, column: 4
       active[2]=1;
       ends[2]=1;
       tdone[2]=1;
@@ -3613,52 +3312,60 @@ public class RecyclingStationController extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S207627){
+      switch(S271004){
         case 0 : 
-          S207627=0;
+          S271004=0;
           break RUN;
         
         case 1 : 
-          S207627=2;
-          S207627=2;
-          stationState_1.setClear();//sysj\recyclingStationController.sysj line: 77, column: 2
-          thread207629(tdone,ends);
-          thread207630(tdone,ends);
-          int biggest207631 = 0;
-          if(ends[2]>=biggest207631){
-            biggest207631=ends[2];
+          S271004=2;
+          S271004=2;
+          stationState_1.setClear();//sysj\recyclingStationController.sysj line: 98, column: 2
+          thread271006(tdone,ends);
+          thread271007(tdone,ends);
+          thread271008(tdone,ends);
+          int biggest271009 = 0;
+          if(ends[2]>=biggest271009){
+            biggest271009=ends[2];
           }
-          if(ends[3]>=biggest207631){
-            biggest207631=ends[3];
+          if(ends[3]>=biggest271009){
+            biggest271009=ends[3];
           }
-          if(biggest207631 == 1){
+          if(ends[4]>=biggest271009){
+            biggest271009=ends[4];
+          }
+          if(biggest271009 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
         
         case 2 : 
-          stationState_1.setClear();//sysj\recyclingStationController.sysj line: 77, column: 2
-          thread207632(tdone,ends);
-          thread207633(tdone,ends);
-          int biggest207634 = 0;
-          if(ends[2]>=biggest207634){
-            biggest207634=ends[2];
+          stationState_1.setClear();//sysj\recyclingStationController.sysj line: 98, column: 2
+          thread271010(tdone,ends);
+          thread271011(tdone,ends);
+          thread271012(tdone,ends);
+          int biggest271013 = 0;
+          if(ends[2]>=biggest271013){
+            biggest271013=ends[2];
           }
-          if(ends[3]>=biggest207634){
-            biggest207634=ends[3];
+          if(ends[3]>=biggest271013){
+            biggest271013=ends[3];
           }
-          if(biggest207634 == 1){
+          if(ends[4]>=biggest271013){
+            biggest271013=ends[4];
+          }
+          if(biggest271013 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest207634 == 0){
-            S207627=0;
+          if(biggest271013 == 0){
+            S271004=0;
             active[1]=0;
             ends[1]=0;
-            S207627=0;
+            S271004=0;
             break RUN;
           }
         
@@ -3667,9 +3374,9 @@ public class RecyclingStationController extends ClockDomain{
   }
 
   public void init(){
-    char [] active1 = {1, 1, 1, 1};
-    char [] paused1 = {0, 0, 0, 0};
-    char [] suspended1 = {0, 0, 0, 0};
+    char [] active1 = {1, 1, 1, 1, 1};
+    char [] paused1 = {0, 0, 0, 0, 0};
+    char [] suspended1 = {0, 0, 0, 0, 0};
     paused = paused1;
     active = active1;
     suspended = suspended1;
@@ -3690,13 +3397,11 @@ public class RecyclingStationController extends ClockDomain{
       else{
         if(!df){
           bottleRejected_in.gethook();
-          statusSplitter_in.gethook();
           statusConveyor_in.gethook();
           statusLidRemoval_in.gethook();
           statusDumper_in.gethook();
           statusReturn_in.gethook();
           bottleRecycled_o.gethook();
-          enableSplitter_o.gethook();
           enableLidRemoval_o.gethook();
           enableDumper_o.gethook();
           enableReturn_o.gethook();
@@ -3722,13 +3427,11 @@ public class RecyclingStationController extends ClockDomain{
       recyclingStatus.setClear();
       stationState_1.setClear();
       bottleRejected_in.sethook();
-      statusSplitter_in.sethook();
       statusConveyor_in.sethook();
       statusLidRemoval_in.sethook();
       statusDumper_in.sethook();
       statusReturn_in.sethook();
       bottleRecycled_o.sethook();
-      enableSplitter_o.sethook();
       enableLidRemoval_o.sethook();
       enableDumper_o.sethook();
       enableReturn_o.sethook();
@@ -3736,13 +3439,11 @@ public class RecyclingStationController extends ClockDomain{
       if(paused[1]!=0 || suspended[1]!=0 || active[1]!=1);
       else{
         bottleRejected_in.gethook();
-        statusSplitter_in.gethook();
         statusConveyor_in.gethook();
         statusLidRemoval_in.gethook();
         statusDumper_in.gethook();
         statusReturn_in.gethook();
         bottleRecycled_o.gethook();
-        enableSplitter_o.gethook();
         enableLidRemoval_o.gethook();
         enableDumper_o.gethook();
         enableReturn_o.gethook();

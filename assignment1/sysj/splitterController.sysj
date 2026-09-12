@@ -1,288 +1,185 @@
 /*
-
  * Splitter Controller - the quality diverter at the end of the outfeed.
-
  *
-
- * The Splitter is the only Recycling Station subsystem that sits in the main
-
- * production flow, so it is the point at which the extension attaches to the
-
- * core ABS. The Recycling Station Controller arms it on the enable channel,
-
- * which carries the workpiece itself: the interim report's Enable and
-
- * ActivateSplitter in one transfer, and a channel carries the bottle's
-
- * identity and quality record without a second signal and without the risk of
-
- * the arming being missed.
-
+ * The Splitter sits in the main production flow, and it is the point at which
+ * the Recycling Station attaches to the core ABS. It is no longer one of the
+ * station's subsystems: the coordinator hands it every bottle leaving the
+ * outfeed, it reads the quality record off the twin it is holding, and it
+ * drives the diverter it already senses. That is the order both the interim
+ * report and the IP report describe - the belt carries a bottle to the
+ * splitter, which routes it forward to the labeller or aside to recycling.
  *
-
- * The key design feature is that the diverter position is sensed, not
-
- * assumed. The controller drives diverterExtend and waits for the reject
-
- * end-of-travel sensor. If divertAtReject does not assert inside the stroke
-
- * time the mechanism has jammed, and the controller reports a fault on status
-
- * instead of silently releasing a rejected bottle down the labeller path.
-
+ * It used to be armed by the Recycling Station Controller, which meant the
+ * diverter fired after the bottle had already been sent to the labeller,
+ * refused, and handed to the station - diverting a bottle off a belt it had
+ * long since left. The decision and the mechanism are now in the same place.
  *
-
- * admitBottle is the simulation stand-in for the outfeed releasing the
-
- * claimed workpiece towards the decision point. When the station is wired to
-
- * the real outfeed belt it is replaced by the conveyor's own delivery, and
-
- * nothing else in this file changes.
-
+ * The key design feature is unchanged: the diverter position is sensed, not
+ * assumed. The controller drives the mechanism to whichever path the record
+ * calls for and waits for that end-of-travel sensor. If the stroke does not
+ * confirm inside the timeout the mechanism has jammed, and the controller
+ * says so rather than reporting a route it has not actually selected.
+ *
+ * A jam is not silent and it is not fatal. The bottle carries on down the
+ * normal path with the jam recorded on its twin, and the labeller - which
+ * refuses anything its own history does not justify - catches it. A sensed
+ * diverter as the gate and an independent record check behind it is two
+ * mechanisms rather than one, which is the point of putting the splitter here.
+ *
+ * admitBottle is the outfeed releasing the claimed workpiece towards the
+ * decision point.
  */
-
 SplitterController(
-
-		// from / to the Recycling Station Controller
-
+		// from / to the System Controller
 		input  WorkpieceTwin channel enable;
-
 		output Integer channel status;
 
-
-
 		// operating mode
-
 		input Integer signal mode;
 
-
-
 		// from the Diverter Plant
-
 		input signal bottleAtSplitter, divertAtNormal, divertAtReject, bottleLeftSplitter;
 
-
-
 		// to the Diverter Plant
-
 		output signal admitBottle, diverterExtend, diverterRetract;
 
-
-
 		// manual overrides - the operator panel attaches here
-
 		input signal diverterExtendM, diverterRetractM;
-
 		)
-
 ->
-
 {
-
 	signal auto, manual;
 
-
-
 	{ // Mode select
-
 		while(true){
-
 			present(mode){
-
 				if((Integer)#mode == 0){ emit auto; }
-
 				else { emit manual; }
-
 			}
-
 			pause;
-
 		}
-
 	}
-
 	||
-
 	{ // Auto
+		// Route reported back to the coordinator
+		int FORWARD = 0;   // normal path, on to the labeller
+		int DIVERTED = 1;  // reject path, onto the recycling conveyor
+		int JAMMED = 2;    // the diverter did not reach the commanded position
 
-		// Status codes reported to the RSC
-
-		int OK = 0;
-
-		int JAMMED = 1;
-
-
-
-		// The diverter is a pneumatic stroke. If the reject end stop has not
-
-		// answered within this many ticks it has not moved.
-
-		int STROKE_TIMEOUT = 12;
-
-
+		// The diverter is a pneumatic stroke. If the commanded end stop has
+		// not answered within this many ticks it has not moved.
+		int STROKE_TIMEOUT = PlantTiming.ticks(12);
 
 		WorkpieceTwin w = null;
-
 		int t = 0;
-
 		int code = 0;
-
+		boolean reject = false;
 		boolean confirmed = false;
-
-
+		boolean cleared = false;
+		boolean home = false;
 
 		while(true){
-
 			await(immediate auto);
 
-
-
 			abort(immediate manual){
-
 				receive enable;
-
 				w = (WorkpieceTwin)#enable;
 
-				System.out.println("[SP] Armed for " + w + ".");
-
-
-
 				// Claim the workpiece and wait for it to reach the decision
-
 				// point. The command is held until the plant's arrival sensor
-
 				// answers, rather than pulsed for a guessed number of ticks.
-
 				abort(immediate bottleAtSplitter){
-
 					sustain admitBottle;
-
 				}
 
-				System.out.println("[SP] " + w + " at the decision point.");
+				// The decision, read off the record the bottle is carrying.
+				reject = w.isRejected();
+				w.arrived(Machine.SPLITTER);
+				System.out.println("[SP] " + w + " at the decision point - "
+						+ (reject ? "reject path (" + w.defect() + ")" : "normal path") + ".");
 
-
-
-				// Select the reject path and verify it. A plain
-
-				//   abort(immediate divertAtReject){ sustain diverterExtend; }
-
-				// would wait forever on a jam, so the wait is bounded and the
-
-				// outcome is latched.
-
+				// Drive the diverter to the commanded path and verify it
+				// against that path's end stop. A plain abort would wait
+				// forever on a jam, so the wait is bounded and the outcome is
+				// latched.
 				t = STROKE_TIMEOUT;
-
 				confirmed = false;
-
 				while(t > 0 && !confirmed){
-
-					emit diverterExtend;
-
-					present(divertAtReject){
-
-						confirmed = true;
-
+					if(reject){ emit diverterExtend; }
+					if(!reject){ emit diverterRetract; }
+					if(reject){
+						present(divertAtReject){ confirmed = true; }
 					}
-
+					if(!reject){
+						present(divertAtNormal){ confirmed = true; }
+					}
 					t--;
-
 					pause;
-
 				}
-
-
 
 				code = JAMMED;
 
-
-
 				if(confirmed){
-
-					System.out.println("[SP] Diverter at reject, routing " + w + " to the recycling conveyor.");
-
-
-
-					// Hold the diverter over until the bottle has physically
-
-					// cleared it, then reset so the next accepted bottle runs
-
-					// straight through to the labeller.
-
-					abort(immediate bottleLeftSplitter){
-
-						sustain diverterExtend;
-
+					// Hold the diverter on the selected path until the bottle
+					// has physically cleared it.
+					cleared = false;
+					while(!cleared){
+						if(reject){ emit diverterExtend; }
+						if(!reject){ emit diverterRetract; }
+						present(bottleLeftSplitter){ cleared = true; }
+						pause;
 					}
-
-					abort(immediate divertAtNormal){
-
-						sustain diverterRetract;
-
-					}
-
-					System.out.println("[SP] " + w + " released, diverter reset to the normal path.");
-
-					code = OK;
-
+					code = FORWARD;
+					if(reject){ code = DIVERTED; }
+					System.out.println("[SP] " + w + " released down the "
+							+ (reject ? "reject path to the recycling conveyor" : "normal path to the labeller") + ".");
 				}
-
-
 
 				if(!confirmed){
-
-					System.out.println("[SP] FAULT: diverter did not reach the reject position for " + w + ".");
-
+					// The mechanism did not select the path that was asked
+					// for. Record it on the bottle so the labeller's own
+					// check becomes the backstop, and do not claim a route
+					// that was not taken.
+					System.out.println("[SP] FAULT: diverter did not reach the "
+							+ (reject ? "reject" : "normal") + " position for " + w + ".");
+					w.reject(Machine.SPLITTER, "diverter jammed");
+					cleared = false;
+					while(!cleared){
+						present(bottleLeftSplitter){ cleared = true; }
+						pause;
+					}
 				}
 
-
+				// Reset to the normal path so the next accepted bottle runs
+				// straight through.
+				home = false;
+				while(!home){
+					emit diverterRetract;
+					present(divertAtNormal){ home = true; }
+					pause;
+				}
 
 				// One status transfer per cycle, whatever the outcome. A
-
 				// rendezvous inside a branch multiplies the control paths
-
 				// through the reaction and the generated state machine grows
-
 				// with every one of them.
-
 				send status(new Integer(code));
-
 			}
-
 			pause;
-
 		}
-
 	}
-
 	||
-
 	{ // Manual
-
 		while(true){
-
 			await(immediate manual);
-
 			abort(immediate auto){
-
 				while(true){
-
 					present(diverterExtendM){ emit diverterExtend; }
-
 					present(diverterRetractM){ emit diverterRetract; }
-
 					pause;
-
 				}
-
 			}
-
 			pause;
-
 		}
-
 	}
-
 }
-
