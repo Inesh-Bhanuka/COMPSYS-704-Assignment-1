@@ -26,6 +26,7 @@ LidLoaderPlant(
 		int STOCK = 3;   // small on purpose, so a refill happens during a demo run
 		int lids = STOCK;
 		boolean extended = false;
+		boolean refilling = false;
 		boolean lidReady = false;
 		boolean holding = false;
 
@@ -71,12 +72,26 @@ LidLoaderPlant(
 				if(lidReady){ emit lidAtPickup; }
 				if(holding){ emit WPgripped; }
 
+				// Edge triggered, like every other transfer command in the
+				// plants. The controller sustains refill until refilled comes
+				// back, and that acknowledgement crosses a clock-domain
+				// boundary, so the command is present for several ticks here.
+				// Resetting on each of them refilled the magazine more than
+				// once: the pusher took a lid, the next tick put it back, and
+				// the log printed "2 left" twice in a row for two different
+				// bottles. One command, one refill.
 				present(refill){
-					lids = STOCK;
+					if(!refilling){
+						refilling = true;
+						lids = STOCK;
+					}
 					emit refilled;
 				}
-				else if(lids == 0 && !lidReady && !holding){
-					emit magazineEmpty;
+				else {
+					refilling = false;
+					if(lids == 0 && !lidReady && !holding){
+						emit magazineEmpty;
+					}
 				}
 			}
 			pause;

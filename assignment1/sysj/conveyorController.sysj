@@ -59,8 +59,10 @@ ConveyorController(
 	{ // Mode select
 		while(true){
 			present(mode){
+				// 0 automatic, 1 manual, 2 paused. Paused emits neither, so
+				// every gate below waits and the operator panel is inert.
 				if((Integer)#mode == 0){ emit auto; }
-				else { emit manual; }
+				else if((Integer)#mode == 1){ emit manual; }
 			}
 			pause;
 		}

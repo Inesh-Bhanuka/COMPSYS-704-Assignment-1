@@ -53,27 +53,27 @@ public class OperatorPanel extends ClockDomain{
   public Signal brMotorOnOff = new Signal("brMotorOnOff", Signal.OUTPUT);
   public Signal brTransferArmExtend = new Signal("brTransferArmExtend", Signal.OUTPUT);
   public Signal brTransferArmRetract = new Signal("brTransferArmRetract", Signal.OUTPUT);
-  private int S226255 = 1;
-  private int S225581 = 1;
-  private int S225527 = 1;
-  private int S225790 = 1;
-  private int S225822 = 1;
-  private int S225830 = 1;
-  private int S225838 = 1;
-  private int S225948 = 1;
-  private int S225956 = 1;
-  private int S225988 = 1;
-  private int S226020 = 1;
-  private int S226052 = 1;
-  private int S226162 = 1;
-  private int S226221 = 1;
-  private int S226253 = 1;
+  private int S227542 = 1;
+  private int S226868 = 1;
+  private int S226814 = 1;
+  private int S227077 = 1;
+  private int S227109 = 1;
+  private int S227117 = 1;
+  private int S227125 = 1;
+  private int S227235 = 1;
+  private int S227243 = 1;
+  private int S227275 = 1;
+  private int S227307 = 1;
+  private int S227339 = 1;
+  private int S227449 = 1;
+  private int S227508 = 1;
+  private int S227540 = 1;
   
   private int[] ends = new int[15];
   private int[] tdone = new int[15];
   
-  public void thread226283(int [] tdone, int [] ends){
-        switch(S226253){
+  public void thread227570(int [] tdone, int [] ends){
+        switch(S227540){
       case 0 : 
         active[14]=0;
         ends[14]=0;
@@ -152,8 +152,8 @@ public class OperatorPanel extends ClockDomain{
     }
   }
 
-  public void thread226282(int [] tdone, int [] ends){
-        switch(S226221){
+  public void thread227569(int [] tdone, int [] ends){
+        switch(S227508){
       case 0 : 
         active[13]=0;
         ends[13]=0;
@@ -304,8 +304,8 @@ public class OperatorPanel extends ClockDomain{
     }
   }
 
-  public void thread226281(int [] tdone, int [] ends){
-        switch(S226162){
+  public void thread227568(int [] tdone, int [] ends){
+        switch(S227449){
       case 0 : 
         active[12]=0;
         ends[12]=0;
@@ -600,8 +600,8 @@ public class OperatorPanel extends ClockDomain{
     }
   }
 
-  public void thread226280(int [] tdone, int [] ends){
-        switch(S226052){
+  public void thread227567(int [] tdone, int [] ends){
+        switch(S227339){
       case 0 : 
         active[11]=0;
         ends[11]=0;
@@ -680,8 +680,8 @@ public class OperatorPanel extends ClockDomain{
     }
   }
 
-  public void thread226279(int [] tdone, int [] ends){
-        switch(S226020){
+  public void thread227566(int [] tdone, int [] ends){
+        switch(S227307){
       case 0 : 
         active[10]=0;
         ends[10]=0;
@@ -760,8 +760,8 @@ public class OperatorPanel extends ClockDomain{
     }
   }
 
-  public void thread226278(int [] tdone, int [] ends){
-        switch(S225988){
+  public void thread227565(int [] tdone, int [] ends){
+        switch(S227275){
       case 0 : 
         active[9]=0;
         ends[9]=0;
@@ -840,8 +840,8 @@ public class OperatorPanel extends ClockDomain{
     }
   }
 
-  public void thread226277(int [] tdone, int [] ends){
-        switch(S225956){
+  public void thread227564(int [] tdone, int [] ends){
+        switch(S227243){
       case 0 : 
         active[8]=0;
         ends[8]=0;
@@ -866,8 +866,8 @@ public class OperatorPanel extends ClockDomain{
     }
   }
 
-  public void thread226276(int [] tdone, int [] ends){
-        switch(S225948){
+  public void thread227563(int [] tdone, int [] ends){
+        switch(S227235){
       case 0 : 
         active[7]=0;
         ends[7]=0;
@@ -1162,8 +1162,8 @@ public class OperatorPanel extends ClockDomain{
     }
   }
 
-  public void thread226275(int [] tdone, int [] ends){
-        switch(S225838){
+  public void thread227562(int [] tdone, int [] ends){
+        switch(S227125){
       case 0 : 
         active[6]=0;
         ends[6]=0;
@@ -1188,8 +1188,8 @@ public class OperatorPanel extends ClockDomain{
     }
   }
 
-  public void thread226274(int [] tdone, int [] ends){
-        switch(S225830){
+  public void thread227561(int [] tdone, int [] ends){
+        switch(S227117){
       case 0 : 
         active[5]=0;
         ends[5]=0;
@@ -1214,8 +1214,8 @@ public class OperatorPanel extends ClockDomain{
     }
   }
 
-  public void thread226273(int [] tdone, int [] ends){
-        switch(S225822){
+  public void thread227560(int [] tdone, int [] ends){
+        switch(S227109){
       case 0 : 
         active[4]=0;
         ends[4]=0;
@@ -1294,8 +1294,8 @@ public class OperatorPanel extends ClockDomain{
     }
   }
 
-  public void thread226272(int [] tdone, int [] ends){
-        switch(S225790){
+  public void thread227559(int [] tdone, int [] ends){
+        switch(S227077){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -1878,8 +1878,8 @@ public class OperatorPanel extends ClockDomain{
     }
   }
 
-  public void thread226271(int [] tdone, int [] ends){
-        switch(S225581){
+  public void thread227558(int [] tdone, int [] ends){
+        switch(S226868){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -1887,9 +1887,9 @@ public class OperatorPanel extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S225527){
+        switch(S226814){
           case 0 : 
-            S225527=0;
+            S226814=0;
             if(ManualDrive.held("bl.vacOn")){//sysj\operatorPanel.sysj line: 39, column: 4
               blVacOn.setPresent();//sysj\operatorPanel.sysj line: 39, column: 38
               currsigs.addElement(blVacOn);
@@ -1902,13 +1902,13 @@ public class OperatorPanel extends ClockDomain{
                   if(ManualDrive.held("bl.armDest")){//sysj\operatorPanel.sysj line: 42, column: 4
                     blArmDest.setPresent();//sysj\operatorPanel.sysj line: 42, column: 40
                     currsigs.addElement(blArmDest);
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
                   }
                   else {
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
@@ -1918,13 +1918,13 @@ public class OperatorPanel extends ClockDomain{
                   if(ManualDrive.held("bl.armDest")){//sysj\operatorPanel.sysj line: 42, column: 4
                     blArmDest.setPresent();//sysj\operatorPanel.sysj line: 42, column: 40
                     currsigs.addElement(blArmDest);
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
                   }
                   else {
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
@@ -1938,13 +1938,13 @@ public class OperatorPanel extends ClockDomain{
                   if(ManualDrive.held("bl.armDest")){//sysj\operatorPanel.sysj line: 42, column: 4
                     blArmDest.setPresent();//sysj\operatorPanel.sysj line: 42, column: 40
                     currsigs.addElement(blArmDest);
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
                   }
                   else {
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
@@ -1954,13 +1954,13 @@ public class OperatorPanel extends ClockDomain{
                   if(ManualDrive.held("bl.armDest")){//sysj\operatorPanel.sysj line: 42, column: 4
                     blArmDest.setPresent();//sysj\operatorPanel.sysj line: 42, column: 40
                     currsigs.addElement(blArmDest);
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
                   }
                   else {
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
@@ -1978,13 +1978,13 @@ public class OperatorPanel extends ClockDomain{
                   if(ManualDrive.held("bl.armDest")){//sysj\operatorPanel.sysj line: 42, column: 4
                     blArmDest.setPresent();//sysj\operatorPanel.sysj line: 42, column: 40
                     currsigs.addElement(blArmDest);
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
                   }
                   else {
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
@@ -1994,13 +1994,13 @@ public class OperatorPanel extends ClockDomain{
                   if(ManualDrive.held("bl.armDest")){//sysj\operatorPanel.sysj line: 42, column: 4
                     blArmDest.setPresent();//sysj\operatorPanel.sysj line: 42, column: 40
                     currsigs.addElement(blArmDest);
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
                   }
                   else {
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
@@ -2014,13 +2014,13 @@ public class OperatorPanel extends ClockDomain{
                   if(ManualDrive.held("bl.armDest")){//sysj\operatorPanel.sysj line: 42, column: 4
                     blArmDest.setPresent();//sysj\operatorPanel.sysj line: 42, column: 40
                     currsigs.addElement(blArmDest);
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
                   }
                   else {
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
@@ -2030,13 +2030,13 @@ public class OperatorPanel extends ClockDomain{
                   if(ManualDrive.held("bl.armDest")){//sysj\operatorPanel.sysj line: 42, column: 4
                     blArmDest.setPresent();//sysj\operatorPanel.sysj line: 42, column: 40
                     currsigs.addElement(blArmDest);
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
                   }
                   else {
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
@@ -2047,8 +2047,8 @@ public class OperatorPanel extends ClockDomain{
             break;
           
           case 1 : 
-            S225527=1;
-            S225527=0;
+            S226814=1;
+            S226814=0;
             if(ManualDrive.held("bl.vacOn")){//sysj\operatorPanel.sysj line: 39, column: 4
               blVacOn.setPresent();//sysj\operatorPanel.sysj line: 39, column: 38
               currsigs.addElement(blVacOn);
@@ -2061,13 +2061,13 @@ public class OperatorPanel extends ClockDomain{
                   if(ManualDrive.held("bl.armDest")){//sysj\operatorPanel.sysj line: 42, column: 4
                     blArmDest.setPresent();//sysj\operatorPanel.sysj line: 42, column: 40
                     currsigs.addElement(blArmDest);
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
                   }
                   else {
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
@@ -2077,13 +2077,13 @@ public class OperatorPanel extends ClockDomain{
                   if(ManualDrive.held("bl.armDest")){//sysj\operatorPanel.sysj line: 42, column: 4
                     blArmDest.setPresent();//sysj\operatorPanel.sysj line: 42, column: 40
                     currsigs.addElement(blArmDest);
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
                   }
                   else {
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
@@ -2097,13 +2097,13 @@ public class OperatorPanel extends ClockDomain{
                   if(ManualDrive.held("bl.armDest")){//sysj\operatorPanel.sysj line: 42, column: 4
                     blArmDest.setPresent();//sysj\operatorPanel.sysj line: 42, column: 40
                     currsigs.addElement(blArmDest);
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
                   }
                   else {
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
@@ -2113,13 +2113,13 @@ public class OperatorPanel extends ClockDomain{
                   if(ManualDrive.held("bl.armDest")){//sysj\operatorPanel.sysj line: 42, column: 4
                     blArmDest.setPresent();//sysj\operatorPanel.sysj line: 42, column: 40
                     currsigs.addElement(blArmDest);
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
                   }
                   else {
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
@@ -2137,13 +2137,13 @@ public class OperatorPanel extends ClockDomain{
                   if(ManualDrive.held("bl.armDest")){//sysj\operatorPanel.sysj line: 42, column: 4
                     blArmDest.setPresent();//sysj\operatorPanel.sysj line: 42, column: 40
                     currsigs.addElement(blArmDest);
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
                   }
                   else {
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
@@ -2153,13 +2153,13 @@ public class OperatorPanel extends ClockDomain{
                   if(ManualDrive.held("bl.armDest")){//sysj\operatorPanel.sysj line: 42, column: 4
                     blArmDest.setPresent();//sysj\operatorPanel.sysj line: 42, column: 40
                     currsigs.addElement(blArmDest);
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
                   }
                   else {
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
@@ -2173,13 +2173,13 @@ public class OperatorPanel extends ClockDomain{
                   if(ManualDrive.held("bl.armDest")){//sysj\operatorPanel.sysj line: 42, column: 4
                     blArmDest.setPresent();//sysj\operatorPanel.sysj line: 42, column: 40
                     currsigs.addElement(blArmDest);
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
                   }
                   else {
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
@@ -2189,13 +2189,13 @@ public class OperatorPanel extends ClockDomain{
                   if(ManualDrive.held("bl.armDest")){//sysj\operatorPanel.sysj line: 42, column: 4
                     blArmDest.setPresent();//sysj\operatorPanel.sysj line: 42, column: 40
                     currsigs.addElement(blArmDest);
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
                   }
                   else {
-                    S225527=1;
+                    S226814=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
@@ -2211,8 +2211,8 @@ public class OperatorPanel extends ClockDomain{
     }
   }
 
-  public void thread226269(int [] tdone, int [] ends){
-        S226253=1;
+  public void thread227556(int [] tdone, int [] ends){
+        S227540=1;
     if(ManualDrive.held("br.motorOnOff")){//sysj\operatorPanel.sysj line: 150, column: 4
       brMotorOnOff.setPresent();//sysj\operatorPanel.sysj line: 150, column: 43
       currsigs.addElement(brMotorOnOff);
@@ -2281,8 +2281,8 @@ public class OperatorPanel extends ClockDomain{
     }
   }
 
-  public void thread226268(int [] tdone, int [] ends){
-        S226221=1;
+  public void thread227555(int [] tdone, int [] ends){
+        S227508=1;
     if(ManualDrive.held("ld.cylClampBottleExtend")){//sysj\operatorPanel.sysj line: 140, column: 4
       ldCylClampBottleExtend.setPresent();//sysj\operatorPanel.sysj line: 140, column: 53
       currsigs.addElement(ldCylClampBottleExtend);
@@ -2423,8 +2423,8 @@ public class OperatorPanel extends ClockDomain{
     }
   }
 
-  public void thread226267(int [] tdone, int [] ends){
-        S226162=1;
+  public void thread227554(int [] tdone, int [] ends){
+        S227449=1;
     if(ManualDrive.held("lr.cylZaxisExtend")){//sysj\operatorPanel.sysj line: 129, column: 4
       lrCylZaxisExtend.setPresent();//sysj\operatorPanel.sysj line: 129, column: 47
       currsigs.addElement(lrCylZaxisExtend);
@@ -2709,8 +2709,8 @@ public class OperatorPanel extends ClockDomain{
     }
   }
 
-  public void thread226266(int [] tdone, int [] ends){
-        S226052=1;
+  public void thread227553(int [] tdone, int [] ends){
+        S227339=1;
     if(ManualDrive.held("rc.recyclingConveyorMotor")){//sysj\operatorPanel.sysj line: 120, column: 4
       rcRecyclingConveyorMotor.setPresent();//sysj\operatorPanel.sysj line: 120, column: 55
       currsigs.addElement(rcRecyclingConveyorMotor);
@@ -2779,8 +2779,8 @@ public class OperatorPanel extends ClockDomain{
     }
   }
 
-  public void thread226265(int [] tdone, int [] ends){
-        S226020=1;
+  public void thread227552(int [] tdone, int [] ends){
+        S227307=1;
     if(ManualDrive.held("sp.diverterExtend")){//sysj\operatorPanel.sysj line: 111, column: 4
       spDiverterExtend.setPresent();//sysj\operatorPanel.sysj line: 111, column: 47
       currsigs.addElement(spDiverterExtend);
@@ -2849,8 +2849,8 @@ public class OperatorPanel extends ClockDomain{
     }
   }
 
-  public void thread226264(int [] tdone, int [] ends){
-        S225988=1;
+  public void thread227551(int [] tdone, int [] ends){
+        S227275=1;
     if(ManualDrive.held("lb.applyLabelExtend")){//sysj\operatorPanel.sysj line: 102, column: 4
       lbApplyLabelExtend.setPresent();//sysj\operatorPanel.sysj line: 102, column: 49
       currsigs.addElement(lbApplyLabelExtend);
@@ -2919,8 +2919,8 @@ public class OperatorPanel extends ClockDomain{
     }
   }
 
-  public void thread226263(int [] tdone, int [] ends){
-        S225956=1;
+  public void thread227550(int [] tdone, int [] ends){
+        S227243=1;
     if(ManualDrive.held("cp.screwOn")){//sysj\operatorPanel.sysj line: 95, column: 4
       cpScrewOn.setPresent();//sysj\operatorPanel.sysj line: 95, column: 40
       currsigs.addElement(cpScrewOn);
@@ -2935,8 +2935,8 @@ public class OperatorPanel extends ClockDomain{
     }
   }
 
-  public void thread226262(int [] tdone, int [] ends){
-        S225948=1;
+  public void thread227549(int [] tdone, int [] ends){
+        S227235=1;
     if(ManualDrive.held("ll.pusherExtend")){//sysj\operatorPanel.sysj line: 84, column: 4
       llPusherExtend.setPresent();//sysj\operatorPanel.sysj line: 84, column: 45
       currsigs.addElement(llPusherExtend);
@@ -3221,8 +3221,8 @@ public class OperatorPanel extends ClockDomain{
     }
   }
 
-  public void thread226261(int [] tdone, int [] ends){
-        S225838=1;
+  public void thread227548(int [] tdone, int [] ends){
+        S227125=1;
     if(ManualDrive.held("f2.valveOpen")){//sysj\operatorPanel.sysj line: 77, column: 4
       f2ValveOpen.setPresent();//sysj\operatorPanel.sysj line: 77, column: 42
       currsigs.addElement(f2ValveOpen);
@@ -3237,8 +3237,8 @@ public class OperatorPanel extends ClockDomain{
     }
   }
 
-  public void thread226260(int [] tdone, int [] ends){
-        S225830=1;
+  public void thread227547(int [] tdone, int [] ends){
+        S227117=1;
     if(ManualDrive.held("f1.valveOpen")){//sysj\operatorPanel.sysj line: 70, column: 4
       f1ValveOpen.setPresent();//sysj\operatorPanel.sysj line: 70, column: 42
       currsigs.addElement(f1ValveOpen);
@@ -3253,8 +3253,8 @@ public class OperatorPanel extends ClockDomain{
     }
   }
 
-  public void thread226259(int [] tdone, int [] ends){
-        S225822=1;
+  public void thread227546(int [] tdone, int [] ends){
+        S227109=1;
     if(ManualDrive.held("rt.rotaryTrigger")){//sysj\operatorPanel.sysj line: 61, column: 4
       rtRotaryTrigger.setPresent();//sysj\operatorPanel.sysj line: 61, column: 46
       currsigs.addElement(rtRotaryTrigger);
@@ -3323,8 +3323,8 @@ public class OperatorPanel extends ClockDomain{
     }
   }
 
-  public void thread226258(int [] tdone, int [] ends){
-        S225790=1;
+  public void thread227545(int [] tdone, int [] ends){
+        S227077=1;
     if(ManualDrive.held("cv.motInfeed")){//sysj\operatorPanel.sysj line: 49, column: 4
       cvMotInfeed.setPresent();//sysj\operatorPanel.sysj line: 49, column: 42
       currsigs.addElement(cvMotInfeed);
@@ -3897,9 +3897,9 @@ public class OperatorPanel extends ClockDomain{
     }
   }
 
-  public void thread226257(int [] tdone, int [] ends){
-        S225581=1;
-    S225527=0;
+  public void thread227544(int [] tdone, int [] ends){
+        S226868=1;
+    S226814=0;
     if(ManualDrive.held("bl.vacOn")){//sysj\operatorPanel.sysj line: 39, column: 4
       blVacOn.setPresent();//sysj\operatorPanel.sysj line: 39, column: 38
       currsigs.addElement(blVacOn);
@@ -3912,13 +3912,13 @@ public class OperatorPanel extends ClockDomain{
           if(ManualDrive.held("bl.armDest")){//sysj\operatorPanel.sysj line: 42, column: 4
             blArmDest.setPresent();//sysj\operatorPanel.sysj line: 42, column: 40
             currsigs.addElement(blArmDest);
-            S225527=1;
+            S226814=1;
             active[2]=1;
             ends[2]=1;
             tdone[2]=1;
           }
           else {
-            S225527=1;
+            S226814=1;
             active[2]=1;
             ends[2]=1;
             tdone[2]=1;
@@ -3928,13 +3928,13 @@ public class OperatorPanel extends ClockDomain{
           if(ManualDrive.held("bl.armDest")){//sysj\operatorPanel.sysj line: 42, column: 4
             blArmDest.setPresent();//sysj\operatorPanel.sysj line: 42, column: 40
             currsigs.addElement(blArmDest);
-            S225527=1;
+            S226814=1;
             active[2]=1;
             ends[2]=1;
             tdone[2]=1;
           }
           else {
-            S225527=1;
+            S226814=1;
             active[2]=1;
             ends[2]=1;
             tdone[2]=1;
@@ -3948,13 +3948,13 @@ public class OperatorPanel extends ClockDomain{
           if(ManualDrive.held("bl.armDest")){//sysj\operatorPanel.sysj line: 42, column: 4
             blArmDest.setPresent();//sysj\operatorPanel.sysj line: 42, column: 40
             currsigs.addElement(blArmDest);
-            S225527=1;
+            S226814=1;
             active[2]=1;
             ends[2]=1;
             tdone[2]=1;
           }
           else {
-            S225527=1;
+            S226814=1;
             active[2]=1;
             ends[2]=1;
             tdone[2]=1;
@@ -3964,13 +3964,13 @@ public class OperatorPanel extends ClockDomain{
           if(ManualDrive.held("bl.armDest")){//sysj\operatorPanel.sysj line: 42, column: 4
             blArmDest.setPresent();//sysj\operatorPanel.sysj line: 42, column: 40
             currsigs.addElement(blArmDest);
-            S225527=1;
+            S226814=1;
             active[2]=1;
             ends[2]=1;
             tdone[2]=1;
           }
           else {
-            S225527=1;
+            S226814=1;
             active[2]=1;
             ends[2]=1;
             tdone[2]=1;
@@ -3988,13 +3988,13 @@ public class OperatorPanel extends ClockDomain{
           if(ManualDrive.held("bl.armDest")){//sysj\operatorPanel.sysj line: 42, column: 4
             blArmDest.setPresent();//sysj\operatorPanel.sysj line: 42, column: 40
             currsigs.addElement(blArmDest);
-            S225527=1;
+            S226814=1;
             active[2]=1;
             ends[2]=1;
             tdone[2]=1;
           }
           else {
-            S225527=1;
+            S226814=1;
             active[2]=1;
             ends[2]=1;
             tdone[2]=1;
@@ -4004,13 +4004,13 @@ public class OperatorPanel extends ClockDomain{
           if(ManualDrive.held("bl.armDest")){//sysj\operatorPanel.sysj line: 42, column: 4
             blArmDest.setPresent();//sysj\operatorPanel.sysj line: 42, column: 40
             currsigs.addElement(blArmDest);
-            S225527=1;
+            S226814=1;
             active[2]=1;
             ends[2]=1;
             tdone[2]=1;
           }
           else {
-            S225527=1;
+            S226814=1;
             active[2]=1;
             ends[2]=1;
             tdone[2]=1;
@@ -4024,13 +4024,13 @@ public class OperatorPanel extends ClockDomain{
           if(ManualDrive.held("bl.armDest")){//sysj\operatorPanel.sysj line: 42, column: 4
             blArmDest.setPresent();//sysj\operatorPanel.sysj line: 42, column: 40
             currsigs.addElement(blArmDest);
-            S225527=1;
+            S226814=1;
             active[2]=1;
             ends[2]=1;
             tdone[2]=1;
           }
           else {
-            S225527=1;
+            S226814=1;
             active[2]=1;
             ends[2]=1;
             tdone[2]=1;
@@ -4040,13 +4040,13 @@ public class OperatorPanel extends ClockDomain{
           if(ManualDrive.held("bl.armDest")){//sysj\operatorPanel.sysj line: 42, column: 4
             blArmDest.setPresent();//sysj\operatorPanel.sysj line: 42, column: 40
             currsigs.addElement(blArmDest);
-            S225527=1;
+            S226814=1;
             active[2]=1;
             ends[2]=1;
             tdone[2]=1;
           }
           else {
-            S225527=1;
+            S226814=1;
             active[2]=1;
             ends[2]=1;
             tdone[2]=1;
@@ -4063,138 +4063,138 @@ public class OperatorPanel extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S226255){
+      switch(S227542){
         case 0 : 
-          S226255=0;
+          S227542=0;
           break RUN;
         
         case 1 : 
-          S226255=2;
-          S226255=2;
-          thread226257(tdone,ends);
-          thread226258(tdone,ends);
-          thread226259(tdone,ends);
-          thread226260(tdone,ends);
-          thread226261(tdone,ends);
-          thread226262(tdone,ends);
-          thread226263(tdone,ends);
-          thread226264(tdone,ends);
-          thread226265(tdone,ends);
-          thread226266(tdone,ends);
-          thread226267(tdone,ends);
-          thread226268(tdone,ends);
-          thread226269(tdone,ends);
-          int biggest226270 = 0;
-          if(ends[2]>=biggest226270){
-            biggest226270=ends[2];
+          S227542=2;
+          S227542=2;
+          thread227544(tdone,ends);
+          thread227545(tdone,ends);
+          thread227546(tdone,ends);
+          thread227547(tdone,ends);
+          thread227548(tdone,ends);
+          thread227549(tdone,ends);
+          thread227550(tdone,ends);
+          thread227551(tdone,ends);
+          thread227552(tdone,ends);
+          thread227553(tdone,ends);
+          thread227554(tdone,ends);
+          thread227555(tdone,ends);
+          thread227556(tdone,ends);
+          int biggest227557 = 0;
+          if(ends[2]>=biggest227557){
+            biggest227557=ends[2];
           }
-          if(ends[3]>=biggest226270){
-            biggest226270=ends[3];
+          if(ends[3]>=biggest227557){
+            biggest227557=ends[3];
           }
-          if(ends[4]>=biggest226270){
-            biggest226270=ends[4];
+          if(ends[4]>=biggest227557){
+            biggest227557=ends[4];
           }
-          if(ends[5]>=biggest226270){
-            biggest226270=ends[5];
+          if(ends[5]>=biggest227557){
+            biggest227557=ends[5];
           }
-          if(ends[6]>=biggest226270){
-            biggest226270=ends[6];
+          if(ends[6]>=biggest227557){
+            biggest227557=ends[6];
           }
-          if(ends[7]>=biggest226270){
-            biggest226270=ends[7];
+          if(ends[7]>=biggest227557){
+            biggest227557=ends[7];
           }
-          if(ends[8]>=biggest226270){
-            biggest226270=ends[8];
+          if(ends[8]>=biggest227557){
+            biggest227557=ends[8];
           }
-          if(ends[9]>=biggest226270){
-            biggest226270=ends[9];
+          if(ends[9]>=biggest227557){
+            biggest227557=ends[9];
           }
-          if(ends[10]>=biggest226270){
-            biggest226270=ends[10];
+          if(ends[10]>=biggest227557){
+            biggest227557=ends[10];
           }
-          if(ends[11]>=biggest226270){
-            biggest226270=ends[11];
+          if(ends[11]>=biggest227557){
+            biggest227557=ends[11];
           }
-          if(ends[12]>=biggest226270){
-            biggest226270=ends[12];
+          if(ends[12]>=biggest227557){
+            biggest227557=ends[12];
           }
-          if(ends[13]>=biggest226270){
-            biggest226270=ends[13];
+          if(ends[13]>=biggest227557){
+            biggest227557=ends[13];
           }
-          if(ends[14]>=biggest226270){
-            biggest226270=ends[14];
+          if(ends[14]>=biggest227557){
+            biggest227557=ends[14];
           }
-          if(biggest226270 == 1){
+          if(biggest227557 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
         
         case 2 : 
-          thread226271(tdone,ends);
-          thread226272(tdone,ends);
-          thread226273(tdone,ends);
-          thread226274(tdone,ends);
-          thread226275(tdone,ends);
-          thread226276(tdone,ends);
-          thread226277(tdone,ends);
-          thread226278(tdone,ends);
-          thread226279(tdone,ends);
-          thread226280(tdone,ends);
-          thread226281(tdone,ends);
-          thread226282(tdone,ends);
-          thread226283(tdone,ends);
-          int biggest226284 = 0;
-          if(ends[2]>=biggest226284){
-            biggest226284=ends[2];
+          thread227558(tdone,ends);
+          thread227559(tdone,ends);
+          thread227560(tdone,ends);
+          thread227561(tdone,ends);
+          thread227562(tdone,ends);
+          thread227563(tdone,ends);
+          thread227564(tdone,ends);
+          thread227565(tdone,ends);
+          thread227566(tdone,ends);
+          thread227567(tdone,ends);
+          thread227568(tdone,ends);
+          thread227569(tdone,ends);
+          thread227570(tdone,ends);
+          int biggest227571 = 0;
+          if(ends[2]>=biggest227571){
+            biggest227571=ends[2];
           }
-          if(ends[3]>=biggest226284){
-            biggest226284=ends[3];
+          if(ends[3]>=biggest227571){
+            biggest227571=ends[3];
           }
-          if(ends[4]>=biggest226284){
-            biggest226284=ends[4];
+          if(ends[4]>=biggest227571){
+            biggest227571=ends[4];
           }
-          if(ends[5]>=biggest226284){
-            biggest226284=ends[5];
+          if(ends[5]>=biggest227571){
+            biggest227571=ends[5];
           }
-          if(ends[6]>=biggest226284){
-            biggest226284=ends[6];
+          if(ends[6]>=biggest227571){
+            biggest227571=ends[6];
           }
-          if(ends[7]>=biggest226284){
-            biggest226284=ends[7];
+          if(ends[7]>=biggest227571){
+            biggest227571=ends[7];
           }
-          if(ends[8]>=biggest226284){
-            biggest226284=ends[8];
+          if(ends[8]>=biggest227571){
+            biggest227571=ends[8];
           }
-          if(ends[9]>=biggest226284){
-            biggest226284=ends[9];
+          if(ends[9]>=biggest227571){
+            biggest227571=ends[9];
           }
-          if(ends[10]>=biggest226284){
-            biggest226284=ends[10];
+          if(ends[10]>=biggest227571){
+            biggest227571=ends[10];
           }
-          if(ends[11]>=biggest226284){
-            biggest226284=ends[11];
+          if(ends[11]>=biggest227571){
+            biggest227571=ends[11];
           }
-          if(ends[12]>=biggest226284){
-            biggest226284=ends[12];
+          if(ends[12]>=biggest227571){
+            biggest227571=ends[12];
           }
-          if(ends[13]>=biggest226284){
-            biggest226284=ends[13];
+          if(ends[13]>=biggest227571){
+            biggest227571=ends[13];
           }
-          if(ends[14]>=biggest226284){
-            biggest226284=ends[14];
+          if(ends[14]>=biggest227571){
+            biggest227571=ends[14];
           }
-          if(biggest226284 == 1){
+          if(biggest227571 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest226284 == 0){
-            S226255=0;
+          if(biggest227571 == 0){
+            S227542=0;
             active[1]=0;
             ends[1]=0;
-            S226255=0;
+            S227542=0;
             break RUN;
           }
         

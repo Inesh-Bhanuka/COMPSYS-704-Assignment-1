@@ -155,7 +155,12 @@ SystemController(
 			abort(immediate lineReset){
 		while(true){
 					w = null;
-		            if(GuiSupervisor.canLoad()){ w = OrderBook.nextBottle(); }
+		            // The belt's depth is part of the admission decision. Without
+		            // it the coordinator books bottles faster than the table can
+		            // draw them off, the infeed queue overflows, and the twins
+		            // that no longer fit are dropped - leaving the order short by
+		            // bottles that exist in the registry and nowhere else.
+		            if(GuiSupervisor.canLoad() && BeltQueue.shared().hasRoom()){ w = OrderBook.nextBottle(); }
 		            if(w != null){
 					System.out.println("[SC] Loading " + w + ".");
 					TwinRegistry.shared().admit(w);

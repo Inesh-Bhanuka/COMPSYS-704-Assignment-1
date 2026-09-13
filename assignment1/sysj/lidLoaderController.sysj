@@ -39,8 +39,10 @@ LidLoaderController(
 	{ // Mode select
 		while(true){
 			present(mode){
+				// 0 automatic, 1 manual, 2 paused. Paused emits neither, so
+				// every gate below waits and the operator panel is inert.
 				if((Integer)#mode == 0){ emit auto; }
-				else { emit manual; }
+				else if((Integer)#mode == 1){ emit manual; }
 			}
 			pause;
 		}
@@ -50,6 +52,7 @@ LidLoaderController(
 		LidLoaderTwin t = new LidLoaderTwin();
 		int lids = 3;
 		WorkpieceTwin w = null;
+		boolean lidded = false;
 
 		while(true){
 			abort(immediate reset){
@@ -57,9 +60,22 @@ LidLoaderController(
 				w = (WorkpieceTwin)#start;
 
 
-				if(w != null && w.catchFault("lid-fitted")){
+				// Normally the first filler has already found this and
+				// flagged it, in which case the bottle simply reports that it
+				// is lidded and no second rejection is recorded here. The
+				// catch is kept as the backstop for a bottle that reaches the
+				// loader without having passed a filler.
+				lidded = false;
+				if(w != null){
+					if(w.catchFault("lid-fitted")){
+						w.lid();
+						w.reject(Machine.LID_LOADER, "lid already fitted");
+					}
+					lidded = w.isLidded();
+				}
+
+				if(lidded){
 					System.out.println("[LID] " + w + " already has a lid fitted.");
-					w.reject(Machine.LID_LOADER, "lid already fitted");
 				}
 				else if(w != null){
                     t = new LidLoaderTwin();

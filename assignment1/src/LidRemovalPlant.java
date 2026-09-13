@@ -34,17 +34,17 @@ public class LidRemovalPlant extends ClockDomain{
   private boolean ejecting_thread_4;//sysj\lidRemovalPlant.sysj line: 93, column: 3
   private int BIN_CAPACITY_thread_5;//sysj\lidRemovalPlant.sysj line: 133, column: 3
   private RecyclingCapacity bin_thread_5;//sysj\lidRemovalPlant.sysj line: 134, column: 3
-  private int S155446 = 1;
-  private int S154982 = 1;
-  private int S155110 = 1;
-  private int S155364 = 1;
-  private int S155444 = 1;
+  private int S156730 = 1;
+  private int S156266 = 1;
+  private int S156394 = 1;
+  private int S156648 = 1;
+  private int S156728 = 1;
   
   private int[] ends = new int[6];
   private int[] tdone = new int[6];
   
-  public void thread155456(int [] tdone, int [] ends){
-        switch(S155444){
+  public void thread156740(int [] tdone, int [] ends){
+        switch(S156728){
       case 0 : 
         active[5]=0;
         ends[5]=0;
@@ -130,8 +130,8 @@ public class LidRemovalPlant extends ClockDomain{
     }
   }
 
-  public void thread155455(int [] tdone, int [] ends){
-        switch(S155364){
+  public void thread156739(int [] tdone, int [] ends){
+        switch(S156648){
       case 0 : 
         active[4]=0;
         ends[4]=0;
@@ -291,8 +291,8 @@ public class LidRemovalPlant extends ClockDomain{
     }
   }
 
-  public void thread155454(int [] tdone, int [] ends){
-        switch(S155110){
+  public void thread156738(int [] tdone, int [] ends){
+        switch(S156394){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -453,8 +453,8 @@ public class LidRemovalPlant extends ClockDomain{
     }
   }
 
-  public void thread155453(int [] tdone, int [] ends){
-        switch(S154982){
+  public void thread156737(int [] tdone, int [] ends){
+        switch(S156266){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -544,8 +544,8 @@ public class LidRemovalPlant extends ClockDomain{
     }
   }
 
-  public void thread155451(int [] tdone, int [] ends){
-        S155444=1;
+  public void thread156735(int [] tdone, int [] ends){
+        S156728=1;
     BIN_CAPACITY_thread_5 = RecyclingCapacity.LID_BIN;//sysj\lidRemovalPlant.sysj line: 133, column: 3
     bin_thread_5 = new RecyclingCapacity("Lid waste bin", BIN_CAPACITY_thread_5);//sysj\lidRemovalPlant.sysj line: 134, column: 3
     if(enable.getprestatus()){//sysj\lidRemovalPlant.sysj line: 137, column: 12
@@ -623,8 +623,8 @@ public class LidRemovalPlant extends ClockDomain{
     }
   }
 
-  public void thread155450(int [] tdone, int [] ends){
-        S155364=1;
+  public void thread156734(int [] tdone, int [] ends){
+        S156648=1;
     GRIP_thread_4 = PlantTiming.ticks(3);//sysj\lidRemovalPlant.sysj line: 90, column: 3
     grip_thread_4 = 0;//sysj\lidRemovalPlant.sysj line: 91, column: 3
     held_thread_4 = false;//sysj\lidRemovalPlant.sysj line: 92, column: 3
@@ -778,8 +778,8 @@ public class LidRemovalPlant extends ClockDomain{
     }
   }
 
-  public void thread155449(int [] tdone, int [] ends){
-        S155110=1;
+  public void thread156733(int [] tdone, int [] ends){
+        S156394=1;
     TURN_thread_3 = PlantTiming.ticks(6);//sysj\lidRemovalPlant.sysj line: 66, column: 3
     turn_thread_3 = 0;//sysj\lidRemovalPlant.sysj line: 67, column: 3
     if(enable.getprestatus()){//sysj\lidRemovalPlant.sysj line: 70, column: 12
@@ -932,8 +932,8 @@ public class LidRemovalPlant extends ClockDomain{
     }
   }
 
-  public void thread155448(int [] tdone, int [] ends){
-        S154982=1;
+  public void thread156732(int [] tdone, int [] ends){
+        S156266=1;
     ZTRAVEL_thread_2 = PlantTiming.ticks(4);//sysj\lidRemovalPlant.sysj line: 47, column: 3
     z_thread_2 = 0;//sysj\lidRemovalPlant.sysj line: 48, column: 3
     if(enable.getprestatus()){//sysj\lidRemovalPlant.sysj line: 51, column: 12
@@ -1022,33 +1022,33 @@ public class LidRemovalPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S155446){
+      switch(S156730){
         case 0 : 
-          S155446=0;
+          S156730=0;
           break RUN;
         
         case 1 : 
-          S155446=2;
-          S155446=2;
+          S156730=2;
+          S156730=2;
           lidDropped_1.setClear();//sysj\lidRemovalPlant.sysj line: 40, column: 2
-          thread155448(tdone,ends);
-          thread155449(tdone,ends);
-          thread155450(tdone,ends);
-          thread155451(tdone,ends);
-          int biggest155452 = 0;
-          if(ends[2]>=biggest155452){
-            biggest155452=ends[2];
+          thread156732(tdone,ends);
+          thread156733(tdone,ends);
+          thread156734(tdone,ends);
+          thread156735(tdone,ends);
+          int biggest156736 = 0;
+          if(ends[2]>=biggest156736){
+            biggest156736=ends[2];
           }
-          if(ends[3]>=biggest155452){
-            biggest155452=ends[3];
+          if(ends[3]>=biggest156736){
+            biggest156736=ends[3];
           }
-          if(ends[4]>=biggest155452){
-            biggest155452=ends[4];
+          if(ends[4]>=biggest156736){
+            biggest156736=ends[4];
           }
-          if(ends[5]>=biggest155452){
-            biggest155452=ends[5];
+          if(ends[5]>=biggest156736){
+            biggest156736=ends[5];
           }
-          if(biggest155452 == 1){
+          if(biggest156736 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
@@ -1056,34 +1056,34 @@ public class LidRemovalPlant extends ClockDomain{
         
         case 2 : 
           lidDropped_1.setClear();//sysj\lidRemovalPlant.sysj line: 40, column: 2
-          thread155453(tdone,ends);
-          thread155454(tdone,ends);
-          thread155455(tdone,ends);
-          thread155456(tdone,ends);
-          int biggest155457 = 0;
-          if(ends[2]>=biggest155457){
-            biggest155457=ends[2];
+          thread156737(tdone,ends);
+          thread156738(tdone,ends);
+          thread156739(tdone,ends);
+          thread156740(tdone,ends);
+          int biggest156741 = 0;
+          if(ends[2]>=biggest156741){
+            biggest156741=ends[2];
           }
-          if(ends[3]>=biggest155457){
-            biggest155457=ends[3];
+          if(ends[3]>=biggest156741){
+            biggest156741=ends[3];
           }
-          if(ends[4]>=biggest155457){
-            biggest155457=ends[4];
+          if(ends[4]>=biggest156741){
+            biggest156741=ends[4];
           }
-          if(ends[5]>=biggest155457){
-            biggest155457=ends[5];
+          if(ends[5]>=biggest156741){
+            biggest156741=ends[5];
           }
-          if(biggest155457 == 1){
+          if(biggest156741 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest155457 == 0){
-            S155446=0;
+          if(biggest156741 == 0){
+            S156730=0;
             active[1]=0;
             ends[1]=0;
-            S155446=0;
+            S156730=0;
             break RUN;
           }
         

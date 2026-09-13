@@ -34,16 +34,16 @@ public class ConveyorPlant extends ClockDomain{
   private int pos_thread_3;//sysj\conveyorPlant.sysj line: 126, column: 4
   private boolean injecting_thread_3;//sysj\conveyorPlant.sysj line: 127, column: 4
   private boolean collecting_thread_3;//sysj\conveyorPlant.sysj line: 128, column: 4
-  private int S61980 = 1;
-  private int S60598 = 1;
-  private int S60342 = 1;
-  private int S60596 = 1;
+  private int S61992 = 1;
+  private int S60610 = 1;
+  private int S60354 = 1;
+  private int S60608 = 1;
   
   private int[] ends = new int[4];
   private int[] tdone = new int[4];
   
-  public void thread61989(int [] tdone, int [] ends){
-        S60596=1;
+  public void thread62001(int [] tdone, int [] ends){
+        S60608=1;
     LEN_thread_3 = PlantTiming.ticks(6);//sysj\conveyorPlant.sysj line: 125, column: 4
     pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 126, column: 4
     injecting_thread_3 = false;//sysj\conveyorPlant.sysj line: 127, column: 4
@@ -393,8 +393,8 @@ public class ConveyorPlant extends ClockDomain{
     }
   }
 
-  public void thread61988(int [] tdone, int [] ends){
-        S60342=1;
+  public void thread62000(int [] tdone, int [] ends){
+        S60354=1;
     LEN_thread_2 = PlantTiming.ticks(6);//sysj\conveyorPlant.sysj line: 39, column: 4
     slot_thread_2 = new boolean[LEN_thread_2 + 1];//sysj\conveyorPlant.sysj line: 40, column: 4
     injecting_thread_2 = false;//sysj\conveyorPlant.sysj line: 41, column: 4
@@ -1127,8 +1127,8 @@ public class ConveyorPlant extends ClockDomain{
     }
   }
 
-  public void thread61986(int [] tdone, int [] ends){
-        switch(S60596){
+  public void thread61998(int [] tdone, int [] ends){
+        switch(S60608){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -1484,8 +1484,8 @@ public class ConveyorPlant extends ClockDomain{
     }
   }
 
-  public void thread61985(int [] tdone, int [] ends){
-        switch(S60342){
+  public void thread61997(int [] tdone, int [] ends){
+        switch(S60354){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -2223,8 +2223,8 @@ public class ConveyorPlant extends ClockDomain{
     }
   }
 
-  public void thread61983(int [] tdone, int [] ends){
-        S60596=1;
+  public void thread61995(int [] tdone, int [] ends){
+        S60608=1;
     LEN_thread_3 = PlantTiming.ticks(6);//sysj\conveyorPlant.sysj line: 125, column: 4
     pos_thread_3 = -1;//sysj\conveyorPlant.sysj line: 126, column: 4
     injecting_thread_3 = false;//sysj\conveyorPlant.sysj line: 127, column: 4
@@ -2574,8 +2574,8 @@ public class ConveyorPlant extends ClockDomain{
     }
   }
 
-  public void thread61982(int [] tdone, int [] ends){
-        S60342=1;
+  public void thread61994(int [] tdone, int [] ends){
+        S60354=1;
     LEN_thread_2 = PlantTiming.ticks(6);//sysj\conveyorPlant.sysj line: 39, column: 4
     slot_thread_2 = new boolean[LEN_thread_2 + 1];//sysj\conveyorPlant.sysj line: 40, column: 4
     injecting_thread_2 = false;//sysj\conveyorPlant.sysj line: 41, column: 4
@@ -3315,32 +3315,32 @@ public class ConveyorPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S61980){
+      switch(S61992){
         case 0 : 
-          S61980=0;
+          S61992=0;
           break RUN;
         
         case 1 : 
-          S61980=2;
-          S61980=2;
-          S60598=0;
+          S61992=2;
+          S61992=2;
+          S60610=0;
           if(reset.getprestatus()){//sysj\conveyorPlant.sysj line: 33, column: 19
-            S60598=1;
+            S60610=1;
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           else {
-            thread61982(tdone,ends);
-            thread61983(tdone,ends);
-            int biggest61984 = 0;
-            if(ends[2]>=biggest61984){
-              biggest61984=ends[2];
+            thread61994(tdone,ends);
+            thread61995(tdone,ends);
+            int biggest61996 = 0;
+            if(ends[2]>=biggest61996){
+              biggest61996=ends[2];
             }
-            if(ends[3]>=biggest61984){
-              biggest61984=ends[3];
+            if(ends[3]>=biggest61996){
+              biggest61996=ends[3];
             }
-            if(biggest61984 == 1){
+            if(biggest61996 == 1){
               active[1]=1;
               ends[1]=1;
               break RUN;
@@ -3348,32 +3348,32 @@ public class ConveyorPlant extends ClockDomain{
           }
         
         case 2 : 
-          switch(S60598){
+          switch(S60610){
             case 0 : 
               if(reset.getprestatus()){//sysj\conveyorPlant.sysj line: 33, column: 19
-                S60598=1;
+                S60610=1;
                 active[1]=1;
                 ends[1]=1;
                 break RUN;
               }
               else {
-                thread61985(tdone,ends);
-                thread61986(tdone,ends);
-                int biggest61987 = 0;
-                if(ends[2]>=biggest61987){
-                  biggest61987=ends[2];
+                thread61997(tdone,ends);
+                thread61998(tdone,ends);
+                int biggest61999 = 0;
+                if(ends[2]>=biggest61999){
+                  biggest61999=ends[2];
                 }
-                if(ends[3]>=biggest61987){
-                  biggest61987=ends[3];
+                if(ends[3]>=biggest61999){
+                  biggest61999=ends[3];
                 }
-                if(biggest61987 == 1){
+                if(biggest61999 == 1){
                   active[1]=1;
                   ends[1]=1;
                   break RUN;
                 }
                 //FINXME code
-                if(biggest61987 == 0){
-                  S60598=1;
+                if(biggest61999 == 0){
+                  S60610=1;
                   active[1]=1;
                   ends[1]=1;
                   break RUN;
@@ -3381,25 +3381,25 @@ public class ConveyorPlant extends ClockDomain{
               }
             
             case 1 : 
-              S60598=1;
-              S60598=0;
+              S60610=1;
+              S60610=0;
               if(reset.getprestatus()){//sysj\conveyorPlant.sysj line: 33, column: 19
-                S60598=1;
+                S60610=1;
                 active[1]=1;
                 ends[1]=1;
                 break RUN;
               }
               else {
-                thread61988(tdone,ends);
-                thread61989(tdone,ends);
-                int biggest61990 = 0;
-                if(ends[2]>=biggest61990){
-                  biggest61990=ends[2];
+                thread62000(tdone,ends);
+                thread62001(tdone,ends);
+                int biggest62002 = 0;
+                if(ends[2]>=biggest62002){
+                  biggest62002=ends[2];
                 }
-                if(ends[3]>=biggest61990){
-                  biggest61990=ends[3];
+                if(ends[3]>=biggest62002){
+                  biggest62002=ends[3];
                 }
-                if(biggest61990 == 1){
+                if(biggest62002 == 1){
                   active[1]=1;
                   ends[1]=1;
                   break RUN;

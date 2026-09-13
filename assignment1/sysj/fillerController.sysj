@@ -37,8 +37,10 @@ FillerController(
 	{ // Mode select
 		while(true){
 			present(mode){
+				// 0 automatic, 1 manual, 2 paused. Paused emits neither, so
+				// every gate below waits and the operator panel is inert.
 				if((Integer)#mode == 0){ emit auto; }
-				else { emit manual; }
+				else if((Integer)#mode == 1){ emit manual; }
 			}
 			pause;
 		}
@@ -49,6 +51,7 @@ FillerController(
 		WorkpieceTwin w = null;
 		int ml = 0;
 		int asked = 0;
+		boolean lidded = false;
 
 		while(true){
 			abort(immediate reset){
@@ -59,7 +62,42 @@ FillerController(
 				ml = (w == null) ? 0 : w.nextVolumeMl();
 				asked = ml;
 
-				if(ml == 0){
+				// ---- A bottle that arrived with a lid already on it ----
+				//
+				// Caught here rather than at the lid loader, which is two
+				// table positions further on. By the time the loader looked,
+				// the bottle had already been filled - the log read "250ml
+				// into bottle 3" and then, two positions later, "bottle 3
+				// already has a lid fitted". Pouring into a sealed container
+				// is not something a plant can do, so a model that reports it
+				// is wrong whatever it does afterwards. The first filler is
+				// the first station the bottle meets and the first with a
+				// reason to care, so it is caught here and no liquid goes in.
+				//
+				// The lid is recorded on the workpiece because it is true:
+				// the container really does have a lid, however it got there,
+				// and every station downstream - including the recycling
+				// station that has to unscrew it - needs to know. That is
+				// also what makes the second filler skip the bottle without
+				// being told separately: it asks, and the bottle already
+				// knows. The decision is taken here rather than inside the
+				// workpiece, which only records and answers questions.
+				lidded = false;
+				if(w != null){
+					if(w.catchFault("lid-fitted")){
+						w.lid();
+						w.reject(Machine.FILLER, "arrived with a lid already fitted");
+					}
+					lidded = w.isLidded();
+				}
+
+				if(lidded){
+					System.out.println("[FILL] " + w + " has a lid fitted - refusing to fill.");
+					if(t.update(PlantClock.now(), MachineStatus.FAULT, "refuse", "lid fitted")){
+						emit twin(t);
+					}
+				}
+				else if(ml == 0){
 					// Record a zero-percent ingredient so the next station advances
 					// to Liquid 2 and the label has both measurements.
 					if(w != null){
@@ -79,7 +117,24 @@ FillerController(
 					// An armed misfill makes the plant dispense short. The
 					// filler still measures what actually went in.
 					if(w.catchFault("misfill")){
+						// A short fill, not a negative one. The shortfall is a
+						// flat 30ml, which is fine for a half-and-half recipe
+						// but not for a small component: 25% of a 100ml bottle
+						// is 25ml, and 25 - 30 asked the plant for -5ml. The
+						// plant counts up from zero and its guard is
+						// target > 0, so filled was never emitted, the valve
+						// stayed open, this station never reported done, and
+						// the table barrier - which waits for all four - took
+						// the whole line down with it.
+						//
+						// The clamp keeps the fault a fill the plant can
+						// actually finish. Whether 1ml is far enough out to be
+						// rejected is then the tolerance check's decision, not
+						// this line's.
 						ml = ml - 30;
+						if(ml < 1){
+							ml = 1;
+						}
 						System.out.println("[FILL] Metering fault on " + w + ".");
 					}
 					System.out.println("[FILL] Liquid " + w.nextLiquidName() + ", " + ml + "ml into " + w + ".");

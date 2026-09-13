@@ -18,7 +18,7 @@ public class FillerPlant extends ClockDomain{
   private int RATE_thread_1;//sysj\fillerPlant.sysj line: 15, column: 2
   private int target_thread_1;//sysj\fillerPlant.sysj line: 17, column: 2
   private int poured_thread_1;//sysj\fillerPlant.sysj line: 18, column: 2
-  private int S68700 = 1;
+  private int S69603 = 1;
   
   private int[] ends = new int[2];
   private int[] tdone = new int[2];
@@ -30,14 +30,14 @@ public class FillerPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S68700){
+      switch(S69603){
         case 0 : 
-          S68700=0;
+          S69603=0;
           break RUN;
         
         case 1 : 
-          S68700=2;
-          S68700=2;
+          S69603=2;
+          S69603=2;
           RATE_thread_1 = PlantTiming.rate(20);//sysj\fillerPlant.sysj line: 15, column: 2
           target_thread_1 = 0;//sysj\fillerPlant.sysj line: 17, column: 2
           poured_thread_1 = 0;//sysj\fillerPlant.sysj line: 18, column: 2
@@ -51,8 +51,8 @@ public class FillerPlant extends ClockDomain{
                     poured_thread_1 = target_thread_1;//sysj\fillerPlant.sysj line: 28, column: 27
                   }
                 }
-                if(target_thread_1 > 0 && poured_thread_1 >= target_thread_1){//sysj\fillerPlant.sysj line: 30, column: 8
-                  filled.setPresent();//sysj\fillerPlant.sysj line: 31, column: 6
+                if(target_thread_1 <= 0 || poured_thread_1 >= target_thread_1){//sysj\fillerPlant.sysj line: 36, column: 8
+                  filled.setPresent();//sysj\fillerPlant.sysj line: 37, column: 6
                   currsigs.addElement(filled);
                   active[1]=1;
                   ends[1]=1;
@@ -71,8 +71,8 @@ public class FillerPlant extends ClockDomain{
                     poured_thread_1 = target_thread_1;//sysj\fillerPlant.sysj line: 28, column: 27
                   }
                 }
-                if(target_thread_1 > 0 && poured_thread_1 >= target_thread_1){//sysj\fillerPlant.sysj line: 30, column: 8
-                  filled.setPresent();//sysj\fillerPlant.sysj line: 31, column: 6
+                if(target_thread_1 <= 0 || poured_thread_1 >= target_thread_1){//sysj\fillerPlant.sysj line: 36, column: 8
+                  filled.setPresent();//sysj\fillerPlant.sysj line: 37, column: 6
                   currsigs.addElement(filled);
                   active[1]=1;
                   ends[1]=1;
@@ -86,8 +86,8 @@ public class FillerPlant extends ClockDomain{
               }
             }
             else {
-              target_thread_1 = 0;//sysj\fillerPlant.sysj line: 38, column: 5
-              poured_thread_1 = 0;//sysj\fillerPlant.sysj line: 39, column: 5
+              target_thread_1 = 0;//sysj\fillerPlant.sysj line: 44, column: 5
+              poured_thread_1 = 0;//sysj\fillerPlant.sysj line: 45, column: 5
               active[1]=1;
               ends[1]=1;
               break RUN;
@@ -110,8 +110,8 @@ public class FillerPlant extends ClockDomain{
                     poured_thread_1 = target_thread_1;//sysj\fillerPlant.sysj line: 28, column: 27
                   }
                 }
-                if(target_thread_1 > 0 && poured_thread_1 >= target_thread_1){//sysj\fillerPlant.sysj line: 30, column: 8
-                  filled.setPresent();//sysj\fillerPlant.sysj line: 31, column: 6
+                if(target_thread_1 <= 0 || poured_thread_1 >= target_thread_1){//sysj\fillerPlant.sysj line: 36, column: 8
+                  filled.setPresent();//sysj\fillerPlant.sysj line: 37, column: 6
                   currsigs.addElement(filled);
                   active[1]=1;
                   ends[1]=1;
@@ -130,8 +130,8 @@ public class FillerPlant extends ClockDomain{
                     poured_thread_1 = target_thread_1;//sysj\fillerPlant.sysj line: 28, column: 27
                   }
                 }
-                if(target_thread_1 > 0 && poured_thread_1 >= target_thread_1){//sysj\fillerPlant.sysj line: 30, column: 8
-                  filled.setPresent();//sysj\fillerPlant.sysj line: 31, column: 6
+                if(target_thread_1 <= 0 || poured_thread_1 >= target_thread_1){//sysj\fillerPlant.sysj line: 36, column: 8
+                  filled.setPresent();//sysj\fillerPlant.sysj line: 37, column: 6
                   currsigs.addElement(filled);
                   active[1]=1;
                   ends[1]=1;
@@ -145,8 +145,8 @@ public class FillerPlant extends ClockDomain{
               }
             }
             else {
-              target_thread_1 = 0;//sysj\fillerPlant.sysj line: 38, column: 5
-              poured_thread_1 = 0;//sysj\fillerPlant.sysj line: 39, column: 5
+              target_thread_1 = 0;//sysj\fillerPlant.sysj line: 44, column: 5
+              poured_thread_1 = 0;//sysj\fillerPlant.sysj line: 45, column: 5
               active[1]=1;
               ends[1]=1;
               break RUN;

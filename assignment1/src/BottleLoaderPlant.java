@@ -24,16 +24,16 @@ public class BottleLoaderPlant extends ClockDomain{
   private int supply_thread_3;//sysj\bottleLoaderPlant.sysj line: 32, column: 3
   private int refillTicks_thread_3;//sysj\bottleLoaderPlant.sysj line: 33, column: 3
   private boolean holding_thread_3;//sysj\bottleLoaderPlant.sysj line: 34, column: 3
-  private int S4638 = 1;
-  private int S4484 = 1;
-  private int S4456 = 1;
-  private int S4636 = 1;
+  private int S4641 = 1;
+  private int S4487 = 1;
+  private int S4459 = 1;
+  private int S4639 = 1;
   
   private int[] ends = new int[4];
   private int[] tdone = new int[4];
   
-  public void thread4644(int [] tdone, int [] ends){
-        switch(S4636){
+  public void thread4647(int [] tdone, int [] ends){
+        switch(S4639){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -219,8 +219,8 @@ public class BottleLoaderPlant extends ClockDomain{
     }
   }
 
-  public void thread4643(int [] tdone, int [] ends){
-        switch(S4484){
+  public void thread4646(int [] tdone, int [] ends){
+        switch(S4487){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -228,10 +228,10 @@ public class BottleLoaderPlant extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S4456){
+        switch(S4459){
           case 0 : 
             if(armSource.getprestatus() && enable.getprestatus()){//sysj\bottleLoaderPlant.sysj line: 22, column: 10
-              S4456=1;
+              S4459=1;
               armAtSource.setPresent();//sysj\bottleLoaderPlant.sysj line: 26, column: 5
               currsigs.addElement(armAtSource);
               active[2]=1;
@@ -249,7 +249,7 @@ public class BottleLoaderPlant extends ClockDomain{
           
           case 1 : 
             if(armDest.getprestatus() && enable.getprestatus()){//sysj\bottleLoaderPlant.sysj line: 25, column: 10
-              S4456=0;
+              S4459=0;
               armAtDest.setPresent();//sysj\bottleLoaderPlant.sysj line: 23, column: 5
               currsigs.addElement(armAtDest);
               active[2]=1;
@@ -271,8 +271,8 @@ public class BottleLoaderPlant extends ClockDomain{
     }
   }
 
-  public void thread4641(int [] tdone, int [] ends){
-        S4636=1;
+  public void thread4644(int [] tdone, int [] ends){
+        S4639=1;
     supply_thread_3 = 20;//sysj\bottleLoaderPlant.sysj line: 32, column: 3
     refillTicks_thread_3 = 0;//sysj\bottleLoaderPlant.sysj line: 33, column: 3
     holding_thread_3 = false;//sysj\bottleLoaderPlant.sysj line: 34, column: 3
@@ -451,9 +451,9 @@ public class BottleLoaderPlant extends ClockDomain{
     }
   }
 
-  public void thread4640(int [] tdone, int [] ends){
-        S4484=1;
-    S4456=0;
+  public void thread4643(int [] tdone, int [] ends){
+        S4487=1;
+    S4459=0;
     armAtDest.setPresent();//sysj\bottleLoaderPlant.sysj line: 23, column: 5
     currsigs.addElement(armAtDest);
     active[2]=1;
@@ -468,30 +468,14 @@ public class BottleLoaderPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S4638){
+      switch(S4641){
         case 0 : 
-          S4638=0;
+          S4641=0;
           break RUN;
         
         case 1 : 
-          S4638=2;
-          S4638=2;
-          thread4640(tdone,ends);
-          thread4641(tdone,ends);
-          int biggest4642 = 0;
-          if(ends[2]>=biggest4642){
-            biggest4642=ends[2];
-          }
-          if(ends[3]>=biggest4642){
-            biggest4642=ends[3];
-          }
-          if(biggest4642 == 1){
-            active[1]=1;
-            ends[1]=1;
-            break RUN;
-          }
-        
-        case 2 : 
+          S4641=2;
+          S4641=2;
           thread4643(tdone,ends);
           thread4644(tdone,ends);
           int biggest4645 = 0;
@@ -506,12 +490,28 @@ public class BottleLoaderPlant extends ClockDomain{
             ends[1]=1;
             break RUN;
           }
+        
+        case 2 : 
+          thread4646(tdone,ends);
+          thread4647(tdone,ends);
+          int biggest4648 = 0;
+          if(ends[2]>=biggest4648){
+            biggest4648=ends[2];
+          }
+          if(ends[3]>=biggest4648){
+            biggest4648=ends[3];
+          }
+          if(biggest4648 == 1){
+            active[1]=1;
+            ends[1]=1;
+            break RUN;
+          }
           //FINXME code
-          if(biggest4645 == 0){
-            S4638=0;
+          if(biggest4648 == 0){
+            S4641=0;
             active[1]=0;
             ends[1]=0;
-            S4638=0;
+            S4641=0;
             break RUN;
           }
         

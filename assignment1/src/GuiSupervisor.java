@@ -40,7 +40,7 @@ public final class GuiSupervisor {
         } else if (c.action.equals("PAUSE")) {
             if (resetting || draining) message="Reset/mode transition is draining; wait for admitted bottles to finish.";
             else {
-                running=false;                message="Paused. Current station actions finish; new operations wait for Start.";
+                running=false;                message="Paused. Each station finishes the action it is in, then holds until Start.";
             }
         } else if (c.action.equals("RESET")) {
             // Not a drain. The line is emptied on the coordinator's next tick
@@ -76,7 +76,20 @@ public final class GuiSupervisor {
      * holding. Draining therefore stays automatic until wip reaches zero, at
      * which point observe() settles the mode and this starts returning 1.
      */
-    public static synchronized int machineMode() { return mode.equals("Manual") && !draining ? 1 : 0; }
+    public static synchronized int machineMode() {
+        // Draining keeps the line automatic on purpose: admitted bottles have
+        // to finish before a mode change settles.
+        if (draining) return 0;
+        if (mode.equals("Manual")) return 1;
+        // Paused. Pause used to set running=false and nothing else, which only
+        // stopped admission - the six bottles already on the table carried on
+        // to the end, so the panel said PAUSED while the line visibly ran. The
+        // machines are held here instead, at the same gates manual mode uses:
+        // the station finishes the action it is in and then waits, and because
+        // neither auto nor manual is asserted, nothing can drive it onward.
+        if (!running) return 2;
+        return 0;
+    }
 
     private static boolean resetRequested;
 
