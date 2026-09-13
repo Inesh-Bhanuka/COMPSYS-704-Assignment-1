@@ -39,6 +39,18 @@ public class ABSTwin implements Serializable {
 		return new ArrayList<MachineTwin>(machines.values());
 	}
 
+	/**
+	 * Forget the current population.
+	 *
+	 * The coordinator keeps one ABSTwin for the life of the run and refills it
+	 * each tick, so without this it only ever grows: a bottle a hard reset
+	 * removed would stay in the published snapshot for ever because it was
+	 * tracked once, long ago.
+	 */
+	public void clearWorkpieces() {
+		workpieces.clear();
+	}
+
 	public void track(WorkpieceTwin w) {
 		if (w != null && !workpieces.contains(w)) {
 			workpieces.add(w);

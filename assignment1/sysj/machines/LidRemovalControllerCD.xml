@@ -7,6 +7,7 @@
 			<oChannel Name="status"          To="RecyclingStationControllerCD.statusLidRemoval" />
 
 			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
+			<iSignal Name="reset"             Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
 			<iSignal Name="zAxisLowered"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
 			<iSignal Name="zAxisLifted"       Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
 			<iSignal Name="turnAtHomePos"     Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
@@ -15,6 +16,7 @@
 			<iSignal Name="lidBinFull"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
 			<iSignal Name="cylZaxisExtendM"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
 			<iSignal Name="unscrewTurnExtendM" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
+			<iSignal Name="unscrewTurnRetractM" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
 			<iSignal Name="lidGripperExtendM" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
 			<iSignal Name="lidEjectExtendM"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
 			<oSignal Name="cylZaxisExtend"    To="LidRemovalPlantCD.cylZaxisExtend"          Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15301" />

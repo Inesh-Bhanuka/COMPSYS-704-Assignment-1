@@ -30,6 +30,7 @@ public class TwinAudit {
 		int admitted = all.size();
 		int accepted = 0;
 		int recovered = 0;
+		int scrapped = 0;
 		int problems = 0;
 
 		for (WorkpieceTwin w : all) {
@@ -39,13 +40,19 @@ public class TwinAudit {
 			if (w.status() == WorkpieceStatus.RECOVERED) {
 				recovered++;
 			}
+			if (w.status() == WorkpieceStatus.SCRAP) {
+				scrapped++;
+			}
 			problems += checkChain(w);
 			problems += checkLabel(w);
 		}
 
-		problems += assertThat("accepted + recovered == admitted",
-				accepted + recovered == admitted,
-				accepted + " + " + recovered + " vs " + admitted);
+		// A hard reset scraps whatever was on the table, so those bottles are
+		// accounted for too. Every bottle admitted still has to end up in
+		// exactly one of the three.
+		problems += assertThat("accepted + recovered + scrapped == admitted",
+				accepted + recovered + scrapped == admitted,
+				accepted + " + " + recovered + " + " + scrapped + " vs " + admitted);
 
 		System.out.println();
 		System.out.println("  batch storage holds " + BatchStore.shared().total() + " bottle(s)");
@@ -67,6 +74,12 @@ public class TwinAudit {
 		}
 
 		System.out.println();
+		if (order == null) {
+			// A hard reset clears the plan. The bottle record survives it,
+			// which is the whole point of keeping the two separate.
+			System.out.println("  no active order (cleared by a reset)");
+		}
+		else {
 		System.out.println("  order " + order.id + " is " + order.status());
 		for (Batch b : order.batches()) {
 			// A short batch is not a fault. It means bottles were rejected and
@@ -76,10 +89,12 @@ public class TwinAudit {
 					+ " accepted, " + b.recovered() + " recovered"
 					+ (b.isComplete() ? "" : "  (short - rejections not yet replaced)"));
 		}
+		}
 
 		System.out.println();
 		System.out.println("  admitted " + admitted + ", accepted " + accepted
-				+ ", recovered " + recovered);
+				+ ", recovered " + recovered
+				+ (scrapped > 0 ? ", scrapped by reset " + scrapped : ""));
 		System.out.println(problems == 0
 				? "AUDIT PASSED - every bottle is accounted for and every label is justified"
 				: "AUDIT FAILED - " + problems + " problem(s) above");

@@ -29,6 +29,14 @@ public class TableModel {
 	 */
 	private WorkpieceTwin pending;
 
+	/** Take everything off the table. Used by a hard reset, nothing else. */
+	public void clear() {
+		for (int i = 0; i < pos.length; i++) {
+			pos[i] = null;
+		}
+		pending = null;
+	}
+
 	public boolean hasPending() {
 		return pending != null;
 	}

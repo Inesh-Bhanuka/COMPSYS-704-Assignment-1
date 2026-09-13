@@ -30,16 +30,16 @@ public class LidLoaderPlant extends ClockDomain{
   private boolean extended_thread_3;//sysj\lidLoaderPlant.sysj line: 28, column: 3
   private boolean lidReady_thread_3;//sysj\lidLoaderPlant.sysj line: 29, column: 3
   private boolean holding_thread_3;//sysj\lidLoaderPlant.sysj line: 30, column: 3
-  private int S110543 = 1;
-  private int S109681 = 1;
-  private int S109653 = 1;
-  private int S110541 = 1;
+  private int S104320 = 1;
+  private int S103458 = 1;
+  private int S103430 = 1;
+  private int S104318 = 1;
   
   private int[] ends = new int[4];
   private int[] tdone = new int[4];
   
-  public void thread110549(int [] tdone, int [] ends){
-        switch(S110541){
+  public void thread104326(int [] tdone, int [] ends){
+        switch(S104318){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -960,8 +960,8 @@ public class LidLoaderPlant extends ClockDomain{
     }
   }
 
-  public void thread110548(int [] tdone, int [] ends){
-        switch(S109681){
+  public void thread104325(int [] tdone, int [] ends){
+        switch(S103458){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -969,10 +969,10 @@ public class LidLoaderPlant extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S109653){
+        switch(S103430){
           case 0 : 
             if(armSource.getprestatus() && enable.getprestatus()){//sysj\lidLoaderPlant.sysj line: 16, column: 10
-              S109653=1;
+              S103430=1;
               armAtSource.setPresent();//sysj\lidLoaderPlant.sysj line: 20, column: 5
               currsigs.addElement(armAtSource);
               active[2]=1;
@@ -990,7 +990,7 @@ public class LidLoaderPlant extends ClockDomain{
           
           case 1 : 
             if(armDest.getprestatus() && enable.getprestatus()){//sysj\lidLoaderPlant.sysj line: 19, column: 10
-              S109653=0;
+              S103430=0;
               armAtDest.setPresent();//sysj\lidLoaderPlant.sysj line: 17, column: 5
               currsigs.addElement(armAtDest);
               active[2]=1;
@@ -1012,8 +1012,8 @@ public class LidLoaderPlant extends ClockDomain{
     }
   }
 
-  public void thread110546(int [] tdone, int [] ends){
-        S110541=1;
+  public void thread104323(int [] tdone, int [] ends){
+        S104318=1;
     STOCK_thread_3 = 3;//sysj\lidLoaderPlant.sysj line: 26, column: 3
     lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 27, column: 3
     extended_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 28, column: 3
@@ -1929,9 +1929,9 @@ public class LidLoaderPlant extends ClockDomain{
     }
   }
 
-  public void thread110545(int [] tdone, int [] ends){
-        S109681=1;
-    S109653=0;
+  public void thread104322(int [] tdone, int [] ends){
+        S103458=1;
+    S103430=0;
     armAtDest.setPresent();//sysj\lidLoaderPlant.sysj line: 17, column: 5
     currsigs.addElement(armAtDest);
     active[2]=1;
@@ -1946,50 +1946,50 @@ public class LidLoaderPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S110543){
+      switch(S104320){
         case 0 : 
-          S110543=0;
+          S104320=0;
           break RUN;
         
         case 1 : 
-          S110543=2;
-          S110543=2;
-          thread110545(tdone,ends);
-          thread110546(tdone,ends);
-          int biggest110547 = 0;
-          if(ends[2]>=biggest110547){
-            biggest110547=ends[2];
+          S104320=2;
+          S104320=2;
+          thread104322(tdone,ends);
+          thread104323(tdone,ends);
+          int biggest104324 = 0;
+          if(ends[2]>=biggest104324){
+            biggest104324=ends[2];
           }
-          if(ends[3]>=biggest110547){
-            biggest110547=ends[3];
+          if(ends[3]>=biggest104324){
+            biggest104324=ends[3];
           }
-          if(biggest110547 == 1){
+          if(biggest104324 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
         
         case 2 : 
-          thread110548(tdone,ends);
-          thread110549(tdone,ends);
-          int biggest110550 = 0;
-          if(ends[2]>=biggest110550){
-            biggest110550=ends[2];
+          thread104325(tdone,ends);
+          thread104326(tdone,ends);
+          int biggest104327 = 0;
+          if(ends[2]>=biggest104327){
+            biggest104327=ends[2];
           }
-          if(ends[3]>=biggest110550){
-            biggest110550=ends[3];
+          if(ends[3]>=biggest104327){
+            biggest104327=ends[3];
           }
-          if(biggest110550 == 1){
+          if(biggest104327 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest110550 == 0){
-            S110543=0;
+          if(biggest104327 == 0){
+            S104320=0;
             active[1]=0;
             ends[1]=0;
-            S110543=0;
+            S104320=0;
             break RUN;
           }
         

@@ -11,8 +11,8 @@ public class LidLoaderController extends ClockDomain{
   private char [] active;
   private char [] paused;
   private char [] suspended;
-  public Signal operatorPermit = new Signal("operatorPermit", Signal.INPUT);
   public Signal mode = new Signal("mode", Signal.INPUT);
+  public Signal reset = new Signal("reset", Signal.INPUT);
   public Signal pusherExtended = new Signal("pusherExtended", Signal.INPUT);
   public Signal pusherRetracted = new Signal("pusherRetracted", Signal.INPUT);
   public Signal lidAtPickup = new Signal("lidAtPickup", Signal.INPUT);
@@ -25,6 +25,7 @@ public class LidLoaderController extends ClockDomain{
   public Signal vacOnM = new Signal("vacOnM", Signal.INPUT);
   public Signal armSourceM = new Signal("armSourceM", Signal.INPUT);
   public Signal armDestM = new Signal("armDestM", Signal.INPUT);
+  public Signal refillM = new Signal("refillM", Signal.INPUT);
   public Signal twin = new Signal("twin", Signal.OUTPUT);
   public Signal pusherExtend = new Signal("pusherExtend", Signal.OUTPUT);
   public Signal vacOn = new Signal("vacOn", Signal.OUTPUT);
@@ -35,512 +36,28 @@ public class LidLoaderController extends ClockDomain{
   public output_Channel done_o = new output_Channel();
   private Signal auto_1;
   private Signal manual_1;
-  private LidLoaderTwin t_thread_3;//sysj\lidLoaderController.sysj line: 45, column: 3
-  private int lids_thread_3;//sysj\lidLoaderController.sysj line: 46, column: 3
-  private WorkpieceTwin w_thread_3;//sysj\lidLoaderController.sysj line: 47, column: 3
-  private boolean permitted_thread_3;//sysj\lidLoaderController.sysj line: 56, column: 1
-  private int S109604 = 1;
-  private int S74048 = 1;
-  private int S109072 = 1;
-  private int S79886 = 1;
-  private int S74073 = 1;
-  private int S74057 = 1;
-  private int S74052 = 1;
-  private int S74074 = 1;
-  private int S74139 = 1;
-  private int S74253 = 1;
-  private int S74258 = 1;
-  private int S75319 = 1;
-  private int S75314 = 1;
-  private int S109602 = 1;
-  private int S109248 = 1;
+  private LidLoaderTwin t_thread_3;//sysj\lidLoaderController.sysj line: 50, column: 3
+  private int lids_thread_3;//sysj\lidLoaderController.sysj line: 51, column: 3
+  private WorkpieceTwin w_thread_3;//sysj\lidLoaderController.sysj line: 52, column: 3
+  private int S103323 = 1;
+  private int S78149 = 1;
+  private int S103321 = 1;
+  private int S82345 = 1;
+  private int S78173 = 1;
+  private int S78157 = 1;
+  private int S78152 = 1;
+  private int S78175 = 1;
+  private int S78182 = 1;
+  private int S78457 = 1;
+  private int S78462 = 1;
+  private int S80832 = 1;
+  private int S80827 = 1;
   
-  private int[] ends = new int[7];
-  private int[] tdone = new int[7];
+  private int[] ends = new int[6];
+  private int[] tdone = new int[6];
   
-  public void thread109639(int [] tdone, int [] ends){
-        switch(S109602){
-      case 0 : 
-        active[6]=0;
-        ends[6]=0;
-        tdone[6]=1;
-        break;
-      
-      case 1 : 
-        switch(S109248){
-          case 0 : 
-            if(manual_1.getprestatus()){//sysj\lidLoaderController.sysj line: 134, column: 20
-              S109248=1;
-              if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 135, column: 20
-                S109248=2;
-                active[6]=1;
-                ends[6]=1;
-                tdone[6]=1;
-              }
-              else {
-                if(pusherExtendM.getprestatus()){//sysj\lidLoaderController.sysj line: 137, column: 14
-                  pusherExtend.setPresent();//sysj\lidLoaderController.sysj line: 137, column: 30
-                  currsigs.addElement(pusherExtend);
-                  if(vacOnM.getprestatus()){//sysj\lidLoaderController.sysj line: 138, column: 14
-                    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 138, column: 23
-                    currsigs.addElement(vacOn);
-                    if(armSourceM.getprestatus()){//sysj\lidLoaderController.sysj line: 139, column: 14
-                      armSource.setPresent();//sysj\lidLoaderController.sysj line: 139, column: 27
-                      currsigs.addElement(armSource);
-                      if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                        armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                        currsigs.addElement(armDest);
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                      else {
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                    }
-                    else {
-                      if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                        armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                        currsigs.addElement(armDest);
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                      else {
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                    }
-                  }
-                  else {
-                    if(armSourceM.getprestatus()){//sysj\lidLoaderController.sysj line: 139, column: 14
-                      armSource.setPresent();//sysj\lidLoaderController.sysj line: 139, column: 27
-                      currsigs.addElement(armSource);
-                      if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                        armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                        currsigs.addElement(armDest);
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                      else {
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                    }
-                    else {
-                      if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                        armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                        currsigs.addElement(armDest);
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                      else {
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                    }
-                  }
-                }
-                else {
-                  if(vacOnM.getprestatus()){//sysj\lidLoaderController.sysj line: 138, column: 14
-                    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 138, column: 23
-                    currsigs.addElement(vacOn);
-                    if(armSourceM.getprestatus()){//sysj\lidLoaderController.sysj line: 139, column: 14
-                      armSource.setPresent();//sysj\lidLoaderController.sysj line: 139, column: 27
-                      currsigs.addElement(armSource);
-                      if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                        armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                        currsigs.addElement(armDest);
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                      else {
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                    }
-                    else {
-                      if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                        armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                        currsigs.addElement(armDest);
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                      else {
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                    }
-                  }
-                  else {
-                    if(armSourceM.getprestatus()){//sysj\lidLoaderController.sysj line: 139, column: 14
-                      armSource.setPresent();//sysj\lidLoaderController.sysj line: 139, column: 27
-                      currsigs.addElement(armSource);
-                      if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                        armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                        currsigs.addElement(armDest);
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                      else {
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                    }
-                    else {
-                      if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                        armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                        currsigs.addElement(armDest);
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                      else {
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                    }
-                  }
-                }
-              }
-            }
-            else {
-              active[6]=1;
-              ends[6]=1;
-              tdone[6]=1;
-            }
-            break;
-          
-          case 1 : 
-            if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 135, column: 20
-              S109248=2;
-              active[6]=1;
-              ends[6]=1;
-              tdone[6]=1;
-            }
-            else {
-              if(pusherExtendM.getprestatus()){//sysj\lidLoaderController.sysj line: 137, column: 14
-                pusherExtend.setPresent();//sysj\lidLoaderController.sysj line: 137, column: 30
-                currsigs.addElement(pusherExtend);
-                if(vacOnM.getprestatus()){//sysj\lidLoaderController.sysj line: 138, column: 14
-                  vacOn.setPresent();//sysj\lidLoaderController.sysj line: 138, column: 23
-                  currsigs.addElement(vacOn);
-                  if(armSourceM.getprestatus()){//sysj\lidLoaderController.sysj line: 139, column: 14
-                    armSource.setPresent();//sysj\lidLoaderController.sysj line: 139, column: 27
-                    currsigs.addElement(armSource);
-                    if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                      armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                      currsigs.addElement(armDest);
-                      active[6]=1;
-                      ends[6]=1;
-                      tdone[6]=1;
-                    }
-                    else {
-                      active[6]=1;
-                      ends[6]=1;
-                      tdone[6]=1;
-                    }
-                  }
-                  else {
-                    if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                      armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                      currsigs.addElement(armDest);
-                      active[6]=1;
-                      ends[6]=1;
-                      tdone[6]=1;
-                    }
-                    else {
-                      active[6]=1;
-                      ends[6]=1;
-                      tdone[6]=1;
-                    }
-                  }
-                }
-                else {
-                  if(armSourceM.getprestatus()){//sysj\lidLoaderController.sysj line: 139, column: 14
-                    armSource.setPresent();//sysj\lidLoaderController.sysj line: 139, column: 27
-                    currsigs.addElement(armSource);
-                    if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                      armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                      currsigs.addElement(armDest);
-                      active[6]=1;
-                      ends[6]=1;
-                      tdone[6]=1;
-                    }
-                    else {
-                      active[6]=1;
-                      ends[6]=1;
-                      tdone[6]=1;
-                    }
-                  }
-                  else {
-                    if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                      armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                      currsigs.addElement(armDest);
-                      active[6]=1;
-                      ends[6]=1;
-                      tdone[6]=1;
-                    }
-                    else {
-                      active[6]=1;
-                      ends[6]=1;
-                      tdone[6]=1;
-                    }
-                  }
-                }
-              }
-              else {
-                if(vacOnM.getprestatus()){//sysj\lidLoaderController.sysj line: 138, column: 14
-                  vacOn.setPresent();//sysj\lidLoaderController.sysj line: 138, column: 23
-                  currsigs.addElement(vacOn);
-                  if(armSourceM.getprestatus()){//sysj\lidLoaderController.sysj line: 139, column: 14
-                    armSource.setPresent();//sysj\lidLoaderController.sysj line: 139, column: 27
-                    currsigs.addElement(armSource);
-                    if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                      armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                      currsigs.addElement(armDest);
-                      active[6]=1;
-                      ends[6]=1;
-                      tdone[6]=1;
-                    }
-                    else {
-                      active[6]=1;
-                      ends[6]=1;
-                      tdone[6]=1;
-                    }
-                  }
-                  else {
-                    if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                      armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                      currsigs.addElement(armDest);
-                      active[6]=1;
-                      ends[6]=1;
-                      tdone[6]=1;
-                    }
-                    else {
-                      active[6]=1;
-                      ends[6]=1;
-                      tdone[6]=1;
-                    }
-                  }
-                }
-                else {
-                  if(armSourceM.getprestatus()){//sysj\lidLoaderController.sysj line: 139, column: 14
-                    armSource.setPresent();//sysj\lidLoaderController.sysj line: 139, column: 27
-                    currsigs.addElement(armSource);
-                    if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                      armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                      currsigs.addElement(armDest);
-                      active[6]=1;
-                      ends[6]=1;
-                      tdone[6]=1;
-                    }
-                    else {
-                      active[6]=1;
-                      ends[6]=1;
-                      tdone[6]=1;
-                    }
-                  }
-                  else {
-                    if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                      armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                      currsigs.addElement(armDest);
-                      active[6]=1;
-                      ends[6]=1;
-                      tdone[6]=1;
-                    }
-                    else {
-                      active[6]=1;
-                      ends[6]=1;
-                      tdone[6]=1;
-                    }
-                  }
-                }
-              }
-            }
-            break;
-          
-          case 2 : 
-            S109248=2;
-            S109248=0;
-            if(manual_1.getprestatus()){//sysj\lidLoaderController.sysj line: 134, column: 20
-              S109248=1;
-              if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 135, column: 20
-                S109248=2;
-                active[6]=1;
-                ends[6]=1;
-                tdone[6]=1;
-              }
-              else {
-                if(pusherExtendM.getprestatus()){//sysj\lidLoaderController.sysj line: 137, column: 14
-                  pusherExtend.setPresent();//sysj\lidLoaderController.sysj line: 137, column: 30
-                  currsigs.addElement(pusherExtend);
-                  if(vacOnM.getprestatus()){//sysj\lidLoaderController.sysj line: 138, column: 14
-                    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 138, column: 23
-                    currsigs.addElement(vacOn);
-                    if(armSourceM.getprestatus()){//sysj\lidLoaderController.sysj line: 139, column: 14
-                      armSource.setPresent();//sysj\lidLoaderController.sysj line: 139, column: 27
-                      currsigs.addElement(armSource);
-                      if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                        armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                        currsigs.addElement(armDest);
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                      else {
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                    }
-                    else {
-                      if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                        armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                        currsigs.addElement(armDest);
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                      else {
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                    }
-                  }
-                  else {
-                    if(armSourceM.getprestatus()){//sysj\lidLoaderController.sysj line: 139, column: 14
-                      armSource.setPresent();//sysj\lidLoaderController.sysj line: 139, column: 27
-                      currsigs.addElement(armSource);
-                      if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                        armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                        currsigs.addElement(armDest);
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                      else {
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                    }
-                    else {
-                      if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                        armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                        currsigs.addElement(armDest);
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                      else {
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                    }
-                  }
-                }
-                else {
-                  if(vacOnM.getprestatus()){//sysj\lidLoaderController.sysj line: 138, column: 14
-                    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 138, column: 23
-                    currsigs.addElement(vacOn);
-                    if(armSourceM.getprestatus()){//sysj\lidLoaderController.sysj line: 139, column: 14
-                      armSource.setPresent();//sysj\lidLoaderController.sysj line: 139, column: 27
-                      currsigs.addElement(armSource);
-                      if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                        armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                        currsigs.addElement(armDest);
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                      else {
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                    }
-                    else {
-                      if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                        armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                        currsigs.addElement(armDest);
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                      else {
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                    }
-                  }
-                  else {
-                    if(armSourceM.getprestatus()){//sysj\lidLoaderController.sysj line: 139, column: 14
-                      armSource.setPresent();//sysj\lidLoaderController.sysj line: 139, column: 27
-                      currsigs.addElement(armSource);
-                      if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                        armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                        currsigs.addElement(armDest);
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                      else {
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                    }
-                    else {
-                      if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                        armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                        currsigs.addElement(armDest);
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                      else {
-                        active[6]=1;
-                        ends[6]=1;
-                        tdone[6]=1;
-                      }
-                    }
-                  }
-                }
-              }
-            }
-            else {
-              active[6]=1;
-              ends[6]=1;
-              tdone[6]=1;
-            }
-            break;
-          
-        }
-        break;
-      
-    }
-  }
-
-  public void thread109637(int [] tdone, int [] ends){
-        switch(S74258){
+  public void thread103415(int [] tdone, int [] ends){
+        switch(S78462){
       case 0 : 
         active[5]=0;
         ends[5]=0;
@@ -548,7 +65,7 @@ public class LidLoaderController extends ClockDomain{
         break;
       
       case 1 : 
-        vacOn.setPresent();//sysj\lidLoaderController.sysj line: 111, column: 33
+        vacOn.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 33
         currsigs.addElement(vacOn);
         active[5]=1;
         ends[5]=1;
@@ -558,8 +75,8 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread109636(int [] tdone, int [] ends){
-        switch(S74253){
+  public void thread103414(int [] tdone, int [] ends){
+        switch(S78457){
       case 0 : 
         active[4]=0;
         ends[4]=0;
@@ -567,7 +84,7 @@ public class LidLoaderController extends ClockDomain{
         break;
       
       case 1 : 
-        armDest.setPresent();//sysj\lidLoaderController.sysj line: 111, column: 9
+        armDest.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 9
         currsigs.addElement(armDest);
         active[4]=1;
         ends[4]=1;
@@ -577,152 +94,512 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread109634(int [] tdone, int [] ends){
-        S74258=1;
-    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 111, column: 33
+  public void thread103412(int [] tdone, int [] ends){
+        S78462=1;
+    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 33
     currsigs.addElement(vacOn);
     active[5]=1;
     ends[5]=1;
     tdone[5]=1;
   }
 
-  public void thread109633(int [] tdone, int [] ends){
-        S74253=1;
-    armDest.setPresent();//sysj\lidLoaderController.sysj line: 111, column: 9
+  public void thread103411(int [] tdone, int [] ends){
+        S78457=1;
+    armDest.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 9
     currsigs.addElement(armDest);
     active[4]=1;
     ends[4]=1;
     tdone[4]=1;
   }
 
-  public void thread109631(int [] tdone, int [] ends){
-        S74258=1;
-    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 111, column: 33
+  public void thread103409(int [] tdone, int [] ends){
+        S78462=1;
+    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 33
     currsigs.addElement(vacOn);
     active[5]=1;
     ends[5]=1;
     tdone[5]=1;
   }
 
-  public void thread109630(int [] tdone, int [] ends){
-        S74253=1;
-    armDest.setPresent();//sysj\lidLoaderController.sysj line: 111, column: 9
+  public void thread103408(int [] tdone, int [] ends){
+        S78457=1;
+    armDest.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 9
     currsigs.addElement(armDest);
     active[4]=1;
     ends[4]=1;
     tdone[4]=1;
   }
 
-  public void thread109628(int [] tdone, int [] ends){
-        S74258=1;
-    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 111, column: 33
+  public void thread103406(int [] tdone, int [] ends){
+        S78462=1;
+    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 33
     currsigs.addElement(vacOn);
     active[5]=1;
     ends[5]=1;
     tdone[5]=1;
   }
 
-  public void thread109627(int [] tdone, int [] ends){
-        S74253=1;
-    armDest.setPresent();//sysj\lidLoaderController.sysj line: 111, column: 9
+  public void thread103405(int [] tdone, int [] ends){
+        S78457=1;
+    armDest.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 9
     currsigs.addElement(armDest);
     active[4]=1;
     ends[4]=1;
     tdone[4]=1;
   }
 
-  public void thread109625(int [] tdone, int [] ends){
-        S74258=1;
-    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 111, column: 33
+  public void thread103403(int [] tdone, int [] ends){
+        S78462=1;
+    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 33
     currsigs.addElement(vacOn);
     active[5]=1;
     ends[5]=1;
     tdone[5]=1;
   }
 
-  public void thread109624(int [] tdone, int [] ends){
-        S74253=1;
-    armDest.setPresent();//sysj\lidLoaderController.sysj line: 111, column: 9
+  public void thread103402(int [] tdone, int [] ends){
+        S78457=1;
+    armDest.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 9
     currsigs.addElement(armDest);
     active[4]=1;
     ends[4]=1;
     tdone[4]=1;
   }
 
-  public void thread109622(int [] tdone, int [] ends){
-        S74258=1;
-    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 111, column: 33
+  public void thread103400(int [] tdone, int [] ends){
+        S78462=1;
+    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 33
     currsigs.addElement(vacOn);
     active[5]=1;
     ends[5]=1;
     tdone[5]=1;
   }
 
-  public void thread109621(int [] tdone, int [] ends){
-        S74253=1;
-    armDest.setPresent();//sysj\lidLoaderController.sysj line: 111, column: 9
+  public void thread103399(int [] tdone, int [] ends){
+        S78457=1;
+    armDest.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 9
     currsigs.addElement(armDest);
     active[4]=1;
     ends[4]=1;
     tdone[4]=1;
   }
 
-  public void thread109619(int [] tdone, int [] ends){
-        S74258=1;
-    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 111, column: 33
+  public void thread103397(int [] tdone, int [] ends){
+        S78462=1;
+    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 33
     currsigs.addElement(vacOn);
     active[5]=1;
     ends[5]=1;
     tdone[5]=1;
   }
 
-  public void thread109618(int [] tdone, int [] ends){
-        S74253=1;
-    armDest.setPresent();//sysj\lidLoaderController.sysj line: 111, column: 9
+  public void thread103396(int [] tdone, int [] ends){
+        S78457=1;
+    armDest.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 9
     currsigs.addElement(armDest);
     active[4]=1;
     ends[4]=1;
     tdone[4]=1;
   }
 
-  public void thread109616(int [] tdone, int [] ends){
-        S74258=1;
-    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 111, column: 33
+  public void thread103394(int [] tdone, int [] ends){
+        S78462=1;
+    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 33
     currsigs.addElement(vacOn);
     active[5]=1;
     ends[5]=1;
     tdone[5]=1;
   }
 
-  public void thread109615(int [] tdone, int [] ends){
-        S74253=1;
-    armDest.setPresent();//sysj\lidLoaderController.sysj line: 111, column: 9
+  public void thread103393(int [] tdone, int [] ends){
+        S78457=1;
+    armDest.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 9
     currsigs.addElement(armDest);
     active[4]=1;
     ends[4]=1;
     tdone[4]=1;
   }
 
-  public void thread109613(int [] tdone, int [] ends){
-        S74258=1;
-    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 111, column: 33
+  public void thread103391(int [] tdone, int [] ends){
+        S78462=1;
+    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 33
     currsigs.addElement(vacOn);
     active[5]=1;
     ends[5]=1;
     tdone[5]=1;
   }
 
-  public void thread109612(int [] tdone, int [] ends){
-        S74253=1;
-    armDest.setPresent();//sysj\lidLoaderController.sysj line: 111, column: 9
+  public void thread103390(int [] tdone, int [] ends){
+        S78457=1;
+    armDest.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 9
     currsigs.addElement(armDest);
     active[4]=1;
     ends[4]=1;
     tdone[4]=1;
   }
 
-  public void thread109611(int [] tdone, int [] ends){
-        switch(S109072){
+  public void thread103388(int [] tdone, int [] ends){
+        S78462=1;
+    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 33
+    currsigs.addElement(vacOn);
+    active[5]=1;
+    ends[5]=1;
+    tdone[5]=1;
+  }
+
+  public void thread103387(int [] tdone, int [] ends){
+        S78457=1;
+    armDest.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 9
+    currsigs.addElement(armDest);
+    active[4]=1;
+    ends[4]=1;
+    tdone[4]=1;
+  }
+
+  public void thread103385(int [] tdone, int [] ends){
+        S78462=1;
+    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 33
+    currsigs.addElement(vacOn);
+    active[5]=1;
+    ends[5]=1;
+    tdone[5]=1;
+  }
+
+  public void thread103384(int [] tdone, int [] ends){
+        S78457=1;
+    armDest.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 9
+    currsigs.addElement(armDest);
+    active[4]=1;
+    ends[4]=1;
+    tdone[4]=1;
+  }
+
+  public void thread103382(int [] tdone, int [] ends){
+        S78462=1;
+    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 33
+    currsigs.addElement(vacOn);
+    active[5]=1;
+    ends[5]=1;
+    tdone[5]=1;
+  }
+
+  public void thread103381(int [] tdone, int [] ends){
+        S78457=1;
+    armDest.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 9
+    currsigs.addElement(armDest);
+    active[4]=1;
+    ends[4]=1;
+    tdone[4]=1;
+  }
+
+  public void thread103379(int [] tdone, int [] ends){
+        S78462=1;
+    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 33
+    currsigs.addElement(vacOn);
+    active[5]=1;
+    ends[5]=1;
+    tdone[5]=1;
+  }
+
+  public void thread103378(int [] tdone, int [] ends){
+        S78457=1;
+    armDest.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 9
+    currsigs.addElement(armDest);
+    active[4]=1;
+    ends[4]=1;
+    tdone[4]=1;
+  }
+
+  public void thread103376(int [] tdone, int [] ends){
+        S78462=1;
+    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 33
+    currsigs.addElement(vacOn);
+    active[5]=1;
+    ends[5]=1;
+    tdone[5]=1;
+  }
+
+  public void thread103375(int [] tdone, int [] ends){
+        S78457=1;
+    armDest.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 9
+    currsigs.addElement(armDest);
+    active[4]=1;
+    ends[4]=1;
+    tdone[4]=1;
+  }
+
+  public void thread103373(int [] tdone, int [] ends){
+        S78462=1;
+    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 33
+    currsigs.addElement(vacOn);
+    active[5]=1;
+    ends[5]=1;
+    tdone[5]=1;
+  }
+
+  public void thread103372(int [] tdone, int [] ends){
+        S78457=1;
+    armDest.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 9
+    currsigs.addElement(armDest);
+    active[4]=1;
+    ends[4]=1;
+    tdone[4]=1;
+  }
+
+  public void thread103370(int [] tdone, int [] ends){
+        S78462=1;
+    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 33
+    currsigs.addElement(vacOn);
+    active[5]=1;
+    ends[5]=1;
+    tdone[5]=1;
+  }
+
+  public void thread103369(int [] tdone, int [] ends){
+        S78457=1;
+    armDest.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 9
+    currsigs.addElement(armDest);
+    active[4]=1;
+    ends[4]=1;
+    tdone[4]=1;
+  }
+
+  public void thread103367(int [] tdone, int [] ends){
+        S78462=1;
+    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 33
+    currsigs.addElement(vacOn);
+    active[5]=1;
+    ends[5]=1;
+    tdone[5]=1;
+  }
+
+  public void thread103366(int [] tdone, int [] ends){
+        S78457=1;
+    armDest.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 9
+    currsigs.addElement(armDest);
+    active[4]=1;
+    ends[4]=1;
+    tdone[4]=1;
+  }
+
+  public void thread103364(int [] tdone, int [] ends){
+        S78462=1;
+    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 33
+    currsigs.addElement(vacOn);
+    active[5]=1;
+    ends[5]=1;
+    tdone[5]=1;
+  }
+
+  public void thread103363(int [] tdone, int [] ends){
+        S78457=1;
+    armDest.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 9
+    currsigs.addElement(armDest);
+    active[4]=1;
+    ends[4]=1;
+    tdone[4]=1;
+  }
+
+  public void thread103361(int [] tdone, int [] ends){
+        S78462=1;
+    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 33
+    currsigs.addElement(vacOn);
+    active[5]=1;
+    ends[5]=1;
+    tdone[5]=1;
+  }
+
+  public void thread103360(int [] tdone, int [] ends){
+        S78457=1;
+    armDest.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 9
+    currsigs.addElement(armDest);
+    active[4]=1;
+    ends[4]=1;
+    tdone[4]=1;
+  }
+
+  public void thread103358(int [] tdone, int [] ends){
+        S78462=1;
+    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 33
+    currsigs.addElement(vacOn);
+    active[5]=1;
+    ends[5]=1;
+    tdone[5]=1;
+  }
+
+  public void thread103357(int [] tdone, int [] ends){
+        S78457=1;
+    armDest.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 9
+    currsigs.addElement(armDest);
+    active[4]=1;
+    ends[4]=1;
+    tdone[4]=1;
+  }
+
+  public void thread103355(int [] tdone, int [] ends){
+        S78462=1;
+    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 33
+    currsigs.addElement(vacOn);
+    active[5]=1;
+    ends[5]=1;
+    tdone[5]=1;
+  }
+
+  public void thread103354(int [] tdone, int [] ends){
+        S78457=1;
+    armDest.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 9
+    currsigs.addElement(armDest);
+    active[4]=1;
+    ends[4]=1;
+    tdone[4]=1;
+  }
+
+  public void thread103352(int [] tdone, int [] ends){
+        S78462=1;
+    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 33
+    currsigs.addElement(vacOn);
+    active[5]=1;
+    ends[5]=1;
+    tdone[5]=1;
+  }
+
+  public void thread103351(int [] tdone, int [] ends){
+        S78457=1;
+    armDest.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 9
+    currsigs.addElement(armDest);
+    active[4]=1;
+    ends[4]=1;
+    tdone[4]=1;
+  }
+
+  public void thread103349(int [] tdone, int [] ends){
+        S78462=1;
+    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 33
+    currsigs.addElement(vacOn);
+    active[5]=1;
+    ends[5]=1;
+    tdone[5]=1;
+  }
+
+  public void thread103348(int [] tdone, int [] ends){
+        S78457=1;
+    armDest.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 9
+    currsigs.addElement(armDest);
+    active[4]=1;
+    ends[4]=1;
+    tdone[4]=1;
+  }
+
+  public void thread103346(int [] tdone, int [] ends){
+        S78462=1;
+    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 33
+    currsigs.addElement(vacOn);
+    active[5]=1;
+    ends[5]=1;
+    tdone[5]=1;
+  }
+
+  public void thread103345(int [] tdone, int [] ends){
+        S78457=1;
+    armDest.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 9
+    currsigs.addElement(armDest);
+    active[4]=1;
+    ends[4]=1;
+    tdone[4]=1;
+  }
+
+  public void thread103343(int [] tdone, int [] ends){
+        S78462=1;
+    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 33
+    currsigs.addElement(vacOn);
+    active[5]=1;
+    ends[5]=1;
+    tdone[5]=1;
+  }
+
+  public void thread103342(int [] tdone, int [] ends){
+        S78457=1;
+    armDest.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 9
+    currsigs.addElement(armDest);
+    active[4]=1;
+    ends[4]=1;
+    tdone[4]=1;
+  }
+
+  public void thread103340(int [] tdone, int [] ends){
+        S78462=1;
+    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 33
+    currsigs.addElement(vacOn);
+    active[5]=1;
+    ends[5]=1;
+    tdone[5]=1;
+  }
+
+  public void thread103339(int [] tdone, int [] ends){
+        S78457=1;
+    armDest.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 9
+    currsigs.addElement(armDest);
+    active[4]=1;
+    ends[4]=1;
+    tdone[4]=1;
+  }
+
+  public void thread103337(int [] tdone, int [] ends){
+        S78462=1;
+    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 33
+    currsigs.addElement(vacOn);
+    active[5]=1;
+    ends[5]=1;
+    tdone[5]=1;
+  }
+
+  public void thread103336(int [] tdone, int [] ends){
+        S78457=1;
+    armDest.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 9
+    currsigs.addElement(armDest);
+    active[4]=1;
+    ends[4]=1;
+    tdone[4]=1;
+  }
+
+  public void thread103334(int [] tdone, int [] ends){
+        S78462=1;
+    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 33
+    currsigs.addElement(vacOn);
+    active[5]=1;
+    ends[5]=1;
+    tdone[5]=1;
+  }
+
+  public void thread103333(int [] tdone, int [] ends){
+        S78457=1;
+    armDest.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 9
+    currsigs.addElement(armDest);
+    active[4]=1;
+    ends[4]=1;
+    tdone[4]=1;
+  }
+
+  public void thread103331(int [] tdone, int [] ends){
+        S78462=1;
+    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 33
+    currsigs.addElement(vacOn);
+    active[5]=1;
+    ends[5]=1;
+    tdone[5]=1;
+  }
+
+  public void thread103330(int [] tdone, int [] ends){
+        S78457=1;
+    armDest.setPresent();//sysj\lidLoaderController.sysj line: 118, column: 9
+    currsigs.addElement(armDest);
+    active[4]=1;
+    ends[4]=1;
+    tdone[4]=1;
+  }
+
+  public void thread103329(int [] tdone, int [] ends){
+        switch(S103321){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -730,304 +607,133 @@ public class LidLoaderController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S79886){
+        switch(S82345){
           case 0 : 
-            if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 50, column: 20
-              S79886=1;
-              if(manual_1.getprestatus()){//sysj\lidLoaderController.sysj line: 52, column: 20
-                start_in.setPreempted();
-                done_o.setPreempted();
-                S79886=2;
-                active[3]=1;
-                ends[3]=1;
-                tdone[3]=1;
-              }
-              else {
-                S74073=0;
-                S74057=0;
-                if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 53, column: 5
-                  start_in.setACK(false);//sysj\lidLoaderController.sysj line: 53, column: 5
-                  S74057=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-                else {
-                  S74052=0;
-                  if(!start_in.isREQ()){//sysj\lidLoaderController.sysj line: 53, column: 5
-                    start_in.setACK(true);//sysj\lidLoaderController.sysj line: 53, column: 5
-                    S74052=1;
-                    if(start_in.isREQ()){//sysj\lidLoaderController.sysj line: 53, column: 5
-                      start_in.setACK(false);//sysj\lidLoaderController.sysj line: 53, column: 5
-                      ends[3]=2;
-                      ;//sysj\lidLoaderController.sysj line: 53, column: 5
-                      w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\lidLoaderController.sysj line: 54, column: 5
-                      S74073=1;
-                      if(w_thread_3 != null){//sysj\lidLoaderController.sysj line: 55, column: 4
-                        permitted_thread_3 = false;//sysj\lidLoaderController.sysj line: 56, column: 1
-                        S74074=0;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      else {
-                        S74073=2;
-                        if(w_thread_3 != null && w_thread_3.catchFault("lid-fitted")){//sysj\lidLoaderController.sysj line: 66, column: 8
-                          System.out.println("[LID] " + w_thread_3 + " already has a lid fitted.");//sysj\lidLoaderController.sysj line: 67, column: 6
-                          w_thread_3.reject(Machine.LID_LOADER, "lid already fitted");//sysj\lidLoaderController.sysj line: 68, column: 6
-                          S74073=3;
-                          S75319=0;
-                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                            S75319=1;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                          else {
-                            S75314=0;
-                            if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                              done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                              S75314=1;
-                              if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                ends[3]=2;
-                                ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                S79886=2;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                              else {
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                            }
-                            else {
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                          }
-                        }
-                        else {
-                          if(w_thread_3 != null){//sysj\lidLoaderController.sysj line: 70, column: 13
-                            t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 71, column: 21
-                            t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 72, column: 21
-                            if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "place", "placing lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 73, column: 21
-                              twin.setPresent();//sysj\lidLoaderController.sysj line: 74, column: 25
-                              currsigs.addElement(twin);
-                              twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 74, column: 25
-                              S74139=0;
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                            else {
-                              S74139=0;
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                          }
-                          else {
-                            S74073=3;
-                            S75319=0;
-                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                              S75319=1;
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                            else {
-                              S75314=0;
-                              if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                S75314=1;
-                                if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                  done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                  ends[3]=2;
-                                  ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                  S79886=2;
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                                else {
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
-                              else {
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                    else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
-                  }
-                  else {
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
-                  }
-                }
-              }
-            }
-            else {
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
-            }
-            break;
-          
-          case 1 : 
-            if(manual_1.getprestatus()){//sysj\lidLoaderController.sysj line: 52, column: 20
+            if(reset.getprestatus()){//sysj\lidLoaderController.sysj line: 55, column: 20
               start_in.setPreempted();
               done_o.setPreempted();
-              S79886=2;
+              S82345=1;
               active[3]=1;
               ends[3]=1;
               tdone[3]=1;
             }
             else {
-              switch(S74073){
+              switch(S78173){
                 case 0 : 
-                  switch(S74057){
+                  switch(S78157){
                     case 0 : 
-                      if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 53, column: 5
-                        start_in.setACK(false);//sysj\lidLoaderController.sysj line: 53, column: 5
-                        S74057=1;
+                      if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 56, column: 5
+                        start_in.setACK(false);//sysj\lidLoaderController.sysj line: 56, column: 5
+                        S78157=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        switch(S74052){
+                        switch(S78152){
                           case 0 : 
-                            if(!start_in.isREQ()){//sysj\lidLoaderController.sysj line: 53, column: 5
-                              start_in.setACK(true);//sysj\lidLoaderController.sysj line: 53, column: 5
-                              S74052=1;
-                              if(start_in.isREQ()){//sysj\lidLoaderController.sysj line: 53, column: 5
-                                start_in.setACK(false);//sysj\lidLoaderController.sysj line: 53, column: 5
+                            if(!start_in.isREQ()){//sysj\lidLoaderController.sysj line: 56, column: 5
+                              start_in.setACK(true);//sysj\lidLoaderController.sysj line: 56, column: 5
+                              S78152=1;
+                              if(start_in.isREQ()){//sysj\lidLoaderController.sysj line: 56, column: 5
+                                start_in.setACK(false);//sysj\lidLoaderController.sysj line: 56, column: 5
                                 ends[3]=2;
-                                ;//sysj\lidLoaderController.sysj line: 53, column: 5
-                                w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\lidLoaderController.sysj line: 54, column: 5
-                                S74073=1;
-                                if(w_thread_3 != null){//sysj\lidLoaderController.sysj line: 55, column: 4
-                                  permitted_thread_3 = false;//sysj\lidLoaderController.sysj line: 56, column: 1
-                                  S74074=0;
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
+                                ;//sysj\lidLoaderController.sysj line: 56, column: 5
+                                w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\lidLoaderController.sysj line: 57, column: 5
+                                S78173=1;
+                                if(w_thread_3 != null && w_thread_3.catchFault("lid-fitted")){//sysj\lidLoaderController.sysj line: 60, column: 8
+                                  System.out.println("[LID] " + w_thread_3 + " already has a lid fitted.");//sysj\lidLoaderController.sysj line: 61, column: 6
+                                  w_thread_3.reject(Machine.LID_LOADER, "lid already fitted");//sysj\lidLoaderController.sysj line: 62, column: 6
+                                  S78173=2;
+                                  S80832=0;
+                                  if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    S80832=1;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                  else {
+                                    S80827=0;
+                                    if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      S80827=1;
+                                      if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        ends[3]=2;
+                                        ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        S82345=1;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
                                 }
                                 else {
-                                  S74073=2;
-                                  if(w_thread_3 != null && w_thread_3.catchFault("lid-fitted")){//sysj\lidLoaderController.sysj line: 66, column: 8
-                                    System.out.println("[LID] " + w_thread_3 + " already has a lid fitted.");//sysj\lidLoaderController.sysj line: 67, column: 6
-                                    w_thread_3.reject(Machine.LID_LOADER, "lid already fitted");//sysj\lidLoaderController.sysj line: 68, column: 6
-                                    S74073=3;
-                                    S75319=0;
-                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                      done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                      S75319=1;
+                                  if(w_thread_3 != null){//sysj\lidLoaderController.sysj line: 64, column: 13
+                                    t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 65, column: 21
+                                    t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 66, column: 21
+                                    if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "place", "placing lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 67, column: 21
+                                      twin.setPresent();//sysj\lidLoaderController.sysj line: 68, column: 25
+                                      currsigs.addElement(twin);
+                                      twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 68, column: 25
+                                      S78175=0;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
                                     }
                                     else {
-                                      S75314=0;
-                                      if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                        done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                        S75314=1;
-                                        if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                          ends[3]=2;
-                                          ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                          S79886=2;
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                        else {
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                      }
-                                      else {
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
+                                      S78175=0;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
                                     }
                                   }
                                   else {
-                                    if(w_thread_3 != null){//sysj\lidLoaderController.sysj line: 70, column: 13
-                                      t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 71, column: 21
-                                      t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 72, column: 21
-                                      if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "place", "placing lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 73, column: 21
-                                        twin.setPresent();//sysj\lidLoaderController.sysj line: 74, column: 25
-                                        currsigs.addElement(twin);
-                                        twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 74, column: 25
-                                        S74139=0;
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                      else {
-                                        S74139=0;
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
+                                    S78173=2;
+                                    S80832=0;
+                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      S80832=1;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
                                     }
                                     else {
-                                      S74073=3;
-                                      S75319=0;
-                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                        done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                        S75319=1;
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                      else {
-                                        S75314=0;
-                                        if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                          done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                          S75314=1;
-                                          if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                            ends[3]=2;
-                                            ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                            S79886=2;
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                          else {
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
+                                      S80827=0;
+                                      if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        S80827=1;
+                                        if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          ends[3]=2;
+                                          ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S82345=1;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
                                         }
                                         else {
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
                                         }
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
                                       }
                                     }
                                   }
@@ -1047,115 +753,105 @@ public class LidLoaderController extends ClockDomain{
                             break;
                           
                           case 1 : 
-                            if(start_in.isREQ()){//sysj\lidLoaderController.sysj line: 53, column: 5
-                              start_in.setACK(false);//sysj\lidLoaderController.sysj line: 53, column: 5
+                            if(start_in.isREQ()){//sysj\lidLoaderController.sysj line: 56, column: 5
+                              start_in.setACK(false);//sysj\lidLoaderController.sysj line: 56, column: 5
                               ends[3]=2;
-                              ;//sysj\lidLoaderController.sysj line: 53, column: 5
-                              w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\lidLoaderController.sysj line: 54, column: 5
-                              S74073=1;
-                              if(w_thread_3 != null){//sysj\lidLoaderController.sysj line: 55, column: 4
-                                permitted_thread_3 = false;//sysj\lidLoaderController.sysj line: 56, column: 1
-                                S74074=0;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
+                              ;//sysj\lidLoaderController.sysj line: 56, column: 5
+                              w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\lidLoaderController.sysj line: 57, column: 5
+                              S78173=1;
+                              if(w_thread_3 != null && w_thread_3.catchFault("lid-fitted")){//sysj\lidLoaderController.sysj line: 60, column: 8
+                                System.out.println("[LID] " + w_thread_3 + " already has a lid fitted.");//sysj\lidLoaderController.sysj line: 61, column: 6
+                                w_thread_3.reject(Machine.LID_LOADER, "lid already fitted");//sysj\lidLoaderController.sysj line: 62, column: 6
+                                S78173=2;
+                                S80832=0;
+                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                  done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                  S80832=1;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                                else {
+                                  S80827=0;
+                                  if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    S80827=1;
+                                    if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      ends[3]=2;
+                                      ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      S82345=1;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
                               }
                               else {
-                                S74073=2;
-                                if(w_thread_3 != null && w_thread_3.catchFault("lid-fitted")){//sysj\lidLoaderController.sysj line: 66, column: 8
-                                  System.out.println("[LID] " + w_thread_3 + " already has a lid fitted.");//sysj\lidLoaderController.sysj line: 67, column: 6
-                                  w_thread_3.reject(Machine.LID_LOADER, "lid already fitted");//sysj\lidLoaderController.sysj line: 68, column: 6
-                                  S74073=3;
-                                  S75319=0;
-                                  if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                    done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                    S75319=1;
+                                if(w_thread_3 != null){//sysj\lidLoaderController.sysj line: 64, column: 13
+                                  t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 65, column: 21
+                                  t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 66, column: 21
+                                  if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "place", "placing lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 67, column: 21
+                                    twin.setPresent();//sysj\lidLoaderController.sysj line: 68, column: 25
+                                    currsigs.addElement(twin);
+                                    twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 68, column: 25
+                                    S78175=0;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
                                   else {
-                                    S75314=0;
-                                    if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                      done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                      S75314=1;
-                                      if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                        done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                        ends[3]=2;
-                                        ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                        S79886=2;
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                      else {
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                    }
-                                    else {
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
+                                    S78175=0;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
                                   }
                                 }
                                 else {
-                                  if(w_thread_3 != null){//sysj\lidLoaderController.sysj line: 70, column: 13
-                                    t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 71, column: 21
-                                    t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 72, column: 21
-                                    if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "place", "placing lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 73, column: 21
-                                      twin.setPresent();//sysj\lidLoaderController.sysj line: 74, column: 25
-                                      currsigs.addElement(twin);
-                                      twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 74, column: 25
-                                      S74139=0;
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                    else {
-                                      S74139=0;
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
+                                  S78173=2;
+                                  S80832=0;
+                                  if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    S80832=1;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
                                   }
                                   else {
-                                    S74073=3;
-                                    S75319=0;
-                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                      done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                      S75319=1;
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                    else {
-                                      S75314=0;
-                                      if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                        done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                        S75314=1;
-                                        if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                          ends[3]=2;
-                                          ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                          S79886=2;
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                        else {
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
+                                    S80827=0;
+                                    if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      S80827=1;
+                                      if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        ends[3]=2;
+                                        ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        S82345=1;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
                                       }
                                       else {
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
                                       }
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
                                     }
                                   }
                                 }
@@ -1173,129 +869,119 @@ public class LidLoaderController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      S74057=1;
-                      S74057=0;
-                      if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 53, column: 5
-                        start_in.setACK(false);//sysj\lidLoaderController.sysj line: 53, column: 5
-                        S74057=1;
+                      S78157=1;
+                      S78157=0;
+                      if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 56, column: 5
+                        start_in.setACK(false);//sysj\lidLoaderController.sysj line: 56, column: 5
+                        S78157=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S74052=0;
-                        if(!start_in.isREQ()){//sysj\lidLoaderController.sysj line: 53, column: 5
-                          start_in.setACK(true);//sysj\lidLoaderController.sysj line: 53, column: 5
-                          S74052=1;
-                          if(start_in.isREQ()){//sysj\lidLoaderController.sysj line: 53, column: 5
-                            start_in.setACK(false);//sysj\lidLoaderController.sysj line: 53, column: 5
+                        S78152=0;
+                        if(!start_in.isREQ()){//sysj\lidLoaderController.sysj line: 56, column: 5
+                          start_in.setACK(true);//sysj\lidLoaderController.sysj line: 56, column: 5
+                          S78152=1;
+                          if(start_in.isREQ()){//sysj\lidLoaderController.sysj line: 56, column: 5
+                            start_in.setACK(false);//sysj\lidLoaderController.sysj line: 56, column: 5
                             ends[3]=2;
-                            ;//sysj\lidLoaderController.sysj line: 53, column: 5
-                            w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\lidLoaderController.sysj line: 54, column: 5
-                            S74073=1;
-                            if(w_thread_3 != null){//sysj\lidLoaderController.sysj line: 55, column: 4
-                              permitted_thread_3 = false;//sysj\lidLoaderController.sysj line: 56, column: 1
-                              S74074=0;
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
+                            ;//sysj\lidLoaderController.sysj line: 56, column: 5
+                            w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\lidLoaderController.sysj line: 57, column: 5
+                            S78173=1;
+                            if(w_thread_3 != null && w_thread_3.catchFault("lid-fitted")){//sysj\lidLoaderController.sysj line: 60, column: 8
+                              System.out.println("[LID] " + w_thread_3 + " already has a lid fitted.");//sysj\lidLoaderController.sysj line: 61, column: 6
+                              w_thread_3.reject(Machine.LID_LOADER, "lid already fitted");//sysj\lidLoaderController.sysj line: 62, column: 6
+                              S78173=2;
+                              S80832=0;
+                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                S80832=1;
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                              else {
+                                S80827=0;
+                                if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                  done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                  S80827=1;
+                                  if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    ends[3]=2;
+                                    ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    S82345=1;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                                else {
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
                             }
                             else {
-                              S74073=2;
-                              if(w_thread_3 != null && w_thread_3.catchFault("lid-fitted")){//sysj\lidLoaderController.sysj line: 66, column: 8
-                                System.out.println("[LID] " + w_thread_3 + " already has a lid fitted.");//sysj\lidLoaderController.sysj line: 67, column: 6
-                                w_thread_3.reject(Machine.LID_LOADER, "lid already fitted");//sysj\lidLoaderController.sysj line: 68, column: 6
-                                S74073=3;
-                                S75319=0;
-                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                  done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                  S75319=1;
+                              if(w_thread_3 != null){//sysj\lidLoaderController.sysj line: 64, column: 13
+                                t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 65, column: 21
+                                t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 66, column: 21
+                                if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "place", "placing lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 67, column: 21
+                                  twin.setPresent();//sysj\lidLoaderController.sysj line: 68, column: 25
+                                  currsigs.addElement(twin);
+                                  twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 68, column: 25
+                                  S78175=0;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
                                 }
                                 else {
-                                  S75314=0;
-                                  if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                    done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                    S75314=1;
-                                    if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                      done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                      ends[3]=2;
-                                      ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                      S79886=2;
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                    else {
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                  }
-                                  else {
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
+                                  S78175=0;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
                                 }
                               }
                               else {
-                                if(w_thread_3 != null){//sysj\lidLoaderController.sysj line: 70, column: 13
-                                  t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 71, column: 21
-                                  t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 72, column: 21
-                                  if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "place", "placing lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 73, column: 21
-                                    twin.setPresent();//sysj\lidLoaderController.sysj line: 74, column: 25
-                                    currsigs.addElement(twin);
-                                    twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 74, column: 25
-                                    S74139=0;
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                  else {
-                                    S74139=0;
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
+                                S78173=2;
+                                S80832=0;
+                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                  done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                  S80832=1;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
                                 }
                                 else {
-                                  S74073=3;
-                                  S75319=0;
-                                  if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                    done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                    S75319=1;
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                  else {
-                                    S75314=0;
-                                    if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                      done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                      S75314=1;
-                                      if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                        done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                        ends[3]=2;
-                                        ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                        S79886=2;
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                      else {
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
+                                  S80827=0;
+                                  if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    S80827=1;
+                                    if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      ends[3]=2;
+                                      ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      S82345=1;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
                                     }
                                     else {
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
                                     }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
                                   }
                                 }
                               }
@@ -1319,291 +1005,77 @@ public class LidLoaderController extends ClockDomain{
                   break;
                 
                 case 1 : 
-                  switch(S74074){
+                  switch(S78175){
                     case 0 : 
-                      S74074=0;
-                      S74074=1;
-                      if(!permitted_thread_3){//sysj\lidLoaderController.sysj line: 58, column: 19
-                        permitted_thread_3 = GuiStep.take("LID", (GuiPermit)(operatorPermit.getpreval() == null ? null : ((GuiPermit)operatorPermit.getpreval())));//sysj\lidLoaderController.sysj line: 59, column: 17
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      else {
-                        ends[3]=2;
-                        ;//sysj\lidLoaderController.sysj line: 58, column: 13
-                        S74074=2;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      break;
-                    
-                    case 1 : 
-                      if(!permitted_thread_3){//sysj\lidLoaderController.sysj line: 58, column: 19
-                        permitted_thread_3 = GuiStep.take("LID", (GuiPermit)(operatorPermit.getpreval() == null ? null : ((GuiPermit)operatorPermit.getpreval())));//sysj\lidLoaderController.sysj line: 59, column: 17
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      else {
-                        ends[3]=2;
-                        ;//sysj\lidLoaderController.sysj line: 58, column: 13
-                        S74074=2;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      break;
-                    
-                    case 2 : 
-                      S74074=2;
-                      S74073=2;
-                      if(w_thread_3 != null && w_thread_3.catchFault("lid-fitted")){//sysj\lidLoaderController.sysj line: 66, column: 8
-                        System.out.println("[LID] " + w_thread_3 + " already has a lid fitted.");//sysj\lidLoaderController.sysj line: 67, column: 6
-                        w_thread_3.reject(Machine.LID_LOADER, "lid already fitted");//sysj\lidLoaderController.sysj line: 68, column: 6
-                        S74073=3;
-                        S75319=0;
-                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                          S75319=1;
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                        else {
-                          S75314=0;
-                          if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                            done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                            S75314=1;
-                            if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                              ends[3]=2;
-                              ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                              S79886=2;
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                            else {
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                          }
-                          else {
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                        }
-                      }
-                      else {
-                        if(w_thread_3 != null){//sysj\lidLoaderController.sysj line: 70, column: 13
-                          t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 71, column: 21
-                          t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 72, column: 21
-                          if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "place", "placing lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 73, column: 21
-                            twin.setPresent();//sysj\lidLoaderController.sysj line: 74, column: 25
-                            currsigs.addElement(twin);
-                            twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 74, column: 25
-                            S74139=0;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                          else {
-                            S74139=0;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                        }
-                        else {
-                          S74073=3;
-                          S75319=0;
-                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                            S75319=1;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                          else {
-                            S75314=0;
-                            if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                              done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                              S75314=1;
-                              if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                ends[3]=2;
-                                ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                S79886=2;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                              else {
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                            }
-                            else {
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                          }
-                        }
-                      }
-                      break;
-                    
-                  }
-                  break;
-                
-                case 2 : 
-                  switch(S74139){
-                    case 0 : 
-                      S74139=0;
-                      S74139=1;
-                      if(magazineEmpty.getprestatus()){//sysj\lidLoaderController.sysj line: 78, column: 14
-                        System.out.println("[LID] Magazine empty, refilling.");//sysj\lidLoaderController.sysj line: 79, column: 7
-                        if(refilled.getprestatus()){//sysj\lidLoaderController.sysj line: 80, column: 23
-                          S74139=2;
-                          if(pusherExtended.getprestatus()){//sysj\lidLoaderController.sysj line: 95, column: 22
-                            S74139=3;
-                            if(pusherRetracted.getprestatus()){//sysj\lidLoaderController.sysj line: 98, column: 22
-                              S74139=4;
-                              if(lidAtPickup.getprestatus()){//sysj\lidLoaderController.sysj line: 99, column: 22
-                                S74139=5;
-                                if(armAtSource.getprestatus()){//sysj\lidLoaderController.sysj line: 102, column: 22
-                                  S74139=6;
-                                  if(WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 105, column: 22
-                                    S74139=7;
-                                    if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 110, column: 22
-                                      S74139=8;
-                                      if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 113, column: 22
-                                        w_thread_3.lid();//sysj\lidLoaderController.sysj line: 115, column: 6
-                                        lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 116, column: 6
-                                        if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 117, column: 18
-                                          lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 117, column: 20
-                                        }
-                                        t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 118, column: 6
-                                        t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 119, column: 6
-                                        if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 120, column: 6
-                                          twin.setPresent();//sysj\lidLoaderController.sysj line: 121, column: 7
-                                          currsigs.addElement(twin);
-                                          twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 121, column: 7
-                                          System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 123, column: 6
-                                          S74073=3;
-                                          S75319=0;
-                                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                            S75319=1;
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                          else {
-                                            S75314=0;
-                                            if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                              done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                              S75314=1;
-                                              if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                                ends[3]=2;
-                                                ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                                S79886=2;
-                                                active[3]=1;
-                                                ends[3]=1;
-                                                tdone[3]=1;
-                                              }
-                                              else {
-                                                active[3]=1;
-                                                ends[3]=1;
-                                                tdone[3]=1;
-                                              }
-                                            }
-                                            else {
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                          }
-                                        }
-                                        else {
-                                          System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 123, column: 6
-                                          S74073=3;
-                                          S75319=0;
-                                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                            S75319=1;
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                          else {
-                                            S75314=0;
-                                            if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                              done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                              S75314=1;
-                                              if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                                ends[3]=2;
-                                                ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                                S79886=2;
-                                                active[3]=1;
-                                                ends[3]=1;
-                                                tdone[3]=1;
-                                              }
-                                              else {
-                                                active[3]=1;
-                                                ends[3]=1;
-                                                tdone[3]=1;
-                                              }
-                                            }
-                                            else {
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                          }
-                                        }
-                                      }
-                                      else {
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                    }
-                                    else {
-                                      thread109612(tdone,ends);
-                                      thread109613(tdone,ends);
-                                      int biggest109614 = 0;
-                                      if(ends[4]>=biggest109614){
-                                        biggest109614=ends[4];
-                                      }
-                                      if(ends[5]>=biggest109614){
-                                        biggest109614=ends[5];
-                                      }
-                                      if(biggest109614 == 1){
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                    }
+                      S78175=0;
+                      S78175=1;
+                      if(magazineEmpty.getprestatus()){//sysj\lidLoaderController.sysj line: 72, column: 14
+                        System.out.println("[LID] Magazine empty, refilling.");//sysj\lidLoaderController.sysj line: 73, column: 7
+                        S78182=0;
+                        if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 74, column: 23
+                          S78182=1;
+                          if(refilled.getprestatus()){//sysj\lidLoaderController.sysj line: 75, column: 23
+                            S78175=2;
+                            if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 90, column: 22
+                              S78175=3;
+                              if(pusherExtended.getprestatus()){//sysj\lidLoaderController.sysj line: 91, column: 22
+                                S78175=4;
+                                if(pusherRetracted.getprestatus()){//sysj\lidLoaderController.sysj line: 94, column: 22
+                                  S78175=5;
+                                  if(lidAtPickup.getprestatus()){//sysj\lidLoaderController.sysj line: 95, column: 22
+                                    S78175=6;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
                                   }
                                   else {
-                                    vacOn.setPresent();//sysj\lidLoaderController.sysj line: 106, column: 7
-                                    currsigs.addElement(vacOn);
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
                                 }
                                 else {
-                                  armSource.setPresent();//sysj\lidLoaderController.sysj line: 103, column: 7
-                                  currsigs.addElement(armSource);
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                              else {
+                                pusherExtend.setPresent();//sysj\lidLoaderController.sysj line: 92, column: 7
+                                currsigs.addElement(pusherExtend);
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                            else {
+                              if(pusherExtendM.getprestatus()){//sysj\lidLoaderController.sysj line: 90, column: 45
+                                S78175=3;
+                                if(pusherExtended.getprestatus()){//sysj\lidLoaderController.sysj line: 91, column: 22
+                                  S78175=4;
+                                  if(pusherRetracted.getprestatus()){//sysj\lidLoaderController.sysj line: 94, column: 22
+                                    S78175=5;
+                                    if(lidAtPickup.getprestatus()){//sysj\lidLoaderController.sysj line: 95, column: 22
+                                      S78175=6;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                                else {
+                                  pusherExtend.setPresent();//sysj\lidLoaderController.sysj line: 92, column: 7
+                                  currsigs.addElement(pusherExtend);
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -1615,6 +1087,127 @@ public class LidLoaderController extends ClockDomain{
                                 tdone[3]=1;
                               }
                             }
+                          }
+                          else {
+                            refill.setPresent();//sysj\lidLoaderController.sysj line: 76, column: 8
+                            currsigs.addElement(refill);
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                        }
+                        else {
+                          if(refillM.getprestatus()){//sysj\lidLoaderController.sysj line: 74, column: 46
+                            S78182=1;
+                            if(refilled.getprestatus()){//sysj\lidLoaderController.sysj line: 75, column: 23
+                              S78175=2;
+                              if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 90, column: 22
+                                S78175=3;
+                                if(pusherExtended.getprestatus()){//sysj\lidLoaderController.sysj line: 91, column: 22
+                                  S78175=4;
+                                  if(pusherRetracted.getprestatus()){//sysj\lidLoaderController.sysj line: 94, column: 22
+                                    S78175=5;
+                                    if(lidAtPickup.getprestatus()){//sysj\lidLoaderController.sysj line: 95, column: 22
+                                      S78175=6;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                                else {
+                                  pusherExtend.setPresent();//sysj\lidLoaderController.sysj line: 92, column: 7
+                                  currsigs.addElement(pusherExtend);
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                              else {
+                                if(pusherExtendM.getprestatus()){//sysj\lidLoaderController.sysj line: 90, column: 45
+                                  S78175=3;
+                                  if(pusherExtended.getprestatus()){//sysj\lidLoaderController.sysj line: 91, column: 22
+                                    S78175=4;
+                                    if(pusherRetracted.getprestatus()){//sysj\lidLoaderController.sysj line: 94, column: 22
+                                      S78175=5;
+                                      if(lidAtPickup.getprestatus()){//sysj\lidLoaderController.sysj line: 95, column: 22
+                                        S78175=6;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    pusherExtend.setPresent();//sysj\lidLoaderController.sysj line: 92, column: 7
+                                    currsigs.addElement(pusherExtend);
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                                else {
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                            }
+                            else {
+                              refill.setPresent();//sysj\lidLoaderController.sysj line: 76, column: 8
+                              currsigs.addElement(refill);
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                          else {
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                        }
+                      }
+                      else {
+                        S78175=2;
+                        if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 90, column: 22
+                          S78175=3;
+                          if(pusherExtended.getprestatus()){//sysj\lidLoaderController.sysj line: 91, column: 22
+                            S78175=4;
+                            if(pusherRetracted.getprestatus()){//sysj\lidLoaderController.sysj line: 94, column: 22
+                              S78175=5;
+                              if(lidAtPickup.getprestatus()){//sysj\lidLoaderController.sysj line: 95, column: 22
+                                S78175=6;
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                              else {
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
                             else {
                               active[3]=1;
                               ends[3]=1;
@@ -1622,7 +1215,7 @@ public class LidLoaderController extends ClockDomain{
                             }
                           }
                           else {
-                            pusherExtend.setPresent();//sysj\lidLoaderController.sysj line: 96, column: 7
+                            pusherExtend.setPresent();//sysj\lidLoaderController.sysj line: 92, column: 7
                             currsigs.addElement(pusherExtend);
                             active[3]=1;
                             ends[3]=1;
@@ -1630,155 +1223,33 @@ public class LidLoaderController extends ClockDomain{
                           }
                         }
                         else {
-                          refill.setPresent();//sysj\lidLoaderController.sysj line: 81, column: 8
-                          currsigs.addElement(refill);
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                      }
-                      else {
-                        S74139=2;
-                        if(pusherExtended.getprestatus()){//sysj\lidLoaderController.sysj line: 95, column: 22
-                          S74139=3;
-                          if(pusherRetracted.getprestatus()){//sysj\lidLoaderController.sysj line: 98, column: 22
-                            S74139=4;
-                            if(lidAtPickup.getprestatus()){//sysj\lidLoaderController.sysj line: 99, column: 22
-                              S74139=5;
-                              if(armAtSource.getprestatus()){//sysj\lidLoaderController.sysj line: 102, column: 22
-                                S74139=6;
-                                if(WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 105, column: 22
-                                  S74139=7;
-                                  if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 110, column: 22
-                                    S74139=8;
-                                    if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 113, column: 22
-                                      w_thread_3.lid();//sysj\lidLoaderController.sysj line: 115, column: 6
-                                      lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 116, column: 6
-                                      if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 117, column: 18
-                                        lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 117, column: 20
-                                      }
-                                      t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 118, column: 6
-                                      t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 119, column: 6
-                                      if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 120, column: 6
-                                        twin.setPresent();//sysj\lidLoaderController.sysj line: 121, column: 7
-                                        currsigs.addElement(twin);
-                                        twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 121, column: 7
-                                        System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 123, column: 6
-                                        S74073=3;
-                                        S75319=0;
-                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                          S75319=1;
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                        else {
-                                          S75314=0;
-                                          if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                            done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                            S75314=1;
-                                            if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                              ends[3]=2;
-                                              ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                              S79886=2;
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                            else {
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                          }
-                                          else {
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                        }
-                                      }
-                                      else {
-                                        System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 123, column: 6
-                                        S74073=3;
-                                        S75319=0;
-                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                          S75319=1;
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                        else {
-                                          S75314=0;
-                                          if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                            done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                            S75314=1;
-                                            if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                              ends[3]=2;
-                                              ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                              S79886=2;
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                            else {
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                          }
-                                          else {
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                        }
-                                      }
-                                    }
-                                    else {
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                  }
-                                  else {
-                                    thread109615(tdone,ends);
-                                    thread109616(tdone,ends);
-                                    int biggest109617 = 0;
-                                    if(ends[4]>=biggest109617){
-                                      biggest109617=ends[4];
-                                    }
-                                    if(ends[5]>=biggest109617){
-                                      biggest109617=ends[5];
-                                    }
-                                    if(biggest109617 == 1){
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                  }
+                          if(pusherExtendM.getprestatus()){//sysj\lidLoaderController.sysj line: 90, column: 45
+                            S78175=3;
+                            if(pusherExtended.getprestatus()){//sysj\lidLoaderController.sysj line: 91, column: 22
+                              S78175=4;
+                              if(pusherRetracted.getprestatus()){//sysj\lidLoaderController.sysj line: 94, column: 22
+                                S78175=5;
+                                if(lidAtPickup.getprestatus()){//sysj\lidLoaderController.sysj line: 95, column: 22
+                                  S78175=6;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
                                 }
                                 else {
-                                  vacOn.setPresent();//sysj\lidLoaderController.sysj line: 106, column: 7
-                                  currsigs.addElement(vacOn);
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
                                 }
                               }
                               else {
-                                armSource.setPresent();//sysj\lidLoaderController.sysj line: 103, column: 7
-                                currsigs.addElement(armSource);
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
                             }
                             else {
+                              pusherExtend.setPresent();//sysj\lidLoaderController.sysj line: 92, column: 7
+                              currsigs.addElement(pusherExtend);
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
@@ -1789,118 +1260,66 @@ public class LidLoaderController extends ClockDomain{
                             ends[3]=1;
                             tdone[3]=1;
                           }
-                        }
-                        else {
-                          pusherExtend.setPresent();//sysj\lidLoaderController.sysj line: 96, column: 7
-                          currsigs.addElement(pusherExtend);
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
                         }
                       }
                       break;
                     
                     case 1 : 
-                      if(refilled.getprestatus()){//sysj\lidLoaderController.sysj line: 80, column: 23
-                        S74139=2;
-                        if(pusherExtended.getprestatus()){//sysj\lidLoaderController.sysj line: 95, column: 22
-                          S74139=3;
-                          if(pusherRetracted.getprestatus()){//sysj\lidLoaderController.sysj line: 98, column: 22
-                            S74139=4;
-                            if(lidAtPickup.getprestatus()){//sysj\lidLoaderController.sysj line: 99, column: 22
-                              S74139=5;
-                              if(armAtSource.getprestatus()){//sysj\lidLoaderController.sysj line: 102, column: 22
-                                S74139=6;
-                                if(WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 105, column: 22
-                                  S74139=7;
-                                  if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 110, column: 22
-                                    S74139=8;
-                                    if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 113, column: 22
-                                      w_thread_3.lid();//sysj\lidLoaderController.sysj line: 115, column: 6
-                                      lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 116, column: 6
-                                      if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 117, column: 18
-                                        lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 117, column: 20
-                                      }
-                                      t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 118, column: 6
-                                      t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 119, column: 6
-                                      if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 120, column: 6
-                                        twin.setPresent();//sysj\lidLoaderController.sysj line: 121, column: 7
-                                        currsigs.addElement(twin);
-                                        twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 121, column: 7
-                                        System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 123, column: 6
-                                        S74073=3;
-                                        S75319=0;
-                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                          S75319=1;
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                        else {
-                                          S75314=0;
-                                          if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                            done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                            S75314=1;
-                                            if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                              ends[3]=2;
-                                              ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                              S79886=2;
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                            else {
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                          }
-                                          else {
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                        }
+                      switch(S78182){
+                        case 0 : 
+                          if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 74, column: 23
+                            S78182=1;
+                            if(refilled.getprestatus()){//sysj\lidLoaderController.sysj line: 75, column: 23
+                              S78175=2;
+                              if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 90, column: 22
+                                S78175=3;
+                                if(pusherExtended.getprestatus()){//sysj\lidLoaderController.sysj line: 91, column: 22
+                                  S78175=4;
+                                  if(pusherRetracted.getprestatus()){//sysj\lidLoaderController.sysj line: 94, column: 22
+                                    S78175=5;
+                                    if(lidAtPickup.getprestatus()){//sysj\lidLoaderController.sysj line: 95, column: 22
+                                      S78175=6;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                                else {
+                                  pusherExtend.setPresent();//sysj\lidLoaderController.sysj line: 92, column: 7
+                                  currsigs.addElement(pusherExtend);
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                              else {
+                                if(pusherExtendM.getprestatus()){//sysj\lidLoaderController.sysj line: 90, column: 45
+                                  S78175=3;
+                                  if(pusherExtended.getprestatus()){//sysj\lidLoaderController.sysj line: 91, column: 22
+                                    S78175=4;
+                                    if(pusherRetracted.getprestatus()){//sysj\lidLoaderController.sysj line: 94, column: 22
+                                      S78175=5;
+                                      if(lidAtPickup.getprestatus()){//sysj\lidLoaderController.sysj line: 95, column: 22
+                                        S78175=6;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
                                       }
                                       else {
-                                        System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 123, column: 6
-                                        S74073=3;
-                                        S75319=0;
-                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                          S75319=1;
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                        else {
-                                          S75314=0;
-                                          if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                            done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                            S75314=1;
-                                            if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                              ends[3]=2;
-                                              ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                              S79886=2;
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                            else {
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                          }
-                                          else {
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                        }
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
                                       }
                                     }
                                     else {
@@ -1910,37 +1329,220 @@ public class LidLoaderController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    thread109618(tdone,ends);
-                                    thread109619(tdone,ends);
-                                    int biggest109620 = 0;
-                                    if(ends[4]>=biggest109620){
-                                      biggest109620=ends[4];
+                                    pusherExtend.setPresent();//sysj\lidLoaderController.sysj line: 92, column: 7
+                                    currsigs.addElement(pusherExtend);
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                                else {
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                            }
+                            else {
+                              refill.setPresent();//sysj\lidLoaderController.sysj line: 76, column: 8
+                              currsigs.addElement(refill);
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                          else {
+                            if(refillM.getprestatus()){//sysj\lidLoaderController.sysj line: 74, column: 46
+                              S78182=1;
+                              if(refilled.getprestatus()){//sysj\lidLoaderController.sysj line: 75, column: 23
+                                S78175=2;
+                                if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 90, column: 22
+                                  S78175=3;
+                                  if(pusherExtended.getprestatus()){//sysj\lidLoaderController.sysj line: 91, column: 22
+                                    S78175=4;
+                                    if(pusherRetracted.getprestatus()){//sysj\lidLoaderController.sysj line: 94, column: 22
+                                      S78175=5;
+                                      if(lidAtPickup.getprestatus()){//sysj\lidLoaderController.sysj line: 95, column: 22
+                                        S78175=6;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
                                     }
-                                    if(ends[5]>=biggest109620){
-                                      biggest109620=ends[5];
-                                    }
-                                    if(biggest109620 == 1){
+                                    else {
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
                                     }
                                   }
+                                  else {
+                                    pusherExtend.setPresent();//sysj\lidLoaderController.sysj line: 92, column: 7
+                                    currsigs.addElement(pusherExtend);
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
                                 }
                                 else {
-                                  vacOn.setPresent();//sysj\lidLoaderController.sysj line: 106, column: 7
-                                  currsigs.addElement(vacOn);
+                                  if(pusherExtendM.getprestatus()){//sysj\lidLoaderController.sysj line: 90, column: 45
+                                    S78175=3;
+                                    if(pusherExtended.getprestatus()){//sysj\lidLoaderController.sysj line: 91, column: 22
+                                      S78175=4;
+                                      if(pusherRetracted.getprestatus()){//sysj\lidLoaderController.sysj line: 94, column: 22
+                                        S78175=5;
+                                        if(lidAtPickup.getprestatus()){//sysj\lidLoaderController.sysj line: 95, column: 22
+                                          S78175=6;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                    else {
+                                      pusherExtend.setPresent();//sysj\lidLoaderController.sysj line: 92, column: 7
+                                      currsigs.addElement(pusherExtend);
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
+                              else {
+                                refill.setPresent();//sysj\lidLoaderController.sysj line: 76, column: 8
+                                currsigs.addElement(refill);
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                            else {
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                          break;
+                        
+                        case 1 : 
+                          if(refilled.getprestatus()){//sysj\lidLoaderController.sysj line: 75, column: 23
+                            S78175=2;
+                            if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 90, column: 22
+                              S78175=3;
+                              if(pusherExtended.getprestatus()){//sysj\lidLoaderController.sysj line: 91, column: 22
+                                S78175=4;
+                                if(pusherRetracted.getprestatus()){//sysj\lidLoaderController.sysj line: 94, column: 22
+                                  S78175=5;
+                                  if(lidAtPickup.getprestatus()){//sysj\lidLoaderController.sysj line: 95, column: 22
+                                    S78175=6;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                                else {
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
                                 }
                               }
                               else {
-                                armSource.setPresent();//sysj\lidLoaderController.sysj line: 103, column: 7
-                                currsigs.addElement(armSource);
+                                pusherExtend.setPresent();//sysj\lidLoaderController.sysj line: 92, column: 7
+                                currsigs.addElement(pusherExtend);
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
+                            }
+                            else {
+                              if(pusherExtendM.getprestatus()){//sysj\lidLoaderController.sysj line: 90, column: 45
+                                S78175=3;
+                                if(pusherExtended.getprestatus()){//sysj\lidLoaderController.sysj line: 91, column: 22
+                                  S78175=4;
+                                  if(pusherRetracted.getprestatus()){//sysj\lidLoaderController.sysj line: 94, column: 22
+                                    S78175=5;
+                                    if(lidAtPickup.getprestatus()){//sysj\lidLoaderController.sysj line: 95, column: 22
+                                      S78175=6;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                                else {
+                                  pusherExtend.setPresent();//sysj\lidLoaderController.sysj line: 92, column: 7
+                                  currsigs.addElement(pusherExtend);
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                              else {
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                          }
+                          else {
+                            refill.setPresent();//sysj\lidLoaderController.sysj line: 76, column: 8
+                            currsigs.addElement(refill);
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                          break;
+                        
+                      }
+                      break;
+                    
+                    case 2 : 
+                      if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 90, column: 22
+                        S78175=3;
+                        if(pusherExtended.getprestatus()){//sysj\lidLoaderController.sysj line: 91, column: 22
+                          S78175=4;
+                          if(pusherRetracted.getprestatus()){//sysj\lidLoaderController.sysj line: 94, column: 22
+                            S78175=5;
+                            if(lidAtPickup.getprestatus()){//sysj\lidLoaderController.sysj line: 95, column: 22
+                              S78175=6;
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
                             }
                             else {
                               active[3]=1;
@@ -1955,7 +1557,7 @@ public class LidLoaderController extends ClockDomain{
                           }
                         }
                         else {
-                          pusherExtend.setPresent();//sysj\lidLoaderController.sysj line: 96, column: 7
+                          pusherExtend.setPresent();//sysj\lidLoaderController.sysj line: 92, column: 7
                           currsigs.addElement(pusherExtend);
                           active[3]=1;
                           ends[3]=1;
@@ -1963,153 +1565,56 @@ public class LidLoaderController extends ClockDomain{
                         }
                       }
                       else {
-                        refill.setPresent();//sysj\lidLoaderController.sysj line: 81, column: 8
-                        currsigs.addElement(refill);
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      break;
-                    
-                    case 2 : 
-                      if(pusherExtended.getprestatus()){//sysj\lidLoaderController.sysj line: 95, column: 22
-                        S74139=3;
-                        if(pusherRetracted.getprestatus()){//sysj\lidLoaderController.sysj line: 98, column: 22
-                          S74139=4;
-                          if(lidAtPickup.getprestatus()){//sysj\lidLoaderController.sysj line: 99, column: 22
-                            S74139=5;
-                            if(armAtSource.getprestatus()){//sysj\lidLoaderController.sysj line: 102, column: 22
-                              S74139=6;
-                              if(WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 105, column: 22
-                                S74139=7;
-                                if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 110, column: 22
-                                  S74139=8;
-                                  if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 113, column: 22
-                                    w_thread_3.lid();//sysj\lidLoaderController.sysj line: 115, column: 6
-                                    lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 116, column: 6
-                                    if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 117, column: 18
-                                      lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 117, column: 20
-                                    }
-                                    t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 118, column: 6
-                                    t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 119, column: 6
-                                    if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 120, column: 6
-                                      twin.setPresent();//sysj\lidLoaderController.sysj line: 121, column: 7
-                                      currsigs.addElement(twin);
-                                      twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 121, column: 7
-                                      System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 123, column: 6
-                                      S74073=3;
-                                      S75319=0;
-                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                        done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                        S75319=1;
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                      else {
-                                        S75314=0;
-                                        if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                          done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                          S75314=1;
-                                          if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                            ends[3]=2;
-                                            ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                            S79886=2;
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                          else {
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                        }
-                                        else {
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                      }
-                                    }
-                                    else {
-                                      System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 123, column: 6
-                                      S74073=3;
-                                      S75319=0;
-                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                        done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                        S75319=1;
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                      else {
-                                        S75314=0;
-                                        if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                          done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                          S75314=1;
-                                          if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                            ends[3]=2;
-                                            ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                            S79886=2;
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                          else {
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                        }
-                                        else {
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                      }
-                                    }
-                                  }
-                                  else {
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                }
-                                else {
-                                  thread109621(tdone,ends);
-                                  thread109622(tdone,ends);
-                                  int biggest109623 = 0;
-                                  if(ends[4]>=biggest109623){
-                                    biggest109623=ends[4];
-                                  }
-                                  if(ends[5]>=biggest109623){
-                                    biggest109623=ends[5];
-                                  }
-                                  if(biggest109623 == 1){
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                }
+                        if(pusherExtendM.getprestatus()){//sysj\lidLoaderController.sysj line: 90, column: 45
+                          S78175=3;
+                          if(pusherExtended.getprestatus()){//sysj\lidLoaderController.sysj line: 91, column: 22
+                            S78175=4;
+                            if(pusherRetracted.getprestatus()){//sysj\lidLoaderController.sysj line: 94, column: 22
+                              S78175=5;
+                              if(lidAtPickup.getprestatus()){//sysj\lidLoaderController.sysj line: 95, column: 22
+                                S78175=6;
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
                               }
                               else {
-                                vacOn.setPresent();//sysj\lidLoaderController.sysj line: 106, column: 7
-                                currsigs.addElement(vacOn);
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
                             }
                             else {
-                              armSource.setPresent();//sysj\lidLoaderController.sysj line: 103, column: 7
-                              currsigs.addElement(armSource);
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
+                          }
+                          else {
+                            pusherExtend.setPresent();//sysj\lidLoaderController.sysj line: 92, column: 7
+                            currsigs.addElement(pusherExtend);
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                        }
+                        else {
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                      }
+                      break;
+                    
+                    case 3 : 
+                      if(pusherExtended.getprestatus()){//sysj\lidLoaderController.sysj line: 91, column: 22
+                        S78175=4;
+                        if(pusherRetracted.getprestatus()){//sysj\lidLoaderController.sysj line: 94, column: 22
+                          S78175=5;
+                          if(lidAtPickup.getprestatus()){//sysj\lidLoaderController.sysj line: 95, column: 22
+                            S78175=6;
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
                           }
                           else {
                             active[3]=1;
@@ -2124,7 +1629,7 @@ public class LidLoaderController extends ClockDomain{
                         }
                       }
                       else {
-                        pusherExtend.setPresent();//sysj\lidLoaderController.sysj line: 96, column: 7
+                        pusherExtend.setPresent();//sysj\lidLoaderController.sysj line: 92, column: 7
                         currsigs.addElement(pusherExtend);
                         active[3]=1;
                         ends[3]=1;
@@ -2132,288 +1637,16 @@ public class LidLoaderController extends ClockDomain{
                       }
                       break;
                     
-                    case 3 : 
-                      if(pusherRetracted.getprestatus()){//sysj\lidLoaderController.sysj line: 98, column: 22
-                        S74139=4;
-                        if(lidAtPickup.getprestatus()){//sysj\lidLoaderController.sysj line: 99, column: 22
-                          S74139=5;
-                          if(armAtSource.getprestatus()){//sysj\lidLoaderController.sysj line: 102, column: 22
-                            S74139=6;
-                            if(WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 105, column: 22
-                              S74139=7;
-                              if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 110, column: 22
-                                S74139=8;
-                                if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 113, column: 22
-                                  w_thread_3.lid();//sysj\lidLoaderController.sysj line: 115, column: 6
-                                  lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 116, column: 6
-                                  if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 117, column: 18
-                                    lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 117, column: 20
-                                  }
-                                  t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 118, column: 6
-                                  t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 119, column: 6
-                                  if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 120, column: 6
-                                    twin.setPresent();//sysj\lidLoaderController.sysj line: 121, column: 7
-                                    currsigs.addElement(twin);
-                                    twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 121, column: 7
-                                    System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 123, column: 6
-                                    S74073=3;
-                                    S75319=0;
-                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                      done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                      S75319=1;
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                    else {
-                                      S75314=0;
-                                      if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                        done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                        S75314=1;
-                                        if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                          ends[3]=2;
-                                          ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                          S79886=2;
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                        else {
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                      }
-                                      else {
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                    }
-                                  }
-                                  else {
-                                    System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 123, column: 6
-                                    S74073=3;
-                                    S75319=0;
-                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                      done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                      S75319=1;
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                    else {
-                                      S75314=0;
-                                      if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                        done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                        S75314=1;
-                                        if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                          ends[3]=2;
-                                          ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                          S79886=2;
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                        else {
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                      }
-                                      else {
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                    }
-                                  }
-                                }
-                                else {
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
-                              else {
-                                thread109624(tdone,ends);
-                                thread109625(tdone,ends);
-                                int biggest109626 = 0;
-                                if(ends[4]>=biggest109626){
-                                  biggest109626=ends[4];
-                                }
-                                if(ends[5]>=biggest109626){
-                                  biggest109626=ends[5];
-                                }
-                                if(biggest109626 == 1){
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
-                            }
-                            else {
-                              vacOn.setPresent();//sysj\lidLoaderController.sysj line: 106, column: 7
-                              currsigs.addElement(vacOn);
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                          }
-                          else {
-                            armSource.setPresent();//sysj\lidLoaderController.sysj line: 103, column: 7
-                            currsigs.addElement(armSource);
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                        }
-                        else {
+                    case 4 : 
+                      if(pusherRetracted.getprestatus()){//sysj\lidLoaderController.sysj line: 94, column: 22
+                        S78175=5;
+                        if(lidAtPickup.getprestatus()){//sysj\lidLoaderController.sysj line: 95, column: 22
+                          S78175=6;
                           active[3]=1;
                           ends[3]=1;
                           tdone[3]=1;
                         }
-                      }
-                      else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      break;
-                    
-                    case 4 : 
-                      if(lidAtPickup.getprestatus()){//sysj\lidLoaderController.sysj line: 99, column: 22
-                        S74139=5;
-                        if(armAtSource.getprestatus()){//sysj\lidLoaderController.sysj line: 102, column: 22
-                          S74139=6;
-                          if(WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 105, column: 22
-                            S74139=7;
-                            if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 110, column: 22
-                              S74139=8;
-                              if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 113, column: 22
-                                w_thread_3.lid();//sysj\lidLoaderController.sysj line: 115, column: 6
-                                lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 116, column: 6
-                                if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 117, column: 18
-                                  lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 117, column: 20
-                                }
-                                t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 118, column: 6
-                                t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 119, column: 6
-                                if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 120, column: 6
-                                  twin.setPresent();//sysj\lidLoaderController.sysj line: 121, column: 7
-                                  currsigs.addElement(twin);
-                                  twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 121, column: 7
-                                  System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 123, column: 6
-                                  S74073=3;
-                                  S75319=0;
-                                  if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                    done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                    S75319=1;
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                  else {
-                                    S75314=0;
-                                    if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                      done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                      S75314=1;
-                                      if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                        done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                        ends[3]=2;
-                                        ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                        S79886=2;
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                      else {
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                    }
-                                    else {
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                  }
-                                }
-                                else {
-                                  System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 123, column: 6
-                                  S74073=3;
-                                  S75319=0;
-                                  if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                    done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                    S75319=1;
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                  else {
-                                    S75314=0;
-                                    if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                      done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                      S75314=1;
-                                      if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                        done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                        ends[3]=2;
-                                        ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                        S79886=2;
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                      else {
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                    }
-                                    else {
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                  }
-                                }
-                              }
-                              else {
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                            }
-                            else {
-                              thread109627(tdone,ends);
-                              thread109628(tdone,ends);
-                              int biggest109629 = 0;
-                              if(ends[4]>=biggest109629){
-                                biggest109629=ends[4];
-                              }
-                              if(ends[5]>=biggest109629){
-                                biggest109629=ends[5];
-                              }
-                              if(biggest109629 == 1){
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                            }
-                          }
-                          else {
-                            vacOn.setPresent();//sysj\lidLoaderController.sysj line: 106, column: 7
-                            currsigs.addElement(vacOn);
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                        }
                         else {
-                          armSource.setPresent();//sysj\lidLoaderController.sysj line: 103, column: 7
-                          currsigs.addElement(armSource);
                           active[3]=1;
                           ends[3]=1;
                           tdone[3]=1;
@@ -2427,134 +1660,13 @@ public class LidLoaderController extends ClockDomain{
                       break;
                     
                     case 5 : 
-                      if(armAtSource.getprestatus()){//sysj\lidLoaderController.sysj line: 102, column: 22
-                        S74139=6;
-                        if(WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 105, column: 22
-                          S74139=7;
-                          if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 110, column: 22
-                            S74139=8;
-                            if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 113, column: 22
-                              w_thread_3.lid();//sysj\lidLoaderController.sysj line: 115, column: 6
-                              lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 116, column: 6
-                              if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 117, column: 18
-                                lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 117, column: 20
-                              }
-                              t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 118, column: 6
-                              t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 119, column: 6
-                              if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 120, column: 6
-                                twin.setPresent();//sysj\lidLoaderController.sysj line: 121, column: 7
-                                currsigs.addElement(twin);
-                                twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 121, column: 7
-                                System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 123, column: 6
-                                S74073=3;
-                                S75319=0;
-                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                  done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                  S75319=1;
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                                else {
-                                  S75314=0;
-                                  if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                    done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                    S75314=1;
-                                    if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                      done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                      ends[3]=2;
-                                      ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                      S79886=2;
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                    else {
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                  }
-                                  else {
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                }
-                              }
-                              else {
-                                System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 123, column: 6
-                                S74073=3;
-                                S75319=0;
-                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                  done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                  S75319=1;
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                                else {
-                                  S75314=0;
-                                  if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                    done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                    S75314=1;
-                                    if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                      done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                      ends[3]=2;
-                                      ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                      S79886=2;
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                    else {
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                  }
-                                  else {
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                }
-                              }
-                            }
-                            else {
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                          }
-                          else {
-                            thread109630(tdone,ends);
-                            thread109631(tdone,ends);
-                            int biggest109632 = 0;
-                            if(ends[4]>=biggest109632){
-                              biggest109632=ends[4];
-                            }
-                            if(ends[5]>=biggest109632){
-                              biggest109632=ends[5];
-                            }
-                            if(biggest109632 == 1){
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                          }
-                        }
-                        else {
-                          vacOn.setPresent();//sysj\lidLoaderController.sysj line: 106, column: 7
-                          currsigs.addElement(vacOn);
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
+                      if(lidAtPickup.getprestatus()){//sysj\lidLoaderController.sysj line: 95, column: 22
+                        S78175=6;
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
                       }
                       else {
-                        armSource.setPresent();//sysj\lidLoaderController.sysj line: 103, column: 7
-                        currsigs.addElement(armSource);
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
@@ -2562,50 +1674,245 @@ public class LidLoaderController extends ClockDomain{
                       break;
                     
                     case 6 : 
-                      if(WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 105, column: 22
-                        S74139=7;
-                        if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 110, column: 22
-                          S74139=8;
-                          if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 113, column: 22
-                            w_thread_3.lid();//sysj\lidLoaderController.sysj line: 115, column: 6
-                            lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 116, column: 6
-                            if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 117, column: 18
-                              lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 117, column: 20
-                            }
-                            t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 118, column: 6
-                            t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 119, column: 6
-                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 120, column: 6
-                              twin.setPresent();//sysj\lidLoaderController.sysj line: 121, column: 7
-                              currsigs.addElement(twin);
-                              twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 121, column: 7
-                              System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 123, column: 6
-                              S74073=3;
-                              S75319=0;
-                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                S75319=1;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                              else {
-                                S75314=0;
-                                if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                  done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                  S75314=1;
-                                  if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                    done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                    ends[3]=2;
-                                    ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                    S79886=2;
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
+                      S78175=6;
+                      S78175=7;
+                      if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 106, column: 22
+                        S78175=8;
+                        if(armAtSource.getprestatus()){//sysj\lidLoaderController.sysj line: 107, column: 22
+                          S78175=9;
+                          if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 110, column: 22
+                            S78175=10;
+                            if(WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 111, column: 22
+                              S78175=11;
+                              if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 116, column: 22
+                                S78175=12;
+                                if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 117, column: 22
+                                  S78175=13;
+                                  if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                                    w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                                    lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                                    if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                                      lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
+                                    }
+                                    t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                                    t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                                    if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                                      twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
+                                      currsigs.addElement(twin);
+                                      twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                                      System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                      S78173=2;
+                                      S80832=0;
+                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        S80832=1;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        S80827=0;
+                                        if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S80827=1;
+                                          if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            ends[3]=2;
+                                            ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S82345=1;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                    }
+                                    else {
+                                      System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                      S78173=2;
+                                      S80832=0;
+                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        S80832=1;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        S80827=0;
+                                        if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S80827=1;
+                                          if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            ends[3]=2;
+                                            ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S82345=1;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                    }
                                   }
                                   else {
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
+                                  }
+                                }
+                                else {
+                                  thread103330(tdone,ends);
+                                  thread103331(tdone,ends);
+                                  int biggest103332 = 0;
+                                  if(ends[4]>=biggest103332){
+                                    biggest103332=ends[4];
+                                  }
+                                  if(ends[5]>=biggest103332){
+                                    biggest103332=ends[5];
+                                  }
+                                  if(biggest103332 == 1){
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
+                              else {
+                                if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 116, column: 45
+                                  S78175=12;
+                                  if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 117, column: 22
+                                    S78175=13;
+                                    if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                                      w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                                      lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                                      if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                                        lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
+                                      }
+                                      t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                                      t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                                      if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                                        twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
+                                        currsigs.addElement(twin);
+                                        twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                                        System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                        S78173=2;
+                                        S80832=0;
+                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S80832=1;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          S80827=0;
+                                          if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S80827=1;
+                                            if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              ends[3]=2;
+                                              ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              S82345=1;
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                      }
+                                      else {
+                                        System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                        S78173=2;
+                                        S80832=0;
+                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S80832=1;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          S80827=0;
+                                          if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S80827=1;
+                                            if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              ends[3]=2;
+                                              ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              S82345=1;
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                      }
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    thread103333(tdone,ends);
+                                    thread103334(tdone,ends);
+                                    int biggest103335 = 0;
+                                    if(ends[4]>=biggest103335){
+                                      biggest103335=ends[4];
+                                    }
+                                    if(ends[5]>=biggest103335){
+                                      biggest103335=ends[5];
+                                    }
+                                    if(biggest103335 == 1){
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
                                   }
                                 }
                                 else {
@@ -2616,34 +1923,1046 @@ public class LidLoaderController extends ClockDomain{
                               }
                             }
                             else {
-                              System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 123, column: 6
-                              S74073=3;
-                              S75319=0;
-                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                S75319=1;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                              else {
-                                S75314=0;
-                                if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                  done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                  S75314=1;
-                                  if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                    done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                    ends[3]=2;
-                                    ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                    S79886=2;
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
+                              vacOn.setPresent();//sysj\lidLoaderController.sysj line: 112, column: 7
+                              currsigs.addElement(vacOn);
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                          else {
+                            if(vacOnM.getprestatus()){//sysj\lidLoaderController.sysj line: 110, column: 45
+                              S78175=10;
+                              if(WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 111, column: 22
+                                S78175=11;
+                                if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 116, column: 22
+                                  S78175=12;
+                                  if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 117, column: 22
+                                    S78175=13;
+                                    if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                                      w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                                      lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                                      if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                                        lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
+                                      }
+                                      t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                                      t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                                      if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                                        twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
+                                        currsigs.addElement(twin);
+                                        twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                                        System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                        S78173=2;
+                                        S80832=0;
+                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S80832=1;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          S80827=0;
+                                          if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S80827=1;
+                                            if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              ends[3]=2;
+                                              ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              S82345=1;
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                      }
+                                      else {
+                                        System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                        S78173=2;
+                                        S80832=0;
+                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S80832=1;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          S80827=0;
+                                          if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S80827=1;
+                                            if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              ends[3]=2;
+                                              ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              S82345=1;
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                      }
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    thread103336(tdone,ends);
+                                    thread103337(tdone,ends);
+                                    int biggest103338 = 0;
+                                    if(ends[4]>=biggest103338){
+                                      biggest103338=ends[4];
+                                    }
+                                    if(ends[5]>=biggest103338){
+                                      biggest103338=ends[5];
+                                    }
+                                    if(biggest103338 == 1){
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                }
+                                else {
+                                  if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 116, column: 45
+                                    S78175=12;
+                                    if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 117, column: 22
+                                      S78175=13;
+                                      if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                                        w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                                        lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                                        if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                                          lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
+                                        }
+                                        t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                                        t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                                        if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                                          twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
+                                          currsigs.addElement(twin);
+                                          twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                                          System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                          S78173=2;
+                                          S80832=0;
+                                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S80832=1;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            S80827=0;
+                                            if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              S80827=1;
+                                              if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                ends[3]=2;
+                                                ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                S82345=1;
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                              else {
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                        }
+                                        else {
+                                          System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                          S78173=2;
+                                          S80832=0;
+                                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S80832=1;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            S80827=0;
+                                            if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              S80827=1;
+                                              if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                ends[3]=2;
+                                                ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                S82345=1;
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                              else {
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                        }
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                    else {
+                                      thread103339(tdone,ends);
+                                      thread103340(tdone,ends);
+                                      int biggest103341 = 0;
+                                      if(ends[4]>=biggest103341){
+                                        biggest103341=ends[4];
+                                      }
+                                      if(ends[5]>=biggest103341){
+                                        biggest103341=ends[5];
+                                      }
+                                      if(biggest103341 == 1){
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
                                   }
                                   else {
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
+                                  }
+                                }
+                              }
+                              else {
+                                vacOn.setPresent();//sysj\lidLoaderController.sysj line: 112, column: 7
+                                currsigs.addElement(vacOn);
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                            else {
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                        }
+                        else {
+                          armSource.setPresent();//sysj\lidLoaderController.sysj line: 108, column: 7
+                          currsigs.addElement(armSource);
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                      }
+                      else {
+                        if(armSourceM.getprestatus()){//sysj\lidLoaderController.sysj line: 106, column: 45
+                          S78175=8;
+                          if(armAtSource.getprestatus()){//sysj\lidLoaderController.sysj line: 107, column: 22
+                            S78175=9;
+                            if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 110, column: 22
+                              S78175=10;
+                              if(WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 111, column: 22
+                                S78175=11;
+                                if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 116, column: 22
+                                  S78175=12;
+                                  if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 117, column: 22
+                                    S78175=13;
+                                    if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                                      w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                                      lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                                      if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                                        lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
+                                      }
+                                      t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                                      t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                                      if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                                        twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
+                                        currsigs.addElement(twin);
+                                        twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                                        System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                        S78173=2;
+                                        S80832=0;
+                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S80832=1;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          S80827=0;
+                                          if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S80827=1;
+                                            if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              ends[3]=2;
+                                              ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              S82345=1;
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                      }
+                                      else {
+                                        System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                        S78173=2;
+                                        S80832=0;
+                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S80832=1;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          S80827=0;
+                                          if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S80827=1;
+                                            if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              ends[3]=2;
+                                              ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              S82345=1;
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                      }
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    thread103342(tdone,ends);
+                                    thread103343(tdone,ends);
+                                    int biggest103344 = 0;
+                                    if(ends[4]>=biggest103344){
+                                      biggest103344=ends[4];
+                                    }
+                                    if(ends[5]>=biggest103344){
+                                      biggest103344=ends[5];
+                                    }
+                                    if(biggest103344 == 1){
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                }
+                                else {
+                                  if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 116, column: 45
+                                    S78175=12;
+                                    if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 117, column: 22
+                                      S78175=13;
+                                      if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                                        w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                                        lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                                        if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                                          lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
+                                        }
+                                        t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                                        t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                                        if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                                          twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
+                                          currsigs.addElement(twin);
+                                          twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                                          System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                          S78173=2;
+                                          S80832=0;
+                                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S80832=1;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            S80827=0;
+                                            if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              S80827=1;
+                                              if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                ends[3]=2;
+                                                ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                S82345=1;
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                              else {
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                        }
+                                        else {
+                                          System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                          S78173=2;
+                                          S80832=0;
+                                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S80832=1;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            S80827=0;
+                                            if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              S80827=1;
+                                              if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                ends[3]=2;
+                                                ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                S82345=1;
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                              else {
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                        }
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                    else {
+                                      thread103345(tdone,ends);
+                                      thread103346(tdone,ends);
+                                      int biggest103347 = 0;
+                                      if(ends[4]>=biggest103347){
+                                        biggest103347=ends[4];
+                                      }
+                                      if(ends[5]>=biggest103347){
+                                        biggest103347=ends[5];
+                                      }
+                                      if(biggest103347 == 1){
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
+                              else {
+                                vacOn.setPresent();//sysj\lidLoaderController.sysj line: 112, column: 7
+                                currsigs.addElement(vacOn);
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                            else {
+                              if(vacOnM.getprestatus()){//sysj\lidLoaderController.sysj line: 110, column: 45
+                                S78175=10;
+                                if(WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 111, column: 22
+                                  S78175=11;
+                                  if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 116, column: 22
+                                    S78175=12;
+                                    if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 117, column: 22
+                                      S78175=13;
+                                      if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                                        w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                                        lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                                        if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                                          lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
+                                        }
+                                        t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                                        t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                                        if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                                          twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
+                                          currsigs.addElement(twin);
+                                          twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                                          System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                          S78173=2;
+                                          S80832=0;
+                                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S80832=1;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            S80827=0;
+                                            if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              S80827=1;
+                                              if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                ends[3]=2;
+                                                ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                S82345=1;
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                              else {
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                        }
+                                        else {
+                                          System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                          S78173=2;
+                                          S80832=0;
+                                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S80832=1;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            S80827=0;
+                                            if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              S80827=1;
+                                              if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                ends[3]=2;
+                                                ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                S82345=1;
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                              else {
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                        }
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                    else {
+                                      thread103348(tdone,ends);
+                                      thread103349(tdone,ends);
+                                      int biggest103350 = 0;
+                                      if(ends[4]>=biggest103350){
+                                        biggest103350=ends[4];
+                                      }
+                                      if(ends[5]>=biggest103350){
+                                        biggest103350=ends[5];
+                                      }
+                                      if(biggest103350 == 1){
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                  }
+                                  else {
+                                    if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 116, column: 45
+                                      S78175=12;
+                                      if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 117, column: 22
+                                        S78175=13;
+                                        if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                                          w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                                          lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                                          if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                                            lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
+                                          }
+                                          t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                                          t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                                          if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                                            twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
+                                            currsigs.addElement(twin);
+                                            twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                                            System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                            S78173=2;
+                                            S80832=0;
+                                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              S80832=1;
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                            else {
+                                              S80827=0;
+                                              if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                S80827=1;
+                                                if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                  done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                  ends[3]=2;
+                                                  ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                  S82345=1;
+                                                  active[3]=1;
+                                                  ends[3]=1;
+                                                  tdone[3]=1;
+                                                }
+                                                else {
+                                                  active[3]=1;
+                                                  ends[3]=1;
+                                                  tdone[3]=1;
+                                                }
+                                              }
+                                              else {
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                            }
+                                          }
+                                          else {
+                                            System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                            S78173=2;
+                                            S80832=0;
+                                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              S80832=1;
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                            else {
+                                              S80827=0;
+                                              if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                S80827=1;
+                                                if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                  done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                  ends[3]=2;
+                                                  ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                  S82345=1;
+                                                  active[3]=1;
+                                                  ends[3]=1;
+                                                  tdone[3]=1;
+                                                }
+                                                else {
+                                                  active[3]=1;
+                                                  ends[3]=1;
+                                                  tdone[3]=1;
+                                                }
+                                              }
+                                              else {
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                            }
+                                          }
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                      else {
+                                        thread103351(tdone,ends);
+                                        thread103352(tdone,ends);
+                                        int biggest103353 = 0;
+                                        if(ends[4]>=biggest103353){
+                                          biggest103353=ends[4];
+                                        }
+                                        if(ends[5]>=biggest103353){
+                                          biggest103353=ends[5];
+                                        }
+                                        if(biggest103353 == 1){
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                }
+                                else {
+                                  vacOn.setPresent();//sysj\lidLoaderController.sysj line: 112, column: 7
+                                  currsigs.addElement(vacOn);
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                              else {
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                          }
+                          else {
+                            armSource.setPresent();//sysj\lidLoaderController.sysj line: 108, column: 7
+                            currsigs.addElement(armSource);
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                        }
+                        else {
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                      }
+                      break;
+                    
+                    case 7 : 
+                      if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 106, column: 22
+                        S78175=8;
+                        if(armAtSource.getprestatus()){//sysj\lidLoaderController.sysj line: 107, column: 22
+                          S78175=9;
+                          if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 110, column: 22
+                            S78175=10;
+                            if(WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 111, column: 22
+                              S78175=11;
+                              if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 116, column: 22
+                                S78175=12;
+                                if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 117, column: 22
+                                  S78175=13;
+                                  if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                                    w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                                    lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                                    if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                                      lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
+                                    }
+                                    t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                                    t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                                    if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                                      twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
+                                      currsigs.addElement(twin);
+                                      twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                                      System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                      S78173=2;
+                                      S80832=0;
+                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        S80832=1;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        S80827=0;
+                                        if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S80827=1;
+                                          if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            ends[3]=2;
+                                            ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S82345=1;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                    }
+                                    else {
+                                      System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                      S78173=2;
+                                      S80832=0;
+                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        S80832=1;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        S80827=0;
+                                        if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S80827=1;
+                                          if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            ends[3]=2;
+                                            ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S82345=1;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                                else {
+                                  thread103354(tdone,ends);
+                                  thread103355(tdone,ends);
+                                  int biggest103356 = 0;
+                                  if(ends[4]>=biggest103356){
+                                    biggest103356=ends[4];
+                                  }
+                                  if(ends[5]>=biggest103356){
+                                    biggest103356=ends[5];
+                                  }
+                                  if(biggest103356 == 1){
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
+                              else {
+                                if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 116, column: 45
+                                  S78175=12;
+                                  if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 117, column: 22
+                                    S78175=13;
+                                    if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                                      w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                                      lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                                      if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                                        lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
+                                      }
+                                      t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                                      t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                                      if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                                        twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
+                                        currsigs.addElement(twin);
+                                        twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                                        System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                        S78173=2;
+                                        S80832=0;
+                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S80832=1;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          S80827=0;
+                                          if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S80827=1;
+                                            if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              ends[3]=2;
+                                              ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              S82345=1;
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                      }
+                                      else {
+                                        System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                        S78173=2;
+                                        S80832=0;
+                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S80832=1;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          S80827=0;
+                                          if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S80827=1;
+                                            if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              ends[3]=2;
+                                              ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              S82345=1;
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                      }
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    thread103357(tdone,ends);
+                                    thread103358(tdone,ends);
+                                    int biggest103359 = 0;
+                                    if(ends[4]>=biggest103359){
+                                      biggest103359=ends[4];
+                                    }
+                                    if(ends[5]>=biggest103359){
+                                      biggest103359=ends[5];
+                                    }
+                                    if(biggest103359 == 1){
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
                                   }
                                 }
                                 else {
@@ -2653,6 +2972,1312 @@ public class LidLoaderController extends ClockDomain{
                                 }
                               }
                             }
+                            else {
+                              vacOn.setPresent();//sysj\lidLoaderController.sysj line: 112, column: 7
+                              currsigs.addElement(vacOn);
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                          else {
+                            if(vacOnM.getprestatus()){//sysj\lidLoaderController.sysj line: 110, column: 45
+                              S78175=10;
+                              if(WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 111, column: 22
+                                S78175=11;
+                                if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 116, column: 22
+                                  S78175=12;
+                                  if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 117, column: 22
+                                    S78175=13;
+                                    if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                                      w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                                      lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                                      if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                                        lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
+                                      }
+                                      t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                                      t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                                      if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                                        twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
+                                        currsigs.addElement(twin);
+                                        twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                                        System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                        S78173=2;
+                                        S80832=0;
+                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S80832=1;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          S80827=0;
+                                          if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S80827=1;
+                                            if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              ends[3]=2;
+                                              ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              S82345=1;
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                      }
+                                      else {
+                                        System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                        S78173=2;
+                                        S80832=0;
+                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S80832=1;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          S80827=0;
+                                          if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S80827=1;
+                                            if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              ends[3]=2;
+                                              ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              S82345=1;
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                      }
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    thread103360(tdone,ends);
+                                    thread103361(tdone,ends);
+                                    int biggest103362 = 0;
+                                    if(ends[4]>=biggest103362){
+                                      biggest103362=ends[4];
+                                    }
+                                    if(ends[5]>=biggest103362){
+                                      biggest103362=ends[5];
+                                    }
+                                    if(biggest103362 == 1){
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                }
+                                else {
+                                  if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 116, column: 45
+                                    S78175=12;
+                                    if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 117, column: 22
+                                      S78175=13;
+                                      if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                                        w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                                        lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                                        if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                                          lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
+                                        }
+                                        t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                                        t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                                        if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                                          twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
+                                          currsigs.addElement(twin);
+                                          twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                                          System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                          S78173=2;
+                                          S80832=0;
+                                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S80832=1;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            S80827=0;
+                                            if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              S80827=1;
+                                              if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                ends[3]=2;
+                                                ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                S82345=1;
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                              else {
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                        }
+                                        else {
+                                          System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                          S78173=2;
+                                          S80832=0;
+                                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S80832=1;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            S80827=0;
+                                            if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              S80827=1;
+                                              if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                ends[3]=2;
+                                                ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                S82345=1;
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                              else {
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                        }
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                    else {
+                                      thread103363(tdone,ends);
+                                      thread103364(tdone,ends);
+                                      int biggest103365 = 0;
+                                      if(ends[4]>=biggest103365){
+                                        biggest103365=ends[4];
+                                      }
+                                      if(ends[5]>=biggest103365){
+                                        biggest103365=ends[5];
+                                      }
+                                      if(biggest103365 == 1){
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
+                              else {
+                                vacOn.setPresent();//sysj\lidLoaderController.sysj line: 112, column: 7
+                                currsigs.addElement(vacOn);
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                            else {
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                        }
+                        else {
+                          armSource.setPresent();//sysj\lidLoaderController.sysj line: 108, column: 7
+                          currsigs.addElement(armSource);
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                      }
+                      else {
+                        if(armSourceM.getprestatus()){//sysj\lidLoaderController.sysj line: 106, column: 45
+                          S78175=8;
+                          if(armAtSource.getprestatus()){//sysj\lidLoaderController.sysj line: 107, column: 22
+                            S78175=9;
+                            if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 110, column: 22
+                              S78175=10;
+                              if(WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 111, column: 22
+                                S78175=11;
+                                if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 116, column: 22
+                                  S78175=12;
+                                  if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 117, column: 22
+                                    S78175=13;
+                                    if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                                      w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                                      lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                                      if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                                        lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
+                                      }
+                                      t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                                      t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                                      if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                                        twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
+                                        currsigs.addElement(twin);
+                                        twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                                        System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                        S78173=2;
+                                        S80832=0;
+                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S80832=1;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          S80827=0;
+                                          if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S80827=1;
+                                            if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              ends[3]=2;
+                                              ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              S82345=1;
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                      }
+                                      else {
+                                        System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                        S78173=2;
+                                        S80832=0;
+                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S80832=1;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          S80827=0;
+                                          if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S80827=1;
+                                            if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              ends[3]=2;
+                                              ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              S82345=1;
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                      }
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    thread103366(tdone,ends);
+                                    thread103367(tdone,ends);
+                                    int biggest103368 = 0;
+                                    if(ends[4]>=biggest103368){
+                                      biggest103368=ends[4];
+                                    }
+                                    if(ends[5]>=biggest103368){
+                                      biggest103368=ends[5];
+                                    }
+                                    if(biggest103368 == 1){
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                }
+                                else {
+                                  if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 116, column: 45
+                                    S78175=12;
+                                    if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 117, column: 22
+                                      S78175=13;
+                                      if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                                        w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                                        lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                                        if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                                          lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
+                                        }
+                                        t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                                        t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                                        if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                                          twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
+                                          currsigs.addElement(twin);
+                                          twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                                          System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                          S78173=2;
+                                          S80832=0;
+                                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S80832=1;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            S80827=0;
+                                            if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              S80827=1;
+                                              if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                ends[3]=2;
+                                                ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                S82345=1;
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                              else {
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                        }
+                                        else {
+                                          System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                          S78173=2;
+                                          S80832=0;
+                                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S80832=1;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            S80827=0;
+                                            if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              S80827=1;
+                                              if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                ends[3]=2;
+                                                ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                S82345=1;
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                              else {
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                        }
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                    else {
+                                      thread103369(tdone,ends);
+                                      thread103370(tdone,ends);
+                                      int biggest103371 = 0;
+                                      if(ends[4]>=biggest103371){
+                                        biggest103371=ends[4];
+                                      }
+                                      if(ends[5]>=biggest103371){
+                                        biggest103371=ends[5];
+                                      }
+                                      if(biggest103371 == 1){
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
+                              else {
+                                vacOn.setPresent();//sysj\lidLoaderController.sysj line: 112, column: 7
+                                currsigs.addElement(vacOn);
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                            else {
+                              if(vacOnM.getprestatus()){//sysj\lidLoaderController.sysj line: 110, column: 45
+                                S78175=10;
+                                if(WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 111, column: 22
+                                  S78175=11;
+                                  if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 116, column: 22
+                                    S78175=12;
+                                    if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 117, column: 22
+                                      S78175=13;
+                                      if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                                        w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                                        lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                                        if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                                          lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
+                                        }
+                                        t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                                        t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                                        if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                                          twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
+                                          currsigs.addElement(twin);
+                                          twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                                          System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                          S78173=2;
+                                          S80832=0;
+                                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S80832=1;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            S80827=0;
+                                            if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              S80827=1;
+                                              if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                ends[3]=2;
+                                                ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                S82345=1;
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                              else {
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                        }
+                                        else {
+                                          System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                          S78173=2;
+                                          S80832=0;
+                                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S80832=1;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            S80827=0;
+                                            if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              S80827=1;
+                                              if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                ends[3]=2;
+                                                ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                S82345=1;
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                              else {
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                        }
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                    else {
+                                      thread103372(tdone,ends);
+                                      thread103373(tdone,ends);
+                                      int biggest103374 = 0;
+                                      if(ends[4]>=biggest103374){
+                                        biggest103374=ends[4];
+                                      }
+                                      if(ends[5]>=biggest103374){
+                                        biggest103374=ends[5];
+                                      }
+                                      if(biggest103374 == 1){
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                  }
+                                  else {
+                                    if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 116, column: 45
+                                      S78175=12;
+                                      if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 117, column: 22
+                                        S78175=13;
+                                        if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                                          w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                                          lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                                          if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                                            lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
+                                          }
+                                          t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                                          t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                                          if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                                            twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
+                                            currsigs.addElement(twin);
+                                            twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                                            System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                            S78173=2;
+                                            S80832=0;
+                                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              S80832=1;
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                            else {
+                                              S80827=0;
+                                              if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                S80827=1;
+                                                if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                  done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                  ends[3]=2;
+                                                  ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                  S82345=1;
+                                                  active[3]=1;
+                                                  ends[3]=1;
+                                                  tdone[3]=1;
+                                                }
+                                                else {
+                                                  active[3]=1;
+                                                  ends[3]=1;
+                                                  tdone[3]=1;
+                                                }
+                                              }
+                                              else {
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                            }
+                                          }
+                                          else {
+                                            System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                            S78173=2;
+                                            S80832=0;
+                                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              S80832=1;
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                            else {
+                                              S80827=0;
+                                              if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                S80827=1;
+                                                if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                  done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                  ends[3]=2;
+                                                  ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                                  S82345=1;
+                                                  active[3]=1;
+                                                  ends[3]=1;
+                                                  tdone[3]=1;
+                                                }
+                                                else {
+                                                  active[3]=1;
+                                                  ends[3]=1;
+                                                  tdone[3]=1;
+                                                }
+                                              }
+                                              else {
+                                                active[3]=1;
+                                                ends[3]=1;
+                                                tdone[3]=1;
+                                              }
+                                            }
+                                          }
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                      else {
+                                        thread103375(tdone,ends);
+                                        thread103376(tdone,ends);
+                                        int biggest103377 = 0;
+                                        if(ends[4]>=biggest103377){
+                                          biggest103377=ends[4];
+                                        }
+                                        if(ends[5]>=biggest103377){
+                                          biggest103377=ends[5];
+                                        }
+                                        if(biggest103377 == 1){
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                }
+                                else {
+                                  vacOn.setPresent();//sysj\lidLoaderController.sysj line: 112, column: 7
+                                  currsigs.addElement(vacOn);
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                              else {
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                          }
+                          else {
+                            armSource.setPresent();//sysj\lidLoaderController.sysj line: 108, column: 7
+                            currsigs.addElement(armSource);
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                        }
+                        else {
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                      }
+                      break;
+                    
+                    case 8 : 
+                      if(armAtSource.getprestatus()){//sysj\lidLoaderController.sysj line: 107, column: 22
+                        S78175=9;
+                        if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 110, column: 22
+                          S78175=10;
+                          if(WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 111, column: 22
+                            S78175=11;
+                            if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 116, column: 22
+                              S78175=12;
+                              if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 117, column: 22
+                                S78175=13;
+                                if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                                  w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                                  lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                                  if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                                    lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
+                                  }
+                                  t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                                  t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                                  if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                                    twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
+                                    currsigs.addElement(twin);
+                                    twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                                    System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                    S78173=2;
+                                    S80832=0;
+                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      S80832=1;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      S80827=0;
+                                      if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        S80827=1;
+                                        if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          ends[3]=2;
+                                          ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S82345=1;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                  }
+                                  else {
+                                    System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                    S78173=2;
+                                    S80832=0;
+                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      S80832=1;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      S80827=0;
+                                      if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        S80827=1;
+                                        if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          ends[3]=2;
+                                          ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S82345=1;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                  }
+                                }
+                                else {
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                              else {
+                                thread103378(tdone,ends);
+                                thread103379(tdone,ends);
+                                int biggest103380 = 0;
+                                if(ends[4]>=biggest103380){
+                                  biggest103380=ends[4];
+                                }
+                                if(ends[5]>=biggest103380){
+                                  biggest103380=ends[5];
+                                }
+                                if(biggest103380 == 1){
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                            }
+                            else {
+                              if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 116, column: 45
+                                S78175=12;
+                                if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 117, column: 22
+                                  S78175=13;
+                                  if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                                    w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                                    lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                                    if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                                      lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
+                                    }
+                                    t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                                    t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                                    if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                                      twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
+                                      currsigs.addElement(twin);
+                                      twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                                      System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                      S78173=2;
+                                      S80832=0;
+                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        S80832=1;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        S80827=0;
+                                        if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S80827=1;
+                                          if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            ends[3]=2;
+                                            ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S82345=1;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                    }
+                                    else {
+                                      System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                      S78173=2;
+                                      S80832=0;
+                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        S80832=1;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        S80827=0;
+                                        if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S80827=1;
+                                          if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            ends[3]=2;
+                                            ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S82345=1;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                                else {
+                                  thread103381(tdone,ends);
+                                  thread103382(tdone,ends);
+                                  int biggest103383 = 0;
+                                  if(ends[4]>=biggest103383){
+                                    biggest103383=ends[4];
+                                  }
+                                  if(ends[5]>=biggest103383){
+                                    biggest103383=ends[5];
+                                  }
+                                  if(biggest103383 == 1){
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
+                              else {
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                          }
+                          else {
+                            vacOn.setPresent();//sysj\lidLoaderController.sysj line: 112, column: 7
+                            currsigs.addElement(vacOn);
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                        }
+                        else {
+                          if(vacOnM.getprestatus()){//sysj\lidLoaderController.sysj line: 110, column: 45
+                            S78175=10;
+                            if(WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 111, column: 22
+                              S78175=11;
+                              if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 116, column: 22
+                                S78175=12;
+                                if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 117, column: 22
+                                  S78175=13;
+                                  if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                                    w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                                    lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                                    if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                                      lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
+                                    }
+                                    t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                                    t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                                    if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                                      twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
+                                      currsigs.addElement(twin);
+                                      twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                                      System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                      S78173=2;
+                                      S80832=0;
+                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        S80832=1;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        S80827=0;
+                                        if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S80827=1;
+                                          if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            ends[3]=2;
+                                            ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S82345=1;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                    }
+                                    else {
+                                      System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                      S78173=2;
+                                      S80832=0;
+                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        S80832=1;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        S80827=0;
+                                        if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S80827=1;
+                                          if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            ends[3]=2;
+                                            ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S82345=1;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                                else {
+                                  thread103384(tdone,ends);
+                                  thread103385(tdone,ends);
+                                  int biggest103386 = 0;
+                                  if(ends[4]>=biggest103386){
+                                    biggest103386=ends[4];
+                                  }
+                                  if(ends[5]>=biggest103386){
+                                    biggest103386=ends[5];
+                                  }
+                                  if(biggest103386 == 1){
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
+                              else {
+                                if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 116, column: 45
+                                  S78175=12;
+                                  if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 117, column: 22
+                                    S78175=13;
+                                    if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                                      w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                                      lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                                      if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                                        lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
+                                      }
+                                      t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                                      t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                                      if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                                        twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
+                                        currsigs.addElement(twin);
+                                        twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                                        System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                        S78173=2;
+                                        S80832=0;
+                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S80832=1;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          S80827=0;
+                                          if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S80827=1;
+                                            if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              ends[3]=2;
+                                              ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              S82345=1;
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                      }
+                                      else {
+                                        System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                        S78173=2;
+                                        S80832=0;
+                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S80832=1;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          S80827=0;
+                                          if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S80827=1;
+                                            if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              ends[3]=2;
+                                              ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                              S82345=1;
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                            else {
+                                              active[3]=1;
+                                              ends[3]=1;
+                                              tdone[3]=1;
+                                            }
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                      }
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    thread103387(tdone,ends);
+                                    thread103388(tdone,ends);
+                                    int biggest103389 = 0;
+                                    if(ends[4]>=biggest103389){
+                                      biggest103389=ends[4];
+                                    }
+                                    if(ends[5]>=biggest103389){
+                                      biggest103389=ends[5];
+                                    }
+                                    if(biggest103389 == 1){
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                }
+                                else {
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                            }
+                            else {
+                              vacOn.setPresent();//sysj\lidLoaderController.sysj line: 112, column: 7
+                              currsigs.addElement(vacOn);
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
                           }
                           else {
                             active[3]=1;
@@ -2660,17 +4285,761 @@ public class LidLoaderController extends ClockDomain{
                             tdone[3]=1;
                           }
                         }
+                      }
+                      else {
+                        armSource.setPresent();//sysj\lidLoaderController.sysj line: 108, column: 7
+                        currsigs.addElement(armSource);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      break;
+                    
+                    case 9 : 
+                      if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 110, column: 22
+                        S78175=10;
+                        if(WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 111, column: 22
+                          S78175=11;
+                          if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 116, column: 22
+                            S78175=12;
+                            if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 117, column: 22
+                              S78175=13;
+                              if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                                w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                                lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                                if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                                  lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
+                                }
+                                t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                                t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                                if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                                  twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
+                                  currsigs.addElement(twin);
+                                  twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                                  System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                  S78173=2;
+                                  S80832=0;
+                                  if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    S80832=1;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                  else {
+                                    S80827=0;
+                                    if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      S80827=1;
+                                      if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        ends[3]=2;
+                                        ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        S82345=1;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                }
+                                else {
+                                  System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                  S78173=2;
+                                  S80832=0;
+                                  if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    S80832=1;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                  else {
+                                    S80827=0;
+                                    if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      S80827=1;
+                                      if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        ends[3]=2;
+                                        ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        S82345=1;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                }
+                              }
+                              else {
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                            else {
+                              thread103390(tdone,ends);
+                              thread103391(tdone,ends);
+                              int biggest103392 = 0;
+                              if(ends[4]>=biggest103392){
+                                biggest103392=ends[4];
+                              }
+                              if(ends[5]>=biggest103392){
+                                biggest103392=ends[5];
+                              }
+                              if(biggest103392 == 1){
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                          }
+                          else {
+                            if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 116, column: 45
+                              S78175=12;
+                              if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 117, column: 22
+                                S78175=13;
+                                if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                                  w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                                  lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                                  if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                                    lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
+                                  }
+                                  t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                                  t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                                  if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                                    twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
+                                    currsigs.addElement(twin);
+                                    twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                                    System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                    S78173=2;
+                                    S80832=0;
+                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      S80832=1;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      S80827=0;
+                                      if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        S80827=1;
+                                        if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          ends[3]=2;
+                                          ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S82345=1;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                  }
+                                  else {
+                                    System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                    S78173=2;
+                                    S80832=0;
+                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      S80832=1;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      S80827=0;
+                                      if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        S80827=1;
+                                        if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          ends[3]=2;
+                                          ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S82345=1;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                  }
+                                }
+                                else {
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                              else {
+                                thread103393(tdone,ends);
+                                thread103394(tdone,ends);
+                                int biggest103395 = 0;
+                                if(ends[4]>=biggest103395){
+                                  biggest103395=ends[4];
+                                }
+                                if(ends[5]>=biggest103395){
+                                  biggest103395=ends[5];
+                                }
+                                if(biggest103395 == 1){
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                            }
+                            else {
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                        }
                         else {
-                          thread109633(tdone,ends);
-                          thread109634(tdone,ends);
-                          int biggest109635 = 0;
-                          if(ends[4]>=biggest109635){
-                            biggest109635=ends[4];
+                          vacOn.setPresent();//sysj\lidLoaderController.sysj line: 112, column: 7
+                          currsigs.addElement(vacOn);
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                      }
+                      else {
+                        if(vacOnM.getprestatus()){//sysj\lidLoaderController.sysj line: 110, column: 45
+                          S78175=10;
+                          if(WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 111, column: 22
+                            S78175=11;
+                            if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 116, column: 22
+                              S78175=12;
+                              if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 117, column: 22
+                                S78175=13;
+                                if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                                  w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                                  lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                                  if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                                    lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
+                                  }
+                                  t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                                  t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                                  if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                                    twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
+                                    currsigs.addElement(twin);
+                                    twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                                    System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                    S78173=2;
+                                    S80832=0;
+                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      S80832=1;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      S80827=0;
+                                      if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        S80827=1;
+                                        if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          ends[3]=2;
+                                          ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S82345=1;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                  }
+                                  else {
+                                    System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                    S78173=2;
+                                    S80832=0;
+                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      S80832=1;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      S80827=0;
+                                      if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        S80827=1;
+                                        if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          ends[3]=2;
+                                          ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S82345=1;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                  }
+                                }
+                                else {
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                              else {
+                                thread103396(tdone,ends);
+                                thread103397(tdone,ends);
+                                int biggest103398 = 0;
+                                if(ends[4]>=biggest103398){
+                                  biggest103398=ends[4];
+                                }
+                                if(ends[5]>=biggest103398){
+                                  biggest103398=ends[5];
+                                }
+                                if(biggest103398 == 1){
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                            }
+                            else {
+                              if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 116, column: 45
+                                S78175=12;
+                                if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 117, column: 22
+                                  S78175=13;
+                                  if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                                    w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                                    lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                                    if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                                      lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
+                                    }
+                                    t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                                    t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                                    if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                                      twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
+                                      currsigs.addElement(twin);
+                                      twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                                      System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                      S78173=2;
+                                      S80832=0;
+                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        S80832=1;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        S80827=0;
+                                        if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S80827=1;
+                                          if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            ends[3]=2;
+                                            ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S82345=1;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                    }
+                                    else {
+                                      System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                      S78173=2;
+                                      S80832=0;
+                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        S80832=1;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        S80827=0;
+                                        if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                          S80827=1;
+                                          if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            ends[3]=2;
+                                            ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                            S82345=1;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                                else {
+                                  thread103399(tdone,ends);
+                                  thread103400(tdone,ends);
+                                  int biggest103401 = 0;
+                                  if(ends[4]>=biggest103401){
+                                    biggest103401=ends[4];
+                                  }
+                                  if(ends[5]>=biggest103401){
+                                    biggest103401=ends[5];
+                                  }
+                                  if(biggest103401 == 1){
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
+                              else {
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
                           }
-                          if(ends[5]>=biggest109635){
-                            biggest109635=ends[5];
+                          else {
+                            vacOn.setPresent();//sysj\lidLoaderController.sysj line: 112, column: 7
+                            currsigs.addElement(vacOn);
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
                           }
-                          if(biggest109635 == 1){
+                        }
+                        else {
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                      }
+                      break;
+                    
+                    case 10 : 
+                      if(WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 111, column: 22
+                        S78175=11;
+                        if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 116, column: 22
+                          S78175=12;
+                          if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 117, column: 22
+                            S78175=13;
+                            if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                              w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                              lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                              if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                                lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
+                              }
+                              t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                              t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                              if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                                twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
+                                currsigs.addElement(twin);
+                                twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                                System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                S78173=2;
+                                S80832=0;
+                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                  done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                  S80832=1;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                                else {
+                                  S80827=0;
+                                  if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    S80827=1;
+                                    if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      ends[3]=2;
+                                      ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      S82345=1;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
+                              else {
+                                System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                S78173=2;
+                                S80832=0;
+                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                  done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                  S80832=1;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                                else {
+                                  S80827=0;
+                                  if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    S80827=1;
+                                    if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      ends[3]=2;
+                                      ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      S82345=1;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
+                            }
+                            else {
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                          else {
+                            thread103402(tdone,ends);
+                            thread103403(tdone,ends);
+                            int biggest103404 = 0;
+                            if(ends[4]>=biggest103404){
+                              biggest103404=ends[4];
+                            }
+                            if(ends[5]>=biggest103404){
+                              biggest103404=ends[5];
+                            }
+                            if(biggest103404 == 1){
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                        }
+                        else {
+                          if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 116, column: 45
+                            S78175=12;
+                            if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 117, column: 22
+                              S78175=13;
+                              if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                                w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                                lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                                if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                                  lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
+                                }
+                                t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                                t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                                if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                                  twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
+                                  currsigs.addElement(twin);
+                                  twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                                  System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                  S78173=2;
+                                  S80832=0;
+                                  if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    S80832=1;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                  else {
+                                    S80827=0;
+                                    if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      S80827=1;
+                                      if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        ends[3]=2;
+                                        ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        S82345=1;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                }
+                                else {
+                                  System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                  S78173=2;
+                                  S80832=0;
+                                  if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    S80832=1;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                  else {
+                                    S80827=0;
+                                    if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      S80827=1;
+                                      if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        ends[3]=2;
+                                        ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                        S82345=1;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                }
+                              }
+                              else {
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                            else {
+                              thread103405(tdone,ends);
+                              thread103406(tdone,ends);
+                              int biggest103407 = 0;
+                              if(ends[4]>=biggest103407){
+                                biggest103407=ends[4];
+                              }
+                              if(ends[5]>=biggest103407){
+                                biggest103407=ends[5];
+                              }
+                              if(biggest103407 == 1){
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                          }
+                          else {
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -2678,7 +5047,7 @@ public class LidLoaderController extends ClockDomain{
                         }
                       }
                       else {
-                        vacOn.setPresent();//sysj\lidLoaderController.sysj line: 106, column: 7
+                        vacOn.setPresent();//sysj\lidLoaderController.sysj line: 112, column: 7
                         currsigs.addElement(vacOn);
                         active[3]=1;
                         ends[3]=1;
@@ -2686,41 +5055,281 @@ public class LidLoaderController extends ClockDomain{
                       }
                       break;
                     
-                    case 7 : 
-                      if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 110, column: 22
-                        S74139=8;
-                        if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 113, column: 22
-                          w_thread_3.lid();//sysj\lidLoaderController.sysj line: 115, column: 6
-                          lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 116, column: 6
-                          if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 117, column: 18
-                            lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 117, column: 20
+                    case 11 : 
+                      if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 116, column: 22
+                        S78175=12;
+                        if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 117, column: 22
+                          S78175=13;
+                          if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                            w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                            lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                            if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                              lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
+                            }
+                            t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                            t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                              twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
+                              currsigs.addElement(twin);
+                              twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                              System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                              S78173=2;
+                              S80832=0;
+                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                S80832=1;
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                              else {
+                                S80827=0;
+                                if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                  done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                  S80827=1;
+                                  if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    ends[3]=2;
+                                    ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    S82345=1;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                                else {
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                            }
+                            else {
+                              System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                              S78173=2;
+                              S80832=0;
+                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                S80832=1;
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                              else {
+                                S80827=0;
+                                if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                  done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                  S80827=1;
+                                  if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    ends[3]=2;
+                                    ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    S82345=1;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                                else {
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                            }
                           }
-                          t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 118, column: 6
-                          t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 119, column: 6
-                          if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 120, column: 6
-                            twin.setPresent();//sysj\lidLoaderController.sysj line: 121, column: 7
+                          else {
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                        }
+                        else {
+                          thread103408(tdone,ends);
+                          thread103409(tdone,ends);
+                          int biggest103410 = 0;
+                          if(ends[4]>=biggest103410){
+                            biggest103410=ends[4];
+                          }
+                          if(ends[5]>=biggest103410){
+                            biggest103410=ends[5];
+                          }
+                          if(biggest103410 == 1){
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                        }
+                      }
+                      else {
+                        if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 116, column: 45
+                          S78175=12;
+                          if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 117, column: 22
+                            S78175=13;
+                            if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                              w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                              lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                              if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                                lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
+                              }
+                              t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                              t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                              if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                                twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
+                                currsigs.addElement(twin);
+                                twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                                System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                S78173=2;
+                                S80832=0;
+                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                  done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                  S80832=1;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                                else {
+                                  S80827=0;
+                                  if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    S80827=1;
+                                    if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      ends[3]=2;
+                                      ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      S82345=1;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
+                              else {
+                                System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                                S78173=2;
+                                S80832=0;
+                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                  done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                  S80832=1;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                                else {
+                                  S80827=0;
+                                  if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    S80827=1;
+                                    if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      ends[3]=2;
+                                      ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                      S82345=1;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
+                            }
+                            else {
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                          else {
+                            thread103411(tdone,ends);
+                            thread103412(tdone,ends);
+                            int biggest103413 = 0;
+                            if(ends[4]>=biggest103413){
+                              biggest103413=ends[4];
+                            }
+                            if(ends[5]>=biggest103413){
+                              biggest103413=ends[5];
+                            }
+                            if(biggest103413 == 1){
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                        }
+                        else {
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                      }
+                      break;
+                    
+                    case 12 : 
+                      if(armAtDest.getprestatus()){//sysj\lidLoaderController.sysj line: 117, column: 22
+                        S78175=13;
+                        if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                          w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                          lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                          if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                            lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
+                          }
+                          t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                          t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                          if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                            twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
                             currsigs.addElement(twin);
-                            twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 121, column: 7
-                            System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 123, column: 6
-                            S74073=3;
-                            S75319=0;
-                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                              S75319=1;
+                            twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                            System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                            S78173=2;
+                            S80832=0;
+                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                              S80832=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
-                              S75314=0;
-                              if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                S75314=1;
-                                if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                  done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
+                              S80827=0;
+                              if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                S80827=1;
+                                if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                  done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
                                   ends[3]=2;
-                                  ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                  S79886=2;
+                                  ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                  S82345=1;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -2739,26 +5348,26 @@ public class LidLoaderController extends ClockDomain{
                             }
                           }
                           else {
-                            System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 123, column: 6
-                            S74073=3;
-                            S75319=0;
-                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                              S75319=1;
+                            System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                            S78173=2;
+                            S80832=0;
+                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                              S80832=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
-                              S75314=0;
-                              if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                S75314=1;
-                                if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                  done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
+                              S80827=0;
+                              if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                S80827=1;
+                                if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                  done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
                                   ends[3]=2;
-                                  ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                  S79886=2;
+                                  ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                  S82345=1;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -2784,55 +5393,55 @@ public class LidLoaderController extends ClockDomain{
                         }
                       }
                       else {
-                        thread109636(tdone,ends);
-                        thread109637(tdone,ends);
-                        int biggest109638 = 0;
-                        if(ends[4]>=biggest109638){
-                          biggest109638=ends[4];
+                        thread103414(tdone,ends);
+                        thread103415(tdone,ends);
+                        int biggest103416 = 0;
+                        if(ends[4]>=biggest103416){
+                          biggest103416=ends[4];
                         }
-                        if(ends[5]>=biggest109638){
-                          biggest109638=ends[5];
+                        if(ends[5]>=biggest103416){
+                          biggest103416=ends[5];
                         }
-                        if(biggest109638 == 1){
+                        if(biggest103416 == 1){
                           active[3]=1;
                           ends[3]=1;
                           tdone[3]=1;
                         }
                         //FINXME code
-                        if(biggest109638 == 0){
-                          S74139=8;
-                          if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 113, column: 22
-                            w_thread_3.lid();//sysj\lidLoaderController.sysj line: 115, column: 6
-                            lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 116, column: 6
-                            if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 117, column: 18
-                              lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 117, column: 20
+                        if(biggest103416 == 0){
+                          S78175=13;
+                          if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                            w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                            lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                            if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                              lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
                             }
-                            t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 118, column: 6
-                            t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 119, column: 6
-                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 120, column: 6
-                              twin.setPresent();//sysj\lidLoaderController.sysj line: 121, column: 7
+                            t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                            t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                              twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
                               currsigs.addElement(twin);
-                              twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 121, column: 7
-                              System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 123, column: 6
-                              S74073=3;
-                              S75319=0;
-                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                S75319=1;
+                              twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                              System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                              S78173=2;
+                              S80832=0;
+                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                S80832=1;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
                               else {
-                                S75314=0;
-                                if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                  done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                  S75314=1;
-                                  if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                    done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
+                                S80827=0;
+                                if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                  done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                  S80827=1;
+                                  if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
                                     ends[3]=2;
-                                    ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                    S79886=2;
+                                    ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    S82345=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -2851,26 +5460,26 @@ public class LidLoaderController extends ClockDomain{
                               }
                             }
                             else {
-                              System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 123, column: 6
-                              S74073=3;
-                              S75319=0;
-                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                S75319=1;
+                              System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                              S78173=2;
+                              S80832=0;
+                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                S80832=1;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
                               else {
-                                S75314=0;
-                                if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                  done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                  S75314=1;
-                                  if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                    done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
+                                S80827=0;
+                                if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                  done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                                  S80827=1;
+                                  if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
                                     ends[3]=2;
-                                    ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                    S79886=2;
+                                    ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                    S82345=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -2898,39 +5507,39 @@ public class LidLoaderController extends ClockDomain{
                       }
                       break;
                     
-                    case 8 : 
-                      if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 113, column: 22
-                        w_thread_3.lid();//sysj\lidLoaderController.sysj line: 115, column: 6
-                        lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 116, column: 6
-                        if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 117, column: 18
-                          lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 117, column: 20
+                    case 13 : 
+                      if(!WPgripped.getprestatus()){//sysj\lidLoaderController.sysj line: 120, column: 22
+                        w_thread_3.lid();//sysj\lidLoaderController.sysj line: 122, column: 6
+                        lids_thread_3 = lids_thread_3 - 1;//sysj\lidLoaderController.sysj line: 123, column: 6
+                        if(lids_thread_3 < 0) {//sysj\lidLoaderController.sysj line: 124, column: 18
+                          lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 124, column: 20
                         }
-                        t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 118, column: 6
-                        t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 119, column: 6
-                        if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 120, column: 6
-                          twin.setPresent();//sysj\lidLoaderController.sysj line: 121, column: 7
+                        t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 125, column: 6
+                        t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 6
+                        if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 127, column: 6
+                          twin.setPresent();//sysj\lidLoaderController.sysj line: 128, column: 7
                           currsigs.addElement(twin);
-                          twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 121, column: 7
-                          System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 123, column: 6
-                          S74073=3;
-                          S75319=0;
-                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                            S75319=1;
+                          twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 128, column: 7
+                          System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                          S78173=2;
+                          S80832=0;
+                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                            S80832=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
                           }
                           else {
-                            S75314=0;
-                            if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                              done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                              S75314=1;
-                              if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
+                            S80827=0;
+                            if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                              done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                              S80827=1;
+                              if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
                                 ends[3]=2;
-                                ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                S79886=2;
+                                ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                S82345=1;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -2949,26 +5558,26 @@ public class LidLoaderController extends ClockDomain{
                           }
                         }
                         else {
-                          System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 123, column: 6
-                          S74073=3;
-                          S75319=0;
-                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                            S75319=1;
+                          System.out.println("[LID] Lid placed on " + w_thread_3 + ".");//sysj\lidLoaderController.sysj line: 130, column: 6
+                          S78173=2;
+                          S80832=0;
+                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                            S80832=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
                           }
                           else {
-                            S75314=0;
-                            if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                              done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                              S75314=1;
-                              if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
+                            S80827=0;
+                            if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                              done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                              S80827=1;
+                              if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
                                 ends[3]=2;
-                                ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                S79886=2;
+                                ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                S82345=1;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -2997,27 +5606,27 @@ public class LidLoaderController extends ClockDomain{
                   }
                   break;
                 
-                case 3 : 
-                  switch(S75319){
+                case 2 : 
+                  switch(S80832){
                     case 0 : 
-                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                        done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                        S75319=1;
+                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                        done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                        S80832=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        switch(S75314){
+                        switch(S80827){
                           case 0 : 
-                            if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                              done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                              S75314=1;
-                              if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
+                            if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                              done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                              S80827=1;
+                              if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
                                 ends[3]=2;
-                                ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                S79886=2;
+                                ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                                S82345=1;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -3036,11 +5645,11 @@ public class LidLoaderController extends ClockDomain{
                             break;
                           
                           case 1 : 
-                            if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
+                            if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
                               ends[3]=2;
-                              ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                              S79886=2;
+                              ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                              S82345=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
@@ -3057,25 +5666,25 @@ public class LidLoaderController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      S75319=1;
-                      S75319=0;
-                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                        done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                        S75319=1;
+                      S80832=1;
+                      S80832=0;
+                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                        done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                        S80832=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S75314=0;
-                        if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                          done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                          S75314=1;
-                          if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
+                        S80827=0;
+                        if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                          done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                          S80827=1;
+                          if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
                             ends[3]=2;
-                            ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                            S79886=2;
+                            ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                            S82345=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -3097,22 +5706,22 @@ public class LidLoaderController extends ClockDomain{
                   }
                   break;
                 
+                case 3 : 
+                  S82345=1;
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                  break;
+                
                 case 4 : 
-                  S79886=2;
+                  S82345=1;
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                   break;
                 
                 case 5 : 
-                  S79886=2;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                  break;
-                
-                case 6 : 
-                  S79886=2;
+                  S82345=1;
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
@@ -3122,152 +5731,134 @@ public class LidLoaderController extends ClockDomain{
             }
             break;
           
-          case 2 : 
-            S79886=2;
-            S79886=0;
-            if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 50, column: 20
-              S79886=1;
-              if(manual_1.getprestatus()){//sysj\lidLoaderController.sysj line: 52, column: 20
-                start_in.setPreempted();
-                done_o.setPreempted();
-                S79886=2;
+          case 1 : 
+            S82345=1;
+            S82345=0;
+            if(reset.getprestatus()){//sysj\lidLoaderController.sysj line: 55, column: 20
+              start_in.setPreempted();
+              done_o.setPreempted();
+              S82345=1;
+              active[3]=1;
+              ends[3]=1;
+              tdone[3]=1;
+            }
+            else {
+              S78173=0;
+              S78157=0;
+              if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 56, column: 5
+                start_in.setACK(false);//sysj\lidLoaderController.sysj line: 56, column: 5
+                S78157=1;
                 active[3]=1;
                 ends[3]=1;
                 tdone[3]=1;
               }
               else {
-                S74073=0;
-                S74057=0;
-                if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 53, column: 5
-                  start_in.setACK(false);//sysj\lidLoaderController.sysj line: 53, column: 5
-                  S74057=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-                else {
-                  S74052=0;
-                  if(!start_in.isREQ()){//sysj\lidLoaderController.sysj line: 53, column: 5
-                    start_in.setACK(true);//sysj\lidLoaderController.sysj line: 53, column: 5
-                    S74052=1;
-                    if(start_in.isREQ()){//sysj\lidLoaderController.sysj line: 53, column: 5
-                      start_in.setACK(false);//sysj\lidLoaderController.sysj line: 53, column: 5
-                      ends[3]=2;
-                      ;//sysj\lidLoaderController.sysj line: 53, column: 5
-                      w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\lidLoaderController.sysj line: 54, column: 5
-                      S74073=1;
-                      if(w_thread_3 != null){//sysj\lidLoaderController.sysj line: 55, column: 4
-                        permitted_thread_3 = false;//sysj\lidLoaderController.sysj line: 56, column: 1
-                        S74074=0;
+                S78152=0;
+                if(!start_in.isREQ()){//sysj\lidLoaderController.sysj line: 56, column: 5
+                  start_in.setACK(true);//sysj\lidLoaderController.sysj line: 56, column: 5
+                  S78152=1;
+                  if(start_in.isREQ()){//sysj\lidLoaderController.sysj line: 56, column: 5
+                    start_in.setACK(false);//sysj\lidLoaderController.sysj line: 56, column: 5
+                    ends[3]=2;
+                    ;//sysj\lidLoaderController.sysj line: 56, column: 5
+                    w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\lidLoaderController.sysj line: 57, column: 5
+                    S78173=1;
+                    if(w_thread_3 != null && w_thread_3.catchFault("lid-fitted")){//sysj\lidLoaderController.sysj line: 60, column: 8
+                      System.out.println("[LID] " + w_thread_3 + " already has a lid fitted.");//sysj\lidLoaderController.sysj line: 61, column: 6
+                      w_thread_3.reject(Machine.LID_LOADER, "lid already fitted");//sysj\lidLoaderController.sysj line: 62, column: 6
+                      S78173=2;
+                      S80832=0;
+                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                        done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                        S80832=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S74073=2;
-                        if(w_thread_3 != null && w_thread_3.catchFault("lid-fitted")){//sysj\lidLoaderController.sysj line: 66, column: 8
-                          System.out.println("[LID] " + w_thread_3 + " already has a lid fitted.");//sysj\lidLoaderController.sysj line: 67, column: 6
-                          w_thread_3.reject(Machine.LID_LOADER, "lid already fitted");//sysj\lidLoaderController.sysj line: 68, column: 6
-                          S74073=3;
-                          S75319=0;
-                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                            S75319=1;
+                        S80827=0;
+                        if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                          done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                          S80827=1;
+                          if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                            done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                            ends[3]=2;
+                            ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                            S82345=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
                           }
                           else {
-                            S75314=0;
-                            if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                              done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                              S75314=1;
-                              if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                ends[3]=2;
-                                ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                S79886=2;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                              else {
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                            }
-                            else {
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
                           }
                         }
                         else {
-                          if(w_thread_3 != null){//sysj\lidLoaderController.sysj line: 70, column: 13
-                            t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 71, column: 21
-                            t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 72, column: 21
-                            if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "place", "placing lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 73, column: 21
-                              twin.setPresent();//sysj\lidLoaderController.sysj line: 74, column: 25
-                              currsigs.addElement(twin);
-                              twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 74, column: 25
-                              S74139=0;
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                      }
+                    }
+                    else {
+                      if(w_thread_3 != null){//sysj\lidLoaderController.sysj line: 64, column: 13
+                        t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 65, column: 21
+                        t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 66, column: 21
+                        if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "place", "placing lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 67, column: 21
+                          twin.setPresent();//sysj\lidLoaderController.sysj line: 68, column: 25
+                          currsigs.addElement(twin);
+                          twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 68, column: 25
+                          S78175=0;
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                        else {
+                          S78175=0;
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                      }
+                      else {
+                        S78173=2;
+                        S80832=0;
+                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                          S80832=1;
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                        else {
+                          S80827=0;
+                          if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                            done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                            S80827=1;
+                            if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                              ends[3]=2;
+                              ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                              S82345=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
-                              S74139=0;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                           }
                           else {
-                            S74073=3;
-                            S75319=0;
-                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                              done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                              S75319=1;
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                            else {
-                              S75314=0;
-                              if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                S75314=1;
-                                if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                                  done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                                  ends[3]=2;
-                                  ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                                  S79886=2;
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                                else {
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
-                              else {
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                            }
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
                           }
                         }
                       }
-                    }
-                    else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
                     }
                   }
                   else {
@@ -3276,12 +5867,12 @@ public class LidLoaderController extends ClockDomain{
                     tdone[3]=1;
                   }
                 }
+                else {
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
               }
-            }
-            else {
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
             }
             break;
           
@@ -3291,8 +5882,8 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread109610(int [] tdone, int [] ends){
-        switch(S74048){
+  public void thread103328(int [] tdone, int [] ends){
+        switch(S78149){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -3300,16 +5891,16 @@ public class LidLoaderController extends ClockDomain{
         break;
       
       case 1 : 
-        if(mode.getprestatus()){//sysj\lidLoaderController.sysj line: 36, column: 12
-          if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\lidLoaderController.sysj line: 37, column: 8
-            auto_1.setPresent();//sysj\lidLoaderController.sysj line: 37, column: 30
+        if(mode.getprestatus()){//sysj\lidLoaderController.sysj line: 41, column: 12
+          if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\lidLoaderController.sysj line: 42, column: 8
+            auto_1.setPresent();//sysj\lidLoaderController.sysj line: 42, column: 30
             currsigs.addElement(auto_1);
             active[2]=1;
             ends[2]=1;
             tdone[2]=1;
           }
           else {
-            manual_1.setPresent();//sysj\lidLoaderController.sysj line: 38, column: 12
+            manual_1.setPresent();//sysj\lidLoaderController.sysj line: 43, column: 12
             currsigs.addElement(manual_1);
             active[2]=1;
             ends[2]=1;
@@ -3326,314 +5917,137 @@ public class LidLoaderController extends ClockDomain{
     }
   }
 
-  public void thread109608(int [] tdone, int [] ends){
-        S109602=1;
-    S109248=0;
-    if(manual_1.getprestatus()){//sysj\lidLoaderController.sysj line: 134, column: 20
-      S109248=1;
-      if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 135, column: 20
-        S109248=2;
-        active[6]=1;
-        ends[6]=1;
-        tdone[6]=1;
-      }
-      else {
-        if(pusherExtendM.getprestatus()){//sysj\lidLoaderController.sysj line: 137, column: 14
-          pusherExtend.setPresent();//sysj\lidLoaderController.sysj line: 137, column: 30
-          currsigs.addElement(pusherExtend);
-          if(vacOnM.getprestatus()){//sysj\lidLoaderController.sysj line: 138, column: 14
-            vacOn.setPresent();//sysj\lidLoaderController.sysj line: 138, column: 23
-            currsigs.addElement(vacOn);
-            if(armSourceM.getprestatus()){//sysj\lidLoaderController.sysj line: 139, column: 14
-              armSource.setPresent();//sysj\lidLoaderController.sysj line: 139, column: 27
-              currsigs.addElement(armSource);
-              if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                currsigs.addElement(armDest);
-                active[6]=1;
-                ends[6]=1;
-                tdone[6]=1;
-              }
-              else {
-                active[6]=1;
-                ends[6]=1;
-                tdone[6]=1;
-              }
-            }
-            else {
-              if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                currsigs.addElement(armDest);
-                active[6]=1;
-                ends[6]=1;
-                tdone[6]=1;
-              }
-              else {
-                active[6]=1;
-                ends[6]=1;
-                tdone[6]=1;
-              }
-            }
-          }
-          else {
-            if(armSourceM.getprestatus()){//sysj\lidLoaderController.sysj line: 139, column: 14
-              armSource.setPresent();//sysj\lidLoaderController.sysj line: 139, column: 27
-              currsigs.addElement(armSource);
-              if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                currsigs.addElement(armDest);
-                active[6]=1;
-                ends[6]=1;
-                tdone[6]=1;
-              }
-              else {
-                active[6]=1;
-                ends[6]=1;
-                tdone[6]=1;
-              }
-            }
-            else {
-              if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                currsigs.addElement(armDest);
-                active[6]=1;
-                ends[6]=1;
-                tdone[6]=1;
-              }
-              else {
-                active[6]=1;
-                ends[6]=1;
-                tdone[6]=1;
-              }
-            }
-          }
-        }
-        else {
-          if(vacOnM.getprestatus()){//sysj\lidLoaderController.sysj line: 138, column: 14
-            vacOn.setPresent();//sysj\lidLoaderController.sysj line: 138, column: 23
-            currsigs.addElement(vacOn);
-            if(armSourceM.getprestatus()){//sysj\lidLoaderController.sysj line: 139, column: 14
-              armSource.setPresent();//sysj\lidLoaderController.sysj line: 139, column: 27
-              currsigs.addElement(armSource);
-              if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                currsigs.addElement(armDest);
-                active[6]=1;
-                ends[6]=1;
-                tdone[6]=1;
-              }
-              else {
-                active[6]=1;
-                ends[6]=1;
-                tdone[6]=1;
-              }
-            }
-            else {
-              if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                currsigs.addElement(armDest);
-                active[6]=1;
-                ends[6]=1;
-                tdone[6]=1;
-              }
-              else {
-                active[6]=1;
-                ends[6]=1;
-                tdone[6]=1;
-              }
-            }
-          }
-          else {
-            if(armSourceM.getprestatus()){//sysj\lidLoaderController.sysj line: 139, column: 14
-              armSource.setPresent();//sysj\lidLoaderController.sysj line: 139, column: 27
-              currsigs.addElement(armSource);
-              if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                currsigs.addElement(armDest);
-                active[6]=1;
-                ends[6]=1;
-                tdone[6]=1;
-              }
-              else {
-                active[6]=1;
-                ends[6]=1;
-                tdone[6]=1;
-              }
-            }
-            else {
-              if(armDestM.getprestatus()){//sysj\lidLoaderController.sysj line: 140, column: 14
-                armDest.setPresent();//sysj\lidLoaderController.sysj line: 140, column: 25
-                currsigs.addElement(armDest);
-                active[6]=1;
-                ends[6]=1;
-                tdone[6]=1;
-              }
-              else {
-                active[6]=1;
-                ends[6]=1;
-                tdone[6]=1;
-              }
-            }
-          }
-        }
-      }
+  public void thread103326(int [] tdone, int [] ends){
+        S103321=1;
+    t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 50, column: 3
+    lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 51, column: 3
+    w_thread_3 = null;//sysj\lidLoaderController.sysj line: 52, column: 3
+    S82345=0;
+    if(reset.getprestatus()){//sysj\lidLoaderController.sysj line: 55, column: 20
+      start_in.setPreempted();
+      done_o.setPreempted();
+      S82345=1;
+      active[3]=1;
+      ends[3]=1;
+      tdone[3]=1;
     }
     else {
-      active[6]=1;
-      ends[6]=1;
-      tdone[6]=1;
-    }
-  }
-
-  public void thread109607(int [] tdone, int [] ends){
-        S109072=1;
-    t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 45, column: 3
-    lids_thread_3 = 3;//sysj\lidLoaderController.sysj line: 46, column: 3
-    w_thread_3 = null;//sysj\lidLoaderController.sysj line: 47, column: 3
-    S79886=0;
-    if(auto_1.getprestatus()){//sysj\lidLoaderController.sysj line: 50, column: 20
-      S79886=1;
-      if(manual_1.getprestatus()){//sysj\lidLoaderController.sysj line: 52, column: 20
-        start_in.setPreempted();
-        done_o.setPreempted();
-        S79886=2;
+      S78173=0;
+      S78157=0;
+      if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 56, column: 5
+        start_in.setACK(false);//sysj\lidLoaderController.sysj line: 56, column: 5
+        S78157=1;
         active[3]=1;
         ends[3]=1;
         tdone[3]=1;
       }
       else {
-        S74073=0;
-        S74057=0;
-        if(!start_in.isPartnerPresent() || start_in.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 53, column: 5
-          start_in.setACK(false);//sysj\lidLoaderController.sysj line: 53, column: 5
-          S74057=1;
-          active[3]=1;
-          ends[3]=1;
-          tdone[3]=1;
-        }
-        else {
-          S74052=0;
-          if(!start_in.isREQ()){//sysj\lidLoaderController.sysj line: 53, column: 5
-            start_in.setACK(true);//sysj\lidLoaderController.sysj line: 53, column: 5
-            S74052=1;
-            if(start_in.isREQ()){//sysj\lidLoaderController.sysj line: 53, column: 5
-              start_in.setACK(false);//sysj\lidLoaderController.sysj line: 53, column: 5
-              ends[3]=2;
-              ;//sysj\lidLoaderController.sysj line: 53, column: 5
-              w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\lidLoaderController.sysj line: 54, column: 5
-              S74073=1;
-              if(w_thread_3 != null){//sysj\lidLoaderController.sysj line: 55, column: 4
-                permitted_thread_3 = false;//sysj\lidLoaderController.sysj line: 56, column: 1
-                S74074=0;
+        S78152=0;
+        if(!start_in.isREQ()){//sysj\lidLoaderController.sysj line: 56, column: 5
+          start_in.setACK(true);//sysj\lidLoaderController.sysj line: 56, column: 5
+          S78152=1;
+          if(start_in.isREQ()){//sysj\lidLoaderController.sysj line: 56, column: 5
+            start_in.setACK(false);//sysj\lidLoaderController.sysj line: 56, column: 5
+            ends[3]=2;
+            ;//sysj\lidLoaderController.sysj line: 56, column: 5
+            w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\lidLoaderController.sysj line: 57, column: 5
+            S78173=1;
+            if(w_thread_3 != null && w_thread_3.catchFault("lid-fitted")){//sysj\lidLoaderController.sysj line: 60, column: 8
+              System.out.println("[LID] " + w_thread_3 + " already has a lid fitted.");//sysj\lidLoaderController.sysj line: 61, column: 6
+              w_thread_3.reject(Machine.LID_LOADER, "lid already fitted");//sysj\lidLoaderController.sysj line: 62, column: 6
+              S78173=2;
+              S80832=0;
+              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                S80832=1;
                 active[3]=1;
                 ends[3]=1;
                 tdone[3]=1;
               }
               else {
-                S74073=2;
-                if(w_thread_3 != null && w_thread_3.catchFault("lid-fitted")){//sysj\lidLoaderController.sysj line: 66, column: 8
-                  System.out.println("[LID] " + w_thread_3 + " already has a lid fitted.");//sysj\lidLoaderController.sysj line: 67, column: 6
-                  w_thread_3.reject(Machine.LID_LOADER, "lid already fitted");//sysj\lidLoaderController.sysj line: 68, column: 6
-                  S74073=3;
-                  S75319=0;
-                  if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                    done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                    S75319=1;
+                S80827=0;
+                if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                  done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                  S80827=1;
+                  if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                    done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                    ends[3]=2;
+                    ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                    S82345=1;
                     active[3]=1;
                     ends[3]=1;
                     tdone[3]=1;
                   }
                   else {
-                    S75314=0;
-                    if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                      done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                      S75314=1;
-                      if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                        done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                        ends[3]=2;
-                        ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                        S79886=2;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                    }
-                    else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
                   }
                 }
                 else {
-                  if(w_thread_3 != null){//sysj\lidLoaderController.sysj line: 70, column: 13
-                    t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 71, column: 21
-                    t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 72, column: 21
-                    if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "place", "placing lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 73, column: 21
-                      twin.setPresent();//sysj\lidLoaderController.sysj line: 74, column: 25
-                      currsigs.addElement(twin);
-                      twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 74, column: 25
-                      S74139=0;
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+              }
+            }
+            else {
+              if(w_thread_3 != null){//sysj\lidLoaderController.sysj line: 64, column: 13
+                t_thread_3 = new LidLoaderTwin();//sysj\lidLoaderController.sysj line: 65, column: 21
+                t_thread_3.setLidsRemaining(lids_thread_3);//sysj\lidLoaderController.sysj line: 66, column: 21
+                if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "place", "placing lid on " + w_thread_3.id)){//sysj\lidLoaderController.sysj line: 67, column: 21
+                  twin.setPresent();//sysj\lidLoaderController.sysj line: 68, column: 25
+                  currsigs.addElement(twin);
+                  twin.setValue(t_thread_3);//sysj\lidLoaderController.sysj line: 68, column: 25
+                  S78175=0;
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  S78175=0;
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+              }
+              else {
+                S78173=2;
+                S80832=0;
+                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                  done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                  S80832=1;
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+                else {
+                  S80827=0;
+                  if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                    done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 134, column: 5
+                    S80827=1;
+                    if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 134, column: 5
+                      done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 134, column: 5
+                      ends[3]=2;
+                      ;//sysj\lidLoaderController.sysj line: 134, column: 5
+                      S82345=1;
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      S74139=0;
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                   }
                   else {
-                    S74073=3;
-                    S75319=0;
-                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                      done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                      S75319=1;
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
-                    else {
-                      S75314=0;
-                      if(done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                        done_o.setVal(w_thread_3);//sysj\lidLoaderController.sysj line: 126, column: 5
-                        S75314=1;
-                        if(!done_o.isACK()){//sysj\lidLoaderController.sysj line: 126, column: 5
-                          done_o.setREQ(false);//sysj\lidLoaderController.sysj line: 126, column: 5
-                          ends[3]=2;
-                          ;//sysj\lidLoaderController.sysj line: 126, column: 5
-                          S79886=2;
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                        else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                      }
-                      else {
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                    }
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
                   }
                 }
               }
-            }
-            else {
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
             }
           }
           else {
@@ -3642,27 +6056,27 @@ public class LidLoaderController extends ClockDomain{
             tdone[3]=1;
           }
         }
+        else {
+          active[3]=1;
+          ends[3]=1;
+          tdone[3]=1;
+        }
       }
-    }
-    else {
-      active[3]=1;
-      ends[3]=1;
-      tdone[3]=1;
     }
   }
 
-  public void thread109606(int [] tdone, int [] ends){
-        S74048=1;
-    if(mode.getprestatus()){//sysj\lidLoaderController.sysj line: 36, column: 12
-      if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\lidLoaderController.sysj line: 37, column: 8
-        auto_1.setPresent();//sysj\lidLoaderController.sysj line: 37, column: 30
+  public void thread103325(int [] tdone, int [] ends){
+        S78149=1;
+    if(mode.getprestatus()){//sysj\lidLoaderController.sysj line: 41, column: 12
+      if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\lidLoaderController.sysj line: 42, column: 8
+        auto_1.setPresent();//sysj\lidLoaderController.sysj line: 42, column: 30
         currsigs.addElement(auto_1);
         active[2]=1;
         ends[2]=1;
         tdone[2]=1;
       }
       else {
-        manual_1.setPresent();//sysj\lidLoaderController.sysj line: 38, column: 12
+        manual_1.setPresent();//sysj\lidLoaderController.sysj line: 43, column: 12
         currsigs.addElement(manual_1);
         active[2]=1;
         ends[2]=1;
@@ -3683,62 +6097,54 @@ public class LidLoaderController extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S109604){
+      switch(S103323){
         case 0 : 
-          S109604=0;
+          S103323=0;
           break RUN;
         
         case 1 : 
-          S109604=2;
-          S109604=2;
-          auto_1.setClear();//sysj\lidLoaderController.sysj line: 32, column: 2
-          manual_1.setClear();//sysj\lidLoaderController.sysj line: 32, column: 2
-          thread109606(tdone,ends);
-          thread109607(tdone,ends);
-          thread109608(tdone,ends);
-          int biggest109609 = 0;
-          if(ends[2]>=biggest109609){
-            biggest109609=ends[2];
+          S103323=2;
+          S103323=2;
+          auto_1.setClear();//sysj\lidLoaderController.sysj line: 37, column: 2
+          manual_1.setClear();//sysj\lidLoaderController.sysj line: 37, column: 2
+          thread103325(tdone,ends);
+          thread103326(tdone,ends);
+          int biggest103327 = 0;
+          if(ends[2]>=biggest103327){
+            biggest103327=ends[2];
           }
-          if(ends[3]>=biggest109609){
-            biggest109609=ends[3];
+          if(ends[3]>=biggest103327){
+            biggest103327=ends[3];
           }
-          if(ends[6]>=biggest109609){
-            biggest109609=ends[6];
-          }
-          if(biggest109609 == 1){
+          if(biggest103327 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
         
         case 2 : 
-          auto_1.setClear();//sysj\lidLoaderController.sysj line: 32, column: 2
-          manual_1.setClear();//sysj\lidLoaderController.sysj line: 32, column: 2
-          thread109610(tdone,ends);
-          thread109611(tdone,ends);
-          thread109639(tdone,ends);
-          int biggest109640 = 0;
-          if(ends[2]>=biggest109640){
-            biggest109640=ends[2];
+          auto_1.setClear();//sysj\lidLoaderController.sysj line: 37, column: 2
+          manual_1.setClear();//sysj\lidLoaderController.sysj line: 37, column: 2
+          thread103328(tdone,ends);
+          thread103329(tdone,ends);
+          int biggest103417 = 0;
+          if(ends[2]>=biggest103417){
+            biggest103417=ends[2];
           }
-          if(ends[3]>=biggest109640){
-            biggest109640=ends[3];
+          if(ends[3]>=biggest103417){
+            biggest103417=ends[3];
           }
-          if(ends[6]>=biggest109640){
-            biggest109640=ends[6];
-          }
-          if(biggest109640 == 1){
+          if(biggest103417 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest109640 == 0){
-            S109604=0;
+          if(biggest103417 == 0){
+            S103323=0;
             active[1]=0;
             ends[1]=0;
-            S109604=0;
+            S103323=0;
             break RUN;
           }
         
@@ -3747,9 +6153,9 @@ public class LidLoaderController extends ClockDomain{
   }
 
   public void init(){
-    char [] active1 = {1, 1, 1, 1, 1, 1, 1};
-    char [] paused1 = {0, 0, 0, 0, 0, 0, 0};
-    char [] suspended1 = {0, 0, 0, 0, 0, 0, 0};
+    char [] active1 = {1, 1, 1, 1, 1, 1};
+    char [] paused1 = {0, 0, 0, 0, 0, 0};
+    char [] suspended1 = {0, 0, 0, 0, 0, 0};
     paused = paused1;
     active = active1;
     suspended = suspended1;
@@ -3772,8 +6178,8 @@ public class LidLoaderController extends ClockDomain{
         if(!df){
           start_in.gethook();
           done_o.gethook();
-          operatorPermit.gethook();
           mode.gethook();
+          reset.gethook();
           pusherExtended.gethook();
           pusherRetracted.gethook();
           lidAtPickup.gethook();
@@ -3786,12 +6192,13 @@ public class LidLoaderController extends ClockDomain{
           vacOnM.gethook();
           armSourceM.gethook();
           armDestM.gethook();
+          refillM.gethook();
           df = true;
         }
         runClockDomain();
       }
-      operatorPermit.setpreclear();
       mode.setpreclear();
+      reset.setpreclear();
       pusherExtended.setpreclear();
       pusherRetracted.setpreclear();
       lidAtPickup.setpreclear();
@@ -3804,6 +6211,7 @@ public class LidLoaderController extends ClockDomain{
       vacOnM.setpreclear();
       armSourceM.setpreclear();
       armDestM.setpreclear();
+      refillM.setpreclear();
       twin.setpreclear();
       pusherExtend.setpreclear();
       vacOn.setpreclear();
@@ -3818,12 +6226,12 @@ public class LidLoaderController extends ClockDomain{
         ((Signal)currsigs.elementAt(qw)).setpreval(((Signal)currsigs.elementAt(qw)).getValue());
       }
       currsigs.removeAllElements();
-      dummyint = operatorPermit.getStatus() ? operatorPermit.setprepresent() : operatorPermit.setpreclear();
-      operatorPermit.setpreval(operatorPermit.getValue());
-      operatorPermit.setClear();
       dummyint = mode.getStatus() ? mode.setprepresent() : mode.setpreclear();
       mode.setpreval(mode.getValue());
       mode.setClear();
+      dummyint = reset.getStatus() ? reset.setprepresent() : reset.setpreclear();
+      reset.setpreval(reset.getValue());
+      reset.setClear();
       dummyint = pusherExtended.getStatus() ? pusherExtended.setprepresent() : pusherExtended.setpreclear();
       pusherExtended.setpreval(pusherExtended.getValue());
       pusherExtended.setClear();
@@ -3860,6 +6268,9 @@ public class LidLoaderController extends ClockDomain{
       dummyint = armDestM.getStatus() ? armDestM.setprepresent() : armDestM.setpreclear();
       armDestM.setpreval(armDestM.getValue());
       armDestM.setClear();
+      dummyint = refillM.getStatus() ? refillM.setprepresent() : refillM.setpreclear();
+      refillM.setpreval(refillM.getValue());
+      refillM.setClear();
       twin.sethook();
       twin.setClear();
       pusherExtend.sethook();
@@ -3880,8 +6291,8 @@ public class LidLoaderController extends ClockDomain{
       else{
         start_in.gethook();
         done_o.gethook();
-        operatorPermit.gethook();
         mode.gethook();
+        reset.gethook();
         pusherExtended.gethook();
         pusherRetracted.gethook();
         lidAtPickup.gethook();
@@ -3894,6 +6305,7 @@ public class LidLoaderController extends ClockDomain{
         vacOnM.gethook();
         armSourceM.gethook();
         armDestM.gethook();
+        refillM.gethook();
       }
       runFinisher();
       if(active[1] == 0){

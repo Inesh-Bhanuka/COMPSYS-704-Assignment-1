@@ -14,13 +14,17 @@
 			<oChannel Name="startLid"        To="LidLoaderControllerCD.start" />
 			<oChannel Name="startCapper"     To="CapperControllerCD.start" />
 
-			<iSignal Name="operatorPermit"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
 			<iSignal Name="tableAligned"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
 			<iSignal Name="bottleAtPos1"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
 			<iSignal Name="bottleAtPos2"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
 			<iSignal Name="bottleAtPos4"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
 			<iSignal Name="bottleAtPos5"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
 			<iSignal Name="exitCleared"       Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
+			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
+			<iSignal Name="reset"             Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
+			<iSignal Name="rotaryTriggerM"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
+			<iSignal Name="loadPos1M"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
+			<iSignal Name="unloadExitM"       Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
 			<oSignal Name="twin"              To="SystemControllerCD.twinRT"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
 			<oSignal Name="rotaryTrigger"     To="RotaryTablePlantCD.rotaryTrigger"          Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
 			<oSignal Name="loadPos1"          To="RotaryTablePlantCD.loadPos1"               Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />

@@ -21,153 +21,163 @@ ConveyorPlant(
 		// to the Conveyor Controller
 		output signal bottleAtPos1, infeedClear, infeedAdmitted;
 		output signal bottleAtOutfeedEnd, outfeedClear;
+
+		// Hard reset: forget what is on the machine. Declared state is
+		// re-initialised, not adjusted, because after a reset there is no
+		// bottle anywhere for the old values to describe.
+		input signal reset;
 		)
 ->
 {
-	{ // ---- Infeed belt ----
-		//
-		// Modelled as a queue of slots rather than a single bottle, so a
-		// bottle can wait at position 1 while others are still travelling.
-		// Without this the table can only ever hold one bottle at a time.
-		int LEN = PlantTiming.ticks(6);
-		boolean[] slot = new boolean[LEN + 1];   // slot[LEN] is position 1
-		boolean injecting = false;
-		boolean admitted = false;
-		boolean taking = false;
+	while(true){
+		abort(immediate reset){
+		{ // ---- Infeed belt ----
+			//
+			// Modelled as a queue of slots rather than a single bottle, so a
+			// bottle can wait at position 1 while others are still travelling.
+			// Without this the table can only ever hold one bottle at a time.
+			int LEN = PlantTiming.ticks(6);
+			boolean[] slot = new boolean[LEN + 1];   // slot[LEN] is position 1
+			boolean injecting = false;
+			boolean admitted = false;
+			boolean taking = false;
 
-		while(true){
-			present(enable){
+			while(true){
+				present(enable){
 
-				// Edge triggered: the controller holds injectInfeed for
-				// several ticks so it cannot be missed, but it must inject
-				// exactly one bottle. A level test would inject again as
-				// soon as the belt advanced and freed slot 0.
-				present(injectInfeed){
-					if(!injecting){
-						injecting = true;
-						if(!slot[0]){
-							slot[0] = true;
-							admitted = true;
-							System.out.println("[CVPlant] Bottle entered infeed.");
-						}
-					}
-				}
-				else {
-					injecting = false;
-					admitted = false;
-				}
-
-				// "WorkpieceTwin admitted" - held for as long as the controller
-				// holds the command, so the controller has something to
-				// acknowledge against. infeedClear cannot serve: the belt
-				// runs every tick, so the bottle leaves the load point in the
-				// same instant it arrives and the load point never reads
-				// occupied.
-				if(admitted){
-					emit infeedAdmitted;
-				}
-
-				// The belt is frozen while a removal is in progress. Without
-				// this the next queued bottle advances into position 1 while
-				// takeFromPos1 is still held, and is handed off a second time
-				// on the following cycle.
-				present(motInfeed){
-					if(!taking){
-						// advance front-most first so a queue moves together
-						int i = LEN - 1;
-						while(i >= 0){
-							if(slot[i] && !slot[i+1]){
-								slot[i+1] = true;
-								slot[i] = false;
-								if(i + 1 == LEN){
-									System.out.println("[CVPlant] Bottle arrived at position 1.");
-								}
-							}
-							i--;
-						}
-					}
-				}
-
-				if(slot[LEN]){
-					emit bottleAtPos1;
-				}
-
-				present(takeFromPos1){
-					if(!taking){
-						taking = true;
-						if(slot[LEN]){
-							slot[LEN] = false;
-							System.out.println("[CVPlant] Bottle left infeed.");
-						}
-					}
-				}
-				else {
-					taking = false;
-				}
-
-				// "clear" now means the load point is free, not the whole belt
-				if(!slot[0]){
-					emit infeedClear;
-				}
-			}
-			pause;
-		}
-	}
-	||
-	{ // ---- Outfeed belt ----
-		int LEN = PlantTiming.ticks(6);
-		int pos = -1;
-		boolean injecting = false;
-		boolean collecting = false;
-
-		while(true){
-			present(enable){
-
-				present(injectOutfeed){
-					if(!injecting){
-						injecting = true;
-						if(pos < 0){
-							pos = 0;
-							System.out.println("[CVPlant] Bottle entered outfeed.");
-						}
-					}
-				}
-				else {
-					injecting = false;
-				}
-
-				if(pos >= 0){
-					if(pos < LEN){
-						present(motOutfeed){
-							pos++;
-							if(pos == LEN){
-								System.out.println("[CVPlant] Bottle arrived at labeller point.");
+					// Edge triggered: the controller holds injectInfeed for
+					// several ticks so it cannot be missed, but it must inject
+					// exactly one bottle. A level test would inject again as
+					// soon as the belt advanced and freed slot 0.
+					present(injectInfeed){
+						if(!injecting){
+							injecting = true;
+							if(!slot[0]){
+								slot[0] = true;
+								admitted = true;
+								System.out.println("[CVPlant] Bottle entered infeed.");
 							}
 						}
 					}
 					else {
-						emit bottleAtOutfeedEnd;
+						injecting = false;
+						admitted = false;
 					}
-				}
 
-				present(collectFromEnd){
-					if(!collecting){
-						collecting = true;
-						if(pos >= LEN){
-							pos = -1;
-							System.out.println("[CVPlant] Bottle collected from outfeed.");
+					// "WorkpieceTwin admitted" - held for as long as the controller
+					// holds the command, so the controller has something to
+					// acknowledge against. infeedClear cannot serve: the belt
+					// runs every tick, so the bottle leaves the load point in the
+					// same instant it arrives and the load point never reads
+					// occupied.
+					if(admitted){
+						emit infeedAdmitted;
+					}
+
+					// The belt is frozen while a removal is in progress. Without
+					// this the next queued bottle advances into position 1 while
+					// takeFromPos1 is still held, and is handed off a second time
+					// on the following cycle.
+					present(motInfeed){
+						if(!taking){
+							// advance front-most first so a queue moves together
+							int i = LEN - 1;
+							while(i >= 0){
+								if(slot[i] && !slot[i+1]){
+									slot[i+1] = true;
+									slot[i] = false;
+									if(i + 1 == LEN){
+										System.out.println("[CVPlant] Bottle arrived at position 1.");
+									}
+								}
+								i--;
+							}
 						}
 					}
-				}
-				else {
-					collecting = false;
-				}
 
-				if(pos < 0){
-					emit outfeedClear;
+					if(slot[LEN]){
+						emit bottleAtPos1;
+					}
+
+					present(takeFromPos1){
+						if(!taking){
+							taking = true;
+							if(slot[LEN]){
+								slot[LEN] = false;
+								System.out.println("[CVPlant] Bottle left infeed.");
+							}
+						}
+					}
+					else {
+						taking = false;
+					}
+
+					// "clear" now means the load point is free, not the whole belt
+					if(!slot[0]){
+						emit infeedClear;
+					}
 				}
+				pause;
 			}
-			pause;
 		}
+		||
+		{ // ---- Outfeed belt ----
+			int LEN = PlantTiming.ticks(6);
+			int pos = -1;
+			boolean injecting = false;
+			boolean collecting = false;
+
+			while(true){
+				present(enable){
+
+					present(injectOutfeed){
+						if(!injecting){
+							injecting = true;
+							if(pos < 0){
+								pos = 0;
+								System.out.println("[CVPlant] Bottle entered outfeed.");
+							}
+						}
+					}
+					else {
+						injecting = false;
+					}
+
+					if(pos >= 0){
+						if(pos < LEN){
+							present(motOutfeed){
+								pos++;
+								if(pos == LEN){
+									System.out.println("[CVPlant] Bottle arrived at labeller point.");
+								}
+							}
+						}
+						else {
+							emit bottleAtOutfeedEnd;
+						}
+					}
+
+					present(collectFromEnd){
+						if(!collecting){
+							collecting = true;
+							if(pos >= LEN){
+								pos = -1;
+								System.out.println("[CVPlant] Bottle collected from outfeed.");
+							}
+						}
+					}
+					else {
+						collecting = false;
+					}
+
+					if(pos < 0){
+						emit outfeedClear;
+					}
+				}
+				pause;
+			}
+		}
+		}
+		pause;
 	}
 }

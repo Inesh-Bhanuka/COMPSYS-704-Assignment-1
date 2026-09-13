@@ -15,21 +15,23 @@ public class RecyclingConveyorPlant extends ClockDomain{
   public Signal recyclingConveyorMotor = new Signal("recyclingConveyorMotor", Signal.INPUT);
   public Signal injectAtEntry = new Signal("injectAtEntry", Signal.INPUT);
   public Signal collectAtReturn = new Signal("collectAtReturn", Signal.INPUT);
+  public Signal reset = new Signal("reset", Signal.INPUT);
   public Signal bottleAtSplitterExit = new Signal("bottleAtSplitterExit", Signal.OUTPUT);
   public Signal bottleAtLidRemoval = new Signal("bottleAtLidRemoval", Signal.OUTPUT);
   public Signal bottleAtDumper = new Signal("bottleAtDumper", Signal.OUTPUT);
   public Signal bottleAtReturn = new Signal("bottleAtReturn", Signal.OUTPUT);
   public Signal bottleLeftReturn = new Signal("bottleLeftReturn", Signal.OUTPUT);
-  private int STEP_thread_1;//sysj\recyclingConveyorPlant.sysj line: 48, column: 2
-  private int LAST_thread_1;//sysj\recyclingConveyorPlant.sysj line: 49, column: 2
-  private int pos_thread_1;//sysj\recyclingConveyorPlant.sysj line: 51, column: 2
-  private int travel_thread_1;//sysj\recyclingConveyorPlant.sysj line: 52, column: 2
-  private boolean injecting_thread_1;//sysj\recyclingConveyorPlant.sysj line: 53, column: 2
-  private boolean collecting_thread_1;//sysj\recyclingConveyorPlant.sysj line: 54, column: 2
-  private boolean cleared_thread_1;//sysj\recyclingConveyorPlant.sysj line: 55, column: 2
-  private boolean running_thread_1;//sysj\recyclingConveyorPlant.sysj line: 56, column: 2
-  private boolean indexing_thread_1;//sysj\recyclingConveyorPlant.sysj line: 57, column: 2
-  private int S264538 = 1;
+  private int STEP_thread_1;//sysj\recyclingConveyorPlant.sysj line: 55, column: 3
+  private int LAST_thread_1;//sysj\recyclingConveyorPlant.sysj line: 56, column: 3
+  private int pos_thread_1;//sysj\recyclingConveyorPlant.sysj line: 58, column: 3
+  private int travel_thread_1;//sysj\recyclingConveyorPlant.sysj line: 59, column: 3
+  private boolean injecting_thread_1;//sysj\recyclingConveyorPlant.sysj line: 60, column: 3
+  private boolean collecting_thread_1;//sysj\recyclingConveyorPlant.sysj line: 61, column: 3
+  private boolean cleared_thread_1;//sysj\recyclingConveyorPlant.sysj line: 62, column: 3
+  private boolean running_thread_1;//sysj\recyclingConveyorPlant.sysj line: 63, column: 3
+  private boolean indexing_thread_1;//sysj\recyclingConveyorPlant.sysj line: 64, column: 3
+  private int S242108 = 1;
+  private int S238308 = 1;
   
   private int[] ends = new int[2];
   private int[] tdone = new int[2];
@@ -41,396 +43,745 @@ public class RecyclingConveyorPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S264538){
+      switch(S242108){
         case 0 : 
-          S264538=0;
+          S242108=0;
           break RUN;
         
         case 1 : 
-          S264538=2;
-          S264538=2;
-          STEP_thread_1 = PlantTiming.ticks(5);//sysj\recyclingConveyorPlant.sysj line: 48, column: 2
-          LAST_thread_1 = 3;//sysj\recyclingConveyorPlant.sysj line: 49, column: 2
-          pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 51, column: 2
-          travel_thread_1 = 0;//sysj\recyclingConveyorPlant.sysj line: 52, column: 2
-          injecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 53, column: 2
-          collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 54, column: 2
-          cleared_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 55, column: 2
-          running_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 56, column: 2
-          indexing_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 57, column: 2
-          if(enable.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 60, column: 11
-            if(injectAtEntry.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 62, column: 12
-              if(!injecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 63, column: 19
-                injecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 64, column: 6
-                if(pos_thread_1 < 0) {//sysj\recyclingConveyorPlant.sysj line: 65, column: 17
-                  pos_thread_1 = 0;//sysj\recyclingConveyorPlant.sysj line: 66, column: 7
-                  travel_thread_1 = 0;//sysj\recyclingConveyorPlant.sysj line: 67, column: 7
-                  indexing_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 68, column: 7
-                  cleared_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 69, column: 7
-                  System.out.println("[RCPlant] Bottle entered the recycling conveyor.");//sysj\recyclingConveyorPlant.sysj line: 70, column: 7
-                }
-              }
-              if(recyclingConveyorMotor.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 78, column: 12
-                if(!running_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 84, column: 17
-                  running_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 85, column: 6
-                  if(pos_thread_1 >= 0 && pos_thread_1 < LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 86, column: 32
-                    indexing_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 87, column: 7
+          S242108=2;
+          S242108=2;
+          S238308=0;
+          if(reset.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 54, column: 19
+            S238308=1;
+            active[1]=1;
+            ends[1]=1;
+            break RUN;
+          }
+          else {
+            STEP_thread_1 = PlantTiming.ticks(5);//sysj\recyclingConveyorPlant.sysj line: 55, column: 3
+            LAST_thread_1 = 3;//sysj\recyclingConveyorPlant.sysj line: 56, column: 3
+            pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 58, column: 3
+            travel_thread_1 = 0;//sysj\recyclingConveyorPlant.sysj line: 59, column: 3
+            injecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 60, column: 3
+            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 61, column: 3
+            cleared_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 62, column: 3
+            running_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 63, column: 3
+            indexing_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 64, column: 3
+            if(enable.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 67, column: 12
+              if(injectAtEntry.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 69, column: 13
+                if(!injecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 70, column: 20
+                  injecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 71, column: 7
+                  if(pos_thread_1 < 0) {//sysj\recyclingConveyorPlant.sysj line: 72, column: 18
+                    pos_thread_1 = 0;//sysj\recyclingConveyorPlant.sysj line: 73, column: 8
+                    travel_thread_1 = 0;//sysj\recyclingConveyorPlant.sysj line: 74, column: 8
+                    indexing_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 75, column: 8
+                    cleared_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 76, column: 8
+                    System.out.println("[RCPlant] Bottle entered the recycling conveyor.");//sysj\recyclingConveyorPlant.sysj line: 77, column: 8
                   }
                 }
-                if(indexing_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 91, column: 17
-                  travel_thread_1 = travel_thread_1 + 1;//sysj\recyclingConveyorPlant.sysj line: 92, column: 6
-                  if(travel_thread_1 >= STEP_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 93, column: 24
-                    travel_thread_1 = 0;//sysj\recyclingConveyorPlant.sysj line: 94, column: 7
-                    indexing_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 95, column: 7
-                    pos_thread_1 = pos_thread_1 + 1;//sysj\recyclingConveyorPlant.sysj line: 96, column: 7
-                    if(pos_thread_1 == 1) {//sysj\recyclingConveyorPlant.sysj line: 97, column: 19
-                      System.out.println("[RCPlant] Bottle arrived at lid removal.");//sysj\recyclingConveyorPlant.sysj line: 97, column: 21
-                    }
-                    if(pos_thread_1 == 2) {//sysj\recyclingConveyorPlant.sysj line: 98, column: 19
-                      System.out.println("[RCPlant] Bottle arrived at the liquid dumper.");//sysj\recyclingConveyorPlant.sysj line: 98, column: 21
-                    }
-                    if(pos_thread_1 == 3) {//sysj\recyclingConveyorPlant.sysj line: 99, column: 19
-                      System.out.println("[RCPlant] Bottle arrived at the bottle return.");//sysj\recyclingConveyorPlant.sysj line: 99, column: 21
+                if(recyclingConveyorMotor.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 85, column: 13
+                  if(!running_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 91, column: 18
+                    running_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 92, column: 7
+                    if(pos_thread_1 >= 0 && pos_thread_1 < LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 93, column: 33
+                      indexing_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 94, column: 8
                     }
                   }
-                }
-                if(!indexing_thread_1){//sysj\recyclingConveyorPlant.sysj line: 110, column: 7
-                  if(pos_thread_1 == 0){//sysj\recyclingConveyorPlant.sysj line: 111, column: 8
-                    bottleAtSplitterExit.setPresent();//sysj\recyclingConveyorPlant.sysj line: 111, column: 19
-                    currsigs.addElement(bottleAtSplitterExit);
-                    if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 112, column: 8
-                      bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 112, column: 19
-                      currsigs.addElement(bottleAtLidRemoval);
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                  if(indexing_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 98, column: 18
+                    travel_thread_1 = travel_thread_1 + 1;//sysj\recyclingConveyorPlant.sysj line: 99, column: 7
+                    if(travel_thread_1 >= STEP_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 100, column: 25
+                      travel_thread_1 = 0;//sysj\recyclingConveyorPlant.sysj line: 101, column: 8
+                      indexing_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 102, column: 8
+                      pos_thread_1 = pos_thread_1 + 1;//sysj\recyclingConveyorPlant.sysj line: 103, column: 8
+                      if(pos_thread_1 == 1) {//sysj\recyclingConveyorPlant.sysj line: 104, column: 20
+                        System.out.println("[RCPlant] Bottle arrived at lid removal.");//sysj\recyclingConveyorPlant.sysj line: 104, column: 22
+                      }
+                      if(pos_thread_1 == 2) {//sysj\recyclingConveyorPlant.sysj line: 105, column: 20
+                        System.out.println("[RCPlant] Bottle arrived at the liquid dumper.");//sysj\recyclingConveyorPlant.sysj line: 105, column: 22
+                      }
+                      if(pos_thread_1 == 3) {//sysj\recyclingConveyorPlant.sysj line: 106, column: 20
+                        System.out.println("[RCPlant] Bottle arrived at the bottle return.");//sysj\recyclingConveyorPlant.sysj line: 106, column: 22
+                      }
+                    }
+                  }
+                  if(!indexing_thread_1){//sysj\recyclingConveyorPlant.sysj line: 117, column: 8
+                    if(pos_thread_1 == 0){//sysj\recyclingConveyorPlant.sysj line: 118, column: 9
+                      bottleAtSplitterExit.setPresent();//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
+                      currsigs.addElement(bottleAtSplitterExit);
+                      if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 119, column: 9
+                        bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 119, column: 20
+                        currsigs.addElement(bottleAtLidRemoval);
+                        if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                          bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                          currsigs.addElement(bottleAtDumper);
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                         }
                         else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                         }
                       }
                       else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                        if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                          bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                          currsigs.addElement(bottleAtDumper);
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                         }
                         else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                         }
                       }
                     }
                     else {
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                      if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 119, column: 9
+                        bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 119, column: 20
+                        currsigs.addElement(bottleAtLidRemoval);
+                        if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                          bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                          currsigs.addElement(bottleAtDumper);
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                         }
                         else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                         }
                       }
                       else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                        if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                          bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                          currsigs.addElement(bottleAtDumper);
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                         }
                         else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                         }
@@ -438,725 +789,1476 @@ public class RecyclingConveyorPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 112, column: 8
-                      bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 112, column: 19
-                      currsigs.addElement(bottleAtLidRemoval);
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
+                    if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                      if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                        collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                        if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                          pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                          cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                          System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
                         }
                       }
+                      if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                        bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                        currsigs.addElement(bottleLeftReturn);
+                        active[1]=1;
+                        ends[1]=1;
+                        break RUN;
+                      }
                       else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
+                        active[1]=1;
+                        ends[1]=1;
+                        break RUN;
                       }
                     }
                     else {
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
+                      collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                      if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                        bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                        currsigs.addElement(bottleLeftReturn);
+                        active[1]=1;
+                        ends[1]=1;
+                        break RUN;
                       }
                       else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
+                        active[1]=1;
+                        ends[1]=1;
+                        break RUN;
                       }
                     }
                   }
                 }
                 else {
-                  if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                    if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                      collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                      if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                        pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                        cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                        System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                  running_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 111, column: 6
+                  if(!indexing_thread_1){//sysj\recyclingConveyorPlant.sysj line: 117, column: 8
+                    if(pos_thread_1 == 0){//sysj\recyclingConveyorPlant.sysj line: 118, column: 9
+                      bottleAtSplitterExit.setPresent();//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
+                      currsigs.addElement(bottleAtSplitterExit);
+                      if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 119, column: 9
+                        bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 119, column: 20
+                        currsigs.addElement(bottleAtLidRemoval);
+                        if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                          bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                          currsigs.addElement(bottleAtDumper);
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                        }
+                        else {
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                        }
+                      }
+                      else {
+                        if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                          bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                          currsigs.addElement(bottleAtDumper);
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                        }
+                        else {
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                        }
                       }
                     }
-                    if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                      bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                      currsigs.addElement(bottleLeftReturn);
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
                     else {
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
+                      if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 119, column: 9
+                        bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 119, column: 20
+                        currsigs.addElement(bottleAtLidRemoval);
+                        if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                          bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                          currsigs.addElement(bottleAtDumper);
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                        }
+                        else {
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                        }
+                      }
+                      else {
+                        if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                          bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                          currsigs.addElement(bottleAtDumper);
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                        }
+                        else {
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                        }
+                      }
                     }
                   }
                   else {
-                    collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                    if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                      bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                      currsigs.addElement(bottleLeftReturn);
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
+                    if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                      if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                        collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                        if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                          pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                          cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                          System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                        }
+                      }
+                      if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                        bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                        currsigs.addElement(bottleLeftReturn);
+                        active[1]=1;
+                        ends[1]=1;
+                        break RUN;
+                      }
+                      else {
+                        active[1]=1;
+                        ends[1]=1;
+                        break RUN;
+                      }
                     }
                     else {
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
+                      collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                      if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                        bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                        currsigs.addElement(bottleLeftReturn);
+                        active[1]=1;
+                        ends[1]=1;
+                        break RUN;
+                      }
+                      else {
+                        active[1]=1;
+                        ends[1]=1;
+                        break RUN;
+                      }
                     }
                   }
                 }
               }
               else {
-                running_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 104, column: 5
-                if(!indexing_thread_1){//sysj\recyclingConveyorPlant.sysj line: 110, column: 7
-                  if(pos_thread_1 == 0){//sysj\recyclingConveyorPlant.sysj line: 111, column: 8
-                    bottleAtSplitterExit.setPresent();//sysj\recyclingConveyorPlant.sysj line: 111, column: 19
-                    currsigs.addElement(bottleAtSplitterExit);
-                    if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 112, column: 8
-                      bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 112, column: 19
-                      currsigs.addElement(bottleAtLidRemoval);
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                injecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 82, column: 6
+                if(recyclingConveyorMotor.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 85, column: 13
+                  if(!running_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 91, column: 18
+                    running_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 92, column: 7
+                    if(pos_thread_1 >= 0 && pos_thread_1 < LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 93, column: 33
+                      indexing_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 94, column: 8
+                    }
+                  }
+                  if(indexing_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 98, column: 18
+                    travel_thread_1 = travel_thread_1 + 1;//sysj\recyclingConveyorPlant.sysj line: 99, column: 7
+                    if(travel_thread_1 >= STEP_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 100, column: 25
+                      travel_thread_1 = 0;//sysj\recyclingConveyorPlant.sysj line: 101, column: 8
+                      indexing_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 102, column: 8
+                      pos_thread_1 = pos_thread_1 + 1;//sysj\recyclingConveyorPlant.sysj line: 103, column: 8
+                      if(pos_thread_1 == 1) {//sysj\recyclingConveyorPlant.sysj line: 104, column: 20
+                        System.out.println("[RCPlant] Bottle arrived at lid removal.");//sysj\recyclingConveyorPlant.sysj line: 104, column: 22
+                      }
+                      if(pos_thread_1 == 2) {//sysj\recyclingConveyorPlant.sysj line: 105, column: 20
+                        System.out.println("[RCPlant] Bottle arrived at the liquid dumper.");//sysj\recyclingConveyorPlant.sysj line: 105, column: 22
+                      }
+                      if(pos_thread_1 == 3) {//sysj\recyclingConveyorPlant.sysj line: 106, column: 20
+                        System.out.println("[RCPlant] Bottle arrived at the bottle return.");//sysj\recyclingConveyorPlant.sysj line: 106, column: 22
+                      }
+                    }
+                  }
+                  if(!indexing_thread_1){//sysj\recyclingConveyorPlant.sysj line: 117, column: 8
+                    if(pos_thread_1 == 0){//sysj\recyclingConveyorPlant.sysj line: 118, column: 9
+                      bottleAtSplitterExit.setPresent();//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
+                      currsigs.addElement(bottleAtSplitterExit);
+                      if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 119, column: 9
+                        bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 119, column: 20
+                        currsigs.addElement(bottleAtLidRemoval);
+                        if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                          bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                          currsigs.addElement(bottleAtDumper);
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                         }
                         else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                         }
                       }
                       else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                        if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                          bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                          currsigs.addElement(bottleAtDumper);
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                         }
                         else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                         }
                       }
                     }
                     else {
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                      if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 119, column: 9
+                        bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 119, column: 20
+                        currsigs.addElement(bottleAtLidRemoval);
+                        if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                          bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                          currsigs.addElement(bottleAtDumper);
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                         }
                         else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                         }
                       }
                       else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                        if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                          bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                          currsigs.addElement(bottleAtDumper);
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                         }
                         else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                         }
@@ -1164,3312 +2266,3749 @@ public class RecyclingConveyorPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 112, column: 8
-                      bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 112, column: 19
-                      currsigs.addElement(bottleAtLidRemoval);
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
+                    if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                      if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                        collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                        if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                          pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                          cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                          System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
                         }
                       }
+                      if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                        bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                        currsigs.addElement(bottleLeftReturn);
+                        active[1]=1;
+                        ends[1]=1;
+                        break RUN;
+                      }
                       else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
+                        active[1]=1;
+                        ends[1]=1;
+                        break RUN;
                       }
                     }
                     else {
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
+                      collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                      if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                        bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                        currsigs.addElement(bottleLeftReturn);
+                        active[1]=1;
+                        ends[1]=1;
+                        break RUN;
                       }
                       else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
+                        active[1]=1;
+                        ends[1]=1;
+                        break RUN;
                       }
                     }
                   }
                 }
                 else {
-                  if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                    if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                      collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                      if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                        pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                        cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                        System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                  running_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 111, column: 6
+                  if(!indexing_thread_1){//sysj\recyclingConveyorPlant.sysj line: 117, column: 8
+                    if(pos_thread_1 == 0){//sysj\recyclingConveyorPlant.sysj line: 118, column: 9
+                      bottleAtSplitterExit.setPresent();//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
+                      currsigs.addElement(bottleAtSplitterExit);
+                      if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 119, column: 9
+                        bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 119, column: 20
+                        currsigs.addElement(bottleAtLidRemoval);
+                        if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                          bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                          currsigs.addElement(bottleAtDumper);
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                        }
+                        else {
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                        }
+                      }
+                      else {
+                        if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                          bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                          currsigs.addElement(bottleAtDumper);
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                        }
+                        else {
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                        }
                       }
                     }
-                    if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                      bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                      currsigs.addElement(bottleLeftReturn);
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
                     else {
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
+                      if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 119, column: 9
+                        bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 119, column: 20
+                        currsigs.addElement(bottleAtLidRemoval);
+                        if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                          bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                          currsigs.addElement(bottleAtDumper);
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                        }
+                        else {
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                        }
+                      }
+                      else {
+                        if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                          bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                          currsigs.addElement(bottleAtDumper);
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                        }
+                        else {
+                          if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                            bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                            currsigs.addElement(bottleAtReturn);
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                              if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                  pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                  cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                  System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                }
+                              }
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                              if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                currsigs.addElement(bottleLeftReturn);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                        }
+                      }
                     }
                   }
                   else {
-                    collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                    if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                      bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                      currsigs.addElement(bottleLeftReturn);
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
+                    if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                      if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                        collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                        if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                          pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                          cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                          System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                        }
+                      }
+                      if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                        bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                        currsigs.addElement(bottleLeftReturn);
+                        active[1]=1;
+                        ends[1]=1;
+                        break RUN;
+                      }
+                      else {
+                        active[1]=1;
+                        ends[1]=1;
+                        break RUN;
+                      }
                     }
                     else {
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
+                      collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                      if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                        bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                        currsigs.addElement(bottleLeftReturn);
+                        active[1]=1;
+                        ends[1]=1;
+                        break RUN;
+                      }
+                      else {
+                        active[1]=1;
+                        ends[1]=1;
+                        break RUN;
+                      }
                     }
                   }
                 }
               }
             }
             else {
-              injecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 75, column: 5
-              if(recyclingConveyorMotor.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 78, column: 12
-                if(!running_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 84, column: 17
-                  running_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 85, column: 6
-                  if(pos_thread_1 >= 0 && pos_thread_1 < LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 86, column: 32
-                    indexing_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 87, column: 7
-                  }
-                }
-                if(indexing_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 91, column: 17
-                  travel_thread_1 = travel_thread_1 + 1;//sysj\recyclingConveyorPlant.sysj line: 92, column: 6
-                  if(travel_thread_1 >= STEP_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 93, column: 24
-                    travel_thread_1 = 0;//sysj\recyclingConveyorPlant.sysj line: 94, column: 7
-                    indexing_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 95, column: 7
-                    pos_thread_1 = pos_thread_1 + 1;//sysj\recyclingConveyorPlant.sysj line: 96, column: 7
-                    if(pos_thread_1 == 1) {//sysj\recyclingConveyorPlant.sysj line: 97, column: 19
-                      System.out.println("[RCPlant] Bottle arrived at lid removal.");//sysj\recyclingConveyorPlant.sysj line: 97, column: 21
-                    }
-                    if(pos_thread_1 == 2) {//sysj\recyclingConveyorPlant.sysj line: 98, column: 19
-                      System.out.println("[RCPlant] Bottle arrived at the liquid dumper.");//sysj\recyclingConveyorPlant.sysj line: 98, column: 21
-                    }
-                    if(pos_thread_1 == 3) {//sysj\recyclingConveyorPlant.sysj line: 99, column: 19
-                      System.out.println("[RCPlant] Bottle arrived at the bottle return.");//sysj\recyclingConveyorPlant.sysj line: 99, column: 21
-                    }
-                  }
-                }
-                if(!indexing_thread_1){//sysj\recyclingConveyorPlant.sysj line: 110, column: 7
-                  if(pos_thread_1 == 0){//sysj\recyclingConveyorPlant.sysj line: 111, column: 8
-                    bottleAtSplitterExit.setPresent();//sysj\recyclingConveyorPlant.sysj line: 111, column: 19
-                    currsigs.addElement(bottleAtSplitterExit);
-                    if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 112, column: 8
-                      bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 112, column: 19
-                      currsigs.addElement(bottleAtLidRemoval);
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                      else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                    }
-                    else {
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                      else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                  else {
-                    if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 112, column: 8
-                      bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 112, column: 19
-                      currsigs.addElement(bottleAtLidRemoval);
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                      else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                    }
-                    else {
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                      else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-                else {
-                  if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                    if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                      collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                      if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                        pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                        cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                        System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                      }
-                    }
-                    if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                      bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                      currsigs.addElement(bottleLeftReturn);
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                    else {
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                  }
-                  else {
-                    collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                    if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                      bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                      currsigs.addElement(bottleLeftReturn);
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                    else {
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                  }
-                }
-              }
-              else {
-                running_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 104, column: 5
-                if(!indexing_thread_1){//sysj\recyclingConveyorPlant.sysj line: 110, column: 7
-                  if(pos_thread_1 == 0){//sysj\recyclingConveyorPlant.sysj line: 111, column: 8
-                    bottleAtSplitterExit.setPresent();//sysj\recyclingConveyorPlant.sysj line: 111, column: 19
-                    currsigs.addElement(bottleAtSplitterExit);
-                    if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 112, column: 8
-                      bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 112, column: 19
-                      currsigs.addElement(bottleAtLidRemoval);
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                      else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                    }
-                    else {
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                      else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                  else {
-                    if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 112, column: 8
-                      bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 112, column: 19
-                      currsigs.addElement(bottleAtLidRemoval);
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                      else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                    }
-                    else {
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                      else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-                else {
-                  if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                    if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                      collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                      if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                        pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                        cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                        System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                      }
-                    }
-                    if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                      bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                      currsigs.addElement(bottleLeftReturn);
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                    else {
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                  }
-                  else {
-                    collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                    if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                      bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                      currsigs.addElement(bottleLeftReturn);
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                    else {
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                  }
-                }
-              }
+              active[1]=1;
+              ends[1]=1;
+              break RUN;
             }
-          }
-          else {
-            active[1]=1;
-            ends[1]=1;
-            break RUN;
           }
         
         case 2 : 
-          if(enable.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 60, column: 11
-            if(injectAtEntry.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 62, column: 12
-              if(!injecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 63, column: 19
-                injecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 64, column: 6
-                if(pos_thread_1 < 0) {//sysj\recyclingConveyorPlant.sysj line: 65, column: 17
-                  pos_thread_1 = 0;//sysj\recyclingConveyorPlant.sysj line: 66, column: 7
-                  travel_thread_1 = 0;//sysj\recyclingConveyorPlant.sysj line: 67, column: 7
-                  indexing_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 68, column: 7
-                  cleared_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 69, column: 7
-                  System.out.println("[RCPlant] Bottle entered the recycling conveyor.");//sysj\recyclingConveyorPlant.sysj line: 70, column: 7
-                }
-              }
-              if(recyclingConveyorMotor.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 78, column: 12
-                if(!running_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 84, column: 17
-                  running_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 85, column: 6
-                  if(pos_thread_1 >= 0 && pos_thread_1 < LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 86, column: 32
-                    indexing_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 87, column: 7
-                  }
-                }
-                if(indexing_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 91, column: 17
-                  travel_thread_1 = travel_thread_1 + 1;//sysj\recyclingConveyorPlant.sysj line: 92, column: 6
-                  if(travel_thread_1 >= STEP_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 93, column: 24
-                    travel_thread_1 = 0;//sysj\recyclingConveyorPlant.sysj line: 94, column: 7
-                    indexing_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 95, column: 7
-                    pos_thread_1 = pos_thread_1 + 1;//sysj\recyclingConveyorPlant.sysj line: 96, column: 7
-                    if(pos_thread_1 == 1) {//sysj\recyclingConveyorPlant.sysj line: 97, column: 19
-                      System.out.println("[RCPlant] Bottle arrived at lid removal.");//sysj\recyclingConveyorPlant.sysj line: 97, column: 21
-                    }
-                    if(pos_thread_1 == 2) {//sysj\recyclingConveyorPlant.sysj line: 98, column: 19
-                      System.out.println("[RCPlant] Bottle arrived at the liquid dumper.");//sysj\recyclingConveyorPlant.sysj line: 98, column: 21
-                    }
-                    if(pos_thread_1 == 3) {//sysj\recyclingConveyorPlant.sysj line: 99, column: 19
-                      System.out.println("[RCPlant] Bottle arrived at the bottle return.");//sysj\recyclingConveyorPlant.sysj line: 99, column: 21
-                    }
-                  }
-                }
-                if(!indexing_thread_1){//sysj\recyclingConveyorPlant.sysj line: 110, column: 7
-                  if(pos_thread_1 == 0){//sysj\recyclingConveyorPlant.sysj line: 111, column: 8
-                    bottleAtSplitterExit.setPresent();//sysj\recyclingConveyorPlant.sysj line: 111, column: 19
-                    currsigs.addElement(bottleAtSplitterExit);
-                    if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 112, column: 8
-                      bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 112, column: 19
-                      currsigs.addElement(bottleAtLidRemoval);
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                      else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                    }
-                    else {
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                      else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                  else {
-                    if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 112, column: 8
-                      bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 112, column: 19
-                      currsigs.addElement(bottleAtLidRemoval);
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                      else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                    }
-                    else {
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                      else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-                else {
-                  if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                    if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                      collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                      if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                        pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                        cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                        System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                      }
-                    }
-                    if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                      bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                      currsigs.addElement(bottleLeftReturn);
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                    else {
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                  }
-                  else {
-                    collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                    if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                      bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                      currsigs.addElement(bottleLeftReturn);
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                    else {
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                  }
-                }
+          switch(S238308){
+            case 0 : 
+              if(reset.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 54, column: 19
+                S238308=1;
+                active[1]=1;
+                ends[1]=1;
+                break RUN;
               }
               else {
-                running_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 104, column: 5
-                if(!indexing_thread_1){//sysj\recyclingConveyorPlant.sysj line: 110, column: 7
-                  if(pos_thread_1 == 0){//sysj\recyclingConveyorPlant.sysj line: 111, column: 8
-                    bottleAtSplitterExit.setPresent();//sysj\recyclingConveyorPlant.sysj line: 111, column: 19
-                    currsigs.addElement(bottleAtSplitterExit);
-                    if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 112, column: 8
-                      bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 112, column: 19
-                      currsigs.addElement(bottleAtLidRemoval);
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                if(enable.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 67, column: 12
+                  if(injectAtEntry.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 69, column: 13
+                    if(!injecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 70, column: 20
+                      injecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 71, column: 7
+                      if(pos_thread_1 < 0) {//sysj\recyclingConveyorPlant.sysj line: 72, column: 18
+                        pos_thread_1 = 0;//sysj\recyclingConveyorPlant.sysj line: 73, column: 8
+                        travel_thread_1 = 0;//sysj\recyclingConveyorPlant.sysj line: 74, column: 8
+                        indexing_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 75, column: 8
+                        cleared_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 76, column: 8
+                        System.out.println("[RCPlant] Bottle entered the recycling conveyor.");//sysj\recyclingConveyorPlant.sysj line: 77, column: 8
+                      }
+                    }
+                    if(recyclingConveyorMotor.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 85, column: 13
+                      if(!running_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 91, column: 18
+                        running_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 92, column: 7
+                        if(pos_thread_1 >= 0 && pos_thread_1 < LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 93, column: 33
+                          indexing_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 94, column: 8
+                        }
+                      }
+                      if(indexing_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 98, column: 18
+                        travel_thread_1 = travel_thread_1 + 1;//sysj\recyclingConveyorPlant.sysj line: 99, column: 7
+                        if(travel_thread_1 >= STEP_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 100, column: 25
+                          travel_thread_1 = 0;//sysj\recyclingConveyorPlant.sysj line: 101, column: 8
+                          indexing_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 102, column: 8
+                          pos_thread_1 = pos_thread_1 + 1;//sysj\recyclingConveyorPlant.sysj line: 103, column: 8
+                          if(pos_thread_1 == 1) {//sysj\recyclingConveyorPlant.sysj line: 104, column: 20
+                            System.out.println("[RCPlant] Bottle arrived at lid removal.");//sysj\recyclingConveyorPlant.sysj line: 104, column: 22
+                          }
+                          if(pos_thread_1 == 2) {//sysj\recyclingConveyorPlant.sysj line: 105, column: 20
+                            System.out.println("[RCPlant] Bottle arrived at the liquid dumper.");//sysj\recyclingConveyorPlant.sysj line: 105, column: 22
+                          }
+                          if(pos_thread_1 == 3) {//sysj\recyclingConveyorPlant.sysj line: 106, column: 20
+                            System.out.println("[RCPlant] Bottle arrived at the bottle return.");//sysj\recyclingConveyorPlant.sysj line: 106, column: 22
+                          }
+                        }
+                      }
+                      if(!indexing_thread_1){//sysj\recyclingConveyorPlant.sysj line: 117, column: 8
+                        if(pos_thread_1 == 0){//sysj\recyclingConveyorPlant.sysj line: 118, column: 9
+                          bottleAtSplitterExit.setPresent();//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
+                          currsigs.addElement(bottleAtSplitterExit);
+                          if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 119, column: 9
+                            bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 119, column: 20
+                            currsigs.addElement(bottleAtLidRemoval);
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                         }
                         else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                          if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 119, column: 9
+                            bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 119, column: 20
+                            currsigs.addElement(bottleAtLidRemoval);
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                         }
                       }
                       else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                        if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                          if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                            collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                            if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                              pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                              cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                              System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
                             }
                           }
+                          if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                            bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                            currsigs.addElement(bottleLeftReturn);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
                           }
                         }
                         else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
+                          collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                          if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                            bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                            currsigs.addElement(bottleLeftReturn);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
                           }
                         }
                       }
                     }
                     else {
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                      running_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 111, column: 6
+                      if(!indexing_thread_1){//sysj\recyclingConveyorPlant.sysj line: 117, column: 8
+                        if(pos_thread_1 == 0){//sysj\recyclingConveyorPlant.sysj line: 118, column: 9
+                          bottleAtSplitterExit.setPresent();//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
+                          currsigs.addElement(bottleAtSplitterExit);
+                          if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 119, column: 9
+                            bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 119, column: 20
+                            currsigs.addElement(bottleAtLidRemoval);
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                         }
                         else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                          if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 119, column: 9
+                            bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 119, column: 20
+                            currsigs.addElement(bottleAtLidRemoval);
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                         }
                       }
                       else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                        if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                          if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                            collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                            if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                              pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                              cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                              System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
                             }
                           }
+                          if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                            bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                            currsigs.addElement(bottleLeftReturn);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
                           }
                         }
                         else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
+                          collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                          if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                            bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                            currsigs.addElement(bottleLeftReturn);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
                           }
                         }
                       }
                     }
                   }
                   else {
-                    if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 112, column: 8
-                      bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 112, column: 19
-                      currsigs.addElement(bottleAtLidRemoval);
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                    injecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 82, column: 6
+                    if(recyclingConveyorMotor.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 85, column: 13
+                      if(!running_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 91, column: 18
+                        running_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 92, column: 7
+                        if(pos_thread_1 >= 0 && pos_thread_1 < LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 93, column: 33
+                          indexing_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 94, column: 8
+                        }
+                      }
+                      if(indexing_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 98, column: 18
+                        travel_thread_1 = travel_thread_1 + 1;//sysj\recyclingConveyorPlant.sysj line: 99, column: 7
+                        if(travel_thread_1 >= STEP_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 100, column: 25
+                          travel_thread_1 = 0;//sysj\recyclingConveyorPlant.sysj line: 101, column: 8
+                          indexing_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 102, column: 8
+                          pos_thread_1 = pos_thread_1 + 1;//sysj\recyclingConveyorPlant.sysj line: 103, column: 8
+                          if(pos_thread_1 == 1) {//sysj\recyclingConveyorPlant.sysj line: 104, column: 20
+                            System.out.println("[RCPlant] Bottle arrived at lid removal.");//sysj\recyclingConveyorPlant.sysj line: 104, column: 22
+                          }
+                          if(pos_thread_1 == 2) {//sysj\recyclingConveyorPlant.sysj line: 105, column: 20
+                            System.out.println("[RCPlant] Bottle arrived at the liquid dumper.");//sysj\recyclingConveyorPlant.sysj line: 105, column: 22
+                          }
+                          if(pos_thread_1 == 3) {//sysj\recyclingConveyorPlant.sysj line: 106, column: 20
+                            System.out.println("[RCPlant] Bottle arrived at the bottle return.");//sysj\recyclingConveyorPlant.sysj line: 106, column: 22
+                          }
+                        }
+                      }
+                      if(!indexing_thread_1){//sysj\recyclingConveyorPlant.sysj line: 117, column: 8
+                        if(pos_thread_1 == 0){//sysj\recyclingConveyorPlant.sysj line: 118, column: 9
+                          bottleAtSplitterExit.setPresent();//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
+                          currsigs.addElement(bottleAtSplitterExit);
+                          if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 119, column: 9
+                            bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 119, column: 20
+                            currsigs.addElement(bottleAtLidRemoval);
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                         }
                         else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                          if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 119, column: 9
+                            bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 119, column: 20
+                            currsigs.addElement(bottleAtLidRemoval);
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                         }
                       }
                       else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                        if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                          if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                            collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                            if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                              pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                              cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                              System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
                             }
                           }
+                          if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                            bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                            currsigs.addElement(bottleLeftReturn);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
                           }
                         }
                         else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
+                          collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                          if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                            bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                            currsigs.addElement(bottleLeftReturn);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
                           }
                         }
                       }
                     }
                     else {
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                      running_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 111, column: 6
+                      if(!indexing_thread_1){//sysj\recyclingConveyorPlant.sysj line: 117, column: 8
+                        if(pos_thread_1 == 0){//sysj\recyclingConveyorPlant.sysj line: 118, column: 9
+                          bottleAtSplitterExit.setPresent();//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
+                          currsigs.addElement(bottleAtSplitterExit);
+                          if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 119, column: 9
+                            bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 119, column: 20
+                            currsigs.addElement(bottleAtLidRemoval);
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                         }
                         else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                          if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 119, column: 9
+                            bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 119, column: 20
+                            currsigs.addElement(bottleAtLidRemoval);
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                         }
                       }
                       else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                        if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                          if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                            collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                            if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                              pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                              cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                              System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
                             }
                           }
+                          if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                            bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                            currsigs.addElement(bottleLeftReturn);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
                           }
                         }
                         else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
+                          collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                          if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                            bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                            currsigs.addElement(bottleLeftReturn);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
                           }
                         }
                       }
@@ -4477,1476 +6016,2990 @@ public class RecyclingConveyorPlant extends ClockDomain{
                   }
                 }
                 else {
-                  if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                    if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                      collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                      if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                        pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                        cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                        System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                      }
-                    }
-                    if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                      bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                      currsigs.addElement(bottleLeftReturn);
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                    else {
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                  }
-                  else {
-                    collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                    if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                      bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                      currsigs.addElement(bottleLeftReturn);
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                    else {
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                  }
+                  active[1]=1;
+                  ends[1]=1;
+                  break RUN;
                 }
               }
-            }
-            else {
-              injecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 75, column: 5
-              if(recyclingConveyorMotor.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 78, column: 12
-                if(!running_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 84, column: 17
-                  running_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 85, column: 6
-                  if(pos_thread_1 >= 0 && pos_thread_1 < LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 86, column: 32
-                    indexing_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 87, column: 7
-                  }
-                }
-                if(indexing_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 91, column: 17
-                  travel_thread_1 = travel_thread_1 + 1;//sysj\recyclingConveyorPlant.sysj line: 92, column: 6
-                  if(travel_thread_1 >= STEP_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 93, column: 24
-                    travel_thread_1 = 0;//sysj\recyclingConveyorPlant.sysj line: 94, column: 7
-                    indexing_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 95, column: 7
-                    pos_thread_1 = pos_thread_1 + 1;//sysj\recyclingConveyorPlant.sysj line: 96, column: 7
-                    if(pos_thread_1 == 1) {//sysj\recyclingConveyorPlant.sysj line: 97, column: 19
-                      System.out.println("[RCPlant] Bottle arrived at lid removal.");//sysj\recyclingConveyorPlant.sysj line: 97, column: 21
-                    }
-                    if(pos_thread_1 == 2) {//sysj\recyclingConveyorPlant.sysj line: 98, column: 19
-                      System.out.println("[RCPlant] Bottle arrived at the liquid dumper.");//sysj\recyclingConveyorPlant.sysj line: 98, column: 21
-                    }
-                    if(pos_thread_1 == 3) {//sysj\recyclingConveyorPlant.sysj line: 99, column: 19
-                      System.out.println("[RCPlant] Bottle arrived at the bottle return.");//sysj\recyclingConveyorPlant.sysj line: 99, column: 21
-                    }
-                  }
-                }
-                if(!indexing_thread_1){//sysj\recyclingConveyorPlant.sysj line: 110, column: 7
-                  if(pos_thread_1 == 0){//sysj\recyclingConveyorPlant.sysj line: 111, column: 8
-                    bottleAtSplitterExit.setPresent();//sysj\recyclingConveyorPlant.sysj line: 111, column: 19
-                    currsigs.addElement(bottleAtSplitterExit);
-                    if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 112, column: 8
-                      bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 112, column: 19
-                      currsigs.addElement(bottleAtLidRemoval);
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                      else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                    }
-                    else {
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                      else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                  else {
-                    if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 112, column: 8
-                      bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 112, column: 19
-                      currsigs.addElement(bottleAtLidRemoval);
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                      else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                    }
-                    else {
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                      else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                        else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-                else {
-                  if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                    if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                      collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                      if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                        pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                        cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                        System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                      }
-                    }
-                    if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                      bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                      currsigs.addElement(bottleLeftReturn);
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                    else {
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                  }
-                  else {
-                    collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                    if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                      bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                      currsigs.addElement(bottleLeftReturn);
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                    else {
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                  }
-                }
+            
+            case 1 : 
+              S238308=1;
+              S238308=0;
+              if(reset.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 54, column: 19
+                S238308=1;
+                active[1]=1;
+                ends[1]=1;
+                break RUN;
               }
               else {
-                running_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 104, column: 5
-                if(!indexing_thread_1){//sysj\recyclingConveyorPlant.sysj line: 110, column: 7
-                  if(pos_thread_1 == 0){//sysj\recyclingConveyorPlant.sysj line: 111, column: 8
-                    bottleAtSplitterExit.setPresent();//sysj\recyclingConveyorPlant.sysj line: 111, column: 19
-                    currsigs.addElement(bottleAtSplitterExit);
-                    if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 112, column: 8
-                      bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 112, column: 19
-                      currsigs.addElement(bottleAtLidRemoval);
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                STEP_thread_1 = PlantTiming.ticks(5);//sysj\recyclingConveyorPlant.sysj line: 55, column: 3
+                LAST_thread_1 = 3;//sysj\recyclingConveyorPlant.sysj line: 56, column: 3
+                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 58, column: 3
+                travel_thread_1 = 0;//sysj\recyclingConveyorPlant.sysj line: 59, column: 3
+                injecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 60, column: 3
+                collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 61, column: 3
+                cleared_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 62, column: 3
+                running_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 63, column: 3
+                indexing_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 64, column: 3
+                if(enable.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 67, column: 12
+                  if(injectAtEntry.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 69, column: 13
+                    if(!injecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 70, column: 20
+                      injecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 71, column: 7
+                      if(pos_thread_1 < 0) {//sysj\recyclingConveyorPlant.sysj line: 72, column: 18
+                        pos_thread_1 = 0;//sysj\recyclingConveyorPlant.sysj line: 73, column: 8
+                        travel_thread_1 = 0;//sysj\recyclingConveyorPlant.sysj line: 74, column: 8
+                        indexing_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 75, column: 8
+                        cleared_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 76, column: 8
+                        System.out.println("[RCPlant] Bottle entered the recycling conveyor.");//sysj\recyclingConveyorPlant.sysj line: 77, column: 8
+                      }
+                    }
+                    if(recyclingConveyorMotor.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 85, column: 13
+                      if(!running_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 91, column: 18
+                        running_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 92, column: 7
+                        if(pos_thread_1 >= 0 && pos_thread_1 < LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 93, column: 33
+                          indexing_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 94, column: 8
+                        }
+                      }
+                      if(indexing_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 98, column: 18
+                        travel_thread_1 = travel_thread_1 + 1;//sysj\recyclingConveyorPlant.sysj line: 99, column: 7
+                        if(travel_thread_1 >= STEP_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 100, column: 25
+                          travel_thread_1 = 0;//sysj\recyclingConveyorPlant.sysj line: 101, column: 8
+                          indexing_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 102, column: 8
+                          pos_thread_1 = pos_thread_1 + 1;//sysj\recyclingConveyorPlant.sysj line: 103, column: 8
+                          if(pos_thread_1 == 1) {//sysj\recyclingConveyorPlant.sysj line: 104, column: 20
+                            System.out.println("[RCPlant] Bottle arrived at lid removal.");//sysj\recyclingConveyorPlant.sysj line: 104, column: 22
+                          }
+                          if(pos_thread_1 == 2) {//sysj\recyclingConveyorPlant.sysj line: 105, column: 20
+                            System.out.println("[RCPlant] Bottle arrived at the liquid dumper.");//sysj\recyclingConveyorPlant.sysj line: 105, column: 22
+                          }
+                          if(pos_thread_1 == 3) {//sysj\recyclingConveyorPlant.sysj line: 106, column: 20
+                            System.out.println("[RCPlant] Bottle arrived at the bottle return.");//sysj\recyclingConveyorPlant.sysj line: 106, column: 22
+                          }
+                        }
+                      }
+                      if(!indexing_thread_1){//sysj\recyclingConveyorPlant.sysj line: 117, column: 8
+                        if(pos_thread_1 == 0){//sysj\recyclingConveyorPlant.sysj line: 118, column: 9
+                          bottleAtSplitterExit.setPresent();//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
+                          currsigs.addElement(bottleAtSplitterExit);
+                          if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 119, column: 9
+                            bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 119, column: 20
+                            currsigs.addElement(bottleAtLidRemoval);
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                         }
                         else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                          if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 119, column: 9
+                            bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 119, column: 20
+                            currsigs.addElement(bottleAtLidRemoval);
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                         }
                       }
                       else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                        if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                          if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                            collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                            if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                              pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                              cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                              System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
                             }
                           }
+                          if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                            bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                            currsigs.addElement(bottleLeftReturn);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
                           }
                         }
                         else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
+                          collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                          if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                            bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                            currsigs.addElement(bottleLeftReturn);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
                           }
                         }
                       }
                     }
                     else {
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                      running_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 111, column: 6
+                      if(!indexing_thread_1){//sysj\recyclingConveyorPlant.sysj line: 117, column: 8
+                        if(pos_thread_1 == 0){//sysj\recyclingConveyorPlant.sysj line: 118, column: 9
+                          bottleAtSplitterExit.setPresent();//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
+                          currsigs.addElement(bottleAtSplitterExit);
+                          if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 119, column: 9
+                            bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 119, column: 20
+                            currsigs.addElement(bottleAtLidRemoval);
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                         }
                         else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                          if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 119, column: 9
+                            bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 119, column: 20
+                            currsigs.addElement(bottleAtLidRemoval);
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                         }
                       }
                       else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                        if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                          if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                            collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                            if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                              pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                              cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                              System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
                             }
                           }
+                          if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                            bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                            currsigs.addElement(bottleLeftReturn);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
                           }
                         }
                         else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
+                          collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                          if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                            bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                            currsigs.addElement(bottleLeftReturn);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
                           }
                         }
                       }
                     }
                   }
                   else {
-                    if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 112, column: 8
-                      bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 112, column: 19
-                      currsigs.addElement(bottleAtLidRemoval);
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                    injecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 82, column: 6
+                    if(recyclingConveyorMotor.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 85, column: 13
+                      if(!running_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 91, column: 18
+                        running_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 92, column: 7
+                        if(pos_thread_1 >= 0 && pos_thread_1 < LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 93, column: 33
+                          indexing_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 94, column: 8
+                        }
+                      }
+                      if(indexing_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 98, column: 18
+                        travel_thread_1 = travel_thread_1 + 1;//sysj\recyclingConveyorPlant.sysj line: 99, column: 7
+                        if(travel_thread_1 >= STEP_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 100, column: 25
+                          travel_thread_1 = 0;//sysj\recyclingConveyorPlant.sysj line: 101, column: 8
+                          indexing_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 102, column: 8
+                          pos_thread_1 = pos_thread_1 + 1;//sysj\recyclingConveyorPlant.sysj line: 103, column: 8
+                          if(pos_thread_1 == 1) {//sysj\recyclingConveyorPlant.sysj line: 104, column: 20
+                            System.out.println("[RCPlant] Bottle arrived at lid removal.");//sysj\recyclingConveyorPlant.sysj line: 104, column: 22
+                          }
+                          if(pos_thread_1 == 2) {//sysj\recyclingConveyorPlant.sysj line: 105, column: 20
+                            System.out.println("[RCPlant] Bottle arrived at the liquid dumper.");//sysj\recyclingConveyorPlant.sysj line: 105, column: 22
+                          }
+                          if(pos_thread_1 == 3) {//sysj\recyclingConveyorPlant.sysj line: 106, column: 20
+                            System.out.println("[RCPlant] Bottle arrived at the bottle return.");//sysj\recyclingConveyorPlant.sysj line: 106, column: 22
+                          }
+                        }
+                      }
+                      if(!indexing_thread_1){//sysj\recyclingConveyorPlant.sysj line: 117, column: 8
+                        if(pos_thread_1 == 0){//sysj\recyclingConveyorPlant.sysj line: 118, column: 9
+                          bottleAtSplitterExit.setPresent();//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
+                          currsigs.addElement(bottleAtSplitterExit);
+                          if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 119, column: 9
+                            bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 119, column: 20
+                            currsigs.addElement(bottleAtLidRemoval);
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                         }
                         else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                          if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 119, column: 9
+                            bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 119, column: 20
+                            currsigs.addElement(bottleAtLidRemoval);
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                         }
                       }
                       else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                        if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                          if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                            collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                            if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                              pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                              cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                              System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
                             }
                           }
+                          if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                            bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                            currsigs.addElement(bottleLeftReturn);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
                           }
                         }
                         else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
+                          collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                          if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                            bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                            currsigs.addElement(bottleLeftReturn);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
                           }
                         }
                       }
                     }
                     else {
-                      if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 113, column: 8
-                        bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 113, column: 19
-                        currsigs.addElement(bottleAtDumper);
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                      running_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 111, column: 6
+                      if(!indexing_thread_1){//sysj\recyclingConveyorPlant.sysj line: 117, column: 8
+                        if(pos_thread_1 == 0){//sysj\recyclingConveyorPlant.sysj line: 118, column: 9
+                          bottleAtSplitterExit.setPresent();//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
+                          currsigs.addElement(bottleAtSplitterExit);
+                          if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 119, column: 9
+                            bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 119, column: 20
+                            currsigs.addElement(bottleAtLidRemoval);
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                         }
                         else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
+                          if(pos_thread_1 == 1){//sysj\recyclingConveyorPlant.sysj line: 119, column: 9
+                            bottleAtLidRemoval.setPresent();//sysj\recyclingConveyorPlant.sysj line: 119, column: 20
+                            currsigs.addElement(bottleAtLidRemoval);
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
                               }
                             }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                            if(pos_thread_1 == 2){//sysj\recyclingConveyorPlant.sysj line: 120, column: 9
+                              bottleAtDumper.setPresent();//sysj\recyclingConveyorPlant.sysj line: 120, column: 20
+                              currsigs.addElement(bottleAtDumper);
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                             else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                              if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 121, column: 9
+                                bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 121, column: 20
+                                currsigs.addElement(bottleAtReturn);
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
+                              else {
+                                if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                                  if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                                    collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                                    if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                                      pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                                      cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                                      System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
+                                    }
+                                  }
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                                else {
+                                  collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                                  if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                                    bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                                    currsigs.addElement(bottleLeftReturn);
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                  else {
+                                    active[1]=1;
+                                    ends[1]=1;
+                                    break RUN;
+                                  }
+                                }
+                              }
                             }
                           }
                         }
                       }
                       else {
-                        if(pos_thread_1 == 3){//sysj\recyclingConveyorPlant.sysj line: 114, column: 8
-                          bottleAtReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 114, column: 19
-                          currsigs.addElement(bottleAtReturn);
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
+                        if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 124, column: 13
+                          if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 125, column: 21
+                            collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 126, column: 7
+                            if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 127, column: 22
+                              pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 128, column: 8
+                              cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 129, column: 8
+                              System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 130, column: 8
                             }
                           }
+                          if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                            bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                            currsigs.addElement(bottleLeftReturn);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
                           }
                         }
                         else {
-                          if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                            if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                              collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                              if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                                pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                                cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                                System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                              }
-                            }
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
+                          collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 135, column: 6
+                          if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 138, column: 5
+                            bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 139, column: 6
+                            currsigs.addElement(bottleLeftReturn);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
                           }
                           else {
-                            collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                            if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                              bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                              currsigs.addElement(bottleLeftReturn);
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
                           }
                         }
                       }
@@ -5954,51 +9007,12 @@ public class RecyclingConveyorPlant extends ClockDomain{
                   }
                 }
                 else {
-                  if(collectAtReturn.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 117, column: 12
-                    if(!collecting_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 118, column: 20
-                      collecting_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 119, column: 6
-                      if(pos_thread_1 == LAST_thread_1) {//sysj\recyclingConveyorPlant.sysj line: 120, column: 21
-                        pos_thread_1 = -1;//sysj\recyclingConveyorPlant.sysj line: 121, column: 7
-                        cleared_thread_1 = true;//sysj\recyclingConveyorPlant.sysj line: 122, column: 7
-                        System.out.println("[RCPlant] Bottle removed at the return station.");//sysj\recyclingConveyorPlant.sysj line: 123, column: 7
-                      }
-                    }
-                    if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                      bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                      currsigs.addElement(bottleLeftReturn);
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                    else {
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                  }
-                  else {
-                    collecting_thread_1 = false;//sysj\recyclingConveyorPlant.sysj line: 128, column: 5
-                    if(cleared_thread_1){//sysj\recyclingConveyorPlant.sysj line: 131, column: 4
-                      bottleLeftReturn.setPresent();//sysj\recyclingConveyorPlant.sysj line: 132, column: 5
-                      currsigs.addElement(bottleLeftReturn);
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                    else {
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                  }
+                  active[1]=1;
+                  ends[1]=1;
+                  break RUN;
                 }
               }
-            }
-          }
-          else {
-            active[1]=1;
-            ends[1]=1;
-            break RUN;
+            
           }
         
       }
@@ -6031,6 +9045,7 @@ public class RecyclingConveyorPlant extends ClockDomain{
           recyclingConveyorMotor.gethook();
           injectAtEntry.gethook();
           collectAtReturn.gethook();
+          reset.gethook();
           df = true;
         }
         runClockDomain();
@@ -6039,6 +9054,7 @@ public class RecyclingConveyorPlant extends ClockDomain{
       recyclingConveyorMotor.setpreclear();
       injectAtEntry.setpreclear();
       collectAtReturn.setpreclear();
+      reset.setpreclear();
       bottleAtSplitterExit.setpreclear();
       bottleAtLidRemoval.setpreclear();
       bottleAtDumper.setpreclear();
@@ -6062,6 +9078,9 @@ public class RecyclingConveyorPlant extends ClockDomain{
       dummyint = collectAtReturn.getStatus() ? collectAtReturn.setprepresent() : collectAtReturn.setpreclear();
       collectAtReturn.setpreval(collectAtReturn.getValue());
       collectAtReturn.setClear();
+      dummyint = reset.getStatus() ? reset.setprepresent() : reset.setpreclear();
+      reset.setpreval(reset.getValue());
+      reset.setClear();
       bottleAtSplitterExit.sethook();
       bottleAtSplitterExit.setClear();
       bottleAtLidRemoval.sethook();
@@ -6078,6 +9097,7 @@ public class RecyclingConveyorPlant extends ClockDomain{
         recyclingConveyorMotor.gethook();
         injectAtEntry.gethook();
         collectAtReturn.gethook();
+        reset.gethook();
       }
       runFinisher();
       if(active[1] == 0){

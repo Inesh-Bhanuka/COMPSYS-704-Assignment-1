@@ -14,7 +14,7 @@
 			<oChannel Name="enableReturn"    To="BottleReturnControllerCD.enable" />
 			<oChannel Name="enableConveyor"  To="RecyclingConveyorControllerCD.enable" />
 
-			<iSignal Name="operatorPermit"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15000" />
+			<iSignal Name="reset"             Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15000" />
 			<oSignal Name="recyclingStatus"   To="SystemControllerCD.recyclingStatus"        Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
 		</ClockDomain>
 	</SubSystem>

@@ -27,7 +27,7 @@ public class BottleReturnPlant extends ClockDomain{
   private boolean running_thread_1;//sysj\bottleReturnPlant.sysj line: 29, column: 2
   private boolean carrying_thread_1;//sysj\bottleReturnPlant.sysj line: 30, column: 2
   private RecyclingCapacity bin_thread_1;//sysj\bottleReturnPlant.sysj line: 31, column: 2
-  private int S19721 = 1;
+  private int S26781 = 1;
   
   private int[] ends = new int[2];
   private int[] tdone = new int[2];
@@ -39,14 +39,14 @@ public class BottleReturnPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S19721){
+      switch(S26781){
         case 0 : 
-          S19721=0;
+          S26781=0;
           break RUN;
         
         case 1 : 
-          S19721=2;
-          S19721=2;
+          S26781=2;
+          S26781=2;
           BELT_thread_1 = PlantTiming.ticks(6);//sysj\bottleReturnPlant.sysj line: 23, column: 2
           ARM_thread_1 = PlantTiming.ticks(4);//sysj\bottleReturnPlant.sysj line: 24, column: 2
           BIN_CAPACITY_thread_1 = RecyclingCapacity.BOTTLE_BIN;//sysj\bottleReturnPlant.sysj line: 25, column: 2

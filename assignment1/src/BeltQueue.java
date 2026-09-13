@@ -21,6 +21,16 @@ public class BeltQueue {
 	private int tail = 0;
 	private int count = 0;
 
+	/** Sweep the belt. Used by a hard reset, nothing else. */
+	public void clear() {
+		for (int i = 0; i < q.length; i++) {
+			q[i] = null;
+		}
+		head = 0;
+		tail = 0;
+		count = 0;
+	}
+
 	public void push(WorkpieceTwin w) {
 		if (count == q.length) {
 			System.out.println("[Q] Belt queue full, dropped " + w + ".");

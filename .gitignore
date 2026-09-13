@@ -22,3 +22,7 @@
 hs_err_pid*
 replay_pid*
 /.metadata/
+
+# Python bytecode from the generators in tools/
+__pycache__/
+*.pyc

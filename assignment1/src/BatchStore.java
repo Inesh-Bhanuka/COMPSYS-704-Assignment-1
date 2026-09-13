@@ -26,6 +26,19 @@ public class BatchStore {
 	private final Map<Long, List<WorkpieceTwin>> shelves = new LinkedHashMap<Long, List<WorkpieceTwin>>();
 	private final Map<String, WorkpieceTwin> bySerial = new LinkedHashMap<String, WorkpieceTwin>();
 
+	/**
+	 * Empty the shelves.
+	 *
+	 * A hard reset returns the whole display to a clean line, storage
+	 * included. The bottles themselves are not forgotten - their histories
+	 * stay in the registry's archive, so the audit can still account for
+	 * every one of them afterwards.
+	 */
+	public void clear() {
+		shelves.clear();
+		bySerial.clear();
+	}
+
 	public void store(WorkpieceTwin w) {
 		List<WorkpieceTwin> shelf = shelves.get(w.batchId);
 		if (shelf == null) {

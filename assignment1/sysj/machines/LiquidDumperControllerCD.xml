@@ -7,6 +7,7 @@
 			<oChannel Name="status"          To="RecyclingStationControllerCD.statusDumper" />
 
 			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15400" />
+			<iSignal Name="reset"             Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15400" />
 			<iSignal Name="clampClosed"       Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15400" />
 			<iSignal Name="bottleInverted"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15400" />
 			<iSignal Name="bottleUpright"     Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15400" />
@@ -14,6 +15,7 @@
 			<iSignal Name="wasteTankLevel"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15400" />
 			<iSignal Name="cylClampBottleExtendM" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15400" />
 			<iSignal Name="invertRotateExtendM" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15400" />
+			<iSignal Name="invertRotateRetractM" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15400" />
 			<iSignal Name="drainValveOnOffM"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15400" />
 			<oSignal Name="cylClampBottleExtend" To="LiquidDumperPlantCD.cylClampBottleExtend"  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15401" />
 			<oSignal Name="invertRotateExtend" To="LiquidDumperPlantCD.invertRotateExtend"    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15401" />

@@ -7,7 +7,6 @@
  * a 100ml one at the same percentage.
  */
 FillerController(
-        input GuiPermit signal operatorPermit;
 		// from / to the Rotary Table
 		input  WorkpieceTwin channel start;
 		output WorkpieceTwin channel done;
@@ -17,6 +16,11 @@ FillerController(
 
 		// operating mode
 		input Integer signal mode;
+
+		// Hard reset: drop whatever is held and go back to idle. One tick,
+		// no sequence to finish - the bottle it was working on no longer
+		// exists anywhere else either.
+		input signal reset;
 
 		// to / from the plant
 		output Integer signal fillTarget;
@@ -47,20 +51,10 @@ FillerController(
 		int asked = 0;
 
 		while(true){
-			await(immediate auto);
-
-			abort(immediate manual){
+			abort(immediate reset){
 				receive start;
 				w = (WorkpieceTwin)#start;
-if(w != null){
-boolean permitted = false;
-            pause;
-            while(!permitted){
-                permitted = GuiStep.take(w.nextLiquid() == 0 ? "FILL1" : "FILL2", (GuiPermit)#operatorPermit);
-                pause;
-            }
-            pause;
-}
+
 
 				ml = (w == null) ? 0 : w.nextVolumeMl();
 				asked = ml;
@@ -96,6 +90,7 @@ boolean permitted = false;
 					// Both are held for the whole fill. fillTarget used to be a
 					// single emit, which the plant can miss entirely - it is
 					// on the far side of a link, same as any other signal.
+					abort(immediate auto){ await(immediate valveOpenM); }
 					abort(immediate filled){
 						while(true){
 							emit valveOpen;
@@ -116,22 +111,12 @@ boolean permitted = false;
 					}
 					System.out.println("[FILL] " + w + " now at " + w.filledMl() + "ml.");
 				}
+		
 
 				send done(w);
 			}
-			pause;
-		}
-	}
-	||
-	{ // Manual
-		while(true){
-			await(immediate manual);
-			abort(immediate auto){
-				while(true){
-					present(valveOpenM){ emit valveOpen; }
-					pause;
-				}
-			}
+		
+
 			pause;
 		}
 	}

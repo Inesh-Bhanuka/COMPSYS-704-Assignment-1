@@ -28,7 +28,13 @@ public final class GuiQualityRecoveryTest {
     public static void main(String[] args) {
         try {
             System.setProperty("gui.enabled","true"); System.setProperty("gui.headless","true");
-            System.setProperty("pos.headless","true"); System.setProperty("gui.portOffset","30000");
+            System.setProperty("pos.headless","true");
+            // The receptacles hold 250 by default so a demonstration never
+            // stops to empty one. This test is about what happens when they
+            // do fill, so it asks for the small ones.
+            System.setProperty("abs.lidBinCapacity","3");
+            System.setProperty("abs.bottleBinCapacity","3");
+            System.setProperty("abs.wasteTankCapacity","3"); System.setProperty("gui.portOffset","30000");
             String xml=new String(Files.readAllBytes(Paths.get("sysj/abs.xml")),StandardCharsets.UTF_8);
             java.util.regex.Matcher ports=java.util.regex.Pattern.compile("Port=\"(\\d+)\"").matcher(xml);
             StringBuffer isolated=new StringBuffer();

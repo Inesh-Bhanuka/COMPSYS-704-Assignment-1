@@ -32,89 +32,99 @@ RotaryTablePlant(
 		// than by a workpiece disappearing.
 		output signal bottleAtPos1, bottleAtPos2, bottleAtPos4, bottleAtPos5;
 		output signal exitCleared;
+
+		// Hard reset: forget what is on the machine. Declared state is
+		// re-initialised, not adjusted, because after a reset there is no
+		// bottle anywhere for the old values to describe.
+		input signal reset;
 		)
 ->
 {
-	int ROT = PlantTiming.ticks(6);              // ticks per 60 degree rotation
-	int rotating = 0;
-	boolean[] occ = new boolean[6];
-
-	// Held commands must act once, on their rising edge, not on every tick
-	// they are present for.
-	boolean loading = false;
-	boolean unloading = false;
-	boolean exited = false;
-	boolean triggered = false;
-
 	while(true){
-		present(enable){
+		abort(immediate reset){
+		int ROT = PlantTiming.ticks(6);              // ticks per 60 degree rotation
+		int rotating = 0;
+		boolean[] occ = new boolean[6];
 
-			if(rotating > 0){
-				rotating--;
-				if(rotating == 0){
-					// settle: every bottle advances one position
-					boolean last = occ[5];
-					int i = 5;
-					while(i > 0){
-						occ[i] = occ[i-1];
-						i--;
-					}
-					occ[0] = last;
-					System.out.println("[RTPlant] Rotation complete.");
-				}
-			}
-			else {
-				emit tableAligned;
+		// Held commands must act once, on their rising edge, not on every tick
+		// they are present for.
+		boolean loading = false;
+		boolean unloading = false;
+		boolean exited = false;
+		boolean triggered = false;
 
-				present(rotaryTrigger){
-					if(!triggered){
-						triggered = true;
-						rotating = ROT;
-						System.out.println("[RTPlant] Rotating.");
+		while(true){
+			present(enable){
+
+				if(rotating > 0){
+					rotating--;
+					if(rotating == 0){
+						// settle: every bottle advances one position
+						boolean last = occ[5];
+						int i = 5;
+						while(i > 0){
+							occ[i] = occ[i-1];
+							i--;
+						}
+						occ[0] = last;
+						System.out.println("[RTPlant] Rotation complete.");
 					}
 				}
 				else {
-					triggered = false;
-				}
+					emit tableAligned;
 
-				present(loadPos1){
-					if(!loading){
-						loading = true;
-						if(!occ[0]){
-							occ[0] = true;
-							System.out.println("[RTPlant] Bottle loaded at position 1.");
+					present(rotaryTrigger){
+						if(!triggered){
+							triggered = true;
+							rotating = ROT;
+							System.out.println("[RTPlant] Rotating.");
 						}
 					}
-				}
-				else {
-					loading = false;
-				}
+					else {
+						triggered = false;
+					}
 
-				present(unloadExit){
-					if(!unloading){
-						unloading = true;
-						if(occ[5]){
-							occ[5] = false;
-							exited = true;
-							System.out.println("[RTPlant] Bottle unloaded from position 6.");
+					present(loadPos1){
+						if(!loading){
+							loading = true;
+							if(!occ[0]){
+								occ[0] = true;
+								System.out.println("[RTPlant] Bottle loaded at position 1.");
+							}
 						}
 					}
-				}
-				else {
-					unloading = false;
-					exited = false;
-				}
+					else {
+						loading = false;
+					}
 
-				// presence sensors
-				if(occ[0]){ emit bottleAtPos1; }
-				if(occ[1]){ emit bottleAtPos2; }
-				if(occ[3]){ emit bottleAtPos4; }
-				if(occ[4]){ emit bottleAtPos5; }
+					present(unloadExit){
+						if(!unloading){
+							unloading = true;
+							if(occ[5]){
+								occ[5] = false;
+								exited = true;
+								System.out.println("[RTPlant] Bottle unloaded from position 6.");
+							}
+						}
+					}
+					else {
+						unloading = false;
+						exited = false;
+					}
 
-				// Held for as long as the controller holds unloadExit, so the
-				// controller has something to acknowledge against.
-				if(exited){ emit exitCleared; }
+					// presence sensors
+					if(occ[0]){ emit bottleAtPos1; }
+					if(occ[1]){ emit bottleAtPos2; }
+					if(occ[3]){ emit bottleAtPos4; }
+					if(occ[4]){ emit bottleAtPos5; }
+
+					// Held for as long as the controller holds unloadExit, so the
+					// controller has something to acknowledge against.
+					if(exited){ emit exitCleared; }
+				}
 			}
+			pause;
+		}
 		}
 		pause;
 	}

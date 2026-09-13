@@ -88,8 +88,11 @@ public class A1_GUI extends JFrame {
     private final JButton startButton = new JButton("Start");
     private final JButton pauseButton = new JButton("Pause");
     private final JButton resetButton = new JButton("Reset");
-    private final JButton executeManualButton = new JButton("Enable Selected");
-    private final JButton clearManualButton = new JButton("Clear Ticks");
+    private final JButton sendTickButton = new JButton("Send Tick");
+    private final JButton clearActuatorsButton = new JButton("Clear");
+    private final JLabel assertedLabel = new JLabel("nothing selected");
+    private final java.util.List<JCheckBox> actuatorChecks = new ArrayList<JCheckBox>();
+    private final java.util.List<String> actuatorIds = new ArrayList<String>();
 
     private final JComboBox<String> operationModeCombo = new JComboBox<String>(
             new String[] {"Automatic", "Manual"});
@@ -97,19 +100,6 @@ public class A1_GUI extends JFrame {
     private final JPanel modeCards = new JPanel(modeCardLayout);
     private JPanel automaticControlPanel;
     private JPanel manualControlPanel;
-    private final JCheckBox conveyorACheck = new JCheckBox("Conveyor A move / load");
-    private final JCheckBox rotaryCheck = new JCheckBox("Index rotary table");
-    private final JCheckBox liquid1Check = new JCheckBox("Liquid 1 fill");
-    private final JCheckBox liquid2Check = new JCheckBox("Liquid 2 fill");
-    private final JCheckBox lidCheck = new JCheckBox("Place lid");
-    private final JCheckBox capperCheck = new JCheckBox("Screw lid with capper");
-    private final JCheckBox conveyorBCheck = new JCheckBox("Conveyor B move / collect");
-    private final JCheckBox inspectCheck = new JCheckBox("Quality inspect / split");
-    private final JCheckBox labelCheck = new JCheckBox("Label and batch store");
-    private final JCheckBox recycleCheck = new JCheckBox("Recycle failed product");
-    private final JCheckBox[] manualChecks = {conveyorACheck, rotaryCheck,
-            liquid1Check, liquid2Check, lidCheck, capperCheck, conveyorBCheck,
-            inspectCheck, labelCheck, recycleCheck};
 
     private final JProgressBar batchProgressBar = new JProgressBar();
     private final JLabel batchInfoLabel = new JLabel("No active batch");
@@ -189,11 +179,6 @@ public class A1_GUI extends JFrame {
         startButton.addActionListener(e -> send(new GuiCommand("START")));
         pauseButton.addActionListener(e -> send(new GuiCommand("PAUSE")));
         resetButton.addActionListener(e -> send(new GuiCommand("RESET")));
-        executeManualButton.setName("Enable Selected");
-        clearManualButton.setName("Clear Ticks");
-        for (int i = 0; i < manualChecks.length; i++) manualChecks[i].setName("operation-" + GuiSupervisor.OPERATIONS[i]);
-        executeManualButton.addActionListener(e -> executeManualControls());
-        clearManualButton.addActionListener(e -> { for (JCheckBox check : manualChecks) check.setSelected(false); });
         operationModeCombo.addActionListener(e -> {
             if (!updating) send(new GuiCommand(operationModeCombo.getSelectedIndex() == 0 ? "AUTO" : "MANUAL"));
         });
@@ -282,8 +267,15 @@ public class A1_GUI extends JFrame {
         content.add(modeRow);
         content.add(Box.createVerticalStrut(8));
 
+        // Start, Pause and Reset sit above the mode cards rather than inside
+        // the automatic one. They are line commands, not automatic ones: in
+        // manual, Start is how a bottle gets booked in for the operator to
+        // walk down the line, so hiding it there left no way to begin.
+        content.add(createLineControlPanel());
+        content.add(Box.createVerticalStrut(8));
+
         modeCards.setOpaque(false);
-        automaticControlPanel = createAutomaticControlPanel();
+        automaticControlPanel = createAutomaticPlaceholder();
         manualControlPanel = createManualControlPanel();
         modeCards.add(automaticControlPanel, "AUTO");
         modeCards.add(manualControlPanel, "MANUAL");
@@ -365,7 +357,24 @@ public class A1_GUI extends JFrame {
         return content;
     }
 
-    private JPanel createAutomaticControlPanel() {
+    /**
+     * What the automatic card shows: a line of text, because in automatic the
+     * line runs itself and there is nothing to press beyond Start and Pause,
+     * which now live above the card.
+     */
+    private JPanel createAutomaticPlaceholder() {
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.setOpaque(false);
+        JLabel note = new JLabel("<html><body style='width:190px'>"
+                + "Automatic: the coordinator runs the plan. Switch to Manual to drive "
+                + "the actuators one tick at a time.</body></html>");
+        note.setFont(new Font("SansSerif", Font.PLAIN, 10));
+        note.setForeground(LINE);
+        panel.add(note, BorderLayout.NORTH);
+        return panel;
+    }
+
+    private JPanel createLineControlPanel() {
         JPanel buttons = new JPanel(new GridBagLayout());
         buttons.setOpaque(false);
         styleBlackButton(startButton);
@@ -386,40 +395,144 @@ public class A1_GUI extends JFrame {
     }
 
     private JPanel createManualControlPanel() {
-        JPanel manual = new JPanel(new GridBagLayout());
-        manual.setOpaque(false);
+        return createActuatorPanel();
+    }
+
+    /**
+     * Direct actuator control, one operator tick at a time.
+     *
+     * Tick the signals you want asserted and press Send Tick: they are all
+     * emitted together for exactly one tick of the plant, then drop. That is
+     * the unit the plant actually runs in, so what you select is what the
+     * clock domains see in one instant - which is the thing worth being able
+     * to demonstrate, and the thing a held button cannot express.
+     *
+     * The boxes are built from ManualActuator, which is generated from the
+     * same table as the operator panel clock domain, so the panel cannot
+     * offer a signal the plant does not have.
+     */
+    private JPanel createActuatorPanel() {
+        JPanel grid = new JPanel(new GridBagLayout());
+        grid.setOpaque(false);
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.WEST;
         c.weightx = 1;
-        c.insets = new Insets(1, 0, 1, 0);
         c.gridx = 0;
         c.gridy = 0;
-        for (JCheckBox checkBox : manualChecks) {
-            checkBox.setOpaque(false);
-            checkBox.setFont(new Font("SansSerif", Font.PLAIN, 10));
-            checkBox.setForeground(LINE);
-            manual.add(checkBox, c);
+        c.insets = new Insets(1, 0, 1, 0);
+
+        JLabel how = new JLabel("<html><body style='width:190px'>"
+                + "Pick Manual, press Start to book a bottle in, then tick the signals "
+                + "for the next move and press Send Tick. Each tick commands one stroke; "
+                + "the station holds it until its own sensor says the move is done."
+                + "</body></html>");
+        how.setFont(new Font("SansSerif", Font.PLAIN, 10));
+        how.setForeground(LINE);
+        how.setBorder(new EmptyBorder(0, 0, 6, 0));
+        grid.add(how, c);
+        c.gridy++;
+
+        String machine = null;
+        for (ManualActuator actuator : ManualActuator.all()) {
+            if (!actuator.machine.equals(machine)) {
+                machine = actuator.machine;
+                JLabel heading = new JLabel(machine.toUpperCase());
+                heading.setFont(new Font("SansSerif", Font.BOLD, 9));
+                heading.setForeground(LINE);
+                heading.setBorder(new EmptyBorder(8, 0, 2, 0));
+                grid.add(heading, c);
+                c.gridy++;
+            }
+            JCheckBox box = new JCheckBox(actuator.label);
+            box.setName("actuator-" + actuator.id);
+            box.setOpaque(false);
+            box.setFont(new Font("SansSerif", Font.PLAIN, 10));
+            box.setForeground(LINE);
+            box.addActionListener(e -> updateAssertedLabel());
+            actuatorChecks.add(box);
+            actuatorIds.add(actuator.id);
+            grid.add(box, c);
             c.gridy++;
         }
 
         JPanel buttons = new JPanel(new GridBagLayout());
         buttons.setOpaque(false);
-        styleBlackButton(executeManualButton);
-        styleBlackButton(clearManualButton);
+        styleBlackButton(sendTickButton);
+        styleBlackButton(clearActuatorsButton);
+        sendTickButton.addActionListener(e -> sendActuatorTick());
+        clearActuatorsButton.addActionListener(e -> clearActuatorSelection());
         GridBagConstraints b = new GridBagConstraints();
         b.fill = GridBagConstraints.HORIZONTAL;
         b.weightx = 1;
         b.insets = new Insets(4, 2, 0, 2);
         b.gridx = 0;
-        buttons.add(executeManualButton, b);
+        buttons.add(sendTickButton, b);
         b.gridx = 1;
-        buttons.add(clearManualButton, b);
-        c.fill = GridBagConstraints.HORIZONTAL;
+        buttons.add(clearActuatorsButton, b);
+        c.insets = new Insets(10, 0, 0, 0);
+        grid.add(buttons, c);
+        c.gridy++;
+        assertedLabel.setFont(new Font("SansSerif", Font.PLAIN, 10));
+        assertedLabel.setForeground(LINE);
         c.insets = new Insets(4, 0, 0, 0);
-        manual.add(buttons, c);
-        return manual;
+        grid.add(assertedLabel, c);
+
+        JPanel holder = new JPanel(new BorderLayout());
+        holder.setOpaque(false);
+        holder.add(grid, BorderLayout.NORTH);
+        JScrollPane scroll = new JScrollPane(holder);
+        scroll.setBorder(null);
+        scroll.setOpaque(false);
+        scroll.getViewport().setOpaque(false);
+        scroll.getVerticalScrollBar().setUnitIncrement(16);
+        scroll.setPreferredSize(new Dimension(10, 260));
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.setOpaque(false);
+        panel.add(scroll, BorderLayout.CENTER);
+        return panel;
     }
+
+    private java.util.Set<String> selectedActuators() {
+        java.util.Set<String> ids = new java.util.LinkedHashSet<String>();
+        for (int i = 0; i < actuatorChecks.size(); i++) {
+            if (actuatorChecks.get(i).isSelected()) {
+                ids.add(actuatorIds.get(i));
+            }
+        }
+        return ids;
+    }
+
+    /** Emit the selection for one tick. The boxes stay ticked, so a sequence
+     *  can be stepped by pressing Send Tick again. */
+    private void sendActuatorTick() {
+        java.util.Set<String> ids = selectedActuators();
+        if (ids.isEmpty()) {
+            assertedLabel.setText("select at least one signal");
+            assertedLabel.setForeground(AMBER.darker());
+            return;
+        }
+        boolean sent = client.sendTick(ids);
+        assertedLabel.setText(sent
+                ? "tick " + client.ticksSent() + " sent: " + ids.size() + " signal" + (ids.size() == 1 ? "" : "s")
+                : "not connected");
+        assertedLabel.setForeground(sent ? GREEN : RED);
+    }
+
+    private void clearActuatorSelection() {
+        for (JCheckBox box : actuatorChecks) {
+            box.setSelected(false);
+        }
+        updateAssertedLabel();
+    }
+
+    private void updateAssertedLabel() {
+        int n = selectedActuators().size();
+        assertedLabel.setText(n == 0 ? "nothing selected"
+                : n + " signal" + (n == 1 ? "" : "s") + " selected");
+        assertedLabel.setForeground(n > 0 ? NAVY : LINE);
+    }
+
 
     private void setModeCardHeight(JPanel visibleCard) {
         int cardHeight = visibleCard.getPreferredSize().height;
@@ -487,11 +600,6 @@ public class A1_GUI extends JFrame {
         commandLabel.setText(client.send(command) ? "Command sent; awaiting controller" : "No live connection / command queue full");
     }
 
-    private void executeManualControls() {
-        List<String> operations = new ArrayList<String>();
-        for (int i = 0; i < manualChecks.length; i++) if (manualChecks[i].isSelected()) operations.add(GuiSupervisor.OPERATIONS[i]);
-        if (!operations.isEmpty()) send(new GuiCommand("ENABLE", operations, 0));
-    }
 
     /** The timer renders received values only; it never advances production. */
     void refreshView() {
@@ -505,11 +613,23 @@ public class A1_GUI extends JFrame {
             modeCardLayout.show(modeCards, manual ? "MANUAL" : "AUTO");
             setModeCardHeight(manual ? manualControlPanel : automaticControlPanel);
             operationModeCombo.setEnabled(connected);
-            startButton.setEnabled(connected && !manual);
-            pauseButton.setEnabled(connected && !manual);
+            // Start books a bottle in whichever mode the line is in; Pause
+            // stops admission the same way. Neither is automatic-only.
+            startButton.setEnabled(connected);
+            pauseButton.setEnabled(connected);
             resetButton.setEnabled(connected);
-            executeManualButton.setEnabled(connected && manual);
-            clearManualButton.setEnabled(manual);
+
+            // The actuator signals only reach the plant while the machines
+            // are in manual, so clear a stale selection the moment that stops
+            // being true rather than letting it survive a mode change.
+            if (!manual && !selectedActuators().isEmpty()) {
+                clearActuatorSelection();
+            }
+            for (JCheckBox actuator : actuatorChecks) {
+                actuator.setEnabled(connected && manual);
+            }
+            sendTickButton.setEnabled(connected && manual);
+            clearActuatorsButton.setEnabled(connected && manual);
             faultModeCombo.setEnabled(connected);
             lineStateLabel.setText(connected ? snapshot.state : "DISCONNECTED");
             lineStateLabel.setForeground(!connected ? RED : "RUNNING".equals(snapshot.state) ? GREEN : AMBER.darker());
@@ -1017,13 +1137,25 @@ public class A1_GUI extends JFrame {
         private int[] position(Bottle b) {
             GuiSnapshot.Bottle d = b.data;
             if (d.position >= 0 && d.position < 6) return new int[]{550 + stationX[d.position], 345 + stationY[d.position]};
+
+            // Terminal states first: these are piles, not places on the line.
             if ("DONE".equals(d.stage)) return new int[]{857 + (int)(d.id % 4) * 27, 789};
             if ("RECOVERED".equals(d.stage)) return new int[]{126 + (int)(d.id % 4) * 28, 731};
+
             if ("LOADER".equals(d.location)) return new int[]{210, 375};
             if ("LABELLER".equals(d.location)) return new int[]{900, 703};
-            if ("RECYCLING".equals(d.location)) return new int[]{275, 714};
-            if ("SPLITTER".equals(d.location)) return new int[]{613, 714};
-            return "LOADED".equals(d.stage) ? new int[]{320, 375} : new int[]{555, 590};
+            // Centres, not eyeballed offsets: the splitter belt is drawn at
+            // x 290 width 510, so its middle is 545, and the recycling box at
+            // x 91 width 165, so its middle is 173.
+            if ("RECYCLING".equals(d.location)) return new int[]{173, 715};
+            if ("SPLITTER".equals(d.location)) return new int[]{545, 715};
+
+            // Which belt, from the record of which belt took it - not from the
+            // lifecycle stage. An unfilled bottle leaving the table is still
+            // LOADED, and reading the stage here is what used to send it back
+            // to the infeed as though it had never started.
+            if ("CONVEYOR_OUT".equals(d.location)) return new int[]{555, 590};
+            return new int[]{320, 375};
         }
 
         private void drawBottles(Graphics2D g) {
@@ -1033,7 +1165,10 @@ public class A1_GUI extends JFrame {
                 paintedBottles.put(b.data.id, new Rectangle(p[0] - 15, p[1] - 29, 30, 50));
             }
             String[] machines = {"LOADER", "CONVEYOR", "ROTARY_TABLE", "FILLER1", "FILLER2", "LID_LOADER", "LID_CAPPER", "SPLITTER", "RECYCLING", "LABELLER", "BATCH_STORAGE"};
-            int[][] lamps = {{167,300},{300,405},{550,345},{440,75},{615,55},{995,65},{875,340},{700,748},{230,675},{967,665},{967,782}};
+            // Each lamp sits inside the machine it belongs to. The splitter's
+            // used to sit under its belt, which read as a stray dot once the
+            // scrap bin that happened to be beneath it was removed.
+            int[][] lamps = {{167,300},{300,405},{550,345},{440,75},{615,55},{995,65},{875,340},{766,688},{230,675},{967,665},{967,782}};
             for (int i = 0; i < machines.length; i++) {
                 String state = snapshot == null ? "UNKNOWN" : snapshot.stations.getOrDefault(machines[i], "IDLE");
                 Color light = state.contains("FAULT") ? RED : state.contains("WORKING") || state.contains("ACTIVE") || state.contains("RUNNING") ? GREEN : AMBER;

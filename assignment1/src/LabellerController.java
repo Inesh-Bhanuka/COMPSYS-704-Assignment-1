@@ -11,8 +11,8 @@ public class LabellerController extends ClockDomain{
   private char [] active;
   private char [] paused;
   private char [] suspended;
-  public Signal operatorPermit = new Signal("operatorPermit", Signal.INPUT);
   public Signal mode = new Signal("mode", Signal.INPUT);
+  public Signal reset = new Signal("reset", Signal.INPUT);
   public Signal bottleAtLabeller = new Signal("bottleAtLabeller", Signal.INPUT);
   public Signal labelPrinted = new Signal("labelPrinted", Signal.INPUT);
   public Signal labelApplied = new Signal("labelApplied", Signal.INPUT);
@@ -21,6 +21,7 @@ public class LabellerController extends ClockDomain{
   public Signal labelStock = new Signal("labelStock", Signal.INPUT);
   public Signal glueLevel = new Signal("glueLevel", Signal.INPUT);
   public Signal applyLabelExtendM = new Signal("applyLabelExtendM", Signal.INPUT);
+  public Signal applyLabelRetractM = new Signal("applyLabelRetractM", Signal.INPUT);
   public Signal rollerOnOffM = new Signal("rollerOnOffM", Signal.INPUT);
   public Signal printLabel = new Signal("printLabel", Signal.OUTPUT);
   public Signal applyLabelExtend = new Signal("applyLabelExtend", Signal.OUTPUT);
@@ -32,193 +33,32 @@ public class LabellerController extends ClockDomain{
   public output_Channel labelDone_o = new output_Channel();
   private Signal auto_1;
   private Signal manual_1;
-  private LabellerTwin t_thread_3;//sysj\labellerController.sysj line: 54, column: 3
-  private WorkpieceTwin w_thread_3;//sysj\labellerController.sysj line: 55, column: 3
-  private LabelData label_thread_3;//sysj\labellerController.sysj line: 56, column: 3
-  private String refusal_thread_3;//sysj\labellerController.sysj line: 57, column: 3
-  private LabellerTwin t_thread_4;//sysj\labellerController.sysj line: 139, column: 3
-  private int labels_thread_4;//sysj\labellerController.sysj line: 140, column: 3
-  private int glue_thread_4;//sysj\labellerController.sysj line: 141, column: 3
-  private boolean labelsReported_thread_4;//sysj\labellerController.sysj line: 142, column: 3
-  private boolean glueReported_thread_4;//sysj\labellerController.sysj line: 143, column: 3
-  private boolean permitted_thread_3;//sysj\labellerController.sysj line: 66, column: 1
-  private int S73770 = 1;
-  private int S51454 = 1;
-  private int S73500 = 1;
-  private int S55129 = 1;
-  private int S51479 = 1;
-  private int S51463 = 1;
-  private int S51458 = 1;
-  private int S51480 = 1;
-  private int S51548 = 1;
-  private int S51960 = 1;
-  private int S51955 = 1;
-  private int S73616 = 1;
-  private int S73768 = 1;
-  private int S73666 = 1;
+  private LabellerTwin t_thread_3;//sysj\labellerController.sysj line: 58, column: 3
+  private WorkpieceTwin w_thread_3;//sysj\labellerController.sysj line: 59, column: 3
+  private LabelData label_thread_3;//sysj\labellerController.sysj line: 60, column: 3
+  private String refusal_thread_3;//sysj\labellerController.sysj line: 61, column: 3
+  private LabellerTwin t_thread_4;//sysj\labellerController.sysj line: 155, column: 3
+  private int labels_thread_4;//sysj\labellerController.sysj line: 156, column: 3
+  private int glue_thread_4;//sysj\labellerController.sysj line: 157, column: 3
+  private boolean labelsReported_thread_4;//sysj\labellerController.sysj line: 158, column: 3
+  private boolean glueReported_thread_4;//sysj\labellerController.sysj line: 159, column: 3
+  private int S77873 = 1;
+  private int S68747 = 1;
+  private int S77755 = 1;
+  private int S70249 = 1;
+  private int S68771 = 1;
+  private int S68755 = 1;
+  private int S68750 = 1;
+  private int S68776 = 1;
+  private int S69506 = 1;
+  private int S69501 = 1;
+  private int S77871 = 1;
   
-  private int[] ends = new int[6];
-  private int[] tdone = new int[6];
+  private int[] ends = new int[5];
+  private int[] tdone = new int[5];
   
-  public void thread73780(int [] tdone, int [] ends){
-        switch(S73768){
-      case 0 : 
-        active[5]=0;
-        ends[5]=0;
-        tdone[5]=1;
-        break;
-      
-      case 1 : 
-        switch(S73666){
-          case 0 : 
-            if(manual_1.getprestatus()){//sysj\labellerController.sysj line: 174, column: 20
-              S73666=1;
-              if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 175, column: 20
-                S73666=2;
-                active[5]=1;
-                ends[5]=1;
-                tdone[5]=1;
-              }
-              else {
-                if(applyLabelExtendM.getprestatus()){//sysj\labellerController.sysj line: 177, column: 14
-                  applyLabelExtend.setPresent();//sysj\labellerController.sysj line: 177, column: 34
-                  currsigs.addElement(applyLabelExtend);
-                  if(rollerOnOffM.getprestatus()){//sysj\labellerController.sysj line: 178, column: 14
-                    rollerOnOff.setPresent();//sysj\labellerController.sysj line: 178, column: 29
-                    currsigs.addElement(rollerOnOff);
-                    active[5]=1;
-                    ends[5]=1;
-                    tdone[5]=1;
-                  }
-                  else {
-                    active[5]=1;
-                    ends[5]=1;
-                    tdone[5]=1;
-                  }
-                }
-                else {
-                  if(rollerOnOffM.getprestatus()){//sysj\labellerController.sysj line: 178, column: 14
-                    rollerOnOff.setPresent();//sysj\labellerController.sysj line: 178, column: 29
-                    currsigs.addElement(rollerOnOff);
-                    active[5]=1;
-                    ends[5]=1;
-                    tdone[5]=1;
-                  }
-                  else {
-                    active[5]=1;
-                    ends[5]=1;
-                    tdone[5]=1;
-                  }
-                }
-              }
-            }
-            else {
-              active[5]=1;
-              ends[5]=1;
-              tdone[5]=1;
-            }
-            break;
-          
-          case 1 : 
-            if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 175, column: 20
-              S73666=2;
-              active[5]=1;
-              ends[5]=1;
-              tdone[5]=1;
-            }
-            else {
-              if(applyLabelExtendM.getprestatus()){//sysj\labellerController.sysj line: 177, column: 14
-                applyLabelExtend.setPresent();//sysj\labellerController.sysj line: 177, column: 34
-                currsigs.addElement(applyLabelExtend);
-                if(rollerOnOffM.getprestatus()){//sysj\labellerController.sysj line: 178, column: 14
-                  rollerOnOff.setPresent();//sysj\labellerController.sysj line: 178, column: 29
-                  currsigs.addElement(rollerOnOff);
-                  active[5]=1;
-                  ends[5]=1;
-                  tdone[5]=1;
-                }
-                else {
-                  active[5]=1;
-                  ends[5]=1;
-                  tdone[5]=1;
-                }
-              }
-              else {
-                if(rollerOnOffM.getprestatus()){//sysj\labellerController.sysj line: 178, column: 14
-                  rollerOnOff.setPresent();//sysj\labellerController.sysj line: 178, column: 29
-                  currsigs.addElement(rollerOnOff);
-                  active[5]=1;
-                  ends[5]=1;
-                  tdone[5]=1;
-                }
-                else {
-                  active[5]=1;
-                  ends[5]=1;
-                  tdone[5]=1;
-                }
-              }
-            }
-            break;
-          
-          case 2 : 
-            S73666=2;
-            S73666=0;
-            if(manual_1.getprestatus()){//sysj\labellerController.sysj line: 174, column: 20
-              S73666=1;
-              if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 175, column: 20
-                S73666=2;
-                active[5]=1;
-                ends[5]=1;
-                tdone[5]=1;
-              }
-              else {
-                if(applyLabelExtendM.getprestatus()){//sysj\labellerController.sysj line: 177, column: 14
-                  applyLabelExtend.setPresent();//sysj\labellerController.sysj line: 177, column: 34
-                  currsigs.addElement(applyLabelExtend);
-                  if(rollerOnOffM.getprestatus()){//sysj\labellerController.sysj line: 178, column: 14
-                    rollerOnOff.setPresent();//sysj\labellerController.sysj line: 178, column: 29
-                    currsigs.addElement(rollerOnOff);
-                    active[5]=1;
-                    ends[5]=1;
-                    tdone[5]=1;
-                  }
-                  else {
-                    active[5]=1;
-                    ends[5]=1;
-                    tdone[5]=1;
-                  }
-                }
-                else {
-                  if(rollerOnOffM.getprestatus()){//sysj\labellerController.sysj line: 178, column: 14
-                    rollerOnOff.setPresent();//sysj\labellerController.sysj line: 178, column: 29
-                    currsigs.addElement(rollerOnOff);
-                    active[5]=1;
-                    ends[5]=1;
-                    tdone[5]=1;
-                  }
-                  else {
-                    active[5]=1;
-                    ends[5]=1;
-                    tdone[5]=1;
-                  }
-                }
-              }
-            }
-            else {
-              active[5]=1;
-              ends[5]=1;
-              tdone[5]=1;
-            }
-            break;
-          
-        }
-        break;
-      
-    }
-  }
-
-  public void thread73779(int [] tdone, int [] ends){
-        switch(S73616){
+  public void thread77881(int [] tdone, int [] ends){
+        switch(S77871){
       case 0 : 
         active[4]=0;
         ends[4]=0;
@@ -226,44 +66,44 @@ public class LabellerController extends ClockDomain{
         break;
       
       case 1 : 
-        if(labelStock.getprestatus()){//sysj\labellerController.sysj line: 146, column: 12
-          labels_thread_4 = (Integer)(labelStock.getpreval() == null ? null : ((Integer)labelStock.getpreval()));//sysj\labellerController.sysj line: 146, column: 25
-          if(glueLevel.getprestatus()){//sysj\labellerController.sysj line: 147, column: 12
-            glue_thread_4 = (Integer)(glueLevel.getpreval() == null ? null : ((Integer)glueLevel.getpreval()));//sysj\labellerController.sysj line: 147, column: 24
-            if(labelStockLow.getprestatus()){//sysj\labellerController.sysj line: 149, column: 12
-              if(!labelsReported_thread_4) {//sysj\labellerController.sysj line: 150, column: 24
-                System.out.println("[LAB] Label stock low: " + labels_thread_4 + " left.");//sysj\labellerController.sysj line: 151, column: 6
-                labelsReported_thread_4 = true;//sysj\labellerController.sysj line: 152, column: 6
+        if(labelStock.getprestatus()){//sysj\labellerController.sysj line: 162, column: 12
+          labels_thread_4 = (Integer)(labelStock.getpreval() == null ? null : ((Integer)labelStock.getpreval()));//sysj\labellerController.sysj line: 162, column: 25
+          if(glueLevel.getprestatus()){//sysj\labellerController.sysj line: 163, column: 12
+            glue_thread_4 = (Integer)(glueLevel.getpreval() == null ? null : ((Integer)glueLevel.getpreval()));//sysj\labellerController.sysj line: 163, column: 24
+            if(labelStockLow.getprestatus()){//sysj\labellerController.sysj line: 165, column: 12
+              if(!labelsReported_thread_4) {//sysj\labellerController.sysj line: 166, column: 24
+                System.out.println("[LAB] Label stock low: " + labels_thread_4 + " left.");//sysj\labellerController.sysj line: 167, column: 6
+                labelsReported_thread_4 = true;//sysj\labellerController.sysj line: 168, column: 6
               }
-              if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 159, column: 12
-                if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 160, column: 22
-                  System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 161, column: 6
-                  glueReported_thread_4 = true;//sysj\labellerController.sysj line: 162, column: 6
+              if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 175, column: 12
+                if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 176, column: 22
+                  System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 177, column: 6
+                  glueReported_thread_4 = true;//sysj\labellerController.sysj line: 178, column: 6
                 }
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
               }
               else {
-                glueReported_thread_4 = false;//sysj\labellerController.sysj line: 166, column: 5
+                glueReported_thread_4 = false;//sysj\labellerController.sysj line: 182, column: 5
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
               }
             }
             else {
-              labelsReported_thread_4 = false;//sysj\labellerController.sysj line: 156, column: 5
-              if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 159, column: 12
-                if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 160, column: 22
-                  System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 161, column: 6
-                  glueReported_thread_4 = true;//sysj\labellerController.sysj line: 162, column: 6
+              labelsReported_thread_4 = false;//sysj\labellerController.sysj line: 172, column: 5
+              if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 175, column: 12
+                if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 176, column: 22
+                  System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 177, column: 6
+                  glueReported_thread_4 = true;//sysj\labellerController.sysj line: 178, column: 6
                 }
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
               }
               else {
-                glueReported_thread_4 = false;//sysj\labellerController.sysj line: 166, column: 5
+                glueReported_thread_4 = false;//sysj\labellerController.sysj line: 182, column: 5
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
@@ -271,40 +111,40 @@ public class LabellerController extends ClockDomain{
             }
           }
           else {
-            if(labelStockLow.getprestatus()){//sysj\labellerController.sysj line: 149, column: 12
-              if(!labelsReported_thread_4) {//sysj\labellerController.sysj line: 150, column: 24
-                System.out.println("[LAB] Label stock low: " + labels_thread_4 + " left.");//sysj\labellerController.sysj line: 151, column: 6
-                labelsReported_thread_4 = true;//sysj\labellerController.sysj line: 152, column: 6
+            if(labelStockLow.getprestatus()){//sysj\labellerController.sysj line: 165, column: 12
+              if(!labelsReported_thread_4) {//sysj\labellerController.sysj line: 166, column: 24
+                System.out.println("[LAB] Label stock low: " + labels_thread_4 + " left.");//sysj\labellerController.sysj line: 167, column: 6
+                labelsReported_thread_4 = true;//sysj\labellerController.sysj line: 168, column: 6
               }
-              if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 159, column: 12
-                if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 160, column: 22
-                  System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 161, column: 6
-                  glueReported_thread_4 = true;//sysj\labellerController.sysj line: 162, column: 6
+              if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 175, column: 12
+                if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 176, column: 22
+                  System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 177, column: 6
+                  glueReported_thread_4 = true;//sysj\labellerController.sysj line: 178, column: 6
                 }
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
               }
               else {
-                glueReported_thread_4 = false;//sysj\labellerController.sysj line: 166, column: 5
+                glueReported_thread_4 = false;//sysj\labellerController.sysj line: 182, column: 5
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
               }
             }
             else {
-              labelsReported_thread_4 = false;//sysj\labellerController.sysj line: 156, column: 5
-              if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 159, column: 12
-                if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 160, column: 22
-                  System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 161, column: 6
-                  glueReported_thread_4 = true;//sysj\labellerController.sysj line: 162, column: 6
+              labelsReported_thread_4 = false;//sysj\labellerController.sysj line: 172, column: 5
+              if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 175, column: 12
+                if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 176, column: 22
+                  System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 177, column: 6
+                  glueReported_thread_4 = true;//sysj\labellerController.sysj line: 178, column: 6
                 }
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
               }
               else {
-                glueReported_thread_4 = false;//sysj\labellerController.sysj line: 166, column: 5
+                glueReported_thread_4 = false;//sysj\labellerController.sysj line: 182, column: 5
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
@@ -313,42 +153,42 @@ public class LabellerController extends ClockDomain{
           }
         }
         else {
-          if(glueLevel.getprestatus()){//sysj\labellerController.sysj line: 147, column: 12
-            glue_thread_4 = (Integer)(glueLevel.getpreval() == null ? null : ((Integer)glueLevel.getpreval()));//sysj\labellerController.sysj line: 147, column: 24
-            if(labelStockLow.getprestatus()){//sysj\labellerController.sysj line: 149, column: 12
-              if(!labelsReported_thread_4) {//sysj\labellerController.sysj line: 150, column: 24
-                System.out.println("[LAB] Label stock low: " + labels_thread_4 + " left.");//sysj\labellerController.sysj line: 151, column: 6
-                labelsReported_thread_4 = true;//sysj\labellerController.sysj line: 152, column: 6
+          if(glueLevel.getprestatus()){//sysj\labellerController.sysj line: 163, column: 12
+            glue_thread_4 = (Integer)(glueLevel.getpreval() == null ? null : ((Integer)glueLevel.getpreval()));//sysj\labellerController.sysj line: 163, column: 24
+            if(labelStockLow.getprestatus()){//sysj\labellerController.sysj line: 165, column: 12
+              if(!labelsReported_thread_4) {//sysj\labellerController.sysj line: 166, column: 24
+                System.out.println("[LAB] Label stock low: " + labels_thread_4 + " left.");//sysj\labellerController.sysj line: 167, column: 6
+                labelsReported_thread_4 = true;//sysj\labellerController.sysj line: 168, column: 6
               }
-              if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 159, column: 12
-                if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 160, column: 22
-                  System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 161, column: 6
-                  glueReported_thread_4 = true;//sysj\labellerController.sysj line: 162, column: 6
+              if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 175, column: 12
+                if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 176, column: 22
+                  System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 177, column: 6
+                  glueReported_thread_4 = true;//sysj\labellerController.sysj line: 178, column: 6
                 }
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
               }
               else {
-                glueReported_thread_4 = false;//sysj\labellerController.sysj line: 166, column: 5
+                glueReported_thread_4 = false;//sysj\labellerController.sysj line: 182, column: 5
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
               }
             }
             else {
-              labelsReported_thread_4 = false;//sysj\labellerController.sysj line: 156, column: 5
-              if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 159, column: 12
-                if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 160, column: 22
-                  System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 161, column: 6
-                  glueReported_thread_4 = true;//sysj\labellerController.sysj line: 162, column: 6
+              labelsReported_thread_4 = false;//sysj\labellerController.sysj line: 172, column: 5
+              if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 175, column: 12
+                if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 176, column: 22
+                  System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 177, column: 6
+                  glueReported_thread_4 = true;//sysj\labellerController.sysj line: 178, column: 6
                 }
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
               }
               else {
-                glueReported_thread_4 = false;//sysj\labellerController.sysj line: 166, column: 5
+                glueReported_thread_4 = false;//sysj\labellerController.sysj line: 182, column: 5
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
@@ -356,40 +196,40 @@ public class LabellerController extends ClockDomain{
             }
           }
           else {
-            if(labelStockLow.getprestatus()){//sysj\labellerController.sysj line: 149, column: 12
-              if(!labelsReported_thread_4) {//sysj\labellerController.sysj line: 150, column: 24
-                System.out.println("[LAB] Label stock low: " + labels_thread_4 + " left.");//sysj\labellerController.sysj line: 151, column: 6
-                labelsReported_thread_4 = true;//sysj\labellerController.sysj line: 152, column: 6
+            if(labelStockLow.getprestatus()){//sysj\labellerController.sysj line: 165, column: 12
+              if(!labelsReported_thread_4) {//sysj\labellerController.sysj line: 166, column: 24
+                System.out.println("[LAB] Label stock low: " + labels_thread_4 + " left.");//sysj\labellerController.sysj line: 167, column: 6
+                labelsReported_thread_4 = true;//sysj\labellerController.sysj line: 168, column: 6
               }
-              if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 159, column: 12
-                if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 160, column: 22
-                  System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 161, column: 6
-                  glueReported_thread_4 = true;//sysj\labellerController.sysj line: 162, column: 6
+              if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 175, column: 12
+                if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 176, column: 22
+                  System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 177, column: 6
+                  glueReported_thread_4 = true;//sysj\labellerController.sysj line: 178, column: 6
                 }
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
               }
               else {
-                glueReported_thread_4 = false;//sysj\labellerController.sysj line: 166, column: 5
+                glueReported_thread_4 = false;//sysj\labellerController.sysj line: 182, column: 5
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
               }
             }
             else {
-              labelsReported_thread_4 = false;//sysj\labellerController.sysj line: 156, column: 5
-              if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 159, column: 12
-                if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 160, column: 22
-                  System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 161, column: 6
-                  glueReported_thread_4 = true;//sysj\labellerController.sysj line: 162, column: 6
+              labelsReported_thread_4 = false;//sysj\labellerController.sysj line: 172, column: 5
+              if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 175, column: 12
+                if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 176, column: 22
+                  System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 177, column: 6
+                  glueReported_thread_4 = true;//sysj\labellerController.sysj line: 178, column: 6
                 }
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
               }
               else {
-                glueReported_thread_4 = false;//sysj\labellerController.sysj line: 166, column: 5
+                glueReported_thread_4 = false;//sysj\labellerController.sysj line: 182, column: 5
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
@@ -402,8 +242,8 @@ public class LabellerController extends ClockDomain{
     }
   }
 
-  public void thread73778(int [] tdone, int [] ends){
-        switch(S73500){
+  public void thread77880(int [] tdone, int [] ends){
+        switch(S77755){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -411,876 +251,46 @@ public class LabellerController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S55129){
+        switch(S70249){
           case 0 : 
-            if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 60, column: 20
-              S55129=1;
-              if(manual_1.getprestatus()){//sysj\labellerController.sysj line: 62, column: 20
-                labelBottle_in.setPreempted();
-                labelDone_o.setPreempted();
-                S55129=2;
-                active[3]=1;
-                ends[3]=1;
-                tdone[3]=1;
-              }
-              else {
-                S51479=0;
-                S51463=0;
-                if(!labelBottle_in.isPartnerPresent() || labelBottle_in.isPartnerPreempted()){//sysj\labellerController.sysj line: 63, column: 5
-                  labelBottle_in.setACK(false);//sysj\labellerController.sysj line: 63, column: 5
-                  S51463=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-                else {
-                  S51458=0;
-                  if(!labelBottle_in.isREQ()){//sysj\labellerController.sysj line: 63, column: 5
-                    labelBottle_in.setACK(true);//sysj\labellerController.sysj line: 63, column: 5
-                    S51458=1;
-                    if(labelBottle_in.isREQ()){//sysj\labellerController.sysj line: 63, column: 5
-                      labelBottle_in.setACK(false);//sysj\labellerController.sysj line: 63, column: 5
-                      ends[3]=2;
-                      ;//sysj\labellerController.sysj line: 63, column: 5
-                      w_thread_3 = (WorkpieceTwin)(labelBottle_in.getVal() == null ? null : ((WorkpieceTwin)labelBottle_in.getVal()));//sysj\labellerController.sysj line: 64, column: 5
-                      S51479=1;
-                      if(w_thread_3 != null){//sysj\labellerController.sysj line: 65, column: 4
-                        permitted_thread_3 = false;//sysj\labellerController.sysj line: 66, column: 1
-                        S51480=0;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      else {
-                        S51479=2;
-                        if(w_thread_3 != null){//sysj\labellerController.sysj line: 76, column: 8
-                          w_thread_3.arrived(Machine.LABELLER);//sysj\labellerController.sysj line: 77, column: 6
-                          refusal_thread_3 = w_thread_3.labelRefusalReason();//sysj\labellerController.sysj line: 78, column: 6
-                          if(refusal_thread_3 != null){//sysj\labellerController.sysj line: 80, column: 9
-                            System.out.println("[LAB] Refusing " + w_thread_3 + ": " + refusal_thread_3);//sysj\labellerController.sysj line: 82, column: 7
-                            w_thread_3.reject(Machine.LABELLER, "label refused - " + refusal_thread_3);//sysj\labellerController.sysj line: 83, column: 7
-                            if(t_thread_3.update(PlantClock.now(), MachineStatus.FAULT, "refuse", refusal_thread_3)){//sysj\labellerController.sysj line: 84, column: 7
-                              twin.setPresent();//sysj\labellerController.sysj line: 85, column: 8
-                              currsigs.addElement(twin);
-                              twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 85, column: 8
-                              status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
-                              currsigs.addElement(status);
-                              status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
-                              S51479=3;
-                              S51960=0;
-                              if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                S51960=1;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                              else {
-                                S51955=0;
-                                if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                  labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                  S51955=1;
-                                  if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                    ends[3]=2;
-                                    ;//sysj\labellerController.sysj line: 125, column: 5
-                                    S55129=2;
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                  else {
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                }
-                                else {
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
-                            }
-                            else {
-                              status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
-                              currsigs.addElement(status);
-                              status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
-                              S51479=3;
-                              S51960=0;
-                              if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                S51960=1;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                              else {
-                                S51955=0;
-                                if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                  labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                  S51955=1;
-                                  if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                    ends[3]=2;
-                                    ;//sysj\labellerController.sysj line: 125, column: 5
-                                    S55129=2;
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                  else {
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                }
-                                else {
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
-                            }
-                          }
-                          else {
-                            w_thread_3.started(Machine.LABELLER, "labelling");//sysj\labellerController.sysj line: 90, column: 7
-                            label_thread_3 = new LabelData(w_thread_3);//sysj\labellerController.sysj line: 91, column: 7
-                            if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "printLabel", label_thread_3.serial)){//sysj\labellerController.sysj line: 92, column: 7
-                              twin.setPresent();//sysj\labellerController.sysj line: 93, column: 8
-                              currsigs.addElement(twin);
-                              twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 93, column: 8
-                              S51548=0;
-                              if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 97, column: 23
-                                S51548=1;
-                                if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
-                                  applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
-                                  currsigs.addElement(applyLabelRetract);
-                                  w_thread_3.completed(Machine.LABELLER, "label " + label_thread_3.serial);//sysj\labellerController.sysj line: 115, column: 7
-                                  t_thread_3.setLastSerial(label_thread_3.serial);//sysj\labellerController.sysj line: 116, column: 7
-                                  System.out.println("[LAB] Labelled " + w_thread_3 + " as " + label_thread_3.serial + ", mix " + label_thread_3.actualPctOne + "/" + label_thread_3.actualPctTwo + ".");//sysj\labellerController.sysj line: 117, column: 7
-                                  if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "retract", label_thread_3.serial)){//sysj\labellerController.sysj line: 118, column: 7
-                                    twin.setPresent();//sysj\labellerController.sysj line: 119, column: 8
-                                    currsigs.addElement(twin);
-                                    twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 119, column: 8
-                                    status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                                    currsigs.addElement(status);
-                                    status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                    S51479=3;
-                                    S51960=0;
-                                    if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                      labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                      S51960=1;
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                    else {
-                                      S51955=0;
-                                      if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                        labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                        S51955=1;
-                                        if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                          labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                          ends[3]=2;
-                                          ;//sysj\labellerController.sysj line: 125, column: 5
-                                          S55129=2;
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                        else {
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                      }
-                                      else {
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                    }
-                                  }
-                                  else {
-                                    status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                                    currsigs.addElement(status);
-                                    status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                    S51479=3;
-                                    S51960=0;
-                                    if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                      labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                      S51960=1;
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                    else {
-                                      S51955=0;
-                                      if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                        labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                        S51955=1;
-                                        if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                          labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                          ends[3]=2;
-                                          ;//sysj\labellerController.sysj line: 125, column: 5
-                                          S55129=2;
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                        else {
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                      }
-                                      else {
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                    }
-                                  }
-                                }
-                                else {
-                                  applyLabelExtend.setPresent();//sysj\labellerController.sysj line: 107, column: 9
-                                  currsigs.addElement(applyLabelExtend);
-                                  rollerOnOff.setPresent();//sysj\labellerController.sysj line: 108, column: 9
-                                  currsigs.addElement(rollerOnOff);
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
-                              else {
-                                printLabel.setPresent();//sysj\labellerController.sysj line: 99, column: 9
-                                currsigs.addElement(printLabel);
-                                printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 99, column: 9
-                                rollerOnOff.setPresent();//sysj\labellerController.sysj line: 100, column: 9
-                                currsigs.addElement(rollerOnOff);
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                            }
-                            else {
-                              S51548=0;
-                              if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 97, column: 23
-                                S51548=1;
-                                if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
-                                  applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
-                                  currsigs.addElement(applyLabelRetract);
-                                  w_thread_3.completed(Machine.LABELLER, "label " + label_thread_3.serial);//sysj\labellerController.sysj line: 115, column: 7
-                                  t_thread_3.setLastSerial(label_thread_3.serial);//sysj\labellerController.sysj line: 116, column: 7
-                                  System.out.println("[LAB] Labelled " + w_thread_3 + " as " + label_thread_3.serial + ", mix " + label_thread_3.actualPctOne + "/" + label_thread_3.actualPctTwo + ".");//sysj\labellerController.sysj line: 117, column: 7
-                                  if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "retract", label_thread_3.serial)){//sysj\labellerController.sysj line: 118, column: 7
-                                    twin.setPresent();//sysj\labellerController.sysj line: 119, column: 8
-                                    currsigs.addElement(twin);
-                                    twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 119, column: 8
-                                    status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                                    currsigs.addElement(status);
-                                    status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                    S51479=3;
-                                    S51960=0;
-                                    if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                      labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                      S51960=1;
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                    else {
-                                      S51955=0;
-                                      if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                        labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                        S51955=1;
-                                        if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                          labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                          ends[3]=2;
-                                          ;//sysj\labellerController.sysj line: 125, column: 5
-                                          S55129=2;
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                        else {
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                      }
-                                      else {
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                    }
-                                  }
-                                  else {
-                                    status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                                    currsigs.addElement(status);
-                                    status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                    S51479=3;
-                                    S51960=0;
-                                    if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                      labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                      S51960=1;
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                    else {
-                                      S51955=0;
-                                      if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                        labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                        S51955=1;
-                                        if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                          labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                          ends[3]=2;
-                                          ;//sysj\labellerController.sysj line: 125, column: 5
-                                          S55129=2;
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                        else {
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                      }
-                                      else {
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                    }
-                                  }
-                                }
-                                else {
-                                  applyLabelExtend.setPresent();//sysj\labellerController.sysj line: 107, column: 9
-                                  currsigs.addElement(applyLabelExtend);
-                                  rollerOnOff.setPresent();//sysj\labellerController.sysj line: 108, column: 9
-                                  currsigs.addElement(rollerOnOff);
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
-                              else {
-                                printLabel.setPresent();//sysj\labellerController.sysj line: 99, column: 9
-                                currsigs.addElement(printLabel);
-                                printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 99, column: 9
-                                rollerOnOff.setPresent();//sysj\labellerController.sysj line: 100, column: 9
-                                currsigs.addElement(rollerOnOff);
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                            }
-                          }
-                        }
-                        else {
-                          S51479=3;
-                          S51960=0;
-                          if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                            labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                            S51960=1;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                          else {
-                            S51955=0;
-                            if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                              labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                              S51955=1;
-                              if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                ends[3]=2;
-                                ;//sysj\labellerController.sysj line: 125, column: 5
-                                S55129=2;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                              else {
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                            }
-                            else {
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                          }
-                        }
-                      }
-                    }
-                    else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
-                    }
-                  }
-                  else {
-                    active[3]=1;
-                    ends[3]=1;
-                    tdone[3]=1;
-                  }
-                }
-              }
-            }
-            else {
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
-            }
-            break;
-          
-          case 1 : 
-            if(manual_1.getprestatus()){//sysj\labellerController.sysj line: 62, column: 20
+            if(reset.getprestatus()){//sysj\labellerController.sysj line: 64, column: 20
               labelBottle_in.setPreempted();
               labelDone_o.setPreempted();
-              S55129=2;
+              S70249=1;
               active[3]=1;
               ends[3]=1;
               tdone[3]=1;
             }
             else {
-              switch(S51479){
+              switch(S68771){
                 case 0 : 
-                  switch(S51463){
+                  switch(S68755){
                     case 0 : 
-                      if(!labelBottle_in.isPartnerPresent() || labelBottle_in.isPartnerPreempted()){//sysj\labellerController.sysj line: 63, column: 5
-                        labelBottle_in.setACK(false);//sysj\labellerController.sysj line: 63, column: 5
-                        S51463=1;
+                      if(!labelBottle_in.isPartnerPresent() || labelBottle_in.isPartnerPreempted()){//sysj\labellerController.sysj line: 65, column: 5
+                        labelBottle_in.setACK(false);//sysj\labellerController.sysj line: 65, column: 5
+                        S68755=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        switch(S51458){
+                        switch(S68750){
                           case 0 : 
-                            if(!labelBottle_in.isREQ()){//sysj\labellerController.sysj line: 63, column: 5
-                              labelBottle_in.setACK(true);//sysj\labellerController.sysj line: 63, column: 5
-                              S51458=1;
-                              if(labelBottle_in.isREQ()){//sysj\labellerController.sysj line: 63, column: 5
-                                labelBottle_in.setACK(false);//sysj\labellerController.sysj line: 63, column: 5
+                            if(!labelBottle_in.isREQ()){//sysj\labellerController.sysj line: 65, column: 5
+                              labelBottle_in.setACK(true);//sysj\labellerController.sysj line: 65, column: 5
+                              S68750=1;
+                              if(labelBottle_in.isREQ()){//sysj\labellerController.sysj line: 65, column: 5
+                                labelBottle_in.setACK(false);//sysj\labellerController.sysj line: 65, column: 5
                                 ends[3]=2;
-                                ;//sysj\labellerController.sysj line: 63, column: 5
-                                w_thread_3 = (WorkpieceTwin)(labelBottle_in.getVal() == null ? null : ((WorkpieceTwin)labelBottle_in.getVal()));//sysj\labellerController.sysj line: 64, column: 5
-                                S51479=1;
-                                if(w_thread_3 != null){//sysj\labellerController.sysj line: 65, column: 4
-                                  permitted_thread_3 = false;//sysj\labellerController.sysj line: 66, column: 1
-                                  S51480=0;
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                                else {
-                                  S51479=2;
-                                  if(w_thread_3 != null){//sysj\labellerController.sysj line: 76, column: 8
-                                    w_thread_3.arrived(Machine.LABELLER);//sysj\labellerController.sysj line: 77, column: 6
-                                    refusal_thread_3 = w_thread_3.labelRefusalReason();//sysj\labellerController.sysj line: 78, column: 6
-                                    if(refusal_thread_3 != null){//sysj\labellerController.sysj line: 80, column: 9
-                                      System.out.println("[LAB] Refusing " + w_thread_3 + ": " + refusal_thread_3);//sysj\labellerController.sysj line: 82, column: 7
-                                      w_thread_3.reject(Machine.LABELLER, "label refused - " + refusal_thread_3);//sysj\labellerController.sysj line: 83, column: 7
-                                      if(t_thread_3.update(PlantClock.now(), MachineStatus.FAULT, "refuse", refusal_thread_3)){//sysj\labellerController.sysj line: 84, column: 7
-                                        twin.setPresent();//sysj\labellerController.sysj line: 85, column: 8
-                                        currsigs.addElement(twin);
-                                        twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 85, column: 8
-                                        status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
-                                        currsigs.addElement(status);
-                                        status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
-                                        S51479=3;
-                                        S51960=0;
-                                        if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                          labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                          S51960=1;
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                        else {
-                                          S51955=0;
-                                          if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                            labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                            S51955=1;
-                                            if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                              labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                              ends[3]=2;
-                                              ;//sysj\labellerController.sysj line: 125, column: 5
-                                              S55129=2;
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                            else {
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                          }
-                                          else {
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                        }
-                                      }
-                                      else {
-                                        status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
-                                        currsigs.addElement(status);
-                                        status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
-                                        S51479=3;
-                                        S51960=0;
-                                        if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                          labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                          S51960=1;
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                        else {
-                                          S51955=0;
-                                          if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                            labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                            S51955=1;
-                                            if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                              labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                              ends[3]=2;
-                                              ;//sysj\labellerController.sysj line: 125, column: 5
-                                              S55129=2;
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                            else {
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                          }
-                                          else {
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                        }
-                                      }
-                                    }
-                                    else {
-                                      w_thread_3.started(Machine.LABELLER, "labelling");//sysj\labellerController.sysj line: 90, column: 7
-                                      label_thread_3 = new LabelData(w_thread_3);//sysj\labellerController.sysj line: 91, column: 7
-                                      if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "printLabel", label_thread_3.serial)){//sysj\labellerController.sysj line: 92, column: 7
-                                        twin.setPresent();//sysj\labellerController.sysj line: 93, column: 8
-                                        currsigs.addElement(twin);
-                                        twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 93, column: 8
-                                        S51548=0;
-                                        if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 97, column: 23
-                                          S51548=1;
-                                          if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
-                                            applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
-                                            currsigs.addElement(applyLabelRetract);
-                                            w_thread_3.completed(Machine.LABELLER, "label " + label_thread_3.serial);//sysj\labellerController.sysj line: 115, column: 7
-                                            t_thread_3.setLastSerial(label_thread_3.serial);//sysj\labellerController.sysj line: 116, column: 7
-                                            System.out.println("[LAB] Labelled " + w_thread_3 + " as " + label_thread_3.serial + ", mix " + label_thread_3.actualPctOne + "/" + label_thread_3.actualPctTwo + ".");//sysj\labellerController.sysj line: 117, column: 7
-                                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "retract", label_thread_3.serial)){//sysj\labellerController.sysj line: 118, column: 7
-                                              twin.setPresent();//sysj\labellerController.sysj line: 119, column: 8
-                                              currsigs.addElement(twin);
-                                              twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 119, column: 8
-                                              status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                                              currsigs.addElement(status);
-                                              status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                              S51479=3;
-                                              S51960=0;
-                                              if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                                labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                                S51960=1;
-                                                active[3]=1;
-                                                ends[3]=1;
-                                                tdone[3]=1;
-                                              }
-                                              else {
-                                                S51955=0;
-                                                if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                                  labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                                  S51955=1;
-                                                  if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                                    ends[3]=2;
-                                                    ;//sysj\labellerController.sysj line: 125, column: 5
-                                                    S55129=2;
-                                                    active[3]=1;
-                                                    ends[3]=1;
-                                                    tdone[3]=1;
-                                                  }
-                                                  else {
-                                                    active[3]=1;
-                                                    ends[3]=1;
-                                                    tdone[3]=1;
-                                                  }
-                                                }
-                                                else {
-                                                  active[3]=1;
-                                                  ends[3]=1;
-                                                  tdone[3]=1;
-                                                }
-                                              }
-                                            }
-                                            else {
-                                              status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                                              currsigs.addElement(status);
-                                              status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                              S51479=3;
-                                              S51960=0;
-                                              if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                                labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                                S51960=1;
-                                                active[3]=1;
-                                                ends[3]=1;
-                                                tdone[3]=1;
-                                              }
-                                              else {
-                                                S51955=0;
-                                                if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                                  labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                                  S51955=1;
-                                                  if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                                    ends[3]=2;
-                                                    ;//sysj\labellerController.sysj line: 125, column: 5
-                                                    S55129=2;
-                                                    active[3]=1;
-                                                    ends[3]=1;
-                                                    tdone[3]=1;
-                                                  }
-                                                  else {
-                                                    active[3]=1;
-                                                    ends[3]=1;
-                                                    tdone[3]=1;
-                                                  }
-                                                }
-                                                else {
-                                                  active[3]=1;
-                                                  ends[3]=1;
-                                                  tdone[3]=1;
-                                                }
-                                              }
-                                            }
-                                          }
-                                          else {
-                                            applyLabelExtend.setPresent();//sysj\labellerController.sysj line: 107, column: 9
-                                            currsigs.addElement(applyLabelExtend);
-                                            rollerOnOff.setPresent();//sysj\labellerController.sysj line: 108, column: 9
-                                            currsigs.addElement(rollerOnOff);
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                        }
-                                        else {
-                                          printLabel.setPresent();//sysj\labellerController.sysj line: 99, column: 9
-                                          currsigs.addElement(printLabel);
-                                          printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 99, column: 9
-                                          rollerOnOff.setPresent();//sysj\labellerController.sysj line: 100, column: 9
-                                          currsigs.addElement(rollerOnOff);
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                      }
-                                      else {
-                                        S51548=0;
-                                        if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 97, column: 23
-                                          S51548=1;
-                                          if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
-                                            applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
-                                            currsigs.addElement(applyLabelRetract);
-                                            w_thread_3.completed(Machine.LABELLER, "label " + label_thread_3.serial);//sysj\labellerController.sysj line: 115, column: 7
-                                            t_thread_3.setLastSerial(label_thread_3.serial);//sysj\labellerController.sysj line: 116, column: 7
-                                            System.out.println("[LAB] Labelled " + w_thread_3 + " as " + label_thread_3.serial + ", mix " + label_thread_3.actualPctOne + "/" + label_thread_3.actualPctTwo + ".");//sysj\labellerController.sysj line: 117, column: 7
-                                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "retract", label_thread_3.serial)){//sysj\labellerController.sysj line: 118, column: 7
-                                              twin.setPresent();//sysj\labellerController.sysj line: 119, column: 8
-                                              currsigs.addElement(twin);
-                                              twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 119, column: 8
-                                              status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                                              currsigs.addElement(status);
-                                              status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                              S51479=3;
-                                              S51960=0;
-                                              if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                                labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                                S51960=1;
-                                                active[3]=1;
-                                                ends[3]=1;
-                                                tdone[3]=1;
-                                              }
-                                              else {
-                                                S51955=0;
-                                                if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                                  labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                                  S51955=1;
-                                                  if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                                    ends[3]=2;
-                                                    ;//sysj\labellerController.sysj line: 125, column: 5
-                                                    S55129=2;
-                                                    active[3]=1;
-                                                    ends[3]=1;
-                                                    tdone[3]=1;
-                                                  }
-                                                  else {
-                                                    active[3]=1;
-                                                    ends[3]=1;
-                                                    tdone[3]=1;
-                                                  }
-                                                }
-                                                else {
-                                                  active[3]=1;
-                                                  ends[3]=1;
-                                                  tdone[3]=1;
-                                                }
-                                              }
-                                            }
-                                            else {
-                                              status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                                              currsigs.addElement(status);
-                                              status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                              S51479=3;
-                                              S51960=0;
-                                              if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                                labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                                S51960=1;
-                                                active[3]=1;
-                                                ends[3]=1;
-                                                tdone[3]=1;
-                                              }
-                                              else {
-                                                S51955=0;
-                                                if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                                  labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                                  S51955=1;
-                                                  if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                                    ends[3]=2;
-                                                    ;//sysj\labellerController.sysj line: 125, column: 5
-                                                    S55129=2;
-                                                    active[3]=1;
-                                                    ends[3]=1;
-                                                    tdone[3]=1;
-                                                  }
-                                                  else {
-                                                    active[3]=1;
-                                                    ends[3]=1;
-                                                    tdone[3]=1;
-                                                  }
-                                                }
-                                                else {
-                                                  active[3]=1;
-                                                  ends[3]=1;
-                                                  tdone[3]=1;
-                                                }
-                                              }
-                                            }
-                                          }
-                                          else {
-                                            applyLabelExtend.setPresent();//sysj\labellerController.sysj line: 107, column: 9
-                                            currsigs.addElement(applyLabelExtend);
-                                            rollerOnOff.setPresent();//sysj\labellerController.sysj line: 108, column: 9
-                                            currsigs.addElement(rollerOnOff);
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                        }
-                                        else {
-                                          printLabel.setPresent();//sysj\labellerController.sysj line: 99, column: 9
-                                          currsigs.addElement(printLabel);
-                                          printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 99, column: 9
-                                          rollerOnOff.setPresent();//sysj\labellerController.sysj line: 100, column: 9
-                                          currsigs.addElement(rollerOnOff);
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                      }
-                                    }
+                                ;//sysj\labellerController.sysj line: 65, column: 5
+                                w_thread_3 = (WorkpieceTwin)(labelBottle_in.getVal() == null ? null : ((WorkpieceTwin)labelBottle_in.getVal()));//sysj\labellerController.sysj line: 66, column: 5
+                                S68771=1;
+                                if(w_thread_3 != null){//sysj\labellerController.sysj line: 68, column: 8
+                                  w_thread_3.arrived(Machine.LABELLER);//sysj\labellerController.sysj line: 69, column: 6
+                                  if(w_thread_3.catchFault("no-print")) {//sysj\labellerController.sysj line: 74, column: 34
+                                    System.out.println("[LAB] Print failed for " + w_thread_3 + ".");//sysj\labellerController.sysj line: 75, column: 7
+                                    w_thread_3.reject(Machine.LABELLER, "label did not print");//sysj\labellerController.sysj line: 76, column: 7
                                   }
-                                  else {
-                                    S51479=3;
-                                    S51960=0;
-                                    if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                      labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                      S51960=1;
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                    else {
-                                      S51955=0;
-                                      if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                        labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                        S51955=1;
-                                        if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                          labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                          ends[3]=2;
-                                          ;//sysj\labellerController.sysj line: 125, column: 5
-                                          S55129=2;
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                        else {
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                      }
-                                      else {
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                              else {
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                            }
-                            else {
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                            break;
-                          
-                          case 1 : 
-                            if(labelBottle_in.isREQ()){//sysj\labellerController.sysj line: 63, column: 5
-                              labelBottle_in.setACK(false);//sysj\labellerController.sysj line: 63, column: 5
-                              ends[3]=2;
-                              ;//sysj\labellerController.sysj line: 63, column: 5
-                              w_thread_3 = (WorkpieceTwin)(labelBottle_in.getVal() == null ? null : ((WorkpieceTwin)labelBottle_in.getVal()));//sysj\labellerController.sysj line: 64, column: 5
-                              S51479=1;
-                              if(w_thread_3 != null){//sysj\labellerController.sysj line: 65, column: 4
-                                permitted_thread_3 = false;//sysj\labellerController.sysj line: 66, column: 1
-                                S51480=0;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                              else {
-                                S51479=2;
-                                if(w_thread_3 != null){//sysj\labellerController.sysj line: 76, column: 8
-                                  w_thread_3.arrived(Machine.LABELLER);//sysj\labellerController.sysj line: 77, column: 6
                                   refusal_thread_3 = w_thread_3.labelRefusalReason();//sysj\labellerController.sysj line: 78, column: 6
                                   if(refusal_thread_3 != null){//sysj\labellerController.sysj line: 80, column: 9
                                     System.out.println("[LAB] Refusing " + w_thread_3 + ": " + refusal_thread_3);//sysj\labellerController.sysj line: 82, column: 7
@@ -1292,25 +302,25 @@ public class LabellerController extends ClockDomain{
                                       status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
                                       currsigs.addElement(status);
                                       status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
-                                      S51479=3;
-                                      S51960=0;
-                                      if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                        labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                        S51960=1;
+                                      S68771=2;
+                                      S69506=0;
+                                      if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                                        labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                        S69506=1;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
                                       }
                                       else {
-                                        S51955=0;
-                                        if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                          labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                          S51955=1;
-                                          if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                            labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
+                                        S69501=0;
+                                        if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                          labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                          S69501=1;
+                                          if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                            labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
                                             ends[3]=2;
-                                            ;//sysj\labellerController.sysj line: 125, column: 5
-                                            S55129=2;
+                                            ;//sysj\labellerController.sysj line: 139, column: 5
+                                            S70249=1;
                                             active[3]=1;
                                             ends[3]=1;
                                             tdone[3]=1;
@@ -1332,25 +342,25 @@ public class LabellerController extends ClockDomain{
                                       status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
                                       currsigs.addElement(status);
                                       status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
-                                      S51479=3;
-                                      S51960=0;
-                                      if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                        labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                        S51960=1;
+                                      S68771=2;
+                                      S69506=0;
+                                      if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                                        labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                        S69506=1;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
                                       }
                                       else {
-                                        S51955=0;
-                                        if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                          labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                          S51955=1;
-                                          if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                            labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
+                                        S69501=0;
+                                        if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                          labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                          S69501=1;
+                                          if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                            labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
                                             ends[3]=2;
-                                            ;//sysj\labellerController.sysj line: 125, column: 5
-                                            S55129=2;
+                                            ;//sysj\labellerController.sysj line: 139, column: 5
+                                            S70249=1;
                                             active[3]=1;
                                             ends[3]=1;
                                             tdone[3]=1;
@@ -1376,103 +386,20 @@ public class LabellerController extends ClockDomain{
                                       twin.setPresent();//sysj\labellerController.sysj line: 93, column: 8
                                       currsigs.addElement(twin);
                                       twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 93, column: 8
-                                      S51548=0;
-                                      if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 97, column: 23
-                                        S51548=1;
-                                        if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
-                                          applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
-                                          currsigs.addElement(applyLabelRetract);
-                                          w_thread_3.completed(Machine.LABELLER, "label " + label_thread_3.serial);//sysj\labellerController.sysj line: 115, column: 7
-                                          t_thread_3.setLastSerial(label_thread_3.serial);//sysj\labellerController.sysj line: 116, column: 7
-                                          System.out.println("[LAB] Labelled " + w_thread_3 + " as " + label_thread_3.serial + ", mix " + label_thread_3.actualPctOne + "/" + label_thread_3.actualPctTwo + ".");//sysj\labellerController.sysj line: 117, column: 7
-                                          if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "retract", label_thread_3.serial)){//sysj\labellerController.sysj line: 118, column: 7
-                                            twin.setPresent();//sysj\labellerController.sysj line: 119, column: 8
-                                            currsigs.addElement(twin);
-                                            twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 119, column: 8
-                                            status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                                            currsigs.addElement(status);
-                                            status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                            S51479=3;
-                                            S51960=0;
-                                            if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                              labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                              S51960=1;
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                            else {
-                                              S51955=0;
-                                              if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                                labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                                S51955=1;
-                                                if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                                  labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                                  ends[3]=2;
-                                                  ;//sysj\labellerController.sysj line: 125, column: 5
-                                                  S55129=2;
-                                                  active[3]=1;
-                                                  ends[3]=1;
-                                                  tdone[3]=1;
-                                                }
-                                                else {
-                                                  active[3]=1;
-                                                  ends[3]=1;
-                                                  tdone[3]=1;
-                                                }
-                                              }
-                                              else {
-                                                active[3]=1;
-                                                ends[3]=1;
-                                                tdone[3]=1;
-                                              }
-                                            }
-                                          }
-                                          else {
-                                            status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                                            currsigs.addElement(status);
-                                            status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                            S51479=3;
-                                            S51960=0;
-                                            if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                              labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                              S51960=1;
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                            else {
-                                              S51955=0;
-                                              if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                                labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                                S51955=1;
-                                                if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                                  labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                                  ends[3]=2;
-                                                  ;//sysj\labellerController.sysj line: 125, column: 5
-                                                  S55129=2;
-                                                  active[3]=1;
-                                                  ends[3]=1;
-                                                  tdone[3]=1;
-                                                }
-                                                else {
-                                                  active[3]=1;
-                                                  ends[3]=1;
-                                                  tdone[3]=1;
-                                                }
-                                              }
-                                              else {
-                                                active[3]=1;
-                                                ends[3]=1;
-                                                tdone[3]=1;
-                                              }
-                                            }
-                                          }
+                                      S68776=0;
+                                      if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 101, column: 23
+                                        S68776=1;
+                                        if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 102, column: 23
+                                          S68776=2;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
                                         }
                                         else {
-                                          applyLabelExtend.setPresent();//sysj\labellerController.sysj line: 107, column: 9
-                                          currsigs.addElement(applyLabelExtend);
-                                          rollerOnOff.setPresent();//sysj\labellerController.sysj line: 108, column: 9
+                                          printLabel.setPresent();//sysj\labellerController.sysj line: 104, column: 9
+                                          currsigs.addElement(printLabel);
+                                          printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 104, column: 9
+                                          rollerOnOff.setPresent();//sysj\labellerController.sysj line: 105, column: 9
                                           currsigs.addElement(rollerOnOff);
                                           active[3]=1;
                                           ends[3]=1;
@@ -1480,114 +407,47 @@ public class LabellerController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        printLabel.setPresent();//sysj\labellerController.sysj line: 99, column: 9
-                                        currsigs.addElement(printLabel);
-                                        printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 99, column: 9
-                                        rollerOnOff.setPresent();//sysj\labellerController.sysj line: 100, column: 9
-                                        currsigs.addElement(rollerOnOff);
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
+                                        if(rollerOnOffM.getprestatus()){//sysj\labellerController.sysj line: 101, column: 46
+                                          S68776=1;
+                                          if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 102, column: 23
+                                            S68776=2;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            printLabel.setPresent();//sysj\labellerController.sysj line: 104, column: 9
+                                            currsigs.addElement(printLabel);
+                                            printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 104, column: 9
+                                            rollerOnOff.setPresent();//sysj\labellerController.sysj line: 105, column: 9
+                                            currsigs.addElement(rollerOnOff);
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
                                       }
                                     }
                                     else {
-                                      S51548=0;
-                                      if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 97, column: 23
-                                        S51548=1;
-                                        if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
-                                          applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
-                                          currsigs.addElement(applyLabelRetract);
-                                          w_thread_3.completed(Machine.LABELLER, "label " + label_thread_3.serial);//sysj\labellerController.sysj line: 115, column: 7
-                                          t_thread_3.setLastSerial(label_thread_3.serial);//sysj\labellerController.sysj line: 116, column: 7
-                                          System.out.println("[LAB] Labelled " + w_thread_3 + " as " + label_thread_3.serial + ", mix " + label_thread_3.actualPctOne + "/" + label_thread_3.actualPctTwo + ".");//sysj\labellerController.sysj line: 117, column: 7
-                                          if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "retract", label_thread_3.serial)){//sysj\labellerController.sysj line: 118, column: 7
-                                            twin.setPresent();//sysj\labellerController.sysj line: 119, column: 8
-                                            currsigs.addElement(twin);
-                                            twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 119, column: 8
-                                            status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                                            currsigs.addElement(status);
-                                            status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                            S51479=3;
-                                            S51960=0;
-                                            if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                              labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                              S51960=1;
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                            else {
-                                              S51955=0;
-                                              if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                                labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                                S51955=1;
-                                                if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                                  labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                                  ends[3]=2;
-                                                  ;//sysj\labellerController.sysj line: 125, column: 5
-                                                  S55129=2;
-                                                  active[3]=1;
-                                                  ends[3]=1;
-                                                  tdone[3]=1;
-                                                }
-                                                else {
-                                                  active[3]=1;
-                                                  ends[3]=1;
-                                                  tdone[3]=1;
-                                                }
-                                              }
-                                              else {
-                                                active[3]=1;
-                                                ends[3]=1;
-                                                tdone[3]=1;
-                                              }
-                                            }
-                                          }
-                                          else {
-                                            status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                                            currsigs.addElement(status);
-                                            status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                            S51479=3;
-                                            S51960=0;
-                                            if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                              labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                              S51960=1;
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                            else {
-                                              S51955=0;
-                                              if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                                labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                                S51955=1;
-                                                if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                                  labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                                  ends[3]=2;
-                                                  ;//sysj\labellerController.sysj line: 125, column: 5
-                                                  S55129=2;
-                                                  active[3]=1;
-                                                  ends[3]=1;
-                                                  tdone[3]=1;
-                                                }
-                                                else {
-                                                  active[3]=1;
-                                                  ends[3]=1;
-                                                  tdone[3]=1;
-                                                }
-                                              }
-                                              else {
-                                                active[3]=1;
-                                                ends[3]=1;
-                                                tdone[3]=1;
-                                              }
-                                            }
-                                          }
+                                      S68776=0;
+                                      if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 101, column: 23
+                                        S68776=1;
+                                        if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 102, column: 23
+                                          S68776=2;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
                                         }
                                         else {
-                                          applyLabelExtend.setPresent();//sysj\labellerController.sysj line: 107, column: 9
-                                          currsigs.addElement(applyLabelExtend);
-                                          rollerOnOff.setPresent();//sysj\labellerController.sysj line: 108, column: 9
+                                          printLabel.setPresent();//sysj\labellerController.sysj line: 104, column: 9
+                                          currsigs.addElement(printLabel);
+                                          printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 104, column: 9
+                                          rollerOnOff.setPresent();//sysj\labellerController.sysj line: 105, column: 9
                                           currsigs.addElement(rollerOnOff);
                                           active[3]=1;
                                           ends[3]=1;
@@ -1595,38 +455,54 @@ public class LabellerController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        printLabel.setPresent();//sysj\labellerController.sysj line: 99, column: 9
-                                        currsigs.addElement(printLabel);
-                                        printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 99, column: 9
-                                        rollerOnOff.setPresent();//sysj\labellerController.sysj line: 100, column: 9
-                                        currsigs.addElement(rollerOnOff);
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
+                                        if(rollerOnOffM.getprestatus()){//sysj\labellerController.sysj line: 101, column: 46
+                                          S68776=1;
+                                          if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 102, column: 23
+                                            S68776=2;
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                          else {
+                                            printLabel.setPresent();//sysj\labellerController.sysj line: 104, column: 9
+                                            currsigs.addElement(printLabel);
+                                            printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 104, column: 9
+                                            rollerOnOff.setPresent();//sysj\labellerController.sysj line: 105, column: 9
+                                            currsigs.addElement(rollerOnOff);
+                                            active[3]=1;
+                                            ends[3]=1;
+                                            tdone[3]=1;
+                                          }
+                                        }
+                                        else {
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
                                       }
                                     }
                                   }
                                 }
                                 else {
-                                  S51479=3;
-                                  S51960=0;
-                                  if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                    S51960=1;
+                                  S68771=2;
+                                  S69506=0;
+                                  if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                    S69506=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
                                   else {
-                                    S51955=0;
-                                    if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                      labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                      S51955=1;
-                                      if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                        labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
+                                    S69501=0;
+                                    if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                      labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                      S69501=1;
+                                      if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                        labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
                                         ends[3]=2;
-                                        ;//sysj\labellerController.sysj line: 125, column: 5
-                                        S55129=2;
+                                        ;//sysj\labellerController.sysj line: 139, column: 5
+                                        S70249=1;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -1645,6 +521,11 @@ public class LabellerController extends ClockDomain{
                                   }
                                 }
                               }
+                              else {
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
                             }
                             else {
                               active[3]=1;
@@ -1653,42 +534,19 @@ public class LabellerController extends ClockDomain{
                             }
                             break;
                           
-                        }
-                      }
-                      break;
-                    
-                    case 1 : 
-                      S51463=1;
-                      S51463=0;
-                      if(!labelBottle_in.isPartnerPresent() || labelBottle_in.isPartnerPreempted()){//sysj\labellerController.sysj line: 63, column: 5
-                        labelBottle_in.setACK(false);//sysj\labellerController.sysj line: 63, column: 5
-                        S51463=1;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      else {
-                        S51458=0;
-                        if(!labelBottle_in.isREQ()){//sysj\labellerController.sysj line: 63, column: 5
-                          labelBottle_in.setACK(true);//sysj\labellerController.sysj line: 63, column: 5
-                          S51458=1;
-                          if(labelBottle_in.isREQ()){//sysj\labellerController.sysj line: 63, column: 5
-                            labelBottle_in.setACK(false);//sysj\labellerController.sysj line: 63, column: 5
-                            ends[3]=2;
-                            ;//sysj\labellerController.sysj line: 63, column: 5
-                            w_thread_3 = (WorkpieceTwin)(labelBottle_in.getVal() == null ? null : ((WorkpieceTwin)labelBottle_in.getVal()));//sysj\labellerController.sysj line: 64, column: 5
-                            S51479=1;
-                            if(w_thread_3 != null){//sysj\labellerController.sysj line: 65, column: 4
-                              permitted_thread_3 = false;//sysj\labellerController.sysj line: 66, column: 1
-                              S51480=0;
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                            else {
-                              S51479=2;
-                              if(w_thread_3 != null){//sysj\labellerController.sysj line: 76, column: 8
-                                w_thread_3.arrived(Machine.LABELLER);//sysj\labellerController.sysj line: 77, column: 6
+                          case 1 : 
+                            if(labelBottle_in.isREQ()){//sysj\labellerController.sysj line: 65, column: 5
+                              labelBottle_in.setACK(false);//sysj\labellerController.sysj line: 65, column: 5
+                              ends[3]=2;
+                              ;//sysj\labellerController.sysj line: 65, column: 5
+                              w_thread_3 = (WorkpieceTwin)(labelBottle_in.getVal() == null ? null : ((WorkpieceTwin)labelBottle_in.getVal()));//sysj\labellerController.sysj line: 66, column: 5
+                              S68771=1;
+                              if(w_thread_3 != null){//sysj\labellerController.sysj line: 68, column: 8
+                                w_thread_3.arrived(Machine.LABELLER);//sysj\labellerController.sysj line: 69, column: 6
+                                if(w_thread_3.catchFault("no-print")) {//sysj\labellerController.sysj line: 74, column: 34
+                                  System.out.println("[LAB] Print failed for " + w_thread_3 + ".");//sysj\labellerController.sysj line: 75, column: 7
+                                  w_thread_3.reject(Machine.LABELLER, "label did not print");//sysj\labellerController.sysj line: 76, column: 7
+                                }
                                 refusal_thread_3 = w_thread_3.labelRefusalReason();//sysj\labellerController.sysj line: 78, column: 6
                                 if(refusal_thread_3 != null){//sysj\labellerController.sysj line: 80, column: 9
                                   System.out.println("[LAB] Refusing " + w_thread_3 + ": " + refusal_thread_3);//sysj\labellerController.sysj line: 82, column: 7
@@ -1700,25 +558,25 @@ public class LabellerController extends ClockDomain{
                                     status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
                                     currsigs.addElement(status);
                                     status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
-                                    S51479=3;
-                                    S51960=0;
-                                    if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                      labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                      S51960=1;
+                                    S68771=2;
+                                    S69506=0;
+                                    if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                                      labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                      S69506=1;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
                                     }
                                     else {
-                                      S51955=0;
-                                      if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                        labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                        S51955=1;
-                                        if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                          labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
+                                      S69501=0;
+                                      if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                        labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                        S69501=1;
+                                        if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                          labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
                                           ends[3]=2;
-                                          ;//sysj\labellerController.sysj line: 125, column: 5
-                                          S55129=2;
+                                          ;//sysj\labellerController.sysj line: 139, column: 5
+                                          S70249=1;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
@@ -1740,25 +598,25 @@ public class LabellerController extends ClockDomain{
                                     status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
                                     currsigs.addElement(status);
                                     status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
-                                    S51479=3;
-                                    S51960=0;
-                                    if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                      labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                      S51960=1;
+                                    S68771=2;
+                                    S69506=0;
+                                    if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                                      labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                      S69506=1;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
                                     }
                                     else {
-                                      S51955=0;
-                                      if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                        labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                        S51955=1;
-                                        if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                          labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
+                                      S69501=0;
+                                      if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                        labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                        S69501=1;
+                                        if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                          labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
                                           ends[3]=2;
-                                          ;//sysj\labellerController.sysj line: 125, column: 5
-                                          S55129=2;
+                                          ;//sysj\labellerController.sysj line: 139, column: 5
+                                          S70249=1;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
@@ -1784,103 +642,20 @@ public class LabellerController extends ClockDomain{
                                     twin.setPresent();//sysj\labellerController.sysj line: 93, column: 8
                                     currsigs.addElement(twin);
                                     twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 93, column: 8
-                                    S51548=0;
-                                    if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 97, column: 23
-                                      S51548=1;
-                                      if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
-                                        applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
-                                        currsigs.addElement(applyLabelRetract);
-                                        w_thread_3.completed(Machine.LABELLER, "label " + label_thread_3.serial);//sysj\labellerController.sysj line: 115, column: 7
-                                        t_thread_3.setLastSerial(label_thread_3.serial);//sysj\labellerController.sysj line: 116, column: 7
-                                        System.out.println("[LAB] Labelled " + w_thread_3 + " as " + label_thread_3.serial + ", mix " + label_thread_3.actualPctOne + "/" + label_thread_3.actualPctTwo + ".");//sysj\labellerController.sysj line: 117, column: 7
-                                        if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "retract", label_thread_3.serial)){//sysj\labellerController.sysj line: 118, column: 7
-                                          twin.setPresent();//sysj\labellerController.sysj line: 119, column: 8
-                                          currsigs.addElement(twin);
-                                          twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 119, column: 8
-                                          status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                                          currsigs.addElement(status);
-                                          status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                          S51479=3;
-                                          S51960=0;
-                                          if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                            labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                            S51960=1;
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                          else {
-                                            S51955=0;
-                                            if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                              labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                              S51955=1;
-                                              if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                                labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                                ends[3]=2;
-                                                ;//sysj\labellerController.sysj line: 125, column: 5
-                                                S55129=2;
-                                                active[3]=1;
-                                                ends[3]=1;
-                                                tdone[3]=1;
-                                              }
-                                              else {
-                                                active[3]=1;
-                                                ends[3]=1;
-                                                tdone[3]=1;
-                                              }
-                                            }
-                                            else {
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                          }
-                                        }
-                                        else {
-                                          status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                                          currsigs.addElement(status);
-                                          status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                          S51479=3;
-                                          S51960=0;
-                                          if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                            labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                            S51960=1;
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                          else {
-                                            S51955=0;
-                                            if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                              labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                              S51955=1;
-                                              if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                                labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                                ends[3]=2;
-                                                ;//sysj\labellerController.sysj line: 125, column: 5
-                                                S55129=2;
-                                                active[3]=1;
-                                                ends[3]=1;
-                                                tdone[3]=1;
-                                              }
-                                              else {
-                                                active[3]=1;
-                                                ends[3]=1;
-                                                tdone[3]=1;
-                                              }
-                                            }
-                                            else {
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                          }
-                                        }
+                                    S68776=0;
+                                    if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 101, column: 23
+                                      S68776=1;
+                                      if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 102, column: 23
+                                        S68776=2;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
                                       }
                                       else {
-                                        applyLabelExtend.setPresent();//sysj\labellerController.sysj line: 107, column: 9
-                                        currsigs.addElement(applyLabelExtend);
-                                        rollerOnOff.setPresent();//sysj\labellerController.sysj line: 108, column: 9
+                                        printLabel.setPresent();//sysj\labellerController.sysj line: 104, column: 9
+                                        currsigs.addElement(printLabel);
+                                        printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 104, column: 9
+                                        rollerOnOff.setPresent();//sysj\labellerController.sysj line: 105, column: 9
                                         currsigs.addElement(rollerOnOff);
                                         active[3]=1;
                                         ends[3]=1;
@@ -1888,114 +663,47 @@ public class LabellerController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      printLabel.setPresent();//sysj\labellerController.sysj line: 99, column: 9
-                                      currsigs.addElement(printLabel);
-                                      printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 99, column: 9
-                                      rollerOnOff.setPresent();//sysj\labellerController.sysj line: 100, column: 9
-                                      currsigs.addElement(rollerOnOff);
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
+                                      if(rollerOnOffM.getprestatus()){//sysj\labellerController.sysj line: 101, column: 46
+                                        S68776=1;
+                                        if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 102, column: 23
+                                          S68776=2;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          printLabel.setPresent();//sysj\labellerController.sysj line: 104, column: 9
+                                          currsigs.addElement(printLabel);
+                                          printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 104, column: 9
+                                          rollerOnOff.setPresent();//sysj\labellerController.sysj line: 105, column: 9
+                                          currsigs.addElement(rollerOnOff);
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
                                     }
                                   }
                                   else {
-                                    S51548=0;
-                                    if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 97, column: 23
-                                      S51548=1;
-                                      if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
-                                        applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
-                                        currsigs.addElement(applyLabelRetract);
-                                        w_thread_3.completed(Machine.LABELLER, "label " + label_thread_3.serial);//sysj\labellerController.sysj line: 115, column: 7
-                                        t_thread_3.setLastSerial(label_thread_3.serial);//sysj\labellerController.sysj line: 116, column: 7
-                                        System.out.println("[LAB] Labelled " + w_thread_3 + " as " + label_thread_3.serial + ", mix " + label_thread_3.actualPctOne + "/" + label_thread_3.actualPctTwo + ".");//sysj\labellerController.sysj line: 117, column: 7
-                                        if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "retract", label_thread_3.serial)){//sysj\labellerController.sysj line: 118, column: 7
-                                          twin.setPresent();//sysj\labellerController.sysj line: 119, column: 8
-                                          currsigs.addElement(twin);
-                                          twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 119, column: 8
-                                          status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                                          currsigs.addElement(status);
-                                          status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                          S51479=3;
-                                          S51960=0;
-                                          if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                            labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                            S51960=1;
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                          else {
-                                            S51955=0;
-                                            if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                              labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                              S51955=1;
-                                              if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                                labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                                ends[3]=2;
-                                                ;//sysj\labellerController.sysj line: 125, column: 5
-                                                S55129=2;
-                                                active[3]=1;
-                                                ends[3]=1;
-                                                tdone[3]=1;
-                                              }
-                                              else {
-                                                active[3]=1;
-                                                ends[3]=1;
-                                                tdone[3]=1;
-                                              }
-                                            }
-                                            else {
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                          }
-                                        }
-                                        else {
-                                          status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                                          currsigs.addElement(status);
-                                          status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                          S51479=3;
-                                          S51960=0;
-                                          if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                            labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                            S51960=1;
-                                            active[3]=1;
-                                            ends[3]=1;
-                                            tdone[3]=1;
-                                          }
-                                          else {
-                                            S51955=0;
-                                            if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                              labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                              S51955=1;
-                                              if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                                labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                                ends[3]=2;
-                                                ;//sysj\labellerController.sysj line: 125, column: 5
-                                                S55129=2;
-                                                active[3]=1;
-                                                ends[3]=1;
-                                                tdone[3]=1;
-                                              }
-                                              else {
-                                                active[3]=1;
-                                                ends[3]=1;
-                                                tdone[3]=1;
-                                              }
-                                            }
-                                            else {
-                                              active[3]=1;
-                                              ends[3]=1;
-                                              tdone[3]=1;
-                                            }
-                                          }
-                                        }
+                                    S68776=0;
+                                    if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 101, column: 23
+                                      S68776=1;
+                                      if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 102, column: 23
+                                        S68776=2;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
                                       }
                                       else {
-                                        applyLabelExtend.setPresent();//sysj\labellerController.sysj line: 107, column: 9
-                                        currsigs.addElement(applyLabelExtend);
-                                        rollerOnOff.setPresent();//sysj\labellerController.sysj line: 108, column: 9
+                                        printLabel.setPresent();//sysj\labellerController.sysj line: 104, column: 9
+                                        currsigs.addElement(printLabel);
+                                        printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 104, column: 9
+                                        rollerOnOff.setPresent();//sysj\labellerController.sysj line: 105, column: 9
                                         currsigs.addElement(rollerOnOff);
                                         active[3]=1;
                                         ends[3]=1;
@@ -2003,38 +711,54 @@ public class LabellerController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      printLabel.setPresent();//sysj\labellerController.sysj line: 99, column: 9
-                                      currsigs.addElement(printLabel);
-                                      printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 99, column: 9
-                                      rollerOnOff.setPresent();//sysj\labellerController.sysj line: 100, column: 9
-                                      currsigs.addElement(rollerOnOff);
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
+                                      if(rollerOnOffM.getprestatus()){//sysj\labellerController.sysj line: 101, column: 46
+                                        S68776=1;
+                                        if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 102, column: 23
+                                          S68776=2;
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                        else {
+                                          printLabel.setPresent();//sysj\labellerController.sysj line: 104, column: 9
+                                          currsigs.addElement(printLabel);
+                                          printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 104, column: 9
+                                          rollerOnOff.setPresent();//sysj\labellerController.sysj line: 105, column: 9
+                                          currsigs.addElement(rollerOnOff);
+                                          active[3]=1;
+                                          ends[3]=1;
+                                          tdone[3]=1;
+                                        }
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
                                     }
                                   }
                                 }
                               }
                               else {
-                                S51479=3;
-                                S51960=0;
-                                if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                  labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                  S51960=1;
+                                S68771=2;
+                                S69506=0;
+                                if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                                  labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                  S69506=1;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
                                 }
                                 else {
-                                  S51955=0;
-                                  if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                    labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                    S51955=1;
-                                    if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                      labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
+                                  S69501=0;
+                                  if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                    labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                    S69501=1;
+                                    if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                      labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
                                       ends[3]=2;
-                                      ;//sysj\labellerController.sysj line: 125, column: 5
-                                      S55129=2;
+                                      ;//sysj\labellerController.sysj line: 139, column: 5
+                                      S70249=1;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
@@ -2050,6 +774,273 @@ public class LabellerController extends ClockDomain{
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
+                                }
+                              }
+                            }
+                            else {
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                            break;
+                          
+                        }
+                      }
+                      break;
+                    
+                    case 1 : 
+                      S68755=1;
+                      S68755=0;
+                      if(!labelBottle_in.isPartnerPresent() || labelBottle_in.isPartnerPreempted()){//sysj\labellerController.sysj line: 65, column: 5
+                        labelBottle_in.setACK(false);//sysj\labellerController.sysj line: 65, column: 5
+                        S68755=1;
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        S68750=0;
+                        if(!labelBottle_in.isREQ()){//sysj\labellerController.sysj line: 65, column: 5
+                          labelBottle_in.setACK(true);//sysj\labellerController.sysj line: 65, column: 5
+                          S68750=1;
+                          if(labelBottle_in.isREQ()){//sysj\labellerController.sysj line: 65, column: 5
+                            labelBottle_in.setACK(false);//sysj\labellerController.sysj line: 65, column: 5
+                            ends[3]=2;
+                            ;//sysj\labellerController.sysj line: 65, column: 5
+                            w_thread_3 = (WorkpieceTwin)(labelBottle_in.getVal() == null ? null : ((WorkpieceTwin)labelBottle_in.getVal()));//sysj\labellerController.sysj line: 66, column: 5
+                            S68771=1;
+                            if(w_thread_3 != null){//sysj\labellerController.sysj line: 68, column: 8
+                              w_thread_3.arrived(Machine.LABELLER);//sysj\labellerController.sysj line: 69, column: 6
+                              if(w_thread_3.catchFault("no-print")) {//sysj\labellerController.sysj line: 74, column: 34
+                                System.out.println("[LAB] Print failed for " + w_thread_3 + ".");//sysj\labellerController.sysj line: 75, column: 7
+                                w_thread_3.reject(Machine.LABELLER, "label did not print");//sysj\labellerController.sysj line: 76, column: 7
+                              }
+                              refusal_thread_3 = w_thread_3.labelRefusalReason();//sysj\labellerController.sysj line: 78, column: 6
+                              if(refusal_thread_3 != null){//sysj\labellerController.sysj line: 80, column: 9
+                                System.out.println("[LAB] Refusing " + w_thread_3 + ": " + refusal_thread_3);//sysj\labellerController.sysj line: 82, column: 7
+                                w_thread_3.reject(Machine.LABELLER, "label refused - " + refusal_thread_3);//sysj\labellerController.sysj line: 83, column: 7
+                                if(t_thread_3.update(PlantClock.now(), MachineStatus.FAULT, "refuse", refusal_thread_3)){//sysj\labellerController.sysj line: 84, column: 7
+                                  twin.setPresent();//sysj\labellerController.sysj line: 85, column: 8
+                                  currsigs.addElement(twin);
+                                  twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 85, column: 8
+                                  status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
+                                  currsigs.addElement(status);
+                                  status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
+                                  S68771=2;
+                                  S69506=0;
+                                  if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                    S69506=1;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                  else {
+                                    S69501=0;
+                                    if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                      labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                      S69501=1;
+                                      if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                        labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                        ends[3]=2;
+                                        ;//sysj\labellerController.sysj line: 139, column: 5
+                                        S70249=1;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                }
+                                else {
+                                  status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
+                                  currsigs.addElement(status);
+                                  status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
+                                  S68771=2;
+                                  S69506=0;
+                                  if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                    S69506=1;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                  else {
+                                    S69501=0;
+                                    if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                      labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                      S69501=1;
+                                      if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                        labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                        ends[3]=2;
+                                        ;//sysj\labellerController.sysj line: 139, column: 5
+                                        S70249=1;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                }
+                              }
+                              else {
+                                w_thread_3.started(Machine.LABELLER, "labelling");//sysj\labellerController.sysj line: 90, column: 7
+                                label_thread_3 = new LabelData(w_thread_3);//sysj\labellerController.sysj line: 91, column: 7
+                                if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "printLabel", label_thread_3.serial)){//sysj\labellerController.sysj line: 92, column: 7
+                                  twin.setPresent();//sysj\labellerController.sysj line: 93, column: 8
+                                  currsigs.addElement(twin);
+                                  twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 93, column: 8
+                                  S68776=0;
+                                  if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 101, column: 23
+                                    S68776=1;
+                                    if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 102, column: 23
+                                      S68776=2;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      printLabel.setPresent();//sysj\labellerController.sysj line: 104, column: 9
+                                      currsigs.addElement(printLabel);
+                                      printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 104, column: 9
+                                      rollerOnOff.setPresent();//sysj\labellerController.sysj line: 105, column: 9
+                                      currsigs.addElement(rollerOnOff);
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    if(rollerOnOffM.getprestatus()){//sysj\labellerController.sysj line: 101, column: 46
+                                      S68776=1;
+                                      if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 102, column: 23
+                                        S68776=2;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        printLabel.setPresent();//sysj\labellerController.sysj line: 104, column: 9
+                                        currsigs.addElement(printLabel);
+                                        printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 104, column: 9
+                                        rollerOnOff.setPresent();//sysj\labellerController.sysj line: 105, column: 9
+                                        currsigs.addElement(rollerOnOff);
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                }
+                                else {
+                                  S68776=0;
+                                  if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 101, column: 23
+                                    S68776=1;
+                                    if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 102, column: 23
+                                      S68776=2;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      printLabel.setPresent();//sysj\labellerController.sysj line: 104, column: 9
+                                      currsigs.addElement(printLabel);
+                                      printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 104, column: 9
+                                      rollerOnOff.setPresent();//sysj\labellerController.sysj line: 105, column: 9
+                                      currsigs.addElement(rollerOnOff);
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    if(rollerOnOffM.getprestatus()){//sysj\labellerController.sysj line: 101, column: 46
+                                      S68776=1;
+                                      if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 102, column: 23
+                                        S68776=2;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        printLabel.setPresent();//sysj\labellerController.sysj line: 104, column: 9
+                                        currsigs.addElement(printLabel);
+                                        printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 104, column: 9
+                                        rollerOnOff.setPresent();//sysj\labellerController.sysj line: 105, column: 9
+                                        currsigs.addElement(rollerOnOff);
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                            else {
+                              S68771=2;
+                              S69506=0;
+                              if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                                labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                S69506=1;
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                              else {
+                                S69501=0;
+                                if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                  labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                  S69501=1;
+                                  if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                    ends[3]=2;
+                                    ;//sysj\labellerController.sysj line: 139, column: 5
+                                    S70249=1;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                                else {
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
                                 }
                               }
                             }
@@ -2072,37 +1063,68 @@ public class LabellerController extends ClockDomain{
                   break;
                 
                 case 1 : 
-                  switch(S51480){
+                  switch(S68776){
                     case 0 : 
-                      S51480=0;
-                      S51480=1;
-                      if(!permitted_thread_3){//sysj\labellerController.sysj line: 68, column: 19
-                        permitted_thread_3 = GuiStep.take("LABEL", (GuiPermit)(operatorPermit.getpreval() == null ? null : ((GuiPermit)operatorPermit.getpreval())));//sysj\labellerController.sysj line: 69, column: 17
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
+                      if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 101, column: 23
+                        S68776=1;
+                        if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 102, column: 23
+                          S68776=2;
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                        else {
+                          printLabel.setPresent();//sysj\labellerController.sysj line: 104, column: 9
+                          currsigs.addElement(printLabel);
+                          printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 104, column: 9
+                          rollerOnOff.setPresent();//sysj\labellerController.sysj line: 105, column: 9
+                          currsigs.addElement(rollerOnOff);
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
                       }
                       else {
-                        ends[3]=2;
-                        ;//sysj\labellerController.sysj line: 68, column: 13
-                        S51480=2;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
+                        if(rollerOnOffM.getprestatus()){//sysj\labellerController.sysj line: 101, column: 46
+                          S68776=1;
+                          if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 102, column: 23
+                            S68776=2;
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                          else {
+                            printLabel.setPresent();//sysj\labellerController.sysj line: 104, column: 9
+                            currsigs.addElement(printLabel);
+                            printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 104, column: 9
+                            rollerOnOff.setPresent();//sysj\labellerController.sysj line: 105, column: 9
+                            currsigs.addElement(rollerOnOff);
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                        }
+                        else {
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
                       }
                       break;
                     
                     case 1 : 
-                      if(!permitted_thread_3){//sysj\labellerController.sysj line: 68, column: 19
-                        permitted_thread_3 = GuiStep.take("LABEL", (GuiPermit)(operatorPermit.getpreval() == null ? null : ((GuiPermit)operatorPermit.getpreval())));//sysj\labellerController.sysj line: 69, column: 17
+                      if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 102, column: 23
+                        S68776=2;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        ends[3]=2;
-                        ;//sysj\labellerController.sysj line: 68, column: 13
-                        S51480=2;
+                        printLabel.setPresent();//sysj\labellerController.sysj line: 104, column: 9
+                        currsigs.addElement(printLabel);
+                        printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 104, column: 9
+                        rollerOnOff.setPresent();//sysj\labellerController.sysj line: 105, column: 9
+                        currsigs.addElement(rollerOnOff);
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
@@ -2110,40 +1132,870 @@ public class LabellerController extends ClockDomain{
                       break;
                     
                     case 2 : 
-                      S51480=2;
-                      S51479=2;
-                      if(w_thread_3 != null){//sysj\labellerController.sysj line: 76, column: 8
-                        w_thread_3.arrived(Machine.LABELLER);//sysj\labellerController.sysj line: 77, column: 6
-                        refusal_thread_3 = w_thread_3.labelRefusalReason();//sysj\labellerController.sysj line: 78, column: 6
-                        if(refusal_thread_3 != null){//sysj\labellerController.sysj line: 80, column: 9
-                          System.out.println("[LAB] Refusing " + w_thread_3 + ": " + refusal_thread_3);//sysj\labellerController.sysj line: 82, column: 7
-                          w_thread_3.reject(Machine.LABELLER, "label refused - " + refusal_thread_3);//sysj\labellerController.sysj line: 83, column: 7
-                          if(t_thread_3.update(PlantClock.now(), MachineStatus.FAULT, "refuse", refusal_thread_3)){//sysj\labellerController.sysj line: 84, column: 7
-                            twin.setPresent();//sysj\labellerController.sysj line: 85, column: 8
+                      S68776=2;
+                      S68776=3;
+                      if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 117, column: 23
+                        S68776=4;
+                        if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 118, column: 23
+                          S68776=5;
+                          if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 126, column: 23
+                            applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 127, column: 7
+                            currsigs.addElement(applyLabelRetract);
+                            w_thread_3.completed(Machine.LABELLER, "label " + label_thread_3.serial);//sysj\labellerController.sysj line: 129, column: 7
+                            t_thread_3.setLastSerial(label_thread_3.serial);//sysj\labellerController.sysj line: 130, column: 7
+                            System.out.println("[LAB] Labelled " + w_thread_3 + " as " + label_thread_3.serial + ", mix " + label_thread_3.actualPctOne + "/" + label_thread_3.actualPctTwo + ".");//sysj\labellerController.sysj line: 131, column: 7
+                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "retract", label_thread_3.serial)){//sysj\labellerController.sysj line: 132, column: 7
+                              twin.setPresent();//sysj\labellerController.sysj line: 133, column: 8
+                              currsigs.addElement(twin);
+                              twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 133, column: 8
+                              status.setPresent();//sysj\labellerController.sysj line: 135, column: 7
+                              currsigs.addElement(status);
+                              status.setValue(0);//sysj\labellerController.sysj line: 135, column: 7
+                              S68771=2;
+                              S69506=0;
+                              if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                                labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                S69506=1;
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                              else {
+                                S69501=0;
+                                if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                  labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                  S69501=1;
+                                  if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                    ends[3]=2;
+                                    ;//sysj\labellerController.sysj line: 139, column: 5
+                                    S70249=1;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                                else {
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                            }
+                            else {
+                              status.setPresent();//sysj\labellerController.sysj line: 135, column: 7
+                              currsigs.addElement(status);
+                              status.setValue(0);//sysj\labellerController.sysj line: 135, column: 7
+                              S68771=2;
+                              S69506=0;
+                              if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                                labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                S69506=1;
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                              else {
+                                S69501=0;
+                                if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                  labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                  S69501=1;
+                                  if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                    ends[3]=2;
+                                    ;//sysj\labellerController.sysj line: 139, column: 5
+                                    S70249=1;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                                else {
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                            }
+                          }
+                          else {
+                            if(applyLabelRetractM.getprestatus()){//sysj\labellerController.sysj line: 126, column: 46
+                              applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 127, column: 7
+                              currsigs.addElement(applyLabelRetract);
+                              w_thread_3.completed(Machine.LABELLER, "label " + label_thread_3.serial);//sysj\labellerController.sysj line: 129, column: 7
+                              t_thread_3.setLastSerial(label_thread_3.serial);//sysj\labellerController.sysj line: 130, column: 7
+                              System.out.println("[LAB] Labelled " + w_thread_3 + " as " + label_thread_3.serial + ", mix " + label_thread_3.actualPctOne + "/" + label_thread_3.actualPctTwo + ".");//sysj\labellerController.sysj line: 131, column: 7
+                              if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "retract", label_thread_3.serial)){//sysj\labellerController.sysj line: 132, column: 7
+                                twin.setPresent();//sysj\labellerController.sysj line: 133, column: 8
+                                currsigs.addElement(twin);
+                                twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 133, column: 8
+                                status.setPresent();//sysj\labellerController.sysj line: 135, column: 7
+                                currsigs.addElement(status);
+                                status.setValue(0);//sysj\labellerController.sysj line: 135, column: 7
+                                S68771=2;
+                                S69506=0;
+                                if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                                  labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                  S69506=1;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                                else {
+                                  S69501=0;
+                                  if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                    labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                    S69501=1;
+                                    if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                      labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                      ends[3]=2;
+                                      ;//sysj\labellerController.sysj line: 139, column: 5
+                                      S70249=1;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
+                              else {
+                                status.setPresent();//sysj\labellerController.sysj line: 135, column: 7
+                                currsigs.addElement(status);
+                                status.setValue(0);//sysj\labellerController.sysj line: 135, column: 7
+                                S68771=2;
+                                S69506=0;
+                                if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                                  labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                  S69506=1;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                                else {
+                                  S69501=0;
+                                  if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                    labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                    S69501=1;
+                                    if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                      labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                      ends[3]=2;
+                                      ;//sysj\labellerController.sysj line: 139, column: 5
+                                      S70249=1;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
+                            }
+                            else {
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                        }
+                        else {
+                          applyLabelExtend.setPresent();//sysj\labellerController.sysj line: 120, column: 9
+                          currsigs.addElement(applyLabelExtend);
+                          rollerOnOff.setPresent();//sysj\labellerController.sysj line: 121, column: 9
+                          currsigs.addElement(rollerOnOff);
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                      }
+                      else {
+                        if(applyLabelExtendM.getprestatus()){//sysj\labellerController.sysj line: 117, column: 46
+                          S68776=4;
+                          if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 118, column: 23
+                            S68776=5;
+                            if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 126, column: 23
+                              applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 127, column: 7
+                              currsigs.addElement(applyLabelRetract);
+                              w_thread_3.completed(Machine.LABELLER, "label " + label_thread_3.serial);//sysj\labellerController.sysj line: 129, column: 7
+                              t_thread_3.setLastSerial(label_thread_3.serial);//sysj\labellerController.sysj line: 130, column: 7
+                              System.out.println("[LAB] Labelled " + w_thread_3 + " as " + label_thread_3.serial + ", mix " + label_thread_3.actualPctOne + "/" + label_thread_3.actualPctTwo + ".");//sysj\labellerController.sysj line: 131, column: 7
+                              if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "retract", label_thread_3.serial)){//sysj\labellerController.sysj line: 132, column: 7
+                                twin.setPresent();//sysj\labellerController.sysj line: 133, column: 8
+                                currsigs.addElement(twin);
+                                twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 133, column: 8
+                                status.setPresent();//sysj\labellerController.sysj line: 135, column: 7
+                                currsigs.addElement(status);
+                                status.setValue(0);//sysj\labellerController.sysj line: 135, column: 7
+                                S68771=2;
+                                S69506=0;
+                                if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                                  labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                  S69506=1;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                                else {
+                                  S69501=0;
+                                  if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                    labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                    S69501=1;
+                                    if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                      labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                      ends[3]=2;
+                                      ;//sysj\labellerController.sysj line: 139, column: 5
+                                      S70249=1;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
+                              else {
+                                status.setPresent();//sysj\labellerController.sysj line: 135, column: 7
+                                currsigs.addElement(status);
+                                status.setValue(0);//sysj\labellerController.sysj line: 135, column: 7
+                                S68771=2;
+                                S69506=0;
+                                if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                                  labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                  S69506=1;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                                else {
+                                  S69501=0;
+                                  if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                    labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                    S69501=1;
+                                    if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                      labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                      ends[3]=2;
+                                      ;//sysj\labellerController.sysj line: 139, column: 5
+                                      S70249=1;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
+                            }
+                            else {
+                              if(applyLabelRetractM.getprestatus()){//sysj\labellerController.sysj line: 126, column: 46
+                                applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 127, column: 7
+                                currsigs.addElement(applyLabelRetract);
+                                w_thread_3.completed(Machine.LABELLER, "label " + label_thread_3.serial);//sysj\labellerController.sysj line: 129, column: 7
+                                t_thread_3.setLastSerial(label_thread_3.serial);//sysj\labellerController.sysj line: 130, column: 7
+                                System.out.println("[LAB] Labelled " + w_thread_3 + " as " + label_thread_3.serial + ", mix " + label_thread_3.actualPctOne + "/" + label_thread_3.actualPctTwo + ".");//sysj\labellerController.sysj line: 131, column: 7
+                                if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "retract", label_thread_3.serial)){//sysj\labellerController.sysj line: 132, column: 7
+                                  twin.setPresent();//sysj\labellerController.sysj line: 133, column: 8
+                                  currsigs.addElement(twin);
+                                  twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 133, column: 8
+                                  status.setPresent();//sysj\labellerController.sysj line: 135, column: 7
+                                  currsigs.addElement(status);
+                                  status.setValue(0);//sysj\labellerController.sysj line: 135, column: 7
+                                  S68771=2;
+                                  S69506=0;
+                                  if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                    S69506=1;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                  else {
+                                    S69501=0;
+                                    if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                      labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                      S69501=1;
+                                      if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                        labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                        ends[3]=2;
+                                        ;//sysj\labellerController.sysj line: 139, column: 5
+                                        S70249=1;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                }
+                                else {
+                                  status.setPresent();//sysj\labellerController.sysj line: 135, column: 7
+                                  currsigs.addElement(status);
+                                  status.setValue(0);//sysj\labellerController.sysj line: 135, column: 7
+                                  S68771=2;
+                                  S69506=0;
+                                  if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                    S69506=1;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                  else {
+                                    S69501=0;
+                                    if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                      labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                      S69501=1;
+                                      if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                        labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                        ends[3]=2;
+                                        ;//sysj\labellerController.sysj line: 139, column: 5
+                                        S70249=1;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                }
+                              }
+                              else {
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                          }
+                          else {
+                            applyLabelExtend.setPresent();//sysj\labellerController.sysj line: 120, column: 9
+                            currsigs.addElement(applyLabelExtend);
+                            rollerOnOff.setPresent();//sysj\labellerController.sysj line: 121, column: 9
+                            currsigs.addElement(rollerOnOff);
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                        }
+                        else {
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                      }
+                      break;
+                    
+                    case 3 : 
+                      if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 117, column: 23
+                        S68776=4;
+                        if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 118, column: 23
+                          S68776=5;
+                          if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 126, column: 23
+                            applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 127, column: 7
+                            currsigs.addElement(applyLabelRetract);
+                            w_thread_3.completed(Machine.LABELLER, "label " + label_thread_3.serial);//sysj\labellerController.sysj line: 129, column: 7
+                            t_thread_3.setLastSerial(label_thread_3.serial);//sysj\labellerController.sysj line: 130, column: 7
+                            System.out.println("[LAB] Labelled " + w_thread_3 + " as " + label_thread_3.serial + ", mix " + label_thread_3.actualPctOne + "/" + label_thread_3.actualPctTwo + ".");//sysj\labellerController.sysj line: 131, column: 7
+                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "retract", label_thread_3.serial)){//sysj\labellerController.sysj line: 132, column: 7
+                              twin.setPresent();//sysj\labellerController.sysj line: 133, column: 8
+                              currsigs.addElement(twin);
+                              twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 133, column: 8
+                              status.setPresent();//sysj\labellerController.sysj line: 135, column: 7
+                              currsigs.addElement(status);
+                              status.setValue(0);//sysj\labellerController.sysj line: 135, column: 7
+                              S68771=2;
+                              S69506=0;
+                              if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                                labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                S69506=1;
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                              else {
+                                S69501=0;
+                                if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                  labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                  S69501=1;
+                                  if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                    ends[3]=2;
+                                    ;//sysj\labellerController.sysj line: 139, column: 5
+                                    S70249=1;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                                else {
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                            }
+                            else {
+                              status.setPresent();//sysj\labellerController.sysj line: 135, column: 7
+                              currsigs.addElement(status);
+                              status.setValue(0);//sysj\labellerController.sysj line: 135, column: 7
+                              S68771=2;
+                              S69506=0;
+                              if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                                labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                S69506=1;
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                              else {
+                                S69501=0;
+                                if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                  labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                  S69501=1;
+                                  if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                    ends[3]=2;
+                                    ;//sysj\labellerController.sysj line: 139, column: 5
+                                    S70249=1;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                                else {
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                            }
+                          }
+                          else {
+                            if(applyLabelRetractM.getprestatus()){//sysj\labellerController.sysj line: 126, column: 46
+                              applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 127, column: 7
+                              currsigs.addElement(applyLabelRetract);
+                              w_thread_3.completed(Machine.LABELLER, "label " + label_thread_3.serial);//sysj\labellerController.sysj line: 129, column: 7
+                              t_thread_3.setLastSerial(label_thread_3.serial);//sysj\labellerController.sysj line: 130, column: 7
+                              System.out.println("[LAB] Labelled " + w_thread_3 + " as " + label_thread_3.serial + ", mix " + label_thread_3.actualPctOne + "/" + label_thread_3.actualPctTwo + ".");//sysj\labellerController.sysj line: 131, column: 7
+                              if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "retract", label_thread_3.serial)){//sysj\labellerController.sysj line: 132, column: 7
+                                twin.setPresent();//sysj\labellerController.sysj line: 133, column: 8
+                                currsigs.addElement(twin);
+                                twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 133, column: 8
+                                status.setPresent();//sysj\labellerController.sysj line: 135, column: 7
+                                currsigs.addElement(status);
+                                status.setValue(0);//sysj\labellerController.sysj line: 135, column: 7
+                                S68771=2;
+                                S69506=0;
+                                if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                                  labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                  S69506=1;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                                else {
+                                  S69501=0;
+                                  if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                    labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                    S69501=1;
+                                    if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                      labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                      ends[3]=2;
+                                      ;//sysj\labellerController.sysj line: 139, column: 5
+                                      S70249=1;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
+                              else {
+                                status.setPresent();//sysj\labellerController.sysj line: 135, column: 7
+                                currsigs.addElement(status);
+                                status.setValue(0);//sysj\labellerController.sysj line: 135, column: 7
+                                S68771=2;
+                                S69506=0;
+                                if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                                  labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                  S69506=1;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                                else {
+                                  S69501=0;
+                                  if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                    labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                    S69501=1;
+                                    if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                      labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                      ends[3]=2;
+                                      ;//sysj\labellerController.sysj line: 139, column: 5
+                                      S70249=1;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
+                            }
+                            else {
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                        }
+                        else {
+                          applyLabelExtend.setPresent();//sysj\labellerController.sysj line: 120, column: 9
+                          currsigs.addElement(applyLabelExtend);
+                          rollerOnOff.setPresent();//sysj\labellerController.sysj line: 121, column: 9
+                          currsigs.addElement(rollerOnOff);
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                      }
+                      else {
+                        if(applyLabelExtendM.getprestatus()){//sysj\labellerController.sysj line: 117, column: 46
+                          S68776=4;
+                          if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 118, column: 23
+                            S68776=5;
+                            if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 126, column: 23
+                              applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 127, column: 7
+                              currsigs.addElement(applyLabelRetract);
+                              w_thread_3.completed(Machine.LABELLER, "label " + label_thread_3.serial);//sysj\labellerController.sysj line: 129, column: 7
+                              t_thread_3.setLastSerial(label_thread_3.serial);//sysj\labellerController.sysj line: 130, column: 7
+                              System.out.println("[LAB] Labelled " + w_thread_3 + " as " + label_thread_3.serial + ", mix " + label_thread_3.actualPctOne + "/" + label_thread_3.actualPctTwo + ".");//sysj\labellerController.sysj line: 131, column: 7
+                              if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "retract", label_thread_3.serial)){//sysj\labellerController.sysj line: 132, column: 7
+                                twin.setPresent();//sysj\labellerController.sysj line: 133, column: 8
+                                currsigs.addElement(twin);
+                                twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 133, column: 8
+                                status.setPresent();//sysj\labellerController.sysj line: 135, column: 7
+                                currsigs.addElement(status);
+                                status.setValue(0);//sysj\labellerController.sysj line: 135, column: 7
+                                S68771=2;
+                                S69506=0;
+                                if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                                  labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                  S69506=1;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                                else {
+                                  S69501=0;
+                                  if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                    labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                    S69501=1;
+                                    if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                      labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                      ends[3]=2;
+                                      ;//sysj\labellerController.sysj line: 139, column: 5
+                                      S70249=1;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
+                              else {
+                                status.setPresent();//sysj\labellerController.sysj line: 135, column: 7
+                                currsigs.addElement(status);
+                                status.setValue(0);//sysj\labellerController.sysj line: 135, column: 7
+                                S68771=2;
+                                S69506=0;
+                                if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                                  labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                  S69506=1;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                                else {
+                                  S69501=0;
+                                  if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                    labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                    S69501=1;
+                                    if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                      labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                      ends[3]=2;
+                                      ;//sysj\labellerController.sysj line: 139, column: 5
+                                      S70249=1;
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                  else {
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                }
+                              }
+                            }
+                            else {
+                              if(applyLabelRetractM.getprestatus()){//sysj\labellerController.sysj line: 126, column: 46
+                                applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 127, column: 7
+                                currsigs.addElement(applyLabelRetract);
+                                w_thread_3.completed(Machine.LABELLER, "label " + label_thread_3.serial);//sysj\labellerController.sysj line: 129, column: 7
+                                t_thread_3.setLastSerial(label_thread_3.serial);//sysj\labellerController.sysj line: 130, column: 7
+                                System.out.println("[LAB] Labelled " + w_thread_3 + " as " + label_thread_3.serial + ", mix " + label_thread_3.actualPctOne + "/" + label_thread_3.actualPctTwo + ".");//sysj\labellerController.sysj line: 131, column: 7
+                                if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "retract", label_thread_3.serial)){//sysj\labellerController.sysj line: 132, column: 7
+                                  twin.setPresent();//sysj\labellerController.sysj line: 133, column: 8
+                                  currsigs.addElement(twin);
+                                  twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 133, column: 8
+                                  status.setPresent();//sysj\labellerController.sysj line: 135, column: 7
+                                  currsigs.addElement(status);
+                                  status.setValue(0);//sysj\labellerController.sysj line: 135, column: 7
+                                  S68771=2;
+                                  S69506=0;
+                                  if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                    S69506=1;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                  else {
+                                    S69501=0;
+                                    if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                      labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                      S69501=1;
+                                      if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                        labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                        ends[3]=2;
+                                        ;//sysj\labellerController.sysj line: 139, column: 5
+                                        S70249=1;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                }
+                                else {
+                                  status.setPresent();//sysj\labellerController.sysj line: 135, column: 7
+                                  currsigs.addElement(status);
+                                  status.setValue(0);//sysj\labellerController.sysj line: 135, column: 7
+                                  S68771=2;
+                                  S69506=0;
+                                  if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                    S69506=1;
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
+                                  }
+                                  else {
+                                    S69501=0;
+                                    if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                      labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                      S69501=1;
+                                      if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                        labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                        ends[3]=2;
+                                        ;//sysj\labellerController.sysj line: 139, column: 5
+                                        S70249=1;
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                      else {
+                                        active[3]=1;
+                                        ends[3]=1;
+                                        tdone[3]=1;
+                                      }
+                                    }
+                                    else {
+                                      active[3]=1;
+                                      ends[3]=1;
+                                      tdone[3]=1;
+                                    }
+                                  }
+                                }
+                              }
+                              else {
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                          }
+                          else {
+                            applyLabelExtend.setPresent();//sysj\labellerController.sysj line: 120, column: 9
+                            currsigs.addElement(applyLabelExtend);
+                            rollerOnOff.setPresent();//sysj\labellerController.sysj line: 121, column: 9
+                            currsigs.addElement(rollerOnOff);
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                        }
+                        else {
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                      }
+                      break;
+                    
+                    case 4 : 
+                      if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 118, column: 23
+                        S68776=5;
+                        if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 126, column: 23
+                          applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 127, column: 7
+                          currsigs.addElement(applyLabelRetract);
+                          w_thread_3.completed(Machine.LABELLER, "label " + label_thread_3.serial);//sysj\labellerController.sysj line: 129, column: 7
+                          t_thread_3.setLastSerial(label_thread_3.serial);//sysj\labellerController.sysj line: 130, column: 7
+                          System.out.println("[LAB] Labelled " + w_thread_3 + " as " + label_thread_3.serial + ", mix " + label_thread_3.actualPctOne + "/" + label_thread_3.actualPctTwo + ".");//sysj\labellerController.sysj line: 131, column: 7
+                          if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "retract", label_thread_3.serial)){//sysj\labellerController.sysj line: 132, column: 7
+                            twin.setPresent();//sysj\labellerController.sysj line: 133, column: 8
                             currsigs.addElement(twin);
-                            twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 85, column: 8
-                            status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
+                            twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 133, column: 8
+                            status.setPresent();//sysj\labellerController.sysj line: 135, column: 7
                             currsigs.addElement(status);
-                            status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
-                            S51479=3;
-                            S51960=0;
-                            if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                              labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                              S51960=1;
+                            status.setValue(0);//sysj\labellerController.sysj line: 135, column: 7
+                            S68771=2;
+                            S69506=0;
+                            if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                              labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                              S69506=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
-                              S51955=0;
-                              if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                S51955=1;
-                                if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                  labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
+                              S69501=0;
+                              if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                S69501=1;
+                                if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                  labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
                                   ends[3]=2;
-                                  ;//sysj\labellerController.sysj line: 125, column: 5
-                                  S55129=2;
+                                  ;//sysj\labellerController.sysj line: 139, column: 5
+                                  S70249=1;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -2162,28 +2014,28 @@ public class LabellerController extends ClockDomain{
                             }
                           }
                           else {
-                            status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
+                            status.setPresent();//sysj\labellerController.sysj line: 135, column: 7
                             currsigs.addElement(status);
-                            status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
-                            S51479=3;
-                            S51960=0;
-                            if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                              labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                              S51960=1;
+                            status.setValue(0);//sysj\labellerController.sysj line: 135, column: 7
+                            S68771=2;
+                            S69506=0;
+                            if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                              labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                              S69506=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
-                              S51955=0;
-                              if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                S51955=1;
-                                if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                  labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
+                              S69501=0;
+                              if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                S69501=1;
+                                if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                  labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
                                   ends[3]=2;
-                                  ;//sysj\labellerController.sysj line: 125, column: 5
-                                  S55129=2;
+                                  ;//sysj\labellerController.sysj line: 139, column: 5
+                                  S70249=1;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -2203,236 +2055,198 @@ public class LabellerController extends ClockDomain{
                           }
                         }
                         else {
-                          w_thread_3.started(Machine.LABELLER, "labelling");//sysj\labellerController.sysj line: 90, column: 7
-                          label_thread_3 = new LabelData(w_thread_3);//sysj\labellerController.sysj line: 91, column: 7
-                          if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "printLabel", label_thread_3.serial)){//sysj\labellerController.sysj line: 92, column: 7
-                            twin.setPresent();//sysj\labellerController.sysj line: 93, column: 8
-                            currsigs.addElement(twin);
-                            twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 93, column: 8
-                            S51548=0;
-                            if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 97, column: 23
-                              S51548=1;
-                              if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
-                                applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
-                                currsigs.addElement(applyLabelRetract);
-                                w_thread_3.completed(Machine.LABELLER, "label " + label_thread_3.serial);//sysj\labellerController.sysj line: 115, column: 7
-                                t_thread_3.setLastSerial(label_thread_3.serial);//sysj\labellerController.sysj line: 116, column: 7
-                                System.out.println("[LAB] Labelled " + w_thread_3 + " as " + label_thread_3.serial + ", mix " + label_thread_3.actualPctOne + "/" + label_thread_3.actualPctTwo + ".");//sysj\labellerController.sysj line: 117, column: 7
-                                if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "retract", label_thread_3.serial)){//sysj\labellerController.sysj line: 118, column: 7
-                                  twin.setPresent();//sysj\labellerController.sysj line: 119, column: 8
-                                  currsigs.addElement(twin);
-                                  twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 119, column: 8
-                                  status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                                  currsigs.addElement(status);
-                                  status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                  S51479=3;
-                                  S51960=0;
-                                  if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                    S51960=1;
+                          if(applyLabelRetractM.getprestatus()){//sysj\labellerController.sysj line: 126, column: 46
+                            applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 127, column: 7
+                            currsigs.addElement(applyLabelRetract);
+                            w_thread_3.completed(Machine.LABELLER, "label " + label_thread_3.serial);//sysj\labellerController.sysj line: 129, column: 7
+                            t_thread_3.setLastSerial(label_thread_3.serial);//sysj\labellerController.sysj line: 130, column: 7
+                            System.out.println("[LAB] Labelled " + w_thread_3 + " as " + label_thread_3.serial + ", mix " + label_thread_3.actualPctOne + "/" + label_thread_3.actualPctTwo + ".");//sysj\labellerController.sysj line: 131, column: 7
+                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "retract", label_thread_3.serial)){//sysj\labellerController.sysj line: 132, column: 7
+                              twin.setPresent();//sysj\labellerController.sysj line: 133, column: 8
+                              currsigs.addElement(twin);
+                              twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 133, column: 8
+                              status.setPresent();//sysj\labellerController.sysj line: 135, column: 7
+                              currsigs.addElement(status);
+                              status.setValue(0);//sysj\labellerController.sysj line: 135, column: 7
+                              S68771=2;
+                              S69506=0;
+                              if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                                labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                S69506=1;
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                              else {
+                                S69501=0;
+                                if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                  labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                  S69501=1;
+                                  if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                    ends[3]=2;
+                                    ;//sysj\labellerController.sysj line: 139, column: 5
+                                    S70249=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
                                   else {
-                                    S51955=0;
-                                    if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                      labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                      S51955=1;
-                                      if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                        labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                        ends[3]=2;
-                                        ;//sysj\labellerController.sysj line: 125, column: 5
-                                        S55129=2;
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                      else {
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                    }
-                                    else {
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
                                   }
                                 }
                                 else {
-                                  status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                                  currsigs.addElement(status);
-                                  status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                  S51479=3;
-                                  S51960=0;
-                                  if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                    S51960=1;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                            }
+                            else {
+                              status.setPresent();//sysj\labellerController.sysj line: 135, column: 7
+                              currsigs.addElement(status);
+                              status.setValue(0);//sysj\labellerController.sysj line: 135, column: 7
+                              S68771=2;
+                              S69506=0;
+                              if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                                labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                S69506=1;
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                              else {
+                                S69501=0;
+                                if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                  labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                  S69501=1;
+                                  if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                    ends[3]=2;
+                                    ;//sysj\labellerController.sysj line: 139, column: 5
+                                    S70249=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
                                   else {
-                                    S51955=0;
-                                    if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                      labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                      S51955=1;
-                                      if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                        labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                        ends[3]=2;
-                                        ;//sysj\labellerController.sysj line: 125, column: 5
-                                        S55129=2;
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                      else {
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                    }
-                                    else {
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
+                                    active[3]=1;
+                                    ends[3]=1;
+                                    tdone[3]=1;
                                   }
                                 }
+                                else {
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                            }
+                          }
+                          else {
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                        }
+                      }
+                      else {
+                        applyLabelExtend.setPresent();//sysj\labellerController.sysj line: 120, column: 9
+                        currsigs.addElement(applyLabelExtend);
+                        rollerOnOff.setPresent();//sysj\labellerController.sysj line: 121, column: 9
+                        currsigs.addElement(rollerOnOff);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      break;
+                    
+                    case 5 : 
+                      if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 126, column: 23
+                        applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 127, column: 7
+                        currsigs.addElement(applyLabelRetract);
+                        w_thread_3.completed(Machine.LABELLER, "label " + label_thread_3.serial);//sysj\labellerController.sysj line: 129, column: 7
+                        t_thread_3.setLastSerial(label_thread_3.serial);//sysj\labellerController.sysj line: 130, column: 7
+                        System.out.println("[LAB] Labelled " + w_thread_3 + " as " + label_thread_3.serial + ", mix " + label_thread_3.actualPctOne + "/" + label_thread_3.actualPctTwo + ".");//sysj\labellerController.sysj line: 131, column: 7
+                        if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "retract", label_thread_3.serial)){//sysj\labellerController.sysj line: 132, column: 7
+                          twin.setPresent();//sysj\labellerController.sysj line: 133, column: 8
+                          currsigs.addElement(twin);
+                          twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 133, column: 8
+                          status.setPresent();//sysj\labellerController.sysj line: 135, column: 7
+                          currsigs.addElement(status);
+                          status.setValue(0);//sysj\labellerController.sysj line: 135, column: 7
+                          S68771=2;
+                          S69506=0;
+                          if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                            labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                            S69506=1;
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                          else {
+                            S69501=0;
+                            if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                              labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                              S69501=1;
+                              if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                ends[3]=2;
+                                ;//sysj\labellerController.sysj line: 139, column: 5
+                                S70249=1;
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
                               }
                               else {
-                                applyLabelExtend.setPresent();//sysj\labellerController.sysj line: 107, column: 9
-                                currsigs.addElement(applyLabelExtend);
-                                rollerOnOff.setPresent();//sysj\labellerController.sysj line: 108, column: 9
-                                currsigs.addElement(rollerOnOff);
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
                             }
                             else {
-                              printLabel.setPresent();//sysj\labellerController.sysj line: 99, column: 9
-                              currsigs.addElement(printLabel);
-                              printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 99, column: 9
-                              rollerOnOff.setPresent();//sysj\labellerController.sysj line: 100, column: 9
-                              currsigs.addElement(rollerOnOff);
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                           }
+                        }
+                        else {
+                          status.setPresent();//sysj\labellerController.sysj line: 135, column: 7
+                          currsigs.addElement(status);
+                          status.setValue(0);//sysj\labellerController.sysj line: 135, column: 7
+                          S68771=2;
+                          S69506=0;
+                          if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                            labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                            S69506=1;
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
                           else {
-                            S51548=0;
-                            if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 97, column: 23
-                              S51548=1;
-                              if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
-                                applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
-                                currsigs.addElement(applyLabelRetract);
-                                w_thread_3.completed(Machine.LABELLER, "label " + label_thread_3.serial);//sysj\labellerController.sysj line: 115, column: 7
-                                t_thread_3.setLastSerial(label_thread_3.serial);//sysj\labellerController.sysj line: 116, column: 7
-                                System.out.println("[LAB] Labelled " + w_thread_3 + " as " + label_thread_3.serial + ", mix " + label_thread_3.actualPctOne + "/" + label_thread_3.actualPctTwo + ".");//sysj\labellerController.sysj line: 117, column: 7
-                                if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "retract", label_thread_3.serial)){//sysj\labellerController.sysj line: 118, column: 7
-                                  twin.setPresent();//sysj\labellerController.sysj line: 119, column: 8
-                                  currsigs.addElement(twin);
-                                  twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 119, column: 8
-                                  status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                                  currsigs.addElement(status);
-                                  status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                  S51479=3;
-                                  S51960=0;
-                                  if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                    S51960=1;
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                  else {
-                                    S51955=0;
-                                    if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                      labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                      S51955=1;
-                                      if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                        labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                        ends[3]=2;
-                                        ;//sysj\labellerController.sysj line: 125, column: 5
-                                        S55129=2;
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                      else {
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                    }
-                                    else {
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                  }
-                                }
-                                else {
-                                  status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                                  currsigs.addElement(status);
-                                  status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                  S51479=3;
-                                  S51960=0;
-                                  if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                    S51960=1;
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                  else {
-                                    S51955=0;
-                                    if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                      labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                      S51955=1;
-                                      if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                        labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                        ends[3]=2;
-                                        ;//sysj\labellerController.sysj line: 125, column: 5
-                                        S55129=2;
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                      else {
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                    }
-                                    else {
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                  }
-                                }
+                            S69501=0;
+                            if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                              labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                              S69501=1;
+                              if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                ends[3]=2;
+                                ;//sysj\labellerController.sysj line: 139, column: 5
+                                S70249=1;
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
                               }
                               else {
-                                applyLabelExtend.setPresent();//sysj\labellerController.sysj line: 107, column: 9
-                                currsigs.addElement(applyLabelExtend);
-                                rollerOnOff.setPresent();//sysj\labellerController.sysj line: 108, column: 9
-                                currsigs.addElement(rollerOnOff);
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
                             }
                             else {
-                              printLabel.setPresent();//sysj\labellerController.sysj line: 99, column: 9
-                              currsigs.addElement(printLabel);
-                              printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 99, column: 9
-                              rollerOnOff.setPresent();//sysj\labellerController.sysj line: 100, column: 9
-                              currsigs.addElement(rollerOnOff);
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
@@ -2441,40 +2255,100 @@ public class LabellerController extends ClockDomain{
                         }
                       }
                       else {
-                        S51479=3;
-                        S51960=0;
-                        if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                          labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                          S51960=1;
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                        else {
-                          S51955=0;
-                          if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                            labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                            S51955=1;
-                            if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                              labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                              ends[3]=2;
-                              ;//sysj\labellerController.sysj line: 125, column: 5
-                              S55129=2;
+                        if(applyLabelRetractM.getprestatus()){//sysj\labellerController.sysj line: 126, column: 46
+                          applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 127, column: 7
+                          currsigs.addElement(applyLabelRetract);
+                          w_thread_3.completed(Machine.LABELLER, "label " + label_thread_3.serial);//sysj\labellerController.sysj line: 129, column: 7
+                          t_thread_3.setLastSerial(label_thread_3.serial);//sysj\labellerController.sysj line: 130, column: 7
+                          System.out.println("[LAB] Labelled " + w_thread_3 + " as " + label_thread_3.serial + ", mix " + label_thread_3.actualPctOne + "/" + label_thread_3.actualPctTwo + ".");//sysj\labellerController.sysj line: 131, column: 7
+                          if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "retract", label_thread_3.serial)){//sysj\labellerController.sysj line: 132, column: 7
+                            twin.setPresent();//sysj\labellerController.sysj line: 133, column: 8
+                            currsigs.addElement(twin);
+                            twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 133, column: 8
+                            status.setPresent();//sysj\labellerController.sysj line: 135, column: 7
+                            currsigs.addElement(status);
+                            status.setValue(0);//sysj\labellerController.sysj line: 135, column: 7
+                            S68771=2;
+                            S69506=0;
+                            if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                              labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                              S69506=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
+                              S69501=0;
+                              if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                S69501=1;
+                                if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                  labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                  ends[3]=2;
+                                  ;//sysj\labellerController.sysj line: 139, column: 5
+                                  S70249=1;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                                else {
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                              else {
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                          }
+                          else {
+                            status.setPresent();//sysj\labellerController.sysj line: 135, column: 7
+                            currsigs.addElement(status);
+                            status.setValue(0);//sysj\labellerController.sysj line: 135, column: 7
+                            S68771=2;
+                            S69506=0;
+                            if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                              labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                              S69506=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
+                            else {
+                              S69501=0;
+                              if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                                S69501=1;
+                                if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                  labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                  ends[3]=2;
+                                  ;//sysj\labellerController.sysj line: 139, column: 5
+                                  S70249=1;
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                                else {
+                                  active[3]=1;
+                                  ends[3]=1;
+                                  tdone[3]=1;
+                                }
+                              }
+                              else {
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
                           }
-                          else {
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
+                        }
+                        else {
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
                         }
                       }
                       break;
@@ -2483,248 +2357,26 @@ public class LabellerController extends ClockDomain{
                   break;
                 
                 case 2 : 
-                  switch(S51548){
+                  switch(S69506){
                     case 0 : 
-                      if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 97, column: 23
-                        S51548=1;
-                        if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
-                          applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
-                          currsigs.addElement(applyLabelRetract);
-                          w_thread_3.completed(Machine.LABELLER, "label " + label_thread_3.serial);//sysj\labellerController.sysj line: 115, column: 7
-                          t_thread_3.setLastSerial(label_thread_3.serial);//sysj\labellerController.sysj line: 116, column: 7
-                          System.out.println("[LAB] Labelled " + w_thread_3 + " as " + label_thread_3.serial + ", mix " + label_thread_3.actualPctOne + "/" + label_thread_3.actualPctTwo + ".");//sysj\labellerController.sysj line: 117, column: 7
-                          if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "retract", label_thread_3.serial)){//sysj\labellerController.sysj line: 118, column: 7
-                            twin.setPresent();//sysj\labellerController.sysj line: 119, column: 8
-                            currsigs.addElement(twin);
-                            twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 119, column: 8
-                            status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                            currsigs.addElement(status);
-                            status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                            S51479=3;
-                            S51960=0;
-                            if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                              labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                              S51960=1;
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                            else {
-                              S51955=0;
-                              if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                S51955=1;
-                                if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                  labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                  ends[3]=2;
-                                  ;//sysj\labellerController.sysj line: 125, column: 5
-                                  S55129=2;
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                                else {
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
-                              else {
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                            }
-                          }
-                          else {
-                            status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                            currsigs.addElement(status);
-                            status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                            S51479=3;
-                            S51960=0;
-                            if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                              labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                              S51960=1;
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                            else {
-                              S51955=0;
-                              if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                S51955=1;
-                                if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                  labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                  ends[3]=2;
-                                  ;//sysj\labellerController.sysj line: 125, column: 5
-                                  S55129=2;
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                                else {
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
-                              else {
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                            }
-                          }
-                        }
-                        else {
-                          applyLabelExtend.setPresent();//sysj\labellerController.sysj line: 107, column: 9
-                          currsigs.addElement(applyLabelExtend);
-                          rollerOnOff.setPresent();//sysj\labellerController.sysj line: 108, column: 9
-                          currsigs.addElement(rollerOnOff);
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                      }
-                      else {
-                        printLabel.setPresent();//sysj\labellerController.sysj line: 99, column: 9
-                        currsigs.addElement(printLabel);
-                        printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 99, column: 9
-                        rollerOnOff.setPresent();//sysj\labellerController.sysj line: 100, column: 9
-                        currsigs.addElement(rollerOnOff);
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      break;
-                    
-                    case 1 : 
-                      if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
-                        applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
-                        currsigs.addElement(applyLabelRetract);
-                        w_thread_3.completed(Machine.LABELLER, "label " + label_thread_3.serial);//sysj\labellerController.sysj line: 115, column: 7
-                        t_thread_3.setLastSerial(label_thread_3.serial);//sysj\labellerController.sysj line: 116, column: 7
-                        System.out.println("[LAB] Labelled " + w_thread_3 + " as " + label_thread_3.serial + ", mix " + label_thread_3.actualPctOne + "/" + label_thread_3.actualPctTwo + ".");//sysj\labellerController.sysj line: 117, column: 7
-                        if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "retract", label_thread_3.serial)){//sysj\labellerController.sysj line: 118, column: 7
-                          twin.setPresent();//sysj\labellerController.sysj line: 119, column: 8
-                          currsigs.addElement(twin);
-                          twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 119, column: 8
-                          status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                          currsigs.addElement(status);
-                          status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                          S51479=3;
-                          S51960=0;
-                          if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                            labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                            S51960=1;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                          else {
-                            S51955=0;
-                            if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                              labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                              S51955=1;
-                              if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                ends[3]=2;
-                                ;//sysj\labellerController.sysj line: 125, column: 5
-                                S55129=2;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                              else {
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                            }
-                            else {
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                          }
-                        }
-                        else {
-                          status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                          currsigs.addElement(status);
-                          status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                          S51479=3;
-                          S51960=0;
-                          if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                            labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                            S51960=1;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                          else {
-                            S51955=0;
-                            if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                              labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                              S51955=1;
-                              if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                ends[3]=2;
-                                ;//sysj\labellerController.sysj line: 125, column: 5
-                                S55129=2;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                              else {
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                            }
-                            else {
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                          }
-                        }
-                      }
-                      else {
-                        applyLabelExtend.setPresent();//sysj\labellerController.sysj line: 107, column: 9
-                        currsigs.addElement(applyLabelExtend);
-                        rollerOnOff.setPresent();//sysj\labellerController.sysj line: 108, column: 9
-                        currsigs.addElement(rollerOnOff);
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      break;
-                    
-                  }
-                  break;
-                
-                case 3 : 
-                  switch(S51960){
-                    case 0 : 
-                      if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                        labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                        S51960=1;
+                      if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                        labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                        S69506=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        switch(S51955){
+                        switch(S69501){
                           case 0 : 
-                            if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                              labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                              S51955=1;
-                              if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
+                            if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                              labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                              S69501=1;
+                              if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
                                 ends[3]=2;
-                                ;//sysj\labellerController.sysj line: 125, column: 5
-                                S55129=2;
+                                ;//sysj\labellerController.sysj line: 139, column: 5
+                                S70249=1;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -2743,11 +2395,11 @@ public class LabellerController extends ClockDomain{
                             break;
                           
                           case 1 : 
-                            if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                              labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
+                            if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                              labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
                               ends[3]=2;
-                              ;//sysj\labellerController.sysj line: 125, column: 5
-                              S55129=2;
+                              ;//sysj\labellerController.sysj line: 139, column: 5
+                              S70249=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
@@ -2764,25 +2416,25 @@ public class LabellerController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      S51960=1;
-                      S51960=0;
-                      if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                        labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                        S51960=1;
+                      S69506=1;
+                      S69506=0;
+                      if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                        labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                        S69506=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S51955=0;
-                        if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                          labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                          S51955=1;
-                          if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                            labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
+                        S69501=0;
+                        if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                          labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                          S69501=1;
+                          if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                            labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
                             ends[3]=2;
-                            ;//sysj\labellerController.sysj line: 125, column: 5
-                            S55129=2;
+                            ;//sysj\labellerController.sysj line: 139, column: 5
+                            S70249=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -2804,22 +2456,22 @@ public class LabellerController extends ClockDomain{
                   }
                   break;
                 
+                case 3 : 
+                  S70249=1;
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                  break;
+                
                 case 4 : 
-                  S55129=2;
+                  S70249=1;
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                   break;
                 
                 case 5 : 
-                  S55129=2;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                  break;
-                
-                case 6 : 
-                  S55129=2;
+                  S70249=1;
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
@@ -2829,397 +2481,114 @@ public class LabellerController extends ClockDomain{
             }
             break;
           
-          case 2 : 
-            S55129=2;
-            S55129=0;
-            if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 60, column: 20
-              S55129=1;
-              if(manual_1.getprestatus()){//sysj\labellerController.sysj line: 62, column: 20
-                labelBottle_in.setPreempted();
-                labelDone_o.setPreempted();
-                S55129=2;
+          case 1 : 
+            S70249=1;
+            S70249=0;
+            if(reset.getprestatus()){//sysj\labellerController.sysj line: 64, column: 20
+              labelBottle_in.setPreempted();
+              labelDone_o.setPreempted();
+              S70249=1;
+              active[3]=1;
+              ends[3]=1;
+              tdone[3]=1;
+            }
+            else {
+              S68771=0;
+              S68755=0;
+              if(!labelBottle_in.isPartnerPresent() || labelBottle_in.isPartnerPreempted()){//sysj\labellerController.sysj line: 65, column: 5
+                labelBottle_in.setACK(false);//sysj\labellerController.sysj line: 65, column: 5
+                S68755=1;
                 active[3]=1;
                 ends[3]=1;
                 tdone[3]=1;
               }
               else {
-                S51479=0;
-                S51463=0;
-                if(!labelBottle_in.isPartnerPresent() || labelBottle_in.isPartnerPreempted()){//sysj\labellerController.sysj line: 63, column: 5
-                  labelBottle_in.setACK(false);//sysj\labellerController.sysj line: 63, column: 5
-                  S51463=1;
-                  active[3]=1;
-                  ends[3]=1;
-                  tdone[3]=1;
-                }
-                else {
-                  S51458=0;
-                  if(!labelBottle_in.isREQ()){//sysj\labellerController.sysj line: 63, column: 5
-                    labelBottle_in.setACK(true);//sysj\labellerController.sysj line: 63, column: 5
-                    S51458=1;
-                    if(labelBottle_in.isREQ()){//sysj\labellerController.sysj line: 63, column: 5
-                      labelBottle_in.setACK(false);//sysj\labellerController.sysj line: 63, column: 5
-                      ends[3]=2;
-                      ;//sysj\labellerController.sysj line: 63, column: 5
-                      w_thread_3 = (WorkpieceTwin)(labelBottle_in.getVal() == null ? null : ((WorkpieceTwin)labelBottle_in.getVal()));//sysj\labellerController.sysj line: 64, column: 5
-                      S51479=1;
-                      if(w_thread_3 != null){//sysj\labellerController.sysj line: 65, column: 4
-                        permitted_thread_3 = false;//sysj\labellerController.sysj line: 66, column: 1
-                        S51480=0;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
+                S68750=0;
+                if(!labelBottle_in.isREQ()){//sysj\labellerController.sysj line: 65, column: 5
+                  labelBottle_in.setACK(true);//sysj\labellerController.sysj line: 65, column: 5
+                  S68750=1;
+                  if(labelBottle_in.isREQ()){//sysj\labellerController.sysj line: 65, column: 5
+                    labelBottle_in.setACK(false);//sysj\labellerController.sysj line: 65, column: 5
+                    ends[3]=2;
+                    ;//sysj\labellerController.sysj line: 65, column: 5
+                    w_thread_3 = (WorkpieceTwin)(labelBottle_in.getVal() == null ? null : ((WorkpieceTwin)labelBottle_in.getVal()));//sysj\labellerController.sysj line: 66, column: 5
+                    S68771=1;
+                    if(w_thread_3 != null){//sysj\labellerController.sysj line: 68, column: 8
+                      w_thread_3.arrived(Machine.LABELLER);//sysj\labellerController.sysj line: 69, column: 6
+                      if(w_thread_3.catchFault("no-print")) {//sysj\labellerController.sysj line: 74, column: 34
+                        System.out.println("[LAB] Print failed for " + w_thread_3 + ".");//sysj\labellerController.sysj line: 75, column: 7
+                        w_thread_3.reject(Machine.LABELLER, "label did not print");//sysj\labellerController.sysj line: 76, column: 7
                       }
-                      else {
-                        S51479=2;
-                        if(w_thread_3 != null){//sysj\labellerController.sysj line: 76, column: 8
-                          w_thread_3.arrived(Machine.LABELLER);//sysj\labellerController.sysj line: 77, column: 6
-                          refusal_thread_3 = w_thread_3.labelRefusalReason();//sysj\labellerController.sysj line: 78, column: 6
-                          if(refusal_thread_3 != null){//sysj\labellerController.sysj line: 80, column: 9
-                            System.out.println("[LAB] Refusing " + w_thread_3 + ": " + refusal_thread_3);//sysj\labellerController.sysj line: 82, column: 7
-                            w_thread_3.reject(Machine.LABELLER, "label refused - " + refusal_thread_3);//sysj\labellerController.sysj line: 83, column: 7
-                            if(t_thread_3.update(PlantClock.now(), MachineStatus.FAULT, "refuse", refusal_thread_3)){//sysj\labellerController.sysj line: 84, column: 7
-                              twin.setPresent();//sysj\labellerController.sysj line: 85, column: 8
-                              currsigs.addElement(twin);
-                              twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 85, column: 8
-                              status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
-                              currsigs.addElement(status);
-                              status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
-                              S51479=3;
-                              S51960=0;
-                              if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                S51960=1;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                              else {
-                                S51955=0;
-                                if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                  labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                  S51955=1;
-                                  if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                    ends[3]=2;
-                                    ;//sysj\labellerController.sysj line: 125, column: 5
-                                    S55129=2;
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                  else {
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                }
-                                else {
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
-                            }
-                            else {
-                              status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
-                              currsigs.addElement(status);
-                              status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
-                              S51479=3;
-                              S51960=0;
-                              if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                S51960=1;
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                              else {
-                                S51955=0;
-                                if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                  labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                  S51955=1;
-                                  if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                    ends[3]=2;
-                                    ;//sysj\labellerController.sysj line: 125, column: 5
-                                    S55129=2;
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                  else {
-                                    active[3]=1;
-                                    ends[3]=1;
-                                    tdone[3]=1;
-                                  }
-                                }
-                                else {
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
-                            }
-                          }
-                          else {
-                            w_thread_3.started(Machine.LABELLER, "labelling");//sysj\labellerController.sysj line: 90, column: 7
-                            label_thread_3 = new LabelData(w_thread_3);//sysj\labellerController.sysj line: 91, column: 7
-                            if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "printLabel", label_thread_3.serial)){//sysj\labellerController.sysj line: 92, column: 7
-                              twin.setPresent();//sysj\labellerController.sysj line: 93, column: 8
-                              currsigs.addElement(twin);
-                              twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 93, column: 8
-                              S51548=0;
-                              if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 97, column: 23
-                                S51548=1;
-                                if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
-                                  applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
-                                  currsigs.addElement(applyLabelRetract);
-                                  w_thread_3.completed(Machine.LABELLER, "label " + label_thread_3.serial);//sysj\labellerController.sysj line: 115, column: 7
-                                  t_thread_3.setLastSerial(label_thread_3.serial);//sysj\labellerController.sysj line: 116, column: 7
-                                  System.out.println("[LAB] Labelled " + w_thread_3 + " as " + label_thread_3.serial + ", mix " + label_thread_3.actualPctOne + "/" + label_thread_3.actualPctTwo + ".");//sysj\labellerController.sysj line: 117, column: 7
-                                  if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "retract", label_thread_3.serial)){//sysj\labellerController.sysj line: 118, column: 7
-                                    twin.setPresent();//sysj\labellerController.sysj line: 119, column: 8
-                                    currsigs.addElement(twin);
-                                    twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 119, column: 8
-                                    status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                                    currsigs.addElement(status);
-                                    status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                    S51479=3;
-                                    S51960=0;
-                                    if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                      labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                      S51960=1;
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                    else {
-                                      S51955=0;
-                                      if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                        labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                        S51955=1;
-                                        if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                          labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                          ends[3]=2;
-                                          ;//sysj\labellerController.sysj line: 125, column: 5
-                                          S55129=2;
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                        else {
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                      }
-                                      else {
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                    }
-                                  }
-                                  else {
-                                    status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                                    currsigs.addElement(status);
-                                    status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                    S51479=3;
-                                    S51960=0;
-                                    if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                      labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                      S51960=1;
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                    else {
-                                      S51955=0;
-                                      if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                        labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                        S51955=1;
-                                        if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                          labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                          ends[3]=2;
-                                          ;//sysj\labellerController.sysj line: 125, column: 5
-                                          S55129=2;
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                        else {
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                      }
-                                      else {
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                    }
-                                  }
-                                }
-                                else {
-                                  applyLabelExtend.setPresent();//sysj\labellerController.sysj line: 107, column: 9
-                                  currsigs.addElement(applyLabelExtend);
-                                  rollerOnOff.setPresent();//sysj\labellerController.sysj line: 108, column: 9
-                                  currsigs.addElement(rollerOnOff);
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
-                              else {
-                                printLabel.setPresent();//sysj\labellerController.sysj line: 99, column: 9
-                                currsigs.addElement(printLabel);
-                                printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 99, column: 9
-                                rollerOnOff.setPresent();//sysj\labellerController.sysj line: 100, column: 9
-                                currsigs.addElement(rollerOnOff);
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                            }
-                            else {
-                              S51548=0;
-                              if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 97, column: 23
-                                S51548=1;
-                                if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
-                                  applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
-                                  currsigs.addElement(applyLabelRetract);
-                                  w_thread_3.completed(Machine.LABELLER, "label " + label_thread_3.serial);//sysj\labellerController.sysj line: 115, column: 7
-                                  t_thread_3.setLastSerial(label_thread_3.serial);//sysj\labellerController.sysj line: 116, column: 7
-                                  System.out.println("[LAB] Labelled " + w_thread_3 + " as " + label_thread_3.serial + ", mix " + label_thread_3.actualPctOne + "/" + label_thread_3.actualPctTwo + ".");//sysj\labellerController.sysj line: 117, column: 7
-                                  if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "retract", label_thread_3.serial)){//sysj\labellerController.sysj line: 118, column: 7
-                                    twin.setPresent();//sysj\labellerController.sysj line: 119, column: 8
-                                    currsigs.addElement(twin);
-                                    twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 119, column: 8
-                                    status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                                    currsigs.addElement(status);
-                                    status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                    S51479=3;
-                                    S51960=0;
-                                    if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                      labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                      S51960=1;
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                    else {
-                                      S51955=0;
-                                      if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                        labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                        S51955=1;
-                                        if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                          labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                          ends[3]=2;
-                                          ;//sysj\labellerController.sysj line: 125, column: 5
-                                          S55129=2;
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                        else {
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                      }
-                                      else {
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                    }
-                                  }
-                                  else {
-                                    status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                                    currsigs.addElement(status);
-                                    status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                                    S51479=3;
-                                    S51960=0;
-                                    if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                                      labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                      S51960=1;
-                                      active[3]=1;
-                                      ends[3]=1;
-                                      tdone[3]=1;
-                                    }
-                                    else {
-                                      S51955=0;
-                                      if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                        labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                        S51955=1;
-                                        if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                          labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                          ends[3]=2;
-                                          ;//sysj\labellerController.sysj line: 125, column: 5
-                                          S55129=2;
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                        else {
-                                          active[3]=1;
-                                          ends[3]=1;
-                                          tdone[3]=1;
-                                        }
-                                      }
-                                      else {
-                                        active[3]=1;
-                                        ends[3]=1;
-                                        tdone[3]=1;
-                                      }
-                                    }
-                                  }
-                                }
-                                else {
-                                  applyLabelExtend.setPresent();//sysj\labellerController.sysj line: 107, column: 9
-                                  currsigs.addElement(applyLabelExtend);
-                                  rollerOnOff.setPresent();//sysj\labellerController.sysj line: 108, column: 9
-                                  currsigs.addElement(rollerOnOff);
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
-                              else {
-                                printLabel.setPresent();//sysj\labellerController.sysj line: 99, column: 9
-                                currsigs.addElement(printLabel);
-                                printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 99, column: 9
-                                rollerOnOff.setPresent();//sysj\labellerController.sysj line: 100, column: 9
-                                currsigs.addElement(rollerOnOff);
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                            }
-                          }
-                        }
-                        else {
-                          S51479=3;
-                          S51960=0;
-                          if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                            labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                            S51960=1;
+                      refusal_thread_3 = w_thread_3.labelRefusalReason();//sysj\labellerController.sysj line: 78, column: 6
+                      if(refusal_thread_3 != null){//sysj\labellerController.sysj line: 80, column: 9
+                        System.out.println("[LAB] Refusing " + w_thread_3 + ": " + refusal_thread_3);//sysj\labellerController.sysj line: 82, column: 7
+                        w_thread_3.reject(Machine.LABELLER, "label refused - " + refusal_thread_3);//sysj\labellerController.sysj line: 83, column: 7
+                        if(t_thread_3.update(PlantClock.now(), MachineStatus.FAULT, "refuse", refusal_thread_3)){//sysj\labellerController.sysj line: 84, column: 7
+                          twin.setPresent();//sysj\labellerController.sysj line: 85, column: 8
+                          currsigs.addElement(twin);
+                          twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 85, column: 8
+                          status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
+                          currsigs.addElement(status);
+                          status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
+                          S68771=2;
+                          S69506=0;
+                          if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                            labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                            S69506=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
                           }
                           else {
-                            S51955=0;
-                            if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                              labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                              S51955=1;
-                              if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
+                            S69501=0;
+                            if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                              labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                              S69501=1;
+                              if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
                                 ends[3]=2;
-                                ;//sysj\labellerController.sysj line: 125, column: 5
-                                S55129=2;
+                                ;//sysj\labellerController.sysj line: 139, column: 5
+                                S70249=1;
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                              else {
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                            else {
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                        }
+                        else {
+                          status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
+                          currsigs.addElement(status);
+                          status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
+                          S68771=2;
+                          S69506=0;
+                          if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                            labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                            S69506=1;
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                          else {
+                            S69501=0;
+                            if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                              labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                              S69501=1;
+                              if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                                labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                                ends[3]=2;
+                                ;//sysj\labellerController.sysj line: 139, column: 5
+                                S70249=1;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -3238,11 +2607,146 @@ public class LabellerController extends ClockDomain{
                           }
                         }
                       }
+                      else {
+                        w_thread_3.started(Machine.LABELLER, "labelling");//sysj\labellerController.sysj line: 90, column: 7
+                        label_thread_3 = new LabelData(w_thread_3);//sysj\labellerController.sysj line: 91, column: 7
+                        if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "printLabel", label_thread_3.serial)){//sysj\labellerController.sysj line: 92, column: 7
+                          twin.setPresent();//sysj\labellerController.sysj line: 93, column: 8
+                          currsigs.addElement(twin);
+                          twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 93, column: 8
+                          S68776=0;
+                          if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 101, column: 23
+                            S68776=1;
+                            if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 102, column: 23
+                              S68776=2;
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                            else {
+                              printLabel.setPresent();//sysj\labellerController.sysj line: 104, column: 9
+                              currsigs.addElement(printLabel);
+                              printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 104, column: 9
+                              rollerOnOff.setPresent();//sysj\labellerController.sysj line: 105, column: 9
+                              currsigs.addElement(rollerOnOff);
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                          else {
+                            if(rollerOnOffM.getprestatus()){//sysj\labellerController.sysj line: 101, column: 46
+                              S68776=1;
+                              if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 102, column: 23
+                                S68776=2;
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                              else {
+                                printLabel.setPresent();//sysj\labellerController.sysj line: 104, column: 9
+                                currsigs.addElement(printLabel);
+                                printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 104, column: 9
+                                rollerOnOff.setPresent();//sysj\labellerController.sysj line: 105, column: 9
+                                currsigs.addElement(rollerOnOff);
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                            else {
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                        }
+                        else {
+                          S68776=0;
+                          if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 101, column: 23
+                            S68776=1;
+                            if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 102, column: 23
+                              S68776=2;
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                            else {
+                              printLabel.setPresent();//sysj\labellerController.sysj line: 104, column: 9
+                              currsigs.addElement(printLabel);
+                              printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 104, column: 9
+                              rollerOnOff.setPresent();//sysj\labellerController.sysj line: 105, column: 9
+                              currsigs.addElement(rollerOnOff);
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                          else {
+                            if(rollerOnOffM.getprestatus()){//sysj\labellerController.sysj line: 101, column: 46
+                              S68776=1;
+                              if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 102, column: 23
+                                S68776=2;
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                              else {
+                                printLabel.setPresent();//sysj\labellerController.sysj line: 104, column: 9
+                                currsigs.addElement(printLabel);
+                                printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 104, column: 9
+                                rollerOnOff.setPresent();//sysj\labellerController.sysj line: 105, column: 9
+                                currsigs.addElement(rollerOnOff);
+                                active[3]=1;
+                                ends[3]=1;
+                                tdone[3]=1;
+                              }
+                            }
+                            else {
+                              active[3]=1;
+                              ends[3]=1;
+                              tdone[3]=1;
+                            }
+                          }
+                        }
+                      }
                     }
                     else {
-                      active[3]=1;
-                      ends[3]=1;
-                      tdone[3]=1;
+                      S68771=2;
+                      S69506=0;
+                      if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                        labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                        S69506=1;
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        S69501=0;
+                        if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                          labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                          S69501=1;
+                          if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                            labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                            ends[3]=2;
+                            ;//sysj\labellerController.sysj line: 139, column: 5
+                            S70249=1;
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                          else {
+                            active[3]=1;
+                            ends[3]=1;
+                            tdone[3]=1;
+                          }
+                        }
+                        else {
+                          active[3]=1;
+                          ends[3]=1;
+                          tdone[3]=1;
+                        }
+                      }
                     }
                   }
                   else {
@@ -3251,12 +2755,12 @@ public class LabellerController extends ClockDomain{
                     tdone[3]=1;
                   }
                 }
+                else {
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
               }
-            }
-            else {
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
             }
             break;
           
@@ -3266,8 +2770,8 @@ public class LabellerController extends ClockDomain{
     }
   }
 
-  public void thread73777(int [] tdone, int [] ends){
-        switch(S51454){
+  public void thread77879(int [] tdone, int [] ends){
+        switch(S68747){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -3275,16 +2779,16 @@ public class LabellerController extends ClockDomain{
         break;
       
       case 1 : 
-        if(mode.getprestatus()){//sysj\labellerController.sysj line: 45, column: 12
-          if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\labellerController.sysj line: 46, column: 8
-            auto_1.setPresent();//sysj\labellerController.sysj line: 46, column: 30
+        if(mode.getprestatus()){//sysj\labellerController.sysj line: 49, column: 12
+          if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\labellerController.sysj line: 50, column: 8
+            auto_1.setPresent();//sysj\labellerController.sysj line: 50, column: 30
             currsigs.addElement(auto_1);
             active[2]=1;
             ends[2]=1;
             tdone[2]=1;
           }
           else {
-            manual_1.setPresent();//sysj\labellerController.sysj line: 47, column: 12
+            manual_1.setPresent();//sysj\labellerController.sysj line: 51, column: 12
             currsigs.addElement(manual_1);
             active[2]=1;
             ends[2]=1;
@@ -3301,102 +2805,51 @@ public class LabellerController extends ClockDomain{
     }
   }
 
-  public void thread73775(int [] tdone, int [] ends){
-        S73768=1;
-    S73666=0;
-    if(manual_1.getprestatus()){//sysj\labellerController.sysj line: 174, column: 20
-      S73666=1;
-      if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 175, column: 20
-        S73666=2;
-        active[5]=1;
-        ends[5]=1;
-        tdone[5]=1;
-      }
-      else {
-        if(applyLabelExtendM.getprestatus()){//sysj\labellerController.sysj line: 177, column: 14
-          applyLabelExtend.setPresent();//sysj\labellerController.sysj line: 177, column: 34
-          currsigs.addElement(applyLabelExtend);
-          if(rollerOnOffM.getprestatus()){//sysj\labellerController.sysj line: 178, column: 14
-            rollerOnOff.setPresent();//sysj\labellerController.sysj line: 178, column: 29
-            currsigs.addElement(rollerOnOff);
-            active[5]=1;
-            ends[5]=1;
-            tdone[5]=1;
+  public void thread77877(int [] tdone, int [] ends){
+        S77871=1;
+    t_thread_4 = new LabellerTwin();//sysj\labellerController.sysj line: 155, column: 3
+    labels_thread_4 = 0;//sysj\labellerController.sysj line: 156, column: 3
+    glue_thread_4 = 0;//sysj\labellerController.sysj line: 157, column: 3
+    labelsReported_thread_4 = false;//sysj\labellerController.sysj line: 158, column: 3
+    glueReported_thread_4 = false;//sysj\labellerController.sysj line: 159, column: 3
+    if(labelStock.getprestatus()){//sysj\labellerController.sysj line: 162, column: 12
+      labels_thread_4 = (Integer)(labelStock.getpreval() == null ? null : ((Integer)labelStock.getpreval()));//sysj\labellerController.sysj line: 162, column: 25
+      if(glueLevel.getprestatus()){//sysj\labellerController.sysj line: 163, column: 12
+        glue_thread_4 = (Integer)(glueLevel.getpreval() == null ? null : ((Integer)glueLevel.getpreval()));//sysj\labellerController.sysj line: 163, column: 24
+        if(labelStockLow.getprestatus()){//sysj\labellerController.sysj line: 165, column: 12
+          if(!labelsReported_thread_4) {//sysj\labellerController.sysj line: 166, column: 24
+            System.out.println("[LAB] Label stock low: " + labels_thread_4 + " left.");//sysj\labellerController.sysj line: 167, column: 6
+            labelsReported_thread_4 = true;//sysj\labellerController.sysj line: 168, column: 6
           }
-          else {
-            active[5]=1;
-            ends[5]=1;
-            tdone[5]=1;
-          }
-        }
-        else {
-          if(rollerOnOffM.getprestatus()){//sysj\labellerController.sysj line: 178, column: 14
-            rollerOnOff.setPresent();//sysj\labellerController.sysj line: 178, column: 29
-            currsigs.addElement(rollerOnOff);
-            active[5]=1;
-            ends[5]=1;
-            tdone[5]=1;
-          }
-          else {
-            active[5]=1;
-            ends[5]=1;
-            tdone[5]=1;
-          }
-        }
-      }
-    }
-    else {
-      active[5]=1;
-      ends[5]=1;
-      tdone[5]=1;
-    }
-  }
-
-  public void thread73774(int [] tdone, int [] ends){
-        S73616=1;
-    t_thread_4 = new LabellerTwin();//sysj\labellerController.sysj line: 139, column: 3
-    labels_thread_4 = 0;//sysj\labellerController.sysj line: 140, column: 3
-    glue_thread_4 = 0;//sysj\labellerController.sysj line: 141, column: 3
-    labelsReported_thread_4 = false;//sysj\labellerController.sysj line: 142, column: 3
-    glueReported_thread_4 = false;//sysj\labellerController.sysj line: 143, column: 3
-    if(labelStock.getprestatus()){//sysj\labellerController.sysj line: 146, column: 12
-      labels_thread_4 = (Integer)(labelStock.getpreval() == null ? null : ((Integer)labelStock.getpreval()));//sysj\labellerController.sysj line: 146, column: 25
-      if(glueLevel.getprestatus()){//sysj\labellerController.sysj line: 147, column: 12
-        glue_thread_4 = (Integer)(glueLevel.getpreval() == null ? null : ((Integer)glueLevel.getpreval()));//sysj\labellerController.sysj line: 147, column: 24
-        if(labelStockLow.getprestatus()){//sysj\labellerController.sysj line: 149, column: 12
-          if(!labelsReported_thread_4) {//sysj\labellerController.sysj line: 150, column: 24
-            System.out.println("[LAB] Label stock low: " + labels_thread_4 + " left.");//sysj\labellerController.sysj line: 151, column: 6
-            labelsReported_thread_4 = true;//sysj\labellerController.sysj line: 152, column: 6
-          }
-          if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 159, column: 12
-            if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 160, column: 22
-              System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 161, column: 6
-              glueReported_thread_4 = true;//sysj\labellerController.sysj line: 162, column: 6
+          if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 175, column: 12
+            if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 176, column: 22
+              System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 177, column: 6
+              glueReported_thread_4 = true;//sysj\labellerController.sysj line: 178, column: 6
             }
             active[4]=1;
             ends[4]=1;
             tdone[4]=1;
           }
           else {
-            glueReported_thread_4 = false;//sysj\labellerController.sysj line: 166, column: 5
+            glueReported_thread_4 = false;//sysj\labellerController.sysj line: 182, column: 5
             active[4]=1;
             ends[4]=1;
             tdone[4]=1;
           }
         }
         else {
-          labelsReported_thread_4 = false;//sysj\labellerController.sysj line: 156, column: 5
-          if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 159, column: 12
-            if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 160, column: 22
-              System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 161, column: 6
-              glueReported_thread_4 = true;//sysj\labellerController.sysj line: 162, column: 6
+          labelsReported_thread_4 = false;//sysj\labellerController.sysj line: 172, column: 5
+          if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 175, column: 12
+            if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 176, column: 22
+              System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 177, column: 6
+              glueReported_thread_4 = true;//sysj\labellerController.sysj line: 178, column: 6
             }
             active[4]=1;
             ends[4]=1;
             tdone[4]=1;
           }
           else {
-            glueReported_thread_4 = false;//sysj\labellerController.sysj line: 166, column: 5
+            glueReported_thread_4 = false;//sysj\labellerController.sysj line: 182, column: 5
             active[4]=1;
             ends[4]=1;
             tdone[4]=1;
@@ -3404,40 +2857,40 @@ public class LabellerController extends ClockDomain{
         }
       }
       else {
-        if(labelStockLow.getprestatus()){//sysj\labellerController.sysj line: 149, column: 12
-          if(!labelsReported_thread_4) {//sysj\labellerController.sysj line: 150, column: 24
-            System.out.println("[LAB] Label stock low: " + labels_thread_4 + " left.");//sysj\labellerController.sysj line: 151, column: 6
-            labelsReported_thread_4 = true;//sysj\labellerController.sysj line: 152, column: 6
+        if(labelStockLow.getprestatus()){//sysj\labellerController.sysj line: 165, column: 12
+          if(!labelsReported_thread_4) {//sysj\labellerController.sysj line: 166, column: 24
+            System.out.println("[LAB] Label stock low: " + labels_thread_4 + " left.");//sysj\labellerController.sysj line: 167, column: 6
+            labelsReported_thread_4 = true;//sysj\labellerController.sysj line: 168, column: 6
           }
-          if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 159, column: 12
-            if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 160, column: 22
-              System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 161, column: 6
-              glueReported_thread_4 = true;//sysj\labellerController.sysj line: 162, column: 6
+          if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 175, column: 12
+            if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 176, column: 22
+              System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 177, column: 6
+              glueReported_thread_4 = true;//sysj\labellerController.sysj line: 178, column: 6
             }
             active[4]=1;
             ends[4]=1;
             tdone[4]=1;
           }
           else {
-            glueReported_thread_4 = false;//sysj\labellerController.sysj line: 166, column: 5
+            glueReported_thread_4 = false;//sysj\labellerController.sysj line: 182, column: 5
             active[4]=1;
             ends[4]=1;
             tdone[4]=1;
           }
         }
         else {
-          labelsReported_thread_4 = false;//sysj\labellerController.sysj line: 156, column: 5
-          if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 159, column: 12
-            if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 160, column: 22
-              System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 161, column: 6
-              glueReported_thread_4 = true;//sysj\labellerController.sysj line: 162, column: 6
+          labelsReported_thread_4 = false;//sysj\labellerController.sysj line: 172, column: 5
+          if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 175, column: 12
+            if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 176, column: 22
+              System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 177, column: 6
+              glueReported_thread_4 = true;//sysj\labellerController.sysj line: 178, column: 6
             }
             active[4]=1;
             ends[4]=1;
             tdone[4]=1;
           }
           else {
-            glueReported_thread_4 = false;//sysj\labellerController.sysj line: 166, column: 5
+            glueReported_thread_4 = false;//sysj\labellerController.sysj line: 182, column: 5
             active[4]=1;
             ends[4]=1;
             tdone[4]=1;
@@ -3446,42 +2899,42 @@ public class LabellerController extends ClockDomain{
       }
     }
     else {
-      if(glueLevel.getprestatus()){//sysj\labellerController.sysj line: 147, column: 12
-        glue_thread_4 = (Integer)(glueLevel.getpreval() == null ? null : ((Integer)glueLevel.getpreval()));//sysj\labellerController.sysj line: 147, column: 24
-        if(labelStockLow.getprestatus()){//sysj\labellerController.sysj line: 149, column: 12
-          if(!labelsReported_thread_4) {//sysj\labellerController.sysj line: 150, column: 24
-            System.out.println("[LAB] Label stock low: " + labels_thread_4 + " left.");//sysj\labellerController.sysj line: 151, column: 6
-            labelsReported_thread_4 = true;//sysj\labellerController.sysj line: 152, column: 6
+      if(glueLevel.getprestatus()){//sysj\labellerController.sysj line: 163, column: 12
+        glue_thread_4 = (Integer)(glueLevel.getpreval() == null ? null : ((Integer)glueLevel.getpreval()));//sysj\labellerController.sysj line: 163, column: 24
+        if(labelStockLow.getprestatus()){//sysj\labellerController.sysj line: 165, column: 12
+          if(!labelsReported_thread_4) {//sysj\labellerController.sysj line: 166, column: 24
+            System.out.println("[LAB] Label stock low: " + labels_thread_4 + " left.");//sysj\labellerController.sysj line: 167, column: 6
+            labelsReported_thread_4 = true;//sysj\labellerController.sysj line: 168, column: 6
           }
-          if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 159, column: 12
-            if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 160, column: 22
-              System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 161, column: 6
-              glueReported_thread_4 = true;//sysj\labellerController.sysj line: 162, column: 6
+          if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 175, column: 12
+            if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 176, column: 22
+              System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 177, column: 6
+              glueReported_thread_4 = true;//sysj\labellerController.sysj line: 178, column: 6
             }
             active[4]=1;
             ends[4]=1;
             tdone[4]=1;
           }
           else {
-            glueReported_thread_4 = false;//sysj\labellerController.sysj line: 166, column: 5
+            glueReported_thread_4 = false;//sysj\labellerController.sysj line: 182, column: 5
             active[4]=1;
             ends[4]=1;
             tdone[4]=1;
           }
         }
         else {
-          labelsReported_thread_4 = false;//sysj\labellerController.sysj line: 156, column: 5
-          if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 159, column: 12
-            if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 160, column: 22
-              System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 161, column: 6
-              glueReported_thread_4 = true;//sysj\labellerController.sysj line: 162, column: 6
+          labelsReported_thread_4 = false;//sysj\labellerController.sysj line: 172, column: 5
+          if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 175, column: 12
+            if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 176, column: 22
+              System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 177, column: 6
+              glueReported_thread_4 = true;//sysj\labellerController.sysj line: 178, column: 6
             }
             active[4]=1;
             ends[4]=1;
             tdone[4]=1;
           }
           else {
-            glueReported_thread_4 = false;//sysj\labellerController.sysj line: 166, column: 5
+            glueReported_thread_4 = false;//sysj\labellerController.sysj line: 182, column: 5
             active[4]=1;
             ends[4]=1;
             tdone[4]=1;
@@ -3489,40 +2942,40 @@ public class LabellerController extends ClockDomain{
         }
       }
       else {
-        if(labelStockLow.getprestatus()){//sysj\labellerController.sysj line: 149, column: 12
-          if(!labelsReported_thread_4) {//sysj\labellerController.sysj line: 150, column: 24
-            System.out.println("[LAB] Label stock low: " + labels_thread_4 + " left.");//sysj\labellerController.sysj line: 151, column: 6
-            labelsReported_thread_4 = true;//sysj\labellerController.sysj line: 152, column: 6
+        if(labelStockLow.getprestatus()){//sysj\labellerController.sysj line: 165, column: 12
+          if(!labelsReported_thread_4) {//sysj\labellerController.sysj line: 166, column: 24
+            System.out.println("[LAB] Label stock low: " + labels_thread_4 + " left.");//sysj\labellerController.sysj line: 167, column: 6
+            labelsReported_thread_4 = true;//sysj\labellerController.sysj line: 168, column: 6
           }
-          if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 159, column: 12
-            if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 160, column: 22
-              System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 161, column: 6
-              glueReported_thread_4 = true;//sysj\labellerController.sysj line: 162, column: 6
+          if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 175, column: 12
+            if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 176, column: 22
+              System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 177, column: 6
+              glueReported_thread_4 = true;//sysj\labellerController.sysj line: 178, column: 6
             }
             active[4]=1;
             ends[4]=1;
             tdone[4]=1;
           }
           else {
-            glueReported_thread_4 = false;//sysj\labellerController.sysj line: 166, column: 5
+            glueReported_thread_4 = false;//sysj\labellerController.sysj line: 182, column: 5
             active[4]=1;
             ends[4]=1;
             tdone[4]=1;
           }
         }
         else {
-          labelsReported_thread_4 = false;//sysj\labellerController.sysj line: 156, column: 5
-          if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 159, column: 12
-            if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 160, column: 22
-              System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 161, column: 6
-              glueReported_thread_4 = true;//sysj\labellerController.sysj line: 162, column: 6
+          labelsReported_thread_4 = false;//sysj\labellerController.sysj line: 172, column: 5
+          if(glueLow.getprestatus()){//sysj\labellerController.sysj line: 175, column: 12
+            if(!glueReported_thread_4) {//sysj\labellerController.sysj line: 176, column: 22
+              System.out.println("[LAB] Glue low: " + glue_thread_4 + " left.");//sysj\labellerController.sysj line: 177, column: 6
+              glueReported_thread_4 = true;//sysj\labellerController.sysj line: 178, column: 6
             }
             active[4]=1;
             ends[4]=1;
             tdone[4]=1;
           }
           else {
-            glueReported_thread_4 = false;//sysj\labellerController.sysj line: 166, column: 5
+            glueReported_thread_4 = false;//sysj\labellerController.sysj line: 182, column: 5
             active[4]=1;
             ends[4]=1;
             tdone[4]=1;
@@ -3532,401 +2985,118 @@ public class LabellerController extends ClockDomain{
     }
   }
 
-  public void thread73773(int [] tdone, int [] ends){
-        S73500=1;
-    t_thread_3 = new LabellerTwin();//sysj\labellerController.sysj line: 54, column: 3
-    w_thread_3 = null;//sysj\labellerController.sysj line: 55, column: 3
-    label_thread_3 = null;//sysj\labellerController.sysj line: 56, column: 3
-    refusal_thread_3 = null;//sysj\labellerController.sysj line: 57, column: 3
-    S55129=0;
-    if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 60, column: 20
-      S55129=1;
-      if(manual_1.getprestatus()){//sysj\labellerController.sysj line: 62, column: 20
-        labelBottle_in.setPreempted();
-        labelDone_o.setPreempted();
-        S55129=2;
+  public void thread77876(int [] tdone, int [] ends){
+        S77755=1;
+    t_thread_3 = new LabellerTwin();//sysj\labellerController.sysj line: 58, column: 3
+    w_thread_3 = null;//sysj\labellerController.sysj line: 59, column: 3
+    label_thread_3 = null;//sysj\labellerController.sysj line: 60, column: 3
+    refusal_thread_3 = null;//sysj\labellerController.sysj line: 61, column: 3
+    S70249=0;
+    if(reset.getprestatus()){//sysj\labellerController.sysj line: 64, column: 20
+      labelBottle_in.setPreempted();
+      labelDone_o.setPreempted();
+      S70249=1;
+      active[3]=1;
+      ends[3]=1;
+      tdone[3]=1;
+    }
+    else {
+      S68771=0;
+      S68755=0;
+      if(!labelBottle_in.isPartnerPresent() || labelBottle_in.isPartnerPreempted()){//sysj\labellerController.sysj line: 65, column: 5
+        labelBottle_in.setACK(false);//sysj\labellerController.sysj line: 65, column: 5
+        S68755=1;
         active[3]=1;
         ends[3]=1;
         tdone[3]=1;
       }
       else {
-        S51479=0;
-        S51463=0;
-        if(!labelBottle_in.isPartnerPresent() || labelBottle_in.isPartnerPreempted()){//sysj\labellerController.sysj line: 63, column: 5
-          labelBottle_in.setACK(false);//sysj\labellerController.sysj line: 63, column: 5
-          S51463=1;
-          active[3]=1;
-          ends[3]=1;
-          tdone[3]=1;
-        }
-        else {
-          S51458=0;
-          if(!labelBottle_in.isREQ()){//sysj\labellerController.sysj line: 63, column: 5
-            labelBottle_in.setACK(true);//sysj\labellerController.sysj line: 63, column: 5
-            S51458=1;
-            if(labelBottle_in.isREQ()){//sysj\labellerController.sysj line: 63, column: 5
-              labelBottle_in.setACK(false);//sysj\labellerController.sysj line: 63, column: 5
-              ends[3]=2;
-              ;//sysj\labellerController.sysj line: 63, column: 5
-              w_thread_3 = (WorkpieceTwin)(labelBottle_in.getVal() == null ? null : ((WorkpieceTwin)labelBottle_in.getVal()));//sysj\labellerController.sysj line: 64, column: 5
-              S51479=1;
-              if(w_thread_3 != null){//sysj\labellerController.sysj line: 65, column: 4
-                permitted_thread_3 = false;//sysj\labellerController.sysj line: 66, column: 1
-                S51480=0;
-                active[3]=1;
-                ends[3]=1;
-                tdone[3]=1;
+        S68750=0;
+        if(!labelBottle_in.isREQ()){//sysj\labellerController.sysj line: 65, column: 5
+          labelBottle_in.setACK(true);//sysj\labellerController.sysj line: 65, column: 5
+          S68750=1;
+          if(labelBottle_in.isREQ()){//sysj\labellerController.sysj line: 65, column: 5
+            labelBottle_in.setACK(false);//sysj\labellerController.sysj line: 65, column: 5
+            ends[3]=2;
+            ;//sysj\labellerController.sysj line: 65, column: 5
+            w_thread_3 = (WorkpieceTwin)(labelBottle_in.getVal() == null ? null : ((WorkpieceTwin)labelBottle_in.getVal()));//sysj\labellerController.sysj line: 66, column: 5
+            S68771=1;
+            if(w_thread_3 != null){//sysj\labellerController.sysj line: 68, column: 8
+              w_thread_3.arrived(Machine.LABELLER);//sysj\labellerController.sysj line: 69, column: 6
+              if(w_thread_3.catchFault("no-print")) {//sysj\labellerController.sysj line: 74, column: 34
+                System.out.println("[LAB] Print failed for " + w_thread_3 + ".");//sysj\labellerController.sysj line: 75, column: 7
+                w_thread_3.reject(Machine.LABELLER, "label did not print");//sysj\labellerController.sysj line: 76, column: 7
               }
-              else {
-                S51479=2;
-                if(w_thread_3 != null){//sysj\labellerController.sysj line: 76, column: 8
-                  w_thread_3.arrived(Machine.LABELLER);//sysj\labellerController.sysj line: 77, column: 6
-                  refusal_thread_3 = w_thread_3.labelRefusalReason();//sysj\labellerController.sysj line: 78, column: 6
-                  if(refusal_thread_3 != null){//sysj\labellerController.sysj line: 80, column: 9
-                    System.out.println("[LAB] Refusing " + w_thread_3 + ": " + refusal_thread_3);//sysj\labellerController.sysj line: 82, column: 7
-                    w_thread_3.reject(Machine.LABELLER, "label refused - " + refusal_thread_3);//sysj\labellerController.sysj line: 83, column: 7
-                    if(t_thread_3.update(PlantClock.now(), MachineStatus.FAULT, "refuse", refusal_thread_3)){//sysj\labellerController.sysj line: 84, column: 7
-                      twin.setPresent();//sysj\labellerController.sysj line: 85, column: 8
-                      currsigs.addElement(twin);
-                      twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 85, column: 8
-                      status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
-                      currsigs.addElement(status);
-                      status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
-                      S51479=3;
-                      S51960=0;
-                      if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                        labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                        S51960=1;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      else {
-                        S51955=0;
-                        if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                          labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                          S51955=1;
-                          if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                            labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                            ends[3]=2;
-                            ;//sysj\labellerController.sysj line: 125, column: 5
-                            S55129=2;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                          else {
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                        }
-                        else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                      }
-                    }
-                    else {
-                      status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
-                      currsigs.addElement(status);
-                      status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
-                      S51479=3;
-                      S51960=0;
-                      if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                        labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                        S51960=1;
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                      else {
-                        S51955=0;
-                        if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                          labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                          S51955=1;
-                          if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                            labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                            ends[3]=2;
-                            ;//sysj\labellerController.sysj line: 125, column: 5
-                            S55129=2;
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                          else {
-                            active[3]=1;
-                            ends[3]=1;
-                            tdone[3]=1;
-                          }
-                        }
-                        else {
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                      }
-                    }
-                  }
-                  else {
-                    w_thread_3.started(Machine.LABELLER, "labelling");//sysj\labellerController.sysj line: 90, column: 7
-                    label_thread_3 = new LabelData(w_thread_3);//sysj\labellerController.sysj line: 91, column: 7
-                    if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "printLabel", label_thread_3.serial)){//sysj\labellerController.sysj line: 92, column: 7
-                      twin.setPresent();//sysj\labellerController.sysj line: 93, column: 8
-                      currsigs.addElement(twin);
-                      twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 93, column: 8
-                      S51548=0;
-                      if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 97, column: 23
-                        S51548=1;
-                        if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
-                          applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
-                          currsigs.addElement(applyLabelRetract);
-                          w_thread_3.completed(Machine.LABELLER, "label " + label_thread_3.serial);//sysj\labellerController.sysj line: 115, column: 7
-                          t_thread_3.setLastSerial(label_thread_3.serial);//sysj\labellerController.sysj line: 116, column: 7
-                          System.out.println("[LAB] Labelled " + w_thread_3 + " as " + label_thread_3.serial + ", mix " + label_thread_3.actualPctOne + "/" + label_thread_3.actualPctTwo + ".");//sysj\labellerController.sysj line: 117, column: 7
-                          if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "retract", label_thread_3.serial)){//sysj\labellerController.sysj line: 118, column: 7
-                            twin.setPresent();//sysj\labellerController.sysj line: 119, column: 8
-                            currsigs.addElement(twin);
-                            twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 119, column: 8
-                            status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                            currsigs.addElement(status);
-                            status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                            S51479=3;
-                            S51960=0;
-                            if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                              labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                              S51960=1;
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                            else {
-                              S51955=0;
-                              if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                S51955=1;
-                                if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                  labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                  ends[3]=2;
-                                  ;//sysj\labellerController.sysj line: 125, column: 5
-                                  S55129=2;
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                                else {
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
-                              else {
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                            }
-                          }
-                          else {
-                            status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                            currsigs.addElement(status);
-                            status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                            S51479=3;
-                            S51960=0;
-                            if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                              labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                              S51960=1;
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                            else {
-                              S51955=0;
-                              if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                S51955=1;
-                                if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                  labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                  ends[3]=2;
-                                  ;//sysj\labellerController.sysj line: 125, column: 5
-                                  S55129=2;
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                                else {
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
-                              else {
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                            }
-                          }
-                        }
-                        else {
-                          applyLabelExtend.setPresent();//sysj\labellerController.sysj line: 107, column: 9
-                          currsigs.addElement(applyLabelExtend);
-                          rollerOnOff.setPresent();//sysj\labellerController.sysj line: 108, column: 9
-                          currsigs.addElement(rollerOnOff);
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                      }
-                      else {
-                        printLabel.setPresent();//sysj\labellerController.sysj line: 99, column: 9
-                        currsigs.addElement(printLabel);
-                        printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 99, column: 9
-                        rollerOnOff.setPresent();//sysj\labellerController.sysj line: 100, column: 9
-                        currsigs.addElement(rollerOnOff);
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                    }
-                    else {
-                      S51548=0;
-                      if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 97, column: 23
-                        S51548=1;
-                        if(labelApplied.getprestatus()){//sysj\labellerController.sysj line: 105, column: 23
-                          applyLabelRetract.setPresent();//sysj\labellerController.sysj line: 113, column: 7
-                          currsigs.addElement(applyLabelRetract);
-                          w_thread_3.completed(Machine.LABELLER, "label " + label_thread_3.serial);//sysj\labellerController.sysj line: 115, column: 7
-                          t_thread_3.setLastSerial(label_thread_3.serial);//sysj\labellerController.sysj line: 116, column: 7
-                          System.out.println("[LAB] Labelled " + w_thread_3 + " as " + label_thread_3.serial + ", mix " + label_thread_3.actualPctOne + "/" + label_thread_3.actualPctTwo + ".");//sysj\labellerController.sysj line: 117, column: 7
-                          if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "retract", label_thread_3.serial)){//sysj\labellerController.sysj line: 118, column: 7
-                            twin.setPresent();//sysj\labellerController.sysj line: 119, column: 8
-                            currsigs.addElement(twin);
-                            twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 119, column: 8
-                            status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                            currsigs.addElement(status);
-                            status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                            S51479=3;
-                            S51960=0;
-                            if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                              labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                              S51960=1;
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                            else {
-                              S51955=0;
-                              if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                S51955=1;
-                                if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                  labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                  ends[3]=2;
-                                  ;//sysj\labellerController.sysj line: 125, column: 5
-                                  S55129=2;
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                                else {
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
-                              else {
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                            }
-                          }
-                          else {
-                            status.setPresent();//sysj\labellerController.sysj line: 121, column: 7
-                            currsigs.addElement(status);
-                            status.setValue(0);//sysj\labellerController.sysj line: 121, column: 7
-                            S51479=3;
-                            S51960=0;
-                            if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                              labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                              S51960=1;
-                              active[3]=1;
-                              ends[3]=1;
-                              tdone[3]=1;
-                            }
-                            else {
-                              S51955=0;
-                              if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                                S51955=1;
-                                if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                                  labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                                  ends[3]=2;
-                                  ;//sysj\labellerController.sysj line: 125, column: 5
-                                  S55129=2;
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                                else {
-                                  active[3]=1;
-                                  ends[3]=1;
-                                  tdone[3]=1;
-                                }
-                              }
-                              else {
-                                active[3]=1;
-                                ends[3]=1;
-                                tdone[3]=1;
-                              }
-                            }
-                          }
-                        }
-                        else {
-                          applyLabelExtend.setPresent();//sysj\labellerController.sysj line: 107, column: 9
-                          currsigs.addElement(applyLabelExtend);
-                          rollerOnOff.setPresent();//sysj\labellerController.sysj line: 108, column: 9
-                          currsigs.addElement(rollerOnOff);
-                          active[3]=1;
-                          ends[3]=1;
-                          tdone[3]=1;
-                        }
-                      }
-                      else {
-                        printLabel.setPresent();//sysj\labellerController.sysj line: 99, column: 9
-                        currsigs.addElement(printLabel);
-                        printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 99, column: 9
-                        rollerOnOff.setPresent();//sysj\labellerController.sysj line: 100, column: 9
-                        currsigs.addElement(rollerOnOff);
-                        active[3]=1;
-                        ends[3]=1;
-                        tdone[3]=1;
-                      }
-                    }
-                  }
-                }
-                else {
-                  S51479=3;
-                  S51960=0;
-                  if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 125, column: 5
-                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
-                    S51960=1;
+              refusal_thread_3 = w_thread_3.labelRefusalReason();//sysj\labellerController.sysj line: 78, column: 6
+              if(refusal_thread_3 != null){//sysj\labellerController.sysj line: 80, column: 9
+                System.out.println("[LAB] Refusing " + w_thread_3 + ": " + refusal_thread_3);//sysj\labellerController.sysj line: 82, column: 7
+                w_thread_3.reject(Machine.LABELLER, "label refused - " + refusal_thread_3);//sysj\labellerController.sysj line: 83, column: 7
+                if(t_thread_3.update(PlantClock.now(), MachineStatus.FAULT, "refuse", refusal_thread_3)){//sysj\labellerController.sysj line: 84, column: 7
+                  twin.setPresent();//sysj\labellerController.sysj line: 85, column: 8
+                  currsigs.addElement(twin);
+                  twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 85, column: 8
+                  status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
+                  currsigs.addElement(status);
+                  status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
+                  S68771=2;
+                  S69506=0;
+                  if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                    S69506=1;
                     active[3]=1;
                     ends[3]=1;
                     tdone[3]=1;
                   }
                   else {
-                    S51955=0;
-                    if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                      labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 125, column: 5
-                      S51955=1;
-                      if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 125, column: 5
-                        labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 125, column: 5
+                    S69501=0;
+                    if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                      labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                      S69501=1;
+                      if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                        labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
                         ends[3]=2;
-                        ;//sysj\labellerController.sysj line: 125, column: 5
-                        S55129=2;
+                        ;//sysj\labellerController.sysj line: 139, column: 5
+                        S70249=1;
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                    else {
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                  }
+                }
+                else {
+                  status.setPresent();//sysj\labellerController.sysj line: 87, column: 7
+                  currsigs.addElement(status);
+                  status.setValue(2);//sysj\labellerController.sysj line: 87, column: 7
+                  S68771=2;
+                  S69506=0;
+                  if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                    S69506=1;
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    S69501=0;
+                    if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                      labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                      S69501=1;
+                      if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                        labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                        ends[3]=2;
+                        ;//sysj\labellerController.sysj line: 139, column: 5
+                        S70249=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
@@ -3945,11 +3115,146 @@ public class LabellerController extends ClockDomain{
                   }
                 }
               }
+              else {
+                w_thread_3.started(Machine.LABELLER, "labelling");//sysj\labellerController.sysj line: 90, column: 7
+                label_thread_3 = new LabelData(w_thread_3);//sysj\labellerController.sysj line: 91, column: 7
+                if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "printLabel", label_thread_3.serial)){//sysj\labellerController.sysj line: 92, column: 7
+                  twin.setPresent();//sysj\labellerController.sysj line: 93, column: 8
+                  currsigs.addElement(twin);
+                  twin.setValue(t_thread_3);//sysj\labellerController.sysj line: 93, column: 8
+                  S68776=0;
+                  if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 101, column: 23
+                    S68776=1;
+                    if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 102, column: 23
+                      S68776=2;
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      printLabel.setPresent();//sysj\labellerController.sysj line: 104, column: 9
+                      currsigs.addElement(printLabel);
+                      printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 104, column: 9
+                      rollerOnOff.setPresent();//sysj\labellerController.sysj line: 105, column: 9
+                      currsigs.addElement(rollerOnOff);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                  }
+                  else {
+                    if(rollerOnOffM.getprestatus()){//sysj\labellerController.sysj line: 101, column: 46
+                      S68776=1;
+                      if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 102, column: 23
+                        S68776=2;
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        printLabel.setPresent();//sysj\labellerController.sysj line: 104, column: 9
+                        currsigs.addElement(printLabel);
+                        printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 104, column: 9
+                        rollerOnOff.setPresent();//sysj\labellerController.sysj line: 105, column: 9
+                        currsigs.addElement(rollerOnOff);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                    else {
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                  }
+                }
+                else {
+                  S68776=0;
+                  if(auto_1.getprestatus()){//sysj\labellerController.sysj line: 101, column: 23
+                    S68776=1;
+                    if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 102, column: 23
+                      S68776=2;
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                    else {
+                      printLabel.setPresent();//sysj\labellerController.sysj line: 104, column: 9
+                      currsigs.addElement(printLabel);
+                      printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 104, column: 9
+                      rollerOnOff.setPresent();//sysj\labellerController.sysj line: 105, column: 9
+                      currsigs.addElement(rollerOnOff);
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                  }
+                  else {
+                    if(rollerOnOffM.getprestatus()){//sysj\labellerController.sysj line: 101, column: 46
+                      S68776=1;
+                      if(labelPrinted.getprestatus()){//sysj\labellerController.sysj line: 102, column: 23
+                        S68776=2;
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                      else {
+                        printLabel.setPresent();//sysj\labellerController.sysj line: 104, column: 9
+                        currsigs.addElement(printLabel);
+                        printLabel.setValue(label_thread_3);//sysj\labellerController.sysj line: 104, column: 9
+                        rollerOnOff.setPresent();//sysj\labellerController.sysj line: 105, column: 9
+                        currsigs.addElement(rollerOnOff);
+                        active[3]=1;
+                        ends[3]=1;
+                        tdone[3]=1;
+                      }
+                    }
+                    else {
+                      active[3]=1;
+                      ends[3]=1;
+                      tdone[3]=1;
+                    }
+                  }
+                }
+              }
             }
             else {
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
+              S68771=2;
+              S69506=0;
+              if(!labelDone_o.isPartnerPresent() || labelDone_o.isPartnerPreempted()){//sysj\labellerController.sysj line: 139, column: 5
+                labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                S69506=1;
+                active[3]=1;
+                ends[3]=1;
+                tdone[3]=1;
+              }
+              else {
+                S69501=0;
+                if(labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                  labelDone_o.setVal(w_thread_3);//sysj\labellerController.sysj line: 139, column: 5
+                  S69501=1;
+                  if(!labelDone_o.isACK()){//sysj\labellerController.sysj line: 139, column: 5
+                    labelDone_o.setREQ(false);//sysj\labellerController.sysj line: 139, column: 5
+                    ends[3]=2;
+                    ;//sysj\labellerController.sysj line: 139, column: 5
+                    S70249=1;
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                  else {
+                    active[3]=1;
+                    ends[3]=1;
+                    tdone[3]=1;
+                  }
+                }
+                else {
+                  active[3]=1;
+                  ends[3]=1;
+                  tdone[3]=1;
+                }
+              }
             }
           }
           else {
@@ -3958,27 +3263,27 @@ public class LabellerController extends ClockDomain{
             tdone[3]=1;
           }
         }
+        else {
+          active[3]=1;
+          ends[3]=1;
+          tdone[3]=1;
+        }
       }
-    }
-    else {
-      active[3]=1;
-      ends[3]=1;
-      tdone[3]=1;
     }
   }
 
-  public void thread73772(int [] tdone, int [] ends){
-        S51454=1;
-    if(mode.getprestatus()){//sysj\labellerController.sysj line: 45, column: 12
-      if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\labellerController.sysj line: 46, column: 8
-        auto_1.setPresent();//sysj\labellerController.sysj line: 46, column: 30
+  public void thread77875(int [] tdone, int [] ends){
+        S68747=1;
+    if(mode.getprestatus()){//sysj\labellerController.sysj line: 49, column: 12
+      if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\labellerController.sysj line: 50, column: 8
+        auto_1.setPresent();//sysj\labellerController.sysj line: 50, column: 30
         currsigs.addElement(auto_1);
         active[2]=1;
         ends[2]=1;
         tdone[2]=1;
       }
       else {
-        manual_1.setPresent();//sysj\labellerController.sysj line: 47, column: 12
+        manual_1.setPresent();//sysj\labellerController.sysj line: 51, column: 12
         currsigs.addElement(manual_1);
         active[2]=1;
         ends[2]=1;
@@ -3999,70 +3304,62 @@ public class LabellerController extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S73770){
+      switch(S77873){
         case 0 : 
-          S73770=0;
+          S77873=0;
           break RUN;
         
         case 1 : 
-          S73770=2;
-          S73770=2;
-          auto_1.setClear();//sysj\labellerController.sysj line: 41, column: 2
-          manual_1.setClear();//sysj\labellerController.sysj line: 41, column: 2
-          thread73772(tdone,ends);
-          thread73773(tdone,ends);
-          thread73774(tdone,ends);
-          thread73775(tdone,ends);
-          int biggest73776 = 0;
-          if(ends[2]>=biggest73776){
-            biggest73776=ends[2];
+          S77873=2;
+          S77873=2;
+          auto_1.setClear();//sysj\labellerController.sysj line: 45, column: 2
+          manual_1.setClear();//sysj\labellerController.sysj line: 45, column: 2
+          thread77875(tdone,ends);
+          thread77876(tdone,ends);
+          thread77877(tdone,ends);
+          int biggest77878 = 0;
+          if(ends[2]>=biggest77878){
+            biggest77878=ends[2];
           }
-          if(ends[3]>=biggest73776){
-            biggest73776=ends[3];
+          if(ends[3]>=biggest77878){
+            biggest77878=ends[3];
           }
-          if(ends[4]>=biggest73776){
-            biggest73776=ends[4];
+          if(ends[4]>=biggest77878){
+            biggest77878=ends[4];
           }
-          if(ends[5]>=biggest73776){
-            biggest73776=ends[5];
-          }
-          if(biggest73776 == 1){
+          if(biggest77878 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
         
         case 2 : 
-          auto_1.setClear();//sysj\labellerController.sysj line: 41, column: 2
-          manual_1.setClear();//sysj\labellerController.sysj line: 41, column: 2
-          thread73777(tdone,ends);
-          thread73778(tdone,ends);
-          thread73779(tdone,ends);
-          thread73780(tdone,ends);
-          int biggest73781 = 0;
-          if(ends[2]>=biggest73781){
-            biggest73781=ends[2];
+          auto_1.setClear();//sysj\labellerController.sysj line: 45, column: 2
+          manual_1.setClear();//sysj\labellerController.sysj line: 45, column: 2
+          thread77879(tdone,ends);
+          thread77880(tdone,ends);
+          thread77881(tdone,ends);
+          int biggest77882 = 0;
+          if(ends[2]>=biggest77882){
+            biggest77882=ends[2];
           }
-          if(ends[3]>=biggest73781){
-            biggest73781=ends[3];
+          if(ends[3]>=biggest77882){
+            biggest77882=ends[3];
           }
-          if(ends[4]>=biggest73781){
-            biggest73781=ends[4];
+          if(ends[4]>=biggest77882){
+            biggest77882=ends[4];
           }
-          if(ends[5]>=biggest73781){
-            biggest73781=ends[5];
-          }
-          if(biggest73781 == 1){
+          if(biggest77882 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest73781 == 0){
-            S73770=0;
+          if(biggest77882 == 0){
+            S77873=0;
             active[1]=0;
             ends[1]=0;
-            S73770=0;
+            S77873=0;
             break RUN;
           }
         
@@ -4071,9 +3368,9 @@ public class LabellerController extends ClockDomain{
   }
 
   public void init(){
-    char [] active1 = {1, 1, 1, 1, 1, 1};
-    char [] paused1 = {0, 0, 0, 0, 0, 0};
-    char [] suspended1 = {0, 0, 0, 0, 0, 0};
+    char [] active1 = {1, 1, 1, 1, 1};
+    char [] paused1 = {0, 0, 0, 0, 0};
+    char [] suspended1 = {0, 0, 0, 0, 0};
     paused = paused1;
     active = active1;
     suspended = suspended1;
@@ -4096,8 +3393,8 @@ public class LabellerController extends ClockDomain{
         if(!df){
           labelBottle_in.gethook();
           labelDone_o.gethook();
-          operatorPermit.gethook();
           mode.gethook();
+          reset.gethook();
           bottleAtLabeller.gethook();
           labelPrinted.gethook();
           labelApplied.gethook();
@@ -4106,13 +3403,14 @@ public class LabellerController extends ClockDomain{
           labelStock.gethook();
           glueLevel.gethook();
           applyLabelExtendM.gethook();
+          applyLabelRetractM.gethook();
           rollerOnOffM.gethook();
           df = true;
         }
         runClockDomain();
       }
-      operatorPermit.setpreclear();
       mode.setpreclear();
+      reset.setpreclear();
       bottleAtLabeller.setpreclear();
       labelPrinted.setpreclear();
       labelApplied.setpreclear();
@@ -4121,6 +3419,7 @@ public class LabellerController extends ClockDomain{
       labelStock.setpreclear();
       glueLevel.setpreclear();
       applyLabelExtendM.setpreclear();
+      applyLabelRetractM.setpreclear();
       rollerOnOffM.setpreclear();
       printLabel.setpreclear();
       applyLabelExtend.setpreclear();
@@ -4136,12 +3435,12 @@ public class LabellerController extends ClockDomain{
         ((Signal)currsigs.elementAt(qw)).setpreval(((Signal)currsigs.elementAt(qw)).getValue());
       }
       currsigs.removeAllElements();
-      dummyint = operatorPermit.getStatus() ? operatorPermit.setprepresent() : operatorPermit.setpreclear();
-      operatorPermit.setpreval(operatorPermit.getValue());
-      operatorPermit.setClear();
       dummyint = mode.getStatus() ? mode.setprepresent() : mode.setpreclear();
       mode.setpreval(mode.getValue());
       mode.setClear();
+      dummyint = reset.getStatus() ? reset.setprepresent() : reset.setpreclear();
+      reset.setpreval(reset.getValue());
+      reset.setClear();
       dummyint = bottleAtLabeller.getStatus() ? bottleAtLabeller.setprepresent() : bottleAtLabeller.setpreclear();
       bottleAtLabeller.setpreval(bottleAtLabeller.getValue());
       bottleAtLabeller.setClear();
@@ -4166,6 +3465,9 @@ public class LabellerController extends ClockDomain{
       dummyint = applyLabelExtendM.getStatus() ? applyLabelExtendM.setprepresent() : applyLabelExtendM.setpreclear();
       applyLabelExtendM.setpreval(applyLabelExtendM.getValue());
       applyLabelExtendM.setClear();
+      dummyint = applyLabelRetractM.getStatus() ? applyLabelRetractM.setprepresent() : applyLabelRetractM.setpreclear();
+      applyLabelRetractM.setpreval(applyLabelRetractM.getValue());
+      applyLabelRetractM.setClear();
       dummyint = rollerOnOffM.getStatus() ? rollerOnOffM.setprepresent() : rollerOnOffM.setpreclear();
       rollerOnOffM.setpreval(rollerOnOffM.getValue());
       rollerOnOffM.setClear();
@@ -4189,8 +3491,8 @@ public class LabellerController extends ClockDomain{
       else{
         labelBottle_in.gethook();
         labelDone_o.gethook();
-        operatorPermit.gethook();
         mode.gethook();
+        reset.gethook();
         bottleAtLabeller.gethook();
         labelPrinted.gethook();
         labelApplied.gethook();
@@ -4199,6 +3501,7 @@ public class LabellerController extends ClockDomain{
         labelStock.gethook();
         glueLevel.gethook();
         applyLabelExtendM.gethook();
+        applyLabelRetractM.gethook();
         rollerOnOffM.gethook();
       }
       runFinisher();

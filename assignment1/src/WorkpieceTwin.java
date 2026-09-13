@@ -158,6 +158,21 @@ public class WorkpieceTwin implements Serializable {
 		record(PlantClock.now(), Machine.NONE, EventType.SEALED, "left the line");
 	}
 
+	/**
+	 * Pushed off the line unfinished by a hard reset.
+	 *
+	 * It terminates the history like seal() does, because the bottle really
+	 * has left, but it can never be a product: whatever was already in it was
+	 * never completed and nothing may be sold from it.
+	 */
+	public void discard() {
+		record(PlantClock.now(), Machine.NONE, EventType.SEALED, "purged by reset");
+	}
+
+	public boolean isScrap() {
+		return status == WorkpieceStatus.SCRAP;
+	}
+
 	// ---- Derived state ----
 
 	public WorkpieceStatus status() {
@@ -332,7 +347,13 @@ public class WorkpieceTwin implements Serializable {
 			}
 			break;
 		case SEALED:
-			status = status == WorkpieceStatus.RECOVERED ? status : WorkpieceStatus.DONE;
+			// Terminal states do not un-terminate. A bottle a reset removed
+			// can still be sealed by a machine that was holding it when the
+			// reset landed, and that must not make it a product.
+			status = "purged by reset".equals(e.cause) ? WorkpieceStatus.SCRAP
+					: status == WorkpieceStatus.RECOVERED ? status
+					: status == WorkpieceStatus.SCRAP ? status
+					: WorkpieceStatus.DONE;
 			break;
 		default:
 			break;

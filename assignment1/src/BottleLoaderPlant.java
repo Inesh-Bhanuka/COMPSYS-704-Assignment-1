@@ -24,16 +24,16 @@ public class BottleLoaderPlant extends ClockDomain{
   private int supply_thread_3;//sysj\bottleLoaderPlant.sysj line: 32, column: 3
   private int refillTicks_thread_3;//sysj\bottleLoaderPlant.sysj line: 33, column: 3
   private boolean holding_thread_3;//sysj\bottleLoaderPlant.sysj line: 34, column: 3
-  private int S7123 = 1;
-  private int S6969 = 1;
-  private int S6941 = 1;
-  private int S7121 = 1;
+  private int S4638 = 1;
+  private int S4484 = 1;
+  private int S4456 = 1;
+  private int S4636 = 1;
   
   private int[] ends = new int[4];
   private int[] tdone = new int[4];
   
-  public void thread7129(int [] tdone, int [] ends){
-        switch(S7121){
+  public void thread4644(int [] tdone, int [] ends){
+        switch(S4636){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -219,8 +219,8 @@ public class BottleLoaderPlant extends ClockDomain{
     }
   }
 
-  public void thread7128(int [] tdone, int [] ends){
-        switch(S6969){
+  public void thread4643(int [] tdone, int [] ends){
+        switch(S4484){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -228,10 +228,10 @@ public class BottleLoaderPlant extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S6941){
+        switch(S4456){
           case 0 : 
             if(armSource.getprestatus() && enable.getprestatus()){//sysj\bottleLoaderPlant.sysj line: 22, column: 10
-              S6941=1;
+              S4456=1;
               armAtSource.setPresent();//sysj\bottleLoaderPlant.sysj line: 26, column: 5
               currsigs.addElement(armAtSource);
               active[2]=1;
@@ -249,7 +249,7 @@ public class BottleLoaderPlant extends ClockDomain{
           
           case 1 : 
             if(armDest.getprestatus() && enable.getprestatus()){//sysj\bottleLoaderPlant.sysj line: 25, column: 10
-              S6941=0;
+              S4456=0;
               armAtDest.setPresent();//sysj\bottleLoaderPlant.sysj line: 23, column: 5
               currsigs.addElement(armAtDest);
               active[2]=1;
@@ -271,8 +271,8 @@ public class BottleLoaderPlant extends ClockDomain{
     }
   }
 
-  public void thread7126(int [] tdone, int [] ends){
-        S7121=1;
+  public void thread4641(int [] tdone, int [] ends){
+        S4636=1;
     supply_thread_3 = 20;//sysj\bottleLoaderPlant.sysj line: 32, column: 3
     refillTicks_thread_3 = 0;//sysj\bottleLoaderPlant.sysj line: 33, column: 3
     holding_thread_3 = false;//sysj\bottleLoaderPlant.sysj line: 34, column: 3
@@ -451,9 +451,9 @@ public class BottleLoaderPlant extends ClockDomain{
     }
   }
 
-  public void thread7125(int [] tdone, int [] ends){
-        S6969=1;
-    S6941=0;
+  public void thread4640(int [] tdone, int [] ends){
+        S4484=1;
+    S4456=0;
     armAtDest.setPresent();//sysj\bottleLoaderPlant.sysj line: 23, column: 5
     currsigs.addElement(armAtDest);
     active[2]=1;
@@ -468,50 +468,50 @@ public class BottleLoaderPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S7123){
+      switch(S4638){
         case 0 : 
-          S7123=0;
+          S4638=0;
           break RUN;
         
         case 1 : 
-          S7123=2;
-          S7123=2;
-          thread7125(tdone,ends);
-          thread7126(tdone,ends);
-          int biggest7127 = 0;
-          if(ends[2]>=biggest7127){
-            biggest7127=ends[2];
+          S4638=2;
+          S4638=2;
+          thread4640(tdone,ends);
+          thread4641(tdone,ends);
+          int biggest4642 = 0;
+          if(ends[2]>=biggest4642){
+            biggest4642=ends[2];
           }
-          if(ends[3]>=biggest7127){
-            biggest7127=ends[3];
+          if(ends[3]>=biggest4642){
+            biggest4642=ends[3];
           }
-          if(biggest7127 == 1){
+          if(biggest4642 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
         
         case 2 : 
-          thread7128(tdone,ends);
-          thread7129(tdone,ends);
-          int biggest7130 = 0;
-          if(ends[2]>=biggest7130){
-            biggest7130=ends[2];
+          thread4643(tdone,ends);
+          thread4644(tdone,ends);
+          int biggest4645 = 0;
+          if(ends[2]>=biggest4645){
+            biggest4645=ends[2];
           }
-          if(ends[3]>=biggest7130){
-            biggest7130=ends[3];
+          if(ends[3]>=biggest4645){
+            biggest4645=ends[3];
           }
-          if(biggest7130 == 1){
+          if(biggest4645 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest7130 == 0){
-            S7123=0;
+          if(biggest4645 == 0){
+            S4638=0;
             active[1]=0;
             ends[1]=0;
-            S7123=0;
+            S4638=0;
             break RUN;
           }
         

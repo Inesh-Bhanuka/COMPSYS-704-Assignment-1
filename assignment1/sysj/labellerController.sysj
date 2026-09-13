@@ -11,13 +11,17 @@
  * support.
  */
 LabellerController(
-        input GuiPermit signal operatorPermit;
 		// from / to the System Controller
 		input  WorkpieceTwin channel labelBottle;
 		output WorkpieceTwin channel labelDone;
 
 		// operating mode
 		input Integer signal mode;
+
+		// Hard reset: drop whatever is held and go back to idle. One tick,
+		// no sequence to finish - the bottle it was working on no longer
+		// exists anywhere else either.
+		input signal reset;
 
 		// to the plant
 		output LabelData signal printLabel;
@@ -34,7 +38,7 @@ LabellerController(
 		output Integer signal status;
 
 		// manual override - the operator panel attaches here
-		input signal applyLabelExtendM, rollerOnOffM;
+		input signal applyLabelExtendM, applyLabelRetractM, rollerOnOffM;
 		)
 ->
 {
@@ -57,24 +61,20 @@ LabellerController(
 		String refusal = null;
 
 		while(true){
-			await(immediate auto);
-
-			abort(immediate manual){
+			abort(immediate reset){
 				receive labelBottle;
 				w = (WorkpieceTwin)#labelBottle;
-if(w != null){
-boolean permitted = false;
-            pause;
-            while(!permitted){
-                permitted = GuiStep.take("LABEL", (GuiPermit)#operatorPermit);
-                pause;
-            }
-            pause;
-}
-
 
 				if(w != null){
 					w.arrived(Machine.LABELLER);
+
+					// Injected fault: the printer produced nothing legible.
+					// Flagged before the record is judged, so the refusal
+					// below reports the print failure rather than a mystery.
+					if(w.catchFault("no-print")){
+						System.out.println("[LAB] Print failed for " + w + ".");
+						w.reject(Machine.LABELLER, "label did not print");
+					}
 					refusal = w.labelRefusalReason();
 
 					if(refusal != null){
@@ -93,7 +93,12 @@ boolean permitted = false;
 							emit twin(t);
 						}
 
-						// Print, then apply, then let go
+						// Print, then apply, then let go.
+						//
+						// Three strokes, three gates. The glue roller runs with both the
+						// print and the application, so it is the roller the operator
+						// ticks to start printing.
+						abort(immediate auto){ await(immediate rollerOnOffM); }
 						abort(immediate labelPrinted){
 							while(true){
 								emit printLabel(label);
@@ -102,6 +107,14 @@ boolean permitted = false;
 							}
 						}
 
+						// Load-bearing, not padding. The compiler splits the generated
+						// state machine at every pause, and with the three gates added
+						// the print and apply halves no longer fit in one method under
+						// the JVM's 64 KB limit. It costs one tick between the label
+						// printing and the applicator going out.
+						pause;
+
+						abort(immediate auto){ await(immediate applyLabelExtendM); }
 						abort(immediate labelApplied){
 							while(true){
 								emit applyLabelExtend;
@@ -110,6 +123,7 @@ boolean permitted = false;
 							}
 						}
 
+						abort(immediate auto){ await(immediate applyLabelRetractM); }
 						emit applyLabelRetract;
 
 						w.completed(Machine.LABELLER, "label " + label.serial);
@@ -124,6 +138,8 @@ boolean permitted = false;
 
 				send labelDone(w);
 			}
+		
+
 			pause;
 		}
 	}
@@ -164,20 +180,6 @@ boolean permitted = false;
 			}
 			else {
 				glueReported = false;
-			}
-			pause;
-		}
-	}
-	||
-	{ // Manual
-		while(true){
-			await(immediate manual);
-			abort(immediate auto){
-				while(true){
-					present(applyLabelExtendM){ emit applyLabelExtend; }
-					present(rollerOnOffM){ emit rollerOnOff; }
-					pause;
-				}
 			}
 			pause;
 		}

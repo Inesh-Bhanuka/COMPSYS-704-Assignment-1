@@ -6,8 +6,8 @@
 			<iChannel Name="labelBottle"     From="SystemControllerCD.labelBottle" />
 			<oChannel Name="labelDone"       To="SystemControllerCD.labelDone" />
 
-			<iSignal Name="operatorPermit"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14400" />
 			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14400" />
+			<iSignal Name="reset"             Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14400" />
 			<iSignal Name="bottleAtLabeller"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14400" />
 			<iSignal Name="labelPrinted"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14400" />
 			<iSignal Name="labelApplied"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14400" />
@@ -16,6 +16,7 @@
 			<iSignal Name="labelStock"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14400" />
 			<iSignal Name="glueLevel"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14400" />
 			<iSignal Name="applyLabelExtendM" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14400" />
+			<iSignal Name="applyLabelRetractM" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14400" />
 			<iSignal Name="rollerOnOffM"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14400" />
 			<oSignal Name="printLabel"        To="LabellerPlantCD.printLabel"                Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14401" />
 			<oSignal Name="applyLabelExtend"  To="LabellerPlantCD.applyLabelExtend"          Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14401" />

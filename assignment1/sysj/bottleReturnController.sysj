@@ -23,6 +23,11 @@ BottleReturnController(
 		// operating mode
 		input Integer signal mode;
 
+		// Hard reset: drop whatever is held and go back to idle. One tick,
+		// no sequence to finish - the bottle it was working on no longer
+		// exists anywhere else either.
+		input signal reset;
+
 		// from the Return Conveyor Plant
 		input signal bottleAtCollector, armAtHome, armAtLoader, collectorBinFull;
 
@@ -54,9 +59,7 @@ BottleReturnController(
 		int code = 0;
 
 		while(true){
-			await(immediate auto);
-
-			abort(immediate manual){
+			abort(immediate reset){
 				receive enable;
 				w = (WorkpieceTwin)#enable;
 
@@ -71,15 +74,18 @@ BottleReturnController(
 				if(w != null){
 					System.out.println("[BR] Returning " + w + " for reuse.");
 
+					abort(immediate auto){ await(immediate motorOnOffM); }
 					abort(immediate bottleAtCollector){
 						sustain motorOnOff;
 					}
 					System.out.println("[BR] " + w + " at the transfer point.");
 
+					abort(immediate auto){ await(immediate transferArmExtendM); }
 					abort(immediate armAtLoader){
 						sustain transferArmExtend;
 					}
 
+					abort(immediate auto){ await(immediate transferArmRetractM); }
 					abort(immediate armAtHome){
 						sustain transferArmRetract;
 					}
@@ -99,21 +105,8 @@ BottleReturnController(
 
 				send status(new Integer(code));
 			}
-			pause;
-		}
-	}
-	||
-	{ // Manual
-		while(true){
-			await(immediate manual);
-			abort(immediate auto){
-				while(true){
-					present(motorOnOffM){ emit motorOnOff; }
-					present(transferArmExtendM){ emit transferArmExtend; }
-					present(transferArmRetractM){ emit transferArmRetract; }
-					pause;
-				}
-			}
+		
+
 			pause;
 		}
 	}

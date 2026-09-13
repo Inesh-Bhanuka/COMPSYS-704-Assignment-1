@@ -75,7 +75,6 @@
  * the travel and cycle times of the machines being sequenced.
  */
 RecyclingStationController(
-		input GuiPermit signal operatorPermit;
 
 		// to / from the ABS System Controller
 		input  WorkpieceTwin channel bottleRejected;
@@ -89,148 +88,154 @@ RecyclingStationController(
 		// status, one per subsystem
 		input  Integer channel statusConveyor, statusLidRemoval;
 		input  Integer channel statusDumper, statusReturn;
+
+		// Hard reset: abandon the recovery in progress and the queue behind
+		// it. The bottles are gone from the line, so there is nothing left
+		// to recover.
+		input signal reset;
 		)
 ->
 {
-	// The sequencer blocks inside rendezvous, so it cannot also drive a level
-	// out every tick. It posts the station's state on this local valued
-	// signal and a second reaction holds it out to the System Controller.
-	int signal stationState;
+	while(true){
+		abort(immediate reset){
+		// The sequencer blocks inside rendezvous, so it cannot also drive a level
+		// out every tick. It posts the station's state on this local valued
+		// signal and a second reaction holds it out to the System Controller.
+		int signal stationState;
 
-	{ // ---- Station status, held out as a level ----
-		int cur = 0;
-		while(true){
-			present(stationState){
-				cur = ((Integer)#stationState).intValue();
+		{ // ---- Station status, held out as a level ----
+			int cur = 0;
+			while(true){
+				present(stationState){
+					cur = ((Integer)#stationState).intValue();
+				}
+				emit recyclingStatus(cur);
+				pause;
 			}
-			emit recyclingStatus(cur);
-			pause;
 		}
-	}
-	||
-	{ // ---- Intake ----
-		//
-		// The station advertises no readiness level: being parked at this
-		// receive IS the readiness, and the coordinator's send completes only
-		// when the station has actually taken the workpiece. That is the
-		// back-pressure, and with the queue in front of the sequencer it now
-		// only bites when five bottles are already waiting.
-		RecyclingQueue q = RecyclingQueue.shared();
-		RecyclingRecord m = RecyclingRecord.shared();
-		WorkpieceTwin w = null;
+		||
+		{ // ---- Intake ----
+			//
+			// The station advertises no readiness level: being parked at this
+			// receive IS the readiness, and the coordinator's send completes only
+			// when the station has actually taken the workpiece. That is the
+			// back-pressure, and with the queue in front of the sequencer it now
+			// only bites when five bottles are already waiting.
+			RecyclingQueue q = RecyclingQueue.shared();
+			RecyclingRecord m = RecyclingRecord.shared();
+			WorkpieceTwin w = null;
 
-		while(true){
-			while(!q.hasRoom()){
-				pause;
-			}
-			receive bottleRejected;
-			w = (WorkpieceTwin)#bottleRejected;
-			m.accepted(w);
-			q.push(w);
-			pause;
-		}
-	}
-	||
-	{ // ---- Sequencer ----
-		RecyclingQueue q = RecyclingQueue.shared();
-		RecyclingRecord m = RecyclingRecord.shared();
-
-		// Recycling conveyor destinations
-		int TO_LID = 1;
-		int TO_DUMP = 2;
-		int TO_RETURN = 3;
-		int DISCHARGE = 4;
-
-		WorkpieceTwin w = null;
-		boolean permitted = false;
-
-		while(true){
-
-			// Nothing waiting: hold the resting level and idle here.
-			while(!q.hasWork()){
-				pause;
-			}
-
-			w = q.take();
-			m.beginCycle(w);
-			emit stationState(1);
-
-			// The operator panel's per-operation ticket. In automatic mode
-			// this takes immediately; in step mode the station holds the
-			// bottle at the head of the queue until the operator releases it.
-			permitted = false;
-			pause;
-			while(!permitted){
-				permitted = GuiStep.take("RECYCLE", (GuiPermit)#operatorPermit);
-				pause;
-			}
-			pause;
-
-			// ---- 1. Admit the bottle and index it to lid removal ----
-			send enableConveyor(new Integer(TO_LID));
-			receive statusConveyor;
-			m.record(((Integer)#statusConveyor).intValue());
-			pause;
-
-			// ---- 2. Lid removal ----
-			send enableLidRemoval(w);
-			receive statusLidRemoval;
-			m.record(((Integer)#statusLidRemoval).intValue());
-			pause;
-
-			// ---- 3. Index to the liquid dumper ----
-			send enableConveyor(new Integer(TO_DUMP));
-			receive statusConveyor;
-			m.record(((Integer)#statusConveyor).intValue());
-			pause;
-
-			// ---- 4. Liquid dumping ----
-			send enableDumper(w);
-			receive statusDumper;
-			m.record(((Integer)#statusDumper).intValue());
-			pause;
-
-			// ---- 5. Index to the bottle return ----
-			send enableConveyor(new Integer(TO_RETURN));
-			receive statusConveyor;
-			m.record(((Integer)#statusConveyor).intValue());
-			pause;
-
-			// ---- 6. Hand the bottle off the recycling conveyor ----
-			send enableConveyor(new Integer(DISCHARGE));
-			receive statusConveyor;
-			m.record(((Integer)#statusConveyor).intValue());
-			pause;
-
-			// ---- 7. Bottle return ----
-			send enableReturn(w);
-			receive statusReturn;
-			m.record(((Integer)#statusReturn).intValue());
-			pause;
-
-			// ---- 8. Close the transaction ----
-			m.recovered(w);
-			send bottleRecycled(w);
-			pause;
-
-			// Busy while anything is still queued behind this one, otherwise
-			// idle - with a bin or tank warning folded in if one was raised.
-			emit stationState(m.levelFor(q.hasWork()));
-
-			// A full bin is not something this station can clear on its own.
-			// It holds the condition out as a level and stops taking work;
-			// the coordinator's next send then simply does not complete, so
-			// the back-pressure propagates on its own. The bottle in progress
-			// is always finished first, which is what keeps the suspension at
-			// a clean boundary.
-			if(m.suspended()){
-				m.reportSuspension();
-				while(true){
-					emit stationState(2);
+			while(true){
+				while(!q.hasRoom()){
 					pause;
 				}
+				receive bottleRejected;
+				w = (WorkpieceTwin)#bottleRejected;
+
+				// Record the handover here rather than leaving it until the lid
+				// comes off. The station owns the bottle from this tick, and a
+				// display reading the twin should say so immediately instead of
+				// leaving it parked on the splitter for the whole transit.
+				w.arrived(Machine.RECYCLING);
+				m.accepted(w);
+				q.push(w);
+				pause;
 			}
-			pause;
 		}
+		||
+		{ // ---- Sequencer ----
+			RecyclingQueue q = RecyclingQueue.shared();
+			RecyclingRecord m = RecyclingRecord.shared();
+
+			// Recycling conveyor destinations
+			int TO_LID = 1;
+			int TO_DUMP = 2;
+			int TO_RETURN = 3;
+			int DISCHARGE = 4;
+
+			WorkpieceTwin w = null;
+			boolean permitted = false;
+
+			while(true){
+
+				// Nothing waiting: hold the resting level and idle here.
+				while(!q.hasWork()){
+					pause;
+				}
+
+				w = q.take();
+				m.beginCycle(w);
+				emit stationState(1);
+
+
+				// ---- 1. Admit the bottle and index it to lid removal ----
+				send enableConveyor(new Integer(TO_LID));
+				receive statusConveyor;
+				m.record(((Integer)#statusConveyor).intValue());
+				pause;
+
+				// ---- 2. Lid removal ----
+				send enableLidRemoval(w);
+				receive statusLidRemoval;
+				m.record(((Integer)#statusLidRemoval).intValue());
+				pause;
+
+				// ---- 3. Index to the liquid dumper ----
+				send enableConveyor(new Integer(TO_DUMP));
+				receive statusConveyor;
+				m.record(((Integer)#statusConveyor).intValue());
+				pause;
+
+				// ---- 4. Liquid dumping ----
+				send enableDumper(w);
+				receive statusDumper;
+				m.record(((Integer)#statusDumper).intValue());
+				pause;
+
+				// ---- 5. Index to the bottle return ----
+				send enableConveyor(new Integer(TO_RETURN));
+				receive statusConveyor;
+				m.record(((Integer)#statusConveyor).intValue());
+				pause;
+
+				// ---- 6. Hand the bottle off the recycling conveyor ----
+				send enableConveyor(new Integer(DISCHARGE));
+				receive statusConveyor;
+				m.record(((Integer)#statusConveyor).intValue());
+				pause;
+
+				// ---- 7. Bottle return ----
+				send enableReturn(w);
+				receive statusReturn;
+				m.record(((Integer)#statusReturn).intValue());
+				pause;
+
+				// ---- 8. Close the transaction ----
+				m.recovered(w);
+				send bottleRecycled(w);
+				pause;
+
+				// Busy while anything is still queued behind this one, otherwise
+				// idle - with a bin or tank warning folded in if one was raised.
+				emit stationState(m.levelFor(q.hasWork()));
+
+				// A full bin is not something this station can clear on its own.
+				// It holds the condition out as a level and stops taking work;
+				// the coordinator's next send then simply does not complete, so
+				// the back-pressure propagates on its own. The bottle in progress
+				// is always finished first, which is what keeps the suspension at
+				// a clean boundary.
+				if(m.suspended()){
+					m.reportSuspension();
+					while(true){
+						emit stationState(2);
+						pause;
+					}
+				}
+				pause;
+			}
+		}
+		}
+		pause;
 	}
 }

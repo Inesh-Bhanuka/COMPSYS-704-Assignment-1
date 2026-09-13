@@ -19,7 +19,6 @@
  * physically FIFO, so order is all the controller needs to know.
  */
 ConveyorController(
-        input GuiPermit signal operatorPermit;
 		// from the Bottle Loader
 		input  WorkpieceTwin channel bottleHandoff;
 
@@ -40,9 +39,40 @@ ConveyorController(
 		// to the plant
 		output signal motInfeed, injectInfeed, takeFromPos1;
 		output signal motOutfeed, injectOutfeed, collectFromEnd;
+
+		// operating mode
+		input Integer signal mode;
+
+		// Hard reset: drop whatever is held and go back to idle. One tick,
+		// no sequence to finish - the bottle it was working on no longer
+		// exists anywhere else either.
+		input signal reset;
+
+		// manual overrides - the operator panel attaches here
+		input signal motInfeedM, takeFromPos1M, motOutfeedM;
+		input signal injectInfeedM, injectOutfeedM, collectFromEndM;
 		)
 ->
 {
+	signal auto, manual;
+
+	{ // Mode select
+		while(true){
+			present(mode){
+				if((Integer)#mode == 0){ emit auto; }
+				else { emit manual; }
+			}
+			pause;
+		}
+	}
+	||
+	{ // Auto
+		//
+		// All four belt reactions run as one automatic block so that a switch
+		// to manual drops every one of them together. Leaving any of them
+		// running would fight the operator for the same motor.
+		while(true){
+			abort(immediate reset){
 	{ // ---- 1. Accept from the loader ----
 		BeltQueue q = BeltQueue.shared();
 		WorkpieceTwin w = null;
@@ -61,6 +91,7 @@ ConveyorController(
 			// against infeedClear going away: the belt runs continuously, so
 			// the bottle is already moving by the time the load point would
 			// have read occupied.
+			abort(immediate auto){ await(immediate injectInfeedM); }
 			abort(immediate infeedAdmitted){
 				sustain injectInfeed;
 			}
@@ -72,7 +103,10 @@ ConveyorController(
 		ConveyorTwin t = new ConveyorTwin();
 		t.setMoving(true);
 		while(true){
-			if(GuiStep.infeedEnabled((GuiPermit)#operatorPermit)){ emit motInfeed; }
+			// A level, not a stroke: the belt runs all the time in automatic
+			// and only while the operator is asserting it by hand.
+			present(auto){ emit motInfeed; }
+			present(motInfeedM){ emit motInfeed; }
 			if(t.update(PlantClock.now(), MachineStatus.WORKING, "motInfeed", "running")){
 				emit twin(t);
 			}
@@ -87,19 +121,37 @@ ConveyorController(
 			await(immediate bottleAtPos1);
 
 			w = q.peek();
-			if(w != null){ w.arrived(Machine.CONVEYOR); }
-			System.out.println("[CV] " + w + " at position 1, offering to the table.");
 
-			// Blocks until the table's intake reaction takes it
-			send tableInfeed(w);
-			q.pop();
-
-			// Remove it from the belt, holding the command until the plant
-			// confirms position 1 is empty
-			abort(immediate !bottleAtPos1){
-				sustain takeFromPos1;
+			// The belt says there is a bottle and the model says there is
+			// not. That happens for one cycle after a hard reset, which
+			// empties the queue while the belt is still carrying
+			// something. Take it off and say nothing to the table: handing
+			// it a bottle that does not exist would park its intake
+			// waiting for a placement that can never happen.
+			if(w == null){
+				System.out.println("[CV] Clearing a bottle left on the belt by a reset.");
+				abort(immediate auto){ await(immediate takeFromPos1M); }
+				abort(immediate !bottleAtPos1){
+					sustain takeFromPos1;
+				}
 			}
-			System.out.println("[CV] " + w + " handed to the table.");
+
+			if(w != null){
+				w.arrived(Machine.CONVEYOR);
+				System.out.println("[CV] " + w + " at position 1, offering to the table.");
+
+				// Blocks until the table's intake reaction takes it
+				send tableInfeed(w);
+				q.pop();
+
+				// Remove it from the belt, holding the command until the
+				// plant confirms position 1 is empty
+				abort(immediate auto){ await(immediate takeFromPos1M); }
+				abort(immediate !bottleAtPos1){
+					sustain takeFromPos1;
+				}
+				System.out.println("[CV] " + w + " handed to the table.");
+			}
 			pause;
 		}
 	}
@@ -111,30 +163,37 @@ ConveyorController(
 
 			receive tableOutfeed;
 			w = (WorkpieceTwin)#tableOutfeed;
-boolean permitted = false;
-            pause;
-            while(!permitted){
-                permitted = GuiStep.take("OUTFEED", (GuiPermit)#operatorPermit);
-                pause;
-            }
-            pause;
 
+			// Record the belt, not just the machine. Infeed and outfeed are
+			// the same conveyor to the plant but opposite ends of the line to
+			// anyone watching, and without this a bottle leaving the table
+			// still reads as being where it came in.
+			if(w != null){ w.started(Machine.CONVEYOR, "outfeed"); }
 			System.out.println("[CV] " + w + " received from the table.");
 
+			abort(immediate auto){ await(immediate injectOutfeedM); }
 			abort(immediate !outfeedClear){
 				sustain injectOutfeed;
 			}
 
+			abort(immediate auto){ await(immediate motOutfeedM); }
 			abort(bottleAtOutfeedEnd){
 				sustain motOutfeed;
 			}
 
+			abort(immediate auto){ await(immediate collectFromEndM); }
 			abort(immediate !bottleAtOutfeedEnd){
 				sustain collectFromEnd;
 			}
 			System.out.println("[CV] " + w + " delivered to the labeller point.");
 
 			send bottleDone(w);
+			pause;
+		}
+	}
+			}
+		
+
 			pause;
 		}
 	}

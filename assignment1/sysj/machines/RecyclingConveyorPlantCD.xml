@@ -7,6 +7,7 @@
 			<iSignal Name="recyclingConveyorMotor" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15201" />
 			<iSignal Name="injectAtEntry"     Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15201" />
 			<iSignal Name="collectAtReturn"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15201" />
+			<iSignal Name="reset"             Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15201" />
 			<oSignal Name="bottleAtSplitterExit" To="RecyclingConveyorControllerCD.bottleAtSplitterExit" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15200" />
 			<oSignal Name="bottleAtLidRemoval" To="RecyclingConveyorControllerCD.bottleAtLidRemoval" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15200" />
 			<oSignal Name="bottleAtDumper"    To="RecyclingConveyorControllerCD.bottleAtDumper" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15200" />

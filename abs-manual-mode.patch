@@ -1,0 +1,2881 @@
+diff --git a/.gitignore b/.gitignore
+index 7b94352..d3194e0 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -22,3 +22,7 @@
+ hs_err_pid*
+ replay_pid*
+ /.metadata/
++
++# Python bytecode from the generators in tools/
++__pycache__/
++*.pyc
+diff --git a/assignment1/.classpath b/assignment1/.classpath
+index c3abef4..1c7fd59 100644
+--- a/assignment1/.classpath
++++ b/assignment1/.classpath
+@@ -1,10 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <classpath>
+-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+-		<attributes>
+-			<attribute name="module" value="true"/>
+-		</attributes>
+-	</classpathentry>
++	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+ 	<classpathentry kind="src" path="src"/>
+ 	<classpathentry kind="lib" path="lib/asm-5.0.4.jar"/>
+ 	<classpathentry kind="lib" path="lib/commons-cli-1.3.1.jar"/>
+diff --git a/assignment1/.project b/assignment1/.project
+index eb23829..9a836e8 100644
+--- a/assignment1/.project
++++ b/assignment1/.project
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <projectDescription>
+-	<name>COMPSYS704_Lab_2</name>
++	<name>assignment1</name>
+ 	<comment></comment>
+ 	<projects>
+ 	</projects>
+diff --git a/assignment1/BuildAll.launch b/assignment1/BuildAll.launch
+index 8de83ff..719192b 100644
+--- a/assignment1/BuildAll.launch
++++ b/assignment1/BuildAll.launch
+@@ -11,9 +11,26 @@
+     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_SHOW_CODEDETAILS_IN_EXCEPTION_MESSAGES" value="true"/>
+     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_CLASSPATH_ONLY_JAR" value="false"/>
+     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
++    <listAttribute key="org.eclipse.jdt.launching.CLASSPATH">
++        <listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry containerPath=&quot;org.eclipse.jdt.launching.JRE_CONTAINER&quot; javaProject=&quot;assignment1&quot; path=&quot;1&quot; type=&quot;4&quot;/&gt;&#10;"/>
++        <listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry internalArchive=&quot;/assignment1/lib/asm-5.0.4.jar&quot; path=&quot;3&quot; type=&quot;2&quot;/&gt;&#10;"/>
++        <listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry internalArchive=&quot;/assignment1/lib/commons-cli-1.3.1.jar&quot; path=&quot;3&quot; type=&quot;2&quot;/&gt;&#10;"/>
++        <listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry internalArchive=&quot;/assignment1/lib/gson-2.8.1.jar&quot; path=&quot;3&quot; type=&quot;2&quot;/&gt;&#10;"/>
++        <listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry internalArchive=&quot;/assignment1/lib/hmpsoc-ac01f84-SNAPSHOT.jar&quot; path=&quot;3&quot; type=&quot;2&quot;/&gt;&#10;"/>
++        <listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry internalArchive=&quot;/assignment1/lib/jdom2-2.0.6.jar&quot; path=&quot;3&quot; type=&quot;2&quot;/&gt;&#10;"/>
++        <listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry internalArchive=&quot;/assignment1/lib/kotlin-reflect-1.3.72.jar&quot; path=&quot;3&quot; type=&quot;2&quot;/&gt;&#10;"/>
++        <listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry internalArchive=&quot;/assignment1/lib/kotlin-stdlib-1.3.72.jar&quot; path=&quot;3&quot; type=&quot;2&quot;/&gt;&#10;"/>
++        <listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry internalArchive=&quot;/assignment1/lib/kotlin-stdlib-common-1.3.72.jar&quot; path=&quot;3&quot; type=&quot;2&quot;/&gt;&#10;"/>
++        <listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry internalArchive=&quot;/assignment1/lib/kotlin-stdlib-jdk7-1.3.72.jar&quot; path=&quot;3&quot; type=&quot;2&quot;/&gt;&#10;"/>
++        <listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry internalArchive=&quot;/assignment1/lib/kotlin-stdlib-jdk8-1.3.72.jar&quot; path=&quot;3&quot; type=&quot;2&quot;/&gt;&#10;"/>
++        <listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry internalArchive=&quot;/assignment1/lib/sjc-2.2-13-g8ab684c-SNAPSHOT.jar&quot; path=&quot;3&quot; type=&quot;2&quot;/&gt;&#10;"/>
++        <listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry internalArchive=&quot;/assignment1/lib/sjrt-v2.1-37-g7941c30-SNAPSHOT-base.jar&quot; path=&quot;3&quot; type=&quot;2&quot;/&gt;&#10;"/>
++        <listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry internalArchive=&quot;/assignment1/lib/sjrt-v2.1-37-g7941c30-SNAPSHOT-desktop.jar&quot; path=&quot;3&quot; type=&quot;2&quot;/&gt;&#10;"/>
++        <listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry internalArchive=&quot;/assignment1/lib/sysjnetapi-SNAPSHOT-e1801c7.jar&quot; path=&quot;3&quot; type=&quot;2&quot;/&gt;&#10;"/>
++    </listAttribute>
++    <booleanAttribute key="org.eclipse.jdt.launching.DEFAULT_CLASSPATH" value="false"/>
+     <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.systemj.compiler.JavaPrettyPrinter"/>
+-    <stringAttribute key="org.eclipse.jdt.launching.MODULE_NAME" value="assignment1"/>
+     <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-d src --nojavac --silence sysj/*.sysj"/>
+-    <stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${workspace_loc:assignment1}"/>
+     <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="assignment1"/>
++    <stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${workspace_loc:assignment1}"/>
+ </launchConfiguration>
+diff --git a/assignment1/src/A1_GUI.java b/assignment1/src/A1_GUI.java
+index 7d4758a..654311a 100644
+--- a/assignment1/src/A1_GUI.java
++++ b/assignment1/src/A1_GUI.java
+@@ -90,12 +90,18 @@ public class A1_GUI extends JFrame {
+     private final JButton resetButton = new JButton("Reset");
+     private final JButton executeManualButton = new JButton("Enable Selected");
+     private final JButton clearManualButton = new JButton("Clear Ticks");
++    private final JButton sendTickButton = new JButton("Send Tick");
++    private final JButton clearActuatorsButton = new JButton("Clear");
++    private final JLabel assertedLabel = new JLabel("nothing selected");
++    private final java.util.List<JCheckBox> actuatorChecks = new ArrayList<JCheckBox>();
++    private final java.util.List<String> actuatorIds = new ArrayList<String>();
+ 
+     private final JComboBox<String> operationModeCombo = new JComboBox<String>(
+-            new String[] {"Automatic", "Manual"});
++            new String[] {"Automatic", "Step cycle", "Manual"});
+     private final CardLayout modeCardLayout = new CardLayout();
+     private final JPanel modeCards = new JPanel(modeCardLayout);
+     private JPanel automaticControlPanel;
++    private JPanel stepControlPanel;
+     private JPanel manualControlPanel;
+     private final JCheckBox conveyorACheck = new JCheckBox("Conveyor A move / load");
+     private final JCheckBox rotaryCheck = new JCheckBox("Index rotary table");
+@@ -195,7 +201,10 @@ public class A1_GUI extends JFrame {
+         executeManualButton.addActionListener(e -> executeManualControls());
+         clearManualButton.addActionListener(e -> { for (JCheckBox check : manualChecks) check.setSelected(false); });
+         operationModeCombo.addActionListener(e -> {
+-            if (!updating) send(new GuiCommand(operationModeCombo.getSelectedIndex() == 0 ? "AUTO" : "MANUAL"));
++            if (!updating) {
++                int i = operationModeCombo.getSelectedIndex();
++                send(new GuiCommand(i == 0 ? "AUTO" : i == 1 ? "STEP" : "MANUAL"));
++            }
+         });
+         faultModeCombo.addActionListener(e -> {
+             if (!updating) send(new GuiCommand("QUALITY", java.util.Collections.<String>emptyList(),
+@@ -284,8 +293,10 @@ public class A1_GUI extends JFrame {
+ 
+         modeCards.setOpaque(false);
+         automaticControlPanel = createAutomaticControlPanel();
++        stepControlPanel = createStepCyclePanel();
+         manualControlPanel = createManualControlPanel();
+         modeCards.add(automaticControlPanel, "AUTO");
++        modeCards.add(stepControlPanel, "STEP");
+         modeCards.add(manualControlPanel, "MANUAL");
+         setModeCardHeight(automaticControlPanel);
+         content.add(modeCards);
+@@ -386,6 +397,134 @@ public class A1_GUI extends JFrame {
+     }
+ 
+     private JPanel createManualControlPanel() {
++        return createActuatorPanel();
++    }
++
++    /**
++     * Direct actuator control, one operator tick at a time.
++     *
++     * Tick the signals you want asserted and press Send Tick: they are all
++     * emitted together for exactly one tick of the plant, then drop. That is
++     * the unit the plant actually runs in, so what you select is what the
++     * clock domains see in one instant - which is the thing worth being able
++     * to demonstrate, and the thing a held button cannot express.
++     *
++     * The boxes are built from ManualActuator, which is generated from the
++     * same table as the operator panel clock domain, so the panel cannot
++     * offer a signal the plant does not have.
++     */
++    private JPanel createActuatorPanel() {
++        JPanel grid = new JPanel(new GridBagLayout());
++        grid.setOpaque(false);
++        GridBagConstraints c = new GridBagConstraints();
++        c.fill = GridBagConstraints.HORIZONTAL;
++        c.anchor = GridBagConstraints.WEST;
++        c.weightx = 1;
++        c.gridx = 0;
++        c.gridy = 0;
++        c.insets = new Insets(1, 0, 1, 0);
++
++        String machine = null;
++        for (ManualActuator actuator : ManualActuator.all()) {
++            if (!actuator.machine.equals(machine)) {
++                machine = actuator.machine;
++                JLabel heading = new JLabel(machine.toUpperCase());
++                heading.setFont(new Font("SansSerif", Font.BOLD, 9));
++                heading.setForeground(LINE);
++                heading.setBorder(new EmptyBorder(8, 0, 2, 0));
++                grid.add(heading, c);
++                c.gridy++;
++            }
++            JCheckBox box = new JCheckBox(actuator.label);
++            box.setName("actuator-" + actuator.id);
++            box.setOpaque(false);
++            box.setFont(new Font("SansSerif", Font.PLAIN, 10));
++            box.setForeground(LINE);
++            box.addActionListener(e -> updateAssertedLabel());
++            actuatorChecks.add(box);
++            actuatorIds.add(actuator.id);
++            grid.add(box, c);
++            c.gridy++;
++        }
++
++        JPanel buttons = new JPanel(new GridBagLayout());
++        buttons.setOpaque(false);
++        styleBlackButton(sendTickButton);
++        styleBlackButton(clearActuatorsButton);
++        sendTickButton.addActionListener(e -> sendActuatorTick());
++        clearActuatorsButton.addActionListener(e -> clearActuatorSelection());
++        GridBagConstraints b = new GridBagConstraints();
++        b.fill = GridBagConstraints.HORIZONTAL;
++        b.weightx = 1;
++        b.insets = new Insets(4, 2, 0, 2);
++        b.gridx = 0;
++        buttons.add(sendTickButton, b);
++        b.gridx = 1;
++        buttons.add(clearActuatorsButton, b);
++        c.insets = new Insets(10, 0, 0, 0);
++        grid.add(buttons, c);
++        c.gridy++;
++        assertedLabel.setFont(new Font("SansSerif", Font.PLAIN, 10));
++        assertedLabel.setForeground(LINE);
++        c.insets = new Insets(4, 0, 0, 0);
++        grid.add(assertedLabel, c);
++
++        JPanel holder = new JPanel(new BorderLayout());
++        holder.setOpaque(false);
++        holder.add(grid, BorderLayout.NORTH);
++        JScrollPane scroll = new JScrollPane(holder);
++        scroll.setBorder(null);
++        scroll.setOpaque(false);
++        scroll.getViewport().setOpaque(false);
++        scroll.getVerticalScrollBar().setUnitIncrement(16);
++        scroll.setPreferredSize(new Dimension(10, 260));
++        JPanel panel = new JPanel(new BorderLayout());
++        panel.setOpaque(false);
++        panel.add(scroll, BorderLayout.CENTER);
++        return panel;
++    }
++
++    private java.util.Set<String> selectedActuators() {
++        java.util.Set<String> ids = new java.util.LinkedHashSet<String>();
++        for (int i = 0; i < actuatorChecks.size(); i++) {
++            if (actuatorChecks.get(i).isSelected()) {
++                ids.add(actuatorIds.get(i));
++            }
++        }
++        return ids;
++    }
++
++    /** Emit the selection for one tick. The boxes stay ticked, so a sequence
++     *  can be stepped by pressing Send Tick again. */
++    private void sendActuatorTick() {
++        java.util.Set<String> ids = selectedActuators();
++        if (ids.isEmpty()) {
++            assertedLabel.setText("select at least one signal");
++            assertedLabel.setForeground(AMBER.darker());
++            return;
++        }
++        boolean sent = client.sendTick(ids);
++        assertedLabel.setText(sent
++                ? "tick " + client.ticksSent() + " sent: " + ids.size() + " signal" + (ids.size() == 1 ? "" : "s")
++                : "not connected");
++        assertedLabel.setForeground(sent ? GREEN : RED);
++    }
++
++    private void clearActuatorSelection() {
++        for (JCheckBox box : actuatorChecks) {
++            box.setSelected(false);
++        }
++        updateAssertedLabel();
++    }
++
++    private void updateAssertedLabel() {
++        int n = selectedActuators().size();
++        assertedLabel.setText(n == 0 ? "nothing selected"
++                : n + " signal" + (n == 1 ? "" : "s") + " selected");
++        assertedLabel.setForeground(n > 0 ? NAVY : LINE);
++    }
++
++    private JPanel createStepCyclePanel() {
+         JPanel manual = new JPanel(new GridBagLayout());
+         manual.setOpaque(false);
+         GridBagConstraints c = new GridBagConstraints();
+@@ -501,15 +640,30 @@ public class A1_GUI extends JFrame {
+             boolean connected = client.connected();
+             connectionLabel.setText(connected ? "SystemJ connected" : "Disconnected / stale feedback");
+             boolean manual = snapshot != null && "Manual".equalsIgnoreCase(snapshot.mode);
+-            operationModeCombo.setSelectedIndex(manual ? 1 : 0);
+-            modeCardLayout.show(modeCards, manual ? "MANUAL" : "AUTO");
+-            setModeCardHeight(manual ? manualControlPanel : automaticControlPanel);
++            boolean stepping = snapshot != null && "Step".equalsIgnoreCase(snapshot.mode);
++            String card = manual ? "MANUAL" : stepping ? "STEP" : "AUTO";
++            operationModeCombo.setSelectedIndex(manual ? 2 : stepping ? 1 : 0);
++            modeCardLayout.show(modeCards, card);
++            setModeCardHeight(manual ? manualControlPanel
++                    : stepping ? stepControlPanel : automaticControlPanel);
+             operationModeCombo.setEnabled(connected);
+             startButton.setEnabled(connected && !manual);
+             pauseButton.setEnabled(connected && !manual);
+             resetButton.setEnabled(connected);
+-            executeManualButton.setEnabled(connected && manual);
+-            clearManualButton.setEnabled(manual);
++            executeManualButton.setEnabled(connected && stepping);
++            clearManualButton.setEnabled(stepping);
++
++            // The actuator signals only reach the plant while the machines
++            // are in manual, so clear a stale selection the moment that stops
++            // being true rather than letting it survive a mode change.
++            if (!manual && !selectedActuators().isEmpty()) {
++                clearActuatorSelection();
++            }
++            for (JCheckBox actuator : actuatorChecks) {
++                actuator.setEnabled(connected && manual);
++            }
++            sendTickButton.setEnabled(connected && manual);
++            clearActuatorsButton.setEnabled(connected && manual);
+             faultModeCombo.setEnabled(connected);
+             lineStateLabel.setText(connected ? snapshot.state : "DISCONNECTED");
+             lineStateLabel.setForeground(!connected ? RED : "RUNNING".equals(snapshot.state) ? GREEN : AMBER.darker());
+@@ -989,6 +1143,11 @@ public class A1_GUI extends JFrame {
+             drawMachineBox(g, 828, 762, 155, 49, new Color(210, 218, 224),
+                     "BATCH STORAGE", "");
+ 
++            // Where a hard reset puts what it pushed off the table. Separate
++            // from batch storage on purpose: none of it is a product.
++            drawMachineBox(g, 620, 766, 170, 45, new Color(226, 214, 214),
++                    "SCRAP (RESET)", "");
++
+             g.setColor(new Color(95, 105, 114));
+             g.setStroke(new BasicStroke(4f));
+             g.drawLine(905, 751, 905, 762);
+@@ -1017,13 +1176,26 @@ public class A1_GUI extends JFrame {
+         private int[] position(Bottle b) {
+             GuiSnapshot.Bottle d = b.data;
+             if (d.position >= 0 && d.position < 6) return new int[]{550 + stationX[d.position], 345 + stationY[d.position]};
++
++            // Terminal states first: these are piles, not places on the line.
+             if ("DONE".equals(d.stage)) return new int[]{857 + (int)(d.id % 4) * 27, 789};
+             if ("RECOVERED".equals(d.stage)) return new int[]{126 + (int)(d.id % 4) * 28, 731};
++            if ("SCRAP".equals(d.stage)) return new int[]{648 + (int)(d.id % 4) * 30, 789};
++
+             if ("LOADER".equals(d.location)) return new int[]{210, 375};
+             if ("LABELLER".equals(d.location)) return new int[]{900, 703};
+-            if ("RECYCLING".equals(d.location)) return new int[]{275, 714};
+-            if ("SPLITTER".equals(d.location)) return new int[]{613, 714};
+-            return "LOADED".equals(d.stage) ? new int[]{320, 375} : new int[]{555, 590};
++            // Centres, not eyeballed offsets: the splitter belt is drawn at
++            // x 290 width 510, so its middle is 545, and the recycling box at
++            // x 91 width 165, so its middle is 173.
++            if ("RECYCLING".equals(d.location)) return new int[]{173, 715};
++            if ("SPLITTER".equals(d.location)) return new int[]{545, 715};
++
++            // Which belt, from the record of which belt took it - not from the
++            // lifecycle stage. An unfilled bottle leaving the table is still
++            // LOADED, and reading the stage here is what used to send it back
++            // to the infeed as though it had never started.
++            if ("CONVEYOR_OUT".equals(d.location)) return new int[]{555, 590};
++            return new int[]{320, 375};
+         }
+ 
+         private void drawBottles(Graphics2D g) {
+diff --git a/assignment1/src/GuiClient.java b/assignment1/src/GuiClient.java
+index 0a937aa..968d3a3 100644
+--- a/assignment1/src/GuiClient.java
++++ b/assignment1/src/GuiClient.java
+@@ -6,6 +6,8 @@ import java.util.concurrent.*;
+ public final class GuiClient {
+     private static final int PORT_OFFSET=Integer.getInteger("gui.portOffset",0);
+     public static final int STATUS_PORT=21000+PORT_OFFSET, EVENTS_PORT=21001+PORT_OFFSET, COMMAND_PORT=21002+PORT_OFFSET;
++    /** One operator tick of actuator signals, carried as a ManualTick. */
++    public static final int MANUAL_PORT=21003+PORT_OFFSET;
+     private volatile GuiSnapshot latest;
+     private volatile long lastReceived;
+     private final BlockingQueue<GuiCommand> commands=new ArrayBlockingQueue<GuiCommand>(32);
+@@ -25,6 +27,23 @@ public final class GuiClient {
+             if(present && value instanceof List<?>) for(Object e:(List<?>)value) if(e instanceof GuiSnapshot.Event) addEvent((GuiSnapshot.Event)e);
+         });
+ 
++        // One operator tick at a time, resent until the plant has clearly
++        // taken it. Sequence numbers make a resend harmless, so losing a
++        // packet costs a moment rather than a missed command.
++        daemon("manual drive",()-> {
++            ManualTick sent=null;
++            while(true) {
++                try(TCPSender drive=new TCPSender("127.0.0.1",MANUAL_PORT)) {
++                    while(true) {
++                        ManualTick t=ticks.poll(1,java.util.concurrent.TimeUnit.SECONDS);
++                        if(t!=null) sent=t;
++                        if(sent!=null) for(int i=0;i<5;i++) { drive.emit(sent,1); Thread.sleep(80); }
++                        sent=null;
++                    }
++                } catch(Exception e) { try { Thread.sleep(300); } catch(InterruptedException stop) { return; } }
++            }
++        });
++
+         daemon("GUI commands",()-> {
+             GuiCommand pending=null;
+             while(true) {
+@@ -39,6 +58,15 @@ public final class GuiClient {
+             }
+         });
+     }
++    private final BlockingQueue<ManualTick> ticks=new ArrayBlockingQueue<ManualTick>(16);
++    private long tickSequence;
++    /** Assert these actuator signals together, for one tick. */
++    public synchronized boolean sendTick(Set<String> signals) {
++        if(signals.isEmpty() || !connected()) return false;
++        return ticks.offer(new ManualTick(++tickSequence,signals));
++    }
++    public synchronized long ticksSent() { return tickSequence; }
++
+     private synchronized void addEvent(GuiSnapshot.Event event) { events.put(event.sequence,event); while(events.size()>5000) events.pollFirstEntry(); }
+     private void addEvents(List<GuiSnapshot.Event> incoming) { for(GuiSnapshot.Event e:incoming) addEvent(e); }
+     public synchronized List<GuiSnapshot.Event> events() { return new ArrayList<GuiSnapshot.Event>(events.values()); }
+diff --git a/assignment1/src/GuiSupervisor.java b/assignment1/src/GuiSupervisor.java
+index 1cca8cb..ec9b39a 100644
+--- a/assignment1/src/GuiSupervisor.java
++++ b/assignment1/src/GuiSupervisor.java
+@@ -19,7 +19,7 @@ public final class GuiSupervisor {
+         if (Boolean.getBoolean("gui.enabled")) {
+             running=false;
+             GuiStep.discard(tickets);
+-            message=mode.equals("Manual") ? "New order ready. Select operations and press Enable Selected."
++            message=mode.equals("Step") ? "New order ready. Select operations and press Enable Selected."
+                     : "New order ready. Press Start to begin production.";
+             event("-","SYSTEM",message,"INFO");
+         }
+@@ -42,14 +42,21 @@ public final class GuiSupervisor {
+                 running=false; GuiStep.discard(tickets);
+                 message="Paused. Current station actions finish; new operations wait for Start.";
+             }
+-        } else if (c.action.equals("RESET") || c.action.equals("MANUAL") || c.action.equals("AUTO")) {
++        } else if (c.action.equals("RESET") || c.action.equals("MANUAL")
++                || c.action.equals("STEP") || c.action.equals("AUTO")) {
+             running=false; draining=true;
+             resetting=c.action.equals("RESET");
+-            pendingMode=c.action.equals("MANUAL")?"Manual":"Automatic";
++            // Step and Manual are different things. Step runs each station's
++            // own automatic sequence one operation at a time; Manual drops
++            // those sequences entirely and hands the actuators to the
++            // operator. Only Manual changes what the machines are told.
++            pendingMode=c.action.equals("MANUAL")?"Manual":c.action.equals("STEP")?"Step":"Automatic";
+             GuiStep.discard(tickets);
+-            message="Finishing admitted bottles before " + (resetting?"reset.":"stopping.");
++            message=resetting
++                    ? "Hard reset: clearing the table. Bottles on it are pushed to the end unfinished."
++                    : "Finishing admitted bottles before stopping.";
+         } else if (c.action.equals("ENABLE")) {
+-            if (!mode.equals("Manual") || draining || jam) message="Enable Selected is available only in settled Manual mode.";
++            if (!mode.equals("Step") || draining || jam) message="Enable Selected is available only in settled Step mode.";
+             else if (c.operations.isEmpty()) message="Select at least one operation.";
+             else if (!Arrays.asList(OPERATIONS).containsAll(c.operations)) message="Unknown manual operation rejected.";
+             else {
+@@ -70,13 +77,57 @@ public final class GuiSupervisor {
+     }
+ 
+     public static synchronized GuiPermit permits() { return new GuiPermit((running && mode.equals("Automatic")) || draining,jam,tickets); }
++
++    /**
++     * The mode every machine controller is held in: 0 automatic, 1 manual.
++     *
++     * Manual is only asserted once the line has finished draining, because a
++     * controller that switches mode mid-sequence abandons whatever it was
++     * holding. Draining therefore stays automatic until wip reaches zero, at
++     * which point observe() settles the mode and this starts returning 1.
++     */
++    public static synchronized int machineMode() { return mode.equals("Manual") && !draining ? 1 : 0; }
++
++    /**
++     * A hard reset is in progress: empty the line rather than finish it.
++     *
++     * The brief requires that no opened bottle survives a suspension, and a
++     * bottle part way through a recipe is exactly that. Reset therefore
++     * pushes whatever is on the table to the end without operating on it and
++     * scraps it, instead of completing a product nobody ordered.
++     */
++    public static synchronized boolean purging() { return resetting && draining; }
++
++    /** Step mode gates each station operation but leaves the sequences running. */
++    public static synchronized boolean stepping() { return mode.equals("Step") && !draining; }
++
++    /** The same thing as the line mode the digital twin reports. */
++    public static synchronized LineMode lineMode() {
++        if (draining) return LineMode.DRAINING;
++        if (mode.equals("Manual") || mode.equals("Step")) return LineMode.MANUAL;
++        if (!running || jam) return LineMode.SUSPENDED;
++        return LineMode.AUTO;
++    }
+     public static synchronized boolean canLoad() {
+-        if (draining || jam) return false;
+-        return running && mode.equals("Automatic") || mode.equals("Manual") && GuiStep.take("LOAD",permits());
++        if (draining || jam || mode.equals("Manual")) return false;
++        return running && mode.equals("Automatic") || mode.equals("Step") && GuiStep.take("LOAD",permits());
+     }
+     public static synchronized boolean qualityAllowed() { return GuiStep.take("QUALITY",permits()); }
++    /**
++     * The faults the quality test injects, one per affected bottle, in turn.
++     *
++     * Rotating rather than always arming the same one is the point: each is
++     * caught by a different station, so a run exercises four detection paths
++     * and the histories show where each fault was found rather than four
++     * copies of the same line.
++     */
++    private static final String[] FAULTS = {"lid-fitted", "misfill", "cap-loose", "no-print"};
++    private static int faultsArmed;
++
+     public static synchronized void prepare(WorkpieceTwin w, boolean replacement) {
+-        if (!replacement && rejectEvery>0 && ++productionNumber % rejectEvery == 0) w.armFault("lid-fitted");
++        if (!replacement && rejectEvery>0 && ++productionNumber % rejectEvery == 0) {
++            w.armFault(FAULTS[faultsArmed++ % FAULTS.length]);
++        }
+     }
+     public static synchronized void observe(ABSTwin plant) {
+         PurchaseOrder order=OrderBook.purchaseOrder();
+@@ -97,9 +148,14 @@ public final class GuiSupervisor {
+         if(jam) return "FAULT";
+         if(draining) return resetting?"RESETTING / DRAINING":"DRAINING";
+         if(mode.equals("Manual")) return "MANUAL";
+-        if(!running) return "PAUSED";
++        if(mode.equals("Step")) return "STEP";
++        // No order is IDLE even when stopped: after a hard reset the line is
++        // empty and waiting for a customer, which is not the same as paused
++        // part way through a run.
+         PurchaseOrder o=OrderBook.purchaseOrder();
+-        return o==null?"IDLE":o.status()==POStatus.COMPLETE?"COMPLETED":"RUNNING";
++        if(o==null) return "IDLE";
++        if(!running) return "PAUSED";
++        return o.status()==POStatus.COMPLETE?"COMPLETED":"RUNNING";
+     }
+     public static synchronized void fill(GuiSnapshot s) {
+         s.mode=mode; s.state=state(); s.commandId=commandId; s.commandMessage=message; s.rejectEvery=rejectEvery;
+diff --git a/assignment1/src/GuiTelemetry.java b/assignment1/src/GuiTelemetry.java
+index c8bda87..4492e42 100644
+--- a/assignment1/src/GuiTelemetry.java
++++ b/assignment1/src/GuiTelemetry.java
+@@ -7,6 +7,10 @@ import java.util.*;
+ public final class GuiTelemetry {
+     private static long lastCapture;
+     private static GuiSnapshot latest;
++
++    /** The snapshot the display is currently working from. */
++    public static synchronized GuiSnapshot latest() { return latest; }
++
+     private static final Map<String,String> namedStations=new HashMap<String,String>();
+     public static void noteMachine(String name,MachineTwin twin) { if(twin!=null) namedStations.put(name,twin.status().toString()); }
+     private static final String SENSOR_NAMES="armAtSource armAtDest bottleAtSource WPgripped supplyEmpty bottleAtPos1 bottleAtPos2 bottleAtPos4 bottleAtPos5 infeedClear infeedAdmitted bottleAtOutfeedEnd outfeedClear tableAligned exitCleared filled lidAtPickup pusherExtended pusherRetracted magazineEmpty refilled capperDown capperUp capped labelPrinted labelApplied bottleAtLabeller labelStockLow glueLow labelStock glueLevel recyclingStatus";
+@@ -36,7 +40,7 @@ public final class GuiTelemetry {
+             GuiSnapshot.Bottle b=new GuiSnapshot.Bottle(); b.id=w.id; b.serial=w.serial; b.batch=w.batchId;
+             b.product=w.productName; b.productId=productId(w.productName); b.size=w.sizeMl;
+             b.one=w.recipe.liquidOne; b.two=w.recipe.liquidTwo; b.filled=w.filledMl();
+-            b.stage=w.status().toString(); b.location=w.station().toString(); b.position=-1;
++            b.stage=w.status().toString(); b.location=belt(w); b.position=-1;
+             for(int p=0;p<6;p++) if(TableModel.shared().at(p)==w) { b.position=p; b.location="ROTARY_TABLE"; }
+             b.lidded=w.isLidded(); b.capped=w.isCapped(); b.labelled=w.isLabelled();
+             b.quality=w.isRejected()?"REJECT: "+w.defect():w.isLabelled()?"PASS":"PENDING";
+@@ -62,4 +66,26 @@ public final class GuiTelemetry {
+         }
+         for(int i=0;i<container.getChildSize();i++) sensors(container.getChild(i),s);
+     }
++
++    /**
++     * Where the bottle is, told apart by belt.
++     *
++     * The infeed and the outfeed are one CONVEYOR to the plant - the same
++     * controller drives both - but they are opposite ends of the line to
++     * anyone looking at it. The outfeed marks its handover on the record, so
++     * the last CONVEYOR event says which belt the bottle is actually on.
++     */
++    private static String belt(WorkpieceTwin w) {
++        String station = w.station().toString();
++        if (!"CONVEYOR".equals(station)) {
++            return station;
++        }
++        for (int i = w.history().size() - 1; i >= 0; i--) {
++            WorkpieceEvent e = w.history().get(i);
++            if (e.machine == Machine.CONVEYOR) {
++                return "outfeed".equals(e.cause) ? "CONVEYOR_OUT" : "CONVEYOR_IN";
++            }
++        }
++        return "CONVEYOR_IN";
++    }
+ }
+diff --git a/assignment1/src/ManualActuator.java b/assignment1/src/ManualActuator.java
+new file mode 100644
+index 0000000..a966162
+--- /dev/null
++++ b/assignment1/src/ManualActuator.java
+@@ -0,0 +1,83 @@
++import java.util.ArrayList;
++import java.util.Collections;
++import java.util.List;
++
++/**
++ * One operator-panel button: the actuator it drives and the words on it.
++ *
++ * The panel clock domain and the GUI are generated from the same table, so a
++ * button can never name an actuator the plant does not have.
++ *
++ * GENERATED by tools/actuators.py - edit the table there, not this file.
++ */
++public final class ManualActuator {
++
++	public final String id;
++	public final String machine;
++	public final String label;
++
++	private ManualActuator(String id, String machine, String label) {
++		this.id = id;
++		this.machine = machine;
++		this.label = label;
++	}
++
++	private static final ManualActuator[] ALL = {
++		new ManualActuator("bl.vacOn", "Bottle loader", "Vacuum on"),
++		new ManualActuator("bl.release", "Bottle loader", "Release"),
++		new ManualActuator("bl.armSource", "Bottle loader", "Arm to supply"),
++		new ManualActuator("bl.armDest", "Bottle loader", "Arm to conveyor"),
++		new ManualActuator("cv.motInfeed", "Conveyor", "Infeed belt"),
++		new ManualActuator("cv.takeFromPos1", "Conveyor", "Lift off position 1"),
++		new ManualActuator("cv.motOutfeed", "Conveyor", "Outfeed belt"),
++		new ManualActuator("rt.rotaryTrigger", "Rotary table", "Index 60 degrees"),
++		new ManualActuator("f1.valveOpen", "Filler 1", "Valve open"),
++		new ManualActuator("f2.valveOpen", "Filler 2", "Valve open"),
++		new ManualActuator("ll.pusherExtend", "Lid loader", "Magazine pusher"),
++		new ManualActuator("ll.vacOn", "Lid loader", "Vacuum on"),
++		new ManualActuator("ll.armSource", "Lid loader", "Arm to pick-up"),
++		new ManualActuator("ll.armDest", "Lid loader", "Arm to bottle"),
++		new ManualActuator("cp.screwOn", "Capper", "Screw down"),
++		new ManualActuator("lb.applyLabelExtend", "Labeller", "Applicator out"),
++		new ManualActuator("lb.applyLabelRetract", "Labeller", "Applicator back"),
++		new ManualActuator("lb.rollerOnOff", "Labeller", "Glue roller"),
++		new ManualActuator("sp.diverterExtend", "Quality splitter", "Diverter to reject"),
++		new ManualActuator("sp.diverterRetract", "Quality splitter", "Diverter to normal"),
++		new ManualActuator("rc.recyclingConveyorMotor", "Recycling conveyor", "Belt"),
++		new ManualActuator("lr.cylZaxisExtend", "Lid removal", "Head down"),
++		new ManualActuator("lr.unscrewTurnExtend", "Lid removal", "Untwist"),
++		new ManualActuator("lr.unscrewTurnRetract", "Lid removal", "Twist back"),
++		new ManualActuator("lr.lidGripperExtend", "Lid removal", "Gripper close"),
++		new ManualActuator("lr.lidEjectExtend", "Lid removal", "Eject lid"),
++		new ManualActuator("ld.cylClampBottleExtend", "Liquid dumper", "Clamp bottle"),
++		new ManualActuator("ld.invertRotateExtend", "Liquid dumper", "Invert"),
++		new ManualActuator("ld.invertRotateRetract", "Liquid dumper", "Upright"),
++		new ManualActuator("ld.drainValveOnOff", "Liquid dumper", "Drain valve"),
++		new ManualActuator("br.motorOnOff", "Bottle return", "Collector belt"),
++		new ManualActuator("br.transferArmExtend", "Bottle return", "Transfer arm out"),
++		new ManualActuator("br.transferArmRetract", "Bottle return", "Transfer arm back")
++	};
++
++	public static List<ManualActuator> all() {
++		List<ManualActuator> list = new ArrayList<ManualActuator>();
++		for (ManualActuator a : ALL) {
++			list.add(a);
++		}
++		return Collections.unmodifiableList(list);
++	}
++
++	/** Machine labels in plant order, for grouping the panel. */
++	public static List<String> machines() {
++		List<String> names = new ArrayList<String>();
++		for (ManualActuator a : ALL) {
++			if (!names.contains(a.machine)) {
++				names.add(a.machine);
++			}
++		}
++		return Collections.unmodifiableList(names);
++	}
++
++	public String toString() {
++		return machine + " / " + label;
++	}
++}
+diff --git a/assignment1/src/ManualDrive.java b/assignment1/src/ManualDrive.java
+new file mode 100644
+index 0000000..67d3e15
+--- /dev/null
++++ b/assignment1/src/ManualDrive.java
+@@ -0,0 +1,94 @@
++import java.util.HashSet;
++import java.util.Set;
++
++import com.systemj.netapi.TCPReceiver;
++
++/**
++ * The operator panel's mailbox: which actuator signals to assert this tick.
++ *
++ * ---- One press, one tick ----
++ *
++ * SystemJ's unit of meaning is the tick, and manual control is most useful
++ * when it speaks the same unit: tick the signals you want, press Send Tick,
++ * and the plant advances by exactly that. So this does not model a button
++ * being held down. It hands each signal out once, and never again for the
++ * same operator tick.
++ *
++ * Exactly-once is per signal rather than per read, which is what makes it
++ * safe inside a clock domain: the panel's thirteen reactions all ask in the
++ * same tick and in no defined order, so a latch advanced by one of them would
++ * race the other twelve. Marking each (tick, signal) pair as it is taken has
++ * no ordering to get wrong.
++ *
++ * ---- Why it is not read from a socket inside a tick ----
++ *
++ * TCPReceiver delivers on its own thread and this class only ever hands the
++ * clock domain a field it has already been given. No clock domain ever waits
++ * on a socket, which is the rule the twin publisher had to learn the hard way.
++ */
++public final class ManualDrive {
++
++	private static volatile ManualTick pending;
++	private static final Set<String> taken = new HashSet<String>();
++	private static long lastSequence = -1;
++	private static boolean opened;
++
++	private ManualDrive() {
++	}
++
++	/** Idempotent, and safe to call from inside a reaction: it never blocks. */
++	public static synchronized void open() {
++		if (opened || !Boolean.getBoolean("gui.enabled")) {
++			return;
++		}
++		opened = true;
++		GuiClient.daemon("manual drive receiver", new Runnable() {
++			public void run() {
++				TCPReceiver receiver = new TCPReceiver("127.0.0.1", GuiClient.MANUAL_PORT);
++				receiver.setConsumer((present, value) -> {
++					if (Boolean.TRUE.equals(present) && value instanceof ManualTick) {
++						accept((ManualTick) value);
++					}
++				});
++			}
++		});
++	}
++
++	/** A resend of the tick already in hand is ignored; a new one replaces it. */
++	private static synchronized void accept(ManualTick tick) {
++		if (tick.sequence <= lastSequence) {
++			return;
++		}
++		lastSequence = tick.sequence;
++		taken.clear();
++		pending = tick;
++	}
++
++	/**
++	 * True once for this signal, for this operator tick.
++	 *
++	 * The panel domain calls this for every actuator every tick; all but the
++	 * ones the operator selected return false, and each selected one returns
++	 * true exactly once.
++	 */
++	public static synchronized boolean held(String id) {
++		open();
++		ManualTick tick = pending;
++		if (tick == null || !tick.signals.contains(id)) {
++			return false;
++		}
++		if (!taken.add(id)) {
++			return false;
++		}
++		if (taken.size() == tick.signals.size()) {
++			pending = null;   // every signal in it has now fired
++		}
++		return true;
++	}
++
++	/** How many signals of the current operator tick are still to fire. */
++	public static synchronized int outstanding() {
++		ManualTick tick = pending;
++		return tick == null ? 0 : tick.signals.size() - taken.size();
++	}
++}
+diff --git a/assignment1/src/ManualTick.java b/assignment1/src/ManualTick.java
+new file mode 100644
+index 0000000..713a523
+--- /dev/null
++++ b/assignment1/src/ManualTick.java
+@@ -0,0 +1,29 @@
++import java.io.Serializable;
++import java.util.Collections;
++import java.util.HashSet;
++import java.util.Set;
++
++/**
++ * One operator tick: the actuator signals to assert, together, once.
++ *
++ * The sequence number is what makes it exactly once. The panel resends the
++ * same tick several times because a single TCP emit can be missed, and the
++ * plant fires the one whose number it has not seen before, so a resend is
++ * harmless and a loss is not.
++ */
++public final class ManualTick implements Serializable {
++
++	private static final long serialVersionUID = 1L;
++
++	public final long sequence;
++	public final Set<String> signals;
++
++	public ManualTick(long sequence, Set<String> signals) {
++		this.sequence = sequence;
++		this.signals = Collections.unmodifiableSet(new HashSet<String>(signals));
++	}
++
++	public String toString() {
++		return "tick " + sequence + " " + signals;
++	}
++}
+diff --git a/assignment1/src/TwinAudit.java b/assignment1/src/TwinAudit.java
+index f2b76aa..7b691c3 100644
+--- a/assignment1/src/TwinAudit.java
++++ b/assignment1/src/TwinAudit.java
+@@ -30,6 +30,7 @@ public class TwinAudit {
+ 		int admitted = all.size();
+ 		int accepted = 0;
+ 		int recovered = 0;
++		int scrapped = 0;
+ 		int problems = 0;
+ 
+ 		for (WorkpieceTwin w : all) {
+@@ -39,13 +40,19 @@ public class TwinAudit {
+ 			if (w.status() == WorkpieceStatus.RECOVERED) {
+ 				recovered++;
+ 			}
++			if (w.status() == WorkpieceStatus.SCRAP) {
++				scrapped++;
++			}
+ 			problems += checkChain(w);
+ 			problems += checkLabel(w);
+ 		}
+ 
+-		problems += assertThat("accepted + recovered == admitted",
+-				accepted + recovered == admitted,
+-				accepted + " + " + recovered + " vs " + admitted);
++		// A hard reset scraps whatever was on the table, so those bottles are
++		// accounted for too. Every bottle admitted still has to end up in
++		// exactly one of the three.
++		problems += assertThat("accepted + recovered + scrapped == admitted",
++				accepted + recovered + scrapped == admitted,
++				accepted + " + " + recovered + " + " + scrapped + " vs " + admitted);
+ 
+ 		System.out.println();
+ 		System.out.println("  batch storage holds " + BatchStore.shared().total() + " bottle(s)");
+@@ -67,6 +74,12 @@ public class TwinAudit {
+ 		}
+ 
+ 		System.out.println();
++		if (order == null) {
++			// A hard reset clears the plan. The bottle record survives it,
++			// which is the whole point of keeping the two separate.
++			System.out.println("  no active order (cleared by a reset)");
++		}
++		else {
+ 		System.out.println("  order " + order.id + " is " + order.status());
+ 		for (Batch b : order.batches()) {
+ 			// A short batch is not a fault. It means bottles were rejected and
+@@ -76,10 +89,12 @@ public class TwinAudit {
+ 					+ " accepted, " + b.recovered() + " recovered"
+ 					+ (b.isComplete() ? "" : "  (short - rejections not yet replaced)"));
+ 		}
++		}
+ 
+ 		System.out.println();
+ 		System.out.println("  admitted " + admitted + ", accepted " + accepted
+-				+ ", recovered " + recovered);
++				+ ", recovered " + recovered
++				+ (scrapped > 0 ? ", scrapped by reset " + scrapped : ""));
+ 		System.out.println(problems == 0
+ 				? "AUDIT PASSED - every bottle is accounted for and every label is justified"
+ 				: "AUDIT FAILED - " + problems + " problem(s) above");
+diff --git a/assignment1/src/WorkpieceTwin.java b/assignment1/src/WorkpieceTwin.java
+index 722a6ef..c0d55ac 100644
+--- a/assignment1/src/WorkpieceTwin.java
++++ b/assignment1/src/WorkpieceTwin.java
+@@ -158,6 +158,21 @@ public class WorkpieceTwin implements Serializable {
+ 		record(PlantClock.now(), Machine.NONE, EventType.SEALED, "left the line");
+ 	}
+ 
++	/**
++	 * Pushed off the line unfinished by a hard reset.
++	 *
++	 * It terminates the history like seal() does, because the bottle really
++	 * has left, but it can never be a product: whatever was already in it was
++	 * never completed and nothing may be sold from it.
++	 */
++	public void discard() {
++		record(PlantClock.now(), Machine.NONE, EventType.SEALED, "purged by reset");
++	}
++
++	public boolean isScrap() {
++		return status == WorkpieceStatus.SCRAP;
++	}
++
+ 	// ---- Derived state ----
+ 
+ 	public WorkpieceStatus status() {
+@@ -332,7 +347,8 @@ public class WorkpieceTwin implements Serializable {
+ 			}
+ 			break;
+ 		case SEALED:
+-			status = status == WorkpieceStatus.RECOVERED ? status : WorkpieceStatus.DONE;
++			status = "purged by reset".equals(e.cause) ? WorkpieceStatus.SCRAP
++					: status == WorkpieceStatus.RECOVERED ? status : WorkpieceStatus.DONE;
+ 			break;
+ 		default:
+ 			break;
+diff --git a/assignment1/sysj/abs.xml b/assignment1/sysj/abs.xml
+index 7a1b6fa..0f4c2ff 100644
+--- a/assignment1/sysj/abs.xml
++++ b/assignment1/sysj/abs.xml
+@@ -8,6 +8,42 @@
+ 			<oSignal Name="Command"           To="SystemControllerCD.guiCommand"             Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+ 		</ClockDomain>
+ 
++		<ClockDomain Name="OperatorPanelCD" Class="OperatorPanel">
++			<oSignal Name="blVacOn"           To="BottleLoaderControllerCD.vacOnM"           Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11000" />
++			<oSignal Name="blRelease"         To="BottleLoaderControllerCD.releaseM"         Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11000" />
++			<oSignal Name="blArmSource"       To="BottleLoaderControllerCD.armSourceM"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11000" />
++			<oSignal Name="blArmDest"         To="BottleLoaderControllerCD.armDestM"         Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11000" />
++			<oSignal Name="cvMotInfeed"       To="ConveyorControllerCD.motInfeedM"           Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
++			<oSignal Name="cvTakeFromPos1"    To="ConveyorControllerCD.takeFromPos1M"        Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
++			<oSignal Name="cvMotOutfeed"      To="ConveyorControllerCD.motOutfeedM"          Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
++			<oSignal Name="rtRotaryTrigger"   To="RotaryTableControllerCD.rotaryTriggerM"    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13000" />
++			<oSignal Name="f1ValveOpen"       To="Filler1ControllerCD.valveOpenM"            Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14000" />
++			<oSignal Name="f2ValveOpen"       To="Filler2ControllerCD.valveOpenM"            Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14100" />
++			<oSignal Name="llPusherExtend"    To="LidLoaderControllerCD.pusherExtendM"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14200" />
++			<oSignal Name="llVacOn"           To="LidLoaderControllerCD.vacOnM"              Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14200" />
++			<oSignal Name="llArmSource"       To="LidLoaderControllerCD.armSourceM"          Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14200" />
++			<oSignal Name="llArmDest"         To="LidLoaderControllerCD.armDestM"            Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14200" />
++			<oSignal Name="cpScrewOn"         To="CapperControllerCD.screwOnM"               Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14300" />
++			<oSignal Name="lbApplyLabelExtend" To="LabellerControllerCD.applyLabelExtendM"    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14400" />
++			<oSignal Name="lbApplyLabelRetract" To="LabellerControllerCD.applyLabelRetractM"   Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14400" />
++			<oSignal Name="lbRollerOnOff"     To="LabellerControllerCD.rollerOnOffM"         Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14400" />
++			<oSignal Name="spDiverterExtend"  To="SplitterControllerCD.diverterExtendM"      Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15100" />
++			<oSignal Name="spDiverterRetract" To="SplitterControllerCD.diverterRetractM"     Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15100" />
++			<oSignal Name="rcRecyclingConveyorMotor" To="RecyclingConveyorControllerCD.recyclingConveyorMotorM" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15200" />
++			<oSignal Name="lrCylZaxisExtend"  To="LidRemovalControllerCD.cylZaxisExtendM"    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15300" />
++			<oSignal Name="lrUnscrewTurnExtend" To="LidRemovalControllerCD.unscrewTurnExtendM" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15300" />
++			<oSignal Name="lrUnscrewTurnRetract" To="LidRemovalControllerCD.unscrewTurnRetractM" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15300" />
++			<oSignal Name="lrLidGripperExtend" To="LidRemovalControllerCD.lidGripperExtendM"  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15300" />
++			<oSignal Name="lrLidEjectExtend"  To="LidRemovalControllerCD.lidEjectExtendM"    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15300" />
++			<oSignal Name="ldCylClampBottleExtend" To="LiquidDumperControllerCD.cylClampBottleExtendM" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15400" />
++			<oSignal Name="ldInvertRotateExtend" To="LiquidDumperControllerCD.invertRotateExtendM" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15400" />
++			<oSignal Name="ldInvertRotateRetract" To="LiquidDumperControllerCD.invertRotateRetractM" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15400" />
++			<oSignal Name="ldDrainValveOnOff" To="LiquidDumperControllerCD.drainValveOnOffM" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15400" />
++			<oSignal Name="brMotorOnOff"      To="BottleReturnControllerCD.motorOnOffM"      Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15500" />
++			<oSignal Name="brTransferArmExtend" To="BottleReturnControllerCD.transferArmExtendM" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15500" />
++			<oSignal Name="brTransferArmRetract" To="BottleReturnControllerCD.transferArmRetractM" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15500" />
++		</ClockDomain>
++
+ 		<ClockDomain Name="POSCD" Class="POS">
+ 			<iSignal Name="productionStatus"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+ 			<oSignal Name="purchaseOrder"     To="SystemControllerCD.purchaseOrder"          Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+@@ -47,6 +83,8 @@
+ 			<oSignal Name="permitRC"          To="RecyclingStationControllerCD.operatorPermit" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15000" />
+ 			<oSignal Name="productionStatus"  To="POSCD.productionStatus"                    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+ 			<oSignal Name="modeBL"            To="BottleLoaderControllerCD.mode"             Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11000" />
++			<oSignal Name="modeCV"            To="ConveyorControllerCD.mode"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
++			<oSignal Name="modeRT"            To="RotaryTableControllerCD.mode"              Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13000" />
+ 			<oSignal Name="modeF1"            To="Filler1ControllerCD.mode"                  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14000" />
+ 			<oSignal Name="modeF2"            To="Filler2ControllerCD.mode"                  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14100" />
+ 			<oSignal Name="modeLL"            To="LidLoaderControllerCD.mode"                Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14200" />
+@@ -57,6 +95,10 @@
+ 			<oSignal Name="modeLR"            To="LidRemovalControllerCD.mode"               Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15300" />
+ 			<oSignal Name="modeLD"            To="LiquidDumperControllerCD.mode"             Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15400" />
+ 			<oSignal Name="modeBR"            To="BottleReturnControllerCD.mode"             Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15500" />
++			<oSignal Name="purgeF1"           To="Filler1ControllerCD.purge"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14000" />
++			<oSignal Name="purgeF2"           To="Filler2ControllerCD.purge"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14100" />
++			<oSignal Name="purgeLL"           To="LidLoaderControllerCD.purge"               Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14200" />
++			<oSignal Name="purgeCP"           To="CapperControllerCD.purge"                  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14300" />
+ 			<oSignal Name="enableBL"          To="BottleLoaderPlantCD.enable"                Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11001" />
+ 			<oSignal Name="enableCV"          To="ConveyorPlantCD.enable"                    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12001" />
+ 			<oSignal Name="enableRT"          To="RotaryTablePlantCD.enable"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
+@@ -84,6 +126,7 @@
+ 			<iSignal Name="armAtDest"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11000" />
+ 			<iSignal Name="supplyEmpty"       Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11000" />
+ 			<iSignal Name="vacOnM"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11000" />
++			<iSignal Name="releaseM"          Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11000" />
+ 			<iSignal Name="armSourceM"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11000" />
+ 			<iSignal Name="armDestM"          Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11000" />
+ 			<oSignal Name="twin"              To="SystemControllerCD.twinBL"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+@@ -118,6 +161,10 @@
+ 			<iSignal Name="infeedAdmitted"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
+ 			<iSignal Name="bottleAtOutfeedEnd" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
+ 			<iSignal Name="outfeedClear"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
++			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
++			<iSignal Name="motInfeedM"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
++			<iSignal Name="takeFromPos1M"     Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
++			<iSignal Name="motOutfeedM"       Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
+ 			<oSignal Name="twin"              To="SystemControllerCD.twinCV"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+ 			<oSignal Name="motInfeed"         To="ConveyorPlantCD.motInfeed"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12001" />
+ 			<oSignal Name="injectInfeed"      To="ConveyorPlantCD.injectInfeed"              Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12001" />
+@@ -161,6 +208,8 @@
+ 			<iSignal Name="bottleAtPos4"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
+ 			<iSignal Name="bottleAtPos5"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
+ 			<iSignal Name="exitCleared"       Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
++			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
++			<iSignal Name="rotaryTriggerM"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
+ 			<oSignal Name="twin"              To="SystemControllerCD.twinRT"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+ 			<oSignal Name="rotaryTrigger"     To="RotaryTablePlantCD.rotaryTrigger"          Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
+ 			<oSignal Name="loadPos1"          To="RotaryTablePlantCD.loadPos1"               Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
+@@ -186,6 +235,7 @@
+ 
+ 			<iSignal Name="operatorPermit"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
+ 			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
++			<iSignal Name="purge"             Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
+ 			<iSignal Name="filled"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
+ 			<iSignal Name="valveOpenM"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
+ 			<oSignal Name="twin"              To="SystemControllerCD.twinF1"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+@@ -206,6 +256,7 @@
+ 
+ 			<iSignal Name="operatorPermit"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14100" />
+ 			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14100" />
++			<iSignal Name="purge"             Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14100" />
+ 			<iSignal Name="filled"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14100" />
+ 			<iSignal Name="valveOpenM"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14100" />
+ 			<oSignal Name="twin"              To="SystemControllerCD.twinF2"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+@@ -226,6 +277,7 @@
+ 
+ 			<iSignal Name="operatorPermit"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
+ 			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
++			<iSignal Name="purge"             Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
+ 			<iSignal Name="pusherExtended"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
+ 			<iSignal Name="pusherRetracted"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
+ 			<iSignal Name="lidAtPickup"       Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
+@@ -269,6 +321,7 @@
+ 
+ 			<iSignal Name="operatorPermit"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14300" />
+ 			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14300" />
++			<iSignal Name="purge"             Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14300" />
+ 			<iSignal Name="capSeated"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14300" />
+ 			<iSignal Name="screwOnM"          Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14300" />
+ 			<oSignal Name="twin"              To="SystemControllerCD.twinCP"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+@@ -295,6 +348,7 @@
+ 			<iSignal Name="labelStock"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14400" />
+ 			<iSignal Name="glueLevel"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14400" />
+ 			<iSignal Name="applyLabelExtendM" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14400" />
++			<iSignal Name="applyLabelRetractM" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14400" />
+ 			<iSignal Name="rollerOnOffM"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14400" />
+ 			<oSignal Name="printLabel"        To="LabellerPlantCD.printLabel"                Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14401" />
+ 			<oSignal Name="applyLabelExtend"  To="LabellerPlantCD.applyLabelExtend"          Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14401" />
+@@ -403,6 +457,7 @@
+ 			<iSignal Name="lidBinFull"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
+ 			<iSignal Name="cylZaxisExtendM"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
+ 			<iSignal Name="unscrewTurnExtendM" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
++			<iSignal Name="unscrewTurnRetractM" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
+ 			<iSignal Name="lidGripperExtendM" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
+ 			<iSignal Name="lidEjectExtendM"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
+ 			<oSignal Name="cylZaxisExtend"    To="LidRemovalPlantCD.cylZaxisExtend"          Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15301" />
+@@ -439,6 +494,7 @@
+ 			<iSignal Name="wasteTankLevel"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15400" />
+ 			<iSignal Name="cylClampBottleExtendM" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15400" />
+ 			<iSignal Name="invertRotateExtendM" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15400" />
++			<iSignal Name="invertRotateRetractM" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15400" />
+ 			<iSignal Name="drainValveOnOffM"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15400" />
+ 			<oSignal Name="cylClampBottleExtend" To="LiquidDumperPlantCD.cylClampBottleExtend"  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15401" />
+ 			<oSignal Name="invertRotateExtend" To="LiquidDumperPlantCD.invertRotateExtend"    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15401" />
+diff --git a/assignment1/sysj/bottleLoaderController.sysj b/assignment1/sysj/bottleLoaderController.sysj
+index 7086c1d..6f554ac 100644
+--- a/assignment1/sysj/bottleLoaderController.sysj
++++ b/assignment1/sysj/bottleLoaderController.sysj
+@@ -34,7 +34,7 @@ BottleLoaderController(
+ 		output signal vacOn, release, armSource, armDest;
+ 
+ 		// manual overrides
+-		input signal vacOnM, armSourceM, armDestM;
++		input signal vacOnM, releaseM, armSourceM, armDestM;
+ 		)
+ ->
+ {
+@@ -124,6 +124,7 @@ BottleLoaderController(
+ 			abort(immediate auto){
+ 				while(true){
+ 					present(vacOnM){ emit vacOn; }
++					present(releaseM){ emit release; }
+ 					present(armSourceM){ emit armSource; }
+ 					present(armDestM){ emit armDest; }
+ 					pause;
+diff --git a/assignment1/sysj/capperController.sysj b/assignment1/sysj/capperController.sysj
+index c00694e..1c0ae1b 100644
+--- a/assignment1/sysj/capperController.sysj
++++ b/assignment1/sysj/capperController.sysj
+@@ -16,6 +16,9 @@ CapperController(
+ 		// operating mode
+ 		input Integer signal mode;
+ 
++		// Hard reset: empty the table without operating on anything.
++		input signal purge;
++
+ 		// to / from the plant
+ 		output signal screwOn;
+ 		input  signal capSeated;
+@@ -47,34 +50,48 @@ CapperController(
+ 			abort(immediate manual){
+ 				receive start;
+ 				w = (WorkpieceTwin)#start;
+-if(w != null){
+-boolean permitted = false;
+-            pause;
+-            while(!permitted){
+-                permitted = GuiStep.take("CAP", (GuiPermit)#operatorPermit);
+-                pause;
+-            }
+-            pause;
+-}
+-
+ 
+-				if(w != null){
+-					System.out.println("[CAP] Sealing " + w + ".");
+-					w.started(Machine.LID_CAPPER, "screwing cap");
+-					if(t.update(PlantClock.now(), MachineStatus.WORKING, "screwOn", "sealing " + w.id)){
+-						emit twin(t);
++				// A hard reset empties the table rather than finishing what is
++				// on it. The bottle is still handed on, because the barrier and
++				// the table's index both wait for it - it just leaves untouched.
++				abort(immediate purge){
++					// One operation, one operator ticket. Automatic takes it
++					// immediately; step mode holds the bottle here.
++					if(w != null){
++						boolean permitted = false;
++						pause;
++						while(!permitted){
++							permitted = GuiStep.take("CAP", (GuiPermit)#operatorPermit);
++							pause;
++						}
++						pause;
+ 					}
+ 
+-					abort(immediate capSeated){
+-						sustain screwOn;
+-					}
++					if(w != null){
++						System.out.println("[CAP] Sealing " + w + ".");
++						w.started(Machine.LID_CAPPER, "screwing cap");
++						if(t.update(PlantClock.now(), MachineStatus.WORKING, "screwOn", "sealing " + w.id)){
++							emit twin(t);
++						}
++
++						abort(immediate capSeated){
++							sustain screwOn;
++						}
+ 
+-					w.cap();
+-					t.setAppliedTurns(12);
+-					if(t.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w.id)){
+-						emit twin(t);
++						// Injected fault: the cap went on but did not seat. Caught
++						// here rather than announced up front, so the history
++						// records the station that found it.
++						if(w.catchFault("cap-loose")){
++							System.out.println("[CAP] Cap did not seat on " + w + ".");
++							w.reject(Machine.LID_CAPPER, "cap not seated");
++						}
++						w.cap();
++						t.setAppliedTurns(12);
++						if(t.update(PlantClock.now(), MachineStatus.IDLE, "released", "sealed " + w.id)){
++							emit twin(t);
++						}
++						System.out.println("[CAP] " + w + " sealed.");
+ 					}
+-					System.out.println("[CAP] " + w + " sealed.");
+ 				}
+ 
+ 				send done(w);
+diff --git a/assignment1/sysj/conveyorController.sysj b/assignment1/sysj/conveyorController.sysj
+index e4e5f31..b39818b 100644
+--- a/assignment1/sysj/conveyorController.sysj
++++ b/assignment1/sysj/conveyorController.sysj
+@@ -40,9 +40,35 @@ ConveyorController(
+ 		// to the plant
+ 		output signal motInfeed, injectInfeed, takeFromPos1;
+ 		output signal motOutfeed, injectOutfeed, collectFromEnd;
++
++		// operating mode
++		input Integer signal mode;
++
++		// manual overrides - the operator panel attaches here
++		input signal motInfeedM, takeFromPos1M, motOutfeedM;
+ 		)
+ ->
+ {
++	signal auto, manual;
++
++	{ // Mode select
++		while(true){
++			present(mode){
++				if((Integer)#mode == 0){ emit auto; }
++				else { emit manual; }
++			}
++			pause;
++		}
++	}
++	||
++	{ // Auto
++		//
++		// All four belt reactions run as one automatic block so that a switch
++		// to manual drops every one of them together. Leaving any of them
++		// running would fight the operator for the same motor.
++		while(true){
++			await(immediate auto);
++			abort(immediate manual){
+ 	{ // ---- 1. Accept from the loader ----
+ 		BeltQueue q = BeltQueue.shared();
+ 		WorkpieceTwin w = null;
+@@ -111,14 +137,19 @@ ConveyorController(
+ 
+ 			receive tableOutfeed;
+ 			w = (WorkpieceTwin)#tableOutfeed;
+-boolean permitted = false;
+-            pause;
+-            while(!permitted){
+-                permitted = GuiStep.take("OUTFEED", (GuiPermit)#operatorPermit);
+-                pause;
+-            }
+-            pause;
++			boolean permitted = false;
++			pause;
++			while(!permitted){
++				permitted = GuiStep.take("OUTFEED", (GuiPermit)#operatorPermit);
++				pause;
++			}
++			pause;
+ 
++			// Record the belt, not just the machine. Infeed and outfeed are
++			// the same conveyor to the plant but opposite ends of the line to
++			// anyone watching, and without this a bottle leaving the table
++			// still reads as being where it came in.
++			if(w != null){ w.started(Machine.CONVEYOR, "outfeed"); }
+ 			System.out.println("[CV] " + w + " received from the table.");
+ 
+ 			abort(immediate !outfeedClear){
+@@ -137,5 +168,28 @@ boolean permitted = false;
+ 			send bottleDone(w);
+ 			pause;
+ 		}
++	}
++			}
++			pause;
++		}
++	}
++	||
++	{ // Manual
++		//
++		// Straight through to the motors. No sequence, no bottle required:
++		// the operator holds a button and the belt moves, which is what
++		// clearing a jam or commissioning a drive actually needs.
++		while(true){
++			await(immediate manual);
++			abort(immediate auto){
++				while(true){
++					present(motInfeedM){ emit motInfeed; }
++					present(takeFromPos1M){ emit takeFromPos1; }
++					present(motOutfeedM){ emit motOutfeed; }
++					pause;
++				}
++			}
++			pause;
++		}
+ 	}
+ }
+diff --git a/assignment1/sysj/fillerController.sysj b/assignment1/sysj/fillerController.sysj
+index f748b89..9885b56 100644
+--- a/assignment1/sysj/fillerController.sysj
++++ b/assignment1/sysj/fillerController.sysj
+@@ -18,6 +18,9 @@ FillerController(
+ 		// operating mode
+ 		input Integer signal mode;
+ 
++		// Hard reset: empty the table without operating on anything.
++		input signal purge;
++
+ 		// to / from the plant
+ 		output Integer signal fillTarget;
+ 		output signal valveOpen;
+@@ -52,69 +55,77 @@ FillerController(
+ 			abort(immediate manual){
+ 				receive start;
+ 				w = (WorkpieceTwin)#start;
+-if(w != null){
+-boolean permitted = false;
+-            pause;
+-            while(!permitted){
+-                permitted = GuiStep.take(w.nextLiquid() == 0 ? "FILL1" : "FILL2", (GuiPermit)#operatorPermit);
+-                pause;
+-            }
+-            pause;
+-}
+-
+-				ml = (w == null) ? 0 : w.nextVolumeMl();
+-				asked = ml;
+ 
+-				if(ml == 0){
+-					// Record a zero-percent ingredient so the next station advances
+-					// to Liquid 2 and the label has both measurements.
++				// A hard reset empties the table rather than finishing what is
++				// on it. The bottle is still handed on, because the barrier and
++				// the table's index both wait for it - it just leaves untouched.
++				abort(immediate purge){
++					// One operation, one operator ticket. Automatic takes it
++					// immediately; step mode holds the bottle here.
+ 					if(w != null){
+-						w.dispensed(0);
+-						w.completed(Machine.FILLER, "zero-percent ingredient");
+-					}
+-				}
+-				else if(!w.fits(ml)){
+-					// Overflow interlock: refuse rather than dispense.
+-					System.out.println("[FILL] Refusing " + ml + "ml into " + w + " - would overflow.");
+-					w.reject(Machine.FILLER, "would overflow");
+-					if(t.update(PlantClock.now(), MachineStatus.FAULT, "refuse", "overflow")){
+-						emit twin(t);
+-					}
+-				}
+-				else {
+-					// An armed misfill makes the plant dispense short. The
+-					// filler still measures what actually went in.
+-					if(w.catchFault("misfill")){
+-						ml = ml - 30;
+-						System.out.println("[FILL] Metering fault on " + w + ".");
+-					}
+-					System.out.println("[FILL] Liquid " + w.nextLiquidName() + ", " + ml + "ml into " + w + ".");
+-					w.started(Machine.FILLER, "liquid " + w.nextLiquidName());
+-					if(t.update(PlantClock.now(), MachineStatus.WORKING, "valveOpen", ml + "ml")){
+-						emit twin(t);
+-					}
+-					// Both are held for the whole fill. fillTarget used to be a
+-					// single emit, which the plant can miss entirely - it is
+-					// on the far side of a link, same as any other signal.
+-					abort(immediate filled){
+-						while(true){
+-							emit valveOpen;
+-							emit fillTarget(ml);
++						boolean permitted = false;
++						pause;
++						while(!permitted){
++							permitted = GuiStep.take(w.nextLiquid() == 0 ? "FILL1" : "FILL2", (GuiPermit)#operatorPermit);
+ 							pause;
+ 						}
++						pause;
+ 					}
+ 
+-					w.dispensed(ml);
+-					if(!w.lastFillInTolerance(asked)){
+-						System.out.println("[FILL] Out of tolerance: asked " + asked + "ml, metered " + ml + "ml.");
+-						w.reject(Machine.FILLER, "fill out of tolerance");
++					ml = (w == null) ? 0 : w.nextVolumeMl();
++					asked = ml;
++
++					if(ml == 0){
++						// Record a zero-percent ingredient so the next station advances
++						// to Liquid 2 and the label has both measurements.
++						if(w != null){
++							w.dispensed(0);
++							w.completed(Machine.FILLER, "zero-percent ingredient");
++						}
++					}
++					else if(!w.fits(ml)){
++						// Overflow interlock: refuse rather than dispense.
++						System.out.println("[FILL] Refusing " + ml + "ml into " + w + " - would overflow.");
++						w.reject(Machine.FILLER, "would overflow");
++						if(t.update(PlantClock.now(), MachineStatus.FAULT, "refuse", "overflow")){
++							emit twin(t);
++						}
+ 					}
+-					w.completed(Machine.FILLER, "fill complete");
+-					t.setDispensed(ml, ml / 20);
+-					if(t.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml + "ml dispensed")){
+-						emit twin(t);
++					else {
++						// An armed misfill makes the plant dispense short. The
++						// filler still measures what actually went in.
++						if(w.catchFault("misfill")){
++							ml = ml - 30;
++							System.out.println("[FILL] Metering fault on " + w + ".");
++						}
++						System.out.println("[FILL] Liquid " + w.nextLiquidName() + ", " + ml + "ml into " + w + ".");
++						w.started(Machine.FILLER, "liquid " + w.nextLiquidName());
++						if(t.update(PlantClock.now(), MachineStatus.WORKING, "valveOpen", ml + "ml")){
++							emit twin(t);
++						}
++						// Both are held for the whole fill. fillTarget used to be a
++						// single emit, which the plant can miss entirely - it is
++						// on the far side of a link, same as any other signal.
++						abort(immediate filled){
++							while(true){
++								emit valveOpen;
++								emit fillTarget(ml);
++								pause;
++							}
++						}
++
++						w.dispensed(ml);
++						if(!w.lastFillInTolerance(asked)){
++							System.out.println("[FILL] Out of tolerance: asked " + asked + "ml, metered " + ml + "ml.");
++							w.reject(Machine.FILLER, "fill out of tolerance");
++						}
++						w.completed(Machine.FILLER, "fill complete");
++						t.setDispensed(ml, ml / 20);
++						if(t.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml + "ml dispensed")){
++							emit twin(t);
++						}
++						System.out.println("[FILL] " + w + " now at " + w.filledMl() + "ml.");
+ 					}
+-					System.out.println("[FILL] " + w + " now at " + w.filledMl() + "ml.");
+ 				}
+ 
+ 				send done(w);
+diff --git a/assignment1/sysj/labellerController.sysj b/assignment1/sysj/labellerController.sysj
+index 667facb..5b276e6 100644
+--- a/assignment1/sysj/labellerController.sysj
++++ b/assignment1/sysj/labellerController.sysj
+@@ -34,7 +34,7 @@ LabellerController(
+ 		output Integer signal status;
+ 
+ 		// manual override - the operator panel attaches here
+-		input signal applyLabelExtendM, rollerOnOffM;
++		input signal applyLabelExtendM, applyLabelRetractM, rollerOnOffM;
+ 		)
+ ->
+ {
+@@ -62,19 +62,28 @@ LabellerController(
+ 			abort(immediate manual){
+ 				receive labelBottle;
+ 				w = (WorkpieceTwin)#labelBottle;
+-if(w != null){
+-boolean permitted = false;
+-            pause;
+-            while(!permitted){
+-                permitted = GuiStep.take("LABEL", (GuiPermit)#operatorPermit);
+-                pause;
+-            }
+-            pause;
+-}
+-
++					// One operation, one operator ticket. Automatic takes it
++					// immediately; step mode holds the bottle here.
++					if(w != null){
++						boolean permitted = false;
++						pause;
++						while(!permitted){
++							permitted = GuiStep.take("LABEL", (GuiPermit)#operatorPermit);
++							pause;
++						}
++						pause;
++					}
+ 
+ 				if(w != null){
+ 					w.arrived(Machine.LABELLER);
++
++					// Injected fault: the printer produced nothing legible.
++					// Flagged before the record is judged, so the refusal
++					// below reports the print failure rather than a mystery.
++					if(w.catchFault("no-print")){
++						System.out.println("[LAB] Print failed for " + w + ".");
++						w.reject(Machine.LABELLER, "label did not print");
++					}
+ 					refusal = w.labelRefusalReason();
+ 
+ 					if(refusal != null){
+@@ -175,6 +184,7 @@ boolean permitted = false;
+ 			abort(immediate auto){
+ 				while(true){
+ 					present(applyLabelExtendM){ emit applyLabelExtend; }
++					present(applyLabelRetractM){ emit applyLabelRetract; }
+ 					present(rollerOnOffM){ emit rollerOnOff; }
+ 					pause;
+ 				}
+diff --git a/assignment1/sysj/lidLoaderController.sysj b/assignment1/sysj/lidLoaderController.sysj
+index ef51114..632729b 100644
+--- a/assignment1/sysj/lidLoaderController.sysj
++++ b/assignment1/sysj/lidLoaderController.sysj
+@@ -17,6 +17,9 @@ LidLoaderController(
+ 		// operating mode
+ 		input Integer signal mode;
+ 
++		// Hard reset: empty the table without operating on anything.
++		input signal purge;
++
+ 		// from the plant
+ 		input signal pusherExtended, pusherRetracted, lidAtPickup, WPgripped;
+ 		input signal armAtSource, armAtDest, magazineEmpty, refilled;
+@@ -52,75 +55,82 @@ LidLoaderController(
+ 			abort(immediate manual){
+ 				receive start;
+ 				w = (WorkpieceTwin)#start;
+-if(w != null){
+-boolean permitted = false;
+-            pause;
+-            while(!permitted){
+-                permitted = GuiStep.take("LID", (GuiPermit)#operatorPermit);
+-                pause;
+-            }
+-            pause;
+-}
+ 
+-
+-				if(w != null && w.catchFault("lid-fitted")){
+-					System.out.println("[LID] " + w + " already has a lid fitted.");
+-					w.reject(Machine.LID_LOADER, "lid already fitted");
+-				}
+-				else if(w != null){
+-                    t = new LidLoaderTwin();
+-                    t.setLidsRemaining(lids);
+-                    if(t.update(PlantClock.now(), MachineStatus.WORKING, "place", "placing lid on " + w.id)){
+-                        emit twin(t);
+-                    }
+-					pause;
+-					// Refill first if the magazine is out
+-					present(magazineEmpty){
+-						System.out.println("[LID] Magazine empty, refilling.");
+-						abort(immediate refilled){
+-							sustain refill;
++				// A hard reset empties the table rather than finishing what is
++				// on it. The bottle is still handed on, because the barrier and
++				// the table's index both wait for it - it just leaves untouched.
++				abort(immediate purge){
++					// One operation, one operator ticket. Automatic takes it
++					// immediately; step mode holds the bottle here.
++					if(w != null){
++						boolean permitted = false;
++						pause;
++						while(!permitted){
++							permitted = GuiStep.take("LID", (GuiPermit)#operatorPermit);
++							pause;
+ 						}
++						pause;
+ 					}
+ 
+-					// Push a lid to the pick-up point, then retract.
+-					//
+-					// pusherExtended only says the cylinder moved - the plant
+-					// raises it whether or not a lid actually came out of the
+-					// magazine. lidAtPickup is the sensor that answers the
+-					// question the controller is really asking, so the fetch
+-					// waits on that. Without it, an empty magazine that the
+-					// refill check missed by a tick sends the arm to collect
+-					// nothing and the machine blocks forever on WPgripped,
+-					// taking the table's barrier down with it.
+-					abort(immediate pusherExtended){
+-						sustain pusherExtend;
++					if(w != null && w.catchFault("lid-fitted")){
++						System.out.println("[LID] " + w + " already has a lid fitted.");
++						w.reject(Machine.LID_LOADER, "lid already fitted");
+ 					}
+-					await(immediate pusherRetracted);
+-					await(immediate lidAtPickup);
++					else if(w != null){
++	                    t = new LidLoaderTwin();
++	                    t.setLidsRemaining(lids);
++	                    if(t.update(PlantClock.now(), MachineStatus.WORKING, "place", "placing lid on " + w.id)){
++	                        emit twin(t);
++	                    }
++						pause;
++						// Refill first if the magazine is out
++						present(magazineEmpty){
++							System.out.println("[LID] Magazine empty, refilling.");
++							abort(immediate refilled){
++								sustain refill;
++							}
++						}
+ 
+-					// Fetch it
+-					abort(immediate armAtSource){
+-						sustain armSource;
+-					}
+-					abort(immediate WPgripped){
+-						sustain vacOn;
+-					}
++						// Push a lid to the pick-up point, then retract.
++						//
++						// pusherExtended only says the cylinder moved - the plant
++						// raises it whether or not a lid actually came out of the
++						// magazine. lidAtPickup is the sensor that answers the
++						// question the controller is really asking, so the fetch
++						// waits on that. Without it, an empty magazine that the
++						// refill check missed by a tick sends the arm to collect
++						// nothing and the machine blocks forever on WPgripped,
++						// taking the table's barrier down with it.
++						abort(immediate pusherExtended){
++							sustain pusherExtend;
++						}
++						await(immediate pusherRetracted);
++						await(immediate lidAtPickup);
+ 
+-					// Place it on the bottle
+-					abort(immediate armAtDest){
+-						{ sustain armDest; } || { sustain vacOn; }
+-					}
+-					await(immediate !WPgripped);
+-
+-					w.lid();
+-					lids--;
+-					if(lids < 0){ lids = 3; }
+-					t = new LidLoaderTwin();
+-					t.setLidsRemaining(lids);
+-					if(t.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w.id)){
+-						emit twin(t);
++						// Fetch it
++						abort(immediate armAtSource){
++							sustain armSource;
++						}
++						abort(immediate WPgripped){
++							sustain vacOn;
++						}
++
++						// Place it on the bottle
++						abort(immediate armAtDest){
++							{ sustain armDest; } || { sustain vacOn; }
++						}
++						await(immediate !WPgripped);
++
++						w.lid();
++						lids--;
++						if(lids < 0){ lids = 3; }
++						t = new LidLoaderTwin();
++						t.setLidsRemaining(lids);
++						if(t.update(PlantClock.now(), MachineStatus.IDLE, "place", "lid on " + w.id)){
++							emit twin(t);
++						}
++						System.out.println("[LID] Lid placed on " + w + ".");
+ 					}
+-					System.out.println("[LID] Lid placed on " + w + ".");
+ 				}
+ 
+ 				send done(w);
+diff --git a/assignment1/sysj/lidRemovalController.sysj b/assignment1/sysj/lidRemovalController.sysj
+index 4e33687..21acdf1 100644
+--- a/assignment1/sysj/lidRemovalController.sysj
++++ b/assignment1/sysj/lidRemovalController.sysj
+@@ -45,7 +45,8 @@ LidRemovalController(
+ 		output signal lidGripperExtend, lidEjectExtend;
+ 
+ 		// manual overrides - the operator panel attaches here
+-		input signal cylZaxisExtendM, unscrewTurnExtendM, lidGripperExtendM, lidEjectExtendM;
++		input signal cylZaxisExtendM, unscrewTurnExtendM, unscrewTurnRetractM;
++		input signal lidGripperExtendM, lidEjectExtendM;
+ 		)
+ ->
+ {
+@@ -146,6 +147,7 @@ LidRemovalController(
+ 				while(true){
+ 					present(cylZaxisExtendM){ emit cylZaxisExtend; }
+ 					present(unscrewTurnExtendM){ emit unscrewTurnExtend; }
++					present(unscrewTurnRetractM){ emit unscrewTurnRetract; }
+ 					present(lidGripperExtendM){ emit lidGripperExtend; }
+ 					present(lidEjectExtendM){ emit lidEjectExtend; }
+ 					pause;
+diff --git a/assignment1/sysj/liquidDumperController.sysj b/assignment1/sysj/liquidDumperController.sysj
+index 60e246f..34314d2 100644
+--- a/assignment1/sysj/liquidDumperController.sysj
++++ b/assignment1/sysj/liquidDumperController.sysj
+@@ -42,7 +42,8 @@ LiquidDumperController(
+ 		output signal drainValveOnOff;
+ 
+ 		// manual overrides - the operator panel attaches here
+-		input signal cylClampBottleExtendM, invertRotateExtendM, drainValveOnOffM;
++		input signal cylClampBottleExtendM, invertRotateExtendM, invertRotateRetractM;
++		input signal drainValveOnOffM;
+ 		)
+ ->
+ {
+@@ -152,6 +153,7 @@ LiquidDumperController(
+ 				while(true){
+ 					present(cylClampBottleExtendM){ emit cylClampBottleExtend; }
+ 					present(invertRotateExtendM){ emit invertRotateExtend; }
++					present(invertRotateRetractM){ emit invertRotateRetract; }
+ 					present(drainValveOnOffM){ emit drainValveOnOff; }
+ 					pause;
+ 				}
+diff --git a/assignment1/sysj/machines/BottleLoaderControllerCD.xml b/assignment1/sysj/machines/BottleLoaderControllerCD.xml
+index 8b30043..dd50633 100644
+--- a/assignment1/sysj/machines/BottleLoaderControllerCD.xml
++++ b/assignment1/sysj/machines/BottleLoaderControllerCD.xml
+@@ -14,6 +14,7 @@
+ 			<iSignal Name="armAtDest"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11000" />
+ 			<iSignal Name="supplyEmpty"       Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11000" />
+ 			<iSignal Name="vacOnM"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11000" />
++			<iSignal Name="releaseM"          Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11000" />
+ 			<iSignal Name="armSourceM"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11000" />
+ 			<iSignal Name="armDestM"          Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11000" />
+ 			<oSignal Name="twin"              To="SystemControllerCD.twinBL"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+diff --git a/assignment1/sysj/machines/CapperControllerCD.xml b/assignment1/sysj/machines/CapperControllerCD.xml
+index ae9a01d..8adc973 100644
+--- a/assignment1/sysj/machines/CapperControllerCD.xml
++++ b/assignment1/sysj/machines/CapperControllerCD.xml
+@@ -8,6 +8,7 @@
+ 
+ 			<iSignal Name="operatorPermit"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14300" />
+ 			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14300" />
++			<iSignal Name="purge"             Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14300" />
+ 			<iSignal Name="capSeated"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14300" />
+ 			<iSignal Name="screwOnM"          Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14300" />
+ 			<oSignal Name="twin"              To="SystemControllerCD.twinCP"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+diff --git a/assignment1/sysj/machines/ConveyorControllerCD.xml b/assignment1/sysj/machines/ConveyorControllerCD.xml
+index 0dc5dd9..e578c55 100644
+--- a/assignment1/sysj/machines/ConveyorControllerCD.xml
++++ b/assignment1/sysj/machines/ConveyorControllerCD.xml
+@@ -14,6 +14,10 @@
+ 			<iSignal Name="infeedAdmitted"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
+ 			<iSignal Name="bottleAtOutfeedEnd" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
+ 			<iSignal Name="outfeedClear"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
++			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
++			<iSignal Name="motInfeedM"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
++			<iSignal Name="takeFromPos1M"     Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
++			<iSignal Name="motOutfeedM"       Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
+ 			<oSignal Name="twin"              To="SystemControllerCD.twinCV"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+ 			<oSignal Name="motInfeed"         To="ConveyorPlantCD.motInfeed"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12001" />
+ 			<oSignal Name="injectInfeed"      To="ConveyorPlantCD.injectInfeed"              Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12001" />
+diff --git a/assignment1/sysj/machines/Filler1ControllerCD.xml b/assignment1/sysj/machines/Filler1ControllerCD.xml
+index 6a5ba5e..29fd4d7 100644
+--- a/assignment1/sysj/machines/Filler1ControllerCD.xml
++++ b/assignment1/sysj/machines/Filler1ControllerCD.xml
+@@ -8,6 +8,7 @@
+ 
+ 			<iSignal Name="operatorPermit"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
+ 			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
++			<iSignal Name="purge"             Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
+ 			<iSignal Name="filled"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
+ 			<iSignal Name="valveOpenM"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
+ 			<oSignal Name="twin"              To="SystemControllerCD.twinF1"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+diff --git a/assignment1/sysj/machines/Filler2ControllerCD.xml b/assignment1/sysj/machines/Filler2ControllerCD.xml
+index 4c81e10..858768d 100644
+--- a/assignment1/sysj/machines/Filler2ControllerCD.xml
++++ b/assignment1/sysj/machines/Filler2ControllerCD.xml
+@@ -8,6 +8,7 @@
+ 
+ 			<iSignal Name="operatorPermit"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14100" />
+ 			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14100" />
++			<iSignal Name="purge"             Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14100" />
+ 			<iSignal Name="filled"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14100" />
+ 			<iSignal Name="valveOpenM"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14100" />
+ 			<oSignal Name="twin"              To="SystemControllerCD.twinF2"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+diff --git a/assignment1/sysj/machines/LabellerControllerCD.xml b/assignment1/sysj/machines/LabellerControllerCD.xml
+index 9ac9955..9559219 100644
+--- a/assignment1/sysj/machines/LabellerControllerCD.xml
++++ b/assignment1/sysj/machines/LabellerControllerCD.xml
+@@ -16,6 +16,7 @@
+ 			<iSignal Name="labelStock"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14400" />
+ 			<iSignal Name="glueLevel"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14400" />
+ 			<iSignal Name="applyLabelExtendM" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14400" />
++			<iSignal Name="applyLabelRetractM" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14400" />
+ 			<iSignal Name="rollerOnOffM"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14400" />
+ 			<oSignal Name="printLabel"        To="LabellerPlantCD.printLabel"                Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14401" />
+ 			<oSignal Name="applyLabelExtend"  To="LabellerPlantCD.applyLabelExtend"          Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14401" />
+diff --git a/assignment1/sysj/machines/LidLoaderControllerCD.xml b/assignment1/sysj/machines/LidLoaderControllerCD.xml
+index 0521dcd..ae4a0df 100644
+--- a/assignment1/sysj/machines/LidLoaderControllerCD.xml
++++ b/assignment1/sysj/machines/LidLoaderControllerCD.xml
+@@ -8,6 +8,7 @@
+ 
+ 			<iSignal Name="operatorPermit"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
+ 			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
++			<iSignal Name="purge"             Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
+ 			<iSignal Name="pusherExtended"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
+ 			<iSignal Name="pusherRetracted"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
+ 			<iSignal Name="lidAtPickup"       Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14200" />
+diff --git a/assignment1/sysj/machines/LidRemovalControllerCD.xml b/assignment1/sysj/machines/LidRemovalControllerCD.xml
+index f36ccef..0c094a1 100644
+--- a/assignment1/sysj/machines/LidRemovalControllerCD.xml
++++ b/assignment1/sysj/machines/LidRemovalControllerCD.xml
+@@ -15,6 +15,7 @@
+ 			<iSignal Name="lidBinFull"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
+ 			<iSignal Name="cylZaxisExtendM"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
+ 			<iSignal Name="unscrewTurnExtendM" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
++			<iSignal Name="unscrewTurnRetractM" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
+ 			<iSignal Name="lidGripperExtendM" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
+ 			<iSignal Name="lidEjectExtendM"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15300" />
+ 			<oSignal Name="cylZaxisExtend"    To="LidRemovalPlantCD.cylZaxisExtend"          Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15301" />
+diff --git a/assignment1/sysj/machines/LiquidDumperControllerCD.xml b/assignment1/sysj/machines/LiquidDumperControllerCD.xml
+index da48e3c..db15883 100644
+--- a/assignment1/sysj/machines/LiquidDumperControllerCD.xml
++++ b/assignment1/sysj/machines/LiquidDumperControllerCD.xml
+@@ -14,6 +14,7 @@
+ 			<iSignal Name="wasteTankLevel"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15400" />
+ 			<iSignal Name="cylClampBottleExtendM" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15400" />
+ 			<iSignal Name="invertRotateExtendM" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15400" />
++			<iSignal Name="invertRotateRetractM" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15400" />
+ 			<iSignal Name="drainValveOnOffM"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15400" />
+ 			<oSignal Name="cylClampBottleExtend" To="LiquidDumperPlantCD.cylClampBottleExtend"  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15401" />
+ 			<oSignal Name="invertRotateExtend" To="LiquidDumperPlantCD.invertRotateExtend"    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15401" />
+diff --git a/assignment1/sysj/machines/OperatorPanelCD.xml b/assignment1/sysj/machines/OperatorPanelCD.xml
+new file mode 100644
+index 0000000..33d4068
+--- /dev/null
++++ b/assignment1/sysj/machines/OperatorPanelCD.xml
+@@ -0,0 +1,41 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!-- Generated by tools/genxml.py from the .sysj interfaces. Do not hand-edit. -->
++<System xmlns="http://systemjtechnology.com">
++	<SubSystem Name="OperatorPanelCD" Local="true">
++		<ClockDomain Name="OperatorPanelCD" Class="OperatorPanel">
++			<oSignal Name="blVacOn"           To="BottleLoaderControllerCD.vacOnM"           Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11000" />
++			<oSignal Name="blRelease"         To="BottleLoaderControllerCD.releaseM"         Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11000" />
++			<oSignal Name="blArmSource"       To="BottleLoaderControllerCD.armSourceM"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11000" />
++			<oSignal Name="blArmDest"         To="BottleLoaderControllerCD.armDestM"         Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11000" />
++			<oSignal Name="cvMotInfeed"       To="ConveyorControllerCD.motInfeedM"           Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
++			<oSignal Name="cvTakeFromPos1"    To="ConveyorControllerCD.takeFromPos1M"        Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
++			<oSignal Name="cvMotOutfeed"      To="ConveyorControllerCD.motOutfeedM"          Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
++			<oSignal Name="rtRotaryTrigger"   To="RotaryTableControllerCD.rotaryTriggerM"    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13000" />
++			<oSignal Name="f1ValveOpen"       To="Filler1ControllerCD.valveOpenM"            Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14000" />
++			<oSignal Name="f2ValveOpen"       To="Filler2ControllerCD.valveOpenM"            Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14100" />
++			<oSignal Name="llPusherExtend"    To="LidLoaderControllerCD.pusherExtendM"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14200" />
++			<oSignal Name="llVacOn"           To="LidLoaderControllerCD.vacOnM"              Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14200" />
++			<oSignal Name="llArmSource"       To="LidLoaderControllerCD.armSourceM"          Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14200" />
++			<oSignal Name="llArmDest"         To="LidLoaderControllerCD.armDestM"            Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14200" />
++			<oSignal Name="cpScrewOn"         To="CapperControllerCD.screwOnM"               Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14300" />
++			<oSignal Name="lbApplyLabelExtend" To="LabellerControllerCD.applyLabelExtendM"    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14400" />
++			<oSignal Name="lbApplyLabelRetract" To="LabellerControllerCD.applyLabelRetractM"   Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14400" />
++			<oSignal Name="lbRollerOnOff"     To="LabellerControllerCD.rollerOnOffM"         Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14400" />
++			<oSignal Name="spDiverterExtend"  To="SplitterControllerCD.diverterExtendM"      Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15100" />
++			<oSignal Name="spDiverterRetract" To="SplitterControllerCD.diverterRetractM"     Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15100" />
++			<oSignal Name="rcRecyclingConveyorMotor" To="RecyclingConveyorControllerCD.recyclingConveyorMotorM" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15200" />
++			<oSignal Name="lrCylZaxisExtend"  To="LidRemovalControllerCD.cylZaxisExtendM"    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15300" />
++			<oSignal Name="lrUnscrewTurnExtend" To="LidRemovalControllerCD.unscrewTurnExtendM" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15300" />
++			<oSignal Name="lrUnscrewTurnRetract" To="LidRemovalControllerCD.unscrewTurnRetractM" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15300" />
++			<oSignal Name="lrLidGripperExtend" To="LidRemovalControllerCD.lidGripperExtendM"  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15300" />
++			<oSignal Name="lrLidEjectExtend"  To="LidRemovalControllerCD.lidEjectExtendM"    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15300" />
++			<oSignal Name="ldCylClampBottleExtend" To="LiquidDumperControllerCD.cylClampBottleExtendM" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15400" />
++			<oSignal Name="ldInvertRotateExtend" To="LiquidDumperControllerCD.invertRotateExtendM" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15400" />
++			<oSignal Name="ldInvertRotateRetract" To="LiquidDumperControllerCD.invertRotateRetractM" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15400" />
++			<oSignal Name="ldDrainValveOnOff" To="LiquidDumperControllerCD.drainValveOnOffM" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15400" />
++			<oSignal Name="brMotorOnOff"      To="BottleReturnControllerCD.motorOnOffM"      Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15500" />
++			<oSignal Name="brTransferArmExtend" To="BottleReturnControllerCD.transferArmExtendM" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15500" />
++			<oSignal Name="brTransferArmRetract" To="BottleReturnControllerCD.transferArmRetractM" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15500" />
++		</ClockDomain>
++	</SubSystem>
++</System>
+diff --git a/assignment1/sysj/machines/RotaryTableControllerCD.xml b/assignment1/sysj/machines/RotaryTableControllerCD.xml
+index d276a48..2e9990b 100644
+--- a/assignment1/sysj/machines/RotaryTableControllerCD.xml
++++ b/assignment1/sysj/machines/RotaryTableControllerCD.xml
+@@ -21,6 +21,8 @@
+ 			<iSignal Name="bottleAtPos4"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
+ 			<iSignal Name="bottleAtPos5"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
+ 			<iSignal Name="exitCleared"       Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
++			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
++			<iSignal Name="rotaryTriggerM"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
+ 			<oSignal Name="twin"              To="SystemControllerCD.twinRT"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+ 			<oSignal Name="rotaryTrigger"     To="RotaryTablePlantCD.rotaryTrigger"          Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
+ 			<oSignal Name="loadPos1"          To="RotaryTablePlantCD.loadPos1"               Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
+diff --git a/assignment1/sysj/machines/SystemControllerCD.xml b/assignment1/sysj/machines/SystemControllerCD.xml
+index f169f5b..080df19 100644
+--- a/assignment1/sysj/machines/SystemControllerCD.xml
++++ b/assignment1/sysj/machines/SystemControllerCD.xml
+@@ -36,6 +36,8 @@
+ 			<oSignal Name="permitRC"          To="RecyclingStationControllerCD.operatorPermit" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15000" />
+ 			<oSignal Name="productionStatus"  To="POSCD.productionStatus"                    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+ 			<oSignal Name="modeBL"            To="BottleLoaderControllerCD.mode"             Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11000" />
++			<oSignal Name="modeCV"            To="ConveyorControllerCD.mode"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
++			<oSignal Name="modeRT"            To="RotaryTableControllerCD.mode"              Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13000" />
+ 			<oSignal Name="modeF1"            To="Filler1ControllerCD.mode"                  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14000" />
+ 			<oSignal Name="modeF2"            To="Filler2ControllerCD.mode"                  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14100" />
+ 			<oSignal Name="modeLL"            To="LidLoaderControllerCD.mode"                Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14200" />
+@@ -46,6 +48,10 @@
+ 			<oSignal Name="modeLR"            To="LidRemovalControllerCD.mode"               Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15300" />
+ 			<oSignal Name="modeLD"            To="LiquidDumperControllerCD.mode"             Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15400" />
+ 			<oSignal Name="modeBR"            To="BottleReturnControllerCD.mode"             Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15500" />
++			<oSignal Name="purgeF1"           To="Filler1ControllerCD.purge"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14000" />
++			<oSignal Name="purgeF2"           To="Filler2ControllerCD.purge"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14100" />
++			<oSignal Name="purgeLL"           To="LidLoaderControllerCD.purge"               Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14200" />
++			<oSignal Name="purgeCP"           To="CapperControllerCD.purge"                  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14300" />
+ 			<oSignal Name="enableBL"          To="BottleLoaderPlantCD.enable"                Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11001" />
+ 			<oSignal Name="enableCV"          To="ConveyorPlantCD.enable"                    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12001" />
+ 			<oSignal Name="enableRT"          To="RotaryTablePlantCD.enable"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
+diff --git a/assignment1/sysj/operatorPanel.sysj b/assignment1/sysj/operatorPanel.sysj
+new file mode 100644
+index 0000000..51f7622
+--- /dev/null
++++ b/assignment1/sysj/operatorPanel.sysj
+@@ -0,0 +1,145 @@
++/*
++ * Operator panel.
++ *
++ * The manual counterpart to the System Controller: where that one runs the
++ * automatic production plan, this one carries an operator's hands onto the
++ * plant. Each output is wired to one machine's manual input for one actuator,
++ * so a press here asserts exactly one actuator signal and nothing else
++ * decides what it means.
++ *
++ * Every controller ignores these while its mode input reads 0, so this domain
++ * can emit freely and the plant only listens once the line is genuinely in
++ * manual. That keeps the arbitration in one place - the mode signal - rather
++ * than spread across thirteen machines.
++ *
++ * ManualDrive is a mailbox filled by the GUI on its own thread, never read
++ * from a socket inside a tick. It expires by itself if the panel stops
++ * talking, so a closed window or a dropped connection releases every actuator
++ * rather than leaving one asserted.
++ *
++ * GENERATED by tools/actuators.py - edit the table there, not this file.
++ */
++OperatorPanel(
++		output signal blVacOn, blRelease, blArmSource, blArmDest;
++		output signal cvMotInfeed, cvTakeFromPos1, cvMotOutfeed, rtRotaryTrigger;
++		output signal f1ValveOpen, f2ValveOpen, llPusherExtend, llVacOn;
++		output signal llArmSource, llArmDest, cpScrewOn, lbApplyLabelExtend;
++		output signal lbApplyLabelRetract, lbRollerOnOff, spDiverterExtend, spDiverterRetract;
++		output signal rcRecyclingConveyorMotor, lrCylZaxisExtend, lrUnscrewTurnExtend, lrUnscrewTurnRetract;
++		output signal lrLidGripperExtend, lrLidEjectExtend, ldCylClampBottleExtend, ldInvertRotateExtend;
++		output signal ldInvertRotateRetract, ldDrainValveOnOff, brMotorOnOff, brTransferArmExtend;
++		output signal brTransferArmRetract;
++		)
++->
++{
++	{ // Bottle loader
++		while(true){
++			if(ManualDrive.held("bl.vacOn")){ emit blVacOn; }
++			if(ManualDrive.held("bl.release")){ emit blRelease; }
++			if(ManualDrive.held("bl.armSource")){ emit blArmSource; }
++			if(ManualDrive.held("bl.armDest")){ emit blArmDest; }
++			pause;
++		}
++	}
++	||
++	{ // Conveyor
++		while(true){
++			if(ManualDrive.held("cv.motInfeed")){ emit cvMotInfeed; }
++			if(ManualDrive.held("cv.takeFromPos1")){ emit cvTakeFromPos1; }
++			if(ManualDrive.held("cv.motOutfeed")){ emit cvMotOutfeed; }
++			pause;
++		}
++	}
++	||
++	{ // Rotary table
++		while(true){
++			if(ManualDrive.held("rt.rotaryTrigger")){ emit rtRotaryTrigger; }
++			pause;
++		}
++	}
++	||
++	{ // Filler 1
++		while(true){
++			if(ManualDrive.held("f1.valveOpen")){ emit f1ValveOpen; }
++			pause;
++		}
++	}
++	||
++	{ // Filler 2
++		while(true){
++			if(ManualDrive.held("f2.valveOpen")){ emit f2ValveOpen; }
++			pause;
++		}
++	}
++	||
++	{ // Lid loader
++		while(true){
++			if(ManualDrive.held("ll.pusherExtend")){ emit llPusherExtend; }
++			if(ManualDrive.held("ll.vacOn")){ emit llVacOn; }
++			if(ManualDrive.held("ll.armSource")){ emit llArmSource; }
++			if(ManualDrive.held("ll.armDest")){ emit llArmDest; }
++			pause;
++		}
++	}
++	||
++	{ // Capper
++		while(true){
++			if(ManualDrive.held("cp.screwOn")){ emit cpScrewOn; }
++			pause;
++		}
++	}
++	||
++	{ // Labeller
++		while(true){
++			if(ManualDrive.held("lb.applyLabelExtend")){ emit lbApplyLabelExtend; }
++			if(ManualDrive.held("lb.applyLabelRetract")){ emit lbApplyLabelRetract; }
++			if(ManualDrive.held("lb.rollerOnOff")){ emit lbRollerOnOff; }
++			pause;
++		}
++	}
++	||
++	{ // Quality splitter
++		while(true){
++			if(ManualDrive.held("sp.diverterExtend")){ emit spDiverterExtend; }
++			if(ManualDrive.held("sp.diverterRetract")){ emit spDiverterRetract; }
++			pause;
++		}
++	}
++	||
++	{ // Recycling conveyor
++		while(true){
++			if(ManualDrive.held("rc.recyclingConveyorMotor")){ emit rcRecyclingConveyorMotor; }
++			pause;
++		}
++	}
++	||
++	{ // Lid removal
++		while(true){
++			if(ManualDrive.held("lr.cylZaxisExtend")){ emit lrCylZaxisExtend; }
++			if(ManualDrive.held("lr.unscrewTurnExtend")){ emit lrUnscrewTurnExtend; }
++			if(ManualDrive.held("lr.unscrewTurnRetract")){ emit lrUnscrewTurnRetract; }
++			if(ManualDrive.held("lr.lidGripperExtend")){ emit lrLidGripperExtend; }
++			if(ManualDrive.held("lr.lidEjectExtend")){ emit lrLidEjectExtend; }
++			pause;
++		}
++	}
++	||
++	{ // Liquid dumper
++		while(true){
++			if(ManualDrive.held("ld.cylClampBottleExtend")){ emit ldCylClampBottleExtend; }
++			if(ManualDrive.held("ld.invertRotateExtend")){ emit ldInvertRotateExtend; }
++			if(ManualDrive.held("ld.invertRotateRetract")){ emit ldInvertRotateRetract; }
++			if(ManualDrive.held("ld.drainValveOnOff")){ emit ldDrainValveOnOff; }
++			pause;
++		}
++	}
++	||
++	{ // Bottle return
++		while(true){
++			if(ManualDrive.held("br.motorOnOff")){ emit brMotorOnOff; }
++			if(ManualDrive.held("br.transferArmExtend")){ emit brTransferArmExtend; }
++			if(ManualDrive.held("br.transferArmRetract")){ emit brTransferArmRetract; }
++			pause;
++		}
++	}
++}
+diff --git a/assignment1/sysj/recyclingStationController.sysj b/assignment1/sysj/recyclingStationController.sysj
+index 72a896f..a99148c 100644
+--- a/assignment1/sysj/recyclingStationController.sysj
++++ b/assignment1/sysj/recyclingStationController.sysj
+@@ -125,6 +125,12 @@ RecyclingStationController(
+ 			}
+ 			receive bottleRejected;
+ 			w = (WorkpieceTwin)#bottleRejected;
++
++			// Record the handover here rather than leaving it until the lid
++			// comes off. The station owns the bottle from this tick, and a
++			// display reading the twin should say so immediately instead of
++			// leaving it parked on the splitter for the whole transit.
++			w.arrived(Machine.RECYCLING);
+ 			m.accepted(w);
+ 			q.push(w);
+ 			pause;
+diff --git a/assignment1/sysj/rotaryTableController.sysj b/assignment1/sysj/rotaryTableController.sysj
+index 47a3626..7d902cf 100644
+--- a/assignment1/sysj/rotaryTableController.sysj
++++ b/assignment1/sysj/rotaryTableController.sysj
+@@ -49,13 +49,38 @@ RotaryTableController(
+ 
+ 		// to the plant
+ 		output signal rotaryTrigger, loadPos1, unloadExit;
++
++		// operating mode
++		input Integer signal mode;
++
++		// manual overrides - the operator panel attaches here
++		input signal rotaryTriggerM;
+ 		)
+ ->
+ {
+ 	// Local signal: the sequencer tells the intake reaction that the bottle
+ 	// it accepted has been placed, so it may accept another.
+ 	signal placed;
++	signal auto, manual;
+ 
++	{ // Mode select
++		while(true){
++			present(mode){
++				if((Integer)#mode == 0){ emit auto; }
++				else { emit manual; }
++			}
++			pause;
++		}
++	}
++	||
++	{ // Auto
++		//
++		// Sequencer and intake drop together. The barrier holds four stations
++		// against one table, so half a table in manual would deadlock the
++		// stations still waiting on it.
++		while(true){
++			await(immediate auto);
++			abort(immediate manual){
+ 	{ // ---- Sequencer ----
+ 		RotaryTableTwin t = new RotaryTableTwin();
+ 		int step = 0;
+@@ -181,5 +206,27 @@ boolean permitted = false;
+ 			await(immediate placed);
+ 			pause;
+ 		}
++	}
++			}
++			pause;
++		}
++	}
++	||
++	{ // Manual
++		//
++		// Jogging the table by hand. The model's idea of which bottle is at
++		// which position is deliberately not advanced here: after a manual
++		// jog the table's contents are whatever the operator can see, and
++		// pretending otherwise would put a lie into every workpiece history.
++		while(true){
++			await(immediate manual);
++			abort(immediate auto){
++				while(true){
++					present(rotaryTriggerM){ emit rotaryTrigger; }
++					pause;
++				}
++			}
++			pause;
++		}
+ 	}
+ }
+diff --git a/assignment1/sysj/systemController.sysj b/assignment1/sysj/systemController.sysj
+index 25ee272..878d107 100644
+--- a/assignment1/sysj/systemController.sysj
++++ b/assignment1/sysj/systemController.sysj
+@@ -67,9 +67,12 @@ SystemController(
+ 		input  Integer signal recyclingStatus;
+ 
+ 		// operating mode, one output per machine controller
+-		output Integer signal modeBL, modeF1, modeF2, modeLL, modeCP, modeLB;
++		output Integer signal modeBL, modeCV, modeRT, modeF1, modeF2, modeLL, modeCP, modeLB;
+ 		output Integer signal modeSP, modeRC, modeLR, modeLD, modeBR;
+ 
++		// Hard reset: the table stations let bottles through untouched.
++		output signal purgeF1, purgeF2, purgeLL, purgeCP;
++
+ 		// plant power, one output per plant
+ 		output signal enableBL, enableCV, enableRT;
+ 		output signal enableF1, enableF2, enableLL, enableCP, enableLB;
+@@ -78,11 +81,33 @@ SystemController(
+ ->
+ {
+ 	{ // Operating mode: 0 = auto, 1 = manual
++		//
++		// Held every tick rather than pulsed on change, because a controller
++		// selects its mode by testing this level at a tick boundary. The
++		// supervisor holds the line in automatic until a mode change has
++		// finished draining, so a machine is never switched out from under a
++		// bottle it is part way through.
++		Integer m = null;
+ 		while(true){
+-			emit modeBL(0); emit modeF1(0); emit modeF2(0);
+-			emit modeLL(0); emit modeCP(0); emit modeLB(0);
+-			emit modeSP(0); emit modeRC(0); emit modeLR(0);
+-			emit modeLD(0); emit modeBR(0);
++			m = new Integer(GuiSupervisor.machineMode());
++			emit modeBL(m); emit modeCV(m); emit modeRT(m);
++			emit modeF1(m); emit modeF2(m);
++			emit modeLL(m); emit modeCP(m); emit modeLB(m);
++			emit modeSP(m); emit modeRC(m); emit modeLR(m);
++			emit modeLD(m); emit modeBR(m);
++			pause;
++		}
++	}
++	||
++	{ // Hard reset
++		//
++		// A level, not a pulse: the stations test it at the tick they take a
++		// bottle, and a reset spans many ticks. It clears itself when the
++		// line is empty, because that is when the supervisor settles the mode.
++		while(true){
++			if(GuiSupervisor.purging()){
++				emit purgeF1; emit purgeF2; emit purgeLL; emit purgeCP;
++			}
+ 			pause;
+ 		}
+ 	}
+@@ -152,6 +177,16 @@ SystemController(
+ 		while(true){
+ 			receive bottleDone;
+ 			w = (WorkpieceTwin)#bottleDone;
++
++			// Pushed off by a hard reset: it never had its recipe finished,
++			// so it is neither a product nor a reject to be recovered. It
++			// leaves here and the record says why.
++			if(GuiSupervisor.purging()){
++				w.discard();
++				System.out.println("[SC] " + w + " purged by reset, discarded unfinished.");
++			}
++
++			if(!GuiSupervisor.purging()){
+ 			while(!GuiSupervisor.qualityAllowed()){ pause; }
+ 
+ 			// The splitter reads the quality record and throws the diverter.
+@@ -191,6 +226,7 @@ SystemController(
+ 						+ done + " complete.");
+ 				OrderBook.delivered(w);
+ 			}
++			}
+ 			pause;
+ 		}
+ 	}
+@@ -225,7 +261,7 @@ SystemController(
+ 			present(twinLB){ plant.put((LabellerTwin)#twinLB); }
+ 
+ 			plant.setTick(PlantClock.now());
+-			plant.setMode(LineMode.AUTO);
++			plant.setMode(GuiSupervisor.lineMode());
+ 			TwinRegistry.shared().fill(plant);
+ 			out.publish(plant, OrderBook.purchaseOrder());
+             GuiSupervisor.observe(plant);
+diff --git a/assignment1/tests/GuiIntegrationTest.java b/assignment1/tests/GuiIntegrationTest.java
+index cf68921..f5e7565 100644
+--- a/assignment1/tests/GuiIntegrationTest.java
++++ b/assignment1/tests/GuiIntegrationTest.java
+@@ -71,8 +71,12 @@ public final class GuiIntegrationTest {
+             check(client.latest().batches.get(0).recycled>=1,"Quality simulation never recycled a bottle");
+             check(!client.latest().sensors.isEmpty(),"No sensor feedback");
+             check(!client.events().isEmpty()&&!client.latest().history.isEmpty(),"Missing events/history");
+-            command(new GuiCommand("MANUAL"));
+-            await("manual ready",()->client.latest().state.equals("MANUAL"),30);
++            // Step mode: the stations keep their own sequences and the operator
++            // authorises one operation at a time. Manual is now a different
++            // mode entirely, in which the sequences stop and the operator
++            // drives actuators directly - see ManualModeTest.
++            command(new GuiCommand("STEP"));
++            await("step ready",()->client.latest().state.equals("STEP"),30);
+             Thread.sleep(250);
+             long before=client.sentCount();
+             SwingUtilities.invokeAndWait(()->{
+@@ -85,7 +89,7 @@ public final class GuiIntegrationTest {
+             PosOrderRequest second=order("Manual Blend",1);PosBridge.submit(second);
+             await("second POS batch",()->client.latest().orderId.equals(second.orderId),15);
+             int count=client.latest().bottles.size();Thread.sleep(250);
+-            check(client.latest().bottles.size()==count,"Manual bottle loaded without Enable Selected");
++            check(client.latest().bottles.size()==count,"Step bottle loaded without Enable Selected");
+             SwingUtilities.invokeAndWait(()->{
+                 for(String op:GuiSupervisor.OPERATIONS)((JCheckBox)find(window,"operation-"+op)).setSelected(true);
+                 ((JButton)find(window,"Enable Selected")).doClick();
+@@ -97,14 +101,16 @@ public final class GuiIntegrationTest {
+             while((PosBridge.latest()==null||!PosBridge.latest().isComplete())&&System.currentTimeMillis()<deadline){
+                 command(new GuiCommand("ENABLE",Arrays.asList(GuiSupervisor.OPERATIONS),0));Thread.sleep(400);
+             }
+-            check(PosBridge.latest()!=null&&PosBridge.latest().isComplete(),"Manual sequence did not complete");
++            check(PosBridge.latest()!=null&&PosBridge.latest().isComplete(),"Step sequence did not complete");
+             command(new GuiCommand("FAULT"));
+             await("fault indicator",()->client.latest().state.equals("FAULT")&&!client.latest().alerts.isEmpty(),10);
+             render("abs-alert.png");
+             command(new GuiCommand("CLEAR_FAULT"));
+             await("fault cleared",()->!client.latest().state.equals("FAULT")&&client.latest().alerts.isEmpty(),20);
+             command(new GuiCommand("RESET"));
+-            await("reset",()->client.latest().state.equals("PAUSED")&&client.latest().batches.isEmpty(),30);
++            // A hard reset clears the plan, so the line reports IDLE - empty and
++            // waiting for a customer - rather than PAUSED part way through a run.
++            await("reset",()->client.latest().state.equals("IDLE")&&client.latest().batches.isEmpty(),30);
+             render("abs-history.png");
+             // Freezing the model must invalidate cached publisher data and disable controls.
+             GuiClient.daemon("Test stop model",()->com.systemj.SystemJRunner.getProgram().shutDownNow());
+diff --git a/assignment1/tests/GuiQualityRecoveryTest.java b/assignment1/tests/GuiQualityRecoveryTest.java
+index da15364..90f4c8b 100644
+--- a/assignment1/tests/GuiQualityRecoveryTest.java
++++ b/assignment1/tests/GuiQualityRecoveryTest.java
+@@ -28,7 +28,13 @@ public final class GuiQualityRecoveryTest {
+     public static void main(String[] args) {
+         try {
+             System.setProperty("gui.enabled","true"); System.setProperty("gui.headless","true");
+-            System.setProperty("pos.headless","true"); System.setProperty("gui.portOffset","30000");
++            System.setProperty("pos.headless","true");
++            // The receptacles hold 250 by default so a demonstration never
++            // stops to empty one. This test is about what happens when they
++            // do fill, so it asks for the small ones.
++            System.setProperty("abs.lidBinCapacity","3");
++            System.setProperty("abs.bottleBinCapacity","3");
++            System.setProperty("abs.wasteTankCapacity","3"); System.setProperty("gui.portOffset","30000");
+             String xml=new String(Files.readAllBytes(Paths.get("sysj/abs.xml")),StandardCharsets.UTF_8);
+             java.util.regex.Matcher ports=java.util.regex.Pattern.compile("Port=\"(\\d+)\"").matcher(xml);
+             StringBuffer isolated=new StringBuffer();
+diff --git a/assignment1/tests/HardResetTest.java b/assignment1/tests/HardResetTest.java
+new file mode 100644
+index 0000000..54faf68
+--- /dev/null
++++ b/assignment1/tests/HardResetTest.java
+@@ -0,0 +1,158 @@
++import java.util.*;
++import com.systemj.netapi.TCPSender;
++
++/**
++ * Reset is a hard reset: the table is emptied, not finished.
++ *
++ * The brief requires that no opened bottle survives a suspension. A bottle
++ * part way through its recipe is exactly that, so Reset pushes whatever is on
++ * the table to the end without operating on it and scraps it, rather than
++ * completing a product nobody ordered.
++ *
++ * This runs the real XML, gets several bottles onto the table, hits Reset,
++ * and asserts what came out.
++ */
++public final class HardResetTest {
++
++	private static final StringBuffer LOG = new StringBuffer();
++
++	private static void check(boolean ok, String what) {
++		if (!ok) {
++			throw new AssertionError(what);
++		}
++		System.out.println("  ok   " + what);
++	}
++
++	private static void command(String action) throws Exception {
++		GuiCommand c = new GuiCommand(action);
++		try (TCPSender s = new TCPSender("127.0.0.1", GuiClient.COMMAND_PORT)) {
++			for (int i = 0; i < 6; i++) {
++				s.emit(c, 1);
++				Thread.sleep(200);
++			}
++		}
++	}
++
++	private static void waitFor(String text, int seconds) throws Exception {
++		long end = System.currentTimeMillis() + seconds * 1000L;
++		while (System.currentTimeMillis() < end) {
++			if (LOG.indexOf(text) >= 0) {
++				return;
++			}
++			Thread.sleep(100);
++		}
++		throw new AssertionError("Timed out waiting for: " + text);
++	}
++
++	private static void waitUntilSettled(int seconds) throws Exception {
++		long end = System.currentTimeMillis() + seconds * 1000L;
++		while (System.currentTimeMillis() < end) {
++			if (!GuiSupervisor.purging() && GuiSupervisor.state().equals("IDLE")) {
++				return;
++			}
++			Thread.sleep(100);
++		}
++		throw new AssertionError("Reset never settled; supervisor says " + GuiSupervisor.state());
++	}
++
++	public static void main(String[] args) {
++		try {
++			System.setProperty("gui.enabled", "true");
++			System.setProperty("gui.headless", "true");
++			System.setProperty("pos.headless", "true");
++
++			java.io.PrintStream real = System.out;
++			System.setOut(new java.io.PrintStream(new java.io.OutputStream() {
++				public void write(int b) {
++					LOG.append((char) b);
++					real.write(b);
++				}
++			}, true));
++
++			Thread plant = new Thread(new Runnable() {
++				public void run() {
++					com.systemj.SystemJRunner.main(new String[] {"sysj/abs.xml"});
++				}
++			});
++			plant.setDaemon(true);
++			plant.start();
++			Thread.sleep(4000);
++
++			// A batch big enough that the table is full when the reset lands.
++			PosBridge.submit(new PosOrderRequest(PosOrderRequest.newOrderId(), "Reset Test",
++					Collections.singletonList(
++							new PosOrderRequest.ProductBatch("Probe", 200, 50, 50, 8))));
++			command("START");
++
++			// Let the line fill: four bottles admitted means the table is busy.
++			waitFor("Loading bottle 4", 180);
++			int marker = LOG.length();
++			int storedBefore = BatchStore.shared().total();
++
++			// Deliberately not asserted on GuiSupervisor.purging(): the purge
++			// can finish before a poll from this thread ever sees the flag,
++			// which is the point of it being fast. The evidence is what came
++			// out of the line, below.
++			command("RESET");
++
++			waitUntilSettled(180);
++			String after = LOG.substring(marker);
++
++			check(after.indexOf("purged by reset, discarded unfinished") >= 0,
++					"bottles on the table are pushed off and discarded");
++			// Bottles already past the table when the reset landed finish
++			// normally - they were never opened by it. What must never happen
++			// is a purged bottle reaching storage.
++			for (Long batch : BatchStore.shared().batches()) {
++				for (WorkpieceTwin w : BatchStore.shared().shelf(batch)) {
++					check(!w.isScrap(), "no purged bottle reached batch storage");
++					break;
++				}
++			}
++			check(BatchStore.shared().total() >= storedBefore, "storage was not corrupted");
++
++			int scrapped = 0;
++			int opened = 0;
++			for (WorkpieceTwin w : TwinRegistry.shared().all()) {
++				if (w.status() == WorkpieceStatus.SCRAP) {
++					scrapped++;
++					// The invariant the brief actually asks for.
++					if (w.filledMl() > 0 && !w.isSealed()) {
++						opened++;
++					}
++				}
++			}
++			check(scrapped > 0, "the reset scrapped " + scrapped + " bottle(s)");
++			check(TwinRegistry.shared().all().size() > 0, "every bottle is still in the record");
++			System.out.println("  note  " + opened + " of them had been opened; none are products");
++
++			// What the display is handed for a purged bottle. It used to fall
++			// through every case in the panel's position() and land on the
++			// outfeed for ever, and an unfilled one read as still being on the
++			// infeed because the stage said LOADED.
++			GuiSnapshot snap = GuiTelemetry.latest();
++			check(snap != null, "telemetry produced a snapshot");
++			int scrapInSnapshot = 0;
++			for (GuiSnapshot.Bottle b : snap.bottles) {
++				if ("SCRAP".equals(b.stage)) {
++					scrapInSnapshot++;
++					check(b.position < 0, "scrapped bottle " + b.id + " is off the table");
++					check(!"CONVEYOR_IN".equals(b.location),
++							"scrapped bottle " + b.id + " is not parked back on the infeed");
++				}
++			}
++			check(scrapInSnapshot == scrapped, "every scrapped bottle reaches the display as SCRAP");
++
++			// And the audit still balances with a third outcome in play.
++			TwinAudit.report();
++			check(LOG.indexOf("AUDIT FAILED") < 0, "the audit still balances with scrap in it");
++
++			System.out.println("HARD RESET TEST PASSED: the table empties, "
++					+ "nothing part-made is sold, and every bottle is accounted for.");
++			System.exit(0);
++		} catch (Throwable error) {
++			error.printStackTrace();
++			System.exit(1);
++		}
++	}
++}
+diff --git a/assignment1/tests/ManualModeTest.java b/assignment1/tests/ManualModeTest.java
+new file mode 100644
+index 0000000..40da8ee
+--- /dev/null
++++ b/assignment1/tests/ManualModeTest.java
+@@ -0,0 +1,156 @@
++import java.util.*;
++import com.systemj.netapi.TCPSender;
++
++/**
++ * Manual mode drives actuators directly, and automatic production is unharmed.
++ *
++ * Runs the real XML. Produces a batch automatically, switches the line to
++ * manual, waits for the drain to settle, then holds one actuator and asserts
++ * that the plant moved because of the button rather than because a sequence
++ * was running.
++ */
++public final class ManualModeTest {
++
++	private static final StringBuffer LOG = new StringBuffer();
++
++	private static void check(boolean ok, String what) {
++		if (!ok) {
++			throw new AssertionError(what);
++		}
++		System.out.println("  ok   " + what);
++	}
++
++	/** Everything the plant has printed since the marker. */
++	private static String since(int marker) {
++		return LOG.substring(Math.min(marker, LOG.length()));
++	}
++
++	/** Resent a few times, as the real panel does: one emit can be missed. */
++	private static void command(String action) throws Exception {
++		GuiCommand c = new GuiCommand(action);
++		try (TCPSender s = new TCPSender("127.0.0.1", GuiClient.COMMAND_PORT)) {
++			for (int i = 0; i < 6; i++) {
++				s.emit(c, 1);
++				Thread.sleep(200);
++			}
++		}
++	}
++
++	/** The supervisor's own state, not a console line: messages go to the GUI. */
++	private static void waitForManual(int seconds) throws Exception {
++		long end = System.currentTimeMillis() + seconds * 1000L;
++		while (System.currentTimeMillis() < end) {
++			if (GuiSupervisor.machineMode() == 1) {
++				return;
++			}
++			Thread.sleep(100);
++		}
++		throw new AssertionError("Timed out waiting for manual mode; supervisor says "
++				+ GuiSupervisor.state());
++	}
++
++	private static long sequence;
++
++	/**
++	 * Press Send Tick a number of times, the way the panel does.
++	 *
++	 * Each tick is resent a few times because one emit can be missed; the
++	 * sequence number is what makes the resend harmless.
++	 */
++	private static void pulse(Set<String> ids, int ticks) throws Exception {
++		try (TCPSender s = new TCPSender("127.0.0.1", GuiClient.MANUAL_PORT)) {
++			for (int t = 0; t < ticks; t++) {
++				ManualTick tick = new ManualTick(++sequence, ids);
++				for (int i = 0; i < 3; i++) {
++					s.emit(tick, 1);
++					Thread.sleep(40);
++				}
++			}
++		}
++	}
++
++	private static void waitFor(String text, int seconds) throws Exception {
++		long end = System.currentTimeMillis() + seconds * 1000L;
++		while (System.currentTimeMillis() < end) {
++			if (LOG.indexOf(text) >= 0) {
++				return;
++			}
++			Thread.sleep(100);
++		}
++		throw new AssertionError("Timed out waiting for: " + text);
++	}
++
++	public static void main(String[] args) {
++		try {
++			System.setProperty("gui.enabled", "true");
++			System.setProperty("gui.headless", "true");
++			System.setProperty("pos.headless", "true");
++
++			java.io.PrintStream real = System.out;
++			System.setOut(new java.io.PrintStream(new java.io.OutputStream() {
++				public void write(int b) {
++					LOG.append((char) b);
++					real.write(b);
++				}
++			}, true));
++
++			Thread plant = new Thread(new Runnable() {
++				public void run() {
++					com.systemj.SystemJRunner.main(new String[] {"sysj/abs.xml"});
++				}
++			});
++			plant.setDaemon(true);
++			plant.start();
++			Thread.sleep(4000);
++
++			// ---- 1. automatic production still works ----
++			PosBridge.submit(new PosOrderRequest(PosOrderRequest.newOrderId(), "Manual Test",
++					Collections.singletonList(
++							new PosOrderRequest.ProductBatch("Probe", 100, 60, 40, 1))));
++			command("START");
++			waitFor("stored in batch", 240);
++			check(true, "automatic production still completes a bottle");
++
++			// ---- 2. switch to manual and let the line settle ----
++			command("MANUAL");
++			waitForManual(120);
++			check(GuiSupervisor.machineMode() == 1, "machines are told mode 1 once drained");
++			check(GuiSupervisor.lineMode() == LineMode.MANUAL, "the twin reports MANUAL, not AUTO");
++
++			// ---- 3. nothing moves on its own ----
++			int quiet = LOG.length();
++			Thread.sleep(4000);
++			check(since(quiet).indexOf("[RTPlant] Rotating.") < 0,
++					"the table does not index by itself in manual");
++
++			// ---- 4. sending ticks moves the actuator ----
++			int marker = LOG.length();
++			pulse(new HashSet<String>(Arrays.asList("rt.rotaryTrigger")), 40);
++			check(since(marker).indexOf("[RTPlant] Rotating.") >= 0,
++					"ticking 'Index 60 degrees' turns the table");
++
++			// ---- 5. and it stops the moment you stop sending ----
++			Thread.sleep(2500);
++			int after = LOG.length();
++			Thread.sleep(3000);
++			check(since(after).indexOf("[RTPlant] Rotating.") < 0,
++					"the table stops when no more ticks are sent");
++
++			// ---- 6. two signals in one tick, on two different machines ----
++			marker = LOG.length();
++			pulse(new HashSet<String>(Arrays.asList("ll.pusherExtend", "rt.rotaryTrigger")), 40);
++			String seen = since(marker);
++			check(seen.indexOf("[LIDPlant] Lid pushed out") >= 0,
++					"'Magazine pusher' in the same tick drives the lid loader");
++			check(seen.indexOf("[RTPlant] Rotating.") >= 0,
++					"and the table moves in that same tick selection");
++
++			System.out.println("MANUAL MODE TEST PASSED: automatic unaffected, "
++					+ "mode reaches the machines, one tick asserts the selection.");
++			System.exit(0);
++		} catch (Throwable error) {
++			error.printStackTrace();
++			System.exit(1);
++		}
++	}
++}
+diff --git a/assignment1/tools/actuators.py b/assignment1/tools/actuators.py
+new file mode 100644
+index 0000000..0e42eb1
+--- /dev/null
++++ b/assignment1/tools/actuators.py
+@@ -0,0 +1,232 @@
++#!/usr/bin/env python3
++"""
++The one place that says which actuators the operator panel can drive.
++
++Generates, from the table below:
++
++  sysj/operatorPanel.sysj    the panel clock domain, one output per actuator
++  src/ManualActuator.java    the catalogue the GUI builds its buttons from
++  tools/genxml_manual.py     the routing fragment genxml.py imports
++
++Adding an actuator is one row here, then `python3 tools/actuators.py` and
++`python3 tools/genxml.py`.  Nothing else should ever be hand-edited.
++"""
++
++import io
++import os
++
++# machine key, CD name, panel label, [(actuator signal, button label)]
++MACHINES = [
++    ("bl", "BottleLoaderControllerCD", "Bottle loader", [
++        ("vacOn",                 "Vacuum on"),
++        ("release",               "Release"),
++        ("armSource",             "Arm to supply"),
++        ("armDest",               "Arm to conveyor"),
++    ]),
++    ("cv", "ConveyorControllerCD", "Conveyor", [
++        ("motInfeed",             "Infeed belt"),
++        ("takeFromPos1",          "Lift off position 1"),
++        ("motOutfeed",            "Outfeed belt"),
++    ]),
++    ("rt", "RotaryTableControllerCD", "Rotary table", [
++        ("rotaryTrigger",         "Index 60 degrees"),
++    ]),
++    ("f1", "Filler1ControllerCD", "Filler 1", [
++        ("valveOpen",             "Valve open"),
++    ]),
++    ("f2", "Filler2ControllerCD", "Filler 2", [
++        ("valveOpen",             "Valve open"),
++    ]),
++    ("ll", "LidLoaderControllerCD", "Lid loader", [
++        ("pusherExtend",          "Magazine pusher"),
++        ("vacOn",                 "Vacuum on"),
++        ("armSource",             "Arm to pick-up"),
++        ("armDest",               "Arm to bottle"),
++    ]),
++    ("cp", "CapperControllerCD", "Capper", [
++        ("screwOn",               "Screw down"),
++    ]),
++    ("lb", "LabellerControllerCD", "Labeller", [
++        ("applyLabelExtend",      "Applicator out"),
++        ("applyLabelRetract",     "Applicator back"),
++        ("rollerOnOff",           "Glue roller"),
++    ]),
++    ("sp", "SplitterControllerCD", "Quality splitter", [
++        ("diverterExtend",        "Diverter to reject"),
++        ("diverterRetract",       "Diverter to normal"),
++    ]),
++    ("rc", "RecyclingConveyorControllerCD", "Recycling conveyor", [
++        ("recyclingConveyorMotor", "Belt"),
++    ]),
++    ("lr", "LidRemovalControllerCD", "Lid removal", [
++        ("cylZaxisExtend",        "Head down"),
++        ("unscrewTurnExtend",     "Untwist"),
++        ("unscrewTurnRetract",    "Twist back"),
++        ("lidGripperExtend",      "Gripper close"),
++        ("lidEjectExtend",        "Eject lid"),
++    ]),
++    ("ld", "LiquidDumperControllerCD", "Liquid dumper", [
++        ("cylClampBottleExtend",  "Clamp bottle"),
++        ("invertRotateExtend",    "Invert"),
++        ("invertRotateRetract",   "Upright"),
++        ("drainValveOnOff",       "Drain valve"),
++    ]),
++    ("br", "BottleReturnControllerCD", "Bottle return", [
++        ("motorOnOff",            "Collector belt"),
++        ("transferArmExtend",     "Transfer arm out"),
++        ("transferArmRetract",    "Transfer arm back"),
++    ]),
++]
++
++ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
++
++
++def out_name(key, actuator):
++    """Panel-side signal name, e.g. ('bl', 'vacOn') -> 'blVacOn'."""
++    return key + actuator[0].upper() + actuator[1:]
++
++
++def entries():
++    for key, cd, label, acts in MACHINES:
++        for actuator, button in acts:
++            yield key, cd, label, actuator, button, out_name(key, actuator)
++
++
++def write(path, text):
++    full = os.path.join(ROOT, path)
++    io.open(full, "w", encoding="utf-8", newline="\n").write(text)
++    print("wrote " + path)
++
++
++def sysj():
++    rows = list(entries())
++    decls = []
++    for i in range(0, len(rows), 4):
++        names = ", ".join(r[5] for r in rows[i:i + 4])
++        decls.append("\t\toutput signal " + names + ";")
++    # One reaction per machine. Not decoration: the compiler expands the
++    # branches inside a reaction combinatorially, and thirty-three tests in
++    # one reaction exhausts a 3 GB heap. Split by machine it is five at most.
++    blocks = []
++    for key, cd, label, acts in MACHINES:
++        lines = ['\t{ // ' + label, '\t\twhile(true){']
++        for actuator, button in acts:
++            lines.append('\t\t\tif(ManualDrive.held("%s.%s")){ emit %s; }'
++                         % (key, actuator, out_name(key, actuator)))
++        lines.append('\t\t\tpause;')
++        lines.append('\t\t}')
++        lines.append('\t}')
++        blocks.append("\n".join(lines))
++    body = ["\n\t||\n".join(blocks)]
++    return """/*
++ * Operator panel.
++ *
++ * The manual counterpart to the System Controller: where that one runs the
++ * automatic production plan, this one carries an operator's hands onto the
++ * plant. Each output is wired to one machine's manual input for one actuator,
++ * so a press here asserts exactly one actuator signal and nothing else
++ * decides what it means.
++ *
++ * Every controller ignores these while its mode input reads 0, so this domain
++ * can emit freely and the plant only listens once the line is genuinely in
++ * manual. That keeps the arbitration in one place - the mode signal - rather
++ * than spread across thirteen machines.
++ *
++ * ManualDrive is a mailbox filled by the GUI on its own thread, never read
++ * from a socket inside a tick. It expires by itself if the panel stops
++ * talking, so a closed window or a dropped connection releases every actuator
++ * rather than leaving one asserted.
++ *
++ * GENERATED by tools/actuators.py - edit the table there, not this file.
++ */
++OperatorPanel(
++%s
++\t\t)
++->
++{
++%s
++}
++""" % ("\n".join(decls), "\n".join(body))
++
++
++def catalogue():
++    rows = list(entries())
++    items = []
++    for key, cd, label, actuator, button, name in rows:
++        items.append('\t\tnew ManualActuator("%s.%s", "%s", "%s")'
++                     % (key, actuator, label, button))
++    return """import java.util.ArrayList;
++import java.util.Collections;
++import java.util.List;
++
++/**
++ * One operator-panel button: the actuator it drives and the words on it.
++ *
++ * The panel clock domain and the GUI are generated from the same table, so a
++ * button can never name an actuator the plant does not have.
++ *
++ * GENERATED by tools/actuators.py - edit the table there, not this file.
++ */
++public final class ManualActuator {
++
++\tpublic final String id;
++\tpublic final String machine;
++\tpublic final String label;
++
++\tprivate ManualActuator(String id, String machine, String label) {
++\t\tthis.id = id;
++\t\tthis.machine = machine;
++\t\tthis.label = label;
++\t}
++
++\tprivate static final ManualActuator[] ALL = {
++%s
++\t};
++
++\tpublic static List<ManualActuator> all() {
++\t\tList<ManualActuator> list = new ArrayList<ManualActuator>();
++\t\tfor (ManualActuator a : ALL) {
++\t\t\tlist.add(a);
++\t\t}
++\t\treturn Collections.unmodifiableList(list);
++\t}
++
++\t/** Machine labels in plant order, for grouping the panel. */
++\tpublic static List<String> machines() {
++\t\tList<String> names = new ArrayList<String>();
++\t\tfor (ManualActuator a : ALL) {
++\t\t\tif (!names.contains(a.machine)) {
++\t\t\t\tnames.add(a.machine);
++\t\t\t}
++\t\t}
++\t\treturn Collections.unmodifiableList(names);
++\t}
++
++\tpublic String toString() {
++\t\treturn machine + " / " + label;
++\t}
++}
++""" % (",\n".join(items))
++
++
++def routing():
++    lines = []
++    for key, cd, label, actuator, button, name in entries():
++        lines.append('    "%s": "%s.%sM",' % (name, cd, actuator))
++    return '''"""
++Where each operator-panel output lands.
++
++GENERATED by tools/actuators.py - edit the table there, not this file.
++"""
++
++MANUAL = {
++%s
++}
++''' % ("\n".join(lines))
++
++
++if __name__ == "__main__":
++    write("sysj/operatorPanel.sysj", sysj())
++    write("src/ManualActuator.java", catalogue())
++    write("tools/genxml_manual.py", routing())
++    print("%d actuators across %d machines" % (len(list(entries())), len(MACHINES)))
+diff --git a/assignment1/tools/genxml.py b/assignment1/tools/genxml.py
+index 0b15bcc..92a67b5 100644
+--- a/assignment1/tools/genxml.py
++++ b/assignment1/tools/genxml.py
+@@ -5,10 +5,12 @@ is hand-maintained, so the XML cannot drift from the code. Add a machine by
+ adding one row to CDS and its links to SIGNALS and CHANNELS.
+ """
+ import re, os
++from genxml_manual import MANUAL   # generated by tools/actuators.py
+ 
+ # clock domain -> (class, .sysj file, port it listens on)
+ CDS = [
+     ("GUIInterfaceCD", "GUIInterface", "guiInterface", 10002),
++    ("OperatorPanelCD",               "OperatorPanel",               "operatorPanel",               10003),
+     ("POSCD",                         "POS",                         "pos",                         10000),
+     ("SystemControllerCD",            "SystemController",            "systemController",            10001),
+ 
+@@ -81,6 +83,9 @@ SIGNALS = {
+ 
+     "RecyclingStationControllerCD": {"recyclingStatus": "SystemControllerCD.recyclingStatus"},
+ 
++    # One output per actuator, each landing on that machine's manual input.
++    "OperatorPanelCD": MANUAL,
++
+     "SystemControllerCD": {
+         "guiStatus": "GUIInterfaceCD.Status",
+         "permitRT": "RotaryTableControllerCD.operatorPermit",
+@@ -92,7 +97,13 @@ SIGNALS = {
+         "permitLB": "LabellerControllerCD.operatorPermit",
+         "permitRC": "RecyclingStationControllerCD.operatorPermit",
+         "productionStatus": "POSCD.productionStatus",
++        "purgeF1": "Filler1ControllerCD.purge",
++        "purgeF2": "Filler2ControllerCD.purge",
++        "purgeLL": "LidLoaderControllerCD.purge",
++        "purgeCP": "CapperControllerCD.purge",
+         "modeBL": "BottleLoaderControllerCD.mode",
++        "modeCV": "ConveyorControllerCD.mode",
++        "modeRT": "RotaryTableControllerCD.mode",
+         "modeF1": "Filler1ControllerCD.mode",
+         "modeF2": "Filler2ControllerCD.mode",
+         "modeLL": "LidLoaderControllerCD.mode",
+diff --git a/assignment1/tools/genxml_manual.py b/assignment1/tools/genxml_manual.py
+new file mode 100644
+index 0000000..25d6406
+--- /dev/null
++++ b/assignment1/tools/genxml_manual.py
+@@ -0,0 +1,41 @@
++"""
++Where each operator-panel output lands.
++
++GENERATED by tools/actuators.py - edit the table there, not this file.
++"""
++
++MANUAL = {
++    "blVacOn": "BottleLoaderControllerCD.vacOnM",
++    "blRelease": "BottleLoaderControllerCD.releaseM",
++    "blArmSource": "BottleLoaderControllerCD.armSourceM",
++    "blArmDest": "BottleLoaderControllerCD.armDestM",
++    "cvMotInfeed": "ConveyorControllerCD.motInfeedM",
++    "cvTakeFromPos1": "ConveyorControllerCD.takeFromPos1M",
++    "cvMotOutfeed": "ConveyorControllerCD.motOutfeedM",
++    "rtRotaryTrigger": "RotaryTableControllerCD.rotaryTriggerM",
++    "f1ValveOpen": "Filler1ControllerCD.valveOpenM",
++    "f2ValveOpen": "Filler2ControllerCD.valveOpenM",
++    "llPusherExtend": "LidLoaderControllerCD.pusherExtendM",
++    "llVacOn": "LidLoaderControllerCD.vacOnM",
++    "llArmSource": "LidLoaderControllerCD.armSourceM",
++    "llArmDest": "LidLoaderControllerCD.armDestM",
++    "cpScrewOn": "CapperControllerCD.screwOnM",
++    "lbApplyLabelExtend": "LabellerControllerCD.applyLabelExtendM",
++    "lbApplyLabelRetract": "LabellerControllerCD.applyLabelRetractM",
++    "lbRollerOnOff": "LabellerControllerCD.rollerOnOffM",
++    "spDiverterExtend": "SplitterControllerCD.diverterExtendM",
++    "spDiverterRetract": "SplitterControllerCD.diverterRetractM",
++    "rcRecyclingConveyorMotor": "RecyclingConveyorControllerCD.recyclingConveyorMotorM",
++    "lrCylZaxisExtend": "LidRemovalControllerCD.cylZaxisExtendM",
++    "lrUnscrewTurnExtend": "LidRemovalControllerCD.unscrewTurnExtendM",
++    "lrUnscrewTurnRetract": "LidRemovalControllerCD.unscrewTurnRetractM",
++    "lrLidGripperExtend": "LidRemovalControllerCD.lidGripperExtendM",
++    "lrLidEjectExtend": "LidRemovalControllerCD.lidEjectExtendM",
++    "ldCylClampBottleExtend": "LiquidDumperControllerCD.cylClampBottleExtendM",
++    "ldInvertRotateExtend": "LiquidDumperControllerCD.invertRotateExtendM",
++    "ldInvertRotateRetract": "LiquidDumperControllerCD.invertRotateRetractM",
++    "ldDrainValveOnOff": "LiquidDumperControllerCD.drainValveOnOffM",
++    "brMotorOnOff": "BottleReturnControllerCD.motorOnOffM",
++    "brTransferArmExtend": "BottleReturnControllerCD.transferArmExtendM",
++    "brTransferArmRetract": "BottleReturnControllerCD.transferArmRetractM",
++}

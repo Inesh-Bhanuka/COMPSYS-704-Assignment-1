@@ -7,12 +7,14 @@
 			<oChannel Name="status"          To="SystemControllerCD.splitterRoute" />
 
 			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15100" />
+			<iSignal Name="reset"             Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15100" />
 			<iSignal Name="bottleAtSplitter"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15100" />
 			<iSignal Name="divertAtNormal"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15100" />
 			<iSignal Name="divertAtReject"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15100" />
 			<iSignal Name="bottleLeftSplitter" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15100" />
 			<iSignal Name="diverterExtendM"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15100" />
 			<iSignal Name="diverterRetractM"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15100" />
+			<iSignal Name="admitBottleM"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15100" />
 			<oSignal Name="admitBottle"       To="SplitterPlantCD.admitBottle"               Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15101" />
 			<oSignal Name="diverterExtend"    To="SplitterPlantCD.diverterExtend"            Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15101" />
 			<oSignal Name="diverterRetract"   To="SplitterPlantCD.diverterRetract"           Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15101" />

@@ -18,7 +18,7 @@ public class FillerPlant extends ClockDomain{
   private int RATE_thread_1;//sysj\fillerPlant.sysj line: 15, column: 2
   private int target_thread_1;//sysj\fillerPlant.sysj line: 17, column: 2
   private int poured_thread_1;//sysj\fillerPlant.sysj line: 18, column: 2
-  private int S51407 = 1;
+  private int S68700 = 1;
   
   private int[] ends = new int[2];
   private int[] tdone = new int[2];
@@ -30,14 +30,14 @@ public class FillerPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S51407){
+      switch(S68700){
         case 0 : 
-          S51407=0;
+          S68700=0;
           break RUN;
         
         case 1 : 
-          S51407=2;
-          S51407=2;
+          S68700=2;
+          S68700=2;
           RATE_thread_1 = PlantTiming.rate(20);//sysj\fillerPlant.sysj line: 15, column: 2
           target_thread_1 = 0;//sysj\fillerPlant.sysj line: 17, column: 2
           poured_thread_1 = 0;//sysj\fillerPlant.sysj line: 18, column: 2

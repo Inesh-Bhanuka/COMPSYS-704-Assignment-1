@@ -36,6 +36,11 @@ LidRemovalController(
 		// operating mode
 		input Integer signal mode;
 
+		// Hard reset: drop whatever is held and go back to idle. One tick,
+		// no sequence to finish - the bottle it was working on no longer
+		// exists anywhere else either.
+		input signal reset;
+
 		// from the Unscrew Arm, Lid Disposal Plant
 		input signal zAxisLowered, zAxisLifted, turnAtHomePos, turnAtFinalPos;
 		input signal lidGripped, lidBinFull;
@@ -45,7 +50,8 @@ LidRemovalController(
 		output signal lidGripperExtend, lidEjectExtend;
 
 		// manual overrides - the operator panel attaches here
-		input signal cylZaxisExtendM, unscrewTurnExtendM, lidGripperExtendM, lidEjectExtendM;
+		input signal cylZaxisExtendM, unscrewTurnExtendM, unscrewTurnRetractM;
+		input signal lidGripperExtendM, lidEjectExtendM;
 		)
 ->
 {
@@ -69,9 +75,7 @@ LidRemovalController(
 		int code = 0;
 
 		while(true){
-			await(immediate auto);
-
-			abort(immediate manual){
+			abort(immediate reset){
 				receive enable;
 				w = (WorkpieceTwin)#enable;
 
@@ -87,18 +91,21 @@ LidRemovalController(
 					System.out.println("[LR] Removing the lid from " + w + ".");
 
 					// 1. lower the head
+					abort(immediate auto){ await(immediate cylZaxisExtendM); }
 					abort(immediate zAxisLowered){
 						sustain cylZaxisExtend;
 					}
 
 					// 2. close the gripper on the cap, head held down
 					abort(immediate lidGripped){
+						abort(immediate auto){ await(immediate lidGripperExtendM); }
 						{ sustain cylZaxisExtend; } || { sustain lidGripperExtend; }
 					}
 					System.out.println("[LR] Cap gripped on " + w + ".");
 
 					// 3. untwist, head still held down
 					abort(immediate turnAtFinalPos){
+						abort(immediate auto){ await(immediate unscrewTurnExtendM); }
 						{ sustain cylZaxisExtend; } || { sustain unscrewTurnExtend; }
 					}
 
@@ -108,11 +115,13 @@ LidRemovalController(
 					await(immediate zAxisLifted);
 
 					// 5. reset the rotary cylinder for the next bottle
+					abort(immediate auto){ await(immediate unscrewTurnRetractM); }
 					abort(immediate turnAtHomePos){
 						sustain unscrewTurnRetract;
 					}
 
 					// 6. eject into the waste bin, confirmed by the grip letting go
+					abort(immediate auto){ await(immediate lidEjectExtendM); }
 					abort(immediate !lidGripped){
 						sustain lidEjectExtend;
 					}
@@ -135,22 +144,8 @@ LidRemovalController(
 
 				send status(new Integer(code));
 			}
-			pause;
-		}
-	}
-	||
-	{ // Manual
-		while(true){
-			await(immediate manual);
-			abort(immediate auto){
-				while(true){
-					present(cylZaxisExtendM){ emit cylZaxisExtend; }
-					present(unscrewTurnExtendM){ emit unscrewTurnExtend; }
-					present(lidGripperExtendM){ emit lidGripperExtend; }
-					present(lidEjectExtendM){ emit lidEjectExtend; }
-					pause;
-				}
-			}
+		
+
 			pause;
 		}
 	}

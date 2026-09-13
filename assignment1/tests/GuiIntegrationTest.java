@@ -71,40 +71,28 @@ public final class GuiIntegrationTest {
             check(client.latest().batches.get(0).recycled>=1,"Quality simulation never recycled a bottle");
             check(!client.latest().sensors.isEmpty(),"No sensor feedback");
             check(!client.events().isEmpty()&&!client.latest().history.isEmpty(),"Missing events/history");
-            command(new GuiCommand("MANUAL"));
-            await("manual ready",()->client.latest().state.equals("MANUAL"),30);
-            Thread.sleep(250);
-            long before=client.sentCount();
-            SwingUtilities.invokeAndWait(()->{
-                ((JCheckBox)find(window,"operation-LOAD")).doClick();
-                ((JCheckBox)find(window,"operation-INDEX")).doClick();
-                ((JButton)find(window,"Clear Ticks")).doClick();
-            });
-            check(client.sentCount()==before,"Checkbox or Clear Ticks sent equipment commands");
+            // Step mode is gone. Manual is now the only operator-driven mode,
+            // and it drives actuators through the _M inputs rather than
+            // authorising station operations - ManualModeTest covers it.
+            // What matters here is that a second order still runs automatically.
             command(new GuiCommand("QUALITY",Collections.<String>emptyList(),0));
-            PosOrderRequest second=order("Manual Blend",1);PosBridge.submit(second);
+            PosOrderRequest second=order("Second Blend",1);PosBridge.submit(second);
             await("second POS batch",()->client.latest().orderId.equals(second.orderId),15);
-            int count=client.latest().bottles.size();Thread.sleep(250);
-            check(client.latest().bottles.size()==count,"Manual bottle loaded without Enable Selected");
-            SwingUtilities.invokeAndWait(()->{
-                for(String op:GuiSupervisor.OPERATIONS)((JCheckBox)find(window,"operation-"+op)).setSelected(true);
-                ((JButton)find(window,"Enable Selected")).doClick();
-            });
-            await("manual load",()->client.latest().bottles.size()>count,25);
+            command(new GuiCommand("START"));
+            await("second order completes",()->PosBridge.latest()!=null&&PosBridge.latest().isComplete(),150);
             SwingUtilities.invokeAndWait(()->{window.refreshView();JTable t=bottles(window);if(t!=null&&t.getRowCount()>0)t.setRowSelectionInterval(t.getRowCount()-1,t.getRowCount()-1);});
             render("abs-manual.png");
-            long deadline=System.currentTimeMillis()+120000;
-            while((PosBridge.latest()==null||!PosBridge.latest().isComplete())&&System.currentTimeMillis()<deadline){
-                command(new GuiCommand("ENABLE",Arrays.asList(GuiSupervisor.OPERATIONS),0));Thread.sleep(400);
-            }
-            check(PosBridge.latest()!=null&&PosBridge.latest().isComplete(),"Manual sequence did not complete");
             command(new GuiCommand("FAULT"));
             await("fault indicator",()->client.latest().state.equals("FAULT")&&!client.latest().alerts.isEmpty(),10);
             render("abs-alert.png");
             command(new GuiCommand("CLEAR_FAULT"));
             await("fault cleared",()->!client.latest().state.equals("FAULT")&&client.latest().alerts.isEmpty(),20);
             command(new GuiCommand("RESET"));
-            await("reset",()->client.latest().state.equals("PAUSED")&&client.latest().batches.isEmpty(),30);
+            // A hard reset clears the line in one tick: no plan, no batches and
+            // no bottles anywhere, rather than a drain to wait out.
+            await("reset",()->client.latest().state.equals("IDLE")
+                    &&client.latest().batches.isEmpty()
+                    &&client.latest().bottles.isEmpty(),30);
             render("abs-history.png");
             // Freezing the model must invalidate cached publisher data and disable controls.
             GuiClient.daemon("Test stop model",()->com.systemj.SystemJRunner.getProgram().shutDownNow());

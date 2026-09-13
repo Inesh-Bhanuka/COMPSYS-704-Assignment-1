@@ -29,6 +29,11 @@ RecyclingConveyorController(
 		// operating mode
 		input Integer signal mode;
 
+		// Hard reset: drop whatever is held and go back to idle. One tick,
+		// no sequence to finish - the bottle it was working on no longer
+		// exists anywhere else either.
+		input signal reset;
+
 		// from the plant - one photo-eye per station
 		input signal bottleAtSplitterExit, bottleAtLidRemoval, bottleAtDumper;
 		input signal bottleAtReturn, bottleLeftReturn;
@@ -38,6 +43,7 @@ RecyclingConveyorController(
 
 		// manual override - the operator panel attaches here
 		input signal recyclingConveyorMotorM;
+		input signal injectAtEntryM, collectAtReturnM;
 		)
 ->
 {
@@ -64,19 +70,19 @@ RecyclingConveyorController(
 		int cmd = 0;
 
 		while(true){
-			await(immediate auto);
-
-			abort(immediate manual){
+			abort(immediate reset){
 				receive enable;
 				cmd = ((Integer)#enable).intValue();
 
 				if(cmd == TO_LID){
 					// Take the diverted bottle onto the belt. Held until the
 					// entry photo-eye confirms it is actually on.
+					abort(immediate auto){ await(immediate injectAtEntryM); }
 					abort(immediate bottleAtSplitterExit){
 						sustain injectAtEntry;
 					}
 					System.out.println("[RC] Bottle on the recycling conveyor, indexing to lid removal.");
+					abort(immediate auto){ await(immediate recyclingConveyorMotorM); }
 					abort(immediate bottleAtLidRemoval){
 						sustain recyclingConveyorMotor;
 					}
@@ -84,13 +90,22 @@ RecyclingConveyorController(
 				}
 
 				if(cmd == TO_DUMP){
+					abort(immediate auto){ await(immediate recyclingConveyorMotorM); }
 					abort(immediate bottleAtDumper){
 						sustain recyclingConveyorMotor;
 					}
 					System.out.println("[RC] Bottle at the liquid dumper.");
 				}
 
+				// Load-bearing, not padding. The compiler inlines every branch
+				// of a reaction into the state it sits in, and with a manual
+				// gate in front of each move the four commands no longer fit in
+				// one method under the JVM's 64 KB limit. This pause splits them
+				// two and two. It costs one tick per command.
+				pause;
+
 				if(cmd == TO_RETURN){
+					abort(immediate auto){ await(immediate recyclingConveyorMotorM); }
 					abort(immediate bottleAtReturn){
 						sustain recyclingConveyorMotor;
 					}
@@ -98,6 +113,7 @@ RecyclingConveyorController(
 				}
 
 				if(cmd == DISCHARGE){
+					abort(immediate auto){ await(immediate collectAtReturnM); }
 					abort(immediate bottleLeftReturn){
 						sustain collectAtReturn;
 					}
@@ -106,19 +122,8 @@ RecyclingConveyorController(
 
 				send status(new Integer(OK));
 			}
-			pause;
-		}
-	}
-	||
-	{ // Manual
-		while(true){
-			await(immediate manual);
-			abort(immediate auto){
-				while(true){
-					present(recyclingConveyorMotorM){ emit recyclingConveyorMotor; }
-					pause;
-				}
-			}
+		
+
 			pause;
 		}
 	}

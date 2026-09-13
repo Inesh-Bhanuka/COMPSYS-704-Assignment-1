@@ -30,7 +30,6 @@ SystemController(
 		input PosOrderRequest signal purchaseOrder;
         input GuiCommand signal guiCommand;
         output GuiSnapshot signal guiStatus;
-        output GuiPermit signal permitRT, permitF1, permitF2, permitLL, permitCP, permitCV, permitLB, permitRC;
 		output PosOrderStatus signal productionStatus;
 
 		// to / from the Bottle Loader
@@ -67,8 +66,16 @@ SystemController(
 		input  Integer signal recyclingStatus;
 
 		// operating mode, one output per machine controller
-		output Integer signal modeBL, modeF1, modeF2, modeLL, modeCP, modeLB;
+		output Integer signal modeBL, modeCV, modeRT, modeF1, modeF2, modeLL, modeCP, modeLB;
 		output Integer signal modeSP, modeRC, modeLR, modeLD, modeBR;
+
+		// Hard reset. One level, one tick: every machine drops what it is
+		// holding and returns to idle, and the shared models are emptied in
+		// the same instant so the whole line - and the display - goes clean
+		// together rather than a stage at a time.
+		output signal resetBL, resetCV, resetRT, resetF1, resetF2, resetLL, resetCP, resetLB;
+		output signal resetSP, resetRC, resetLR, resetLD, resetBR, resetRS;
+		output signal resetCVP, resetRTP, resetSPP, resetRCP;
 
 		// plant power, one output per plant
 		output signal enableBL, enableCV, enableRT;
@@ -77,12 +84,46 @@ SystemController(
 		)
 ->
 {
+	// The coordinator has to let go too. Its reactions sit inside rendezvous
+	// with machines that a reset restarts, so without this one of them can be
+	// left waiting for an acknowledgement from a sequence that no longer
+	// exists - the line would look clear and never move again.
+	signal lineReset;
+
 	{ // Operating mode: 0 = auto, 1 = manual
+		//
+		// Held every tick rather than pulsed on change, because a controller
+		// selects its mode by testing this level at a tick boundary. The
+		// supervisor holds the line in automatic until a mode change has
+		// finished draining, so a machine is never switched out from under a
+		// bottle it is part way through.
+		Integer m = null;
 		while(true){
-			emit modeBL(0); emit modeF1(0); emit modeF2(0);
-			emit modeLL(0); emit modeCP(0); emit modeLB(0);
-			emit modeSP(0); emit modeRC(0); emit modeLR(0);
-			emit modeLD(0); emit modeBR(0);
+			m = new Integer(GuiSupervisor.machineMode());
+			emit modeBL(m); emit modeCV(m); emit modeRT(m);
+			emit modeF1(m); emit modeF2(m);
+			emit modeLL(m); emit modeCP(m); emit modeLB(m);
+			emit modeSP(m); emit modeRC(m); emit modeLR(m);
+			emit modeLD(m); emit modeBR(m);
+			pause;
+		}
+	}
+	||
+	{ // Hard reset
+		//
+		// One tick. The models are emptied and the machines are told in the
+		// same instant, by the same reaction, so there is no ordering between
+		// them for a half-cleared line to be caught in.
+		while(true){
+			if(GuiSupervisor.takeReset()){
+				PlantReset.now();
+				emit resetBL; emit resetCV; emit resetRT;
+				emit resetF1; emit resetF2; emit resetLL; emit resetCP; emit resetLB;
+				emit resetSP; emit resetRC; emit resetLR; emit resetLD; emit resetBR;
+				emit resetRS;
+				emit resetCVP; emit resetRTP; emit resetSPP; emit resetRCP;
+				emit lineReset;
+			}
 			pause;
 		}
 	}
@@ -98,14 +139,9 @@ SystemController(
 	}
 	||
 	{ // Complete purchase orders and persistent status feedback
-        GuiPermit permits = null;
         PosOrderStatus feedback = null;
         while(true){
             present(guiCommand){ GuiSupervisor.command((GuiCommand)#guiCommand); }
-            permits = GuiSupervisor.permits();
-            emit permitRT(permits); emit permitF1(permits); emit permitF2(permits);
-            emit permitLL(permits); emit permitCP(permits); emit permitCV(permits);
-            emit permitLB(permits); emit permitRC(permits);
             present(purchaseOrder){ OrderBook.accept((PosOrderRequest)#purchaseOrder); }
             feedback = OrderBook.feedback();
             if(feedback != null){ emit productionStatus(feedback); }
@@ -116,21 +152,31 @@ SystemController(
     { // Batch scheduling
 		WorkpieceTwin w = null;
 		while(true){
-			w = null;
-            if(GuiSupervisor.canLoad()){ w = OrderBook.nextBottle(); }
-            if(w != null){
-			System.out.println("[SC] Loading " + w + ".");
-			TwinRegistry.shared().admit(w);
-			send loadOrder(w);
-            }
+			abort(immediate lineReset){
+		while(true){
+					w = null;
+		            if(GuiSupervisor.canLoad()){ w = OrderBook.nextBottle(); }
+		            if(w != null){
+					System.out.println("[SC] Loading " + w + ".");
+					TwinRegistry.shared().admit(w);
+					send loadOrder(w);
+		            }
+					pause;
+				}
+			}
 			pause;
 		}
 	}
 	||
 	{ // Loader acknowledgements
 		while(true){
-			receive loadAck;
-			System.out.println("[SC] " + (WorkpieceTwin)#loadAck + " is on the conveyor.");
+			abort(immediate lineReset){
+		while(true){
+					receive loadAck;
+					System.out.println("[SC] " + (WorkpieceTwin)#loadAck + " is on the conveyor.");
+					pause;
+				}
+			}
 			pause;
 		}
 	}
@@ -150,46 +196,64 @@ SystemController(
 		int done = 0;
 
 		while(true){
-			receive bottleDone;
-			w = (WorkpieceTwin)#bottleDone;
-			while(!GuiSupervisor.qualityAllowed()){ pause; }
+			abort(immediate lineReset){
+		while(true){
+					receive bottleDone;
+					w = (WorkpieceTwin)#bottleDone;
 
-			// The splitter reads the quality record and throws the diverter.
-			// What comes back is the route the bottle actually took, not the
-			// route that was asked for.
-			send toSplitter(w);
-			receive splitterRoute;
-			route = ((Integer)#splitterRoute).intValue();
-			divert = (route == DIVERTED);
-			pause;
+					// A straggler: a machine was holding this when the reset landed
+					// and has only now let go. It was removed from the line already,
+					// so it is dropped here rather than labelled or stored.
+					if(w != null && w.isScrap()){
+						System.out.println("[SC] " + w + " arrived after a reset; dropped.");
+					}
 
-			// Anything still on the normal path goes to the labeller, which
-			// checks it against its own history. A refusal here is the
-			// backstop for a diverter that did not throw.
-			if(!divert){
-				send labelBottle(w);
-				receive labelDone;
-				w = (WorkpieceTwin)#labelDone;
-				divert = w.isRejected();
-			}
-			pause;
+					if(w != null && !w.isScrap()){
 
-			if(divert){
-				System.out.println("[SC] " + w + " goes to the Recycling Station (" + w.defect() + ").");
-				send bottleRejected(w);
-			}
+					// The splitter reads the quality record and throws the diverter.
+					// What comes back is the route the bottle actually took, not the
+					// route that was asked for.
+					send toSplitter(w);
+					receive splitterRoute;
+					route = ((Integer)#splitterRoute).intValue();
+					divert = (route == DIVERTED);
+					pause;
 
-			if(!divert){
-				// The outfeed sets it down in the storage for its batch, which
-				// is where the line ends. The twin retires with it.
-				w.arrived(Machine.BATCH_STORAGE);
-				w.seal();
-				BatchStore.shared().store(w);
-				done++;
-				System.out.println("[SC] " + w + " labelled " + w.serial + " and stored in batch "
-						+ w.batchId + " (" + BatchStore.shared().held(w.batchId) + " on the shelf). "
-						+ done + " complete.");
-				OrderBook.delivered(w);
+					// Anything still on the normal path goes to the labeller, which
+					// checks it against its own history. A refusal here is the
+					// backstop for a diverter that did not throw.
+					if(!divert){
+						send labelBottle(w);
+						receive labelDone;
+						w = (WorkpieceTwin)#labelDone;
+						divert = w.isRejected();
+					}
+					pause;
+
+					if(divert){
+						System.out.println("[SC] " + w + " goes to the Recycling Station (" + w.defect() + ").");
+						send bottleRejected(w);
+					}
+
+					if(!divert && w.isScrap()){
+						System.out.println("[SC] " + w + " was cleared by a reset mid-label; not stored.");
+					}
+
+					if(!divert && !w.isScrap()){
+						// The outfeed sets it down in the storage for its batch, which
+						// is where the line ends. The twin retires with it.
+						w.arrived(Machine.BATCH_STORAGE);
+						w.seal();
+						BatchStore.shared().store(w);
+						done++;
+						System.out.println("[SC] " + w + " labelled " + w.serial + " and stored in batch "
+								+ w.batchId + " (" + BatchStore.shared().held(w.batchId) + " on the shelf). "
+								+ done + " complete.");
+						OrderBook.delivered(w);
+					}
+					}
+					pause;
+				}
 			}
 			pause;
 		}
@@ -225,7 +289,7 @@ SystemController(
 			present(twinLB){ plant.put((LabellerTwin)#twinLB); }
 
 			plant.setTick(PlantClock.now());
-			plant.setMode(LineMode.AUTO);
+			plant.setMode(GuiSupervisor.lineMode());
 			TwinRegistry.shared().fill(plant);
 			out.publish(plant, OrderBook.purchaseOrder());
             GuiSupervisor.observe(plant);
@@ -244,12 +308,17 @@ SystemController(
 		WorkpieceTwin w = null;
 		int recovered = 0;
 		while(true){
-			receive bottleRecycled;
-			w = (WorkpieceTwin)#bottleRecycled;
-			recovered++;
-			System.out.println("[SC] " + w + " recovered by the Recycling Station at "
-					+ w.filledMl() + "ml, sealed=" + w.isSealed() + ". " + recovered + " recycled.");
-			OrderBook.recycled(w);
+			abort(immediate lineReset){
+		while(true){
+					receive bottleRecycled;
+					w = (WorkpieceTwin)#bottleRecycled;
+					recovered++;
+					System.out.println("[SC] " + w + " recovered by the Recycling Station at "
+							+ w.filledMl() + "ml, sealed=" + w.isSealed() + ". " + recovered + " recycled.");
+					OrderBook.recycled(w);
+					pause;
+				}
+			}
 			pause;
 		}
 	}

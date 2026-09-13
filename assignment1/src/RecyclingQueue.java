@@ -47,6 +47,16 @@ public class RecyclingQueue {
 	private int tail = 0;
 	private int count = 0;
 
+	/** Empty the station's waiting line. Used by a hard reset, nothing else. */
+	public void clear() {
+		for (int i = 0; i < q.length; i++) {
+			q[i] = null;
+		}
+		head = 0;
+		tail = 0;
+		count = 0;
+	}
+
 	/** True while the station may accept another rejected bottle. */
 	public boolean hasRoom() {
 		return count < CAPACITY;

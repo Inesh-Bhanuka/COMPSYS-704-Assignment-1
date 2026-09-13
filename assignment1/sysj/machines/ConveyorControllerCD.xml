@@ -8,12 +8,19 @@
 			<oChannel Name="tableInfeed"     To="RotaryTableControllerCD.tableInfeed" />
 			<oChannel Name="bottleDone"      To="SystemControllerCD.bottleDone" />
 
-			<iSignal Name="operatorPermit"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
 			<iSignal Name="bottleAtPos1"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
 			<iSignal Name="infeedClear"       Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
 			<iSignal Name="infeedAdmitted"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
 			<iSignal Name="bottleAtOutfeedEnd" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
 			<iSignal Name="outfeedClear"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
+			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
+			<iSignal Name="reset"             Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
+			<iSignal Name="motInfeedM"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
+			<iSignal Name="takeFromPos1M"     Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
+			<iSignal Name="motOutfeedM"       Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
+			<iSignal Name="injectInfeedM"     Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
+			<iSignal Name="injectOutfeedM"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
+			<iSignal Name="collectFromEndM"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
 			<oSignal Name="twin"              To="SystemControllerCD.twinCV"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
 			<oSignal Name="motInfeed"         To="ConveyorPlantCD.motInfeed"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12001" />
 			<oSignal Name="injectInfeed"      To="ConveyorPlantCD.injectInfeed"              Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12001" />

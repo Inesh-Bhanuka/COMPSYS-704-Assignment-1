@@ -15,20 +15,22 @@ public class SplitterPlant extends ClockDomain{
   public Signal admitBottle = new Signal("admitBottle", Signal.INPUT);
   public Signal diverterExtend = new Signal("diverterExtend", Signal.INPUT);
   public Signal diverterRetract = new Signal("diverterRetract", Signal.INPUT);
+  public Signal reset = new Signal("reset", Signal.INPUT);
   public Signal bottleAtSplitter = new Signal("bottleAtSplitter", Signal.OUTPUT);
   public Signal divertAtNormal = new Signal("divertAtNormal", Signal.OUTPUT);
   public Signal divertAtReject = new Signal("divertAtReject", Signal.OUTPUT);
   public Signal bottleLeftSplitter = new Signal("bottleLeftSplitter", Signal.OUTPUT);
-  private int TRAVEL_thread_1;//sysj\splitterPlant.sysj line: 25, column: 2
-  private int STROKE_thread_1;//sysj\splitterPlant.sysj line: 26, column: 2
-  private int RELEASE_thread_1;//sysj\splitterPlant.sysj line: 27, column: 2
-  private int travel_thread_1;//sysj\splitterPlant.sysj line: 29, column: 2
-  private boolean atPoint_thread_1;//sysj\splitterPlant.sysj line: 30, column: 2
-  private boolean departed_thread_1;//sysj\splitterPlant.sysj line: 31, column: 2
-  private int release_thread_1;//sysj\splitterPlant.sysj line: 32, column: 2
-  private int stroke_thread_1;//sysj\splitterPlant.sysj line: 33, column: 2
-  private boolean admitting_thread_1;//sysj\splitterPlant.sysj line: 34, column: 2
-  private int S1119724 = 1;
+  private int TRAVEL_thread_1;//sysj\splitterPlant.sysj line: 32, column: 3
+  private int STROKE_thread_1;//sysj\splitterPlant.sysj line: 33, column: 3
+  private int RELEASE_thread_1;//sysj\splitterPlant.sysj line: 34, column: 3
+  private int travel_thread_1;//sysj\splitterPlant.sysj line: 36, column: 3
+  private boolean atPoint_thread_1;//sysj\splitterPlant.sysj line: 37, column: 3
+  private boolean departed_thread_1;//sysj\splitterPlant.sysj line: 38, column: 3
+  private int release_thread_1;//sysj\splitterPlant.sysj line: 39, column: 3
+  private int stroke_thread_1;//sysj\splitterPlant.sysj line: 40, column: 3
+  private boolean admitting_thread_1;//sysj\splitterPlant.sysj line: 41, column: 3
+  private int S590522 = 1;
+  private int S588486 = 1;
   
   private int[] ends = new int[2];
   private int[] tdone = new int[2];
@@ -40,459 +42,889 @@ public class SplitterPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S1119724){
+      switch(S590522){
         case 0 : 
-          S1119724=0;
+          S590522=0;
           break RUN;
         
         case 1 : 
-          S1119724=2;
-          S1119724=2;
-          TRAVEL_thread_1 = PlantTiming.ticks(4);//sysj\splitterPlant.sysj line: 25, column: 2
-          STROKE_thread_1 = PlantTiming.ticks(3);//sysj\splitterPlant.sysj line: 26, column: 2
-          RELEASE_thread_1 = PlantTiming.ticks(2);//sysj\splitterPlant.sysj line: 27, column: 2
-          travel_thread_1 = -1;//sysj\splitterPlant.sysj line: 29, column: 2
-          atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 30, column: 2
-          departed_thread_1 = false;//sysj\splitterPlant.sysj line: 31, column: 2
-          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 32, column: 2
-          stroke_thread_1 = 0;//sysj\splitterPlant.sysj line: 33, column: 2
-          admitting_thread_1 = false;//sysj\splitterPlant.sysj line: 34, column: 2
-          if(enable.getprestatus()){//sysj\splitterPlant.sysj line: 37, column: 11
-            if(admitBottle.getprestatus()){//sysj\splitterPlant.sysj line: 44, column: 12
-              if(!admitting_thread_1) {//sysj\splitterPlant.sysj line: 45, column: 19
-                admitting_thread_1 = true;//sysj\splitterPlant.sysj line: 46, column: 6
-                if(!atPoint_thread_1 && travel_thread_1 < 0) {//sysj\splitterPlant.sysj line: 47, column: 32
-                  travel_thread_1 = TRAVEL_thread_1;//sysj\splitterPlant.sysj line: 48, column: 7
-                  departed_thread_1 = false;//sysj\splitterPlant.sysj line: 49, column: 7
-                  System.out.println("[SPPlant] Bottle claimed from the outfeed.");//sysj\splitterPlant.sysj line: 50, column: 7
-                }
-              }
-              if(travel_thread_1 > 0) {//sysj\splitterPlant.sysj line: 58, column: 18
-                travel_thread_1 = travel_thread_1 - 1;//sysj\splitterPlant.sysj line: 59, column: 5
-              }
-              if(travel_thread_1 == 0) {//sysj\splitterPlant.sysj line: 61, column: 19
-                travel_thread_1 = -1;//sysj\splitterPlant.sysj line: 62, column: 5
-                atPoint_thread_1 = true;//sysj\splitterPlant.sysj line: 63, column: 5
-                System.out.println("[SPPlant] Bottle at the quality splitter.");//sysj\splitterPlant.sysj line: 64, column: 5
-              }
-              if(diverterExtend.getprestatus()){//sysj\splitterPlant.sysj line: 68, column: 12
-                if(stroke_thread_1 < STROKE_thread_1) {//sysj\splitterPlant.sysj line: 69, column: 24
-                  stroke_thread_1 = stroke_thread_1 + 1;//sysj\splitterPlant.sysj line: 69, column: 26
-                }
-                if(diverterRetract.getprestatus()){//sysj\splitterPlant.sysj line: 71, column: 12
-                  if(stroke_thread_1 > 0) {//sysj\splitterPlant.sysj line: 72, column: 19
-                    stroke_thread_1 = stroke_thread_1 - 1;//sysj\splitterPlant.sysj line: 72, column: 21
+          S590522=2;
+          S590522=2;
+          S588486=0;
+          if(reset.getprestatus()){//sysj\splitterPlant.sysj line: 31, column: 19
+            S588486=1;
+            active[1]=1;
+            ends[1]=1;
+            break RUN;
+          }
+          else {
+            TRAVEL_thread_1 = PlantTiming.ticks(4);//sysj\splitterPlant.sysj line: 32, column: 3
+            STROKE_thread_1 = PlantTiming.ticks(3);//sysj\splitterPlant.sysj line: 33, column: 3
+            RELEASE_thread_1 = PlantTiming.ticks(2);//sysj\splitterPlant.sysj line: 34, column: 3
+            travel_thread_1 = -1;//sysj\splitterPlant.sysj line: 36, column: 3
+            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 37, column: 3
+            departed_thread_1 = false;//sysj\splitterPlant.sysj line: 38, column: 3
+            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 39, column: 3
+            stroke_thread_1 = 0;//sysj\splitterPlant.sysj line: 40, column: 3
+            admitting_thread_1 = false;//sysj\splitterPlant.sysj line: 41, column: 3
+            if(enable.getprestatus()){//sysj\splitterPlant.sysj line: 44, column: 12
+              if(admitBottle.getprestatus()){//sysj\splitterPlant.sysj line: 51, column: 13
+                if(!admitting_thread_1) {//sysj\splitterPlant.sysj line: 52, column: 20
+                  admitting_thread_1 = true;//sysj\splitterPlant.sysj line: 53, column: 7
+                  if(!atPoint_thread_1 && travel_thread_1 < 0) {//sysj\splitterPlant.sysj line: 54, column: 33
+                    travel_thread_1 = TRAVEL_thread_1;//sysj\splitterPlant.sysj line: 55, column: 8
+                    departed_thread_1 = false;//sysj\splitterPlant.sysj line: 56, column: 8
+                    System.out.println("[SPPlant] Bottle claimed from the outfeed.");//sysj\splitterPlant.sysj line: 57, column: 8
                   }
-                  if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 77, column: 7
-                    divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 78, column: 5
-                    currsigs.addElement(divertAtNormal);
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
+                }
+                if(travel_thread_1 > 0) {//sysj\splitterPlant.sysj line: 65, column: 19
+                  travel_thread_1 = travel_thread_1 - 1;//sysj\splitterPlant.sysj line: 66, column: 6
+                }
+                if(travel_thread_1 == 0) {//sysj\splitterPlant.sysj line: 68, column: 20
+                  travel_thread_1 = -1;//sysj\splitterPlant.sysj line: 69, column: 6
+                  atPoint_thread_1 = true;//sysj\splitterPlant.sysj line: 70, column: 6
+                  System.out.println("[SPPlant] Bottle at the quality splitter.");//sysj\splitterPlant.sysj line: 71, column: 6
+                }
+                if(diverterExtend.getprestatus()){//sysj\splitterPlant.sysj line: 75, column: 13
+                  if(stroke_thread_1 < STROKE_thread_1) {//sysj\splitterPlant.sysj line: 76, column: 25
+                    stroke_thread_1 = stroke_thread_1 + 1;//sysj\splitterPlant.sysj line: 76, column: 27
+                  }
+                  if(diverterRetract.getprestatus()){//sysj\splitterPlant.sysj line: 78, column: 13
+                    if(stroke_thread_1 > 0) {//sysj\splitterPlant.sysj line: 79, column: 20
+                      stroke_thread_1 = stroke_thread_1 - 1;//sysj\splitterPlant.sysj line: 79, column: 22
+                    }
+                    if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 84, column: 8
+                      divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 85, column: 6
+                      currsigs.addElement(divertAtNormal);
+                      if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                        divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                        currsigs.addElement(divertAtReject);
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
                             }
                           }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                       else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
+                            }
+                          }
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                     }
                     else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
+                      if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                        divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                        currsigs.addElement(divertAtReject);
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
                             }
                           }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                       else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
+                            }
+                          }
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                     }
                   }
                   else {
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
+                    if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 84, column: 8
+                      divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 85, column: 6
+                      currsigs.addElement(divertAtNormal);
+                      if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                        divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                        currsigs.addElement(divertAtReject);
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
                             }
                           }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                       else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
+                            }
+                          }
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                     }
                     else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
+                      if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                        divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                        currsigs.addElement(divertAtReject);
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
                             }
                           }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                       else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
+                            }
+                          }
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                     }
                   }
                 }
                 else {
-                  if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 77, column: 7
-                    divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 78, column: 5
-                    currsigs.addElement(divertAtNormal);
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
+                  if(diverterRetract.getprestatus()){//sysj\splitterPlant.sysj line: 78, column: 13
+                    if(stroke_thread_1 > 0) {//sysj\splitterPlant.sysj line: 79, column: 20
+                      stroke_thread_1 = stroke_thread_1 - 1;//sysj\splitterPlant.sysj line: 79, column: 22
+                    }
+                    if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 84, column: 8
+                      divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 85, column: 6
+                      currsigs.addElement(divertAtNormal);
+                      if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                        divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                        currsigs.addElement(divertAtReject);
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
                             }
                           }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                       else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
+                            }
+                          }
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                     }
                     else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
+                      if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                        divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                        currsigs.addElement(divertAtReject);
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
                             }
                           }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                       else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
+                            }
+                          }
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                     }
                   }
                   else {
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
+                    if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 84, column: 8
+                      divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 85, column: 6
+                      currsigs.addElement(divertAtNormal);
+                      if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                        divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                        currsigs.addElement(divertAtReject);
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
                             }
                           }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                       else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
+                            }
+                          }
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                     }
                     else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
+                      if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                        divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                        currsigs.addElement(divertAtReject);
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
                             }
                           }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                       else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
+                            }
+                          }
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                     }
@@ -500,420 +932,855 @@ public class SplitterPlant extends ClockDomain{
                 }
               }
               else {
-                if(diverterRetract.getprestatus()){//sysj\splitterPlant.sysj line: 71, column: 12
-                  if(stroke_thread_1 > 0) {//sysj\splitterPlant.sysj line: 72, column: 19
-                    stroke_thread_1 = stroke_thread_1 - 1;//sysj\splitterPlant.sysj line: 72, column: 21
+                admitting_thread_1 = false;//sysj\splitterPlant.sysj line: 62, column: 6
+                if(travel_thread_1 > 0) {//sysj\splitterPlant.sysj line: 65, column: 19
+                  travel_thread_1 = travel_thread_1 - 1;//sysj\splitterPlant.sysj line: 66, column: 6
+                }
+                if(travel_thread_1 == 0) {//sysj\splitterPlant.sysj line: 68, column: 20
+                  travel_thread_1 = -1;//sysj\splitterPlant.sysj line: 69, column: 6
+                  atPoint_thread_1 = true;//sysj\splitterPlant.sysj line: 70, column: 6
+                  System.out.println("[SPPlant] Bottle at the quality splitter.");//sysj\splitterPlant.sysj line: 71, column: 6
+                }
+                if(diverterExtend.getprestatus()){//sysj\splitterPlant.sysj line: 75, column: 13
+                  if(stroke_thread_1 < STROKE_thread_1) {//sysj\splitterPlant.sysj line: 76, column: 25
+                    stroke_thread_1 = stroke_thread_1 + 1;//sysj\splitterPlant.sysj line: 76, column: 27
                   }
-                  if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 77, column: 7
-                    divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 78, column: 5
-                    currsigs.addElement(divertAtNormal);
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
+                  if(diverterRetract.getprestatus()){//sysj\splitterPlant.sysj line: 78, column: 13
+                    if(stroke_thread_1 > 0) {//sysj\splitterPlant.sysj line: 79, column: 20
+                      stroke_thread_1 = stroke_thread_1 - 1;//sysj\splitterPlant.sysj line: 79, column: 22
+                    }
+                    if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 84, column: 8
+                      divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 85, column: 6
+                      currsigs.addElement(divertAtNormal);
+                      if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                        divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                        currsigs.addElement(divertAtReject);
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
                             }
                           }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                       else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
+                            }
+                          }
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                     }
                     else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
+                      if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                        divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                        currsigs.addElement(divertAtReject);
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
                             }
                           }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                       else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
+                            }
+                          }
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                     }
                   }
                   else {
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
+                    if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 84, column: 8
+                      divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 85, column: 6
+                      currsigs.addElement(divertAtNormal);
+                      if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                        divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                        currsigs.addElement(divertAtReject);
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
                             }
                           }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                       else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
+                            }
+                          }
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                     }
                     else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
+                      if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                        divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                        currsigs.addElement(divertAtReject);
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
                             }
                           }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                       else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
+                            }
+                          }
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                     }
                   }
                 }
                 else {
-                  if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 77, column: 7
-                    divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 78, column: 5
-                    currsigs.addElement(divertAtNormal);
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
+                  if(diverterRetract.getprestatus()){//sysj\splitterPlant.sysj line: 78, column: 13
+                    if(stroke_thread_1 > 0) {//sysj\splitterPlant.sysj line: 79, column: 20
+                      stroke_thread_1 = stroke_thread_1 - 1;//sysj\splitterPlant.sysj line: 79, column: 22
+                    }
+                    if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 84, column: 8
+                      divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 85, column: 6
+                      currsigs.addElement(divertAtNormal);
+                      if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                        divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                        currsigs.addElement(divertAtReject);
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
                             }
                           }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                       else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
+                            }
+                          }
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                     }
                     else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
+                      if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                        divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                        currsigs.addElement(divertAtReject);
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
                             }
                           }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                       else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
+                            }
+                          }
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                     }
                   }
                   else {
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
+                    if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 84, column: 8
+                      divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 85, column: 6
+                      currsigs.addElement(divertAtNormal);
+                      if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                        divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                        currsigs.addElement(divertAtReject);
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
                             }
                           }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                       else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
+                            }
+                          }
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                     }
                     else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
+                      if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                        divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                        currsigs.addElement(divertAtReject);
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
                             }
                           }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                       else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                        if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                          bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                          currsigs.addElement(bottleAtSplitter);
+                          if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                            release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                            if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                              atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                              departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                              release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                              if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                              }
+                              else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                              }
+                            }
+                          }
+                          else {//sysj\splitterPlant.sysj line: 112, column: 11
+                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                          }
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                            bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                            currsigs.addElement(bottleLeftSplitter);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
                         }
                       }
                     }
@@ -922,2594 +1789,3497 @@ public class SplitterPlant extends ClockDomain{
               }
             }
             else {
-              admitting_thread_1 = false;//sysj\splitterPlant.sysj line: 55, column: 5
-              if(travel_thread_1 > 0) {//sysj\splitterPlant.sysj line: 58, column: 18
-                travel_thread_1 = travel_thread_1 - 1;//sysj\splitterPlant.sysj line: 59, column: 5
-              }
-              if(travel_thread_1 == 0) {//sysj\splitterPlant.sysj line: 61, column: 19
-                travel_thread_1 = -1;//sysj\splitterPlant.sysj line: 62, column: 5
-                atPoint_thread_1 = true;//sysj\splitterPlant.sysj line: 63, column: 5
-                System.out.println("[SPPlant] Bottle at the quality splitter.");//sysj\splitterPlant.sysj line: 64, column: 5
-              }
-              if(diverterExtend.getprestatus()){//sysj\splitterPlant.sysj line: 68, column: 12
-                if(stroke_thread_1 < STROKE_thread_1) {//sysj\splitterPlant.sysj line: 69, column: 24
-                  stroke_thread_1 = stroke_thread_1 + 1;//sysj\splitterPlant.sysj line: 69, column: 26
-                }
-                if(diverterRetract.getprestatus()){//sysj\splitterPlant.sysj line: 71, column: 12
-                  if(stroke_thread_1 > 0) {//sysj\splitterPlant.sysj line: 72, column: 19
-                    stroke_thread_1 = stroke_thread_1 - 1;//sysj\splitterPlant.sysj line: 72, column: 21
-                  }
-                  if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 77, column: 7
-                    divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 78, column: 5
-                    currsigs.addElement(divertAtNormal);
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                    else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                  }
-                  else {
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                    else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                  }
-                }
-                else {
-                  if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 77, column: 7
-                    divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 78, column: 5
-                    currsigs.addElement(divertAtNormal);
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                    else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                  }
-                  else {
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                    else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-              else {
-                if(diverterRetract.getprestatus()){//sysj\splitterPlant.sysj line: 71, column: 12
-                  if(stroke_thread_1 > 0) {//sysj\splitterPlant.sysj line: 72, column: 19
-                    stroke_thread_1 = stroke_thread_1 - 1;//sysj\splitterPlant.sysj line: 72, column: 21
-                  }
-                  if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 77, column: 7
-                    divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 78, column: 5
-                    currsigs.addElement(divertAtNormal);
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                    else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                  }
-                  else {
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                    else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                  }
-                }
-                else {
-                  if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 77, column: 7
-                    divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 78, column: 5
-                    currsigs.addElement(divertAtNormal);
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                    else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                  }
-                  else {
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                    else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                  }
-                }
-              }
+              active[1]=1;
+              ends[1]=1;
+              break RUN;
             }
-          }
-          else {
-            active[1]=1;
-            ends[1]=1;
-            break RUN;
           }
         
         case 2 : 
-          if(enable.getprestatus()){//sysj\splitterPlant.sysj line: 37, column: 11
-            if(admitBottle.getprestatus()){//sysj\splitterPlant.sysj line: 44, column: 12
-              if(!admitting_thread_1) {//sysj\splitterPlant.sysj line: 45, column: 19
-                admitting_thread_1 = true;//sysj\splitterPlant.sysj line: 46, column: 6
-                if(!atPoint_thread_1 && travel_thread_1 < 0) {//sysj\splitterPlant.sysj line: 47, column: 32
-                  travel_thread_1 = TRAVEL_thread_1;//sysj\splitterPlant.sysj line: 48, column: 7
-                  departed_thread_1 = false;//sysj\splitterPlant.sysj line: 49, column: 7
-                  System.out.println("[SPPlant] Bottle claimed from the outfeed.");//sysj\splitterPlant.sysj line: 50, column: 7
-                }
-              }
-              if(travel_thread_1 > 0) {//sysj\splitterPlant.sysj line: 58, column: 18
-                travel_thread_1 = travel_thread_1 - 1;//sysj\splitterPlant.sysj line: 59, column: 5
-              }
-              if(travel_thread_1 == 0) {//sysj\splitterPlant.sysj line: 61, column: 19
-                travel_thread_1 = -1;//sysj\splitterPlant.sysj line: 62, column: 5
-                atPoint_thread_1 = true;//sysj\splitterPlant.sysj line: 63, column: 5
-                System.out.println("[SPPlant] Bottle at the quality splitter.");//sysj\splitterPlant.sysj line: 64, column: 5
-              }
-              if(diverterExtend.getprestatus()){//sysj\splitterPlant.sysj line: 68, column: 12
-                if(stroke_thread_1 < STROKE_thread_1) {//sysj\splitterPlant.sysj line: 69, column: 24
-                  stroke_thread_1 = stroke_thread_1 + 1;//sysj\splitterPlant.sysj line: 69, column: 26
-                }
-                if(diverterRetract.getprestatus()){//sysj\splitterPlant.sysj line: 71, column: 12
-                  if(stroke_thread_1 > 0) {//sysj\splitterPlant.sysj line: 72, column: 19
-                    stroke_thread_1 = stroke_thread_1 - 1;//sysj\splitterPlant.sysj line: 72, column: 21
-                  }
-                  if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 77, column: 7
-                    divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 78, column: 5
-                    currsigs.addElement(divertAtNormal);
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                    else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                  }
-                  else {
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                    else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                  }
-                }
-                else {
-                  if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 77, column: 7
-                    divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 78, column: 5
-                    currsigs.addElement(divertAtNormal);
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                    else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                  }
-                  else {
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                    else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                  }
-                }
+          switch(S588486){
+            case 0 : 
+              if(reset.getprestatus()){//sysj\splitterPlant.sysj line: 31, column: 19
+                S588486=1;
+                active[1]=1;
+                ends[1]=1;
+                break RUN;
               }
               else {
-                if(diverterRetract.getprestatus()){//sysj\splitterPlant.sysj line: 71, column: 12
-                  if(stroke_thread_1 > 0) {//sysj\splitterPlant.sysj line: 72, column: 19
-                    stroke_thread_1 = stroke_thread_1 - 1;//sysj\splitterPlant.sysj line: 72, column: 21
-                  }
-                  if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 77, column: 7
-                    divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 78, column: 5
-                    currsigs.addElement(divertAtNormal);
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
+                if(enable.getprestatus()){//sysj\splitterPlant.sysj line: 44, column: 12
+                  if(admitBottle.getprestatus()){//sysj\splitterPlant.sysj line: 51, column: 13
+                    if(!admitting_thread_1) {//sysj\splitterPlant.sysj line: 52, column: 20
+                      admitting_thread_1 = true;//sysj\splitterPlant.sysj line: 53, column: 7
+                      if(!atPoint_thread_1 && travel_thread_1 < 0) {//sysj\splitterPlant.sysj line: 54, column: 33
+                        travel_thread_1 = TRAVEL_thread_1;//sysj\splitterPlant.sysj line: 55, column: 8
+                        departed_thread_1 = false;//sysj\splitterPlant.sysj line: 56, column: 8
+                        System.out.println("[SPPlant] Bottle claimed from the outfeed.");//sysj\splitterPlant.sysj line: 57, column: 8
+                      }
+                    }
+                    if(travel_thread_1 > 0) {//sysj\splitterPlant.sysj line: 65, column: 19
+                      travel_thread_1 = travel_thread_1 - 1;//sysj\splitterPlant.sysj line: 66, column: 6
+                    }
+                    if(travel_thread_1 == 0) {//sysj\splitterPlant.sysj line: 68, column: 20
+                      travel_thread_1 = -1;//sysj\splitterPlant.sysj line: 69, column: 6
+                      atPoint_thread_1 = true;//sysj\splitterPlant.sysj line: 70, column: 6
+                      System.out.println("[SPPlant] Bottle at the quality splitter.");//sysj\splitterPlant.sysj line: 71, column: 6
+                    }
+                    if(diverterExtend.getprestatus()){//sysj\splitterPlant.sysj line: 75, column: 13
+                      if(stroke_thread_1 < STROKE_thread_1) {//sysj\splitterPlant.sysj line: 76, column: 25
+                        stroke_thread_1 = stroke_thread_1 + 1;//sysj\splitterPlant.sysj line: 76, column: 27
+                      }
+                      if(diverterRetract.getprestatus()){//sysj\splitterPlant.sysj line: 78, column: 13
+                        if(stroke_thread_1 > 0) {//sysj\splitterPlant.sysj line: 79, column: 20
+                          stroke_thread_1 = stroke_thread_1 - 1;//sysj\splitterPlant.sysj line: 79, column: 22
+                        }
+                        if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 84, column: 8
+                          divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 85, column: 6
+                          currsigs.addElement(divertAtNormal);
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                         }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
                         }
                       }
                       else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                        if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 84, column: 8
+                          divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 85, column: 6
+                          currsigs.addElement(divertAtNormal);
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
                         }
                       }
                     }
                     else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
+                      if(diverterRetract.getprestatus()){//sysj\splitterPlant.sysj line: 78, column: 13
+                        if(stroke_thread_1 > 0) {//sysj\splitterPlant.sysj line: 79, column: 20
+                          stroke_thread_1 = stroke_thread_1 - 1;//sysj\splitterPlant.sysj line: 79, column: 22
+                        }
+                        if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 84, column: 8
+                          divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 85, column: 6
+                          currsigs.addElement(divertAtNormal);
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                         }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
                         }
                       }
                       else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                        if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 84, column: 8
+                          divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 85, column: 6
+                          currsigs.addElement(divertAtNormal);
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
                         }
                       }
                     }
                   }
                   else {
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
+                    admitting_thread_1 = false;//sysj\splitterPlant.sysj line: 62, column: 6
+                    if(travel_thread_1 > 0) {//sysj\splitterPlant.sysj line: 65, column: 19
+                      travel_thread_1 = travel_thread_1 - 1;//sysj\splitterPlant.sysj line: 66, column: 6
+                    }
+                    if(travel_thread_1 == 0) {//sysj\splitterPlant.sysj line: 68, column: 20
+                      travel_thread_1 = -1;//sysj\splitterPlant.sysj line: 69, column: 6
+                      atPoint_thread_1 = true;//sysj\splitterPlant.sysj line: 70, column: 6
+                      System.out.println("[SPPlant] Bottle at the quality splitter.");//sysj\splitterPlant.sysj line: 71, column: 6
+                    }
+                    if(diverterExtend.getprestatus()){//sysj\splitterPlant.sysj line: 75, column: 13
+                      if(stroke_thread_1 < STROKE_thread_1) {//sysj\splitterPlant.sysj line: 76, column: 25
+                        stroke_thread_1 = stroke_thread_1 + 1;//sysj\splitterPlant.sysj line: 76, column: 27
+                      }
+                      if(diverterRetract.getprestatus()){//sysj\splitterPlant.sysj line: 78, column: 13
+                        if(stroke_thread_1 > 0) {//sysj\splitterPlant.sysj line: 79, column: 20
+                          stroke_thread_1 = stroke_thread_1 - 1;//sysj\splitterPlant.sysj line: 79, column: 22
+                        }
+                        if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 84, column: 8
+                          divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 85, column: 6
+                          currsigs.addElement(divertAtNormal);
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                         }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
                         }
                       }
                       else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                        if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 84, column: 8
+                          divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 85, column: 6
+                          currsigs.addElement(divertAtNormal);
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
                         }
                       }
                     }
                     else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
+                      if(diverterRetract.getprestatus()){//sysj\splitterPlant.sysj line: 78, column: 13
+                        if(stroke_thread_1 > 0) {//sysj\splitterPlant.sysj line: 79, column: 20
+                          stroke_thread_1 = stroke_thread_1 - 1;//sysj\splitterPlant.sysj line: 79, column: 22
+                        }
+                        if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 84, column: 8
+                          divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 85, column: 6
+                          currsigs.addElement(divertAtNormal);
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                         }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
                         }
                       }
                       else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                        if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 84, column: 8
+                          divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 85, column: 6
+                          currsigs.addElement(divertAtNormal);
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
                         }
                       }
                     }
                   }
                 }
                 else {
-                  if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 77, column: 7
-                    divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 78, column: 5
-                    currsigs.addElement(divertAtNormal);
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                    else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                  }
-                  else {
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                    else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                  }
+                  active[1]=1;
+                  ends[1]=1;
+                  break RUN;
                 }
               }
-            }
-            else {
-              admitting_thread_1 = false;//sysj\splitterPlant.sysj line: 55, column: 5
-              if(travel_thread_1 > 0) {//sysj\splitterPlant.sysj line: 58, column: 18
-                travel_thread_1 = travel_thread_1 - 1;//sysj\splitterPlant.sysj line: 59, column: 5
-              }
-              if(travel_thread_1 == 0) {//sysj\splitterPlant.sysj line: 61, column: 19
-                travel_thread_1 = -1;//sysj\splitterPlant.sysj line: 62, column: 5
-                atPoint_thread_1 = true;//sysj\splitterPlant.sysj line: 63, column: 5
-                System.out.println("[SPPlant] Bottle at the quality splitter.");//sysj\splitterPlant.sysj line: 64, column: 5
-              }
-              if(diverterExtend.getprestatus()){//sysj\splitterPlant.sysj line: 68, column: 12
-                if(stroke_thread_1 < STROKE_thread_1) {//sysj\splitterPlant.sysj line: 69, column: 24
-                  stroke_thread_1 = stroke_thread_1 + 1;//sysj\splitterPlant.sysj line: 69, column: 26
-                }
-                if(diverterRetract.getprestatus()){//sysj\splitterPlant.sysj line: 71, column: 12
-                  if(stroke_thread_1 > 0) {//sysj\splitterPlant.sysj line: 72, column: 19
-                    stroke_thread_1 = stroke_thread_1 - 1;//sysj\splitterPlant.sysj line: 72, column: 21
-                  }
-                  if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 77, column: 7
-                    divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 78, column: 5
-                    currsigs.addElement(divertAtNormal);
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                    else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                  }
-                  else {
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                    else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                  }
-                }
-                else {
-                  if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 77, column: 7
-                    divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 78, column: 5
-                    currsigs.addElement(divertAtNormal);
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                    else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                  }
-                  else {
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                    else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                  }
-                }
+            
+            case 1 : 
+              S588486=1;
+              S588486=0;
+              if(reset.getprestatus()){//sysj\splitterPlant.sysj line: 31, column: 19
+                S588486=1;
+                active[1]=1;
+                ends[1]=1;
+                break RUN;
               }
               else {
-                if(diverterRetract.getprestatus()){//sysj\splitterPlant.sysj line: 71, column: 12
-                  if(stroke_thread_1 > 0) {//sysj\splitterPlant.sysj line: 72, column: 19
-                    stroke_thread_1 = stroke_thread_1 - 1;//sysj\splitterPlant.sysj line: 72, column: 21
-                  }
-                  if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 77, column: 7
-                    divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 78, column: 5
-                    currsigs.addElement(divertAtNormal);
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
+                TRAVEL_thread_1 = PlantTiming.ticks(4);//sysj\splitterPlant.sysj line: 32, column: 3
+                STROKE_thread_1 = PlantTiming.ticks(3);//sysj\splitterPlant.sysj line: 33, column: 3
+                RELEASE_thread_1 = PlantTiming.ticks(2);//sysj\splitterPlant.sysj line: 34, column: 3
+                travel_thread_1 = -1;//sysj\splitterPlant.sysj line: 36, column: 3
+                atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 37, column: 3
+                departed_thread_1 = false;//sysj\splitterPlant.sysj line: 38, column: 3
+                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 39, column: 3
+                stroke_thread_1 = 0;//sysj\splitterPlant.sysj line: 40, column: 3
+                admitting_thread_1 = false;//sysj\splitterPlant.sysj line: 41, column: 3
+                if(enable.getprestatus()){//sysj\splitterPlant.sysj line: 44, column: 12
+                  if(admitBottle.getprestatus()){//sysj\splitterPlant.sysj line: 51, column: 13
+                    if(!admitting_thread_1) {//sysj\splitterPlant.sysj line: 52, column: 20
+                      admitting_thread_1 = true;//sysj\splitterPlant.sysj line: 53, column: 7
+                      if(!atPoint_thread_1 && travel_thread_1 < 0) {//sysj\splitterPlant.sysj line: 54, column: 33
+                        travel_thread_1 = TRAVEL_thread_1;//sysj\splitterPlant.sysj line: 55, column: 8
+                        departed_thread_1 = false;//sysj\splitterPlant.sysj line: 56, column: 8
+                        System.out.println("[SPPlant] Bottle claimed from the outfeed.");//sysj\splitterPlant.sysj line: 57, column: 8
+                      }
+                    }
+                    if(travel_thread_1 > 0) {//sysj\splitterPlant.sysj line: 65, column: 19
+                      travel_thread_1 = travel_thread_1 - 1;//sysj\splitterPlant.sysj line: 66, column: 6
+                    }
+                    if(travel_thread_1 == 0) {//sysj\splitterPlant.sysj line: 68, column: 20
+                      travel_thread_1 = -1;//sysj\splitterPlant.sysj line: 69, column: 6
+                      atPoint_thread_1 = true;//sysj\splitterPlant.sysj line: 70, column: 6
+                      System.out.println("[SPPlant] Bottle at the quality splitter.");//sysj\splitterPlant.sysj line: 71, column: 6
+                    }
+                    if(diverterExtend.getprestatus()){//sysj\splitterPlant.sysj line: 75, column: 13
+                      if(stroke_thread_1 < STROKE_thread_1) {//sysj\splitterPlant.sysj line: 76, column: 25
+                        stroke_thread_1 = stroke_thread_1 + 1;//sysj\splitterPlant.sysj line: 76, column: 27
+                      }
+                      if(diverterRetract.getprestatus()){//sysj\splitterPlant.sysj line: 78, column: 13
+                        if(stroke_thread_1 > 0) {//sysj\splitterPlant.sysj line: 79, column: 20
+                          stroke_thread_1 = stroke_thread_1 - 1;//sysj\splitterPlant.sysj line: 79, column: 22
+                        }
+                        if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 84, column: 8
+                          divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 85, column: 6
+                          currsigs.addElement(divertAtNormal);
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                         }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
                         }
                       }
                       else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                        if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 84, column: 8
+                          divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 85, column: 6
+                          currsigs.addElement(divertAtNormal);
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
                         }
                       }
                     }
                     else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
+                      if(diverterRetract.getprestatus()){//sysj\splitterPlant.sysj line: 78, column: 13
+                        if(stroke_thread_1 > 0) {//sysj\splitterPlant.sysj line: 79, column: 20
+                          stroke_thread_1 = stroke_thread_1 - 1;//sysj\splitterPlant.sysj line: 79, column: 22
+                        }
+                        if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 84, column: 8
+                          divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 85, column: 6
+                          currsigs.addElement(divertAtNormal);
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                         }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
                         }
                       }
                       else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                        if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 84, column: 8
+                          divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 85, column: 6
+                          currsigs.addElement(divertAtNormal);
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
                         }
                       }
                     }
                   }
                   else {
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
+                    admitting_thread_1 = false;//sysj\splitterPlant.sysj line: 62, column: 6
+                    if(travel_thread_1 > 0) {//sysj\splitterPlant.sysj line: 65, column: 19
+                      travel_thread_1 = travel_thread_1 - 1;//sysj\splitterPlant.sysj line: 66, column: 6
+                    }
+                    if(travel_thread_1 == 0) {//sysj\splitterPlant.sysj line: 68, column: 20
+                      travel_thread_1 = -1;//sysj\splitterPlant.sysj line: 69, column: 6
+                      atPoint_thread_1 = true;//sysj\splitterPlant.sysj line: 70, column: 6
+                      System.out.println("[SPPlant] Bottle at the quality splitter.");//sysj\splitterPlant.sysj line: 71, column: 6
+                    }
+                    if(diverterExtend.getprestatus()){//sysj\splitterPlant.sysj line: 75, column: 13
+                      if(stroke_thread_1 < STROKE_thread_1) {//sysj\splitterPlant.sysj line: 76, column: 25
+                        stroke_thread_1 = stroke_thread_1 + 1;//sysj\splitterPlant.sysj line: 76, column: 27
+                      }
+                      if(diverterRetract.getprestatus()){//sysj\splitterPlant.sysj line: 78, column: 13
+                        if(stroke_thread_1 > 0) {//sysj\splitterPlant.sysj line: 79, column: 20
+                          stroke_thread_1 = stroke_thread_1 - 1;//sysj\splitterPlant.sysj line: 79, column: 22
+                        }
+                        if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 84, column: 8
+                          divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 85, column: 6
+                          currsigs.addElement(divertAtNormal);
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                         }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
                         }
                       }
                       else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                        if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 84, column: 8
+                          divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 85, column: 6
+                          currsigs.addElement(divertAtNormal);
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
                         }
                       }
                     }
                     else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
+                      if(diverterRetract.getprestatus()){//sysj\splitterPlant.sysj line: 78, column: 13
+                        if(stroke_thread_1 > 0) {//sysj\splitterPlant.sysj line: 79, column: 20
+                          stroke_thread_1 = stroke_thread_1 - 1;//sysj\splitterPlant.sysj line: 79, column: 22
+                        }
+                        if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 84, column: 8
+                          divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 85, column: 6
+                          currsigs.addElement(divertAtNormal);
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
                             }
                           }
                         }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
                         }
                       }
                       else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                        if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 84, column: 8
+                          divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 85, column: 6
+                          currsigs.addElement(divertAtNormal);
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
                         }
                         else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
+                          if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 87, column: 8
+                            divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 88, column: 6
+                            currsigs.addElement(divertAtReject);
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
+                          else {
+                            if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 96, column: 5
+                              bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 97, column: 6
+                              currsigs.addElement(bottleAtSplitter);
+                              if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 98, column: 41
+                                release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 99, column: 7
+                                if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 100, column: 29
+                                  atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 101, column: 8
+                                  departed_thread_1 = true;//sysj\splitterPlant.sysj line: 102, column: 8
+                                  release_thread_1 = 0;//sysj\splitterPlant.sysj line: 103, column: 8
+                                  if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 104, column: 28
+                                    System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 105, column: 9
+                                  }
+                                  else {//sysj\splitterPlant.sysj line: 107, column: 13
+                                    System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 108, column: 9
+                                  }
+                                }
+                              }
+                              else {//sysj\splitterPlant.sysj line: 112, column: 11
+                                release_thread_1 = 0;//sysj\splitterPlant.sysj line: 113, column: 7
+                              }
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                            else {
+                              if(departed_thread_1){//sysj\splitterPlant.sysj line: 119, column: 5
+                                bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 120, column: 6
+                                currsigs.addElement(bottleLeftSplitter);
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                              else {
+                                active[1]=1;
+                                ends[1]=1;
+                                break RUN;
+                              }
+                            }
+                          }
                         }
                       }
                     }
                   }
                 }
                 else {
-                  if(stroke_thread_1 == 0){//sysj\splitterPlant.sysj line: 77, column: 7
-                    divertAtNormal.setPresent();//sysj\splitterPlant.sysj line: 78, column: 5
-                    currsigs.addElement(divertAtNormal);
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                    else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                  }
-                  else {
-                    if(stroke_thread_1 == STROKE_thread_1){//sysj\splitterPlant.sysj line: 80, column: 7
-                      divertAtReject.setPresent();//sysj\splitterPlant.sysj line: 81, column: 5
-                      currsigs.addElement(divertAtReject);
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                    else {
-                      if(atPoint_thread_1){//sysj\splitterPlant.sysj line: 89, column: 4
-                        bottleAtSplitter.setPresent();//sysj\splitterPlant.sysj line: 90, column: 5
-                        currsigs.addElement(bottleAtSplitter);
-                        if(stroke_thread_1 == 0 || stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 91, column: 40
-                          release_thread_1 = release_thread_1 + 1;//sysj\splitterPlant.sysj line: 92, column: 6
-                          if(release_thread_1 >= RELEASE_thread_1) {//sysj\splitterPlant.sysj line: 93, column: 28
-                            atPoint_thread_1 = false;//sysj\splitterPlant.sysj line: 94, column: 7
-                            departed_thread_1 = true;//sysj\splitterPlant.sysj line: 95, column: 7
-                            release_thread_1 = 0;//sysj\splitterPlant.sysj line: 96, column: 7
-                            if(stroke_thread_1 == STROKE_thread_1) {//sysj\splitterPlant.sysj line: 97, column: 27
-                              System.out.println("[SPPlant] Bottle diverted onto the recycling conveyor.");//sysj\splitterPlant.sysj line: 98, column: 8
-                            }
-                            else {//sysj\splitterPlant.sysj line: 100, column: 12
-                              System.out.println("[SPPlant] Bottle carried on to the labeller.");//sysj\splitterPlant.sysj line: 101, column: 8
-                            }
-                          }
-                        }
-                        else {//sysj\splitterPlant.sysj line: 105, column: 10
-                          release_thread_1 = 0;//sysj\splitterPlant.sysj line: 106, column: 6
-                        }
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(departed_thread_1){//sysj\splitterPlant.sysj line: 112, column: 4
-                          bottleLeftSplitter.setPresent();//sysj\splitterPlant.sysj line: 113, column: 5
-                          currsigs.addElement(bottleLeftSplitter);
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                  }
+                  active[1]=1;
+                  ends[1]=1;
+                  break RUN;
                 }
               }
-            }
-          }
-          else {
-            active[1]=1;
-            ends[1]=1;
-            break RUN;
+            
           }
         
       }
@@ -3542,6 +5312,7 @@ public class SplitterPlant extends ClockDomain{
           admitBottle.gethook();
           diverterExtend.gethook();
           diverterRetract.gethook();
+          reset.gethook();
           df = true;
         }
         runClockDomain();
@@ -3550,6 +5321,7 @@ public class SplitterPlant extends ClockDomain{
       admitBottle.setpreclear();
       diverterExtend.setpreclear();
       diverterRetract.setpreclear();
+      reset.setpreclear();
       bottleAtSplitter.setpreclear();
       divertAtNormal.setpreclear();
       divertAtReject.setpreclear();
@@ -3572,6 +5344,9 @@ public class SplitterPlant extends ClockDomain{
       dummyint = diverterRetract.getStatus() ? diverterRetract.setprepresent() : diverterRetract.setpreclear();
       diverterRetract.setpreval(diverterRetract.getValue());
       diverterRetract.setClear();
+      dummyint = reset.getStatus() ? reset.setprepresent() : reset.setpreclear();
+      reset.setpreval(reset.getValue());
+      reset.setClear();
       bottleAtSplitter.sethook();
       bottleAtSplitter.setClear();
       divertAtNormal.sethook();
@@ -3586,6 +5361,7 @@ public class SplitterPlant extends ClockDomain{
         admitBottle.gethook();
         diverterExtend.gethook();
         diverterRetract.gethook();
+        reset.gethook();
       }
       runFinisher();
       if(active[1] == 0){

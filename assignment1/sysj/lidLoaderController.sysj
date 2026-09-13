@@ -6,7 +6,6 @@
  * cycle - that is the intended behaviour, not a fault.
  */
 LidLoaderController(
-        input GuiPermit signal operatorPermit;
 		// from / to the Rotary Table
 		input  WorkpieceTwin channel start;
 		output WorkpieceTwin channel done;
@@ -17,6 +16,11 @@ LidLoaderController(
 		// operating mode
 		input Integer signal mode;
 
+		// Hard reset: drop whatever is held and go back to idle. One tick,
+		// no sequence to finish - the bottle it was working on no longer
+		// exists anywhere else either.
+		input signal reset;
+
 		// from the plant
 		input signal pusherExtended, pusherRetracted, lidAtPickup, WPgripped;
 		input signal armAtSource, armAtDest, magazineEmpty, refilled;
@@ -26,6 +30,7 @@ LidLoaderController(
 
 		// manual overrides - the operator panel attaches here
 		input signal pusherExtendM, vacOnM, armSourceM, armDestM;
+		input signal refillM;
 		)
 ->
 {
@@ -47,20 +52,9 @@ LidLoaderController(
 		WorkpieceTwin w = null;
 
 		while(true){
-			await(immediate auto);
-
-			abort(immediate manual){
+			abort(immediate reset){
 				receive start;
 				w = (WorkpieceTwin)#start;
-if(w != null){
-boolean permitted = false;
-            pause;
-            while(!permitted){
-                permitted = GuiStep.take("LID", (GuiPermit)#operatorPermit);
-                pause;
-            }
-            pause;
-}
 
 
 				if(w != null && w.catchFault("lid-fitted")){
@@ -77,6 +71,7 @@ boolean permitted = false;
 					// Refill first if the magazine is out
 					present(magazineEmpty){
 						System.out.println("[LID] Magazine empty, refilling.");
+						abort(immediate auto){ await(immediate refillM); }
 						abort(immediate refilled){
 							sustain refill;
 						}
@@ -92,21 +87,33 @@ boolean permitted = false;
 					// refill check missed by a tick sends the arm to collect
 					// nothing and the machine blocks forever on WPgripped,
 					// taking the table's barrier down with it.
+					abort(immediate auto){ await(immediate pusherExtendM); }
 					abort(immediate pusherExtended){
 						sustain pusherExtend;
 					}
 					await(immediate pusherRetracted);
 					await(immediate lidAtPickup);
 
+					// Load-bearing, not padding. The compiler splits the
+					// generated state machine at every pause, and with the
+					// manual gates folded into this reaction the fetch-and-place
+					// half no longer fits in one method under the JVM's 64 KB
+					// limit. It costs one tick between the lid arriving at the
+					// pick-up point and the arm going for it.
+					pause;
+
 					// Fetch it
+					abort(immediate auto){ await(immediate armSourceM); }
 					abort(immediate armAtSource){
 						sustain armSource;
 					}
+					abort(immediate auto){ await(immediate vacOnM); }
 					abort(immediate WPgripped){
 						sustain vacOn;
 					}
 
 					// Place it on the bottle
+					abort(immediate auto){ await(immediate armDestM); }
 					abort(immediate armAtDest){
 						{ sustain armDest; } || { sustain vacOn; }
 					}
@@ -122,25 +129,12 @@ boolean permitted = false;
 					}
 					System.out.println("[LID] Lid placed on " + w + ".");
 				}
+		
 
 				send done(w);
 			}
-			pause;
-		}
-	}
-	||
-	{ // Manual
-		while(true){
-			await(immediate manual);
-			abort(immediate auto){
-				while(true){
-					present(pusherExtendM){ emit pusherExtend; }
-					present(vacOnM){ emit vacOn; }
-					present(armSourceM){ emit armSource; }
-					present(armDestM){ emit armDest; }
-					pause;
-				}
-			}
+		
+
 			pause;
 		}
 	}

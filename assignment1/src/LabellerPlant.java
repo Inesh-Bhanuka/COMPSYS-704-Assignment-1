@@ -33,16 +33,16 @@ public class LabellerPlant extends ClockDomain{
   private int refillTicks_thread_3;//sysj\labellerPlant.sysj line: 68, column: 3
   private int extending_thread_3;//sysj\labellerPlant.sysj line: 69, column: 3
   private boolean out_thread_3;//sysj\labellerPlant.sysj line: 70, column: 3
-  private int S74026 = 1;
-  private int S73861 = 1;
-  private int S74013 = 1;
-  private int S74024 = 1;
+  private int S78127 = 1;
+  private int S77962 = 1;
+  private int S78114 = 1;
+  private int S78125 = 1;
   
   private int[] ends = new int[5];
   private int[] tdone = new int[5];
   
-  public void thread74034(int [] tdone, int [] ends){
-        switch(S74024){
+  public void thread78135(int [] tdone, int [] ends){
+        switch(S78125){
       case 0 : 
         active[4]=0;
         ends[4]=0;
@@ -74,8 +74,8 @@ public class LabellerPlant extends ClockDomain{
     }
   }
 
-  public void thread74033(int [] tdone, int [] ends){
-        switch(S74013){
+  public void thread78134(int [] tdone, int [] ends){
+        switch(S78114){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -275,8 +275,8 @@ public class LabellerPlant extends ClockDomain{
     }
   }
 
-  public void thread74032(int [] tdone, int [] ends){
-        switch(S73861){
+  public void thread78133(int [] tdone, int [] ends){
+        switch(S77962){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -393,8 +393,8 @@ public class LabellerPlant extends ClockDomain{
     }
   }
 
-  public void thread74030(int [] tdone, int [] ends){
-        S74024=1;
+  public void thread78131(int [] tdone, int [] ends){
+        S78125=1;
     if(enable.getprestatus()){//sysj\labellerPlant.sysj line: 115, column: 12
       if(rollerOnOff.getprestatus()){//sysj\labellerPlant.sysj line: 116, column: 13
         bottleAtLabeller.setPresent();//sysj\labellerPlant.sysj line: 117, column: 6
@@ -416,8 +416,8 @@ public class LabellerPlant extends ClockDomain{
     }
   }
 
-  public void thread74029(int [] tdone, int [] ends){
-        S74013=1;
+  public void thread78130(int [] tdone, int [] ends){
+        S78114=1;
     APPLY_thread_3 = PlantTiming.ticks(3);//sysj\labellerPlant.sysj line: 66, column: 3
     glue_thread_3 = 10;//sysj\labellerPlant.sysj line: 67, column: 3
     refillTicks_thread_3 = 0;//sysj\labellerPlant.sysj line: 68, column: 3
@@ -612,8 +612,8 @@ public class LabellerPlant extends ClockDomain{
     }
   }
 
-  public void thread74028(int [] tdone, int [] ends){
-        S73861=1;
+  public void thread78129(int [] tdone, int [] ends){
+        S77962=1;
     PRINT_thread_2 = PlantTiming.ticks(4);//sysj\labellerPlant.sysj line: 20, column: 3
     labels_thread_2 = 8;//sysj\labellerPlant.sysj line: 21, column: 3
     refillTicks_thread_2 = 0;//sysj\labellerPlant.sysj line: 22, column: 3
@@ -732,58 +732,58 @@ public class LabellerPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S74026){
+      switch(S78127){
         case 0 : 
-          S74026=0;
+          S78127=0;
           break RUN;
         
         case 1 : 
-          S74026=2;
-          S74026=2;
-          thread74028(tdone,ends);
-          thread74029(tdone,ends);
-          thread74030(tdone,ends);
-          int biggest74031 = 0;
-          if(ends[2]>=biggest74031){
-            biggest74031=ends[2];
+          S78127=2;
+          S78127=2;
+          thread78129(tdone,ends);
+          thread78130(tdone,ends);
+          thread78131(tdone,ends);
+          int biggest78132 = 0;
+          if(ends[2]>=biggest78132){
+            biggest78132=ends[2];
           }
-          if(ends[3]>=biggest74031){
-            biggest74031=ends[3];
+          if(ends[3]>=biggest78132){
+            biggest78132=ends[3];
           }
-          if(ends[4]>=biggest74031){
-            biggest74031=ends[4];
+          if(ends[4]>=biggest78132){
+            biggest78132=ends[4];
           }
-          if(biggest74031 == 1){
+          if(biggest78132 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
         
         case 2 : 
-          thread74032(tdone,ends);
-          thread74033(tdone,ends);
-          thread74034(tdone,ends);
-          int biggest74035 = 0;
-          if(ends[2]>=biggest74035){
-            biggest74035=ends[2];
+          thread78133(tdone,ends);
+          thread78134(tdone,ends);
+          thread78135(tdone,ends);
+          int biggest78136 = 0;
+          if(ends[2]>=biggest78136){
+            biggest78136=ends[2];
           }
-          if(ends[3]>=biggest74035){
-            biggest74035=ends[3];
+          if(ends[3]>=biggest78136){
+            biggest78136=ends[3];
           }
-          if(ends[4]>=biggest74035){
-            biggest74035=ends[4];
+          if(ends[4]>=biggest78136){
+            biggest78136=ends[4];
           }
-          if(biggest74035 == 1){
+          if(biggest78136 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest74035 == 0){
-            S74026=0;
+          if(biggest78136 == 0){
+            S78127=0;
             active[1]=0;
             ends[1]=0;
-            S74026=0;
+            S78127=0;
             break RUN;
           }
         

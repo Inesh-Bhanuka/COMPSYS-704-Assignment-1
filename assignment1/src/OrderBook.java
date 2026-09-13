@@ -80,6 +80,18 @@ public final class OrderBook {
         updateFeedback();
     }
 
+    /** Drop the production plan immediately, for a hard reset. */
+    public static synchronized void clearPlan() {
+        if (request != null && feedback != null) {
+            feedback = new PosOrderStatus(request.orderId, ++revision, "Reset",
+                    "Production reset. The line was cleared; create a new purchase order.",
+                    feedback.batches);
+        }
+        active = null;
+        issued.clear(); delivered.clear(); recovered.clear();
+        batchIndex = 0;
+    }
+
     public static synchronized void resetAfterDrain() {
         if (request != null && feedback != null) feedback = new PosOrderStatus(request.orderId, ++revision,
                 "Reset", "Production reset after admitted bottles finished. Create a new purchase order.", feedback.batches);

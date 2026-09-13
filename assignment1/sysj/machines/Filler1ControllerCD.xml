@@ -6,8 +6,8 @@
 			<iChannel Name="start"           From="RotaryTableControllerCD.startFiller1" />
 			<oChannel Name="done"            To="RotaryTableControllerCD.doneFiller1" />
 
-			<iSignal Name="operatorPermit"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
 			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
+			<iSignal Name="reset"             Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
 			<iSignal Name="filled"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
 			<iSignal Name="valveOpenM"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
 			<oSignal Name="twin"              To="SystemControllerCD.twinF1"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />

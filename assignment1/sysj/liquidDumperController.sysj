@@ -33,6 +33,11 @@ LiquidDumperController(
 		// operating mode
 		input Integer signal mode;
 
+		// Hard reset: drop whatever is held and go back to idle. One tick,
+		// no sequence to finish - the bottle it was working on no longer
+		// exists anywhere else either.
+		input signal reset;
+
 		// from the Inverter, Waste Tank Plant
 		input signal clampClosed, bottleInverted, bottleUpright, bottleDrained;
 		input Integer signal wasteTankLevel;
@@ -42,7 +47,8 @@ LiquidDumperController(
 		output signal drainValveOnOff;
 
 		// manual overrides - the operator panel attaches here
-		input signal cylClampBottleExtendM, invertRotateExtendM, drainValveOnOffM;
+		input signal cylClampBottleExtendM, invertRotateExtendM, invertRotateRetractM;
+		input signal drainValveOnOffM;
 		)
 ->
 {
@@ -71,9 +77,7 @@ LiquidDumperController(
 		int code = 0;
 
 		while(true){
-			await(immediate auto);
-
-			abort(immediate manual){
+			abort(immediate reset){
 				receive enable;
 				w = (WorkpieceTwin)#enable;
 
@@ -89,23 +93,27 @@ LiquidDumperController(
 					System.out.println("[LD] Draining " + w + " (" + w.filledMl() + "ml).");
 
 					// 1. secure the bottle before anything rotates
+					abort(immediate auto){ await(immediate cylClampBottleExtendM); }
 					abort(immediate clampClosed){
 						sustain cylClampBottleExtend;
 					}
 
 					// 2. invert, clamp held
 					abort(immediate bottleInverted){
+						abort(immediate auto){ await(immediate invertRotateExtendM); }
 						{ sustain cylClampBottleExtend; } || { sustain invertRotateExtend; }
 					}
 
 					// 3. open the drain; the plant answers when the timed drain
 					//    for a full bottle has elapsed
 					abort(immediate bottleDrained){
+						abort(immediate auto){ await(immediate drainValveOnOffM); }
 						{ sustain cylClampBottleExtend; } || { sustain invertRotateExtend; } || { sustain drainValveOnOff; }
 					}
 
 					// 4. back upright, clamp still held
 					abort(immediate bottleUpright){
+						abort(immediate auto){ await(immediate invertRotateRetractM); }
 						{ sustain cylClampBottleExtend; } || { sustain invertRotateRetract; }
 					}
 
@@ -141,21 +149,8 @@ LiquidDumperController(
 
 				send status(new Integer(code));
 			}
-			pause;
-		}
-	}
-	||
-	{ // Manual
-		while(true){
-			await(immediate manual);
-			abort(immediate auto){
-				while(true){
-					present(cylClampBottleExtendM){ emit cylClampBottleExtend; }
-					present(invertRotateExtendM){ emit invertRotateExtend; }
-					present(drainValveOnOffM){ emit drainValveOnOff; }
-					pause;
-				}
-			}
+		
+
 			pause;
 		}
 	}

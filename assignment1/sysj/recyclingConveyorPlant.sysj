@@ -42,95 +42,105 @@ RecyclingConveyorPlant(
 		// to the Recycling Conveyor Controller
 		output signal bottleAtSplitterExit, bottleAtLidRemoval, bottleAtDumper;
 		output signal bottleAtReturn, bottleLeftReturn;
+
+		// Hard reset: forget what is on the machine. Declared state is
+		// re-initialised, not adjusted, because after a reset there is no
+		// bottle anywhere for the old values to describe.
+		input signal reset;
 		)
 ->
 {
-	int STEP = PlantTiming.ticks(5);   // ticks of travel between two stations
-	int LAST = 3;   // station index of the bottle return
-
-	int pos = -1;   // -1 = belt empty
-	int travel = 0;
-	boolean injecting = false;
-	boolean collecting = false;
-	boolean cleared = false;
-	boolean running = false;   // the motor command as the plant last saw it
-	boolean indexing = false;  // this bottle is between two stations
-
 	while(true){
-		present(enable){
+		abort(immediate reset){
+		int STEP = PlantTiming.ticks(5);   // ticks of travel between two stations
+		int LAST = 3;   // station index of the bottle return
 
-			present(injectAtEntry){
-				if(!injecting){
-					injecting = true;
-					if(pos < 0){
-						pos = 0;
-						travel = 0;
-						indexing = false;
-						cleared = false;
-						System.out.println("[RCPlant] Bottle entered the recycling conveyor.");
+		int pos = -1;   // -1 = belt empty
+		int travel = 0;
+		boolean injecting = false;
+		boolean collecting = false;
+		boolean cleared = false;
+		boolean running = false;   // the motor command as the plant last saw it
+		boolean indexing = false;  // this bottle is between two stations
+
+		while(true){
+			present(enable){
+
+				present(injectAtEntry){
+					if(!injecting){
+						injecting = true;
+						if(pos < 0){
+							pos = 0;
+							travel = 0;
+							indexing = false;
+							cleared = false;
+							System.out.println("[RCPlant] Bottle entered the recycling conveyor.");
+						}
 					}
 				}
-			}
-			else {
-				injecting = false;
-			}
-
-			present(recyclingConveyorMotor){
-
-				// Rising edge: one index command grants one station of
-				// travel. Every later tick of the same command does nothing,
-				// so the bottle cannot run on past its station while the
-				// controller's release is still in flight.
-				if(!running){
-					running = true;
-					if(pos >= 0 && pos < LAST){
-						indexing = true;
-					}
+				else {
+					injecting = false;
 				}
 
-				if(indexing){
-					travel++;
-					if(travel >= STEP){
-						travel = 0;
-						indexing = false;
-						pos++;
-						if(pos == 1){ System.out.println("[RCPlant] Bottle arrived at lid removal."); }
-						if(pos == 2){ System.out.println("[RCPlant] Bottle arrived at the liquid dumper."); }
-						if(pos == 3){ System.out.println("[RCPlant] Bottle arrived at the bottle return."); }
+				present(recyclingConveyorMotor){
+
+					// Rising edge: one index command grants one station of
+					// travel. Every later tick of the same command does nothing,
+					// so the bottle cannot run on past its station while the
+					// controller's release is still in flight.
+					if(!running){
+						running = true;
+						if(pos >= 0 && pos < LAST){
+							indexing = true;
+						}
+					}
+
+					if(indexing){
+						travel++;
+						if(travel >= STEP){
+							travel = 0;
+							indexing = false;
+							pos++;
+							if(pos == 1){ System.out.println("[RCPlant] Bottle arrived at lid removal."); }
+							if(pos == 2){ System.out.println("[RCPlant] Bottle arrived at the liquid dumper."); }
+							if(pos == 3){ System.out.println("[RCPlant] Bottle arrived at the bottle return."); }
+						}
 					}
 				}
-			}
-			else {
-				running = false;
-			}
+				else {
+					running = false;
+				}
 
-			// One photo-eye per station. A bottle in transit is at none of
-			// them, which is what makes each arrival an event the controller
-			// can wait for.
-			if(!indexing){
-				if(pos == 0){ emit bottleAtSplitterExit; }
-				if(pos == 1){ emit bottleAtLidRemoval; }
-				if(pos == 2){ emit bottleAtDumper; }
-				if(pos == 3){ emit bottleAtReturn; }
-			}
+				// One photo-eye per station. A bottle in transit is at none of
+				// them, which is what makes each arrival an event the controller
+				// can wait for.
+				if(!indexing){
+					if(pos == 0){ emit bottleAtSplitterExit; }
+					if(pos == 1){ emit bottleAtLidRemoval; }
+					if(pos == 2){ emit bottleAtDumper; }
+					if(pos == 3){ emit bottleAtReturn; }
+				}
 
-			present(collectAtReturn){
-				if(!collecting){
-					collecting = true;
-					if(pos == LAST){
-						pos = -1;
-						cleared = true;
-						System.out.println("[RCPlant] Bottle removed at the return station.");
+				present(collectAtReturn){
+					if(!collecting){
+						collecting = true;
+						if(pos == LAST){
+							pos = -1;
+							cleared = true;
+							System.out.println("[RCPlant] Bottle removed at the return station.");
+						}
 					}
 				}
-			}
-			else {
-				collecting = false;
-			}
+				else {
+					collecting = false;
+				}
 
-			if(cleared){
-				emit bottleLeftReturn;
+				if(cleared){
+					emit bottleLeftReturn;
+				}
 			}
+			pause;
+		}
 		}
 		pause;
 	}

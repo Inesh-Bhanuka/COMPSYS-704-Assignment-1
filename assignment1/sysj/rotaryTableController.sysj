@@ -28,7 +28,6 @@
  * the generated state machine stays well inside the JVM's 64 KB method limit.
  */
 RotaryTableController(
-        input GuiPermit signal operatorPermit;
 		// from / to the conveyor
 		input  WorkpieceTwin channel tableInfeed;
 		output WorkpieceTwin channel tableOutfeed;
@@ -49,13 +48,43 @@ RotaryTableController(
 
 		// to the plant
 		output signal rotaryTrigger, loadPos1, unloadExit;
+
+		// operating mode
+		input Integer signal mode;
+
+		// Hard reset: drop whatever is held and go back to idle. One tick,
+		// no sequence to finish - the bottle it was working on no longer
+		// exists anywhere else either.
+		input signal reset;
+
+		// manual overrides - the operator panel attaches here
+		input signal rotaryTriggerM;
+		input signal loadPos1M, unloadExitM;
 		)
 ->
 {
 	// Local signal: the sequencer tells the intake reaction that the bottle
 	// it accepted has been placed, so it may accept another.
 	signal placed;
+	signal auto, manual;
 
+	{ // Mode select
+		while(true){
+			present(mode){
+				if((Integer)#mode == 0){ emit auto; }
+				else { emit manual; }
+			}
+			pause;
+		}
+	}
+	||
+	{ // Auto
+		//
+		// Sequencer and intake drop together. The barrier holds four stations
+		// against one table, so half a table in manual would deadlock the
+		// stations still waiting on it.
+		while(true){
+			abort(immediate reset){
 	{ // ---- Sequencer ----
 		RotaryTableTwin t = new RotaryTableTwin();
 		int step = 0;
@@ -79,11 +108,18 @@ RotaryTableController(
 				exiting = m.exitWorkpiece();
 				m.sayUnloading();
 				send tableOutfeed(exiting);
+				abort(immediate auto){ await(immediate unloadExitM); }
 				abort(immediate exitCleared){
 					sustain unloadExit;
 				}
 				m.clearExit();
 			}
+
+			// Load-bearing, like the one before the index below. Unload and
+			// place each carry a manual gate now, and inlined into one state
+			// they overflow the JVM's 64 KB method limit. Splitting them costs
+			// one tick between clearing the exit and loading position 1.
+			pause;
 
 			// ---- B. Place an accepted bottle at position 1 ----
 			// Nothing on the table and nothing accepted: idle here rather
@@ -92,6 +128,7 @@ RotaryTableController(
 				while(!m.hasPending()){ pause; }
 			}
 			if(m.readyToPlace()){
+				abort(immediate auto){ await(immediate loadPos1M); }
 				abort(immediate bottleAtPos1){
 					sustain loadPos1;
 				}
@@ -128,17 +165,18 @@ RotaryTableController(
 			receive doneCapper;
 
 			// ---- D. Index one position ----
-boolean permitted = false;
-            pause;
-            while(!permitted){
-                permitted = GuiStep.take("INDEX", (GuiPermit)#operatorPermit);
-                pause;
-            }
-            pause;
+			//
+			// This pause is load-bearing, not padding. The compiler splits
+			// the generated state machine at every pause, and without one
+			// here the whole sequencer folds into a single method that
+			// exceeds the JVM's 64 KB limit. It costs one tick between the
+			// barrier clearing and the table turning.
+			pause;
 
 			//
 			// Hold the trigger until the plant reports it has left alignment,
 			// instead of guessing a pulse width.
+			abort(immediate auto){ await(immediate rotaryTriggerM); }
 			abort(immediate !tableAligned){
 				sustain rotaryTrigger;
 			}
@@ -179,6 +217,12 @@ boolean permitted = false;
 			m.setPending(w);
 			System.out.println("[RT] Accepted " + w + " from the conveyor.");
 			await(immediate placed);
+			pause;
+		}
+	}
+			}
+		
+
 			pause;
 		}
 	}

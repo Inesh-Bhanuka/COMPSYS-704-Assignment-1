@@ -37,6 +37,11 @@ SplitterController(
 		// operating mode
 		input Integer signal mode;
 
+		// Hard reset: drop whatever is held and go back to idle. One tick,
+		// no sequence to finish - the bottle it was working on no longer
+		// exists anywhere else either.
+		input signal reset;
+
 		// from the Diverter Plant
 		input signal bottleAtSplitter, divertAtNormal, divertAtReject, bottleLeftSplitter;
 
@@ -45,11 +50,27 @@ SplitterController(
 
 		// manual overrides - the operator panel attaches here
 		input signal diverterExtendM, diverterRetractM;
+		input signal admitBottleM;
 		)
 ->
 {
 	signal auto, manual;
 
+	// Either diverter button is the same request to the sequencer: the
+	// record has already decided which way the flap goes, so folding the
+	// two inputs into one local signal here keeps the branch out of the
+	// sequencer, where every extra control path is paid for twice over in
+	// the generated state machine.
+	signal diverterM;
+
+	{ // Manual diverter request, either direction
+		while(true){
+			present(diverterExtendM){ emit diverterM; }
+			present(diverterRetractM){ emit diverterM; }
+			pause;
+		}
+	}
+	||
 	{ // Mode select
 		while(true){
 			present(mode){
@@ -79,15 +100,14 @@ SplitterController(
 		boolean home = false;
 
 		while(true){
-			await(immediate auto);
-
-			abort(immediate manual){
+			abort(immediate reset){
 				receive enable;
 				w = (WorkpieceTwin)#enable;
 
 				// Claim the workpiece and wait for it to reach the decision
 				// point. The command is held until the plant's arrival sensor
 				// answers, rather than pulsed for a guessed number of ticks.
+				abort(immediate auto){ await(immediate admitBottleM); }
 				abort(immediate bottleAtSplitter){
 					sustain admitBottle;
 				}
@@ -102,6 +122,18 @@ SplitterController(
 				// against that path's end stop. A plain abort would wait
 				// forever on a jam, so the wait is bounded and the outcome is
 				// latched.
+				// The diverter is one stroke to the operator, whichever way it
+				// goes: the gate asks for the signal that matches the path the
+				// record commands, and the loops below then hold it there until
+				// the bottle has cleared.
+				// Load-bearing, not padding. The compiler splits the generated state
+				// machine at every pause, and with the gate folded in the sequencer
+				// no longer fits in one method under the JVM's 64 KB limit. It costs
+				// one tick between the bottle arriving at the decision point and the
+				// diverter being commanded.
+				pause;
+
+				abort(immediate auto){ await(immediate diverterM); }
 				t = STROKE_TIMEOUT;
 				confirmed = false;
 				while(t > 0 && !confirmed){
@@ -152,6 +184,14 @@ SplitterController(
 
 				// Reset to the normal path so the next accepted bottle runs
 				// straight through.
+				//
+				// Deliberately not gated. This is the flap returning to rest after
+				// the bottle has already cleared it, not a move that carries the
+				// bottle anywhere, so asking the operator for a tick here would add
+				// a button press that changes nothing. It is also the one place a
+				// gate would not fit: a second abort in this reaction takes the
+				// compiler past 3 GB, and the sequencer's timeout loops are already
+				// the most branch-heavy in the project.
 				home = false;
 				while(!home){
 					emit diverterRetract;
@@ -165,20 +205,8 @@ SplitterController(
 				// with every one of them.
 				send status(new Integer(code));
 			}
-			pause;
-		}
-	}
-	||
-	{ // Manual
-		while(true){
-			await(immediate manual);
-			abort(immediate auto){
-				while(true){
-					present(diverterExtendM){ emit diverterExtend; }
-					present(diverterRetractM){ emit diverterRetract; }
-					pause;
-				}
-			}
+		
+
 			pause;
 		}
 	}

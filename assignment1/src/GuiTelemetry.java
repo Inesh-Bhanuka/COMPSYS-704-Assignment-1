@@ -7,6 +7,10 @@ import java.util.*;
 public final class GuiTelemetry {
     private static long lastCapture;
     private static GuiSnapshot latest;
+
+    /** The snapshot the display is currently working from. */
+    public static synchronized GuiSnapshot latest() { return latest; }
+
     private static final Map<String,String> namedStations=new HashMap<String,String>();
     public static void noteMachine(String name,MachineTwin twin) { if(twin!=null) namedStations.put(name,twin.status().toString()); }
     private static final String SENSOR_NAMES="armAtSource armAtDest bottleAtSource WPgripped supplyEmpty bottleAtPos1 bottleAtPos2 bottleAtPos4 bottleAtPos5 infeedClear infeedAdmitted bottleAtOutfeedEnd outfeedClear tableAligned exitCleared filled lidAtPickup pusherExtended pusherRetracted magazineEmpty refilled capperDown capperUp capped labelPrinted labelApplied bottleAtLabeller labelStockLow glueLow labelStock glueLevel recyclingStatus";
@@ -36,7 +40,7 @@ public final class GuiTelemetry {
             GuiSnapshot.Bottle b=new GuiSnapshot.Bottle(); b.id=w.id; b.serial=w.serial; b.batch=w.batchId;
             b.product=w.productName; b.productId=productId(w.productName); b.size=w.sizeMl;
             b.one=w.recipe.liquidOne; b.two=w.recipe.liquidTwo; b.filled=w.filledMl();
-            b.stage=w.status().toString(); b.location=w.station().toString(); b.position=-1;
+            b.stage=w.status().toString(); b.location=belt(w); b.position=-1;
             for(int p=0;p<6;p++) if(TableModel.shared().at(p)==w) { b.position=p; b.location="ROTARY_TABLE"; }
             b.lidded=w.isLidded(); b.capped=w.isCapped(); b.labelled=w.isLabelled();
             b.quality=w.isRejected()?"REJECT: "+w.defect():w.isLabelled()?"PASS":"PENDING";
@@ -61,5 +65,27 @@ public final class GuiTelemetry {
             }
         }
         for(int i=0;i<container.getChildSize();i++) sensors(container.getChild(i),s);
+    }
+
+    /**
+     * Where the bottle is, told apart by belt.
+     *
+     * The infeed and the outfeed are one CONVEYOR to the plant - the same
+     * controller drives both - but they are opposite ends of the line to
+     * anyone looking at it. The outfeed marks its handover on the record, so
+     * the last CONVEYOR event says which belt the bottle is actually on.
+     */
+    private static String belt(WorkpieceTwin w) {
+        String station = w.station().toString();
+        if (!"CONVEYOR".equals(station)) {
+            return station;
+        }
+        for (int i = w.history().size() - 1; i >= 0; i--) {
+            WorkpieceEvent e = w.history().get(i);
+            if (e.machine == Machine.CONVEYOR) {
+                return "outfeed".equals(e.cause) ? "CONVEYOR_OUT" : "CONVEYOR_IN";
+            }
+        }
+        return "CONVEYOR_IN";
     }
 }

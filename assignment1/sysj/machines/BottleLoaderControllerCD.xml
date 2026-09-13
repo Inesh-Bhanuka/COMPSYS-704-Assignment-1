@@ -8,12 +8,14 @@
 			<oChannel Name="bottleHandoff"   To="ConveyorControllerCD.bottleHandoff" />
 
 			<iSignal Name="mode"              Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11000" />
+			<iSignal Name="reset"             Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11000" />
 			<iSignal Name="bottleAtSource"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11000" />
 			<iSignal Name="WPgripped"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11000" />
 			<iSignal Name="armAtSource"       Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11000" />
 			<iSignal Name="armAtDest"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11000" />
 			<iSignal Name="supplyEmpty"       Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11000" />
 			<iSignal Name="vacOnM"            Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11000" />
+			<iSignal Name="releaseM"          Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11000" />
 			<iSignal Name="armSourceM"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11000" />
 			<iSignal Name="armDestM"          Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11000" />
 			<oSignal Name="twin"              To="SystemControllerCD.twinBL"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />

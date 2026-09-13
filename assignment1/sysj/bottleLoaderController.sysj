@@ -27,6 +27,11 @@ BottleLoaderController(
 		// operating mode is a level, so it stays a signal
 		input Integer signal mode;
 
+		// Hard reset: drop whatever is held and go back to idle. One tick,
+		// no sequence to finish - the bottle it was working on no longer
+		// exists anywhere else either.
+		input signal reset;
+
 		// from the plant
 		input signal bottleAtSource, WPgripped, armAtSource, armAtDest, supplyEmpty;
 
@@ -34,7 +39,7 @@ BottleLoaderController(
 		output signal vacOn, release, armSource, armDest;
 
 		// manual overrides
-		input signal vacOnM, armSourceM, armDestM;
+		input signal vacOnM, releaseM, armSourceM, armDestM;
 		)
 ->
 {
@@ -43,12 +48,12 @@ BottleLoaderController(
 	{ // Mode select
 		while(true){
 			present(mode){
-				if((Integer)#mode == 0){
-					emit auto;
-				}
-				else {
-					emit manual;
-				}
+			if((Integer)#mode == 0){
+				emit auto;
+			}
+			else {
+				emit manual;
+			}
 			}
 			pause;
 		}
@@ -60,9 +65,7 @@ BottleLoaderController(
 		WorkpieceTwin w = null;
 
 		while(true){
-			await(immediate auto);
-
-			abort(immediate manual){
+			abort(immediate reset){
 
 				receive loadOrder;
 				w = (WorkpieceTwin)#loadOrder;
@@ -81,17 +84,20 @@ BottleLoaderController(
 				}
 
 				// Go to bottle storage
+				abort(immediate auto){ await(immediate armSourceM); }
 				abort(armAtSource){
 					sustain armSource;
 				}
 
 				// Pick up bottle
+				abort(immediate auto){ await(immediate vacOnM); }
 				abort(WPgripped){
 					sustain vacOn;
 				}
 				System.out.println("[BL] " + w + " gripped.");
 
 				// Move bottle to conveyor
+				abort(immediate auto){ await(immediate armDestM); }
 				abort(armAtDest){
 					sustain armDest;
 				}
@@ -101,6 +107,7 @@ BottleLoaderController(
 				send bottleHandoff(w);
 
 				// Release, holding the actuator until the plant confirms it
+				abort(immediate auto){ await(immediate releaseM); }
 				// let go. No fixed pulse width.
 				abort(immediate !WPgripped){
 					sustain release;
@@ -118,32 +125,17 @@ BottleLoaderController(
 		}
 	}
 	||
-	{ // Manual mode
-		while(true){
-			await(immediate manual);
-			abort(immediate auto){
-				while(true){
-					present(vacOnM){ emit vacOn; }
-					present(armSourceM){ emit armSource; }
-					present(armDestM){ emit armDest; }
-					pause;
-				}
-			}
-			pause;
-		}
-	}
-	||
 	{ // Bottle supply monitoring
 		boolean reported = false;
 		while(true){
 			present(supplyEmpty){
-				if(!reported){
-					System.out.println("[BL] Bottle supply is empty.");
-					reported = true;
-				}
+			if(!reported){
+				System.out.println("[BL] Bottle supply is empty.");
+				reported = true;
+			}
 			}
 			else {
-				reported = false;
+			reported = false;
 			}
 			pause;
 		}
