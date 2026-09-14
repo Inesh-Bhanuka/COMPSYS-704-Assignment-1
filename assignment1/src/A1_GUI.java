@@ -108,6 +108,15 @@ public class A1_GUI extends JFrame {
     private final GuiClient client;
     private final Timer refreshTimer;
     private GuiSnapshot snapshot;
+
+    /**
+     * The Recycling Station's own window, while it is open.
+     *
+     * Held weakly in spirit: nothing here depends on it existing. Every use
+     * checks isDisplayable() first, so closing it simply stops the updates and
+     * the next click on the station builds a fresh one.
+     */
+    private RecyclingWindow recyclingWindow;
     private boolean updating;
     private int requestedQuantity;
     private boolean photoEyeActive;
@@ -199,7 +208,13 @@ public class A1_GUI extends JFrame {
         refreshTimer.start();
     }
 
-    @Override public void dispose() { refreshTimer.stop(); super.dispose(); }
+    @Override public void dispose() {
+        refreshTimer.stop();
+        // Take the station window with it, rather than leaving an orphan
+        // panel updating from a snapshot nothing is refreshing any more.
+        if (recyclingWindow != null) { recyclingWindow.dispose(); recyclingWindow = null; }
+        super.dispose();
+    }
 
     private JPanel createHeader() {
         JPanel header = new JPanel(new BorderLayout());
@@ -606,6 +621,13 @@ public class A1_GUI extends JFrame {
         updating = true;
         try {
             snapshot = client.latest();
+            if (recyclingWindow != null) {
+                if (recyclingWindow.isDisplayable()) {
+                    recyclingWindow.update(snapshot);
+                } else {
+                    recyclingWindow = null;
+                }
+            }
             boolean connected = client.connected();
             connectionLabel.setText(connected ? "SystemJ connected" : "Disconnected / stale feedback");
             boolean manual = snapshot != null && "Manual".equalsIgnoreCase(snapshot.mode);
@@ -785,7 +807,8 @@ public class A1_GUI extends JFrame {
         FactoryPanel() {
             setBackground(new Color(235, 241, 246));
             setPreferredSize(new Dimension(1000, 760));
-            setToolTipText("Click a bottle to inspect its digital label.");
+            setToolTipText("Click a bottle to inspect its digital label, "
+                    + "or the Recycling Station to open it.");
             addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mousePressed(java.awt.event.MouseEvent e) {
@@ -1264,6 +1287,15 @@ public class A1_GUI extends JFrame {
 
         private void selectBottleAt(int screenX, int screenY) {
             double x = (screenX - viewOffsetX) / viewScale, y = (screenY - viewOffsetY) / viewScale;
+
+            // The station box, drawn at 91,656 165x118 in drawDownstream. On
+            // the overview the whole station is one box and every bottle in it
+            // lands on the same pixel, so this is the way in to its stages.
+            if (x >= 91 && x <= 91 + 165 && y >= 656 && y <= 656 + 118) {
+                openRecyclingWindow();
+                return;
+            }
+
             selectedId = -1;
             // Hit-test the last painted frame, not a newer position received after it.
             for (java.util.Map.Entry<Long, Rectangle> bottle : paintedBottles.entrySet())
@@ -1274,6 +1306,19 @@ public class A1_GUI extends JFrame {
             if (selectedBottle != null && isShowing()) labelPopup.show(this, screenX, screenY);
             repaint();
         }
+    }
+
+    /** Open the Recycling Station window, or bring the open one forward. */
+    private void openRecyclingWindow() {
+        if (recyclingWindow != null && !recyclingWindow.isDisplayable()) {
+            recyclingWindow = null;
+        }
+        if (recyclingWindow == null) {
+            recyclingWindow = new RecyclingWindow(this);
+        }
+        recyclingWindow.update(snapshot);
+        recyclingWindow.setVisible(true);
+        recyclingWindow.toFront();
     }
 
     private static void centerText(Graphics2D g, String text, int centerX, int baseY) {

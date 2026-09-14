@@ -14,6 +14,13 @@ public final class GuiSnapshot implements Serializable {
     public final Map<String,String> sensors = new TreeMap<String,String>();
     public final Map<String,String> stations = new LinkedHashMap<String,String>();
     public final List<String> history = new ArrayList<String>();
+
+    /** What the Recycling Station window shows. Values only, like everything else here. */
+    public int recyclingQueued, recyclingCapacity, recyclingRecovered;
+    public final List<String> recyclingWaiting = new ArrayList<String>();
+    public String recyclingInStation = "";
+    public int recyclingFilledMl, recyclingSizeMl;
+    public boolean recyclingLidded;
     public static final class Bottle implements Serializable {
         private static final long serialVersionUID = 1L;
         public long id, batch;

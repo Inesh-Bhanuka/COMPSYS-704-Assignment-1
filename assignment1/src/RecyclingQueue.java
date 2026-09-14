@@ -48,7 +48,7 @@ public class RecyclingQueue {
 	private int count = 0;
 
 	/** Empty the station's waiting line. Used by a hard reset, nothing else. */
-	public void clear() {
+	public synchronized void clear() {
 		for (int i = 0; i < q.length; i++) {
 			q[i] = null;
 		}
@@ -58,20 +58,36 @@ public class RecyclingQueue {
 	}
 
 	/** True while the station may accept another rejected bottle. */
-	public boolean hasRoom() {
+	public synchronized boolean hasRoom() {
 		return count < CAPACITY;
 	}
 
 	/** True while a bottle is waiting to be recovered. */
-	public boolean hasWork() {
+	public synchronized boolean hasWork() {
 		return count > 0;
 	}
 
-	public int size() {
+	public synchronized int size() {
 		return count;
 	}
 
-	public void push(WorkpieceTwin w) {
+	/**
+	 * The bottles waiting, in the order they will be recovered.
+	 *
+	 * A copy, for the operator display. The coordinator samples this from its
+	 * own clock domain - a different thread from the station's - so every
+	 * method here is synchronised and the display never sees the array
+	 * half-way through a take().
+	 */
+	public synchronized java.util.List<WorkpieceTwin> waiting() {
+		java.util.List<WorkpieceTwin> out = new java.util.ArrayList<WorkpieceTwin>(count);
+		for (int i = 0; i < count; i++) {
+			out.add(q[(head + i) % CAPACITY]);
+		}
+		return out;
+	}
+
+	public synchronized void push(WorkpieceTwin w) {
 		if (count == CAPACITY) {
 			// Unreachable while the intake reaction checks hasRoom() first;
 			// kept so a future caller that forgets is noisy rather than
@@ -85,7 +101,7 @@ public class RecyclingQueue {
 		System.out.println("[RQ] " + w + " queued for recycling (" + count + "/" + CAPACITY + " waiting).");
 	}
 
-	public WorkpieceTwin take() {
+	public synchronized WorkpieceTwin take() {
 		if (count == 0) {
 			return null;
 		}

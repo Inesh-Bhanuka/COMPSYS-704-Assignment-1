@@ -13,7 +13,7 @@ public final class GuiTelemetry {
 
     private static final Map<String,String> namedStations=new HashMap<String,String>();
     public static void noteMachine(String name,MachineTwin twin) { if(twin!=null) namedStations.put(name,twin.status().toString()); }
-    private static final String SENSOR_NAMES="armAtSource armAtDest bottleAtSource WPgripped supplyEmpty bottleAtPos1 bottleAtPos2 bottleAtPos4 bottleAtPos5 infeedClear infeedAdmitted bottleAtOutfeedEnd outfeedClear tableAligned exitCleared filled lidAtPickup pusherExtended pusherRetracted magazineEmpty refilled capperDown capperUp capped labelPrinted labelApplied bottleAtLabeller labelStockLow glueLow labelStock glueLevel recyclingStatus";
+    private static final String SENSOR_NAMES="armAtSource armAtDest bottleAtSource WPgripped supplyEmpty bottleAtPos1 bottleAtPos2 bottleAtPos4 bottleAtPos5 infeedClear infeedAdmitted bottleAtOutfeedEnd outfeedClear tableAligned exitCleared filled lidAtPickup pusherExtended pusherRetracted magazineEmpty refilled capperDown capperUp capped labelPrinted labelApplied bottleAtLabeller labelStockLow glueLow labelStock glueLevel recyclingStatus bottleAtSplitterExit bottleAtLidRemoval bottleAtDumper bottleAtReturn bottleLeftReturn zAxisLowered zAxisLifted turnAtHomePos turnAtFinalPos lidGripped lidBinFull clampClosed bottleInverted bottleUpright bottleDrained wasteTankLevel bottleAtCollector armAtHome armAtLoader collectorBinFull";
     public static String productId(String product) { return "P-"+UUID.nameUUIDFromBytes(product.getBytes(StandardCharsets.UTF_8)).toString().substring(0,8).toUpperCase(); }
     public static GuiSnapshot capture(ABSTwin plant) {
         // Absence means no new telemetry. Publish only fresh samples; socket work
@@ -47,11 +47,49 @@ public final class GuiTelemetry {
             b.completed=w.status()==WorkpieceStatus.DONE && w.lastEvent()!=null?w.lastEvent().timestamp.toString():"In production";
             s.bottles.add(b);
         }
-        for(GuiSnapshot.Event a:s.alerts) s.stations.put(a.machine,"FAULT");
         com.systemj.SystemJProgram program=SystemJRunner.getProgram();
         if(program!=null) sensors(program,s);
+        recycling(s);
+        for(GuiSnapshot.Event a:s.alerts) s.stations.put(a.machine,"FAULT");
         latest=s; return s;
     }
+    /**
+     * The Recycling Station's own figures.
+     *
+     * The station's stops are read from its photo-eyes in the sensor sweep, so
+     * all that is left is what the eyes cannot see: how many bottles are
+     * waiting to be admitted, and which one is on the belt now. The bottle in
+     * the station is the one the station owns that is not in the queue - the
+     * sequencer takes it out before it commands the conveyor, so the two sets
+     * never overlap.
+     */
+    private static void recycling(GuiSnapshot s) {
+        RecyclingQueue q=RecyclingQueue.shared();
+        java.util.List<WorkpieceTwin> waiting=q.waiting();
+        s.recyclingCapacity=RecyclingQueue.CAPACITY;
+        s.recyclingQueued=waiting.size();
+        // The station's own level, straight off recyclingStatus: 0 idle,
+        // 1 busy, 2 suspended or faulted, 3 running with a bin or tank
+        // warning. Nothing publishes a MachineTwin for the recycling station,
+        // so without this the overview's lamp sat on IDLE all run and the
+        // window had nothing to report.
+        String level=s.sensors.get("SystemControllerCD.recyclingStatus");
+        if(level!=null && !"OFF".equals(level)) {
+            s.stations.put("RECYCLING",
+                    "1".equals(level)?"WORKING":"2".equals(level)?"FAULT":"3".equals(level)?"WARNING":"IDLE");
+        }
+        java.util.Set<Long> queued=new HashSet<Long>();
+        for(WorkpieceTwin w:waiting) { s.recyclingWaiting.add(w.toString()); queued.add(Long.valueOf(w.id)); }
+        for(GuiSnapshot.Bottle b:s.bottles) {
+            if("RECOVERED".equals(b.stage)) { s.recyclingRecovered++; continue; }
+            if("RECYCLING".equals(b.location) && !queued.contains(Long.valueOf(b.id))) {
+                s.recyclingInStation="bottle "+b.id+" | "+b.serial
+                        +" | "+b.filled+"/"+b.size+"ml | "+(b.lidded?"lidded":"open");
+                s.recyclingFilledMl=b.filled; s.recyclingSizeMl=b.size; s.recyclingLidded=b.lidded;
+            }
+        }
+    }
+
     private static void sensors(com.systemj.Container container,GuiSnapshot s) {
         if(container instanceof ClockDomain) {
             ClockDomain cd=(ClockDomain)container;
