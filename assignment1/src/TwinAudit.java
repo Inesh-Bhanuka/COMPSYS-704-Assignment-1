@@ -1,12 +1,11 @@
 import java.util.List;
 
 /**
- * The structural checks from the validation plan, run over the archive rather
- * than over the animation.
+ * Structural checks over the recorded histories rather than over the
+ * animation.
  *
  * These catch the class of fault where the plant behaves correctly and the
- * model quietly loses an event - which is exactly what watching the run would
- * not show you.
+ * model quietly loses an event, which watching the run would not show.
  */
 public class TwinAudit {
 

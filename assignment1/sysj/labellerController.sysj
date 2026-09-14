@@ -1,14 +1,12 @@
 /*
- * Labeller. The last machine on the line, and the one that puts the workpiece
- * twin onto the product.
+ * Labeller. The last machine on the line: it prints a label for the bottle and
+ * applies it.
  *
- * It receives a bottle as its twin rather than as a bare trigger, which is
- * what lets it refuse. A label is evidence of what the plant did, so the
- * content is rendered from the history - the proportions printed are the ones
- * actually metered, not the ones the recipe asked for - and a bottle whose
- * history does not justify a label does not get one. That gives a testable
- * invariant: nothing leaves the ABS carrying a label its own record cannot
- * support.
+ * The bottle arrives as its twin rather than as a bare trigger, so the machine
+ * can read the record and refuse. The label is rendered from that record - the
+ * proportions printed are the ones actually metered, not the ones the recipe
+ * asked for - and a bottle whose history does not justify a label does not get
+ * one.
  */
 LabellerController(
 		// from / to the System Controller
@@ -47,10 +45,8 @@ LabellerController(
 	{ // Mode select
 		while(true){
 			present(mode){
-				// 0 automatic, 1 manual, 2 paused. Paused emits neither, so
-				// every gate below waits and the operator panel is inert.
 				if((Integer)#mode == 0){ emit auto; }
-				else if((Integer)#mode == 1){ emit manual; }
+				else { emit manual; }
 			}
 			pause;
 		}
@@ -72,7 +68,7 @@ LabellerController(
 
 					// Injected fault: the printer produced nothing legible.
 					// Flagged before the record is judged, so the refusal
-					// below reports the print failure rather than a mystery.
+					// below names the print failure as the reason.
 					if(w.catchFault("no-print")){
 						System.out.println("[LAB] Print failed for " + w + ".");
 						w.reject(Machine.LABELLER, "label did not print");
@@ -95,11 +91,13 @@ LabellerController(
 							emit twin(t);
 						}
 
-						// Print, then apply, then let go.
-						//
-						// Three strokes, three gates. The glue roller runs with both the
-						// print and the application, so it is the roller the operator
-						// ticks to start printing.
+						// Print, then apply, then let go. Each stroke is preceded by a
+						// gate: in automatic the mode-select reaction emits auto every
+						// tick, so the gate is preempted at once, and in manual the
+						// sequence waits for the operator to tick that signal on the
+						// panel. The glue roller runs with both the print and the
+						// application, so it is the roller the operator ticks to start
+						// printing.
 						abort(immediate auto){ await(immediate rollerOnOffM); }
 						abort(immediate labelPrinted){
 							while(true){
@@ -109,10 +107,10 @@ LabellerController(
 							}
 						}
 
-						// Load-bearing, not padding. The compiler splits the generated
-						// state machine at every pause, and with the three gates added
-						// the print and apply halves no longer fit in one method under
-						// the JVM's 64 KB limit. It costs one tick between the label
+						// This pause is deliberate. The compiler splits the generated
+						// state machine at every pause, and without the split here the
+						// print and apply halves do not fit in one method under the
+						// JVM's 64 KB limit. It costs one tick between the label
 						// printing and the applicator going out.
 						pause;
 
@@ -150,10 +148,10 @@ LabellerController(
 		//
 		// labelStockLow and glueLow are levels, not events: once the stock is
 		// down they are present on every tick for the rest of the run. Both
-		// warnings are therefore reported on the transition only, the same
-		// way the bottle loader reports an empty supply. Printed on the level
-		// this reaction emitted a quarter of a million identical lines in a
-		// single run and buried everything else in the log.
+		// warnings are therefore reported on the transition only, the same way
+		// the bottle loader reports an empty supply. Printing on the level
+		// instead would repeat the same line every tick and bury the rest of
+		// the log.
 		LabellerTwin t = new LabellerTwin();
 		int labels = 0;
 		int glue = 0;

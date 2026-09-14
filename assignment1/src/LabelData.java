@@ -1,8 +1,9 @@
 import java.io.Serializable;
 
 /**
- * What gets printed on a bottle. Rendered from the twin, so every field is
- * evidence of what the plant did rather than a restatement of the order.
+ * What gets printed on a bottle. The identity fields come from the twin's
+ * order details; the mix percentages and the quality flag are read back out of
+ * its recorded history, so they report what the plant actually did.
  */
 public class LabelData implements Serializable {
 

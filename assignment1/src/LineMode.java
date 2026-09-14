@@ -1,2 +1,2 @@
-/** Plant-wide operating state. Only AUTO and MANUAL are driven today. */
-public enum LineMode { AUTO, MANUAL, SUSPENDED, DRAINING, RECONFIGURING }
+/** Plant-wide operating state, as reported by GuiSupervisor. */
+public enum LineMode { AUTO, MANUAL, SUSPENDED, DRAINING }

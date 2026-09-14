@@ -8,9 +8,8 @@ import java.util.List;
  *
  * The history is the record. Lifecycle state, station, fill level and whether
  * it is lidded are all folded out of the events rather than kept beside them,
- * so the two can never disagree - which is the usual way a model that stores
- * both goes wrong. Every event carries the tick it happened on, so any past
- * state can be reconstructed by replaying up to that point.
+ * so the two can never disagree. Every event carries the tick it happened on,
+ * so any past state can be reconstructed by replaying up to that point.
  *
  * Ownership travels with the bottle: exactly one clock domain holds a twin at
  * a time, and it hands it on by rendezvous, so appends never race.
@@ -18,10 +17,6 @@ import java.util.List;
 public class WorkpieceTwin implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
-	/** Bottle sizes the line supports, in millilitres. */
-	public static final int SMALL = 100;
-	public static final int LARGE = 200;
 
 	public final long id;
 	public final String serial;
@@ -96,8 +91,8 @@ public class WorkpieceTwin implements Serializable {
 
 	// ---- What the machines report ----
 	//
-	// Each of these is an event, not a flag. A machine hands the twin on by
-	// rendezvous, so exactly one clock domain is appending at any instant.
+	// Each of these is an event appended to the history, not a flag set on the
+	// side.
 
 	/** A filler metered ml of the next liquid in. */
 	public void dispensed(int ml) {
@@ -183,7 +178,10 @@ public class WorkpieceTwin implements Serializable {
 		return station;
 	}
 
-	/** Sum of what the fillers metered in, less anything the dumper took out. */
+	/**
+	 * Sum of what the fillers metered in. A drain at the recycling station
+	 * resets it to zero rather than subtracting.
+	 */
 	public int filledMl() {
 		int ml = 0;
 		for (WorkpieceEvent e : history) {

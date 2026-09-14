@@ -40,8 +40,7 @@ public class TwinRegistry {
 	 *
 	 * A hard reset clears the line, and the display follows the live list, so
 	 * the picture goes empty. The record does not: these bottles move to the
-	 * archive, where the audit still finds them. Losing the history would
-	 * throw away the one thing the digital twin exists to provide.
+	 * archive, where the audit still finds them.
 	 */
 	public void archiveAll() {
 		archived.addAll(admitted);
